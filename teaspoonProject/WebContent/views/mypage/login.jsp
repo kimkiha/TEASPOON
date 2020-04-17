@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인페이지</title>
 <link rel="stylesheet" type="text/css" href="../../resources/css/mypage/login_css.css">
 </head>
 <body>
@@ -26,13 +26,13 @@
                         </div>
                         
                         <div id="login" class="tabcontent">
-                          <form class="login">
+                        <form class="login" action="<%=contextPath%>/login.me" method="post">
                             <fieldset>
                             <ul>
-                             <li><input type="text"placeholder="아이디" title="아이디입력"></li>
-                             <li><input type="password" placeholder="비밀번호" title="비밀번호입력"></li>
+                             <li><input type="text" placeholder="아이디" name="userId"></li>
+                             <li><input type="password" placeholder="비밀번호" name="userPwd"></li>
                             
-                             <li><button>로그인</button></li>
+                             <li><button type="submit">로그인</button></li>
                             </ul> 
                             <div>
                                 <a href="">회원가입</a>

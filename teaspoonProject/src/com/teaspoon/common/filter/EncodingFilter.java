@@ -1,4 +1,4 @@
-package com.kh.common.filter;
+package com.teaspoon.common.filter;
 
 import java.io.IOException;
 
@@ -20,15 +20,14 @@ import javax.servlet.http.HttpServletRequest;
  * 1) 어노테이션을 이용한 방법
  * > 필터클래스 위에 @WebFilter 어노테이션을 활용해서 어떤 서블릿 실행되기 전에 이 필터를 거칠지 지정
  */
-// @WebFilter(filterName="encodingFilter", urlPatterns="/*")
-
+//
  /* 2) web.xml에 등록하는 방법
   * >web.mal파일에 이 필터클래슬를 등록하고 어떤 서블릿 실행됮기 전에 이 필터를 거쳐갈건지 지정
   */
 
 
 
-
+@WebFilter(filterName="encodingFilter", urlPatterns="/*")
 public class EncodingFilter implements Filter {
 
     /**

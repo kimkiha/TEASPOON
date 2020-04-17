@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.Member"%>
 <!DOCTYPE html>
-<% String contextPath = request.getContextPath();%>
+<%
+	String contextPath = request.getContextPath();
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	String msg = (String)session.getAttribute("msg");
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +21,21 @@
     <script src=" http://code.jquery.com/jquery-latest.min.js" language="javascript"></script>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
    <link href="<%=contextPath%>/resources/css/admin/admin_common.css" rel="stylesheet">
-    
+   
+<script>
+	$(function(){
+			//자바의 변수를 담아올떄는 반드시 ""로 감싸주어야한다.
+			var message = "<%=msg%>";
+			//자바에서 자바스트립트에 담을 때 null이면 "null"로 담기기떄문에 아래처럼 비교
+			if(message != "null"){
+			alert(message);				
+			}			
+			//회원가입 성공시 session의 msg에 계속 메세지가 담겨있음으로 
+			//어느창을 가던 menubar.jsp가 실행되면 계속  alert메소드가 실행된다.
+			//그러므로 msg를 비워주어야만 1회성으로 실행
+			<%session.removeAttribute("msg");%>
+	});
+</script>
     <script>
         $(function(){
             $(".click").click(function(){
