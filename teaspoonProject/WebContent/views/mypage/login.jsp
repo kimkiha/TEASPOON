@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인페이지</title>
-<link rel="stylesheet" type="text/css" href="../../resources/css/mypage/login_css.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>resources/css/mypage/login_css.css">
 </head>
 <body>
 <div id="wrap">
