@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>상품</title>
  
     <style>
         .outer p{margin-top: 30px; margin-bottom: 30px; font-size: 30px; font-weight: bold;}        
