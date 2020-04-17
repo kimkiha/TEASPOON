@@ -90,6 +90,11 @@
                         });
                     });
                 });
+           	
+                 $("#myPage_icon").click(function(){
+                	 alert("로그인하시겠습니까?");
+                 })
+            });
 
                 $(function(){
                     $(document).ready(function(){
