@@ -1,10 +1,14 @@
 package com.teaspoon.member.model.service;
 
+import static com.teaspoon.common.JDBCTemplate.close;
+import static com.teaspoon.common.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Member;
-import static com.teaspoon.common.JDBCTemplate.*;
+import com.teaspoon.member.model.vo.PageInfo;
 
 public class MemberService {
 
@@ -23,4 +27,35 @@ public class MemberService {
 		
 		return loginUser;
 	}
+	
+	/**
+	 * 2_1. 관리자회원명단 리스트 총 갯수 조회용 서비스
+	 * @return	--> 회원명단 총 인원수
+	 */
+	public int getListCount() {
+		Connection conn = getConnection();
+		
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new MemberDao().getListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 2_2. 해당페이지에 보여질 게시글 리스트 조회용 서비스
+	 * @param pi	--> 요청한 페이지, 한페이지 보여질 게시글 최대수가 담겨있는 객체
+	 * @return
+	 */
+	public ArrayList<Member> selectList(PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectList(conn, pi);
+		close(conn);
+		return list;
+	}
+	
+
+	
 }

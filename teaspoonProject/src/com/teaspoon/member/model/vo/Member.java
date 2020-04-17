@@ -18,12 +18,25 @@ public class Member {
 	private int buyPoint;		//누적구매금액
 	private String admin;		//관리자권한
 	private String status;		//상태
+	private String gradeName;   //등급네임
 	
 	
 	public Member(){
 		
 	}
 
+	
+	public Member(int userNo, String userId, String userName, String phone, Date enrollDate, String gradeName,int birthday, String status ) {
+	super();
+	this.userNo = userNo;
+	this.userId = userId;
+	this.userName = userName;
+	this.phone = phone;
+	this.enrollDate = enrollDate;
+	this.gradeName = gradeName;
+	this.birthday = birthday;
+	this.status = status;
+}
 
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String age, int birthday,
 			String phone, String email, Date enrollDate, Date modifyDate, int point, int buyPoint, String admin,
@@ -47,6 +60,7 @@ public class Member {
 	}
 
 
+
 	public int getUserNo() {
 		return userNo;
 	}
@@ -64,6 +78,16 @@ public class Member {
 
 	public void setGradeCode(int gradeCode) {
 		this.gradeCode = gradeCode;
+	}
+
+
+	public String getGradeName() {
+		return gradeName;
+	}
+
+
+	public void setGradeName(String gradeName) {
+		this.gradeName = gradeName;
 	}
 
 

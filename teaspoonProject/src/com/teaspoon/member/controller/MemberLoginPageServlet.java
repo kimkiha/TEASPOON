@@ -1,4 +1,4 @@
-package com.teaspoon.member.comtroller;
+package com.teaspoon.member.controller;
 
 import java.io.IOException;
 
