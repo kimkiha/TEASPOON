@@ -70,13 +70,12 @@
                     </ul>
                 </div>
                 <div id="header_3">
-                    
                     <img id="search_icon" src="<%=contextPath%>/resources/img/main/search.png">
                     <div id="search">
                         
                     </div>
                     <img id="myPage_icon" src="<%=contextPath%>/resources/img/main/mypage.png">
-                    <div id="header_mypage">
+                    <div class="header_mypage">
                         <ul>
                             <li id="login_li"><button id="login">로그인</button></li>
                             <li>마이티스푼</li>
@@ -101,19 +100,26 @@
                     if(result){
                     	location.href = "<%=contextPath%>/loginPage.me";
                     }
+                    });  
                     
+                    $("#navi li").hover(function(){
+                        $(".ul", this).slideDown(600);
+                    },
+                    function(){
+                        $(".ul", this).slideUp(600);
                     });
+                    
+                    $("#myPage_icon").hover(function(){
+                    	//alert("앙");
+                        // $(this).next().slideDown();
+                        var p = $(this).next(); //해당 p요소 
+                        if(p.css("display") == "none"){ //css("속성명")속성명만 작성시 속성값 리턴
+                            $(".header_mypage").children("ul").slideDown(600); 
+                        }else{
+                        	$(".header_mypage").children("ul").slideUp(600);
+                        }
+                     });
                 });
-                $(function(){
-                    $(document).ready(function(){
-                        $("#navi li").hover(function(){
-                            $(".ul", this).slideDown(600);
-                        },
-                        function(){
-                            $(".ul", this).slideUp(600);
-                        });
-                    });
-            });
 
     </script>
 </body>

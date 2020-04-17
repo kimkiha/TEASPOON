@@ -58,6 +58,15 @@
         });
     </script>
 
+<script>
+	$(function(){
+		$("#home").click(function(){
+			location.href="<%=contextPath%>";
+			console.log("aa");
+		});
+	
+	
+</script>
 
 </head>
 <body>
@@ -75,7 +84,7 @@
       </div>
     <div id="wrap">
         <div id="header" >
-            <div class="h1" >
+          <div class="h1">
                 <p style="margin: 0px; padding-top: 10px; font-size: 25px; color:white;">TeaSpoon</p>
                 <p style="margin: 0px; padding-bottom: 10px; font-size: 40px; color:white;">Admin</p>
             </div>

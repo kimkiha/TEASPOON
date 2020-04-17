@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>layout01</title>
+    <title>신고</title>
    
     <style>
         #c1_1_2 div{padding-left: 25px; float:left;}
