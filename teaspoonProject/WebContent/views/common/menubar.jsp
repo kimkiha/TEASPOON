@@ -89,23 +89,12 @@
                             $(".ul", this).slideUp(600);
                         });
                     });
-                });
            	
                  $("#myPage_icon").click(function(){
                 	 alert("로그인하시겠습니까?");
                  })
             });
 
-                $(function(){
-                    $(document).ready(function(){
-                        $("#myPage_icon").hover(function(){
-                            $("#mypage ul", this).slideDown(600);
-                            },
-                            function(){
-                            $("ul", this).slideUp(600);
-                        });
-                    });
-                });
     </script>
 </body>
 </html>
