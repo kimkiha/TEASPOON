@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>주문</title>
   
     <style>
         .dropdown button, #search{background-color: white; color:black; border: 1px solid lightgray; font-size: 15px; width: 100px; height: 40px; border-radius: 5px;}
