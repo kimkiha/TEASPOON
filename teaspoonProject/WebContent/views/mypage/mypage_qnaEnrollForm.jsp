@@ -6,7 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="mypage qnaEnrollForm.css">
+     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_qnaEnrollForm.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <style>
         #banner {height: 170px; line-height: 170px; background:url("패턴 - 복사본.jpg") center top repeat-x;}
@@ -14,9 +17,7 @@
 </head>
 <body>
 <div id="wrap">
-        <div id="header">
-            <div class="contaniner">여기는메뉴바</div>
-        </div>
+        <%@ include file="../common/menubar.jsp" %>
         <!-- //header -->
         <div id="banner">
             <div class="contaniner title">마이페이지</div>
@@ -151,9 +152,7 @@
         </div>
         
         <!-- //content-->
-        <div id="footer">
-            <div class="contaniner">footer</div>
-        </div>
+       <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
     <script>
