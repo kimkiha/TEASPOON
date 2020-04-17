@@ -75,10 +75,11 @@
                         
                     </div>
                     <img id="myPage_icon" src="<%=contextPath%>/resources/img/main/mypage.png">
-                    <div class="header_mypage">
+                    <a href="#" id="basket_icon"><img src="<%=contextPath%>/resources/img/main/cart.png"></a>
+                    <div class="header_mypage" >
                         <ul>
                             <li id="login_li"><button id="login">로그인</button></li>
-                            <li>마이티스푼</li>
+                            <li><a href="#">마이티스푼</a></li>
                             <li>나의 배송 조회</li>
                             <li>적립포인트</li>
                             <li>할인쿠폰</li>
@@ -86,7 +87,6 @@
                             <li style="border-bottom: none;">1:1문의</li>
                         </ul>
                     </div>
-                    <a href="#" id="basket_icon"><img src="<%=contextPath%>/resources/img/main/cart.png"></a>
                 </div>
             </div>
        </div>
@@ -94,32 +94,30 @@
     
     <script>
         $(function(){
-                    $("#login").click(function(){
-                    var result = window.confirm("로그인하시겠습니까?");
-                    
-                    if(result){
-                    	location.href = "<%=contextPath%>/loginPage.me";
-                    }
-                    });  
-                    
-                    $("#navi li").hover(function(){
-                        $(".ul", this).slideDown(600);
-                    },
-                    function(){
-                        $(".ul", this).slideUp(600);
-                    });
-                    
-                    $("#myPage_icon").hover(function(){
-                    	//alert("앙");
-                        // $(this).next().slideDown();
-                        var p = $(this).next(); //해당 p요소 
-                        if(p.css("display") == "none"){ //css("속성명")속성명만 작성시 속성값 리턴
-                            $(".header_mypage").children("ul").slideDown(600); 
-                        }else{
-                        	$(".header_mypage").children("ul").slideUp(600);
-                        }
-                     });
-                });
+            $("#login").click(function(){
+            	var result = window.confirm("로그인하시겠습니까?");
+            
+	            if(result){
+	            	location.href = "<%=contextPath%>/loginPage.me";
+	            }
+            });  
+            
+            $("#navi li").hover(function(){
+                $(".ul", this).slideDown(600);
+            },function(){
+                $(".ul", this).slideUp(600);
+            });
+            
+            $("#myPage_icon").click(function(){
+                var p = $(this).next().next(); //해당 p요소 
+                if(p.css("display") == "none"){ //css("속성명")속성명만 작성시 속성값 리턴
+                    p.slideDown(300); 
+                }else{
+                	p.slideUp(300);
+                }
+                
+             });
+        });
 
     </script>
 </body>
