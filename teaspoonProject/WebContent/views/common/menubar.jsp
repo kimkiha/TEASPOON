@@ -113,10 +113,6 @@
                             $(".ul", this).slideUp(600);
                         });
                     });
-           	
-                 $("#myPage_icon").click(function(){
-                	 alert("로그인하시겠습니까?");
-                 })
             });
 
     </script>
