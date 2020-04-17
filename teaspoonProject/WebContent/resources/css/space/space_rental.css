@@ -1,0 +1,495 @@
+@charset "UTF-8";
+
+/*대관 슬라이드*/
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+    
+/* 슬라이드쇼 div 사이즈 */
+.slideshow-container {
+		
+      width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+    
+    /* <> 버튼 스타일 */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    }
+    
+    /* 버튼 > 위치 스타일 */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+    }
+.prev{
+	left:0;
+}
+    
+/* 버튼 넘길때 호버 색 */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+    }
+    
+/* 사진설명 텍스트 스타일 */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+    }
+    
+/* 사진 페이지수 스타일 */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+    }
+    
+    /* 사진넘어가는 점표시 스타일 */
+.dots {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    }
+    
+.active, .dot:hover {
+    background-color: #717171;
+    }
+    
+/* 애니메이션 효과 조절 */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    }
+    
+@-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+    }
+    
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+    }
+    
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+    }
+
+.head-container{
+    border:1px solid #bbb;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    height:68px;
+    width:1000px;
+    margin-top:125px;
+    margin-left:100px;
+    padding:10px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+}
+.foot-container{
+     border:1px solid #bbb;
+     width:1000px;
+     height:80px;
+     margin-left:100px;
+     border-bottom-left-radius:5px;
+     border-bottom-right-radius:5px;
+     font-size:18px;
+     padding:22px;
+     text-align: left;
+     font-size:16px;
+}
+
+
+/* 모달 스타일 */
+/* 예약 버튼 스타일 */
+.btn {
+    cursor: pointer;
+    background: rgb(157,157,157);
+    display: inline-block;
+    padding: .8em 2em;
+    color: #fff;
+    border-radius: 3px;
+    position:relative;
+    left:840px;
+    bottom:44px;
+}
+  
+.btn:hover,
+.btn:focus {
+    background: rgb(94,94,94);
+}
+  
+.btn:active {
+    background: #27ae60;
+    box-shadow: 0 1px 2px rgba(0,0,0, .2) inset;
+}
+  
+.modal {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: left;
+    background: rgba(0,0,0, .9);
+    transition: opacity .25s ease;
+}
+
+.modal__bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.modal-state {
+    display: none;
+}
+
+.modal-state:checked + .modal {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-state:checked + .modal .modal__inner {
+    top: 0;
+}
+
+  /* 모달 안쪽영역 스타일 */
+.modal__inner {
+    transition: top .25s ease;
+    position: absolute;
+    top: -20%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 750px;
+    margin: auto;
+    overflow: auto;
+    background: white;
+    border-radius: 5px;
+    padding: 1em 2em;
+    height: 630px;
+    margin-top:150px;
+}
+
+  /* 모달 닫을때 영역 */
+.modal__close {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    width: 1.1em;
+    height: 1.1em;
+    cursor: pointer;
+}
+
+  /* modal_close 닫는 x표시 스타일 */
+.modal__close:after,
+.modal__close:before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 1.5em;
+  background: gray;
+  display: block;
+  transform: rotate(45deg);
+  left: 50%;
+  margin: -3px 0 0 -1px;
+  top: 0;
+}
+
+.modal__close:hover:after,
+.modal__close:hover:before {
+  background: #aaa;
+}
+/* x 표시 한쪽 */
+.modal__close:before {
+    transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 768px) {
+    .modal__inner {
+        width: 90%;
+        height: 90%;
+        box-sizing: border-box;
+    }
+  }
+
+body {
+    padding: 1%;
+    font: 1/1.5em sans-serif;
+}
+
+.btn1 {
+    background: rgb(157,157,157);
+    padding: .6em 2em;
+    color: #fff;
+    border-radius: 40px;
+    font-weight:bold;
+}
+
+/* 달령 모양 css */    
+[type="date"] {
+    height:30px;
+    margin-top:10px;
+    background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+  }
+  /* 달력 화살표 거리 떨궈주는 css */
+  [type="date"]::-webkit-inner-spin-button {
+    display: none;
+  }
+  /* 달력 화살표 감춰주는 css */
+  [type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  
+  .box{
+  	border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    height:30px;
+  }
+  
+  .adiv{
+    
+    background:beige;
+    width:300px;
+    height:30px;
+    border-radius:10px;
+    line-height:30px;
+    text-align:center;
+    border:1px solid yellow;
+
+  }
+  .bdiv{
+        border:1px solid lightgray;
+        width:300px;
+        height:100px;
+        margin-top:5px;
+        border-radius:10px;
+        display:none;
+  }
+
+  .ybtn{
+    height:50px;
+    width:120px;
+    background:rgb(248, 203, 4);
+    color:white;
+    position:relative;
+    left:170px;
+  }
+
+  .cbtn{
+    height:50px;
+    width:120px;
+    background:white;
+    position:relative;
+    left:170px;
+  }
+
+.sb01{
+    
+    background:lightgray;
+    width:650px;
+    height:60px;
+    border-radius:10px;
+    line-height:30px;
+    text-align:center;
+    font-weight:bold;
+    font-size: 18px;
+    color:white;
+    
+}
+.sb02{
+    background:rgb(233, 173, 9);
+    width:650px;
+    height:60px;
+    border-radius:10px;
+    line-height:30px;
+    text-align:center;
+    font-weight:bold;
+    font-size: 18px;
+    color:white;
+}
+
+.example01{
+    border:1px solid gray;
+    width:650px;
+    height:100px;
+    margin-top:5px;
+    border-radius:10px;           
+}
+.example02{
+    border:1px solid gray;
+    width:650px;
+    height:100px;
+    margin-top:5px;
+    border-radius:10px;          
+}
+.ftm{
+	padding-top : 15px;
+}
+
+.btn01{
+    font-size:15px;
+    position:relative;
+    left:240px;
+    bottom:15px;
+}
+
+.btn02{
+    font-size:15px;
+    position:relative;
+    left:240px;
+    bottom:15px;
+    
+}
+
+.perpose{
+    border:1px solid lightgray;
+    width:300px;
+    height:40px;
+    text-align:center;
+}
+.perposet{
+    border:1px solid lightgray;
+    width: 600px;
+    height: 40px;
+}
+
+.choice{
+    display:table;
+}
+.choice>div{
+    font-size:15px;
+    display:table-cell;
+}
+
+.choice1{
+    width:200px;
+    font-weight:bold;
+}
+.choice2{
+    width: 345px;
+    font-weight:bold;
+}
+.choice3{
+    width:80px;
+    font-weight:bold;
+}
+
+.date{
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    width: 190px;   
+}
+
+.bpf1{font-size:14px;}
+.bpf>div{height:20px; margin-left:5px;}
+
+/* Slideshow div 크기조절 */
+.slideshow-containers {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* 사진설명 텍스트 */
+.texts {
+  color: #000000;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* 사진 장수 폰트 1/3 */
+.numbertexts {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* 사진넘어가는 페이지점 */
+.dott {
+  height: 15px;
+  width: 20px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  position:relative;
+  left:20px;
+}
+
+.actives {
+  background-color: #717171;
+}
+
+/* 넘어가는 슬라이드 설정 */
+.fades {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fades {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fades {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .texts {font-size: 11px}
+}
+
+
