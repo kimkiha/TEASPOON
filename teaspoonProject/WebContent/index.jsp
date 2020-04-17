@@ -237,6 +237,8 @@
             </div>
             
             aaaa
+            
+            gggg
         <!-- //content-->
         <%@ include file="views/common/footer.jsp" %>
     </div>
