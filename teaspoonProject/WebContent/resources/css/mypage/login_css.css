@@ -4,7 +4,7 @@
  /*전체레이아웃*/
 #wrap {text-align: center; font-size: 30px; color: #fff;}
 #header {height: 140px; line-height: 140px; background: #ffe1e4;}
-#content {  line-height: inherit; background: #ead5ee;}
+#content {  line-height: inherit; }
 #footer {height: 220px; line-height: 220px; background: #d6ebfd;}
 .contaniner {width: 1200px; margin: 0 auto; height: inherit; }
 #content1{width:100%; height:800px;background: #ffffff; }
@@ -17,17 +17,16 @@
     transform:translate(-50%,-50%);
   
 }
-h1{color:black;}
-.tab .btn{float:left; width:298px; height:60px;}
-.tab .btn button{width:100%; height:100%; background:white; box-sizing:border-box;}
+
+.login-title{ width: 300px;height: 200px;padding-top: 50px;margin: auto;}
 .login li{padding:0 0 12px; }
 .login li input{border:none;border:1px solid #bebebe;
-    width:100%;height:46px; box-sizing:border-box;}
+    width:400px;height:46px; box-sizing:border-box;}
 .login li input::-webkit-input-placeholder{font-size:16px; color:#9fa19f;text-indent:16px;}
-.login button{color:white;
-    width:100%; height:56px; line-height: 56px; background:#de1c24;}
+.login button{color:white;width:400px; height:56px; border:none;border:1px solid #bebebe;
+                background: rgb(157, 157, 157);font-size: 20px;}
 ul>li{list-style:none; margin:auto;}
 .tab>ul>li{font-size:30px;display:table-cell; width:205px;height:56px;}
 .tab>ul {padding:40px 0 33px;}
 .login  a { font-size: 14px; color:#666;text-decoration:none;}
-fieldset{border:none;}
+fieldset{border:none;margin: auto;}

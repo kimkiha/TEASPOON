@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="mypage cart.css">
+
+  	 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_cart.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <style>
@@ -15,9 +18,8 @@
 </head>
 <body>
 <div id="wrap">
-        <div id="header">
-            <div class="contaniner">여기는메뉴바</div>
-        </div>
+        <%@ include file="../common/menubar.jsp" %>
+        
         <!-- //header -->
         <div id="banner">
             <div class="contaniner title">마이페이지</div>
@@ -123,9 +125,7 @@
                 </div>
         </div>
         <!-- //content-->
-        <div id="footer">
-            <div class="contaniner">footer</div>
-        </div>
+         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
     <script>

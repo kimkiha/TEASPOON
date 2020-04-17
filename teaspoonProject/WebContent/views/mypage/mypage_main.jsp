@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="mypage main.css">
-    <link rel="stylesheet" href="reset.css">
+    <meta charset="UTF-8">
+    <title>layout06</title>
+    		 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_main.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <style>
@@ -14,11 +16,10 @@
       
     </style>
 </head>
-<body>
-<div id="wrap">
-        <div id="header">
-            <div class="contaniner">여기는메뉴바</div>
-        </div>
+<body> 
+    <div id="wrap">
+       <%@ include file="../common/menubar.jsp" %>
+
         <!-- //header -->
         <div id="banner">
             <div class="contaniner">마이페이지</div>
@@ -96,11 +97,8 @@
                             <!-- 배송 아이콘 끝 -->
                             <!--  마이쿠폰-->
                              <div class="cp-outer" >
-                                
-                                 <div class="cp1">
-                                    
-                                     <p style="margin-left: 20px;">마이쿠폰</p>
-                                     
+                                 <div class="cp1"> 
+                                     <p style="margin-left: 20px;">마이쿠폰</p>  
                                    </div>
                                    <div class="cp-a"> <a style="float:right;font-size: 17px;margin-bottom: 30p;">더보기></a></div>
                                  <div class="cp2">
@@ -117,8 +115,6 @@
                                         <span>멤버십 3천원할인쿠폰</span>
                                      </div>
                                  </div>
-
-
                              </div>
                              <!-- 마이쿠폰 끝-->
 
@@ -171,12 +167,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                              </div>
-
-
-
                              <!-- 최근 구매 내역-->
                             </div>
                         </div>
@@ -184,9 +175,7 @@
                 </div>
         </div>
         <!-- //content-->
-        <div id="footer">
-            <div class="contaniner">footer</div>
-        </div>
+           <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
 </body>

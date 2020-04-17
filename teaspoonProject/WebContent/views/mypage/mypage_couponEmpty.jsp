@@ -14,9 +14,7 @@
 </head>
 <body>
 <div id="wrap">
-        <div id="header">
-            <div class="contaniner">여기는메뉴바</div>
-        </div>
+        <%@ include file="../common/menubar.jsp" %>
         <!-- //header -->
         <div id="banner">
             <div class="contaniner title">마이페이지</div>
@@ -87,9 +85,7 @@
         </div>
         
         <!-- //content-->
-        <div id="footer">
-            <div class="contaniner">footer</div>
-        </div>
+         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
     <script>

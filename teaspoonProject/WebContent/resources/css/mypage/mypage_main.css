@@ -1,12 +1,6 @@
-   /*리셋*/
-   * {margin: 0; padding: 0;}
-   /*전체레이아웃*/
-   #wrap {text-align: center; font-size: 30px; color: black;}
-   #header {height: 140px; line-height: 140px; background: #ffe1e4;}
-   #banner {height: 170px; line-height: 170px; background-image:url("패턴 - 복사본.jpg")}
-   #content {  line-height: inherit; background: #ead5ee;}
-   #footer {height: 220px; line-height: 220px; background: #d6ebfd;}
-   .contaniner {width: 1200px; margin: 0 auto; height: inherit; background: rgba(0,0,0,0.3);}
+ 
+
+   /*마이페이지*/
    #mypage{width:1000px; height:2000px; background-color:rgb(219, 219, 219); margin: 0 auto;}
    #mypage_menu_tab>div{
        float:left; text-align: center; line-height: 60px; 
@@ -87,7 +81,8 @@
    .order{background: #bebbb6;}
    .l{width:117px;height:234px; font-size: 18px;text-align: center;}
    .t{width:15;height:235px;}
-   .t>span{text-align: center;vertical-align: middle;line-height: 230px;color:rgb(94, 94, 94)}
+   .t>span{text-align: center;vertical-align: middle;font-size: 20px;
+                line-height: 230px;color:rgb(94, 94, 94)}
    .l>img{margin-top: 40px;}
    .myorder>div{ float: left;}
    .order-outer{background-color: white;width:999px;height:300px;
@@ -95,11 +90,7 @@
    display:inline-block;}
     
    /*전체 이미지에 걸렷어요 손대지마시오*/
-   img{
-       display:inline-block;
-       text-align: center;
-   }
-   
+  
    /* 배송 여기까지*/
 
    /* 마이쿠폰 */
@@ -116,7 +107,7 @@
    /* 마이쿠폰 끝*/
 
    /* 최근 주문 내역 */
-   .rd-outer{background-color: white;width:1000px;height:8000px;}
+   .rd-outer{background-color: white;width:1000px;height:auto;margin:auto;}
    .rd-1{height:60px;width: 1000px;}
    .rd-2{height:60px;width: 900px;display: inline-block;}
    .rd-3{width:66px;display: inline-block;}
@@ -147,7 +138,8 @@
    .rd52{width:176px;height:50px;display:table;}
    .rd52>p{display: table-cell;font-size: 17px;vertical-align: middle;text-align: center;word-break: break-all;}
    
-   .rd-board3{float:right}
-   .rd6{width:376px;height: 50px;}
-   .rd7{width:376px;height: 50px;}
+   .rd-board3{float:right;}
+   .rd-board3>div{}
+   .rd6{width:376px;height:40px;}
+   .rd7{width:376px;height:40px;display:inline-block;}
 
