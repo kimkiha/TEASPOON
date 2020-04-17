@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	//ArrayList<Item> list = (ArrayList<Item>)request.getAttribute("list");
+
+%>    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
-	#content1 {width:100%; height:1800px;background: #ffffff; }
+	#content1 {width:100%; height:1800px; background:#ffffff;}
 	#banner {height: 270px; line-height: 270px; background:url("../../resources/img/store/storetop_item.jpg") center top no-repeat;}
 </style>
 </head>
@@ -35,16 +41,16 @@
                         <div id="productList">
                             <div class="product">
                                 <div class="product_img">
-                                    <img src="../img/item3_1.jpg" style="float:left; width:100%; height:inherit">
+                                    <img src="<%=contextPath %>/resources/img/store/item3_1.jpg" style="float:left; width:100%; height:inherit">
                                 </div>
                                 <div class="product_detail">
                                     <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
                                 </div>
                                 <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
+                                    <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
                                 </div>
                                 <div class="basket">
-                                    <img id="open" class="basket_icon" src="cart.png">
+                                    <img id="open" class="basket_icon" src="<%=contextPath %>/resources/img/store/cart.png">
                                 </div>
                                 <div class="modal">
                                         <div class="modal_content">
@@ -230,7 +236,7 @@
             function wishList() {
                if(state==0){
                     state=1;
-                    $('.like_icon').attr("src","heart_full.png");
+                    $('.like_icon').attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
                     window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
                } else{
                    state=0;
@@ -252,12 +258,8 @@
 
    
         </script>
-        
-
-
         <!-- //content-->
-        
-        
+                
         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
