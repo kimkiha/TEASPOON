@@ -70,7 +70,6 @@
                     </ul>
                 </div>
                 <div id="header_3">
-                    
                     <img id="search_icon" src="<%=contextPath%>/resources/img/main/search.png">
                     <div id="search">
                         
