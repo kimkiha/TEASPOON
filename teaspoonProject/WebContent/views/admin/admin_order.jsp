@@ -24,7 +24,7 @@
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
                     <div id="c1_1_1">
-                        <div id="c1_1_1_1"><img src="주문현황.png" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/주문현황.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>주문현황페이지입니다.</p></div>
                         <div id="c1_1_1_3">
                             <input type="text" placeholder="아이디" name="idName">

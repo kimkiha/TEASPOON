@@ -81,7 +81,7 @@
             </div>
             <div class="h2">
             </div>
-            <div class="h3"><img class="btn1" data-toggle="modal" data-target="#myModal" src="관리자아이콘.png"></div>
+            <div class="h3"><img class="btn1" data-toggle="modal" data-target="#myModal" src="<%=contextPath%>/resources/img/admin/로그아웃.png"></div>
         </div>
         <div id="side">
             <ul>

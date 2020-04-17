@@ -25,7 +25,7 @@
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
                     <div id="c1_1_1" >
-                        <div id="c1_1_1_1"><img src="어바웃.png" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/어바웃.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>어바웃티스푼 페이지입니다.</h3></div>
                         <div id="c1_1_1_3">
                              <input type="text" placeholder="키워드" name="keyword">
