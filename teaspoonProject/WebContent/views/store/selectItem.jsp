@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../../resources/css/store/selectItem copy.css">
-    <link rel="stylesheet" href="../../resources/css/common/reset.css">
-    <link rel="styleSheet" href="../../resources/css/common/menubar.css">
-	<link rel="styleSheet" href="../../resources/css/common/footer.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/store/selectItem.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
