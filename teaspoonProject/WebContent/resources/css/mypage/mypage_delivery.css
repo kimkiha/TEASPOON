@@ -1,13 +1,13 @@
    /*리셋*/
    * {margin: 0; padding: 0;}
    /*전체레이아웃*/
-   #wrap {text-align: center; font-size: 30px; color: black; min-height:100%;}
+   #wrap {text-align: center;  color: black; min-height:100%;}
    #header {height: 140px; line-height: 140px; background: #ffe1e4;}
    #banner {height: 170px; line-height: 170px; background-image:url("패턴 - 복사본.jpg")}
    #content {  line-height: inherit; }
    #footer {height: 220px;  background: #d6ebfd;}
    .contaniner {width: 1200px; margin: 0 auto; height: inherit; background: white;}
-   #mypage{width:1000px; height:100%; background-color:white; margin: 0 auto;}
+   #mypage{width:1000px; height:100%; background:white; margin: 0 auto;}
    #mypage_menu_tab>div{
        float:left; text-align: center; line-height: 60px; 
        margin-top:80px; margin-bottom:50px; height:60px; 

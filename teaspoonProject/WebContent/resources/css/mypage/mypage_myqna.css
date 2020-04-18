@@ -83,7 +83,7 @@
         #t{width: 100px;}
         #l{width:900px;display: inline-block;}
         #delete{width:90px;height: 35px;margin-top:7px;float: right;margin-right: 5px;}
-        #delete>button{width: 90px;height: 35px;background: white;border-radius: 5px;}
+        #delete>button{width: 90px;height: 35px;background: white;border-radius: 5px;border:none;border:1px solid rgb(157,157,157);}
 
         /*페이징 바*/
         .fagingarea{width:1000px;height: 155px;}
