@@ -107,7 +107,7 @@
             <br>
             <li class="c-li"><p class="click" style="margin: 0 0;" >상품관리</p>
             <ul class="deep">
-            <li><a href="adminStore.html">상품수정/삭제/등록</a></li>
+            <li><a href="<%=contextPath%>/list.st">상품수정/삭제/등록</a></li>
             <li><a href="adminReview.html">상품리뷰</a></li>
             </ul>
             </li>

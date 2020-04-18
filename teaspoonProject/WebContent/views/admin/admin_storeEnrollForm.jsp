@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>상품</title>
+<title>상품등록</title>
 
 <style>
 .outer p {
@@ -15,16 +15,13 @@
 	font-weight: bold;
 }
 
-table * {
+table *{
 	padding: 5px;
-	margin: auto;
-	text-align: center;
 	font-size: 18px;
 }
 
-table th {
-	width: 100px;
-	text-align: center;
+table th,td {
+	width: 80px;
 }
 
 table tr:first-child {
@@ -43,66 +40,68 @@ table tr {
 			<div class="outer">
 				<p>상품 등록</p>
 
-				<form id="insertForm" action="insert.th" method="post"
+				<form id="productInsertForm" action="insert.st" method="post"
 					enctype="multipart/form-data">
 					<table>
 						<tr>
-							<th>상품번호</th>
-							<th>상품명</th>
-							<th>판매가(원)</th>
-							<th>상품옵션</th>
-							<th>재고</th>
-							<th>검색키워드</th>
-
+							<th>PCODE</th>
+							<th>PNAME</th>
+							<th>SUP_PRICE</th>
+							<th>PRICE</th>
+							<th>STOCK</th>
+							<th>TOTAL_COUNT</th>
 						</tr>
 						<tr>
-							<td><input type="text" size="7px" readonly
-								placeholder="자동등록"></td>
-							<td><input type="text" size="7px"></td>
-							<td><input type="text" size="7px"></td>
-							<td><input type="text" size="7px"></td>
-							<td><input type="text" size="7px"></td>
+							<td><input type="text" name="pcode"></td>
+							<td><input type="text" name="pname"></td>
+							<td><input type="text" name="supPrice"></td>
+							<td><input type="text" name="price"></td>
+							<td><input type="text" name="stock"></td>
+							<td><input type="text" name="totalCount"></td>
+						</tr>
+						<tr>
+							<th>STATUS</th>
 							<td>
-								<select name="keyword">
-								<option value="부드러운">부드러운</option>
-								<option value="달콤한">달콤한</option>
-								<option value="초콜릭같은">초콜릿같은</option>
-								<option value="과일향">과일향</option>
-								<option value="뻇지">뺏지</option>
-								<option value="튼튼한">튼튼한</option>
-								<option value="동글동글한">동글동글한</option>
+								<input type="radio" name="status" value="Y">Y
+								<input type="radio" name="status" value="N">N
 							</td>
-
-						</tr>
-						<tr>
-							<td>노출여부</td>
-							<td><input type="radio" name="status" value="Y">Y</td>
-							<td><input type="radio" name="status" value="N">N</td>
+							<th>상품종류</th>
+							<td>
+								<input type="radio" name="kind" value="C">C
+								<input type="radio" name="kind" value="I">I
+							</td>
+							<th>KEYWORD</th>
+							<td><input type="text" name="keyword"></td>
 						</tr>
 						<tr>
 							<th>대표이미지</th>
-							<td colspan="7" style="height: 120px;"><img id="titleImg"
-								width="150px"></td>
+							<td>
+								<img id="titleImg" width="150" height="120">
+							</td>
+					
+							<th>상세이미지</th>
+							<td>
+								<img id="contentImg1" width="150" height="120">
+							</td>
+							<td>
+								<img id="contentImg2" width="150" height="120">
+							</td>
+							<td>
+								<img id="contentImg3" width="150" height="120">
+							</td>
 						</tr>
 						<tr>
-							<th>상세이미지</th>
-							<td colspan="2" style="height: 120px;"><img id="contentImg1"
-								width="150px"></td>
-							<td colspan="2" style="height: 120px;"><img id="contentImg2"
-								width="150px"></td>
-							<td colspan="2" style="height: 120px;"><img id="contentImg3"
-								width="150px"></td>
+							<th>PCONTENT</th>
+							<td colspan="6"><textarea name="pcontent" cols=77 rows=3 style="resize:none;"></textarea><td>
 						</tr>
 
 					</table>
 					<br>
 					<div id="fileArea">
-						<input type="file" name="file1" id="file1"
-							onchange="loadImg(this,1);"> <input type="file"
-							name="file2" id="file2" onchange="loadImg(this,2);"> <input
-							type="file" name="file3" id="file3" onchange="loadImg(this,3);">
-						<input type="file" name="file4" id="file4"
-							onchange="loadImg(this,4);">
+						<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
+						<input type="file" name="file2" id="file2" onchange="loadImg(this,2);"> 
+						<input type="file" name="file3" id="file3" onchange="loadImg(this,3);">
+						<input type="file" name="file4" id="file4" onchange="loadImg(this,4);">
 					</div>
 					<br>
 					<div class="btns">
@@ -112,33 +111,22 @@ table tr {
 			</div>
 		</div>
 	</div>
-	</div>
 	<script>
-		//이미지태그 클릭으로 파일 첨부할것임으로 깔끔하게 보이기위해 숨긴다.
-		$(function() {
+		$(function(){
 			$("#fileArea").hide();
-		});
-
-		//이미지 태그 클릭시 파일 첨부 버튼이 눌리게한다.
-		$(function() {
-			$("#titleImg").click(function() {
-
-				//파일첨부 클릭이미지를 실행시킨다.	
+			
+			$("#titleImg").click(function(){
 				$("#file1").click();
-
 			});
-		});
-
-		$("#contentImg1").click(function() {
-			$("#file2").click();
-		});
-
-		$("#contentImg2").click(function() {
-			$("#file3").click();
-		});
-
-		$("#contentImg3").click(function() {
-			$("#file4").click();
+			$("#contentImg1").click(function(){
+				$("#file2").click();
+			});
+			$("#contentImg2").click(function(){
+				$("#file3").click();
+			});
+			$("#contentImg3").click(function(){
+				$("#file4").click();
+			});
 		});
 
 		function loadImg(inputFile, num) {
@@ -159,18 +147,10 @@ table tr {
 				// e : 현재 이벤트가 발생한 이벤트객체
 				reader.onload = function(e) {
 					switch (num) {
-					case 1:
-						$("#titleImg").attr("src", e.target.result);
-						break;
-					case 2:
-						$("#contentImg1").attr("src", e.target.result);
-						break;
-					case 3:
-						$("#contentImg2").attr("src", e.target.result);
-						break;
-					case 4:
-						$("#contentImg3").attr("src", e.target.result);
-						break;
+					case 1: $("#titleImg").attr("src", e.target.result); break;
+					case 2: $("#contentImg1").attr("src", e.target.result); break;
+					case 3: $("#contentImg2").attr("src", e.target.result); break;
+					case 4: $("#contentImg3").attr("src", e.target.result); break;
 
 					}
 				};
