@@ -46,7 +46,7 @@
             </div>
             <div class="ft_quick">
                 <a href="#"><img src="<%=contextPath%>/resources/img/main/loca.png"></a>
-                <a href="#"><img src="<%=contextPath%>/resources/img/main/insta.png"></a>
+                <a href="<%=contextPath%>/views/board/instagram.jsp"><img src="<%=contextPath%>/resources/img/main/insta.png"></a>
                 <a href="#"><img src="<%=contextPath%>/resources/img/main/chat.png"></a>
             </div>
         </div>
