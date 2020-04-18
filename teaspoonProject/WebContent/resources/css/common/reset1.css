@@ -19,7 +19,7 @@ body, input, textarea, select, button, table {
 #header_wrap{ height:inherit; width:1200px; margin:0 auto; left: 0; right: 0; }
 #banner{margin-top:87px}
 #content {width:100%;height:auto; margin:0 auto; display: inline-block;}
-#footer {width: 100%; height: 220px;clear:both; }
+#footer {width: 100%; height: 220px; }
 .nohover:hover{color:#222}
 
 /* 배너 타이틀 */
