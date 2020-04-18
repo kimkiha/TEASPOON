@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*"%>
+<%
+	ArrayList<Product> list =  (ArrayList<Product>)request.getAttribute("list");
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상품</title>
+    <title>상품목록 전체보기</title>
    
     <style>
         #c1_1_2 div{padding-left: 25px; float:left;}
@@ -21,7 +25,7 @@
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
                     <div id="c1_1_1">
-                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/커피.png" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="" width="50px"></div>
                         <div id="c1_1_1_2"><p>상품관리페이지입니다.</p></div>
                         <div id="c1_1_1_3">
                             <input type="text" placeholder="제목" name="idName">
@@ -34,33 +38,38 @@
                                 <tr>
                                     <th>상품번호</th>
                                     <th>상품명</th>
-                                    <th>검색키워드</th>
-                                    <th>공급가(원)</th>
-                                    <th>판매가(원)</th>
-                                    <th>상품옵션</th>
+                                    <th>공급가</th>
+                                    <th>가격</th>
                                     <th>재고</th>
-                                    <th>노출여부</th>
+                                    <th>진열상태</th>
+                                    <th>키워드</th>
+                                    <th>누적판매수</th>
+                                    <th>상품종류</th>
+                                    <th>상품상세설명</th>
                                     <th><button type="button" style="width: 100px;">
-                                        <a href="adminStoreEnrollForm.html">상품등록</a></button></th>
+                                        <a href="<%=contextPath%>/enroll.st">상품등록</a></button></th>
                                     </tr>
                             </tbody>
                            
                               <tfoot>
+                              <%for(Product p : list){ %>
                                   <tr>
-                                      <td>P0001</td>
-                                      <td>블랙스트</td>
-                                      <td>부드러운,무난한</td>
-                                      <td>18,000</td>
-                                      <td>18,000</td>
-                                      <td>한정판매</td>
-                                      <td>10</td>
-                                      <td>Y</td>
+                                      <td><%=p.getPcode()%></td>
+                                      <td><%=p.getPname() %></td>
+                                      <td><%=p.getSupPrice() %></td>
+                                      <td><%=p.getPrice() %></td>
+                                      <td><%=p.getStock() %></td>
+                                      <td><%=p.getStatus() %></td>
+                                      <td><%=p.getKeyword() %></td>
+                                      <td><%=p.getTotalCount() %></td>
+                                      <td><%=p.getKind() %></td>
+                                      <td><%=p.getPcontent() %></td>
                                       <td>
                                           <button type="button"><a href="adminStoreUpdateForm.html">수정</a></button>
                                           <button type="button">삭제</button>
                                         </td>
                                       </tr>
-                                  
+                                  <%} %>
                               </tfoot>
                              
                       </table>

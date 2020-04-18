@@ -1,7 +1,6 @@
 package com.teaspoon.store.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Product;
-
 /**
- * Servlet implementation class CoffeeListServlet
+ * Servlet implementation class productListServlet
  */
-@WebServlet("/coffee.st")
-public class CoffeeListServlet extends HttpServlet {
+@WebServlet("/list.st")
+public class productListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CoffeeListServlet() {
+    public productListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,13 +29,8 @@ public class CoffeeListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		ArrayList<Product> list = new ProductService().selectCoffeeList();
-//		request.setAttribute("list", list);
-//		
-//		RequestDispatcher view = request.getRequestDispatcher("views/store/coffeeListView.jsp");
-//		view.forward(request, response);
-	
-	
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_store.jsp");
+		view.forward(request, response);
 	
 	}
 

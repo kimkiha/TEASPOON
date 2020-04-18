@@ -15,20 +15,6 @@ public class Product {
 	
 	public Product(){}
 	
-	
-	// 상품번호,상품명,가격,진열상태,키워드,상품종류,상품상세설명
-	public Product(int pcode, String pname, int price, String status, String keyword, String kind, String pcontent) {
-		super();
-		this.pcode = pcode;
-		this.pname = pname;
-		this.price = price;
-		this.status = status;
-		this.keyword = keyword;
-		this.kind = kind;
-		this.pcontent = pcontent;
-	}
-
-
 	// 전체 컬럼 생성자
 	public Product(int pcode, String pname, int supPrice, int price, int stock, String status, String keyword,
 			int totalCount, String kind, String pcontent) {
@@ -41,6 +27,19 @@ public class Product {
 		this.status = status;
 		this.keyword = keyword;
 		this.totalCount = totalCount;
+		this.kind = kind;
+		this.pcontent = pcontent;
+	}
+
+	// 상품 insert시 사용할 생성자
+	public Product(String pname, int supPrice, int price, int stock, String keyword,
+			String kind, String pcontent) {
+		super();
+		this.pname = pname;
+		this.supPrice = supPrice;
+		this.price = price;
+		this.stock = stock;
+		this.keyword = keyword;
 		this.kind = kind;
 		this.pcontent = pcontent;
 	}

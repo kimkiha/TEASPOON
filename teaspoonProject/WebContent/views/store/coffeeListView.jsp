@@ -46,7 +46,7 @@
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail">
-                                    <a href=""><p><%=p.keyword() %></p></a>
+                                    <a href=""><p><%=p.pname() %></p></a>
                                 </div>
                                 <div class="like">
                                     <img class="<%=contextPath %>/resources/img/store/like_icon" src="heart_emtpy.png" onclick="wishList();">
