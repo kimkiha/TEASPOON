@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	// Coffee c = (Coffee)request.getAttribute("c");
+	// Product p = (Product)request.getAttribute("p");
 	// ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
 	// 0번 인덱스 : 대표이미지(클래스이름이 thumbnail인 div에 들어갈 이미지)
 	// 1~3번 인덱스 : Content영역에 들어갈 이미지
@@ -54,7 +54,7 @@
                                     <!--상품명, 상품설명요약 -->
                                     <div class="p_explain1">
                                         <h4>c.getName()</h4>
-                                        <p>c.getCoffeeText()</p>
+                                        <p>c.getKeyword()</p>
                                    </div>
 
                                    <!--원두 그람수 옵션(셋중에 하나만 가능)-->
@@ -77,7 +77,7 @@
                                         <p><b>&gt; 갈아드릴까요?</b></p>
                                         <form action="">
                                             <select name="grind" id="bean" style="width: 100%; height: 40px; font-size: medium;">
-                                                <option value="holeBean">홀빈(갈지않음)</option>
+                                                <option value="holeBean" selected>홀빈(갈지않음)</option>
                                                 <option value="handDrip">핸드드립/클레버용</option>
                                                 <option value="coffeeMaker">커피메이커용</option>
                                                 <option value="franchPress">프렌치프레스용</option>

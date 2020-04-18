@@ -10,8 +10,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="styleSheet" href="../../resources/css/store/item.css">
+<title>티스푼의 컵&아이템</title>
+<link rel="styleSheet" href="../../resources/css/store/itemListView.css">
 <link rel="styleSheet" href="../../resources/css/common/reset.css">
 <link rel="styleSheet" href="../../resources/css/common/menubar.css">
 <link rel="styleSheet" href="../../resources/css/common/footer.css">
@@ -39,12 +39,16 @@
                 <div class="contaniner">
                     <div id="productArea">
                         <div id="productList">
+                        
+                        	<!-- listArea -->
                             <div class="product">
                                 <div class="product_img">
-                                    <img src="<%=contextPath %>/resources/img/store/item3_1.jpg" style="float:left; width:100%; height:inherit">
+                                    <img src="<%=contextPath %>/resources/img/store/item3_1.jpg" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
+                                    <a href="해당 상품의 상세페이지로 이동">
+                                    	<p style="width:120px; color:white;"> SPECIAL COFFEE 체리향, 월넛향 </p>
+                                    </a>
                                 </div>
                                 <div class="like">
                                     <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
@@ -240,7 +244,7 @@
                     window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
                } else{
                    state=0;
-                   $('.like_icon').attr("src","heart_emtpy.png");
+                   $('.like_icon').attr("src","<%=contextPath %>/resources/img/store/heart_emtpy.png");
                    window.alert("위시리스트에서 삭제되었습니다.")
                }
             }
