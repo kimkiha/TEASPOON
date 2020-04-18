@@ -349,7 +349,7 @@
 
 
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+       
         <!-- //footer-->
     </div>
 </body>

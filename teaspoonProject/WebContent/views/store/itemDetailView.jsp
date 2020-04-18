@@ -214,7 +214,7 @@
             </div>
         </div>
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+        
         <!-- //footer-->
     </div>
 
