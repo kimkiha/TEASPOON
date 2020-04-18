@@ -1,5 +1,5 @@
-
-#magazine{width:1000px; height:100%; margin: 0 100px;}
+#maga{width:1200px; height:2220px; margin:0 auto;}
+#magazine{width:1000px; margin: 0 100px;}
 #magazine #title{width:1000px; height:140px}
 #magazine #title #title_detail{float:left; width:700px; height: 100%;}
 /*매거진 타이틀*/
@@ -18,5 +18,5 @@
 #magazine .magazine_content1>p{line-height: 35px; margin:20px 0 50px 0;text-align: left; }
 
 /*이전 매거진 다음 매거진*/
-#pre_next{width: 1200px; height: 300px; }
+#pre_next{float:left; width: 1200px; height: 300px; }
 #pre_next #next, #pre{float:left; width: 600px; height: 100%;}
