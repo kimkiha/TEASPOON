@@ -7,10 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/common/menubar.css">
-<link rel="stylesheet" href="resources/css/common/footer.css">
-<link rel="stylesheet" href="resources/css/common/reset.css">
-<link rel="stylesheet" href="resources/css/main/main.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main/main.css">
 
 
 <script type="text/javascript" src="resources/js/main.js"></script>
