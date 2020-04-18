@@ -7,7 +7,7 @@
    #content {  line-height: inherit; }
    #footer {height: 220px; line-height: 220px; background: #d6ebfd;}
    .contaniner {width: 1200px; margin: 0 auto; height: inherit; background: white;}
-   #mypage{width:1000px; height:2000px; background-color:white; margin: 0 auto;}
+   #mypage{width:1000px; height:auto; background-color:white; margin: 0 auto;}
    #mypage_menu_tab>div{
        float:left; text-align: center; line-height: 60px; 
        margin-top:80px; margin-bottom:50px; height:60px; 
@@ -148,7 +148,7 @@
   #mypage_table th{border-bottom:2px solid #bebebe;  border-top: 1px solid #bebebe; padding: 10px 0;}
   #mypage_table td{border-bottom:1px solid #bebebe; padding: 30px  0;}
   /*페이징 바*/
-  .fagingarea{width:1000px;height: 340px;}
+  .fagingarea{width:1000px;height: 200px; border:1px solid red;}
   .fagingvar{width: 1000px;height:35px;line-height: 18;}
      
 

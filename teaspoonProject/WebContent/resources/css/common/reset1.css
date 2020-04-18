@@ -12,7 +12,7 @@ body, input, textarea, select, button, table {
     color: #222; font-size: 18px; line-height: 1.5;}
 
 /*전체레이아웃*/
-#wrap {text-align: center;  color: black; color:#333;min-height:100%;position:relative; }
+#wrap {text-align: center;  color: black; color:#333;min-height:100%;position:relative;height:100%; }
 #header {float:left;width:100%; background-color: white; position: absolute; top:0 ;position:fixed;  z-index: 1000000; height: 115px; 
      box-shadow: 0px 10px 10px 0px rgba(144, 144, 144, 0.1);
         }
