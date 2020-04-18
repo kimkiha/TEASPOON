@@ -8,7 +8,7 @@
 #notice table a:hover{color:#222}
 
  /* footer css */
-#foot{width:1200px;  margin:auto;height:220px;  }
+#foot{width:1200px;  margin:auto;height:220px;}
 #foot .ft_logo{float: left; width:230px; padding: 85px 0px; margin:0;}
 #foot .ft_content{width: 750px; float: left; font-size: 15px; text-align: left; margin-top:35px; padding-left: 15px; height:149px;}
 #foot .ft_content>p{margin-top:15px}

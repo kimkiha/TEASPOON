@@ -1,7 +1,7 @@
  
 
    /*마이페이지*/
-   #mypage{width:1000px; height:2000px; background-color:rgb(219, 219, 219); margin: 0 auto;}
+   #mypage{width:1000px; height:auto; background-color:white; margin: 0 auto;}
    #mypage_menu_tab>div{
        float:left; text-align: center; line-height: 60px; 
        margin-top:80px; margin-bottom:50px; height:60px; 
@@ -139,7 +139,7 @@
    .rd52>p{display: table-cell;font-size: 17px;vertical-align: middle;text-align: center;word-break: break-all;}
    
    .rd-board3{float:right;}
-   .rd-board3>div{}
+   
    .rd6{width:376px;height:40px;}
    .rd7{width:376px;height:40px;display:inline-block;}
 

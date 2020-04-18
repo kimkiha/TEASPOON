@@ -20,7 +20,7 @@
                 <div class="contaniner">
                     <div class="outer">
                             <div class="login-title">
-                                <img src="logo.png" alt="" width="200px"height="100px">
+                                <img src="<%=contextPath %>/resources/img/main/logo.png" alt="" width="200px"height="100px">
                             </div>
                         <div id="login">
                           <form class="login">

@@ -4,10 +4,10 @@
    #wrap {text-align: center; font-size: 30px; color: black;}
    #header {height: 140px; line-height: 140px; background: #ffe1e4;}
    #banner {height: 170px; line-height: 170px; background-image:url("패턴 - 복사본.jpg")}
-   #content {  line-height: inherit; }
-   #footer {height: 220px; line-height: 220px; background: #d6ebfd;}
-   .contaniner {width: 1200px; margin: 0 auto; height: inherit; background: white;}
-   #mypage{width:1000px; height:auto; background-color:white; margin: 0 auto;}
+   #content {  line-height: inherit; height:100%}
+   #footer {height: 220px;  background: #d6ebfd;}
+   .contaniner {width: 1200px; margin: 0 auto; height:100%; background: white;}
+   #mypage{width:1000px; height:100%; background-color:white; margin: 0 auto;}
    #mypage_menu_tab>div{
        float:left; text-align: center; line-height: 60px; 
        margin-top:80px; margin-bottom:50px; height:60px; 
