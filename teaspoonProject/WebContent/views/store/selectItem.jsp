@@ -531,11 +531,9 @@
         </div>
 
         <!-- //content-->
-        <div id="footer">
-            <div class="contaniner">footer</div>
-        </div>
+        
         <!-- //footer-->
-        <%@ include file="../common/footer.jsp" %>
+        
     </div>
 
     <script>

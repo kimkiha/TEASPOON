@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	// Product p = (Product)request.getAttribute("p");
+	// ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
+	// 0번 인덱스 : 대표이미지(클래스이름이 thumbnail인 div에 들어갈 이미지)
+	// 1~3번 인덱스 : Content영역에 들어갈 이미지
+	// Attachment titleImg = list.get(0); // 대표이미지 
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +28,7 @@
         <div id="banner">
             <div class="contaniner">
                 <div style="margin: 100px 0px;">
-                    <p id="head_title"> 콜롬비아 비오타 팔마레스</p>
+                    <p id="head_title">c.getName()</p>
                 </div>
                 <div style="border: 1px solid; width:150px; float:left; margin-left: 500px;">
                 </div>
@@ -37,7 +44,7 @@
                             <div id="productList1">
                                 <div class="pList1">
                                     <div class="thumbnail">
-                                        <img src="product.jpg">
+                                        <img src="<%=contextPath %>/resources/img/store/product6_1.jpg">
                                     </div>
                                     <div class="move_review">
                                         <a href="#review"><p>REVIEW &gt;&gt;</p></a>
@@ -46,12 +53,8 @@
                                 <div class="pList2">
                                     <!--상품명, 상품설명요약 -->
                                     <div class="p_explain1">
-                                        <h4>콜롬비아 비오타 팔마레스</h4>
-                                        <p>
-                                            꿀을 곁들인 피칸 파이의 향, <br>
-                                            블랙체리의 단맛이 어우러진 <br>
-                                            티스푼만의 3월 한정 원두를 만나보세요.
-                                        </p>
+                                        <h4>c.getName()</h4>
+                                        <p>c.getKeyword()</p>
                                    </div>
 
                                    <!--원두 그람수 옵션(셋중에 하나만 가능)-->
@@ -74,7 +77,7 @@
                                         <p><b>&gt; 갈아드릴까요?</b></p>
                                         <form action="">
                                             <select name="grind" id="bean" style="width: 100%; height: 40px; font-size: medium;">
-                                                <option value="holeBean">홀빈(갈지않음)</option>
+                                                <option value="holeBean" selected>홀빈(갈지않음)</option>
                                                 <option value="handDrip">핸드드립/클레버용</option>
                                                 <option value="coffeeMaker">커피메이커용</option>
                                                 <option value="franchPress">프렌치프레스용</option>
@@ -92,11 +95,11 @@
                                         </div>
                                         <div class="number">
                                             <a href="#" id="decreaseQuantity">
-                                                <img src="minus.png" width="20px" height="20px">
+                                                <img src="<%=contextPath %>/resources/img/store/minus.png" width="20px" height="20px">
                                             </a>
                                             <b><span id="numberUpDown" style="padding-left: 20px; padding-right: 20px;">1</span></b>
                                             <a href="#" id="increaseQuantity">
-                                                <img src="plus.png" width="20px" height="20px">
+                                                <img src="<%=contextPath %>/resources/img/store/plus.png" width="20px" height="20px">
                                             </a>
                                         </div>
                                    </div>
@@ -113,7 +116,7 @@
                                    <!--상품금액 합계, 정기배송버튼, 장바구니버튼, 바로구매버튼 -->
                                    <div class="p_explain5">
                                         <span> 상품금액합계</span>
-                                        <span> 100마넌~~ </span>
+                                        <span> c.getPrice() * 구매수량</span>
                                         <button id="delivery">정기배송 5%할인</button>
                                         <button id="basket">장바구니 담기</button>
                                         <button id="buyNow">바로 구매하기</button>
@@ -129,7 +132,21 @@
                                 <!--상품상세페이지-->
                                 <div class="pList4">
                                     <hr>
-                                    리얼 상세페이지
+                                    <div>
+                                    	<!--<=img width="500px" height="400px" -->
+                                    		<!--<=src="contextPath %>/resources/~~ <=list.get(1).chageName() %>"-->
+                                    </div>
+                                    <div>
+                                    	c.getCoffeeContent();
+                                    </div>
+                                    <div>
+                                    	<!--img width="500px" height="400px" -->
+                                    		<!--<=src="contextPath%> /resources/~~ <=list.get(2).chageName() %>"-->
+                                    </div>
+                                    <div>
+                                    	<!-- img width="500px" height="400px" -->
+                                    		<!--<=src="contextPath%>/resources/~~ <=list.get(3).chageName() %>"-->
+                                    </div>
                                 </div>
 
                                 <!--고객리뷰페이지-->
@@ -167,7 +184,7 @@
                                         <td>
                                             <div>
                                                 <div style="float: left; padding-top: 5px;">
-                                                    <img src="img.png" width="40px" >
+                                                    <img src="<%=contextPath %>/resources/img/store/img.png" width="40px" >
                                                 </div>
                                                 <div style="float: left;">
                                                     <button id="reviewImg" class="imgBtn" type="submit" name="img" value="img">이미지등록</button>
@@ -232,7 +249,7 @@
             </div>
         </div>
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+        
         <!-- //footer-->
     </div>
 
