@@ -6,12 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TEASPOON</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main/main.css">
-
 
 <script type="text/javascript" src="resources/js/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -62,7 +61,7 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <a href="">
+                                    <a href="#">
                                         <img src="<%=contextPath %>/resources/img/store/main_product13_1.jpg" alt="">
                                     </a>
                                     <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
@@ -137,45 +136,53 @@
                     <div id="best">
                         <div class="bestname"><p>BEST COFFEE 4</p></div>
                         <div id="best_item"> 
-                            <div class="best_num">
-                                <p class="num">1</p>
-                                <a href="">
-                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product1_1.jpg" alt="">
-                                </a>
-                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                <p>
-                                   <b>\18,000원</b>
-                                </p>
+                            <div class="best_content">
+                            	<div class="best_num">
+	                                <p class="num">1</p>
+	                                <a href="">
+	                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product1_1.jpg" alt="">
+	                                </a>
+	                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
+	                                <p class="best_product_price">
+	                                   <b>\18,000원</b>
+	                                </p>
+                                </div>
                             </div>
-                            <div class="best_num">
-                                <p class="num">2</p>
-                                <a href="">
-                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product2_1.jpg" alt="">
-                                </a>
-                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                <p>
-                                   <b>\18,000원</b>
-                                </p>
+                            <div class="best_content">
+                            	<div class="best_num">
+	                                <p class="num">2</p>
+	                                <a href="">
+	                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product2_1.jpg" alt="">
+	                                </a>
+	                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
+	                                <p class="best_product_price">
+	                                   <b>\18,000원</b>
+	                                </p>
+                                </div>
                             </div>
-                            <div class="best_num">
-                                <p class="num">3</p>
-                                <a href="">
-                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product3_1.jpg" alt="">
-                                </a>
-                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                <p>
-                                   <b>\18,000원</b>
-                                </p>
+                            <div class="best_content">
+                            	<div class="best_num">
+	                                <p class="num">3</p>
+	                                <a href="">
+	                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product3_1.jpg" alt="">
+	                                </a>
+	                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
+	                                <p class="best_product_price">
+	                                   <b>\18,000원</b>
+	                                </p>
+                                </div>
                             </div>
-                            <div class="best_num">
-                                <p class="num">4</p>
-                                <a href="">
-                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product4_1.jpg" alt="">
-                                </a>
-                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                <p>
-                                   <b>\18,000원</b>
-                                </p>
+                            <div class="best_content">
+                            	<div class="best_num">
+	                                <p class="num">4</p>
+	                                <a href="">
+	                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product4_1.jpg" alt="">
+	                                </a>
+	                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
+	                                <p class="best_product_price">
+	                                   <b>\18,000원</b>
+	                                </p>
+                                </div>
                             </div>
                         </div>
                       

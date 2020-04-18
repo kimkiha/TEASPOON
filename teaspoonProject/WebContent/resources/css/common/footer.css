@@ -8,10 +8,10 @@
 #notice table a:hover{color:#222}
 
  /* footer css */
-#foot{width:1200px;  margin:auto;height:220px; border:1px solid red }
+#foot{width:1200px;  margin:auto;height:220px;  }
 #foot .ft_logo{float: left; width:230px; padding: 85px 0px; margin:0;}
-#foot .ft_content{width: 750px; float: left; font-size: 15px; text-align: left; margin-top:35px; padding-left: 15px;border:1px solid red;height:149px;}
+#foot .ft_content{width: 750px; float: left; font-size: 15px; text-align: left; margin-top:35px; padding-left: 15px; height:149px;}
 #foot .ft_content>p{margin-top:15px}
 #foot .ft_content>ul>li{float:left;list-style: none; padding-left:45px}
 #foot .ft_content a{color:#333; font-weight: 500;}
-#foot .ft_quick{float:left; width:195px; text-align: right; margin-top:35px;border:1px solid red;}
+#foot .ft_quick{float:left; width:195px; text-align: right; margin-top:35px;}

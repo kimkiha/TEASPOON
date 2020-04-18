@@ -11,10 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>menubar</title>
 <script>
 	$(function(){
 			//자바의 변수를 담아올떄는 반드시 ""로 감싸주어야한다.
@@ -109,9 +106,9 @@
             $("#myPage_icon").click(function(){
                 var p = $(this).next().next(); //해당 p요소 
                 if(p.css("display") == "none"){ //css("속성명")속성명만 작성시 속성값 리턴
-                    p.slideDown(300); 
+                    p.slideDown("fast"); 
                 }else{
-                	p.slideUp(300);
+                	p.slideUp("slow");
                 }
                 
              });
