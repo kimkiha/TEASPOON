@@ -101,7 +101,8 @@
         .coupon{width: 240px;height: 300px;margin:50px 20px 20px 35px;padding-left: 5px;
                 display: inline-block;}
         .coupon-cell>img{width: 220px;height: 155px;}
-        .title{width: 240px;height: 36px;font-size: 24px;margin: auto;}
+        .coupon-title{width: 240px;height: 36px;margin: auto;}
+        .coupon-title>p{font-size:24px;}
         .coupon-info{font-size: 16px;}
         
         .date{float:right; margin-right: 10px;}

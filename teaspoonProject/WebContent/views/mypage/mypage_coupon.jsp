@@ -78,9 +78,10 @@
                                     <div class="couponlist">
                                         <div class="list" >
                                             
+                                          
                                             <div class="coupon">
-                                                <div class="coupon-cell"><img src="cupon.png" alt=""></div>
-                                                <div class="title">티스푼3천원 할인 쿠폰</div>
+                                                <div class="coupon-cell"><img src="<%=contextPath %>/resources/img/admin/쿠폰.png" alt="" width="220"height="155"></div>
+                                                <div class="coupon-title"><p>티스푼3천원 할인 쿠폰</p></div>
                                                 <div class="coupon-info" >
                                                     <span class="label">유효기간 </span>
                                                     
@@ -89,9 +90,10 @@
                                                 </div>
                                                 
                                             </div>
+                                            
                                             <div class="coupon">
-                                                <div class="coupon-cell"><img src="cupon.png" alt=""></div>
-                                                <div class="title">티스푼3천원 할인 쿠폰</div>
+                                                <div class="coupon-cell"><img src="<%=contextPath %>/resources/img/admin/쿠폰.png" alt="" width="220"height="155"></div>
+                                                <div class="coupon-title"><p>티스푼3천원 할인 쿠폰</p></div>
                                                 <div class="coupon-info" >
                                                     <span class="label">유효기간 </span>
                                                     
@@ -100,9 +102,11 @@
                                                 </div>
                                                 
                                             </div>
+                                          
+                                          
                                             <div class="coupon">
-                                                <div class="coupon-cell"><img src="cupon.png" alt=""></div>
-                                                <div class="title">티스푼3천원 할인 쿠폰</div>
+                                                <div class="coupon-cell"><img src="<%=contextPath %>/resources/img/admin/쿠폰.png" alt="" width="220"height="155"></div>
+                                                <div class="coupon-title"><p>티스푼3천원 할인 쿠폰</p></div>
                                                 <div class="coupon-info" >
                                                     <span class="label">유효기간 </span>
                                                     
@@ -111,9 +115,11 @@
                                                 </div>
                                                 
                                             </div>
+                                          
+                                          
                                             <div class="coupon">
-                                                <div class="coupon-cell"><img src="cupon.png" alt=""></div>
-                                                <div class="title">티스푼3천원 할인 쿠폰</div>
+                                                <div class="coupon-cell"><img src="<%=contextPath %>/resources/img/admin/쿠폰.png" alt="" width="220"height="155"></div>
+                                                <div class="coupon-title"><p>티스푼3천원 할인 쿠폰</p></div>
                                                 <div class="coupon-info" >
                                                     <span class="label">유효기간 </span>
                                                     
@@ -122,9 +128,11 @@
                                                 </div>
                                                 
                                             </div>
+                                          
+                                          
                                             <div class="coupon">
-                                                <div class="coupon-cell"><img src="cupon.png" alt=""></div>
-                                                <div class="title">티스푼3천원 할인 쿠폰</div>
+                                                <div class="coupon-cell"><img src="<%=contextPath %>/resources/img/admin/쿠폰.png" alt="" width="220"height="155"></div>
+                                                <div class="coupon-title"><p>티스푼3천원 할인 쿠폰</p></div>
                                                 <div class="coupon-info" >
                                                     <span class="label">유효기간 </span>
                                                     
@@ -133,9 +141,11 @@
                                                 </div>
                                                 
                                             </div>
+                                          
+                                          
                                             <div class="coupon">
-                                                <div class="coupon-cell"><img src="cupon.png" alt=""></div>
-                                                <div class="title">티스푼3천원 할인 쿠폰</div>
+                                                <div class="coupon-cell"><img src="<%=contextPath %>/resources/img/admin/쿠폰.png" alt="" width="220"height="155"></div>
+                                                <div class="coupon-title"><p>티스푼3천원 할인 쿠폰</p></div>
                                                 <div class="coupon-info" >
                                                     <span class="label">유효기간 </span>
                                                     
@@ -144,17 +154,8 @@
                                                 </div>
                                                 
                                             </div>
-                                            <div class="coupon">
-                                                <div class="coupon-cell"><img src="cupon.png" alt=""></div>
-                                                <div class="title">티스푼3천원 할인 쿠폰</div>
-                                                <div class="coupon-info" >
-                                                    <span class="label">유효기간 </span>
-                                                    
-                                                    <span class="date">|2020.12.31까지</span><br>
-                                                    <span class="noti">(200일 남음)</span>
-                                                </div>
-                                                
-                                            </div>
+                                          
+                                          
                                             
                                         </div>
                                     </div>
