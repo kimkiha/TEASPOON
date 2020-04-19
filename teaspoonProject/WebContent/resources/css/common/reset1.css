@@ -12,14 +12,14 @@ body, input, textarea, select, button, table {
     color: #222; font-size: 18px; line-height: 1.5;}
 
 /*전체레이아웃*/
-#wrap {text-align: center;  color: black; color:#333; }
+#wrap {text-align: center;  color: black; color:#333;min-height:100%;position:relative;height:100%; }
 #header {float:left;width:100%; background-color: white; position: absolute; top:0 ;position:fixed;  z-index: 1000000; height: 115px; 
      box-shadow: 0px 10px 10px 0px rgba(144, 144, 144, 0.1);
         }
 #header_wrap{ height:inherit; width:1200px; margin:0 auto; left: 0; right: 0; }
 #banner{margin-top:87px}
-#content {width:100%;height:auto; margin:0 auto; display: inline-block;}
-#footer {width: 100%; height: 220px;clear:both; }
+#content {width:100%; margin:0 auto; display: inline-block;height:100%;}
+#footer {width: 100%; height: 220px; }
 .nohover:hover{color:#222}
 
 /* 배너 타이틀 */

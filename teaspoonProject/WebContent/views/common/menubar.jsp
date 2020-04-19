@@ -11,12 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-	<link rel="stylesheet" href="<%=contextPath%>/resources/css/common/menubar.css">
-    <link rel="stylesheet" href="<%=contextPath%>/resources/css/common/reset.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>menubar</title>
 <script>
 	$(function(){
 			//자바의 변수를 담아올떄는 반드시 ""로 감싸주어야한다.
@@ -37,34 +32,34 @@
         <div id="header">
             <div id="header_wrap">
                 <div id="header_1">
-                    <a href=""><img id="home-logo" src= "<%=contextPath%>/resources/img/main/logo.png"></a>
+                    <a href="<%=contextPath%>/index.jsp"><img id="home-logo" src= "<%=contextPath%>/resources/img/main/logo.png"></a>
                 </div>
                 <div id="header_2">
                     <ul id="navi">
                         <li><a class="list store" href="">스토어</a>
                             <ul class="ul">
-                                <li><a href="">커피</a></li>
-                                <li><a href="">금주의 베스트</a></li>
-                                <li><a href="">컵 & 아이템</a></li>
+                                <li><a href="<%=contextPath%>/views/store/coffeeListView.jsp">커피</a></li>
+                                <li><a href="<%=contextPath%>/views/store/storeBestListView.jsp">금주의 베스트</a></li>
+                                <li><a href="<%=contextPath%>/views/store/itemListView.jsp">컵 & 아이템</a></li>
                             </ul>
                         </li>
                         <li><a class="list recommend" href="">맞춤추천</a>
-                        <li><a class="list event" href="">이벤트</a>
+                        <li><a class="list event" href="<%=contextPath%>/views/board/event.jsp">이벤트</a>
                             <ul class="ul ">
-                                <li><a href="">이벤트</a></li>
-                                <li><a href="">인스타그램</a></li>
+                                <li><a href="<%=contextPath%>/views/board/event.jsp">이벤트</a></li>
+                                <li><a href="<%=contextPath%>/views/board/instagram.jsp">인스타그램</a></li>
                             </ul>
                         </li>
                         <li><a class="list about" href="">어바웃티스푼</a>
                             <ul class="ul">
-                                <li><a href="">브랜드스토리</a></li>
-                                <li><a href="">매거진</a></li>
+                                <li><a href="#">브랜드스토리</a></li>
+                                <li><a href="<%=contextPath%>/views/board/magazine.jsp">매거진</a></li>
                             </ul>
                         </li>
-                        <li><a class="list rent" href="">공간대여</a>
+                        <li><a class="list rent" href="<%=contextPath%>/views/space/space_rental.jsp">공간대여</a>
                             <ul class="ul">
-                                <li><a href="">예약하기</a></li>
-                                <li><a href="">찾아오는길</a></li>
+                                <li><a href="<%=contextPath%>/views/space/space_rental.jsp">예약하기</a></li>
+                                <li><a href="#">찾아오는길</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -75,10 +70,11 @@
                         
                     </div>
                     <img id="myPage_icon" src="<%=contextPath%>/resources/img/main/mypage.png">
-                    <div class="header_mypage">
+                    <a href="#" id="basket_icon"><img src="<%=contextPath%>/resources/img/main/cart.png"></a>
+                    <div class="header_mypage" >
                         <ul>
                             <li id="login_li"><button id="login">로그인</button></li>
-                            <li>마이티스푼</li>
+                            <li><a href="#">마이티스푼</a></li>
                             <li>나의 배송 조회</li>
                             <li>적립포인트</li>
                             <li>할인쿠폰</li>
@@ -86,7 +82,6 @@
                             <li style="border-bottom: none;">1:1문의</li>
                         </ul>
                     </div>
-                    <a href="#" id="basket_icon"><img src="<%=contextPath%>/resources/img/main/cart.png"></a>
                 </div>
             </div>
        </div>
@@ -94,32 +89,30 @@
     
     <script>
         $(function(){
-                    $("#login").click(function(){
-                    var result = window.confirm("로그인하시겠습니까?");
-                    
-                    if(result){
-                    	location.href = "<%=contextPath%>/loginPage.me";
-                    }
-                    });  
-                    
-                    $("#navi li").hover(function(){
-                        $(".ul", this).slideDown(600);
-                    },
-                    function(){
-                        $(".ul", this).slideUp(600);
-                    });
-                    
-                    $("#myPage_icon").hover(function(){
-                    	//alert("앙");
-                        // $(this).next().slideDown();
-                        var p = $(this).next(); //해당 p요소 
-                        if(p.css("display") == "none"){ //css("속성명")속성명만 작성시 속성값 리턴
-                            $(".header_mypage").children("ul").slideDown(600); 
-                        }else{
-                        	$(".header_mypage").children("ul").slideUp(600);
-                        }
-                     });
-                });
+            $("#login").click(function(){
+            	var result = window.confirm("로그인하시겠습니까?");
+            
+	            if(result){
+	            	location.href = "<%=contextPath%>/loginPage.me";
+	            }
+            });  
+            
+            $("#navi li").hover(function(){
+                $(".ul", this).slideDown(600);
+            },function(){
+                $(".ul", this).slideUp(600);
+            });
+            
+            $("#myPage_icon").click(function(){
+                var p = $(this).next().next(); //해당 p요소 
+                if(p.css("display") == "none"){ //css("속성명")속성명만 작성시 속성값 리턴
+                    p.slideDown("fast"); 
+                }else{
+                	p.slideUp("slow");
+                }
+                
+             });
+        });
 
     </script>
 </body>

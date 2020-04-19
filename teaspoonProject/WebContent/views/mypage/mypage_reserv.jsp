@@ -179,15 +179,7 @@
         <!-- //footer-->
     </div>
     <script>
-      var settingDate = new Date();
-settingDate.setDate(settingDate.getDate()-1); //하루 전
-$("#endDate").val(settingDate.asString()); 
-
-settingDate.setMonth(settingDate.getMonth()-1); //한달 전
-$("#startDate").val(settingDate.asString());
-
-settingDate.setYear(settingDate.getYear()-1); //일년 전
-$("#startDate").val(settingDate.asString());
+     
     </script>
 </body>
 </html>

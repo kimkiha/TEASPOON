@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/store/selectItem.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -531,13 +531,11 @@
         </div>
 
         <!-- //content-->
-        <div id="footer">
-            <div class="contaniner">footer</div>
-        </div>
+        
         <!-- //footer-->
-        <%@ include file="../common/footer.jsp" %>
+        
     </div>
-
+	   <%@ include file="../common/footer.jsp" %>
     <script>
     /* display */
         function showDiv(element){

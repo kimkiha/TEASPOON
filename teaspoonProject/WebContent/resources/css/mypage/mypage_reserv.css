@@ -1,13 +1,13 @@
    /*리셋*/
    * {margin: 0; padding: 0;}
    /*전체레이아웃*/
-   #wrap {text-align: center; font-size: 30px; color: black;}
+   #wrap {text-align: center;color: black;}
    #header {height: 140px; line-height: 140px; background: #ffe1e4;}
    #banner {height: 170px; line-height: 170px; background-image:url("패턴 - 복사본.jpg")}
    #content {  line-height: inherit; }
-   #footer {height: 220px; line-height: 220px; background: #d6ebfd;}
+   #footer {height: 220px;  background: #d6ebfd;}
    .contaniner {width: 1200px; margin: 0 auto; height: inherit; background: white;}
-   #mypage{width:1000px; height:2000px; background-color:white; margin: 0 auto;}
+   #mypage{width:1000px; height:100%; background-color:white; margin: 0 auto;}
    #mypage_menu_tab>div{
        float:left; text-align: center; line-height: 60px; 
        margin-top:80px; margin-bottom:50px; height:60px; 
@@ -151,7 +151,7 @@
   #mypage_table td{border-bottom:1px solid #bebebe; padding: 30px  0;}
   
   /*페이징 바*/
-  .fagingarea{width:1000px;height: 340px;}
+  .fagingarea{width:1000px;height: 155px;}
   .fagingvar{width: 1000px;height:35px;line-height: 18;}
      
 

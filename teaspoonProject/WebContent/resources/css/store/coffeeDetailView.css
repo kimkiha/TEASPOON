@@ -1,8 +1,5 @@
 /*전체레이아웃*/
-a{text-decoration: none; color: black;}
 #wrap {text-align: center; font-size: 30px; color: #000000;}
-#content {line-height: inherit; background: #ead5ee;}
-.contaniner {width: 1200px; margin: 0 auto; height: inherit;}
 .contaniner  #head_title{ color: black; font-size: 45px; font-weight: bold;}
 #productArea {height:inherit; margin: 0 100px;}
 .p1 {margin-left:50px; margin-right:50px;}
