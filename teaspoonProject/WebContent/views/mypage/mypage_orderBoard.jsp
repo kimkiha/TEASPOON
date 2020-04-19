@@ -131,7 +131,7 @@
                                             <div class="t1">
                                                 <p>결제수단 신용카드</p>
                                             </div>
-                                            <div class="rd-dashboard-outer" style="border:1px solid red">
+                                            <div class="rd-dashboard-outer" >
                                                 <div class="t2"></div>
                                                 <div class="point">
                                                    <div class="point1"><span>포인트사용</span></div>
