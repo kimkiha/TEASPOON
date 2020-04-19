@@ -94,7 +94,10 @@ table tr {
 						</tr>
 						<tr>
 							<th>PCONTENT</th>
-							<td colspan="6"><textarea name="pcontent" cols=75 rows=4 style="resize:none;"></textarea><td>
+							<td colspan="5">
+								<textarea name="pcontent" cols=75 rows=4 style="resize:none;"></textarea>
+							<td>
+							
 						</tr>
 
 					</table>
@@ -105,7 +108,7 @@ table tr {
 						<input type="file" name="file3" id="file3" onchange="loadImg(this,3);">
 						<input type="file" name="file4" id="file4" onchange="loadImg(this,4);">
 					</div>
-					<br>
+				
 					<div class="btns">
 						<button type="submit" style="width: 100px;">등록하기</button>
 					</div>
