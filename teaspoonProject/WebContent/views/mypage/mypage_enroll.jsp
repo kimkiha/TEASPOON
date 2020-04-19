@@ -34,7 +34,7 @@
                         </h6> <br>
                         
                     
-                        <div class="tab1" style="margin-bottom:45px;">
+                        <div class="tab1" style="margin-bottom:45px; margin-top:55px;">
                             <button class="tablinks" onclick="openCity(event, '약관동의')" id="defaultOpen">약관동의</button>
                             <button class="tablinks" onclick="openCity(event, '정보입력')" id="defaultOpen2" disabled>정보입력</button>
                             <button class="tablinks" onclick="openCity(event, '이메일인증')" id="defaultOpen3" disabled>이메일인증</button>
