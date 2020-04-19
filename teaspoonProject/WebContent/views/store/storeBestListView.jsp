@@ -5,13 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="styleSheet" href="../../resources/css/store/storeBestListView.css">
-<link rel="styleSheet" href="../../resources/css/common/reset.css">
-<link rel="styleSheet" href="../../resources/css/common/menubar.css">
-<link rel="styleSheet" href="../../resources/css/common/footer.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/storeBestListView.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 <style>
 	#content1 {width:100%; height:2300px;background: #ffffff; }
-	#banner {height: 270px; line-height: 270px; background:url("../../resources/img/store/storetop_best.jpg") center top no-repeat;}
+	#banner {height: 270px; line-height: 270px; background:url("<%=request.getContextPath() %>/resources/img/store/storetop_best.jpg") center top no-repeat;}
 </style>
 </head>
 <body>

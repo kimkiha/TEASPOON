@@ -11,15 +11,15 @@
 <head>
 <meta charset="UTF-8">
 <title>티스푼의 컵&아이템</title>
-<link rel="styleSheet" href="../../resources/css/store/itemListView.css">
-<link rel="styleSheet" href="../../resources/css/common/reset.css">
-<link rel="styleSheet" href="../../resources/css/common/menubar.css">
-<link rel="styleSheet" href="../../resources/css/common/footer.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/itemListView.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
 	#content1 {width:100%; height:1800px; background:#ffffff;}
-	#banner {height: 270px; line-height: 270px; background:url("../../resources/img/store/storetop_item.jpg") center top no-repeat;}
+	#banner {height: 270px; line-height: 270px; background:url("<%=request.getContextPath() %>/resources/img/store/storetop_item.jpg") center top no-repeat;}
 </style>
 </head>
 <body>

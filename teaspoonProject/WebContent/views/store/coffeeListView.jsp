@@ -14,7 +14,7 @@
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 <style>
     #content1 {width:100%; height:1500px; background: #ffffff; }
-	#banner {height: 270px; line-height: 270px; background:url("../../resources/img/store/storetop_coffee.jpg") center top no-repeat;}
+	#banner {height: 270px; line-height: 270px; background:url("<%=request.getContextPath() %>/resources/img/store/storetop_coffee.jpg") center top no-repeat;}
 </style>
 </head>
 <body>
@@ -40,6 +40,8 @@
                             <div class="product">
                             
                             <%for(Product p : list) {%>
+                            
+                            
                             
                             	<input type="hidden" value=<%=p.getPcode() %>>
                                 <div class="product_img">
