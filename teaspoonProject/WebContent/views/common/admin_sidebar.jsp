@@ -80,7 +80,7 @@
                 <p style="margin: 0px; padding-bottom: 10px; font-size: 40px; color:white;">Admin</p>
             </div>
             <div class="h2" style="text-align:left;">
-            	<img src="<%=contextPath %>/resources/img/admin/admin_moveHome.png" style="width:50px; height:50px; margin-top:25px">
+            	<img src="<%=contextPath %>/resources/img/admin/admin_moveHome.png" style="width:50px; height:50px; margin-top:25px; cursor:pointer;">
             </div>
             <div class="h3">
             	<img class="btn1" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/로그아웃.png">
