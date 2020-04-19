@@ -42,6 +42,8 @@
                             
                             <%for(Product p : list) {%>
                             
+                            
+                            
                             	<input type="hidden" value=<%=p.getPcode() %>>
                                 <div class="product_img">
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">

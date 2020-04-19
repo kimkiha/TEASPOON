@@ -79,9 +79,12 @@
                 <p style="margin: 0px; padding-top: 10px; font-size: 25px; color:white;">TeaSpoon</p>
                 <p style="margin: 0px; padding-bottom: 10px; font-size: 40px; color:white;">Admin</p>
             </div>
-            <div class="h2">
+            <div class="h2" style="text-align:left;">
+            	<img src="<%=contextPath %>/resources/img/admin/admin_moveHome.png" style="width:50px; height:50px; margin-top:25px">
             </div>
-            <div class="h3"><img class="btn1" data-toggle="modal" data-target="#myModal" src="<%=contextPath%>/resources/img/admin/로그아웃.png"></div>
+            <div class="h3">
+            	<img class="btn1" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/로그아웃.png">
+            	</div>
         </div>
         <div id="side">
             <ul>
