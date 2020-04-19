@@ -16,13 +16,15 @@
 }
 
 table *{
-	padding: 5px;
+	padding: 3px;
 	font-size: 18px;
 }
 
-table th,td {
-	width: 80px;
+table th{
+	width: 70px;
+	text-align:left;
 }
+
 
 table tr:first-child {
 	border-top: 1px solid lightgray;
@@ -52,12 +54,12 @@ table tr {
 							<th>TOTAL_COUNT</th>
 						</tr>
 						<tr>
-							<td><input type="text" name="pcode"></td>
-							<td><input type="text" name="pname"></td>
-							<td><input type="text" name="supPrice"></td>
-							<td><input type="text" name="price"></td>
-							<td><input type="text" name="stock"></td>
-							<td><input type="text" name="totalCount"></td>
+							<td><input type="text" size="7px" name="pcode"></td>
+							<td><input type="text" size="7px" name="pname"></td>
+							<td><input type="text" size="7px" name="supPrice"></td>
+							<td><input type="text" size="7px" name="price"></td>
+							<td><input type="text" size="7px" name="stock"></td>
+							<td><input type="text" size="7px" name="totalCount"></td>
 						</tr>
 						<tr>
 							<th>STATUS</th>
@@ -71,7 +73,7 @@ table tr {
 								<input type="radio" name="kind" value="I">I
 							</td>
 							<th>KEYWORD</th>
-							<td><input type="text" name="keyword"></td>
+							<td><input type="text" size="14" name="keyword"></td>
 						</tr>
 						<tr>
 							<th>대표이미지</th>
@@ -92,7 +94,7 @@ table tr {
 						</tr>
 						<tr>
 							<th>PCONTENT</th>
-							<td colspan="6"><textarea name="pcontent" cols=77 rows=3 style="resize:none;"></textarea><td>
+							<td colspan="6"><textarea name="pcontent" cols=75 rows=4 style="resize:none;"></textarea><td>
 						</tr>
 
 					</table>
