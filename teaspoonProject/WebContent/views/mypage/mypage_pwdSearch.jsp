@@ -5,16 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/mypage_PWsearch.css">
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_pwdSearch.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     
 </head>
 <body>
 <div id="wrap">
-        <div id="header">
-            <div class="contaniner">여기는메뉴바</div>
-        </div>
+       	<%@ include file="../common/menubar.jsp" %>
         <!-- //header -->
 
             <!-- product -->
@@ -81,9 +81,7 @@
 
 
       <!-- //content-->
-      <div id="footer">
-        <div class="contaniner">footer</div>
-    </div>
+      <%@ include file="../common/footer.jsp" %>
     <!-- //footer-->
 </div>
 </body>

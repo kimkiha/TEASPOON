@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="../../resources/css/common/reset.css">
-    <link rel="stylesheet" href="../../resources/css/common/menubar.css">
-    <link rel="stylesheet" href="../../resources/css/common/footer.css">
-    <link rel="stylesheet" href="../../resources/css/board/event.css">
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/event.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <style>

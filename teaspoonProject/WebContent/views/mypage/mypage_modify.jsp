@@ -5,35 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-        /*리셋*/
-        * {margin: 0; padding: 0;}
-        /*전체레이아웃*/
-        #wrap {text-align: center; font-size: 30px; color: black;}
-        #header {height: 140px; line-height: 140px; background: #ffe1e4;}
-        #banner {height: 170px; line-height: 170px; background-image:url("패턴 - 복사본.jpg")}
-        #content {  line-height: inherit; }
-        #footer {height: 220px; line-height: 220px; background: #d6ebfd;}
-        .contaniner {width: 1200px; margin: 0 auto; height: inherit; }
-        #mypage{width:1000px; height:2000px; background-color:rgb(219, 219, 219); margin: 0 auto;}
-        #mypage_info{width:100%; height:130px; background-color: khaki;}
-        #mypage_tab{width:100%; height:195px; margin: 0 auto;}
-        #mypage_menu_tab{width:100%; height:195px;}
-        #mypage_menu_tab>div{
-            float:left; text-align: center; line-height: 60px; 
-            margin-top:80px; margin-bottom:50px; height:60px; 
-            width:166px; background-color: lawngreen;
-            font-size: 18px;
-        }
-        #mp_con1{text-align:left; width:100%; }
-        #mp_con1>p{padding-left:20px; padding-bottom:10px; border-bottom:1px solid black;}
-    </style>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_modify.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
-        <div id="header">
-            <div class="contaniner">여기는메뉴바</div>
-        </div>
+        <%@ include file="../common/menubar.jsp" %>
         <!-- //header -->
 
             <!-- product -->
@@ -109,9 +89,7 @@
     
     </div>
       <!-- //content-->
-      <div id="footer">
-        <div class="contaniner">footer</div>
-    </div>
+       <%@ include file="../common/footer.jsp" %>
     <!-- //footer-->
 </body>
 </html>
