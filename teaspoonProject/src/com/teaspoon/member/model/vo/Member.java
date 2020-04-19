@@ -20,12 +20,25 @@ public class Member {
 	private String status;		//상태
 	private String gradeName;   //등급네임
 	
+	//1:1 QNA 조회
 	
+	private int mtm_type;
+	private String mtm_title;
+	private Date create_date;
 	public Member(){
 		
 	}
 
 	
+	public Member(int userNo, int mtm_type, String mtm_title, Date create_date) {
+		super();
+		this.userNo = userNo;
+		this.mtm_type = mtm_type;
+		this.mtm_title = mtm_title;
+		this.create_date = create_date;
+	}
+
+
 	public Member(int userNo, String userId, String userName, String phone, Date enrollDate, String gradeName,int birthday, String status ) {
 	super();
 	this.userNo = userNo;
@@ -59,6 +72,36 @@ public class Member {
 		this.status = status;
 	}
 
+	
+
+	public int getMtm_type() {
+		return mtm_type;
+	}
+
+
+	public void setMtm_type(int mtm_type) {
+		this.mtm_type = mtm_type;
+	}
+
+
+	public String getMtm_title() {
+		return mtm_title;
+	}
+
+
+	public void setMtm_title(String mtm_title) {
+		this.mtm_title = mtm_title;
+	}
+
+
+	public Date getCreate_date() {
+		return create_date;
+	}
+
+
+	public void setCreate_date(Date create_date) {
+		this.create_date = create_date;
+	}
 
 
 	public int getUserNo() {

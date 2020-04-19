@@ -55,6 +55,16 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
+
+	public ArrayList<Member> selectMyQnaList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectMyQnaList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
 	
 
 	
