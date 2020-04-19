@@ -130,21 +130,21 @@
                               <div>
                                 <input type="date"  class="date" name="dateofbirth" id="dateofbirth">
                                 
-                                <select class="box">
+                                <select class="box1">
                                   <option>아카이야 09:30~11:30</option>
                                   <option>아카이야 13:00~15:00</option>
                                   <option>아카이야 16:30~18:30</option>
                                   <option selected>시간선택</option>          
                                 </select>
                                 
-                                <select class="box">
+                                <select class="box2">
                                   <option>10인 이하</option>
                                   <option>20인 이하</option>
                                   <option>30인 이하</option>
                                   <option selected>인원수</option>
                                 </select> 
 
-                                <select class="box">
+                                <select class="box3">
                                   <option>VIP 할인</option>
                                   <option>쿠폰 할인</option>
                                   <option selected>없음</option>
@@ -156,8 +156,12 @@
                             <!-- 대여 정보-->
                             <div class="sb01"><p class="ftm">대여 정보</p><p id="spreadBtn02" class="btn01">세부사항⇲</p></div> 
                             <ul id="hiddenList01" class="example01" style="display: none;">
-                               <p>내용</p> 
-                               <p>내용</p> 
+                               <li class="aka">아카이야 정보 <br><br>
+                               	<p>이 공간은 예약시간 초과로부터 분단위 추가요금이 발생합니다.<br></p>
+                               	<p>즐거운 모임과 회의 진행을 위해 음식 반입 허용합니다. <br><p>
+                               		(매장 내 요리조리 불가), (접시,포크등 대여불가)
+                               	</li>
+                                
                             </ul>
                             <div class="sb02"><p class="ftm">대여 편의용품</p><p id="spreadBtn03" class="btn02">세부사항⇲</p></div> 
                             <ul id="hiddenList02" class="example02" style="display: none;">

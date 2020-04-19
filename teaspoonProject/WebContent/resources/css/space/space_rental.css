@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /*대관 슬라이드*/
-* {box-sizing: border-box}
+* {box-sizing: border-box;}
 body {font-family: Verdana, sans-serif; margin:0}
 .mySlides {display: none}
 img {vertical-align: middle;}
@@ -276,13 +276,32 @@ body {
     opacity: 0;
   }
   
-  .box{
+  .box1{
   	border: 1px solid #c4c4c4;
     border-radius: 5px;
     background-color: #fff;
     padding: 3px 5px;
     box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
     height:30px;
+    width:220px;
+  }
+  .box2{
+  	border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    height:30px;
+    width:120px;
+  }
+  .box3{
+  	border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    height:30px;
+    width:100px;
   }
   
   .adiv{
@@ -308,10 +327,11 @@ body {
   .ybtn{
     height:50px;
     width:120px;
-    background:rgb(248, 203, 4);
+    background:rgb(101, 100, 96);
     color:white;
     position:relative;
-    left:170px;
+    left:200px;
+    border-radius:8px;
   }
 
   .cbtn{
@@ -319,12 +339,13 @@ body {
     width:120px;
     background:white;
     position:relative;
-    left:170px;
+    left:200px;
+    border-radius:8px;
   }
 
 .sb01{
     
-    background:lightgray;
+    background:rgb(101, 100, 96);
     width:650px;
     height:60px;
     border-radius:10px;
@@ -336,7 +357,7 @@ body {
     
 }
 .sb02{
-    background:rgb(233, 173, 9);
+    background:rgb(178, 175, 169);
     width:650px;
     height:60px;
     border-radius:10px;
@@ -352,7 +373,8 @@ body {
     width:650px;
     height:100px;
     margin-top:5px;
-    border-radius:10px;           
+    border-radius:10px; 
+             
 }
 .example02{
     border:1px solid gray;
@@ -361,6 +383,11 @@ body {
     margin-top:5px;
     border-radius:10px;          
 }
+.aka{
+	font-weight:bold;
+	font-size:12px;
+	margin-left:25px;
+}
 .ftm{
 	padding-top : 15px;
 }
@@ -368,27 +395,35 @@ body {
 .btn01{
     font-size:15px;
     position:relative;
-    left:240px;
+    left:250px;
     bottom:15px;
 }
 
 .btn02{
     font-size:15px;
     position:relative;
-    left:240px;
-    bottom:15px;
-    
+    left:250px;
+    bottom:15px;   
+}
+.btn01:hover{
+	color:gray;
+	cursor:pointer;
+}
+.btn02:hover{
+	color:gray;
+	cursor:pointer;
 }
 
 .perpose{
-    border:1px solid lightgray;
+    
+    background:lightgray;
     width:300px;
     height:40px;
     text-align:center;
 }
 .perposet{
-    border:1px solid lightgray;
-    width: 600px;
+    border:1px solid rgb(101, 100, 96);
+    width: 645px;
     height: 40px;
 }
 
@@ -401,7 +436,7 @@ body {
 }
 
 .choice1{
-    width:200px;
+    width:175px;
     font-weight:bold;
 }
 .choice2{
@@ -419,7 +454,7 @@ body {
     background-color: #fff;
     padding: 3px 5px;
     box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
-    width: 190px;   
+    width: 160px;   
 }
 
 .bpf1{font-size:14px;}
