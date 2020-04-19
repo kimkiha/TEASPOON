@@ -13,22 +13,28 @@
     
 </head>
 <body>
-<div id="wrap">
+<center>
+<div id="wrap" >
        <%@ include file="../common/menubar.jsp" %>
+	
         <!-- //header -->
        
-        <div id="content">
+       	
+        <div id="content" style="padding-left:350px; padding-right:350px;">
+
             <!-- product -->
 
                 <!-- 1. 약관동의 페이지-->
                 <div class="contaniner">
-                    <div>
-                        <h3 style="margin-top: 100px; margin-bottom: 10px;">티스푼 회원가입</h3>
+                
+                    
+                        <h3 style="margin-top: 100px; margin-bottom: 10px; padding-top:100px;">티스푼 회원가입</h3>
                         <h6 style="color:rgb(70, 69, 69);">티스푼 공식 쇼핑몰에 가입하시면 온/오프 매장에서 상품을 구매 할 때마다<br>
                             현금처럼 사용할 수 있는 포인트 적립과 사용 등 다양한 혜택을 받으실 수 있습니다.<br>
                         </h6> <br>
+                        
                     
-                        <div class="tab1">
+                        <div class="tab1" style="margin-bottom:45px;">
                             <button class="tablinks" onclick="openCity(event, '약관동의')" id="defaultOpen">약관동의</button>
                             <button class="tablinks" onclick="openCity(event, '정보입력')" id="defaultOpen2" disabled>정보입력</button>
                             <button class="tablinks" onclick="openCity(event, '이메일인증')" id="defaultOpen3" disabled>이메일인증</button>
@@ -37,7 +43,7 @@
                                 <div id="약관동의" class="tabcontent"> 
                                 
                                     <form>
-                                        <textarea class="form-control2" rows="50" id="comment" width=70%;>
+                                        <textarea class="form-control2" rows="50" id="comment" width=70%;">
 제 1 장 총 칙
                             
                              
@@ -356,7 +362,9 @@
                           </div>
                           </div>
                         </div>
-
+						
+						
+						
                         <!-- 2. 정보입력 페이지-->
                           <div id="정보입력" class="tabcontent" id="information">
                             <table>
@@ -466,6 +474,7 @@
                 </div>
         </div>
          <%@ include file="../common/footer.jsp" %>
+         </center>
             
            
         <!-- //footer-->
