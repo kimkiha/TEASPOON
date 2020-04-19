@@ -21,12 +21,14 @@
             <div id="content" class="contaniner">
             
             <center style="padding:35px;">
+            	<p style="margin-top:100px;"></p>
                 <p style="font-size:30px; Line-height:200%;">비밀번호찾기</p>
                 <p style="font-size:15px; color:rgb(85, 83, 83);">본인인증으로 아이디를 찾을 수 있습니다.</p>
             </center>
  
             <div id="비밀번호찾기" class="tabcontent" id="password">
-                <table>
+              <center>
+                <table style="padding-top:60px; padding-bottom:30px; padding-right:60px">
                     <thead>
                         <td class=im1>
                          <tr>
@@ -40,7 +42,7 @@
                         <tr>
                             <td></td>
                             <td style="text-align:left;"><li>성 명</li></th>
-                            <td style= "text-align:left;"><input type="text" id="username" placeholder="이름(실명으로 입력해주세요)." style="width:300px;"></td>
+                            <td style= "text-align:left;"><input type="text" id="username" placeholder="이름(실명으로 입력해주세요)."></td>
                             <td style= "font-size:16px; width: 200px;"></td>           
                         </tr>
                         <tr>
@@ -53,7 +55,7 @@
                             <td></td>
                             <td style= "font-size:20px; text-align:left;"><li>이 메 일</li></td>
                             <td style= "text-align:left;"><input type="text" id="email" placeholder="이메일"></td>
-                            <td><button type="button" class="btn1" onclick="verification_code(); ">인증번호발송</button></td>
+                            <td><button type="button" class="btn1" onclick="verification_code();" style="margin-left:15px;">인증번호발송</button></td>
                         </tr>  
                         <tr>
                             <td></td>
@@ -64,6 +66,7 @@
                     </ul>             
                     </tbody>
                 </table>
+              </center>
             <!-- 2_1. (정보입력)본인인증 및 회원가입 버튼-->
             <button type="button" class="password_search" id="password_search">비밀번호찾기</button>
             </div>
