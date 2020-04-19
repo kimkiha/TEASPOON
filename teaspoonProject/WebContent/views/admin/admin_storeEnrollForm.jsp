@@ -51,29 +51,24 @@ table tr {
 							<th>SUP_PRICE</th>
 							<th>PRICE</th>
 							<th>STOCK</th>
-							<th>TOTAL_COUNT</th>
+							<th>KEYWORD</th>
 						</tr>
 						<tr>
-							<td><input type="text" size="7px" name="pcode"></td>
+							<td><input type="text" size="7px" name="pcode" placeholder="자동생성" readonly></td>
 							<td><input type="text" size="7px" name="pname"></td>
 							<td><input type="text" size="7px" name="supPrice"></td>
 							<td><input type="text" size="7px" name="price"></td>
 							<td><input type="text" size="7px" name="stock"></td>
-							<td><input type="text" size="7px" name="totalCount"></td>
+							<td><input type="text" size="14" name="keyword"></td>
 						</tr>
 						<tr>
-							<th>STATUS</th>
-							<td>
-								<input type="radio" name="status" value="Y">Y
-								<input type="radio" name="status" value="N">N
-							</td>
 							<th>상품종류</th>
 							<td>
 								<input type="radio" name="kind" value="C">C
 								<input type="radio" name="kind" value="I">I
 							</td>
-							<th>KEYWORD</th>
-							<td><input type="text" size="14" name="keyword"></td>
+							
+							
 						</tr>
 						<tr>
 							<th>대표이미지</th>

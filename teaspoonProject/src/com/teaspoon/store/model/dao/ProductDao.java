@@ -1,11 +1,12 @@
 package com.teaspoon.store.model.dao;
 
-import static com.teaspoon.common.JDBCTemplate.*;
+import static com.teaspoon.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -86,7 +87,82 @@ public class ProductDao {
 		}
 		return result;
 	}
-
+	
+	public ArrayList<Product> selectProductList(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectProductList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setPcode(rset.getInt("PCODE"));
+				p.setPname(rset.getString("PNAME"));
+				p.setSupPrice(rset.getInt("SUP_PRICE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setStock(rset.getInt("STOCK"));
+				p.setStatus(rset.getString("STATUS"));
+				p.setKeyword(rset.getString("KEYWORD"));
+				p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+				p.setKind(rset.getString("KIND"));
+				p.setPcontent(rset.getString("PCONTENT"));
+				list.add(p);	
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+	
+	public ArrayList<Product> selectCoffeeList(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectThumbnailList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setPcode(rset.getInt("PCODE"));
+				p.setPname(rset.getString("PNAME"));
+				p.setSupPrice(rset.getInt("SUP_PRICE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setStock(rset.getInt("STOCK"));
+				p.setStatus(rset.getString("STATUS"));
+				p.setKeyword(rset.getString("KEYWORD"));
+				p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+				p.setKind(rset.getString("KIND"));
+				p.setPcontent(rset.getString("PCONTENT"));
+				p.setTitleImg(rset.getString("CHANGE_NAME"));
+				list.add(p);	
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
 
 		
 

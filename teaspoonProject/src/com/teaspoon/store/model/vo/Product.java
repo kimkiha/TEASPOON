@@ -13,6 +13,8 @@ public class Product {
 	private String kind;	// 상품종류(C:커피,I:아이템)
 	private String pcontent;// 상품상세설명(사진은 attachment와 조인)
 	
+	private String titleImg; ////해당 게시글의 대표이미지 수정명 
+	
 	public Product(){}
 	
 	// 전체 컬럼 생성자
@@ -123,13 +125,20 @@ public class Product {
 	public void setPcontent(String pcontent) {
 		this.pcontent = pcontent;
 	}
+	public String getTitleImg() {
+		return titleImg;
+	}
 
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
+	}
 
 	@Override
 	public String toString() {
 		return "Store [pcode=" + pcode + ", pname=" + pname + ", supPrice=" + supPrice + ", price=" + price + ", stock="
 				+ stock + ", status=" + status + ", keyword=" + keyword + ", totalCount=" + totalCount + ", kind="
-				+ kind + ", pcontent=" + pcontent + "]";
+				+ kind + ", pcontent=" + pcontent +", titleImg=" + titleImg + "]";
 	}
 
 

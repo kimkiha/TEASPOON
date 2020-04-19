@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*"%>
 <%
 	ArrayList<Product> list =  (ArrayList<Product>)request.getAttribute("list");
-
+	System.out.println(list);
 %>
 <!DOCTYPE html>
 <html lang="en">

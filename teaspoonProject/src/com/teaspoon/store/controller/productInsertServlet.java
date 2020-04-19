@@ -81,10 +81,11 @@ public class productInsertServlet extends HttpServlet {
 			int result = new ProductService().insertProduct(p, list);
 			
 			if(result>0) {
+				request.getSession().setAttribute("msg", "상품등록 성공!!");
 				response.sendRedirect("list.st");
 				
 			}else { // 사진 등록 실패
-				
+				request.setAttribute("msg", "사진게시판 등록실패!!");
 				for(int i=0; i<list.size(); i++) { // Attachment == list.get(i)
 					File deleteFile = new File(savePath + list.get(i).getChangeName());
 					deleteFile.delete();

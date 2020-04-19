@@ -1,6 +1,7 @@
 package com.teaspoon.store.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.teaspoon.store.model.service.ProductService;
+import com.teaspoon.store.model.vo.Product;
 
 /**
  * Servlet implementation class productListServlet
@@ -28,7 +32,8 @@ public class productListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		ArrayList<Product> list = new ProductService().selectProductList();
+		request.setAttribute("list", list);
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_store.jsp");
 		view.forward(request, response);
 	

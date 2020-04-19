@@ -33,11 +33,11 @@ public class CoffeeListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		ArrayList<Product> list = new ProductService().selectCoffeeList();
-//		request.setAttribute("list", list);
-//		
-//		RequestDispatcher view = request.getRequestDispatcher("views/store/coffeeListView.jsp");
-//		view.forward(request, response);
+		ArrayList<Product> list = new ProductService().selectCoffeeList();
+		request.setAttribute("list", list);
+		
+		RequestDispatcher view = request.getRequestDispatcher("views/store/coffeeListView.jsp");
+		view.forward(request, response);
 	
 	
 	

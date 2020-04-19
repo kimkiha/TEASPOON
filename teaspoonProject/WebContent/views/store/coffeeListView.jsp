@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*"%>
 <%
-	ArrayList<Product> list = (ArrayList<Product>)request.getAtrribute("list");
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	System.out.println(list);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>정성가득한 티스푼의 커피상품입니다</title>
-<link rel="styleSheet" href="../../resources/css/store/coffeeListView.css">
-<link rel="styleSheet" href="../../resources/css/common/reset.css">
-<link rel="styleSheet" href="../../resources/css/common/menubar.css">
-<link rel="styleSheet" href="../../resources/css/common/footer.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/coffeeListView.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 <style>
     #content1 {width:100%; height:1500px; background: #ffffff; }
 	#banner {height: 270px; line-height: 270px; background:url("../../resources/img/store/storetop_coffee.jpg") center top no-repeat;}
@@ -46,7 +47,7 @@
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail">
-                                    <a href=""><p><%=p.pname() %></p></a>
+                                    <a href=""><p><%=p.getPname() %></p></a>
                                 </div>
                                 <div class="like">
                                     <img class="<%=contextPath %>/resources/img/store/like_icon" src="heart_emtpy.png" onclick="wishList();">

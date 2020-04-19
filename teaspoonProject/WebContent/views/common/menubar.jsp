@@ -38,7 +38,7 @@
                     <ul id="navi">
                         <li><a class="list store" href="">스토어</a>
                             <ul class="ul">
-                                <li><a href="<%=contextPath%>/views/store/coffeeListView.jsp">커피</a></li>
+                                <li><a href="<%=contextPath%>/coffee.st">커피</a></li>
                                 <li><a href="<%=contextPath%>/views/store/storeBestListView.jsp">금주의 베스트</a></li>
                                 <li><a href="<%=contextPath%>/views/store/itemListView.jsp">컵 & 아이템</a></li>
                             </ul>
