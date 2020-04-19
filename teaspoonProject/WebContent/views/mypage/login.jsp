@@ -23,21 +23,22 @@
                                 <img src="<%=contextPath %>/resources/img/main/logo.png" alt="" width="200px"height="100px">
                             </div>
                         <div id="login">
-                          <form class="login">
-                                <fieldset>
-                                    <ul>
-                                        <li><input type="text"placeholder="아이디" title="아이디입력"></li>
-                                        <li><input type="password"placeholder="비밀번호" title="비밀번호입력"></li>
-                                        <li><button >로그인</button></li>
-                                    </ul> 
-                                    <div>
-                                        <a href="">회원가입</a>
-                                        <a href="">아이디 찾기</a>
-                                        <a href="">비밀번호 찾기</a>
+                             <form class="login" action="<%=contextPath%>/login.me" method="post">
+                            <fieldset>
+                            <ul>
+                             <li><input type="text" placeholder="아이디" name="userId"></li>
+                             <li><input type="password" placeholder="비밀번호" name="userPwd"></li>
                             
-                                    </div>
-                                </fieldset>
-                            </form>
+                             <li><button type="submit">로그인</button></li>
+                            </ul> 
+                            <div>
+                                <a href="">회원가입</a>
+                                <a href="">아이디 찾기</a>
+                                <a href="">비밀번호 찾기</a>
+                      
+                            </div>
+                            </fieldset>
+                        </form>
                         </div>
                       
                       
