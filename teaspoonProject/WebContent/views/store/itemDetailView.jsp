@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="styleSheet" href="../../resources/css/store/itemDetail.css">
+<link rel="styleSheet" href="../../resources/css/store/itemDetailView.css">
 <link rel="styleSheet" href="../../resources/css/common/reset.css">
 <link rel="styleSheet" href="../../resources/css/common/menubar.css">
 <link rel="styleSheet" href="../../resources/css/common/footer.css">
@@ -214,7 +214,7 @@
             </div>
         </div>
         <!-- //content-->
-        
+        <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
 
