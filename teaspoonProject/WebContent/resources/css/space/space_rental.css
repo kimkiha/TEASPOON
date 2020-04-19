@@ -342,6 +342,14 @@ body {
     left:200px;
     border-radius:8px;
   }
+  .cbtn:hover{
+  cursor:pointer;
+  background:lightgray;
+  }
+  .ybtn:hover{
+  cursor:pointer;
+  background:black;
+  }
 
 .sb01{
     
@@ -415,16 +423,21 @@ body {
 }
 
 .perpose{
-    
     background:lightgray;
     width:300px;
     height:40px;
     text-align:center;
 }
+
 .perposet{
     border:1px solid rgb(101, 100, 96);
     width: 645px;
     height: 40px;
+}
+.pert{
+	font-weight:bold;
+	position:relative;
+	top:5px;
 }
 
 .choice{
