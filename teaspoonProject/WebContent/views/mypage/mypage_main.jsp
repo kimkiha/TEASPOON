@@ -27,7 +27,7 @@
         <!-- //banner -->
         <div id="content">
             <!-- product -->
-                <div class="contaniner">
+                <div class="contaniner" style="height:2000px;">
                     <div id="mypage">
                         <div id="mypage_info">
                             <div class="user_info" style="width:95px; border-left:1px solid #bebbb6">

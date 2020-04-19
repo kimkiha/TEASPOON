@@ -99,7 +99,7 @@
     
  
    /* 최근 주문 내역 */
-   .rd-outer{background-color: white;width:1000px;height:800px;}
+   .rd-outer{background-color: white;width:1000px;height:100%;margin-bottom:50px;}
    .rd-1{height:60px;width: 1000px;}
    .rd-2{height:60px;width: 900px;display: inline-block;}
    .rd-3{width:66px;display: inline-block;}
@@ -118,7 +118,7 @@
     .rd-pro-list{width:914px;border-bottom: 1px solid #bebebe;margin: auto;
                 height: 300px;text-align: center;display: table;}
     .rd-pro-list>div{display:table-cell;font-size: 20px; text-align: center;vertical-align: middle;}
-    .rd-pro1{border:1px solid  250px;display: inline-block}
+    .rd-pro1{border:1px solid  ;display: inline-block}
     .rd-pro2{width:220px;display: inline-block}
     .rd-pro3,.rd-pro4{width: 120px;}
     .pro{height: 60px;  display: inline-block; margin: auto;}
