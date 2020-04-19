@@ -12,10 +12,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="styleSheet" href="../../resources/css/store/coffeeDetailView.css">
-<link rel="styleSheet" href="../../resources/css/common/reset.css">
-<link rel="styleSheet" href="../../resources/css/common/menubar.css">
-<link rel="styleSheet" href="../../resources/css/common/footer.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/coffeeDetailView.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 <style>
     #content1 {width:100%; height:2300px;background: #ffffff; }
 </style>
