@@ -20,20 +20,22 @@
                 <div class="contaniner">
                     <div class="outer">
                             <div class="login-title">
-                                <img src="<%=contextPath %>/resources/img/main/logo.png" alt="" width="200px"height="100px">
+                                <img src="<%=contextPath %>/resources/img/main/logo.png" alt="" >
                             </div>
                         <div id="login">
                              <form class="login" action="<%=contextPath%>/login.me" method="post">
                             <fieldset>
                             <ul>
-                             <li><input type="text" placeholder="아이디" name="userId"></li>
-                             <li><input type="password" placeholder="비밀번호" name="userPwd"></li>
+                             <li><input type="text" placeholder="아이디" name="userId" style="padding-left:15px"></li>
+                             <li><input type="password" placeholder="비밀번호" name="userPwd"  style="padding-left:15px"></li>
                             
                              <li><button type="submit">로그인</button></li>
                             </ul> 
-                            <div>
-                                <a href="">회원가입</a>
+                            <div id="enroll">
+                                <a href="<%=contextPath%>/memberEnroll.me">회원가입</a>
+                                <span>|</span>
                                 <a href="">아이디 찾기</a>
+                                <span>|</span>
                                 <a href="">비밀번호 찾기</a>
                       
                             </div>
