@@ -57,7 +57,7 @@ table tr {border-bottom: 1px solid lightgray;}
 							<td><input type="text" size="10px" value="<%=p.getPrice() %>"></td>
 							<td><input type="text" size="10px" value="<%=p.getStock() %>"></td>
 						</tr>
-						<tr>
+						<tr>s
 							<th>상품종류</th>
 							<td colspan="2">
 								<input type="radio" name="kind" value="C" <%=checked[0] %>>C
