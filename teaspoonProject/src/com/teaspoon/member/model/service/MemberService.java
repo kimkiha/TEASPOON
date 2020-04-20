@@ -120,15 +120,20 @@ public class MemberService {
 	 * 마이페이지용 상단 메뉴바
 	 * @param userNo
 	 */
-	public void MyPageInfo(int userNo) {
+	public Member MyPageInfo(int userNo) {
 		Connection conn = getConnection();
 		
-		new MemberDao().MyPageInfo(conn,userNo);
+		Member m = new MemberDao().MyPageInfo(conn,userNo);
+		
+		close(conn);
+		
+	
+		return m;
 		
 	}
 	
 	
-	 * 등급현황 페이지에 보일 등급 객체조회 서비스
+	 /** 등급현황 페이지에 보일 등급 객체조회 서비스
 	 * @return
 	 */
 	public ArrayList<Grade> selectGradeList(){

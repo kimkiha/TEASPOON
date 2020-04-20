@@ -285,14 +285,29 @@ public class MemberDao {
 		return list;
 	}
 
-	public void MyPageInfo(Connection conn, int userNo) {
-		
+	public Member MyPageInfo(Connection conn, int userNo) {
+		Member m = null;
 		PreparedStatement pstmt = null;
-		
+		ResultSet rset = null;
 		String sql = prop.getProperty("MyPageInfo");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, userNo);
+			pstmt.setInt(3, userNo);
+			
+			if(rset.next()) {
+				m=new Member();
+				m.setUserNo(rset.getInt("userno"));
+				m.setUserName(rset.getString("username"));
+				m.setGradeName(rset.getString("grade_name"));
+				m.setPoint(rset.getInt("point"));
+				m.setW(rset.getInt("w"));
+				m.setC(rset.getInt("c"));
+				
+			}
+			
 			
 			
 			
@@ -300,7 +315,12 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
+		System.out.println(m);
+		return m;
 		
 	}
 	

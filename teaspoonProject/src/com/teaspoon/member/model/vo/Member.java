@@ -21,10 +21,25 @@ public class Member {
 	private String gradeName;   //등급네임
 	
 	//1:1 QNA 조회
-	private int mtm_no;
-	private int mtm_type;
-	private String mtm_title;
-	private Date create_date;
+	private int mtm_no; //1:1상담번호
+	private int mtm_type; // 1:1상담 유형
+	private String mtm_title; // 1:1상담 제목
+	private Date create_date; 
+	
+	private int w; //위시리스트 갯수 카운트용
+	private int c; //쿠폰 갯수 카운트용
+	
+	public Member(int userNo, String userName, int point, String gradeName, int w, int c) {
+		super();
+		this.userNo = userNo;
+		this.userName = userName;
+		this.point = point;
+		this.gradeName = gradeName;
+		this.w = w;
+		this.c = c;
+	}
+
+
 	public Member(){
 		
 	}
@@ -75,6 +90,27 @@ public class Member {
 		this.admin = admin;
 		this.status = status;
 	}
+	
+	
+	public int getW() {
+		return w;
+	}
+
+
+	public void setW(int w) {
+		this.w = w;
+	}
+
+
+	public int getC() {
+		return c;
+	}
+
+
+	public void setC(int c) {
+		this.c = c;
+	}
+
 
 	public int getMtm_no() {
 		return mtm_no;
@@ -282,6 +318,9 @@ public class Member {
 				+ email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", point=" + point
 				+ ", buyPoint=" + buyPoint + ", admin=" + admin + ", status=" + status + "]";
 	}
+
+
+	
 
 
 	
