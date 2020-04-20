@@ -39,8 +39,8 @@
                         <li><a class="list store" href="">스토어</a>
                             <ul class="ul">
                                 <li><a href="<%=contextPath%>/coffee.st">커피</a></li>
-                                <li><a href="<%=contextPath%>/views/store/storeBestListView.jsp">금주의 베스트</a></li>
-                                <li><a href="<%=contextPath%>/views/store/itemListView.jsp">컵 & 아이템</a></li>
+                                <li><a href="<%=contextPath%>/storeBest.st">금주의 베스트</a></li>
+                                <li><a href="<%=contextPath%>/item.st">컵 & 아이템</a></li>
                             </ul>
                         </li>
                         <li><a class="list recommend" href="">맞춤추천</a>
@@ -89,6 +89,7 @@
     
     <script>
         $(function(){
+        	//로그인버튼 클릭시
             $("#login").click(function(){
             	var result = window.confirm("로그인하시겠습니까?");
             
@@ -96,7 +97,7 @@
 	            	location.href = "<%=contextPath%>/loginPage.me";
 	            }
             });  
-            
+            //메뉴바 슬라이드
             $("#navi li").hover(function(){
                 $(".ul", this).slideDown(600);
             },function(){

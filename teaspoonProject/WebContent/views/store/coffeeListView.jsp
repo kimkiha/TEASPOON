@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>정성가득한 티스푼의 커피상품입니다</title>
+<title>Coffee|TeaSpoon</title>
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/coffeeListView.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
@@ -39,12 +39,9 @@
                         	<!-- listArea -->
                             <div class="product">
                             
-                            <%for(Product p : list) {%>
-                            
-                            
-                            
-                            	<input type="hidden" value=<%=p.getPcode() %>>
+                           		<%for(Product p : list) {%>
                                 <div class="product_img">
+                                	<input type="hidden" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail">

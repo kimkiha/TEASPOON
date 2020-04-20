@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.PageInfo;
+import com.teaspoon.common.PageInfo;
 
 public class MemberDao {
 
@@ -141,6 +141,41 @@ public class MemberDao {
 			close(pstmt);
 
 		}
+		return list;
+	}
+
+	public ArrayList<Member> selectMyQnaList(Connection conn) {
+		ArrayList<Member> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMyQnaList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Member(rset.getInt("user_no"),
+						            rset.getInt("mtm_type"),
+						            rset.getString("mtm_title"),
+						            rset.getDate("create_date")
+						            ));
+				
+			}
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
 		return list;
 	}
 	

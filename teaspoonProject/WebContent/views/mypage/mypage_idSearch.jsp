@@ -21,6 +21,7 @@
 		<div id="content" class="contaniner">
 
 			<center style="padding: 35px;">
+				<p style="margin-top:100px;"></p>
 				<p style="font-size: 30px; Line-height: 200%;">아이디찾기</p>
 				<p style="font-size: 15px; color: rgb(85, 83, 83);">본인인증으로 아이디를
 					찾을 수 있습니다.</p>
@@ -43,7 +44,8 @@
 -->
 
 			<div id="아이디찾기" class="tabcontent">
-				<table>
+			  <center>
+				<table style="padding-left:100px; padding-top:65px; padding-bottom:65px">
 					<thead>
 						<ul class=im1>
 							<tr>
@@ -67,6 +69,7 @@
 
 					</tbody>
 				</table>
+			  </center>
 				<button type="button" class="btnenroll">인증완료</button>
 			</div>
 

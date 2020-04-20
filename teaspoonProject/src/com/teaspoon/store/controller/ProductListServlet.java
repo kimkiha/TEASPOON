@@ -1,4 +1,5 @@
-package com.teaspoon.member.controller;
+package com.teaspoon.store.controller;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -9,21 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.service.MemberService;
-import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.common.PageInfo;
+import com.teaspoon.store.model.service.ProductService;
+import com.teaspoon.store.model.vo.Product;
 
 /**
- * Servlet implementation class MemberListServlet
+ * Servlet implementation class productListServlet
  */
-@WebServlet("/list.me")
-public class MemberListServlet extends HttpServlet {
+@WebServlet("/list.st")
+public class productListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberListServlet() {
+    public productListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +34,7 @@ public class MemberListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
 		//-------------------- 페이징처리 -----------------
 		int listCount;		//총 게시글 갯수
@@ -43,16 +46,16 @@ public class MemberListServlet extends HttpServlet {
 		int boardLimit;		//한페이지에 보여질 게시글 최대 갯수
 		
 		//* listCount : 총 게시글 갯수
-		listCount = new MemberService().getListCount();
+		listCount = new ProductService().getListCount();
 		
 		//* currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
 		//* pageLimit : 한 페이지 하단에 보여질 페이지 최대갯수
-		pageLimit = 10;
+		pageLimit = 5;
 		
 		//* boardLimit : 한 페이지에 보여질 게시글 최대 갯수
-		boardLimit = 10; 
+		boardLimit = 6; 
 		
 		
 		//* maxPage : (마지막 페이지) 총 페이지수 
@@ -109,14 +112,11 @@ public class MemberListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		//System.out.println(pi);
-		ArrayList<Member> list = new MemberService().selectList(pi);
-		
+		ArrayList<Product> list = new ProductService().selectProductList(pi);
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
-		//게시판글 출력을위한 list객체전달
 		request.setAttribute("list", list);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_member.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_store.jsp");
 		view.forward(request, response);
 	
 	}

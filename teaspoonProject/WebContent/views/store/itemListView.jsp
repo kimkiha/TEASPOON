@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>티스푼의 컵&아이템</title>
+<title>Item | TeaSpoon</title>
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/itemListView.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">

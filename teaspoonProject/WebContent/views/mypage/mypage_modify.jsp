@@ -20,12 +20,14 @@
             <div id="content" class="contaniner">
             
             <center style="padding:35px;">
-                <p style="font-size:36px; Line-height:200%; margin-top:100px;">회원정보수정</p>
+            	<p style="margin-top:100px;"></p>
+                <p style="font-size:36px; Line-height:200%; ">회원정보수정</p>
                 <p style="font-size:18px;  margin-bottom:70px; color:rgb(85, 83, 83);">회원님의 회원정보를 수정하실 수 있습니다.</p>
             </center>
  
             <div id="회원정보수정" class="tabcontent" id="password">
-                <table>
+              <center>
+                <table style="padding-left:100px; padding-top:60px; padding-bottom:50px;">
                     <thead>
                         <ul class=im1>
                         <tr>
@@ -80,9 +82,9 @@
                             <td></td>
                         </tr>
                     </ul>          
-                        
                     </tbody>
                 </table>
+              </center>
             <!-- 2_1. (정보입력)본인인증 및 회원가입 버튼-->
             <button type="button" class="btn_1" id="btn_1">수정완료</button>
             </div>

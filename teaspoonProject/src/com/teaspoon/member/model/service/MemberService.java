@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.PageInfo;
+import com.teaspoon.common.PageInfo;
 
 public class MemberService {
 
@@ -53,6 +53,16 @@ public class MemberService {
 		
 		ArrayList<Member> list = new MemberDao().selectList(conn, pi);
 		close(conn);
+		return list;
+	}
+
+	public ArrayList<Member> selectMyQnaList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectMyQnaList(conn);
+		
+		close(conn);
+		
 		return list;
 	}
 	

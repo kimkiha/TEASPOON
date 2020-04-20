@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>상품등록</title>
+<title>상품등록 | Admin</title>
 
 <style>
 .outer p {
@@ -55,17 +55,17 @@ table tr {
 						</tr>
 						<tr>
 							<td><input type="text" size="7px" name="pcode" placeholder="자동생성" readonly></td>
-							<td><input type="text" size="7px" name="pname"></td>
-							<td><input type="text" size="7px" name="supPrice"></td>
-							<td><input type="text" size="7px" name="price"></td>
-							<td><input type="text" size="7px" name="stock"></td>
-							<td><input type="text" size="14" name="keyword"></td>
+							<td><input type="text" size="7px" name="pname" required></td>
+							<td><input type="text" size="7px" name="supPrice" required></td>
+							<td><input type="text" size="7px" name="price" required></td>
+							<td><input type="text" size="7px" name="stock" required></td>
+							<td><input type="text" size="14" name="keyword" required></td>
 						</tr>
 						<tr>
 							<th>상품종류</th>
 							<td>
-								<input type="radio" name="kind" value="C">C
-								<input type="radio" name="kind" value="I">I
+								<input type="radio" name="kind" value="C" required>C
+								<input type="radio" name="kind" value="I" required>I
 							</td>
 							
 							
@@ -73,7 +73,7 @@ table tr {
 						<tr>
 							<th>대표이미지</th>
 							<td>
-								<img id="titleImg" width="150" height="120">
+								<img id="titleImg" width="150" height="120" required>
 							</td>
 					
 							<th>상세이미지</th>
@@ -90,7 +90,7 @@ table tr {
 						<tr>
 							<th>PCONTENT</th>
 							<td colspan="5">
-								<textarea name="pcontent" cols=75 rows=4 style="resize:none;"></textarea>
+								<textarea name="pcontent" cols=75 rows=4 style="resize:none;" required></textarea>
 							<td>
 							
 						</tr>

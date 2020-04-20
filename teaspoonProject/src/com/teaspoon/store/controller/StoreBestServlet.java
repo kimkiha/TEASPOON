@@ -14,16 +14,16 @@ import com.teaspoon.store.model.service.ProductService;
 import com.teaspoon.store.model.vo.Product;
 
 /**
- * Servlet implementation class productListServlet
+ * Servlet implementation class StoreBestServlet
  */
-@WebServlet("/list.st")
-public class productListServlet extends HttpServlet {
+@WebServlet("/storeBest.st")
+public class StoreBestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public productListServlet() {
+    public StoreBestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,9 +32,11 @@ public class productListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Product> list = new ProductService().selectProductList();
+
+		ArrayList<Product> list = new ProductService().selectBestList();
 		request.setAttribute("list", list);
-		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_store.jsp");
+		
+		RequestDispatcher view = request.getRequestDispatcher("views/store/storeBestListView.jsp");
 		view.forward(request, response);
 	
 	}

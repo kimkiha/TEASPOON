@@ -1,4 +1,4 @@
-package com.teaspoon.member.model.vo;
+package com.teaspoon.common;
 
 
 public class PageInfo {
