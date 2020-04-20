@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class BrandStory
  */
-@WebServlet("/brandstory.bo")
+@WebServlet("/brandStory.bo")
 public class BrandStory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,7 +29,7 @@ public class BrandStory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher view = request.getRequestDispatcher("views/mypage/login.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/board/about_teaspoon.jsp");
 		
 		view.forward(request, response);
 	}

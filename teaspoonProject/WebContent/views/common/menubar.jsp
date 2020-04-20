@@ -52,14 +52,14 @@
                         </li>
                         <li><a class="list about" href="">어바웃티스푼</a>
                             <ul class="ul">
-                                <li><a href="#">브랜드스토리</a></li>
+                                <li><a href="<%=contextPath%>/brandStory.bo">브랜드스토리</a></li>
                                 <li><a href="<%=contextPath%>/views/board/magazine.jsp">매거진</a></li>
                             </ul>
                         </li>
                         <li><a class="list rent" href="<%=contextPath%>/views/space/space_rental.jsp">공간대여</a>
                             <ul class="ul">
                                 <li><a href="<%=contextPath%>/views/space/space_rental.jsp">예약하기</a></li>
-                                <li><a href="#">찾아오는길</a></li>
+                                <li><a href="<%=contextPath%>/views/space/space_maps.jsp">찾아오는길</a></li>
                             </ul>
                         </li>
                     </ul>
