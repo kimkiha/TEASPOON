@@ -5,47 +5,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-        /*리셋*/
-        * {margin: 0; padding: 0;}
-        /*전체레이아웃*/
-        #wrap {text-align: center; font-size: 30px; color: black;}
-        #header {height: 140px; line-height: 140px; background: #ffe1e4;}
-        #banner {height: 170px; line-height: 170px; background-image:url("패턴 - 복사본.jpg")}
-        #content {  line-height: inherit; }
-        #footer {height: 220px; line-height: 220px; background: #d6ebfd;}
-        .contaniner {width: 1200px; margin: 0 auto; height: inherit; }
-        #mypage{width:1000px; height:2000px; background-color:rgb(219, 219, 219); margin: 0 auto;}
-        #mypage_info{width:100%; height:130px; background-color: khaki;}
-        #mypage_tab{width:100%; height:195px; margin: 0 auto;}
-        #mypage_menu_tab{width:100%; height:195px;}
-        #mypage_menu_tab>div{
-            float:left; text-align: center; line-height: 60px; 
-            margin-top:80px; margin-bottom:50px; height:60px; 
-            width:166px; background-color: lawngreen;
-            font-size: 18px;
-        }
-        #mp_con1{text-align:left; width:100%; }
-        #mp_con1>p{padding-left:20px; padding-bottom:10px; border-bottom:1px solid black;}
-    </style>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_modify.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
-        <div id="header">
-            <div class="contaniner">여기는메뉴바</div>
-        </div>
+        <%@ include file="../common/menubar.jsp" %>
         <!-- //header -->
 
             <!-- product -->
             <div id="content" class="contaniner">
             
             <center style="padding:35px;">
-                <p style="font-size:36px; Line-height:200%; margin-top:100px;">회원정보수정</p>
+            	<p style="margin-top:100px;"></p>
+                <p style="font-size:36px; Line-height:200%; ">회원정보수정</p>
                 <p style="font-size:18px;  margin-bottom:70px; color:rgb(85, 83, 83);">회원님의 회원정보를 수정하실 수 있습니다.</p>
             </center>
  
             <div id="회원정보수정" class="tabcontent" id="password">
-                <table>
+              <center>
+                <table style="padding-left:100px; padding-top:60px; padding-bottom:50px;">
                     <thead>
                         <ul class=im1>
                         <tr>
@@ -100,18 +82,16 @@
                             <td></td>
                         </tr>
                     </ul>          
-                        
                     </tbody>
                 </table>
+              </center>
             <!-- 2_1. (정보입력)본인인증 및 회원가입 버튼-->
             <button type="button" class="btn_1" id="btn_1">수정완료</button>
             </div>
     
     </div>
       <!-- //content-->
-      <div id="footer">
-        <div class="contaniner">footer</div>
-    </div>
+       <%@ include file="../common/footer.jsp" %>
     <!-- //footer-->
 </body>
 </html>

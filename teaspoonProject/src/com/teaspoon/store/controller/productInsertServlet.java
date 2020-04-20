@@ -55,7 +55,9 @@ public class productInsertServlet extends HttpServlet {
 			String kind = multiRequest.getParameter("kind");
 			String pcontent = multiRequest.getParameter("pcontent");
 			
+			// 상품객체
 			Product p = new Product();
+			
 			p.setPname(pname);
 			p.setSupPrice(supPrice);
 			p.setPrice(price);
@@ -64,6 +66,7 @@ public class productInsertServlet extends HttpServlet {
 			p.setKind(kind);
 			p.setPcontent(pcontent);
 			
+			// 파일리스트
 			ArrayList<Attachment> list = new ArrayList<>();
 			
 			for(int i=1; i<=4; i++) {
@@ -81,17 +84,17 @@ public class productInsertServlet extends HttpServlet {
 			int result = new ProductService().insertProduct(p, list);
 			
 			if(result>0) {
-				request.getSession().setAttribute("msg", "상품등록 성공!!");
+				request.getSession().setAttribute("msg", "상품이 등록되었습니다");
 				response.sendRedirect("list.st");
 				
 			}else { // 사진 등록 실패
-				request.setAttribute("msg", "사진게시판 등록실패!!");
+				request.setAttribute("msg", "상품등록에 실패했습니다");
 				for(int i=0; i<list.size(); i++) { // Attachment == list.get(i)
 					File deleteFile = new File(savePath + list.get(i).getChangeName());
 					deleteFile.delete();
 				}
 				// 에러페이지로 포워딩
-				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
 				view.forward(request, response);
 				
 			}

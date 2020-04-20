@@ -84,3 +84,4 @@ $(document).ready(function(){
     	dott[slideIndexx-1].className += " actives";
     	setTimeout(showSlide, 2000); // 사진바뀌는 속도 2초
     }
+    

@@ -120,7 +120,9 @@
                                 </div>
                             <br><br>
                             <h5><요금 및 예약 가능 여부 확인></h5>
+                            
                             <br>
+                           <form action="memberEnroll" method="post"> 
                             <div class="choice"> 
                                 <div class="choice1">날짜 선택</div>
                                 <div class="choice2">대여 시간</div>
@@ -177,13 +179,15 @@
                             <br>
                             
                             <div>
-                              <div class="perpose">공간 사용 목적</div>
-                              <input class="perposet" type="text" placeholder="*필수 입력사항 ex)회의 관련 목적">
+                              <div class="perpose"><div class="pert">공간 사용 목적</div></div>
+                              <input class="perposet" id="userText" type="text" placeholder="*필수 입력사항 ex)회의 관련 목적">
                             </div>
                             <br>
-                            <button class="cbtn">취소하기</button>
-                            <button class="ybtn">예약하기</button>
                             
+                            <input class="cbtn" type="button" value="취소하기" onClick="history.go(0)"> 
+                            <input class="ybtn" type="submit" value="예약하기" >
+                            
+                          </form>  
                           </div>
                         </div>  
 

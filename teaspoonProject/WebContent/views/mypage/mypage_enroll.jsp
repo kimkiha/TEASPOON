@@ -5,30 +5,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/mypage_enroll.css">
-    <link rel="stylesheet" href="css/reset.css"> 
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_enroll.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     
 </head>
 <body>
-<div id="wrap">
-        <div id="header">
-            <div class="contaniner">여기는메뉴바</div>
-        </div>
+<center>
+<div id="wrap" >
+       <%@ include file="../common/menubar.jsp" %>
+	
         <!-- //header -->
        
-        <div id="content">
+       	
+        <div id="content" style="padding-left:350px; padding-right:350px;">
+
             <!-- product -->
 
                 <!-- 1. 약관동의 페이지-->
                 <div class="contaniner">
-                    <div>
-                        <h3 style="margin-top: 100px; margin-bottom: 10px;">티스푼 회원가입</h3>
+                
+                    
+                        <h3 style="margin-top: 100px; margin-bottom: 10px; padding-top:100px;">티스푼 회원가입</h3>
                         <h6 style="color:rgb(70, 69, 69);">티스푼 공식 쇼핑몰에 가입하시면 온/오프 매장에서 상품을 구매 할 때마다<br>
                             현금처럼 사용할 수 있는 포인트 적립과 사용 등 다양한 혜택을 받으실 수 있습니다.<br>
                         </h6> <br>
+                        
                     
-                        <div class="tab1">
+                        <div class="tab1" style="margin-bottom:45px; margin-top:55px;">
                             <button class="tablinks" onclick="openCity(event, '약관동의')" id="defaultOpen">약관동의</button>
                             <button class="tablinks" onclick="openCity(event, '정보입력')" id="defaultOpen2" disabled>정보입력</button>
                             <button class="tablinks" onclick="openCity(event, '이메일인증')" id="defaultOpen3" disabled>이메일인증</button>
@@ -37,7 +43,7 @@
                                 <div id="약관동의" class="tabcontent"> 
                                 
                                     <form>
-                                        <textarea class="form-control2" rows="50" id="comment" width=70%;>
+                                        <textarea class="form-control2" rows="50" id="comment" width=70%;">
 제 1 장 총 칙
                             
                              
@@ -356,7 +362,9 @@
                           </div>
                           </div>
                         </div>
-
+						
+						
+						
                         <!-- 2. 정보입력 페이지-->
                           <div id="정보입력" class="tabcontent" id="information">
                             <table>
@@ -465,7 +473,13 @@
                     </div>
                 </div>
         </div>
-        <div id="footer">
+         <%@ include file="../common/footer.jsp" %>
+         </center>
+            
+           
+        <!-- //footer-->
+    </div>
+    <div id="footer">
             <div class="contaniner">footer</div>
             <script>
                 function openCity(evt, cityName) {
@@ -486,9 +500,6 @@
                 document.getElementById("defaultOpen").click();
                 
                 </script>
-            </div>
-        <!-- //footer-->
-    </div>
 
     <script>
         $(function(){

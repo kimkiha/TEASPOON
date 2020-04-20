@@ -41,7 +41,7 @@
                                             <figcaption>
                                                 <h3>KNOW THAT EAT</h3>
                                                 <p>알고마시면 더 맛있는 커피이야기</p>
-                                                <a href="#" class="read">Read More</a>
+                                                <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
                                             </figcaption>
                                         </figure>
                                     </div>
@@ -53,7 +53,7 @@
                                                 <figcaption>
                                                     <h3>WHAT'S A COFFEE</h3>
                                                     <p>커피가 나에게 물을 때</p>
-                                                    <a href="#" class="read">Read More</a>
+                                                    <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
                                                 </figcaption>
                                             </figure>
                                         </div>
@@ -67,7 +67,7 @@
                                         <figcaption>
                                             <h3>KNOW THAT EAT</h3>
                                             <p>알고마시면 더 맛있는 커피이야기</p>
-                                            <a href="#" class="read">Read More</a>
+                                            <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -79,7 +79,7 @@
                                             <figcaption>
                                                 <h3>WHAT'S A COFFEE</h3>
                                                 <p>커피가 나에게 물을 때</p>
-                                                <a href="#" class="read">Read More</a>
+                                                <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
                                             </figcaption>
                                         </figure>
                                     </div>
@@ -93,7 +93,7 @@
                                         <figcaption>
                                             <h3>KNOW THAT EAT</h3>
                                             <p>알고마시면 더 맛있는 커피이야기</p>
-                                            <a href="#" class="read">Read More</a>
+                                            <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -105,7 +105,7 @@
                                             <figcaption>
                                                 <h3>WHAT'S A COFFEE</h3>
                                                 <p>커피가 나에게 물을 때</p>
-                                                <a href="#" class="read">Read More</a>
+                                                <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
                                             </figcaption>
                                         </figure>
                                     </div>

@@ -39,12 +39,9 @@
                         	<!-- listArea -->
                             <div class="product">
                             
-                            <%for(Product p : list) {%>
-                            
-                            
-                            
-                            	<input type="hidden" value=<%=p.getPcode() %>>
+                           		<%for(Product p : list) {%>
                                 <div class="product_img">
+                                	<input type="hidden" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail">

@@ -5,24 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/mypage_IDsearch.css">
-<link rel="stylesheet" href="css/reset.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap"
-	rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_idSearch.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 
 </head>
 <body>
 	<div id="wrap">
-		<div id="header">
-			<div class="contaniner">여기는메뉴바</div>
-		</div>
+		<%@ include file="../common/menubar.jsp" %>
 		<!-- //header -->
 
 		<!-- product -->
 		<div id="content" class="contaniner">
 
 			<center style="padding: 35px;">
+				<p style="margin-top:100px;"></p>
 				<p style="font-size: 30px; Line-height: 200%;">아이디찾기</p>
 				<p style="font-size: 15px; color: rgb(85, 83, 83);">본인인증으로 아이디를
 					찾을 수 있습니다.</p>
@@ -45,7 +44,8 @@
 -->
 
 			<div id="아이디찾기" class="tabcontent">
-				<table>
+			  <center>
+				<table style="padding-left:100px; padding-top:65px; padding-bottom:65px">
 					<thead>
 						<ul class=im1>
 							<tr>
@@ -69,14 +69,13 @@
 
 					</tbody>
 				</table>
+			  </center>
 				<button type="button" class="btnenroll">인증완료</button>
 			</div>
 
 		</div>
 		<!-- //content-->
-		<div id="footer">
-			<div class="contaniner">footer</div>
-		</div>
+		  <%@ include file="../common/footer.jsp" %>
 		<!-- //footer-->
 </body>
 </html>
