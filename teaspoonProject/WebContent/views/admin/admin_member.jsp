@@ -45,7 +45,7 @@
                         <div id="c1_1_1_2"><p>현재활동중인회원입니다.</p></div>
                         <div id="c1_1_1_3">
                             <input type="text" placeholder="아이디" id="idName">
-                            <button type="button" class="searchBtn" id="searchBtn">검색</button>
+                            <button type="button" class="searchBtn" id="searchBtn1">검색</button>
                         </div>
                     </div>
                     <div id="c1_1_2">
@@ -72,7 +72,7 @@
 					<%for(Member m : list){ %>
 						<tr>
 							<td><%=m.getUserNo() %></td>
-							<td><%=m.getUserId() %></td>
+							<td style="text-transform:lowercase"><%=m.getUserId()%></td>
 							<td><%=m.getUserName() %></td>
 							<td><%=m.getPhone() %></td>
 							<td><%=m.getBirthday() %></td>
@@ -113,7 +113,7 @@
                         </div>
                       </div>
                       <div class="search">
-                        <button type="button" id="search" >검색</button>
+                        <button type="button" id="searchBtn2" >검색</button>
                       </div>
                      
                 </div>
@@ -123,14 +123,14 @@
 	        	           <!-- 현재 페이지에 보여질 페이징바 -->
 			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 			<!-- 맨 처음으로(<<) -->
-			<button onclick="location.href='idList.me?currentPage=1&?searchId=<%=searchId %>'">&lt;&lt;</button>
+			<button onclick="location.href='idList.me?currentPage=1&searchId=<%=searchId %>'">&lt;&lt;</button>
 			<!-- 이전페이지로(<) -->
-			<button onclick="location.href='idList.me?currentPage=<%=currentPage-1%>&?searchId=<%=searchId %>'">&lt;</button>
+			<button onclick="location.href='idList.me?currentPage=<%=currentPage-1%>&searchId=<%=searchId %>'">&lt;</button>
 			<%} %>
 			
 			<%for(int p=startPage; p<=endPage; p++){%>
 				<%if(currentPage != p) {%>
-				<button onclick="location.href='idList.me?currentPage=<%=p%>&?searchId=<%=searchId %>'"><%=p%></button>
+				<button onclick="location.href='idList.me?currentPage=<%=p%>&searchId=<%=searchId %>'"><%=p%></button>
 				<%}else{ %>
 				<button disabled><%=p %></button>
 				<%} %>	
@@ -138,9 +138,9 @@
 			
 			<%if(currentPage != maxPage){ %>
 			<!-- 다음페이지로(<) -->
-			<button onclick="location.href='idList.me?currentPage=<%=currentPage+1%>&?searchId=<%=searchId %>'">&gt;</button>
+			<button onclick="location.href='idList.me?currentPage=<%=currentPage+1%>&searchId=<%=searchId %>'">&gt;</button>
 			<!-- 맨 마지막으로(>>) -->
-			<button onclick="location.href='idList.me?currentPage=<%=maxPage %>&?searchId=<%=searchId %>'">&gt;&gt;</button>
+			<button onclick="location.href='idList.me?currentPage=<%=maxPage %>&searchId=<%=searchId %>'">&gt;&gt;</button>
 			<%} %>
        	
         	
@@ -200,10 +200,27 @@
     
     <script>
     	$(function(){
-    		$("#searchBtn").click(function(){
+    		$("#searchBtn1").click(function(){
     			var searchId = $("#idName").val();
     			location.href='idList.me?searchId='+searchId+"&currentPage=1";
     		});
+    	})
+    </script>
+    
+    <script>
+    	$(function(){
+    		$("#searchBtn2").click(function(){
+    			if( $(".btn1").text() == '회원상태별분류' || $(".btn2").text() =='회원등급별분류' ){
+    				alert("상태와 등급을 선택해주세요.");
+    			}else{
+    				var searchKeyword1 =  $(".btn1").text();
+        			var searchKeyword2 =  $(".btn2").text();
+        			console.log(searchKeyword1);
+        			console.log(searchKeyword2);
+        			//location.href='keywordList.me?searchKeyword1='+searchKeyword1+"&searchKeyword2="+searchKeyword2+"&currentPage=1";
+        		
+    			}
+    			});
     	})
     </script>
 </body>
