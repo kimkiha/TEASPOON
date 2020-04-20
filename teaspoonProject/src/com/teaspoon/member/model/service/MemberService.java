@@ -55,11 +55,30 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
-
-	public ArrayList<Member> selectMyQnaList() {
+	/**
+	 * 3_1. 마이페이지 1:1리스트 총갯수 조회용 서비스
+	 * @return 내1:1문의글 카운트갯수
+	 */
+	public int getQnaListCount(int userNo) {
 		Connection conn = getConnection();
 		
-		ArrayList<Member> list = new MemberDao().selectMyQnaList(conn);
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new MemberDao().getQnaListCount(conn,userNo);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	
+	/**
+	 * 3_2. 마이페이지 1:1qna 리스트 조회용
+	 * @return
+	 */
+	public ArrayList<Member> selectMyQnaList(PageInfo pi,int userNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectMyQnaList(conn, pi,userNo);
 		
 		close(conn);
 		

@@ -21,7 +21,7 @@ public class Member {
 	private String gradeName;   //등급네임
 	
 	//1:1 QNA 조회
-	
+	private int mtm_no;
 	private int mtm_type;
 	private String mtm_title;
 	private Date create_date;
@@ -30,13 +30,17 @@ public class Member {
 	}
 
 	
-	public Member(int userNo, int mtm_type, String mtm_title, Date create_date) {
+	public Member(int mtm_no,int userNo, int mtm_type, String mtm_title, Date create_date) {
 		super();
+		this.mtm_no = mtm_no;
 		this.userNo = userNo;
 		this.mtm_type = mtm_type;
 		this.mtm_title = mtm_title;
 		this.create_date = create_date;
 	}
+
+
+	
 
 
 	public Member(int userNo, String userId, String userName, String phone, Date enrollDate, String gradeName,int birthday, String status ) {
@@ -72,7 +76,14 @@ public class Member {
 		this.status = status;
 	}
 
-	
+	public int getMtm_no() {
+		return mtm_no;
+	}
+
+
+	public void setMtm_no(int mtm_no) {
+		this.mtm_no = mtm_no;
+	}
 
 	public int getMtm_type() {
 		return mtm_type;
