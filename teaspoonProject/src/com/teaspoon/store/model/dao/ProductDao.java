@@ -285,17 +285,20 @@ public class ProductDao {
 			pstmt.setInt(1, pcode);
 			rset = pstmt.executeQuery();
 			
-			p  = new Product();
-			p.setPcode(rset.getInt("PCODE"));
-			p.setPname(rset.getString("PNAME"));
-			p.setSupPrice(rset.getInt("SUP_PRICE"));
-			p.setPrice(rset.getInt("PRICE"));
-			p.setStock(rset.getInt("STOCK"));
-			p.setStatus(rset.getString("STATUS"));
-			p.setKeyword(rset.getString("KEYWORD"));
-			p.setTotalCount(rset.getInt("TOTAL_COUNT"));
-			p.setKind(rset.getString("KIND"));
-			p.setPcontent(rset.getString("PCONTENT"));
+			if(rset.next()) {
+				p  = new Product();
+				p.setPcode(rset.getInt("PCODE"));
+				p.setPname(rset.getString("PNAME"));
+				p.setSupPrice(rset.getInt("SUP_PRICE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setStock(rset.getInt("STOCK"));
+				p.setStatus(rset.getString("STATUS"));
+				p.setKeyword(rset.getString("KEYWORD"));
+				p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+				p.setKind(rset.getString("KIND"));
+				p.setPcontent(rset.getString("PCONTENT"));
+			}
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -336,7 +339,29 @@ public class ProductDao {
 		
 	}
 	
+	public int updateProduct(Connection conn, Product p) {
+		 int result = 0;
+		 PreparedStatement pstmt = null;
+		 String sql = prop.getProperty("updateProduct");
+		 
+		 try {
+			pstmt  = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
+	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
+		
+		
+	}
+	
+	
+	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
+		
+		
+	}
 
 }

@@ -67,17 +67,16 @@ public class ProductUpdateServlet extends HttpServlet {
 			p.setPcontent(pcontent);
 			
 			// 파일리스트
-			
 			ArrayList<Attachment> list = null;
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				list = new ArrayList<>();
-			
-				list.setOriginName(multiRequest.getOriginalFileName("upfile")); // 새로 추가된 파일의 원본명 추가
-				list.setChangeName(multiRequest.getFilesystemName("upfile")); // 새로 추가된 파일의 수정명 추가
-				list.setFilePath(savePath);
+				Attachment at = new Attachment();
+				at.setOriginName(multiRequest.getOriginalFileName("upfile")); // 새로 추가된 파일의 원본명 추가
+				at.setChangeName(multiRequest.getFilesystemName("upfile")); // 새로 추가된 파일의 수정명 추가
+				at.setFilePath(savePath);
 			
 				if(multiRequest.getParameter("originFileNo") != null) {
-					list.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
+					at.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
 					
 					// 기존에 서버에 업로드된 파일도 삭제
 					File deleteFile = new File(savePath + multiRequest.getParameter("originFileName"));

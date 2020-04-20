@@ -67,12 +67,12 @@ table tr {
 							<th>KEYWORD</th>
 						</tr>
 						<tr>
-							<td><%=p.getPcode() %></td>
-							<td><%=p.getPname() %></td>
-							<td><%=p.getSupPrice() %></td>
-							<td><%=p.getPrice() %></td>
-							<td><%=p.getStock() %></td>
-							<td><%=p.getKeyword() %></td>
+							<td><input type="text" size="7px" value="<%=p.getPcode() %>"></td>
+							<td><input type="text" size="7px" value="<%=p.getPname() %>"></td>
+							<td><input type="text" size="7px" value="<%=p.getSupPrice() %>"></td>
+							<td><input type="text" size="7px" value="<%=p.getPrice() %>"></td>
+							<td><input type="text" size="7px" value="<%=p.getStock() %>"></td>
+							<td><input type="text" size="14px" value="<%=p.getKeyword() %>"></td>
 						</tr>
 						<tr>
 							<th>상품종류</th>

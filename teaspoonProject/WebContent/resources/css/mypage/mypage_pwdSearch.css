@@ -4,7 +4,7 @@ body, input, textarea, select, button, table {
     color: #222; font-size: 18px; line-height: 1.5;} 
    
 
-table {border: 0.3px solid black; height:270px; width:1000px; margin:0 auto; border: 0.3px solid lightgray; 
+#table1 {height:270px; width:1000px; margin:0 auto; border: 0.3px solid lightgrey; 
         padding-top: 60px; padding-bottom: 30px;
 }
  
@@ -87,7 +87,7 @@ table {border: 0.3px solid black; height:270px; width:1000px; margin:0 auto; bor
      height:55px;
  
  }
- 
+ /*
  ul.im1 {
      list-style-type:disc; 
      list-style-image: url( "images/marker.png" );
@@ -97,7 +97,7 @@ table {border: 0.3px solid black; height:270px; width:1000px; margin:0 auto; bor
      list-style-image: url( "images/marker.png" );
      font-size: 20px;
    }
- 
+ */
  li {
      text-align: left;
    }

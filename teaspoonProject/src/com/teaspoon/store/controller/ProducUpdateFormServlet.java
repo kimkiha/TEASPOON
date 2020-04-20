@@ -17,7 +17,7 @@ import com.teaspoon.store.model.vo.Product;
 /**
  * Servlet implementation class ProducUpdateFormServlet
  */
-@WebServlet("/productUpdateForm.st")
+@WebServlet("/productU.st")
 public class ProducUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +41,7 @@ public class ProducUpdateFormServlet extends HttpServlet {
 		if(p != null) {
 			request.setAttribute("p", p);
 			request.setAttribute("list", list);
-			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_storeUpdateForm.jsp");
+			RequestDispatcher view =request.getRequestDispatcher("views/admin/admin_storeUpdateForm.jsp");
 			view.forward(request, response);
 		} else { // 에러페이지
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");

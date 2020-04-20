@@ -111,7 +111,7 @@ public class ProductService {
 		close(conn);
 		return p;
 	}
-	
+
 	public ArrayList<Attachment> selectAttachment(int pcode) {
 		Connection conn = getConnection();
 		ArrayList<Attachment> list = new ProductDao().selectAttachment(conn, pcode);
@@ -119,6 +119,31 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
-	
+
+	// 새롭게 등록된 파일이 있을경우 
+	public int updateProduct(Product p, ArrayList<Attachment> list) {
+		Connection conn = getConnection();
+		
+		int result1 = new ProductDao().updateProduct(conn, p);
+		int result2 = 1;
+		
+		if(!list.isEmpty()) {
+			for(int i=0; i<=list.size(); i++) {
+				if(list.get(i).getFileNo() != 0) { // 기존 첨부파일이 있을경우 --> update
+					result2 = new ProductDao().updateAttachment(conn, list);
+				} else {	// 기존 첨부파일이 없을경우 --> insert
+					result2 = new ProductDao().insertNewAttachment(conn, list);
+				}
+			}
+		}
+		
+		if(result1>0 && result2>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result1*result2;
+	}
 	
 }

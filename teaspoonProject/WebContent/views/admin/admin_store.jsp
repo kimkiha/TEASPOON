@@ -74,7 +74,7 @@
                                       <td><%=p.getTotalCount() %></td>
                                       <td><%=p.getKind() %></td>
                                       <td>
-                                          <button type="button"><a href="<%=contextPath%>/productUpdateForm.st?pcode=<%=p.getPcode()%>">수정</a></button>
+                                          <button type="button"><a href="<%=contextPath%>/productU.st?pcode=<%=p.getPcode()%>">수정</a></button>
                                           <button type="button">삭제</button>
                                         </td>
                                       </tr>

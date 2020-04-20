@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.*"%>
 <%
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
  %>    
     
 <!DOCTYPE html>
@@ -9,7 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- 		 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_myqna.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_myqna.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
@@ -72,7 +79,7 @@
                            <div class="mp-qna">
                                <div class="mp-qna-title"><P>1:1문의 내역</P></div>
                                <div class="mp-qna-title1">
-                                <div class="mp-qna-title2">총<span>0</span>건의 상담내역이 있습니다</div>
+                                <div class="mp-qna-title2">총<span><%=pi.getListCount() %></span>건의 상담내역이 있습니다</div>
                                 <div class="mp-qna-title3"><button onclick="">상담신청</button></div>
                                </div>      
                            </div>
@@ -108,14 +115,31 @@
                             </table>
                             <div id="delete"><button>선택삭제</button></div>
                             <br><br>
-                            <div class="fagingarea">
-                                <div class="fagingvar" align="center">
-                                    <button><<</button>
-                                    <button><</button>
-                                    <button>1</button>
-                                    <button>></button>
-                                    <button>>></button>
-                                </div>
+                            <div class="pagingarea">
+                               <div class="pagingvar" align="center">
+									<% if(currentPage !=1) {%>
+								
+									<!--  맨처음으(<<) -->
+									<button onclick="location.href='myqna.me?currentPage=1'"> &lt;&lt;</button>
+								
+									<!--  이전페이지(<) -->
+									<button onclick="location.href='myqna.me?currentPage=<%=currentPage-1%>'"> &lt;</button>
+										<%} %>
+									<% for(int p=startPage; p<=endPage; p++){ %>
+										<%if(currentPage != p) {%>
+										<button onclick="location.href='myqna.me?currentPage=<%=p %>';"><%=p %></button>
+										<%}else{ %>
+										<button disabled><%= p %></button>
+										<%} %>
+									<%} %>	
+									
+									<% if(currentPage != maxPage){ %>
+									<!--  다음페이지(>) -->
+								    <button onclick="location.href='myqna.me?currentPage=<%=currentPage+1%>'"> &gt;</button>
+									<!--  맨마지막으로(>>) -->
+									<button onclick="location.href='myqna.me?currentPage=<%=maxPage%>'">&gt;&gt;</button>
+									<%} %>
+								</div>
                             </div>
 
                         </div>
@@ -127,9 +151,6 @@
            <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
-    <script>
-     
-
-    </script>
+   
 </body>
 </html>

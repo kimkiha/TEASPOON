@@ -27,7 +27,7 @@
  
             <div id="회원정보수정" class="tabcontent" id="password">
               <center>
-                <table style="padding-left:100px; padding-top:60px; padding-bottom:50px;">
+                <table style="padding-left:100px; padding-top:60px; padding-bottom:50px;" id="table1">
                     <thead>
                         <ul class=im1>
                         <tr>
