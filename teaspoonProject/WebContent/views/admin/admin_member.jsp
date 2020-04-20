@@ -43,8 +43,8 @@
                         <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/회원현황아이콘.png" width="50px" ></div>
                         <div id="c1_1_1_2"><p>현재활동중인회원입니다.</p></div>
                         <div id="c1_1_1_3">
-                            <input type="text" placeholder="아이디" name="idName">
-                            <button type="button" class="searchBtn" id="btn">검색</button>
+                            <input type="text" placeholder="아이디" id="idName">
+                            <button type="button" class="searchBtn" id="searchBtn">검색</button>
                         </div>
                     </div>
                     <div id="c1_1_2">
@@ -129,7 +129,7 @@
 			<%if(currentPage != p) {%>
 			<button onclick="location.href='list.me?currentPage=<%=p%>'"><%=p%></button>
 			<%}else{ %>
-			<button dispabled><%=p %></button>
+			<button disabled><%=p %></button>
 			<%} %>	
 		<%} %>
 		
@@ -163,6 +163,15 @@
                 $(".btn2").text(value);
             });
         });
+    </script>
+    
+    <script>
+    	$(function(){
+    		$("#searchBtn").click(function(){
+    			var searchId = $("#idName").val();
+    			location.href='idList.me?searchId='+searchId+"&currentPage=1";
+    		});
+    	})
     </script>
 </body>
 </html>

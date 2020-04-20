@@ -32,6 +32,7 @@
                                     <th>등급번호</th>
                                     <th>등급명</th>
                                     <th>등급달성금액</th>
+                                    <th>등급별할인률</th>
                                     <th>
                                         <button type="button" style="width: 100px;">등급추가</button>
                                     </th>
@@ -43,7 +44,7 @@
                                     <td>001</td>
                                     <td>VIP</td>
                                     <td>100만원이상</td>
-
+									<td>10%</td>
                                     <td>
                                         <button type="button">수정</button>
                                         <button type="button">삭제</button>
@@ -53,7 +54,7 @@
                                     <td>002</td>
                                     <td>골드</td>
                                     <td>70만원이상</td>
-
+									<td>10%</td>
                                     <td>
                                         <button type="button">수정</button>
                                         <button type="button">삭제</button>
@@ -63,7 +64,7 @@
                                     <td>003</td>
                                     <td>실버</td>
                                     <td>50만원이상</td>
-
+									<td>10%</td>
                                     <td>
                                         <button type="button">수정</button>
                                         <button type="button">삭제</button>
@@ -73,7 +74,7 @@
                                     <td>004</td>
                                     <td>브론즈</td>
                                     <td>30만원이상</td>
-
+									<td>10%</td>
                                     <td>
                                         <button type="button">수정</button>
                                         <button type="button">삭제</button>
@@ -90,6 +91,7 @@
                                 <th>등급번호</th>
                                 <th>등급명</th>
                                 <th>등급달성금액</th>
+                                <th>등급별할인률</th>
                                 <th></th>
                                 
                                 </tr>
@@ -100,7 +102,7 @@
                                   <td><input type="text" value="수정할등급번호" disabled></td>
                                   <td><input type="text" value="수정할등급명"></td>
                                   <td><input type="text" value="수정할달성금액"></td>
-                                
+                                  <td><input type="text" value="수정할할인률"></td>
                                   <td>
                                       <button type="button"  style="width: 70px;">수정</button>
                                       <button type="reset"  style="width: 70px;">취소</button>

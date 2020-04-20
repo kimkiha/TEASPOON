@@ -36,7 +36,7 @@ public class ProductDao {
 			Statement stmt = null;
 			ResultSet rset = null;
 			String sql = prop.getProperty("getListCount1");
-			System.out.println(sql);
+		
 			try {
 				stmt = conn.createStatement();
 				rset = stmt.executeQuery(sql);

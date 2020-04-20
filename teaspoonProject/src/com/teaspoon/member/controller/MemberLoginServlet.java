@@ -42,8 +42,12 @@ public class MemberLoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", loginUser);
 				session.setAttribute("msg", "로그인성공");
-		
-				response.sendRedirect(request.getContextPath());
+				if(loginUser.getUserId().equals("admin")){
+					response.sendRedirect(request.getContextPath()+"/main.ad");
+				}else {
+					
+					response.sendRedirect(request.getContextPath());
+				}
 				
 			}else { // 로그인 실패 했을 경우 --> 에러페이지
 				request.setAttribute("msg","로그인에 실패 했습니다.");

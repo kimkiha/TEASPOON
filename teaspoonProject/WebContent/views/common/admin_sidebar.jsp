@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <%
 	String contextPath = request.getContextPath();
-	Member loginUser = (Member)session.getAttribute("loginUser");
+	Member loginUser = (Member)session.getAttribute("loginUser"); 
 	String msg = (String)session.getAttribute("msg");
+	
 %>
 <html lang="en">
 <head>
@@ -61,7 +62,8 @@
 
 </head>
 <body>
-    <div class="modal" id="myModal">
+	<%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+	<div class="modal" id="myModal">
         <div class="modal-dialog" style="position: relative;">
           <div class="modal-content" style="width:150px; position:absolute; left: 700px; top:50px" >
     
@@ -133,6 +135,8 @@
             <br>
             </ul>
         </div>
-         
+	<%}else{%> 
+   	 접속불가
+    <%} %>
 </body>
 </html>
