@@ -479,7 +479,9 @@
            
         <!-- //footer-->
     </div>
-    <script>
+    <div id="footer">
+            <div class="contaniner">footer</div>
+            <script>
                 function openCity(evt, cityName) {
                   var i, tabcontent, tablinks;
                   tabcontent = document.getElementsByClassName("tabcontent");
