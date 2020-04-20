@@ -17,7 +17,7 @@ import com.teaspoon.store.model.vo.Product;
 /**
  * Servlet implementation class ProducUpdateFormServlet
  */
-@WebServlet("/productU.st")
+@WebServlet("/productUpdateForm.st")
 public class ProducUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
