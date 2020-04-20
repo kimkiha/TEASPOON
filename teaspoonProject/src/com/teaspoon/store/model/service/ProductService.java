@@ -100,7 +100,25 @@ public class ProductService {
 	}
 	
 	
+	/** 관리자 상품 수정용 서비스(상품객체 및 첨부파일 조회)
+	 * @param pcode 조회하고자하는 해당 상품코드
+	 * @return
+	 */
+	public Product selectProduct(int pcode) {
+		Connection conn = getConnection();
+		Product p = new ProductDao().selectProduct(conn, pcode);
+		
+		close(conn);
+		return p;
+	}
 	
+	public ArrayList<Attachment> selectAttachment(int pcode) {
+		Connection conn = getConnection();
+		ArrayList<Attachment> list = new ProductDao().selectAttachment(conn, pcode);
+		
+		close(conn);
+		return list;
+	}
 	
 	
 }

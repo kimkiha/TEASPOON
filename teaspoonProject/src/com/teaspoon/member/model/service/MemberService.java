@@ -44,7 +44,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * 2_2. 해당페이지에 보여질 게시글 리스트 조회용 서비스
+	 * 2_2. 관리자 멤버현황페이지에 보여질 게시글 리스트 조회용 서비스
 	 * @param pi	--> 요청한 페이지, 한페이지 보여질 게시글 최대수가 담겨있는 객체
 	 * @return
 	 */
@@ -84,6 +84,39 @@ public class MemberService {
 		
 		return list;
 	}
+	
+	
+	/**
+	 * 관리자 멤버현황 아이디로 검색시 총갯수 카운트
+	 * @return
+	 */
+	public int getSearchListCount(String searchId) {
+		Connection conn = getConnection();
+		
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new MemberDao().getSearchListCount(conn,searchId);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 *  관리자 멤버현황페이지에 보여질 게시글 아이디 검색 리스트 조회용 서비스
+	 * @param pi	--> 요청한 페이지, 한페이지 보여질 게시글 최대수가 담겨있는 객체
+	 * @return
+	 */
+	public ArrayList<Member> selectSearchList(String searchId,PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectSearchList(conn,searchId, pi);
+		close(conn);
+		return list;
+	}
+	
+	
+	
+	
 	
 
 	

@@ -1,6 +1,7 @@
 package com.teaspoon.store.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,17 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.board.model.vo.Attachment;
+import com.teaspoon.store.model.service.ProductService;
+import com.teaspoon.store.model.vo.Product;
+
 /**
- * Servlet implementation class productEnrollServlet
+ * Servlet implementation class ProducUpdateFormServlet
  */
-@WebServlet("/enroll.st")
-public class productEnrollServlet extends HttpServlet {
+@WebServlet("/productUpdateForm.st")
+public class ProducUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public productEnrollServlet() {
+    public ProducUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +34,19 @@ public class productEnrollServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_storeEnrollForm.jsp");
-		view.forward(request, response);
-	
+		int pcode = Integer.parseInt(request.getParameter("pcode"));
+		Product p = new ProductService().selectProduct(pcode);
+		ArrayList<Attachment> list = new ProductService().selectAttachment(pcode);
+		
+		if(p != null) {
+			request.setAttribute("p", p);
+			request.setAttribute("list", list);
+			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_storeUpdateForm.jsp");
+			view.forward(request, response);
+		} else { // 에러페이지
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
+			view.forward(request, response);
+		}
 	
 	}
 

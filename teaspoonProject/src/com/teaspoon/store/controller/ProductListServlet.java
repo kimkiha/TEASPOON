@@ -19,13 +19,13 @@ import com.teaspoon.store.model.vo.Product;
  * Servlet implementation class productListServlet
  */
 @WebServlet("/list.st")
-public class productListServlet extends HttpServlet {
+public class ProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public productListServlet() {
+    public ProductListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
