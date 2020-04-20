@@ -4,12 +4,14 @@
 <% 
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
+	String searchId = String.valueOf(request.getAttribute("searchId"));
+	//벨류오브는 문자열 null로바낌
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
 	
+	System.out.print(searchId);
 	
 %>
 <!DOCTYPE html>
@@ -117,28 +119,60 @@
                      
                 </div>
                 <div id="c1_3">
-                   <!-- 현재 페이지에 보여질 페이징바 -->
-		<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-		<!-- 맨 처음으로(<<) -->
-		<button onclick="location.href='list.me?currentPage=1'">&lt;&lt;</button>
-		<!-- 이전페이지로(<) -->
-		<button onclick="location.href='list.me?currentPage=<%=currentPage-1%>'">&lt;</button>
-		<%} %>
-		
-		<%for(int p=startPage; p<=endPage; p++){%>
-			<%if(currentPage != p) {%>
-			<button onclick="location.href='list.me?currentPage=<%=p%>'"><%=p%></button>
-			<%}else{ %>
-			<button disabled><%=p %></button>
-			<%} %>	
-		<%} %>
-		
-		<%if(currentPage != maxPage){ %>
-		<!-- 다음페이지로(<) -->
-		<button onclick="location.href='list.me?currentPage=<%=currentPage+1%>'">&gt;</button>
-		<!-- 맨 마지막으로(>>) -->
-		<button onclick="location.href='list.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-		<%} %>
+        <%if(!searchId.equals("null")){ %>
+        	
+	        	           <!-- 현재 페이지에 보여질 페이징바 -->
+			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='idList.me?currentPage=1&?searchId=<%=searchId %>'">&lt;&lt;</button>
+			<!-- 이전페이지로(<) -->
+			<button onclick="location.href='idList.me?currentPage=<%=currentPage-1%>&?searchId=<%=searchId %>'">&lt;</button>
+			<%} %>
+			
+			<%for(int p=startPage; p<=endPage; p++){%>
+				<%if(currentPage != p) {%>
+				<button onclick="location.href='idList.me?currentPage=<%=p%>&?searchId=<%=searchId %>'"><%=p%></button>
+				<%}else{ %>
+				<button disabled><%=p %></button>
+				<%} %>	
+			<%} %>
+			
+			<%if(currentPage != maxPage){ %>
+			<!-- 다음페이지로(<) -->
+			<button onclick="location.href='idList.me?currentPage=<%=currentPage+1%>&?searchId=<%=searchId %>'">&gt;</button>
+			<!-- 맨 마지막으로(>>) -->
+			<button onclick="location.href='idList.me?currentPage=<%=maxPage %>&?searchId=<%=searchId %>'">&gt;&gt;</button>
+			<%} %>
+       	
+        	
+        <%}else{  %>
+        	
+	        	           <!-- 현재 페이지에 보여질 페이징바 -->
+			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='list.me?currentPage=1'">&lt;&lt;</button>
+			<!-- 이전페이지로(<) -->
+			<button onclick="location.href='list.me?currentPage=<%=currentPage-1%>'">&lt;</button>
+			<%} %>
+			
+			<%for(int p=startPage; p<=endPage; p++){%>
+				<%if(currentPage != p) {%>
+				<button onclick="location.href='list.me?currentPage=<%=p%>'"><%=p%></button>
+				<%}else{ %>
+				<button disabled><%=p %></button>
+				<%} %>	
+			<%} %>
+			
+			<%if(currentPage != maxPage){ %>
+			<!-- 다음페이지로(<) -->
+			<button onclick="location.href='list.me?currentPage=<%=currentPage+1%>'">&gt;</button>
+			<!-- 맨 마지막으로(>>) -->
+			<button onclick="location.href='list.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+			<%} %>
+	        	
+        	
+        <%} %>
+        
 
                 </div>
                 </div>

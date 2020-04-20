@@ -120,7 +120,7 @@ public class MemberIdListServlet extends HttpServlet {
 		//게시판글 출력을위한 list객체전달
 		request.setAttribute("list", list);
 		request.setAttribute("searchId", searchId);
-		
+		System.out.println(list);
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_member.jsp");
 		view.forward(request, response);
 	}

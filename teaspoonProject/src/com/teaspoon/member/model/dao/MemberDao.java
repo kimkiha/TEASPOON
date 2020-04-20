@@ -184,12 +184,13 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("getSearchListCount");
-		System.out.println(searchId);
+	
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+searchId+"%");
-			rset = pstmt.executeQuery(sql);
-			System.out.println(sql);
+//			pstmt.setString(1, "%"+searchId+"%");
+			pstmt.setString(1, searchId);
+			rset = pstmt.executeQuery();
+			
 			if (rset.next()) {
 				// 컬럼인덱스로 추출
 				listCount = rset.getInt(1);
