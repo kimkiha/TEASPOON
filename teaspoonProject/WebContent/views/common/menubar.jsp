@@ -89,6 +89,7 @@
     
     <script>
         $(function(){
+        	//로그인버튼 클릭시
             $("#login").click(function(){
             	var result = window.confirm("로그인하시겠습니까?");
             
@@ -96,7 +97,7 @@
 	            	location.href = "<%=contextPath%>/loginPage.me";
 	            }
             });  
-            
+            //메뉴바 슬라이드
             $("#navi li").hover(function(){
                 $(".ul", this).slideDown(600);
             },function(){
