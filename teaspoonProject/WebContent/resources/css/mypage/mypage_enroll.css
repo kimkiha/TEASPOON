@@ -1,28 +1,21 @@
-h1 {
-    text-align: center;
-}
-
-h4{
-    text-align: center;
-}
 
 /* 폰트 초기화*/
-body, input, textarea, select, button, table {
+body, input, textarea, select, button, table1 {
   font-family: 'Nanum Gothic',  'Noto Sans KR', 'Malgun Gothic','맑은 고딕', 'dotum','돋움',sans-serif; 
   color: #222; font-size: 18px; line-height: 1.5;}
 
 
-table {
+#table1 {
     border: 0.3px solid lightgrey; 
     height:680px; 
-    width:800px;
+    width:780px;
     padding-top:60px;
     padding-bottom:60px;
-    padding-left:35px; 
     margin:0 auto;
     margin-top: 45px;
     margin-bottom: 45px;
     padding-left: 40px;
+    align:center;
   }
     
  
@@ -49,6 +42,7 @@ li {
   
    
   }
+  .contaniner{margin:auto; width:100%; margin-left:i}
   
   /* Style the buttons inside the tab */
   .tab1 button {
@@ -86,6 +80,7 @@ li {
     color:white;
     background-color: rgb(101, 100, 96);
     border-radius: 5px;
+    margin-bottom:150px;
 
 }
 
@@ -97,7 +92,7 @@ li {
     background-color:  rgb(101, 100, 96);
     margin-top: 40px;
     border-radius: 5px;
-
+	margin-bottom:150px;
 }
 
 
