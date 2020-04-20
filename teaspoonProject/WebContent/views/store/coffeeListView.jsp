@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>정성가득한 티스푼의 커피상품입니다</title>
+<title>Coffee|TeaSpoon</title>
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/coffeeListView.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">

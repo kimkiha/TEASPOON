@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품상세 | TeaSpoon</title>
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/itemDetailView.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
