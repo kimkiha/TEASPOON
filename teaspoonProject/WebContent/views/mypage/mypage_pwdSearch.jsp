@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀번호찾기 | TeaSpoon</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_pwdSearch.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
@@ -28,7 +28,7 @@
  
             <div id="비밀번호찾기" class="tabcontent" id="password">
               <center>
-                <table style="padding-top:60px; padding-bottom:30px; padding-right:60px">
+                <table style="padding-top:60px; padding-bottom:30px; padding-right:60px" id="table1">
                     <thead>
                         <td class=im1>
                          <tr>
