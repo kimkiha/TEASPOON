@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>어바웃 | TeaSpoon</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/about_teaspoon.css">
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/about_teaspoon.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
@@ -23,7 +23,7 @@
                 <div class="box" id="first">
                     <div>
                         <ul>
-                            <li>TEASPOON STORY</li>
+                            <li class="first_tt">Brand Story</li>
                             <li class="content_text">
 			                                이상 과실이 웅대한 있는가? 새 청춘의 무엇을 생의 이것이다. 맺어, 소리다.이것은 이상은 황금시대다.<br>
 			                                돋고, 이상의 더운지라 교향악이다. 무엇을 자신과 위하여, 귀는 우리는 인생을 끓는다. 살 설레는 어디 그들의 눈이 길지 웅대한 그들을 것이다. <br>
@@ -37,8 +37,17 @@
                             </li>
                         </ul>
                     </div>
+            	</div>
+            <div class="box" id="second">
+            	<div>
+            		<ul>
+                        <li class="second_tt">경영 이념</li>
+                           <li class="content_text">
+			                                
+                          </li>
+                     </ul>
+                </div>
             </div>
-            <div class="box second"></div>
             <div class="box" style="background-color:lightgrey;">3</div>
             <div class="box" style="background-color:darkgray">4</div>
             <div id="content7">
