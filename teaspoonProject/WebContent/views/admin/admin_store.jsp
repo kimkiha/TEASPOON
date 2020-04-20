@@ -52,35 +52,32 @@
                                     <th style="width:170px;">키워드</th>
                                     <th style="width:50px;">누적판매</th>
                                     <th style="width:50px;">상품종류</th>
-                                    <th><button type="button" style="width: 100px;">
-                                        <a href="<%=contextPath%>/enroll.st">상품등록</a></button></th>
+                                    <th><button type="button" style="width: 100px;"><a href="<%=contextPath%>/enroll.st">상품등록</a></button></th>
                                     </tr>
                             </tbody>
-                                         <tfoot>
-                                 <%if(list.isEmpty()){%>
-				<tr>
-					<td colspan="11">조회된 리스트가 없습니다.</td>
-				</tr>
-				<%}else{%>
-                              <%for(Product p : list){ %>
-                                  <tr>
-                                      <td><%=p.getPcode()%></td>
-                                      <td><%=p.getPname() %></td>
-                                      <td><%=p.getSupPrice() %></td>
-                                      <td><%=p.getPrice() %></td>
-                                      <td><%=p.getStock() %></td>
-                                      <td><%=p.getStatus() %></td>
-                                      <td><%=p.getKeyword() %></td>
-                                      <td><%=p.getTotalCount() %></td>
-                                      <td><%=p.getKind() %></td>
-                                      <td>
-                                          <button type="button"><a href="<%=contextPath%>/productU.st?pcode=<%=p.getPcode()%>">수정</a></button>
-                                          <button type="button">삭제</button>
-                                        </td>
-                                      </tr>
-                             
-                              </tfoot>
-                            	
+							<tfoot>
+								<%if(list.isEmpty()){%>
+								<tr>
+									<td colspan="11">조회된 리스트가 없습니다.</td>
+								</tr>
+								<%}else{%>
+								<%for(Product p : list){ %>
+								<tr>
+								    <td><%=p.getPcode()%></td>
+									<td><%=p.getPname() %></td>
+									<td><%=p.getSupPrice() %></td>
+									<td><%=p.getPrice() %></td>
+									<td><%=p.getStock() %></td>
+									<td><%=p.getStatus() %></td>
+									<td><%=p.getKeyword() %></td>
+									<td><%=p.getTotalCount() %></td>
+									<td><%=p.getKind() %></td>
+									<td>
+								    	<button type="button"><a href="<%=contextPath%>/productUpdateForm.st?pcode=<%=p.getPcode()%>">수정</a></button>
+								        <button type="button">삭제</button>
+								    </td>
+								</tr>
+							</tfoot>
 					<%} %>
 				<%} %> 
                       </table>

@@ -125,9 +125,10 @@ public class ProductService {
 		Connection conn = getConnection();
 		
 		int result1 = new ProductDao().updateProduct(conn, p);
-		int result2 = 1;
+		int result2 = 0;
 		
 		if(!list.isEmpty()) {
+			result2 = 1;
 			for(int i=0; i<=list.size(); i++) {
 				if(list.get(i).getFileNo() != 0) { // 기존 첨부파일이 있을경우 --> update
 					result2 = new ProductDao().updateAttachment(conn, list);

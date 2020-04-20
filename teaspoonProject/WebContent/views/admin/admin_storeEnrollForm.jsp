@@ -88,7 +88,7 @@ table tr {
 							</td>
 						</tr>
 						<tr>
-							<th>PCONTENT</th>
+							<th>상품상세</th>
 							<td colspan="5">
 								<textarea name="pcontent" cols=75 rows=4 style="resize:none;" required></textarea>
 							<td>

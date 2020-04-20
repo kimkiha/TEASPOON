@@ -327,6 +327,7 @@ public class ProductDao {
 				at.setFileNo(rset.getInt("FILE_NO"));
 				at.setOriginName(rset.getString("origin_name"));
 				at.setChangeName(rset.getString("change_name"));
+				list.add(at);
 			}
 			
 		} catch (SQLException e) {
@@ -335,6 +336,7 @@ public class ProductDao {
 			close(rset);
 			close(pstmt);
 		}
+		System.out.println(list);
 		return list;
 		
 	}
@@ -346,22 +348,36 @@ public class ProductDao {
 		 
 		 try {
 			pstmt  = conn.prepareStatement(sql);
+			pstmt.setString(1, p.getPname());
+			pstmt.setInt(2, p.getSupPrice());
+			pstmt.setInt(3, p.getPrice());
+			pstmt.setInt(4, p.getStock());
+			pstmt.setString(5, p.getKeyword());
+			pstmt.setString(6, p.getKind());
+			pstmt.setString(7,p.getPcontent());
+			pstmt.setInt(8, p.getPcode());
+			
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
-		
+		return result;
 	}
 	
-	
-	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
-		
-		
-	}
-	
-	
-	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
-		
-		
-	}
+//	
+//	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
+//	
+//		
+//		
+//	}
+//	
+//	
+//	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
+//		
+//		
+//	}
 
 }
