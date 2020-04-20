@@ -3,24 +3,31 @@ body, input, textarea, select, button, table {
     font-family: 'Nanum Gothic',  'Noto Sans KR', 'Malgun Gothic','맑은 고딕', 'dotum','돋움',sans-serif; 
     color: #222; font-size: 18px; line-height: 1.5;} 
    
-
 /* 아이디찾기완료, 비밀번호찾기완료 CSS페이지*/
-
-
+.contaniner1{
+	margin-top:150px;
+	
+}
 
 .tabcontent{
-    margin-right: 305px;
+	
+    margin-right:305px;
     margin-left: 305px;
 }
 
-table {
+#id{
+	margin-right:300px;
+}
+/*
+table1 {
     width: 600px;
     height: 340px;
  
     padding:60px; 
     margin:0 auto;
     margin-top: 18px;
-}
+}*/
+
 /*아이디표시 input*/
 #userid {
     width:600px;

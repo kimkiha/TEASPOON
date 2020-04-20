@@ -28,7 +28,7 @@ body, input, textarea, select, button, table {
 }
 
 
-table {
+#table1 {
   border: 0.3px solid lightgray; 
   height:270px; 
   width:1000px; 
