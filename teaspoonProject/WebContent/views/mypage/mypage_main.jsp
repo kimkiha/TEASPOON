@@ -63,7 +63,7 @@
                             <a href="#" class=" float"> 주문배송조회</a>
                             <a href="#" class=" float">공간대여확인</a>
                             <a href="#" class=" float">나의배송지</a>
-                            <a href="<%=contextPath %>/mypage/myqna.me" class="float">1:1문의</a>
+                            <a href="<%=contextPath %>/myqna.me?currentPage=1&userNo=<%=loginUser.getUserNo() %>" class="float">1:1문의</a>
                             <a href="#" class="float">장바구니</a>
                         </div> 
                         <div class="pagename"></div>

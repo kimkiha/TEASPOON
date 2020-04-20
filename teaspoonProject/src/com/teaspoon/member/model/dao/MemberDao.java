@@ -121,6 +121,7 @@ public class MemberDao {
 		int endRow = startRow + pi.getBoardLimit() - 1;
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 
@@ -143,30 +144,62 @@ public class MemberDao {
 		}
 		return list;
 	}
+	
+	public int getQnaListCount(Connection conn, int userNo) {
+		int listCount = 0;
 
-	public ArrayList<Member> selectMyQnaList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getQnaListCount");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				// 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+
+	public ArrayList<Member> selectMyQnaList(Connection conn , PageInfo pi,int userNo) {
 		ArrayList<Member> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectMyQnaList");
 		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				list.add(new Member(rset.getInt("user_no"),
+				list.add(new Member(rset.getInt("mtm_no"),
+									rset.getInt("user_no"),
 						            rset.getInt("mtm_type"),
 						            rset.getString("mtm_title"),
 						            rset.getDate("create_date")
 						            ));
 				
 			}
-			
-			
-			
-			
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -74,7 +74,7 @@
                     <div class="header_mypage" >
                         <ul>
                             <li id="login_li"><button id="login">로그인</button></li>
-                            <li><a href="#">마이티스푼</a></li>
+                            <li><a href="<%=contextPath %>/views/mypage/mypage_main.jsp">마이티스푼</a></li>
                             <li>나의 배송 조회</li>
                             <li>적립포인트</li>
                             <li>할인쿠폰</li>
