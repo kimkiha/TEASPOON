@@ -100,7 +100,7 @@ public class MyPageQnaServlet extends HttpServlet {
 				}
 				
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
-		System.out.println(pi);
+		//System.out.println(pi);
 		ArrayList<Member> list = new MemberService().selectMyQnaList(pi,userNo);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

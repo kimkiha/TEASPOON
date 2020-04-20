@@ -1,12 +1,5 @@
-   /*리셋*/
-   * {margin: 0; padding: 0;}
-   /*전체레이아웃*/
-   #wrap {text-align: center;color: black;}
-   #header {height: 140px; line-height: 140px; background: #ffe1e4;}
-   #banner {height: 170px; line-height: 170px; background-image:url("패턴 - 복사본.jpg")}
-   #content {  line-height: inherit; }
-   #footer {height: 220px;  background: #d6ebfd;}
-   .contaniner {width: 1200px; margin: 0 auto; height: inherit; background: white;}
+  
+   .contaniner {width: 1200px; margin: 0 auto; height: inherit;}
    #mypage{width:1000px; height:100%; background-color:white; margin: 0 auto;}
    #mypage_menu_tab>div{
        float:left; text-align: center; line-height: 60px; 

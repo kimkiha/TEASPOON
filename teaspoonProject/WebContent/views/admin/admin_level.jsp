@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.PageInfo "%>
+<%
+ArrayList<Grade> list = (ArrayList<Grade>)request.getAttribute("list");
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,46 +44,28 @@
                             </tbody>
 
                             <tfoot>
-                                <tr>
-                                    <td>001</td>
-                                    <td>VIP</td>
-                                    <td>100만원이상</td>
-									<td>10%</td>
-                                    <td>
-                                        <button type="button">수정</button>
-                                        <button type="button">삭제</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>002</td>
-                                    <td>골드</td>
-                                    <td>70만원이상</td>
-									<td>10%</td>
-                                    <td>
-                                        <button type="button">수정</button>
-                                        <button type="button">삭제</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>003</td>
-                                    <td>실버</td>
-                                    <td>50만원이상</td>
-									<td>10%</td>
-                                    <td>
-                                        <button type="button">수정</button>
-                                        <button type="button">삭제</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>004</td>
-                                    <td>브론즈</td>
-                                    <td>30만원이상</td>
-									<td>10%</td>
-                                    <td>
-                                        <button type="button">수정</button>
-                                        <button type="button">삭제</button>
-                                    </td>
-                                </tr>
+                     <%if(list.isEmpty()){%>
+				<tr>
+					<td colspan="8">조회된 리스트가 없습니다.</td>
+				</tr>
+				<%}else{%>
+					<%for(Grade g : list){ %>
+						<tr>
+							<td><%=g.getGradeCode() %></td>
+							<td><%=g.getGradeName() %></td>
+							<td><%=g.getMinAcount() %></td>
+							<td><%=g.getGradeRate() %>%</td>
+							<td>
+							<button type="button">수정</button>
+							<button type="button">삭제</button>
+							</td>
+							
+						</tr>
+					<%} %>
+				<%} %>
+                               
+                               
+                               
                             </tfoot>
                         </table>
                     </div>
@@ -106,7 +92,7 @@
                                   <td>
                                       <button type="button"  style="width: 70px;">수정</button>
                                       <button type="reset"  style="width: 70px;">취소</button>
-                                    </td>
+                                   </td>
                                   </tr>
 
                           </tfoot>

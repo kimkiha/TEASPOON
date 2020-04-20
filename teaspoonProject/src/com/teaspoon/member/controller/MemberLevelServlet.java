@@ -1,4 +1,4 @@
-package com.teaspoon.store.controller;
+package com.teaspoon.member.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,21 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.board.model.vo.Attachment;
-import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Product;
+import com.teaspoon.member.model.service.MemberService;
+import com.teaspoon.member.model.vo.Grade;
 
 /**
- * Servlet implementation class ProducUpdateFormServlet
+ * Servlet implementation class MemberLevelServlet
  */
-@WebServlet("/productUpdateForm.st")
-public class ProducUpdateFormServlet extends HttpServlet {
+@WebServlet("/level.me")
+public class MemberLevelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProducUpdateFormServlet() {
+    public MemberLevelServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,20 +33,13 @@ public class ProducUpdateFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		Product p = new ProductService().selectProduct(pcode);
-		ArrayList<Attachment> list = new ProductService().selectAttachment(pcode);
+		ArrayList<Grade> list = new MemberService().selectGradeList();
 		
-		if(p != null) {
-			request.setAttribute("p", p);
-			request.setAttribute("list", list);
-			RequestDispatcher view =request.getRequestDispatcher("views/admin/admin_storeUpdateForm.jsp");
-			view.forward(request, response);
-		} else { // 에러페이지
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
-			view.forward(request, response);
-		}
-	
+		//게시판글 출력을위한 list객체전달
+		request.setAttribute("list", list);
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_level.jsp");
+		view.forward(request, response);
+		
 	}
 
 	/**

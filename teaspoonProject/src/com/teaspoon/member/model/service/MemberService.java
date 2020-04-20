@@ -6,9 +6,10 @@ import static com.teaspoon.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.teaspoon.member.model.dao.MemberDao;
-import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.common.PageInfo;
+import com.teaspoon.member.model.dao.MemberDao;
+import com.teaspoon.member.model.vo.Grade;
+import com.teaspoon.member.model.vo.Member;
 
 public class MemberService {
 
@@ -115,6 +116,33 @@ public class MemberService {
 	}
 	
 	
+	/**
+<<<<<<< HEAD
+	 * 마이페이지용 상단 메뉴바
+	 * @param userNo
+	 */
+	public void MyPageInfo(int userNo) {
+		Connection conn = getConnection();
+		
+		new MemberDao().MyPageInfo(conn,userNo);
+		
+	}
+	
+	
+
+	 * 등급현황 페이지에 보일 등급 객체조회 서비스
+	 * @return
+	 */
+	public ArrayList<Grade> selectGradeList(){
+		Connection conn = getConnection();
+		
+		ArrayList<Grade> list = new MemberDao().selectSearchList(conn);
+		close(conn);
+		return list;
+	}
+	
+
+
 	
 	
 	

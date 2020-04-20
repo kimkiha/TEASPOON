@@ -50,16 +50,16 @@
                                 <li><a href="<%=contextPath%>/views/board/instagram.jsp">인스타그램</a></li>
                             </ul>
                         </li>
-                        <li><a class="list about" href="<%=contextPath%>/brandStory.bo">어바웃티스푼</a>
+                        <li><a class="list about" href="">어바웃티스푼</a>
                             <ul class="ul">
-                                <li><a href="<%=contextPath%>/brandStory.bo">브랜드스토리</a></li>
-                                <li><a href="<%=contextPath%>/magazine.bo">매거진</a></li>
+                                <li><a href="#">브랜드스토리</a></li>
+                                <li><a href="<%=contextPath%>/views/board/magazine.jsp">매거진</a></li>
                             </ul>
                         </li>
                         <li><a class="list rent" href="<%=contextPath%>/views/space/space_rental.jsp">공간대여</a>
                             <ul class="ul">
                                 <li><a href="<%=contextPath%>/views/space/space_rental.jsp">예약하기</a></li>
-                                <li><a href="<%=contextPath%>/views/space/space_maps.jsp">찾아오는길</a></li>
+                                <li><a href="#">찾아오는길</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -74,12 +74,14 @@
                     <div class="header_mypage" >
                         <ul>
                             <li id="login_li"><button id="login">로그인</button></li>
-                            <li><a href="<%=contextPath %>/views/mypage/mypage_main.jsp">마이티스푼</a></li>
+                            <% if(loginUser != null){ %>
+                            <li><a href="<%=contextPath %>/mymain.me?&userNo=<%=loginUser.getUserNo() %>">마이티스푼</a></li>
                             <li>나의 배송 조회</li>
                             <li>적립포인트</li>
                             <li>할인쿠폰</li>
                             <li>위시리스트</li>
-                            <li style="border-bottom: none;">1:1문의</li>
+                            <li style="border-bottom: none;"><a href="<%=contextPath %>/myqna.me?currentPage=1&userNo=<%=loginUser.getUserNo() %>">1:1문의</a></li>
+                            <%} %>
                         </ul>
                     </div>
                 </div>
@@ -89,7 +91,6 @@
     
     <script>
         $(function(){
-        	//로그인버튼 클릭시
             $("#login").click(function(){
             	var result = window.confirm("로그인하시겠습니까?");
             
@@ -97,7 +98,7 @@
 	            	location.href = "<%=contextPath%>/loginPage.me";
 	            }
             });  
-            //메뉴바 슬라이드
+            
             $("#navi li").hover(function(){
                 $(".ul", this).slideDown(600);
             },function(){

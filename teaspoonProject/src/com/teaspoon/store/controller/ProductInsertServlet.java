@@ -85,7 +85,7 @@ public class ProductInsertServlet extends HttpServlet {
 			
 			if(result>0) {
 				request.getSession().setAttribute("msg", "상품이 등록되었습니다");
-				response.sendRedirect("list.st");
+				response.sendRedirect("list.st?currentPage=1");
 				
 			}else { // 사진 등록 실패
 				request.setAttribute("msg", "상품등록에 실패했습니다");

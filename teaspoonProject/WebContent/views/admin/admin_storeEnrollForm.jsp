@@ -59,7 +59,7 @@ table tr {
 							<td><input type="text" size="7px" name="supPrice" required></td>
 							<td><input type="text" size="7px" name="price" required></td>
 							<td><input type="text" size="7px" name="stock" required></td>
-							<td><input type="text" size="14" name="keyword" required></td>
+							<td><input type="text" size="12px" name="keyword" required></td>
 						</tr>
 						<tr>
 							<th>상품종류</th>
@@ -67,16 +67,14 @@ table tr {
 								<input type="radio" name="kind" value="C" required>C
 								<input type="radio" name="kind" value="I" required>I
 							</td>
-							
-							
 						</tr>
 						<tr>
-							<th>대표이미지</th>
+							<th style="width:70px;">대표이미지</th>
 							<td>
 								<img id="titleImg" width="150" height="120" required>
 							</td>
 					
-							<th>상세이미지</th>
+							<th style="width:70px;">상세이미지</th>
 							<td>
 								<img id="contentImg1" width="150" height="120">
 							</td>
@@ -88,7 +86,7 @@ table tr {
 							</td>
 						</tr>
 						<tr>
-							<th>PCONTENT</th>
+							<th>상품상세</th>
 							<td colspan="5">
 								<textarea name="pcontent" cols=75 rows=4 style="resize:none;" required></textarea>
 							<td>
