@@ -10,7 +10,7 @@
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
 	
-	System.out.print(searchId);
+	
 	
 %>
 <!DOCTYPE html>
@@ -90,9 +90,7 @@
                 </div>
                 <div id="c1_2">
                     <div class="dropdown"style="padding-right:10px">
-                        <button type="button1" class="btn btn-primary dropdown-toggle btn1" data-toggle="dropdown">
-                         회원상태별분류
-                        </button>
+                        <button type="button1" class="btn btn-primary dropdown-toggle btn1" data-toggle="dropdown">회원상태별분류</button>
                         <div class="dropdown-menu dm1">
                           <a class="dropdown-item" href="#">전체회원</a>
                           <a class="dropdown-item" href="#">활동중인회원</a>
@@ -101,9 +99,7 @@
                         </div>
                       </div>
                       <div class="dropdown" style="padding-right:10px">
-                        <button type="button2" class="btn btn-primary dropdown-toggle btn2" data-toggle="dropdown">
-                         회원등급별분류
-                        </button>
+                        <button type="button2" class="btn btn-primary dropdown-toggle btn2" data-toggle="dropdown">회원등급별분류</button>
                         <div class="dropdown-menu dm2">
                           <a class="dropdown-item" href="#">전체등급</a>
                           <a class="dropdown-item" href="#">VIP</a>
@@ -217,7 +213,7 @@
         			var searchKeyword2 =  $(".btn2").text();
         			console.log(searchKeyword1);
         			console.log(searchKeyword2);
-        			//location.href='keywordList.me?searchKeyword1='+searchKeyword1+"&searchKeyword2="+searchKeyword2+"&currentPage=1";
+        			location.href='keywordList.me?searchKeyword1='+searchKeyword1+"&searchKeyword2="+searchKeyword2+"&currentPage=1";
         		
     			}
     			});

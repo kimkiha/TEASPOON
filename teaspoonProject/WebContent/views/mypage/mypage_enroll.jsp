@@ -377,7 +377,7 @@
                                     <tr>
                                         <td style= "font-size:20px;"><li>생 년 월 일</li></td>
                                         <td style= "text-align:left;" colspan="1"><input type="number" id="birthday" type="birthday" placeholder="생년월일8자리(ex)19940610">
-                                                                       <button type="checkbox" class="gender" value="M">남자</button> <button type="checkbox" class="gender" value="F">여자</td>
+                                                                       <input type="checkbox" class="gender" value="M">남자</button> <input type="checkbox" class="gender" value="F">여자</td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -525,6 +525,8 @@
             var pwd1 = document.getElementById("userPwd1");
             var pwd2 = document.getElementById("userPwd2");
             var name = document.getElementById("userName");
+            var birth = document.getElementById("birthday"); 			// 생년월일
+            var veri  = document.getElementById("verification"); 		// 전화번호
 
             // 1) 아이디 검사
             // 영문자 또는 숫자 포함해서 총 4~12자로 입력 (단, 첫글자는 반드시 영문자로)
@@ -536,7 +538,7 @@
                 return false;               
             }
 
-            // 2) 비밀번호 검사
+            // 2_1) 비밀번호 검사
             //    특수문자(!@#$%^&*) 또는 영문자 또는 숫자 포함 총 8자~15자
             regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
             if(!regExp.test(pwd1.value)){
@@ -545,7 +547,8 @@
                 pwd1.focus();
                 return false;
             }
-
+			
+            // 2_2) 비밀번호 일치 확인
             // 비밀번호값과 비밀번호 확인값이 일치하는지 검사
             if(pwd1.value != pwd2.value){
                 alert("동일한 비밀번호 확인값을 입력하세요!!");
@@ -554,7 +557,7 @@
                 return false;
             }
 
-            // 3) 이름 겁사
+            // 3) 이름 검사
             //    한글로만 2글자 이상
             regExp = /^[가-힣]{2,}$/; 
             if(!regExp.test(name.value)){
@@ -563,12 +566,29 @@
                 name.focus();
                 return false;               
             }
+            
+            // 4) 생년월일검사
+            //    숫자!!로만 8글자 이상, 8글자 이하
+            regExp = /^[0-9]{8,8}$/; 
+            if(!regExp.test(birth.value)){
+                alert("유효한 생년월일을 입력하세요");
+                birth.value = "";
+                birth.focus();
+                return false;               
+            }
+            
+            // 5) 전화번호검사
+            //    숫자!!로만 7글자 이상, 8글자 이하
+            regExp = /^[0-9]{7,8}$/; 
+            if(!regExp.test(veri.value)){
+                alert("유효한 전화번호를 입력하세요");
+                veri.value = "";
+                veri.focus();
+                return false;               
+            }
              // '모두동의'버튼 클릭시
              //$("#defaultOpen3").removeAttr("disabled");
-             
-             
 				$("#defaultOpen3").click();	// 다음페이지로 이동
-            
 
         });
         
