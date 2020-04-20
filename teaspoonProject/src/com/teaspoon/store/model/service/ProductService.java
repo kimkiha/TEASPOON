@@ -64,7 +64,7 @@ public class ProductService {
 		return list;
 	}
 	
-	/** 사용자 스토어 썸네일 리스트 조회용 서비스
+	/** 사용자 스토어 커피상품 썸네일 리스트 조회용 서비스
 	 * @return  --> 조회할 Product객체가 담긴 리스트
 	 */
 	public ArrayList<Product> selectCoffeeList(){
@@ -74,4 +74,33 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
+	
+	/** 사용자 베스트 상품 리스트 조회용 서비스
+	 * @return --> 조회할 Product객체가 담긴 리스트(누적판매개수 순으로 정렬)
+	 */
+	public ArrayList<Product> selectBestList(){
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectBestList(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	
+	/** 사용자 스토어 아이템상품 썸네일 리스트 조회용 서비스 
+	 * @return --> 조회할 Product객체가 담긴 리스트
+	 */
+	public ArrayList<Product> selectItemList(){
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectItemList(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	
+	
+	
+	
 }
