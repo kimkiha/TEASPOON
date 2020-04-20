@@ -25,7 +25,7 @@
             <!-- product -->
 
                 <!-- 1. 약관동의 페이지-->
-                <div class="contaniner" style="height:100%">
+                <div class="contaniner" style=" width:100%; height:100%">
                     
                         <h3 style="margin-top: 100px; margin-bottom: 10px; padding-top:100px; font-size:36px;">티스푼 회원가입</h3>
                         <h6 style="font-size:18px; color:rgb(70, 69, 69);">티스푼 공식 쇼핑몰에 가입하시면 온/오프 매장에서 상품을 구매 할 때마다<br>
