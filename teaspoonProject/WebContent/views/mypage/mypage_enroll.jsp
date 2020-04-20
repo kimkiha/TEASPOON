@@ -4,37 +4,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입 | TeaSpoon</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_enroll.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     
 </head>
 <body>
-<center>
 <div id="wrap" >
        <%@ include file="../common/menubar.jsp" %>
 	
         <!-- //header -->
        
        	
-        <div id="content" style="padding-left:350px; padding-right:350px;">
+        <div id="content" style="margin:0 auto">
 
             <!-- product -->
 
                 <!-- 1. 약관동의 페이지-->
-                <div class="contaniner">
-                
+                <div class="contaniner" style="height:100%">
                     
-                        <h3 style="margin-top: 100px; margin-bottom: 10px; padding-top:100px;">티스푼 회원가입</h3>
-                        <h6 style="color:rgb(70, 69, 69);">티스푼 공식 쇼핑몰에 가입하시면 온/오프 매장에서 상품을 구매 할 때마다<br>
+                        <h3 style="margin-top: 100px; margin-bottom: 10px; padding-top:100px; font-size:36px;">티스푼 회원가입</h3>
+                        <h6 style="font-size:18px; color:rgb(70, 69, 69);">티스푼 공식 쇼핑몰에 가입하시면 온/오프 매장에서 상품을 구매 할 때마다<br>
                             현금처럼 사용할 수 있는 포인트 적립과 사용 등 다양한 혜택을 받으실 수 있습니다.<br>
                         </h6> <br>
                         
                     
-                        <div class="tab1" style="margin-bottom:45px; margin-top:55px;">
+                        <div class="tab1" style="margin-bottom:45px; margin-top:45px; align:center;">
                             <button class="tablinks" onclick="openCity(event, '약관동의')" id="defaultOpen">약관동의</button>
                             <button class="tablinks" onclick="openCity(event, '정보입력')" id="defaultOpen2" disabled>정보입력</button>
                             <button class="tablinks" onclick="openCity(event, '이메일인증')" id="defaultOpen3" disabled>이메일인증</button>
@@ -197,7 +196,7 @@
                                 </form>
                                 <div class="checks">
                                     <input type="checkbox" id="ex_rd" name="ex_rds"> 
-                                    <label for="ex_rd" id="agree">동의합니다.</label> 
+                                    <label for="ex_rd">동의합니다.</label> 
                                 </div><br>
                                 <form>
                                     <label for="약관동의1"></label>
@@ -349,16 +348,16 @@
                                                                                    
                                                                                   
 (시행일) 이 약관은 2020년 01월부터 시행합니다.
-                          </textarea>
-                          </form>
-                          <div class="checks2">
-                            <input type="checkbox" id="ex_rd" name="ex_rds"> 
-                            <label for="ex_rd" id="agree">동의합니다.</label> 
-                        </div><br>
-                        <div class="container"> 
+					</textarea>
+                     </form>
+                      <div class="checks">
+                         <input type="checkbox" id="ex_rd2" name="ex_rds"> 
+                         <label for="ex_rd" >동의합니다.</label> 
+                      </div><br>
+                     
                         
                         <!-- 1_1. 약관동의 버튼-->
-                        <button type="button" class="btnenroll" id="agree2">모두동의</button>
+                        <button type="button" class="btnenroll" id="first_agree_btn" onclick="next();"  style="margin-bottom:140px; margin-top:20px;">모두동의</button>
                           </div>
                           </div>
                         </div>
@@ -366,17 +365,15 @@
 						
 						
                         <!-- 2. 정보입력 페이지-->
-                          <div id="정보입력" class="tabcontent" id="information">
-                            <table>
-                                <thead>
-                                    <ul class=im1>
+                        <div class="contaniner">
+                          <div id="정보입력" class="tabcontent" >
+                          	
+                            <table id="table1" style="align:center; ">
                                     <tr>
-                                        <td style="font-size:20px; width: 300px;" ><li>성 명</li></td>
+                                        <td style="font-size:20px; width: 300px;"><li>성 명</li></td>
                                         <td style= "text-align:left;"><input type="text" id="username" placeholder="이름(실명으로 입력해주세요)."></td>
                                         <td style= "font-size:16px; width: 310px;"></td>           
                                     </tr>
-                                </thead>
-                                <tbody>
                                     <tr>
                                         <td style= "font-size:20px;"><li>생 년 월 일</li></td>
                                         <td style= "text-align:left;" colspan="1"><input type="number" id="birthday" type="birthday" placeholder="생년월일8자리(ex)19940610">
@@ -399,10 +396,9 @@
                                     <tr>
                                         <td></td>
                                         <td style="font-size: 12px; text-align:left"> * 아이디 미입력시 휴대폰번호로 가입되며<br> 
-                                            가입완료후 변경 불가합니다.</td>
+                                           												 가입완료후 변경 불가합니다.</td>
                                         <td></td>
                                     </tr>   
-
                                     <tr>
                                         <td style= "font-size:20px;"><li>아 이 디</li></td>
                                         <td style= "text-align:left;"><input type="text" id="userId" placeholder="아이디(4 ~ 12자 영문 대,소문자"></td>
@@ -423,22 +419,20 @@
                                         <td style= "text-align:left;"><input type="text" id="email" placeholder="이메일"></td>
                                         <td></td>
                                     </tr>
-                                </ul>          
-                                    
-                                </tbody>
-                            </table>
+                            	</table>
+                            
                                  <!-- 2_1. (정보입력)본인인증 및 회원가입 버튼-->
                                 <button type="button" class="btnenroll2" id="ModifyandEnroll" onclick="return validate();">본인인증 및 회원가입</button>
                             </div>
-                            
+                          </div> 
                            
 
                           <!-- 3. 이메일인증 페이지-->
                           <div id="이메일인증" class="tabcontent">
                             <form id="email_certify">
-                                <fieldset style= "list-style-type: disc; padding:30px; border:1px solid lightgray" id="ul">
+                                <fieldset style= "list-style-type: disc; padding:30px; border:1px solid lightgrey; margin-left:200px; margin-right:200px;" id="ul">
                                     <ul style="width:700px; height:170px; padding:30px"><br>
-                                        <li>인증번호확인 &nbsp; <input type="number" id="identify" type="identify" placeholder="인증번호" >
+                                        <li>인증번호확인 &nbsp; <input type="number" id="identify" placeholder="인증번호" >
                                         </li><br><br>
                                     </ul>
                                 </fieldset> 
@@ -446,21 +440,21 @@
                         
                             
                          <!-- 3_1. 본인인증 및 회원가입 버튼-->
-                        <button type="button" class="btnenroll3" id="ModifyandEnroll2">인증완료</button>
+                        <button type="button" class="btnenroll3" id="ModifyandEnroll2" style="">인증완료</button>
                         </div>
                                      
                         <!-- 4. 회원가입완료 페이지-->
                          <div id="가입완료" class="tabcontent">
                             <form id="enrollinfo2">
-                                <fieldset style="list-style-type:disc; border:1px solid lightgray" id=ul2>
+                                <fieldset style="list-style-type:disc; border:1px solid lightgrey; margin-left:200px; margin-right:200px; margin-bottom:150px;" id=ul2>
                                     <ul style="border:0.3 solid lightgrey;"><br>
                                     
-                                    <center style="padding:35px;">
-                                    <img src="C:\tea spoon\티스푼 이미지\spoon.png" width="74px;" height="74px">
+                                    <p style="padding:35px;">
+                                    <img src="<%=contextPath %>/resources/img/mypage/spoon.png" width="74px;" height="74px;">
                                     <p style="margin:5px; font-size:24px; color:black; font-weight: bold;">회원가입완료!</p>
                                     <p style="margin-bottom:10px;">티스푼의 가족이 되신걸 환영합니다!</p>
                                     <h6 style="color:gray">3초뒤 메인페이지로 이동합니다.</h6>
-                                    </center>
+                                    </p>
                                    
                                 </ul>
                                 </fieldset>
@@ -468,19 +462,12 @@
 
                           </div>
                           </div>
-                        </div>
                         
-                    </div>
-                </div>
-        </div>
-         <%@ include file="../common/footer.jsp" %>
-         </center>
+        
             
-           
+	
+         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
-    </div>
-    <div id="footer">
-            <div class="contaniner">footer</div>
             <script>
                 function openCity(evt, cityName) {
                   var i, tabcontent, tablinks;
@@ -493,7 +480,7 @@
                     tablinks[i].className = tablinks[i].className.replace("active", "");
                   }
                   document.getElementById(cityName).style.display = "block";
-                  evt.currentTarget.className += " active";
+                  evt.currentTarget.className += "active";
                 }
                 
                 // Get the element with id="defaultOpen" and click on it
@@ -502,9 +489,9 @@
                 </script>
 
     <script>
+    /*
         $(function(){
-           
-						$("#agree2").click(function(){
+						$("#first_agree_btn").click(function(){
 							$("#defaultOpen2").click();
 						});
 
@@ -515,27 +502,20 @@
                         $("#ModifyandEnroll2").click(function(){
 							$("#defaultOpen4").click();
 						});
-        });
+        });*/
     </script>
+      
     <script> /*본인인증 및 회원가입버튼 클릭시*/
-        function btnenroll2(b)
-        {
-            if( !b.agree.checked || !b.agree2.checked) { // 약관 및 개인정보 동의가 체크되지 않은 경우
-                var condition = confirm('가입약관 및 개인정보처리방침안내 내용에 모두 동의하시겠습니까?');
-
-                if(condition){
-                    b.agree.checked = b.agree2.checked = true;
-
-                    setsTimeout(function(){
-                        return true;
-
-                    }, 5000);
-                }else{
-                    return false;
-                }
-
+    	function next(){
+            if($("input:checkbox[id='ex_rd']").is(":checked") == true && $("input:checkbox[id='ex_rd2']").is(":checked") == true) { // 둘다 체크 되었을 경우
+            	$("#first_agree_btn").click(function(){ // '모두동의'버튼 클릭시
+					$("#defaultOpen2").click();	// 다음페이지로 이동
+				});
+            }else{// 둘중 하나라도 체크 안되었을 경우
+                alert("모두 동의하셔야합니다.");
             }
         }
+    
     </script>
     <script>
         function validate(){
@@ -587,6 +567,11 @@
             
 
         }
-    </script>
+        
+        
+        
+    	</script>
+      
+    
 </body>
 </html>
