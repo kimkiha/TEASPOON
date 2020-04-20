@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.* , com.teaspoon.common.*" %>
 <%
 	ArrayList<Product> list =  (ArrayList<Product>)request.getAttribute("list");
-	System.out.println(list);
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +56,12 @@
                                         <a href="<%=contextPath%>/enroll.st">상품등록</a></button></th>
                                     </tr>
                             </tbody>
-                           
-                              <tfoot>
+                                         <tfoot>
+                                 <%if(list.isEmpty()){%>
+				<tr>
+					<td colspan="11">조회된 리스트가 없습니다.</td>
+				</tr>
+				<%}else{%>
                               <%for(Product p : list){ %>
                                   <tr>
                                       <td><%=p.getPcode()%></td>
@@ -69,9 +79,11 @@
                                           <button type="button">삭제</button>
                                         </td>
                                       </tr>
-                                  <%} %>
-                              </tfoot>
                              
+                              </tfoot>
+                            	
+					<%} %>
+				<%} %> 
                       </table>
                     </div>
                 </div>
@@ -79,13 +91,28 @@
 
                 </div>
                 <div id="c1_3">
-                        <a>&lt;</a>
-                       <button>1</button>
-                       <button>2</button>
-                       <button>3</button>
-                       <button>4</button>
-                       <button>5</button>
-                       <a>&gt;</a>
+                         <!-- 현재 페이지에 보여질 페이징바 -->
+		<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+		<!-- 맨 처음으로(<<) -->
+		<button onclick="location.href='list.st?currentPage=1'">&lt;&lt;</button>
+		<!-- 이전페이지로(<) -->
+		<button onclick="location.href='list.st?currentPage=<%=currentPage-1%>'">&lt;</button>
+		<%} %>
+		
+		<%for(int p=startPage; p<=endPage; p++){%>
+			<%if(currentPage != p) {%>
+			<button onclick="location.href='list.st?currentPage=<%=p%>'"><%=p%></button>
+			<%}else{ %>
+			<button dispabled><%=p %></button>
+			<%} %>	
+		<%} %>
+		
+		<%if(currentPage != maxPage){ %>
+		<!-- 다음페이지로(<) -->
+		<button onclick="location.href='list.st?currentPage=<%=currentPage+1%>'">&gt;</button>
+		<!-- 맨 마지막으로(>>) -->
+		<button onclick="location.href='list.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+		<%} %>
                 </div>
             </div>
                

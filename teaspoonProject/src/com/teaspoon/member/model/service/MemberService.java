@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.PageInfo;
+import com.teaspoon.common.PageInfo;
 
 public class MemberService {
 

@@ -80,7 +80,10 @@
                 <p style="margin: 0px; padding-bottom: 10px; font-size: 40px; color:white;">Admin</p>
             </div>
             <div class="h2" style="text-align:left;">
-            	<img src="<%=contextPath %>/resources/img/admin/admin_moveHome.png" style="width:50px; height:50px; margin-top:25px; cursor:pointer;">
+            <a href="<%=contextPath%>/main.ad">
+            <img src="<%=contextPath %>/resources/img/admin/admin_moveHome.png" style="width:50px; height:50px; margin-top:25px; cursor:pointer;">
+            </a>
+            	
             </div>
             <div class="h3">
             	<img class="btn1" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/로그아웃.png">
@@ -101,7 +104,7 @@
             <br>
             <li class="c-li"><p class="click" style="margin: 0 0;" >상품관리</p>
             <ul class="deep">
-            <li><a href="<%=contextPath%>/list.st">상품수정/삭제/등록</a></li>
+            <li><a href="<%=contextPath%>/list.st?currentPage=1">상품수정/삭제/등록</a></li>
             <li><a href="adminReview.html">상품리뷰</a></li>
             </ul>
             </li>

@@ -8,10 +8,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import com.teaspoon.board.model.vo.Attachment;
+import com.teaspoon.common.PageInfo;
 import com.teaspoon.store.model.vo.Product;
 
 public class ProductDao {
@@ -26,6 +28,35 @@ public class ProductDao {
 					e.printStackTrace();
 		}
 	}
+		
+		
+		public int getListCount(Connection conn) {
+			int listCount = 0;
+
+			Statement stmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("getListCount1");
+			System.out.println(sql);
+			try {
+				stmt = conn.createStatement();
+				rset = stmt.executeQuery(sql);
+
+				if (rset.next()) {
+					// 컬럼인덱스로 추출
+					listCount = rset.getInt(1);
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(stmt);
+			}
+
+			return listCount;
+		}		
+		
 		
 	public int insertProduct(Connection conn, Product p) {
 		int result = 0;
@@ -88,14 +119,18 @@ public class ProductDao {
 		return result;
 	}
 	
-	public ArrayList<Product> selectProductList(Connection conn){
+	public ArrayList<Product> selectProductList(Connection conn, PageInfo pi){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectProductList");
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
 		try {
-			pstmt = conn.prepareStatement(sql);
 			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {

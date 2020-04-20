@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.PageInfo;
 
 /**
  * Servlet implementation class MemberListServlet

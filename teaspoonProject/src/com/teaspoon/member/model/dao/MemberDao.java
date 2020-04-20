@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.PageInfo;
+import com.teaspoon.common.PageInfo;
 
 public class MemberDao {
 
