@@ -12,8 +12,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.common.PageInfo;
+import com.teaspoon.member.model.vo.Grade;
+import com.teaspoon.member.model.vo.Member;
 
 public class MemberDao {
 
@@ -285,6 +286,33 @@ public class MemberDao {
 	}
 	
 	
+	
+	public ArrayList<Grade> selectSearchList(Connection conn){
+		ArrayList<Grade> list = new ArrayList<Grade>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectGradeList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while (rset.next()) {
+				list.add(new Grade(rset.getInt("GRADE_CODE"),
+								   rset.getString("GRADE_NAME"),
+								   rset.getInt("MIN_ACOUNT"),
+								   rset.getInt("GRADE_RATE")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	
+	
+		return list;
+	}
 	
 	
 	

@@ -97,7 +97,7 @@
             <li class="c-li"><p class="click" style="margin: 0 0;">회원관리</p>
             <ul class="deep">
                 <li><a href="<%=contextPath%>/list.me?currentPage=1">회원현황</a></li>
-                <li><a href="adminLevel.html">회원등급관리</a></li>
+                <li><a href="<%=contextPath%>/level.me">회원등급관리</a></li>
                 <li><a href="admin112.html">신고목록</a></li>
                 <li><a href="adminCoupon.html">쿠폰관리</a></li>
                 <li><a href="adminOneOnOne.html">1:1문의</a></li>
