@@ -100,23 +100,15 @@ public class ProductService {
 	}
 	
 	
-	/** 관리자 상품 수정용 서비스(상품객체 조회)
+	/** 관리자 상품 수정용 서비스(상품객체 및 첨부파일 조회)
 	 * @param pcode 조회하고자하는 해당 상품코드
 	 * @return
 	 */
-	public Product selectProductUpdate(int pcode) {
+	public Product updateProduct(Product p, Attachment at) {
+		Connection conn = getConnection();
 		
-		
-		
-		
-	}
-	
-	
-	/** 관리자 상품 수정용 서비스 (첨부파일 조회용)
-	 * @param pcode 조회하고자하는 해당 상품코드
-	 * @return
-	 */
-	public Attachment selectAttachment(int pcode) {
+		int result1 = new ProductDao().updateProduct(conn, p);
+		int result2 = new ProductDao().updateAttachment(conn, list);
 		
 		
 	}

@@ -19,16 +19,16 @@ import com.teaspoon.store.model.service.ProductService;
 import com.teaspoon.store.model.vo.Product;
 
 /**
- * Servlet implementation class productInsertServlet
+ * Servlet implementation class ProductUpdateServlet
  */
-@WebServlet("/insert.st")
-public class ProductInsertServlet extends HttpServlet {
+@WebServlet("/update.st")
+public class ProductUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductInsertServlet() {
+    public ProductUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,7 +46,7 @@ public class ProductInsertServlet extends HttpServlet {
 			MultipartRequest multiRequest 
 			= new MultipartRequest(request,savePath,maxSize,"utf-8", new com.teaspoon.common.MyFileRenamePolicy());
 			
-			
+			int pcode = Integer.parseInt(multiRequest.getParameter("pcode"));
 			String pname = multiRequest.getParameter("pname");
 			int supPrice =  Integer.parseInt(multiRequest.getParameter("supPrice"));
 			int price =  Integer.parseInt(multiRequest.getParameter("price"));
@@ -67,28 +67,36 @@ public class ProductInsertServlet extends HttpServlet {
 			p.setPcontent(pcontent);
 			
 			// 파일리스트
-			ArrayList<Attachment> list = new ArrayList<>();
 			
-			for(int i=1; i<=4; i++) {
-				String name = "file"+i; // "file1~file4"
-				if(multiRequest.getOriginalFileName(name) != null) {
-					Attachment at = new Attachment();
-					at.setFilePath(savePath);
-					at.setOriginName(multiRequest.getOriginalFileName(name));
-					at.setChangeName(multiRequest.getFilesystemName(name));
+			ArrayList<Attachment> list = null;
+			if(multiRequest.getOriginalFileName("upfile") != null) {
+				list = new ArrayList<>();
+			
+				list.setOriginName(multiRequest.getOriginalFileName("upfile")); // 새로 추가된 파일의 원본명 추가
+				list.setChangeName(multiRequest.getFilesystemName("upfile")); // 새로 추가된 파일의 수정명 추가
+				list.setFilePath(savePath);
+			
+				if(multiRequest.getParameter("originFileNo") != null) {
+					list.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
 					
-					list.add(at);
+					// 기존에 서버에 업로드된 파일도 삭제
+					File deleteFile = new File(savePath + multiRequest.getParameter("originFileName"));
+					deleteFile.delete();
+					
+				} else { // 기존의 첨부파일이 없었을 경우 --> 새로이 attachment 테이블에 insert
+					at.setRefBoardNo(pcode);
+					
 				}
 			}
 			
-			int result = new ProductService().insertProduct(p, list);
+			int result = new ProductService().updateProduct(p, list);
 			
 			if(result>0) {
-				request.getSession().setAttribute("msg", "상품이 등록되었습니다");
+				request.getSession().setAttribute("msg", "상품이 수정되었습니다");
 				response.sendRedirect("list.st");
 				
 			}else { // 사진 등록 실패
-				request.setAttribute("msg", "상품등록에 실패했습니다");
+				request.setAttribute("msg", "상품수정에 실패했습니다");
 				for(int i=0; i<list.size(); i++) { // Attachment == list.get(i)
 					File deleteFile = new File(savePath + list.get(i).getChangeName());
 					deleteFile.delete();
@@ -100,7 +108,11 @@ public class ProductInsertServlet extends HttpServlet {
 			}
 		
 		}
-			
+	
+	
+	
+	
+	
 	}
 
 	/**
