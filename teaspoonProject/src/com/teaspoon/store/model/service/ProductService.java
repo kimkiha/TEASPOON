@@ -104,15 +104,21 @@ public class ProductService {
 	 * @param pcode 조회하고자하는 해당 상품코드
 	 * @return
 	 */
-	public Product updateProduct(Product p, Attachment at) {
+	public Product selectProduct(int pcode) {
 		Connection conn = getConnection();
+		Product p = new ProductDao().selectProduct(conn, pcode);
 		
-		int result1 = new ProductDao().updateProduct(conn, p);
-		int result2 = new ProductDao().updateAttachment(conn, list);
-		
-		
+		close(conn);
+		return p;
 	}
 	
+	public ArrayList<Attachment> selectAttachment(int pcode) {
+		Connection conn = getConnection();
+		ArrayList<Attachment> list = new ProductDao().selectAttachment(conn, pcode);
+		
+		close(conn);
+		return list;
+	}
 	
 	
 }

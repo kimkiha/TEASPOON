@@ -247,6 +247,8 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
 			Product p  = new Product();
 			p.setPcode(rset.getInt("PCODE"));
 			p.setPname(rset.getString("PNAME"));
@@ -270,6 +272,69 @@ public class ProductDao {
 		
 	}
 	
+	
+	public Product selectProduct(Connection conn, int pcode) {
+		
+		Product p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pcode);
+			rset = pstmt.executeQuery();
+			
+			p  = new Product();
+			p.setPcode(rset.getInt("PCODE"));
+			p.setPname(rset.getString("PNAME"));
+			p.setSupPrice(rset.getInt("SUP_PRICE"));
+			p.setPrice(rset.getInt("PRICE"));
+			p.setStock(rset.getInt("STOCK"));
+			p.setStatus(rset.getString("STATUS"));
+			p.setKeyword(rset.getString("KEYWORD"));
+			p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+			p.setKind(rset.getString("KIND"));
+			p.setPcontent(rset.getString("PCONTENT"));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return p;
+	}
+	
+	
+	public ArrayList<Attachment> selectAttachment(Connection conn, int pcode){
+		
+		ArrayList<Attachment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pcode);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Attachment at = new Attachment();
+				at.setFileNo(rset.getInt("FILE_NO"));
+				at.setOriginName(rset.getString("origin_name"));
+				at.setChangeName(rset.getString("change_name"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
 	
 	
 	

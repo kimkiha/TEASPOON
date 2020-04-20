@@ -1,6 +1,7 @@
 package com.teaspoon.store.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,13 +35,14 @@ public class ProducUpdateFormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		Product p = new ProductService().selectProductUpdate(pcode);
-		Attachment at = new ProductService().selectAttachment(pcode);
+		Product p = new ProductService().selectProduct(pcode);
+		ArrayList<Attachment> list = new ProductService().selectAttachment(pcode);
 		
 		if(p != null) {
 			request.setAttribute("p", p);
-			request.setAttribute("at", at);
+			request.setAttribute("list", list);
 			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_storeUpdateForm.jsp");
+			view.forward(request, response);
 		} else { // 에러페이지
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
 			view.forward(request, response);

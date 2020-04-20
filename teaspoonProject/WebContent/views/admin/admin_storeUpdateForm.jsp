@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*" %>
 <%
 	Product p = (Product)request.getAttribute("p");
-	ArrayList<Attachment> = (ArrayList<Attachment>)request.getAttribute("list");
+	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
 	
 	String kind = p.getKind();
 	String[] checked = new String[2];
@@ -84,25 +84,27 @@ table tr {
 							
 						</tr>
 						<tr>
-							<input type="hidden" name="originFileNo" value="<%=at.getFileNo()%>">
-							<input type="hidden" name="originFileName" value="<%=at.getChangeName() %>">
+						
+						<%for(int i=0; i<list.size(); i++) {%>
 							
 							<th>대표이미지</th>
-							
-							<% if(at != null){ // 기존의 첨부파일이 있었을 경우 %>
 							<td>
-								<img id="titleImg" width="150" height="120" required>
+								<img width="150" height="120"
+						 		src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>">
 							</td>
 					
 							<th>상세이미지</th>
 							<td>
-								<img id="contentImg1" width="150" height="120">
+								<img width="150" height="120"
+						 		src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>">
 							</td>
 							<td>
-								<img id="contentImg2" width="150" height="120">
+								<img width="150" height="120"
+						 		src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>">
 							</td>
 							<td>
-								<img id="contentImg3" width="150" height="120">
+								<img width="150" height="120"
+						 		src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(3).getChangeName()%>">
 							</td>
 							<%} %>
 						</tr>
