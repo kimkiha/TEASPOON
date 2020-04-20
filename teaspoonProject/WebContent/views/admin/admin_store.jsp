@@ -17,6 +17,7 @@
         table tr{border-bottom: 1px solid lightgray;}
         table tr:first-child{border-top: 1px solid lightgray;}
         table th{background-color: #dbdbdb;}
+        table td{height:50px;}
     </style>
 </head>
 <body>
@@ -36,16 +37,15 @@
                         <table>
                             <tbody>
                                 <tr>
-                                    <th>상품번호</th>
-                                    <th>상품명</th>
-                                    <th>공급가</th>
-                                    <th>가격</th>
-                                    <th>재고</th>
-                                    <th>진열상태</th>
-                                    <th>키워드</th>
-                                    <th>누적판매수</th>
-                                    <th>상품종류</th>
-                                    <th>상품상세설명</th>
+                                    <th style="width:50px;">상품번호</th>
+                                    <th style="width:170px;">상품명</th>
+                                    <th style="width:60px;">공급가</th>
+                                    <th style="width:60px;">가격</th>
+                                    <th style="width:50px;">재고</th>
+                                    <th style="width:50px;">진열상태</th>
+                                    <th style="width:170px;">키워드</th>
+                                    <th style="width:50px;">누적판매</th>
+                                    <th style="width:50px;">상품종류</th>
                                     <th><button type="button" style="width: 100px;">
                                         <a href="<%=contextPath%>/enroll.st">상품등록</a></button></th>
                                     </tr>
@@ -63,7 +63,6 @@
                                       <td><%=p.getKeyword() %></td>
                                       <td><%=p.getTotalCount() %></td>
                                       <td><%=p.getKind() %></td>
-                                      <td><%=p.getPcontent() %></td>
                                       <td>
                                           <button type="button"><a href="adminStoreUpdateForm.html">수정</a></button>
                                           <button type="button">삭제</button>
