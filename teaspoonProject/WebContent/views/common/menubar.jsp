@@ -50,10 +50,10 @@
                                 <li><a href="<%=contextPath%>/views/board/instagram.jsp">인스타그램</a></li>
                             </ul>
                         </li>
-                        <li><a class="list about" href="">어바웃티스푼</a>
+                        <li><a class="list about" href="<%=contextPath%>/brandStory.bo">어바웃티스푼</a>
                             <ul class="ul">
                                 <li><a href="<%=contextPath%>/brandStory.bo">브랜드스토리</a></li>
-                                <li><a href="<%=contextPath%>/views/board/magazine.jsp">매거진</a></li>
+                                <li><a href="<%=contextPath%>/magazine.bo">매거진</a></li>
                             </ul>
                         </li>
                         <li><a class="list rent" href="<%=contextPath%>/views/space/space_rental.jsp">공간대여</a>
