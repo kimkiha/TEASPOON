@@ -41,23 +41,21 @@ public class ProductDao {
 				stmt = conn.createStatement();
 				rset = stmt.executeQuery(sql);
 
-				if (rset.next()) {
-					// 컬럼인덱스로 추출
+				if (rset.next()) { // 컬럼인덱스로 추출
 					listCount = rset.getInt(1);
 				}
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
 				close(rset);
 				close(stmt);
 			}
-
 			return listCount;
 		}		
 		
 		
+	// 관리자 상품 insert
 	public int insertProduct(Connection conn, Product p) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -84,6 +82,8 @@ public class ProductDao {
 		return result;		
 	}
 
+	
+	// 관리자 상품 insert 시 첨부파일 attachment로 저장
 	public int insertAttachment(Connection conn, ArrayList<Attachment> list) {
 		int result = 1;
 		PreparedStatement pstmt = null;
@@ -119,6 +119,8 @@ public class ProductDao {
 		return result;
 	}
 	
+	
+	// 관리자 상품 select ListView구문
 	public ArrayList<Product> selectProductList(Connection conn, PageInfo pi){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -149,22 +151,21 @@ public class ProductDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			close(rset);
 			close(pstmt);
 		}
-		
-		
 		return list;
 	}
 	
+	
+	// 사용자 coffeeListView 구문
 	public ArrayList<Product> selectCoffeeList(Connection conn){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectThumbnailList");
+		String sql = prop.getProperty("selectCoffeeThumbnailList");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -188,17 +189,89 @@ public class ProductDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			close(rset);
 			close(pstmt);
 		}
-		
-		
 		return list;
 	}
 
+	
+	// 사용자 storeBest ListView구문
+	public ArrayList<Product> selectBestList(Connection conn){
 		
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBestThumbnailList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setPcode(rset.getInt("PCODE"));
+				p.setPname(rset.getString("PNAME"));
+				p.setSupPrice(rset.getInt("SUP_PRICE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setStock(rset.getInt("STOCK"));
+				p.setStatus(rset.getString("STATUS"));
+				p.setKeyword(rset.getString("KEYWORD"));
+				p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+				p.setKind(rset.getString("KIND"));
+				p.setPcontent(rset.getString("PCONTENT"));
+				p.setTitleImg(rset.getString("CHANGE_NAME"));
+				list.add(p);	
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+
+	
+	// 사용자 item ListView구문
+	public ArrayList<Product> selectItemList(Connection conn){
+	
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectItemThumbnailList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			Product p  = new Product();
+			p.setPcode(rset.getInt("PCODE"));
+			p.setPname(rset.getString("PNAME"));
+			p.setSupPrice(rset.getInt("SUP_PRICE"));
+			p.setPrice(rset.getInt("PRICE"));
+			p.setStock(rset.getInt("STOCK"));
+			p.setStatus(rset.getString("STATUS"));
+			p.setKeyword(rset.getString("KEYWORD"));
+			p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+			p.setKind(rset.getString("KIND"));
+			p.setPcontent(rset.getString("PCONTENT"));
+			p.setTitleImg(rset.getString("CHANGE_NAME"));
+			list.add(p);	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	
+	
+	
 
 }

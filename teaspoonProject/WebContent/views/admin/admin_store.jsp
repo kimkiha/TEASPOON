@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상품목록 전체보기</title>
+    <title>상품목록 | Admin</title>
    
     <style>
         #c1_1_2 div{padding-left: 25px; float:left;}
@@ -74,7 +74,7 @@
                                       <td><%=p.getTotalCount() %></td>
                                       <td><%=p.getKind() %></td>
                                       <td>
-                                          <button type="button"><a href="adminStoreUpdateForm.html">수정</a></button>
+                                          <button type="button"><a href="<%=contextPath%>/productUpdateForm.st">수정</a></button>
                                           <button type="button">삭제</button>
                                         </td>
                                       </tr>
@@ -116,7 +116,5 @@
             </div>
                
             </div>
-        </div>
-    </div>  
 </body>
 </html>
