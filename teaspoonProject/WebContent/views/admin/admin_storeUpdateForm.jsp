@@ -27,25 +27,9 @@
 	font-size: 30px;
 	font-weight: bold;
 }
-
-table *{
-	padding: 3px;
-	font-size: 18px;
-}
-
-table th{
-	width: 70px;
-	text-align:left;
-}
-
-
-table tr:first-child {
-	border-top: 1px solid lightgray;
-}
-
-table tr {
-	border-bottom: 1px solid lightgray;
-}
+table *{padding: 3px;font-size: 18px;}
+table tr:first-child {border-top: 1px solid lightgray;}
+table tr {border-bottom: 1px solid lightgray;}
 </style>
 </head>
 <body>
@@ -59,39 +43,41 @@ table tr {
 					enctype="multipart/form-data">
 					<table>
 						<tr>
-							<th>PCODE</th>
-							<th>PNAME</th>
-							<th>SUP_PRICE</th>
-							<th>PRICE</th>
-							<th>STOCK</th>
-							<th>KEYWORD</th>
+							<th style="width:100px">상품코드</th>
+							<th>상품명</th>
+							<th></th>
+							<th>공급가</th>
+							<th>가격</th>
+							<th>재고</th>
 						</tr>
 						<tr>
-							<td><input type="text" size="7px" value="<%=p.getPcode() %>"></td>
-							<td><input type="text" size="7px" value="<%=p.getPname() %>"></td>
-							<td><input type="text" size="7px" value="<%=p.getSupPrice() %>"></td>
-							<td><input type="text" size="7px" value="<%=p.getPrice() %>"></td>
-							<td><input type="text" size="7px" value="<%=p.getStock() %>"></td>
-							<td><input type="text" size="14px" value="<%=p.getKeyword() %>"></td>
+							<td><input type="text" size="10px" value="<%=p.getPcode() %>" readonly></td>
+							<td colspan="2"><input type="text" style="width:100px;" value="<%=p.getPname() %>"></td>
+							<td><input type="text" size="10px" value="<%=p.getSupPrice() %>"></td>
+							<td><input type="text" size="10px" value="<%=p.getPrice() %>"></td>
+							<td><input type="text" size="10px" value="<%=p.getStock() %>"></td>
 						</tr>
 						<tr>
 							<th>상품종류</th>
-							<td>
+							<td colspan="2">
 								<input type="radio" name="kind" value="C" <%=checked[0] %>>C
-								<input type="radio" name="kind" value="I" <%=checked[1] %>>I
+								<input type="radio" name="kind" value="I" style="margin-left:15px;"<%=checked[1] %>>I
 							</td>
+							<th>키워드</th>
+							<td colspan="2"><input type="text" style="width:305px;" value="<%=p.getKeyword() %>"></td>
 						</tr>
 						<tr>
-						
 							<th>대표이미지</th>
-							<td colspan="3">
-								<img id="titleImg" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>">
+							<td>
+								<img id="titleImg" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>" required>
 							</td>
-							<th>상세이미지</th>
+							<th style="width:100px">상세이미지</th>
+							
 							<%if(list.size() == 4){ %>
 							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
 							<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
 							<td><img id="contentImg3" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(3).getChangeName()%>"></td>
+							
 							<%}else if(list.size()==3){ %>
 							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
 							<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
@@ -105,7 +91,7 @@ table tr {
 						</tr>
 						<tr>
 							<th>상품설명</th>
-							<td colspan="5"><textarea name="pcontent" cols=75 rows=4 style="resize:none;" required><%=p.getPcontent() %></textarea><td>
+							<td colspan="5"><textarea name="pcontent" cols=60 rows=4 style="resize:none;" required><%=p.getPcontent() %></textarea><td>
 						</tr>
 
 					</table>
