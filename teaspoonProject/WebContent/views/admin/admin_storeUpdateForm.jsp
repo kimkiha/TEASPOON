@@ -80,53 +80,32 @@ table tr {
 								<input type="radio" name="kind" value="C" <%=checked[0] %>>C
 								<input type="radio" name="kind" value="I" <%=checked[1] %>>I
 							</td>
-							
-							
 						</tr>
 						<tr>
 						
-						<tr>
-					
-					<th>대표이미지</th>
-					<td colspan="3">
-						<img id="titleImg" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>">
-					</td>
-				</tr>
-				<tr>
-					<th>상세이미지</th>
-					<%if(list.size() == 4){ %>
-						<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
-						<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
-						<td><img id="contentImg3" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(3).getChangeName()%>"></td>
-					<%}else if(list.size()==3){ %>
-						<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
-						<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
-						<td><img id="contentImg3" width="150" height="120" ></td>
-						
-					<%}else if(list.size()==2){ %>
-					   <td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
-					   <td><img id="contentImg2" width="150" height="120"></td>
-						<td><img id="contentImg3" width="150" height="120"></td>
-					<%} %>
-					
-					
-					
-				
-					
-				</tr>
-				
-					
-						
-		
-			
-			
+							<th>대표이미지</th>
+							<td colspan="3">
+								<img id="titleImg" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>">
+							</td>
+							<th>상세이미지</th>
+							<%if(list.size() == 4){ %>
+							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
+							<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
+							<td><img id="contentImg3" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(3).getChangeName()%>"></td>
+							<%}else if(list.size()==3){ %>
+							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
+							<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
+							<td><img id="contentImg3" width="150" height="120" ></td>
+							
+							<%}else if(list.size()==2){ %>
+							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
+							<td><img id="contentImg2" width="150" height="120"></td>
+							<td><img id="contentImg3" width="150" height="120"></td>
+							<%} %>
 						</tr>
 						<tr>
 							<th>상품설명</th>
-							<td colspan="5">
-								<textarea name="pcontent" cols=75 rows=4 style="resize:none;" required><%=p.getPcontent() %></textarea>
-							<td>
-							
+							<td colspan="5"><textarea name="pcontent" cols=75 rows=4 style="resize:none;" required><%=p.getPcontent() %></textarea><td>
 						</tr>
 
 					</table>
