@@ -352,7 +352,7 @@
                      </form>
                       <div class="checks">
                          <input type="checkbox" id="ex_rd2" name="ex_rds"> 
-                         <label for="ex_rd" >동의합니다.</label> 
+                         <label for="ex_rd2" >동의합니다.</label> 
                       </div><br>
                      
                         
@@ -371,13 +371,13 @@
                             <table id="table1" style="align:center; ">
                                     <tr>
                                         <td style="font-size:20px; width: 300px;"><li>성 명</li></td>
-                                        <td style= "text-align:left;"><input type="text" id="username" placeholder="이름(실명으로 입력해주세요)."></td>
+                                        <td style= "text-align:left;"><input type="text" id="userName" placeholder="이름(실명으로 입력해주세요)."></td>
                                         <td style= "font-size:16px; width: 310px;"></td>           
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>생 년 월 일</li></td>
                                         <td style= "text-align:left;" colspan="1"><input type="number" id="birthday" type="birthday" placeholder="생년월일8자리(ex)19940610">
-                                                                       <button type="button" class="btn_gender" id="btn_gender">남자</button> <button type="button" class="btn_gender" id="btn_gender">여자</td>
+                                                                       <button type="checkbox" class="gender" value="M">남자</button> <button type="checkbox" class="gender" value="F">여자</td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -389,7 +389,7 @@
                                             <option value="016">016</option>
                                             <option value="019">019</option>
                                             </select>
-                                            <input type="number" id="verification" type="verification" placeholder="인증번호">
+                                            <input type="number" id="verification" type="verification" placeholder="전화번호">
                                         <td></td>
                                        
                                     </tr>
@@ -401,18 +401,18 @@
                                     </tr>   
                                     <tr>
                                         <td style= "font-size:20px;"><li>아 이 디</li></td>
-                                        <td style= "text-align:left;"><input type="text" id="userId" placeholder="아이디(4 ~ 12자 영문 대,소문자"></td>
-                                        <td style= "font-size:15px; color:rgb(131, 2, 2); text-align:left;">* 중복된아이디</td>
+                                        <td style= "text-align:left;"><input type="text" id="userId" placeholder="아이디(4 ~ 12자 영문 대,소문자)"></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>비 밀 번 호</li></td>
-                                        <td style= "text-align:left;"><input type="number" id="userPwd1"  placeholder=" 비밀번호는 6~16자 영문 대소문자, 숫자, 특수문자 중 최..."></td>
-                                        <td style= "font-size:15px; color:rgb(131, 2, 2); text-align:left;">* 정확히입력해주세요.</td>
+                                        <td style= "text-align:left;"><input type="password" id="userPwd1"  placeholder="영문자 또는 숫자 포함 총 8자~15자"></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>비밀번호확인</li></td>
-                                        <td style= "text-align:left;"><input type="number" id="userPwd2" placeholder="비밀번호 확인"></td>
-                                        <td style= "font-size:15px; color:rgb(131, 2, 2); text-align:left;">* 비밀번호가다릅니다.</td>
+                                        <td style= "text-align:left;"><input type="password" id="userPwd2" placeholder="비밀번호 확인"></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>이 메 일</li></td>
@@ -422,7 +422,7 @@
                             	</table>
                             
                                  <!-- 2_1. (정보입력)본인인증 및 회원가입 버튼-->
-                                <button type="button" class="btnenroll2" id="ModifyandEnroll" onclick="return validate();">본인인증 및 회원가입</button>
+                                <button type="button" class="btnenroll2" id="seconde_agree_btn" >본인인증 및 회원가입</button>
                             </div>
                           </div> 
                            
@@ -508,17 +508,18 @@
     <script> /*본인인증 및 회원가입버튼 클릭시*/
     	function next(){
             if($("input:checkbox[id='ex_rd']").is(":checked") == true && $("input:checkbox[id='ex_rd2']").is(":checked") == true) { // 둘다 체크 되었을 경우
-            	$("#first_agree_btn").click(function(){ // '모두동의'버튼 클릭시
+            	//$("#first_agree_btn").click(function(){ // '모두동의'버튼 클릭시
 					$("#defaultOpen2").click();	// 다음페이지로 이동
-				});
+				//});
             }else{// 둘중 하나라도 체크 안되었을 경우
                 alert("모두 동의하셔야합니다.");
             }
         }
     
+    
     </script>
     <script>
-        function validate(){
+    $("#seconde_agree_btn").click(function(){
             // 유효성 검사할 각각의 "input 요소"들 변수에 받아두기
             var id = document.getElementById("userId");
             var pwd1 = document.getElementById("userPwd1");
@@ -562,11 +563,14 @@
                 name.focus();
                 return false;               
             }
-
-            return true;
+             // '모두동의'버튼 클릭시
+             //$("#defaultOpen3").removeAttr("disabled");
+             
+             
+				$("#defaultOpen3").click();	// 다음페이지로 이동
             
 
-        }
+        });
         
         
         
