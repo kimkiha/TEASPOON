@@ -117,7 +117,6 @@ public class MemberService {
 	
 	
 	/**
-<<<<<<< HEAD
 	 * 마이페이지용 상단 메뉴바
 	 * @param userNo
 	 */
@@ -129,7 +128,6 @@ public class MemberService {
 	}
 	
 	
-
 	 * 등급현황 페이지에 보일 등급 객체조회 서비스
 	 * @return
 	 */
@@ -141,8 +139,6 @@ public class MemberService {
 		return list;
 	}
 	
-
-
 	
 	
 	
