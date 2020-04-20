@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*"%>
+<%
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+ %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,19 +88,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <%if(list.isEmpty()){ %>
                                     <tr>
                                         <td colspan="6">1:1 상담내역이 없습니다.</td>
                                     </tr>
-                                </tbody>
-                                <tbody>
+                               <%}else{ %>
+                              		<% for(Member m : list){ %>
                                     <tr>
-                                        <td>사이트이용/기타</td>
-                                        <td colspan="2">상품을 주문했는데 포인트사용을 하고 싶어요</td>
-                                        <td>20-04-01</td>
+                                        <td><%= m.getMtm_type() %></td>
+                                        <td colspan="2"><%= m.getMtm_title() %></td>
+                                        <td><%=m.getCreate_date() %></td>
                                         <td>답변완료</td>
                                         <td><input type="checkbox"></td>
                                     </tr>
-                                    
+                                    <%} %>
+                                <%} %>
                                 </tbody>
                               
                             </table>
