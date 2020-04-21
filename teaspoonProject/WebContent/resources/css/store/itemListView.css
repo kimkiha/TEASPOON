@@ -11,7 +11,6 @@
     font-size:15px; 
     top:70%; 
     text-align: left;
-    width:inherit; height:60px;
     position: absolute;
     opacity:0;
 }

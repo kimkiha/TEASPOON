@@ -44,8 +44,8 @@
                                 	<input type="hidden" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
-                                <div class="product_detail">
-                                    <a href=""><p><%=p.getPname() %></p></a>
+                                <div class="product_detail" style="width:300px; height:60px; padding:0px">
+                                    <a href=""><p style="padding-top:15px;padding-left:20px;"><%=p.getPname() %></p></a>
                                 </div>
                                 <div class="like">
                                     <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">

@@ -51,7 +51,6 @@ a{text-decoration: none; color: black;}
      font-size:15px; 
      top:70%; 
      text-align: left;
-     width:inherit; height:60px;
      opacity:0;
  }
  .product:hover .product_detail {opacity:1;}

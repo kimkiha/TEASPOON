@@ -7,14 +7,14 @@
 .product {position:relative; box-sizing: border-box;}
 .product_img{width:300px; height:250px; position: absolute; }
 .product .product_detail{
-    background-color:black; 
+    background:rgb(101, 100, 96); 
     font-size:15px; 
     top:70%; 
     text-align: left;
     position: absolute;
     opacity:0;
 }
-.product:hover .product_detail *{opacity:1;}
+.product:hover .product_detail{opacity:1;}
 .product .like_icon {width:50px; height:50px; cursor: pointer;}
 .product .like {top:72%; left:180px; position: absolute; opacity:0; z-index:1;}
 .product:hover .like {opacity:1;}
