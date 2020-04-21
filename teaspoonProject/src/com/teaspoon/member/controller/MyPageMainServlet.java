@@ -34,17 +34,17 @@ public class MyPageMainServlet extends HttpServlet {
 		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		//System.out.println(userNo);
-		Member m = new MemberService().MyPageInfo(userNo);
+		Member myInfo = new MemberService().MyPageInfo(userNo);
 		
-		System.out.println(m);
+		System.out.println(myInfo);
 		
-		if(m != null) {
+		if(myInfo != null) {
 			
-			request.setAttribute("m",m);
+			request.setAttribute("myInfo",myInfo);
 
 			
 			
-			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mapage_main.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_main.jsp");
 			view.forward(request, response);
 			
 			
