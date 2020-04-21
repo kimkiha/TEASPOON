@@ -15,7 +15,7 @@ import java.util.Properties;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.MemberToMember;
+import com.teaspoon.member.model.vo.MenToMen;
 
 public class MemberDao {
 
@@ -350,13 +350,46 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-	
 	
 		return list;
 	}
 
+<<<<<<< HEAD
+	public int insertMtm(Connection conn, MenToMen m) {
+=======
+<<<<<<< HEAD
+	public int insertMember(Connection conn, Member m) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUserName());				// 이름
+			pstmt.setInt(2, m.getBirthday());					// 생년월일
+			pstmt.setString(3, m.getPhone());					// 전화번호
+			pstmt.setString(4, m.getUserId());					// 아이디
+			pstmt.setString(5, m.getUserPwd());					// 패스워드
+			pstmt.setString(6, m.getEmail());					// 이메일
+
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+=======
 	public int insertMtm(Connection conn, MemberToMember m) {
+>>>>>>> cb2dd319b8a6b5cbc14dd304609a22796cad4df2
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -365,7 +398,7 @@ public class MemberDao {
 		
 		
 		
-		
+		return result;
 	}
 	
 	
@@ -441,6 +474,178 @@ public class MemberDao {
 		return list;
 	}
 	
+	
+	public int getSearchAllStatusListCount(Connection conn,String searchKeyword2) {
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getSearchAllStatusListCount");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword2);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				// 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+	
+	
+	public ArrayList<Member> selectAllStatusList(Connection conn, String searchKeyword2,PageInfo pi) {
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllStatusList");
+
+		/*
+		 * pi에 담겨있는 현재 페이지값과 보여질게시글 수 을 이용해 보여질 페이시 수를 정한다. ex) boardLimit = 10
+		 * currentPage = 1 --> startRow :1 endRow:10 currentPage = 2 --> startRow :11
+		 * endRow:20 currentPage = 3 --> startRow :21 endRow:30
+		 * 
+		 * startRow : (currentPage-1) * boardLimit + 1 endRow : startRow + boardLimit -1
+		 */
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword2);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				list.add(new Member(rset.getInt("USER_NO"), rset.getString("USER_ID"),
+						rset.getString("USER_NAME"), rset.getString("PHONE"),rset.getDate("ENROLL_DATE"),
+						 rset.getString("GRADE_NAME"),
+						 rset.getInt("BIRTHDAY"),
+						 rset.getString("status")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
+		}
+		return list;
+	}
+	
+	
+	
+	public int getSearchAllGradeListCount(Connection conn,String searchKeyword1) {
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getSearchAllGradeListCount");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword1);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				// 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+	
+	
+	public ArrayList<Member> selectAllGradeList(Connection conn, String searchKeyword1,PageInfo pi) {
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllGradeList");
+
+		/*
+		 * pi에 담겨있는 현재 페이지값과 보여질게시글 수 을 이용해 보여질 페이시 수를 정한다. ex) boardLimit = 10
+		 * currentPage = 1 --> startRow :1 endRow:10 currentPage = 2 --> startRow :11
+		 * endRow:20 currentPage = 3 --> startRow :21 endRow:30
+		 * 
+		 * startRow : (currentPage-1) * boardLimit + 1 endRow : startRow + boardLimit -1
+		 */
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword1);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				list.add(new Member(rset.getInt("USER_NO"), rset.getString("USER_ID"),
+						rset.getString("USER_NAME"), rset.getString("PHONE"),rset.getDate("ENROLL_DATE"),
+						 rset.getString("GRADE_NAME"),
+						 rset.getInt("BIRTHDAY"),
+						 rset.getString("status")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
+		}
+		return list;
+	}
+	
+	
+>>>>>>> 4cf3d287583b2b0e53594893930bfd36d4b88c79
+	
+	public int updateMember(Connection conn, Member m) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUserName());
+			pstmt.setString(2, m.getPhone());
+			pstmt.setString(3, m.getEmail());
+			pstmt.setString(4, m.getAddress());
+			pstmt.setString(5, m.getInterest());
+			pstmt.setString(6, m.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

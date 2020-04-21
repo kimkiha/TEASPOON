@@ -41,7 +41,8 @@
                         </div> 
                                 <div id="약관동의" class="tabcontent"> 
                                 
-                                    <form>
+                                    <form id="agreeForm">
+                                    
                                         <textarea class="form-control2" rows="50" id="comment" width=70%;">
 제 1 장 총 칙
                             
@@ -368,15 +369,17 @@
                         <div class="contaniner">
                           <div id="정보입력" class="tabcontent" >
                           	
+                          	<form id ="informationForm" action="<%=contextPath%>/insert.me" method="post">
+                            
                             <table id="table1" style="align:center; ">
                                     <tr>
                                         <td style="font-size:20px; width: 300px;"><li>성 명</li></td>
-                                        <td style= "text-align:left;"><input type="text" id="userName" placeholder="이름(실명으로 입력해주세요)."></td>
+                                        <td style= "text-align:left;"><input type="text" id="userName" name="username" placeholder="이름(실명으로 입력해주세요)."></td>
                                         <td style= "font-size:16px; width: 310px;"></td>           
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>생 년 월 일</li></td>
-                                        <td style= "text-align:left;" colspan="1"><input type="number" id="birthday" type="birthday" placeholder="생년월일8자리(ex)19940610">
+                                        <td style= "text-align:left;" colspan="1"><input type="number" id="birthday"  name="Birthday" type="birthday" placeholder="생년월일8자리(ex)19940610">
                                                                        <input type="checkbox" class="gender" value="M">남자</button> <input type="checkbox" class="gender" value="F">여자</td>
                                         <td></td>
                                     </tr>
@@ -389,7 +392,7 @@
                                             <option value="016">016</option>
                                             <option value="019">019</option>
                                             </select>
-                                            <input type="number" id="verification" type="verification" placeholder="전화번호">
+                                            <input type="number" id="verification" name="phonenum" type="verification" placeholder="전화번호">
                                         <td></td>
                                        
                                     </tr>
@@ -401,51 +404,54 @@
                                     </tr>   
                                     <tr>
                                         <td style= "font-size:20px;"><li>아 이 디</li></td>
-                                        <td style= "text-align:left;"><input type="text" id="userId" placeholder="아이디(4 ~ 12자 영문 대,소문자)"></td>
+                                        <td style= "text-align:left;"><input type="text" id="userId" name="UserId" placeholder="아이디(4 ~ 12자 영문 대,소문자)"></td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>비 밀 번 호</li></td>
-                                        <td style= "text-align:left;"><input type="password" id="userPwd1"  placeholder="영문자 또는 숫자 포함 총 8자~15자"></td>
+                                        <td style= "text-align:left;"><input type="password" id="userPwd1" name="UserPwd1" placeholder="영문자 또는 숫자 포함 총 8자~15자"></td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>비밀번호확인</li></td>
-                                        <td style= "text-align:left;"><input type="password" id="userPwd2" placeholder="비밀번호 확인"></td>
+                                        <td style= "text-align:left;"><input type="password" id="userPwd2" name="UserPwd2" placeholder="비밀번호 확인"></td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>이 메 일</li></td>
-                                        <td style= "text-align:left;"><input type="text" id="email" placeholder="이메일"></td>
+                                        <td style= "text-align:left;"><input type="text" id="email" name="Email" placeholder="이메일"></td>
                                         <td></td>
                                     </tr>
                             	</table>
                             
                                  <!-- 2_1. (정보입력)본인인증 및 회원가입 버튼-->
                                 <button type="button" class="btnenroll2" id="seconde_agree_btn" >본인인증 및 회원가입</button>
-                            </div>
+                            </div> 
+                            
+                            </form>	<!--  -->
+                            
                           </div> 
                            
 
                           <!-- 3. 이메일인증 페이지-->
-                          <div id="이메일인증" class="tabcontent">
-                            <form id="email_certify">
-                                <fieldset style= "list-style-type: disc; padding:30px; border:1px solid lightgrey; margin-left:200px; margin-right:200px;" id="ul">
+                          <div id="이메일인증" class="tabcontent" style=" width:100%; height:100%">
+                            <form id="email_certify" style="align:center;">
+                                <fieldset style= "list-style-type: disc; align:center; padding:30px; border:1px solid lightgrey;" id="ul">
                                     <ul style="width:700px; height:170px; padding:30px"><br>
-                                        <li>인증번호확인 &nbsp; <input type="number" id="identify" placeholder="인증번호" >
+                                        <li>인증번호확인 &nbsp; <input type="number" id="identify" name="IdentifyNum" placeholder="인증번호" > 
+                                        					<button type="button" id="email_send" name="Email_Send">인증번호 발송</button>
                                         </li><br><br>
                                     </ul>
                                 </fieldset> 
-                            </form>
-                        
-                            
+                                
                          <!-- 3_1. 본인인증 및 회원가입 버튼-->
-                        <button type="button" class="btnenroll3" id="ModifyandEnroll2" style="">인증완료</button>
-                        </div>
+                        	<button type="button" class="btnenroll3" id="ModifyandEnroll2" style="">인증완료</button>
+                           </div>
+                         </form>
                                      
                         <!-- 4. 회원가입완료 페이지-->
                          <div id="가입완료" class="tabcontent">
-                            <form id="enrollinfo2">
+                            <form id="enrollinfo2" action="<%= contextPath %>/insert.me" method="post">
                                 <fieldset style="list-style-type:disc; border:1px solid lightgrey; margin-left:200px; margin-right:200px; margin-bottom:150px;" id=ul2>
                                     <ul style="border:0.3 solid lightgrey;"><br>
                                     
@@ -458,9 +464,12 @@
                                    
                                 </ul>
                                 </fieldset>
-                            </form>
+                           
 
-                          </div>
+                          	</div>
+                          
+                           </form>
+                           
                           </div>
                         
         
@@ -527,37 +536,9 @@
             var name = document.getElementById("userName");
             var birth = document.getElementById("birthday"); 			// 생년월일
             var veri  = document.getElementById("verification"); 		// 전화번호
+            var email = document.getElementById("email"); 				// 이메일
 
-            // 1) 아이디 검사
-            // 영문자 또는 숫자 포함해서 총 4~12자로 입력 (단, 첫글자는 반드시 영문자로)
-            var regExp = /^[a-z][a-z\d]{3,11}$/i;
-            if(!regExp.test(id.value)){
-                alert("유효한 아이디를 입력하세요!!");
-                id.value = "";
-                id.focus();
-                return false;               
-            }
-
-            // 2_1) 비밀번호 검사
-            //    특수문자(!@#$%^&*) 또는 영문자 또는 숫자 포함 총 8자~15자
-            regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
-            if(!regExp.test(pwd1.value)){
-                alert("유효한 비밀번호를 입력하세요!!");
-                pwd1.value="";
-                pwd1.focus();
-                return false;
-            }
-			
-            // 2_2) 비밀번호 일치 확인
-            // 비밀번호값과 비밀번호 확인값이 일치하는지 검사
-            if(pwd1.value != pwd2.value){
-                alert("동일한 비밀번호 확인값을 입력하세요!!");
-                pwd2.value = "";
-                pwd.focus();
-                return false;
-            }
-
-            // 3) 이름 검사
+            // 1) 이름 검사
             //    한글로만 2글자 이상
             regExp = /^[가-힣]{2,}$/; 
             if(!regExp.test(name.value)){
@@ -567,7 +548,8 @@
                 return false;               
             }
             
-            // 4) 생년월일검사
+            
+            // 2) 생년월일검사
             //    숫자!!로만 8글자 이상, 8글자 이하
             regExp = /^[0-9]{8,8}$/; 
             if(!regExp.test(birth.value)){
@@ -577,7 +559,7 @@
                 return false;               
             }
             
-            // 5) 전화번호검사
+            // 3) 전화번호검사
             //    숫자!!로만 7글자 이상, 8글자 이하
             regExp = /^[0-9]{7,8}$/; 
             if(!regExp.test(veri.value)){
@@ -586,6 +568,46 @@
                 veri.focus();
                 return false;               
             }
+
+            // 4) 아이디 검사
+            // 영문자 또는 숫자 포함해서 총 4~12자로 입력 (단, 첫글자는 반드시 영문자로)
+            var regExp = /^[a-z][a-z\d]{3,11}$/i;
+            if(!regExp.test(id.value)){
+                alert("유효한 아이디를 입력하세요!!");
+                id.value = "";
+                id.focus();
+                return false;               
+            }
+          
+            // 5_1) 비밀번호 검사
+            //    특수문자(!@#$%^&*) 또는 영문자 또는 숫자 포함 총 8자~15자
+            regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
+            if(!regExp.test(pwd1.value)){
+                alert("유효한 비밀번호를 입력하세요!!");
+                pwd1.value="";
+                pwd1.focus();
+                return false;
+            }
+			
+            // 5_2) 비밀번호 일치 확인
+            // 비밀번호값과 비밀번호 확인값이 일치하는지 검사
+            if(pwd1.value != pwd2.value){
+                alert("동일한 비밀번호 확인값을 입력하세요!!");
+                pwd2.value = "";
+                pwd.focus();
+                return false;
+            }
+            
+            // 6) 이메일 유효성검사
+            //mail이 입력되었는지 확인하기
+             var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+               if (!emailRegExp.test(email)) {
+                   alert("이메일 형식이 올바르지 않습니다!");
+                   form.email.value = "";
+                   form.email.focus();
+                   return false;
+                }
+
              // '모두동의'버튼 클릭시
              //$("#defaultOpen3").removeAttr("disabled");
 				$("#defaultOpen3").click();	// 다음페이지로 이동

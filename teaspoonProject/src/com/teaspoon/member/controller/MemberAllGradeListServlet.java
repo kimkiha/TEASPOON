@@ -16,16 +16,16 @@ import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberKeywordListServlet
+ * Servlet implementation class MemberAllGradeListServlet
  */
-@WebServlet("/keywordList.me")
-public class MemberKeywordListServlet extends HttpServlet {
+@WebServlet("/AllGradeList.me")
+public class MemberAllGradeListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberKeywordListServlet() {
+    public MemberAllGradeListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,11 +43,6 @@ public class MemberKeywordListServlet extends HttpServlet {
 		default:
 			break;
 		}
-		
-		String searchKeyword2 = request.getParameter("searchKeyword2");
-		
-		
-		
 		//-------------------- 페이징처리 -----------------
 		int listCount;		//총 게시글 갯수
 		int currentPage;	//현재페이지(즉, 요청한페이지)
@@ -58,7 +53,7 @@ public class MemberKeywordListServlet extends HttpServlet {
 		int boardLimit;		//한페이지에 보여질 게시글 최대 갯수
 		
 		//* listCount : 총 게시글 갯수
-		listCount = new MemberService().getSearchKeywordListCount(searchKeyword1,searchKeyword2);
+		listCount = new MemberService().getSearchAllGradeListCount(searchKeyword1);
 		
 		//* currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -124,19 +119,17 @@ public class MemberKeywordListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		//System.out.println(pi);
-		ArrayList<Member> list = new MemberService().selectSearchKeywordList(searchKeyword1,searchKeyword2,pi);
+		ArrayList<Member> list = new MemberService().selectAllGradeList(searchKeyword1,pi);
 		ArrayList<Grade> gList = new MemberService().selectGradeList();
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
 		//게시판글 출력을위한 list객체전달
 		request.setAttribute("list", list);
 		request.setAttribute("searchKeyWord1",searchKeyword1);
-		request.setAttribute("searchKeyWord2",searchKeyword2);
 		//등급리스트 출력을 위한 gList객체 전달
 		request.setAttribute("gList", gList);
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_member.jsp");
 		view.forward(request, response);
-	
 	}
 
 	/**
