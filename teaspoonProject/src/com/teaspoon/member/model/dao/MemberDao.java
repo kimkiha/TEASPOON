@@ -344,7 +344,8 @@ public class MemberDao {
 				list.add(new Grade(rset.getInt("GRADE_CODE"),
 								   rset.getString("GRADE_NAME"),
 								   rset.getInt("MIN_ACOUNT"),
-								   rset.getInt("GRADE_RATE")
+								   rset.getInt("GRADE_RATE"),
+								   rset.getInt("MAX_ACCOUNT")
 						));
 			}
 			
