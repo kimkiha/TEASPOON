@@ -266,7 +266,7 @@ public class MemberService {
 		int result2 = 1; // 초기값 1 주기 중요함 
 		
 		if(at != null) { 
-			result2 = new MemberDao().insertAttachment(at); 
+			result2 = new MemberDao().insertAttachment(conn,at); 
 		}
 		
 		if(result1>0 && result2>0) {

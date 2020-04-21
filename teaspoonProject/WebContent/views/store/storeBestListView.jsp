@@ -46,7 +46,7 @@
                                 <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getTitleImg() %>" style="float:left; width:100%; height:inherit">
                             </div>
                             <div class="product_detail">
-                                <a href=""><p style="padding-top:5px;padding-left:20px;"><%=list.get(0).getPname()%></p></a>
+                                <p style="padding-top:5px;padding-left:20px;"><%=list.get(0).getPname()%></p>
                             </div>
                             <div class="like">
                                 <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
@@ -108,7 +108,7 @@
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
-                                    <a href=""><p style="padding-top:15px;padding-left:20px;"><%=p.getPname() %></p></a>
+                                    <p style="padding-top:20px;padding-left:12px;"><%=p.getPname() %></p>
                                 </div>
                                 <div class="like">
                                     <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">

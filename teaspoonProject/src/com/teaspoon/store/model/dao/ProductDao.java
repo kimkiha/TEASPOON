@@ -36,7 +36,7 @@ public class ProductDao {
 			Statement stmt = null;
 			ResultSet rset = null;
 			String sql = prop.getProperty("getListCount");
-			System.out.println(sql);
+			//System.out.println(sql);
 			try {
 				stmt = conn.createStatement();
 				rset = stmt.executeQuery(sql);
@@ -166,7 +166,7 @@ public class ProductDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("getCoffeeListCount");
-		System.out.println(sql);
+		//System.out.println(sql);
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(sql);
@@ -273,7 +273,7 @@ public class ProductDao {
 			Statement stmt = null;
 			ResultSet rset = null;
 			String sql = prop.getProperty("getItemListCount");
-			System.out.println(sql);
+			//System.out.println(sql);
 			try {
 				stmt = conn.createStatement();
 				rset = stmt.executeQuery(sql);

@@ -24,6 +24,8 @@
 <style>
 	#content1 {width:100%; height:inherit; background:#ffffff;}
 	#banner {height: 270px; line-height: 270px; background:url("<%=request.getContextPath() %>/resources/img/store/storetop_item.jpg") center top no-repeat;}
+	#paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
+	#paging button:hover{cursor:pointer;color:#d6ae71;}
 </style>
 </head>
 <body>
@@ -53,7 +55,7 @@
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
-                                    <a href=""><p style="padding-top:15px;padding-left:20px;"><%=p.getPname() %></p></a>
+                                    <p style="padding-top:20px;padding-left:12px;"><%=p.getPname() %></p>
                                 </div>
                                 <div class="like">
                                     <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
