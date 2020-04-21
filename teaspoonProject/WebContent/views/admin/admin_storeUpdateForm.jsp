@@ -27,7 +27,9 @@
 	font-size: 30px;
 	font-weight: bold;
 }
+#pcode{background:lightgray;}
 table *{padding: 3px;font-size: 18px;}
+table th{text-align:center;}
 table tr:first-child {border-top: 1px solid lightgray;}
 table tr {border-bottom: 1px solid lightgray;}
 </style>
@@ -39,39 +41,35 @@ table tr {border-bottom: 1px solid lightgray;}
 			<div class="outer">
 				<p>상품 수정</p>
 
-				<form id="productInsertForm" action="update.st" method="post"
-					enctype="multipart/form-data">
+				<form id="productInsertForm" action="update.st" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
-							<th style="width:100px">상품코드</th>
-							<th>상품명</th>
-							<th></th>
+							<th>상품코드</th>
+							<th colspan="2">상품명</th>
 							<th>공급가</th>
 							<th>가격</th>
 							<th>재고</th>
 						</tr>
 						<tr>
-							<td><input type="text" size="10px" value="<%=p.getPcode() %>" readonly></td>
-							<td colspan="2"><input type="text" style="width:100px;" value="<%=p.getPname() %>"></td>
-							<td><input type="text" size="10px" value="<%=p.getSupPrice() %>"></td>
-							<td><input type="text" size="10px" value="<%=p.getPrice() %>"></td>
-							<td><input type="text" size="10px" value="<%=p.getStock() %>"></td>
+							<td><input id="pcode" type="text" style="width:90px" value="<%=p.getPcode() %>" readonly></td>
+							<td colspan="2"><input type="text" style="width:250px;" value="<%=p.getPname() %>"></td>
+							<td><input type="text" style="width:150px" value="<%=p.getSupPrice() %>"></td>
+							<td><input type="text" style="width:150px" value="<%=p.getPrice() %>"></td>
+							<td><input type="text" style="width:150px" value="<%=p.getStock() %>"></td>
 						</tr>
-						<tr>s
+						<tr>
 							<th>상품종류</th>
 							<td colspan="2">
 								<input type="radio" name="kind" value="C" <%=checked[0] %>>C
-								<input type="radio" name="kind" value="I" style="margin-left:15px;"<%=checked[1] %>>I
+								<input type="radio" name="kind" value="I" style="margin-left:20px;"<%=checked[1] %>>I
 							</td>
 							<th>키워드</th>
-							<td colspan="2"><input type="text" style="width:305px;" value="<%=p.getKeyword() %>"></td>
+							<td colspan="2"><input type="text" style="width:310px;" value="<%=p.getKeyword() %>"></td>
 						</tr>
 						<tr>
 							<th>대표이미지</th>
-							<td>
-								<img id="titleImg" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>" required>
-							</td>
-							<th style="width:100px">상세이미지</th>
+							<td><img id="titleImg" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>" required></td>
+							<th style="width:100px;">상세이미지</th>
 							
 							<%if(list.size() == 4){ %>
 							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
@@ -90,17 +88,19 @@ table tr {border-bottom: 1px solid lightgray;}
 							<%} %>
 						</tr>
 						<tr>
-							<th>상품설명</th>
-							<td colspan="5"><textarea name="pcontent" cols=60 rows=4 style="resize:none;" required><%=p.getPcontent() %></textarea><td>
+							<th>상품상세</th>
+							<td colspan="5">
+								<textarea name="pcontent" cols=77 rows=3 style="resize:none;" required><%=p.getPcontent() %></textarea>
+							<td>
 						</tr>
 
 					</table>
 					<br>
 					<div id="fileArea">
-						<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
-						<input type="file" name="file2" id="file2" onchange="loadImg(this,2);"> 
-						<input type="file" name="file3" id="file3" onchange="loadImg(this,3);">
-						<input type="file" name="file4" id="file4" onchange="loadImg(this,4);">
+						<input type="file" name="file" id="file1" onchange="loadImg(this,1);">
+						<input type="file" name="file" id="file2" onchange="loadImg(this,2);"> 
+						<input type="file" name="file" id="file3" onchange="loadImg(this,3);">
+						<input type="file" name="file" id="file4" onchange="loadImg(this,4);">
 					</div>
 				
 					<div class="btns">

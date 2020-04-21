@@ -367,17 +367,17 @@ public class ProductDao {
 		return result;
 	}
 	
-//	
-//	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
-//	
-//		
-//		
-//	}
-//	
-//	
-//	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
-//		
-//		
-//	}
+	
+	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
+	
+		
+		
+	}
+	
+	
+	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
+		
+		
+	}
 
 }
