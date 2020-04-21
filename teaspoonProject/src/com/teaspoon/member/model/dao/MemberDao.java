@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
@@ -208,7 +209,7 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+		
 		
 		return list;
 	}
@@ -310,8 +311,8 @@ public class MemberDao {
 								 rset.getInt(6));
 				 
 			}
-			
-			
+	
+					
 			
 			
 			
@@ -385,26 +386,6 @@ public class MemberDao {
 		
 	}
 
-	public int insertMtm(Connection conn, MenToMen m) {
-
-		
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String sql = prop.getProperty("insertMtm");
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return result;
-	}
-	
 	
 	public int getSearchKeywordListCount(Connection conn,String searchKeyword1,String searchKeyword2) {
 		int listCount = 0;
@@ -650,6 +631,60 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+
+	public int insertMtm(Connection conn, MenToMen m) {
+
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertMtm");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, m.getUserNo());
+			pstmt.setInt(2, m.getMtmType());
+			pstmt.setString(3, m.getMtmTitle());
+			pstmt.setString(4, m.getMtmContent());
+			
+			
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(result);
+		
+		return result;
+	}
+	
+public int insertAttachment(Connection conn, Attachment at) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			pstmt.setInt(4, 1);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
 	
 	
 	
