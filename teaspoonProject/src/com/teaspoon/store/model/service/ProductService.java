@@ -174,4 +174,13 @@ public class ProductService {
 		return result1*result2;
 	}
 	
+	
+	public ArrayList<Attachment> selectAtList(int pcode){
+		Connection conn = getConnection();
+		ArrayList<Attachment> list = new ProductDao().selectAtList(conn, pcode);
+		
+		close(conn);
+		return list;
+	}
+
 }

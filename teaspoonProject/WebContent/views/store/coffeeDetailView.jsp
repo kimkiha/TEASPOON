@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
 <%
-	// Product p = (Product)request.getAttribute("p");
-	// ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
+	Product p = (Product)request.getAttribute("p");
+	ArrayList<Attachment> list = new ArrayList<>();
 	// 0번 인덱스 : 대표이미지(클래스이름이 thumbnail인 div에 들어갈 이미지)
 	// 1~3번 인덱스 : Content영역에 들어갈 이미지
-	// Attachment titleImg = list.get(0); // 대표이미지 
+	Attachment titleImg = list.get(0); // 대표이미지 
 %>    
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@
         <div id="banner">
             <div class="contaniner">
                 <div style="margin: 100px 0px;">
-                    <p id="head_title">c.getName()</p>
+                    <p id="head_title"><%=p.getPname() %></p>
                 </div>
                 <div style="border: 1px solid; width:150px; float:left; margin-left: 500px;">
                 </div>
@@ -44,7 +44,7 @@
                             <div id="productList1">
                                 <div class="pList1">
                                     <div class="thumbnail">
-                                        <img src="<%=contextPath %>/resources/img/store/product6_1.jpg">
+                                        <img src="<%=contextPath %>/resources/img/store/<%=list.get(0)%>">
                                     </div>
                                     <div class="move_review">
                                         <a href="#review"><p>REVIEW &gt;&gt;</p></a>
@@ -53,8 +53,8 @@
                                 <div class="pList2">
                                     <!--상품명, 상품설명요약 -->
                                     <div class="p_explain1">
-                                        <h4>c.getName()</h4>
-                                        <p>c.getKeyword()</p>
+                                        <h4><%=p.getPname() %></h4>
+                                        <p><%=p.getKeyword() %></p>
                                    </div>
 
                                    <!--원두 그람수 옵션(셋중에 하나만 가능)-->
@@ -116,7 +116,7 @@
                                    <!--상품금액 합계, 정기배송버튼, 장바구니버튼, 바로구매버튼 -->
                                    <div class="p_explain5">
                                         <span> 상품금액합계</span>
-                                        <span> c.getPrice() * 구매수량</span>
+                                        <span><%=p.getPrice() %></span>
                                         <button id="delivery">정기배송 5%할인</button>
                                         <button id="basket">장바구니 담기</button>
                                         <button id="buyNow">바로 구매하기</button>
@@ -133,19 +133,16 @@
                                 <div class="pList4">
                                     <hr>
                                     <div>
-                                    	<!--<=img width="500px" height="400px" -->
-                                    		<!--<=src="contextPath %>/resources/~~ <=list.get(1).chageName() %>"-->
+                                    	<img src="<%=contextPath %>/resources/img/store/<%=list.get(1)%>">
                                     </div>
                                     <div>
-                                    	c.getCoffeeContent();
+                                    	<%=p.getPcontent() %>
                                     </div>
                                     <div>
-                                    	<!--img width="500px" height="400px" -->
-                                    		<!--<=src="contextPath%> /resources/~~ <=list.get(2).chageName() %>"-->
+                                    	<img src="<%=contextPath %>/resources/img/store/<%=list.get(2)%>">
                                     </div>
                                     <div>
-                                    	<!-- img width="500px" height="400px" -->
-                                    		<!--<=src="contextPath%>/resources/~~ <=list.get(3).chageName() %>"-->
+                                    	<img src="<%=contextPath %>/resources/img/store/<%=list.get(3)%>">
                                     </div>
                                 </div>
 
