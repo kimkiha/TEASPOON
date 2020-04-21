@@ -1,14 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
 <%
-	Product p = (Product)request.getAttribute("pcode");
-	int pcode = p.getPcode();
+	Product p = (Product)request.getAttribute("p");
 	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
-	// 0번 인덱스 : 대표이미지(클래스이름이 thumbnail인 div에 들어갈 이미지)
-	// 1~3번 인덱스 : Content영역에 들어갈 이미지
-	Attachment titleImg = list.get(0); // 대표이미지 
-	
-	System.out.println(list.get(0));
 %>    
 <!DOCTYPE html>
 <html>

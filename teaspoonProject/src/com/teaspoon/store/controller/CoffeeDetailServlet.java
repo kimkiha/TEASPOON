@@ -35,10 +35,11 @@ public class CoffeeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
+		
 		Product p = new ProductService().selectProduct(pcode);
 		ArrayList<Attachment> list = new ProductService().selectAtList(pcode);
 		
-		if( p != null) {
+		if(p != null) {
 			request.setAttribute("p", p);
 			request.setAttribute("list", list);
 			

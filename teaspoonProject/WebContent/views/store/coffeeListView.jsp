@@ -50,8 +50,8 @@
                         	<%for(Product p : list) {%>
                         	
                             <div class="product" style="margin-top:50px; margin-right:30px;" >
+                            	<input type="hidden" name="pcode" value=<%=p.getPcode() %>>
                                 <div class="product_img">
-                                	<input type="hidden" name="pcode" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
