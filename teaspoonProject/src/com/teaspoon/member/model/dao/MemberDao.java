@@ -669,19 +669,10 @@ public int insertAttachment(Connection conn, Attachment at) {
 			pstmt.setString(1, at.getOriginName());
 			pstmt.setString(2, at.getChangeName());
 			pstmt.setString(3, at.getFilePath());
-			
-			result = pstmt.executeUpdate();
-			if(i==0) { // 대표이미지(레벨이 1)
-				pstmt.setInt(4, 1);
-			}else {	// 상세이미지(레벨이 2)
-				pstmt.setInt(4, 2);
-			}
+			pstmt.setInt(4, 1);
 			
 			result = pstmt.executeUpdate();
 			
-			if(result == 0 ) {
-				return 0;
-			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
