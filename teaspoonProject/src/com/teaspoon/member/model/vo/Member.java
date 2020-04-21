@@ -29,6 +29,17 @@ public class Member {
 	private int w; //위시리스트 갯수 카운트용
 	private int c; //쿠폰 갯수 카운트용
 	
+	public Member(String userName, int birthday, String phone, String userId, String userPwd, String email) {
+		super();
+		this.userName = userName;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.email = email;
+
+	}
+	
 	public Member(int userNo, String userName, int point, String gradeName, int w, int c) {
 		super();
 		this.userNo = userNo;
@@ -38,8 +49,10 @@ public class Member {
 		this.w = w;
 		this.c = c;
 	}
+	
 
-
+	
+	
 	public Member(){
 		
 	}
