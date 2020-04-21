@@ -106,8 +106,8 @@ img {vertical-align: middle;}
     border:1px solid #bbb;
     border-top-left-radius:5px;
     border-top-right-radius:5px;
-    height:68px;
-    width:1000px;
+    height:60px;
+    width:955px;
     margin-top:125px;
     margin-left:100px;
     padding:10px;
@@ -117,8 +117,8 @@ img {vertical-align: middle;}
 }
 .foot-container{
      border:1px solid #bbb;
-     width:1000px;
-     height:80px;
+     width:955px;
+     height:35px;
      margin-left:100px;
      border-bottom-left-radius:5px;
      border-bottom-right-radius:5px;
