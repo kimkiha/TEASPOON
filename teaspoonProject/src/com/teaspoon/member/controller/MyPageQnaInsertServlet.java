@@ -133,14 +133,14 @@ public class MyPageQnaInsertServlet extends HttpServlet {
 						
 						
 					}
-					
+					System.out.println(m);
 					// 4. 케시판 작성용 서비스 요청(b,at)
 					int result = new MemberService().insertMtm(m, at);
 					
 					if(result > 0) {// 성공
 						
 						request.getSession().setAttribute("msg","게시글 등록 성공");
-						response.sendRedirect("list.bo?currentPage=1");
+						response.sendRedirect("myqna.me?currentPage=1");
 						
 					}else {//실패
 						
