@@ -1,6 +1,6 @@
 package com.teaspoon.member.model.service;
 
-import static com.teaspoon.common.JDBCTemplate.close;
+import static com.teaspoon.common.JDBCTemplate.*;
 import static com.teaspoon.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -144,7 +144,51 @@ public class MemberService {
 		return list;
 	}
 	
+	/**
+	 *  회원가입용 서비스
+	 * @param m 회원가입폼에서 입력한 값들이 담겨있는 Member 객체
+	 * @return 처리된 행의 갯수
+	 */
+	public int insertMember(Member m) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().insertMember(conn, m);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+			
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
 	
+	/**
+	 * 회원정보 수정용 서비스
+	 * @param m		--> 수정요청한 회원아이디와, 변경할 내용들이 담겨있는 Member 객체
+	 * @return		--> 처리된 행의 갯수
+	 */
+	public int updateMember(Member m) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMember(conn, m);
+		
+		if(result>0) {
+			
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+		
+		
+	}
 	
 	
 
