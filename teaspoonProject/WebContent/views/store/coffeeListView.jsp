@@ -13,7 +13,7 @@
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 <style>
-    #content1 {width:100%; height:1500px; background: #ffffff; }
+    #content1 {width:100%; height:inherit; background: #ffffff; }
 	#banner {height: 270px; line-height: 270px; background:url("<%=request.getContextPath() %>/resources/img/store/storetop_coffee.jpg") center top no-repeat;}
 </style>
 </head>
@@ -37,9 +37,9 @@
                         <div id="productList">
                         
                         	<!-- listArea -->
-                            <div class="product">
-                            
-                           		<%for(Product p : list) {%>
+                        	<%for(Product p : list) {%>
+                        	
+                            <div class="product" style="margin-top:50px; margin-right:30px;">
                                 <div class="product_img">
                                 	<input type="hidden" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
@@ -48,7 +48,7 @@
                                     <a href=""><p><%=p.getPname() %></p></a>
                                 </div>
                                 <div class="like">
-                                    <img class="<%=contextPath %>/resources/img/store/like_icon" src="heart_emtpy.png" onclick="wishList();">
+                                    <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
                                 </div>
                                 <div class="basket">
                                     <img id="open" class="basket_icon" src="<%=contextPath %>/resources/img/store/cart.png">
@@ -60,9 +60,8 @@
                                             <button class="close">계속쇼핑</button>
                                         </div>
                                 </div>
-                                
-                                <%} %>
                             </div>
+                            <%} %>
                         </div>
                         <div id="paging" class="pagination">
                             <a href="#">&laquo;</a>

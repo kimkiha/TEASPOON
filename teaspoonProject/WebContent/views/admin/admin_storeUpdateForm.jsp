@@ -41,7 +41,7 @@ table tr {border-bottom: 1px solid lightgray;}
 			<div class="outer">
 				<p>상품 수정</p>
 
-				<form id="productInsertForm" action="update.st" method="post" enctype="multipart/form-data">
+				<form id="productInsertForm" action="update.st?pcode=<%=p.getPcode()%>" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
 							<th>상품코드</th>
@@ -97,10 +97,10 @@ table tr {border-bottom: 1px solid lightgray;}
 					</table>
 					<br>
 					<div id="fileArea">
-						<input type="file" name="file" id="file1" onchange="loadImg(this,1);">
-						<input type="file" name="file" id="file2" onchange="loadImg(this,2);"> 
-						<input type="file" name="file" id="file3" onchange="loadImg(this,3);">
-						<input type="file" name="file" id="file4" onchange="loadImg(this,4);">
+						<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
+						<input type="file" name="file2" id="file2" onchange="loadImg(this,2);"> 
+						<input type="file" name="file3" id="file3" onchange="loadImg(this,3);">
+						<input type="file" name="file4" id="file4" onchange="loadImg(this,4);">
 					</div>
 				
 					<div class="btns">

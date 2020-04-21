@@ -46,7 +46,7 @@ public class ProductUpdateServlet extends HttpServlet {
 			MultipartRequest multiRequest 
 			= new MultipartRequest(request,savePath,maxSize,"utf-8", new com.teaspoon.common.MyFileRenamePolicy());
 			
-			// 상품객체 p.setPname(multirequest.getParameter("pcode");라고 해도 됨
+			// 상품객체 p.setPname(multirequest.getParameter("pcode");라고 해도 
 			int pcode = Integer.parseInt(multiRequest.getParameter("pcode"));
 			String pname = multiRequest.getParameter("pname");
 			int supPrice =  Integer.parseInt(multiRequest.getParameter("supPrice"));
@@ -57,6 +57,7 @@ public class ProductUpdateServlet extends HttpServlet {
 			String pcontent = multiRequest.getParameter("pcontent");
 			
 			Product p = new Product();
+			p.setPcode(pcode);
 			p.setPname(pname);
 			p.setSupPrice(supPrice);
 			p.setPrice(price);
@@ -68,26 +69,27 @@ public class ProductUpdateServlet extends HttpServlet {
 			
 			// 파일리스트
 			ArrayList<Attachment> list = null;
-			if(multiRequest.getOriginalFileName("file1") != null) {
-				list = new ArrayList<>();
-				Attachment at = new Attachment();
-				at.setOriginName(multiRequest.getOriginalFileName("file1")); // 새로 추가된 파일의 원본명 추가
-				at.setChangeName(multiRequest.getFilesystemName("file1")); // 새로 추가된 파일의 수정명 추가
-				at.setFilePath(savePath);
-				list.add(at);
-				
-				System.out.println(list);
 			
-				if(multiRequest.getParameter("originFileNo") != null) {
-					at.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
-					
-					// 기존에 서버에 업로드된 파일도 삭제
-					File deleteFile = new File(savePath + multiRequest.getParameter("originFileName"));
-					deleteFile.delete();
-					
-				} else { // 기존의 첨부파일이 없었을 경우 --> 새로이 attachment 테이블에 insert
-					at.setRefBoardNo(pcode);
-					
+			for(int i=1; i<=4; i++) {
+				String name = "file"+i; // 
+				if(multiRequest.getOriginalFileName("upfile") != null) {
+					Attachment at = new Attachment();
+					at.setOriginName(multiRequest.getOriginalFileName("upfile")); // 새로 추가된 파일의 원본명 추가
+					at.setChangeName(multiRequest.getFilesystemName("upfile")); // 새로 추가된 파일의 수정명 추가
+					at.setFilePath(savePath);
+					list.add(at);
+			
+					if(multiRequest.getParameter("originFileNo") != null) {
+						at.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
+						
+						// 기존에 서버에 업로드된 파일도 삭제
+						File deleteFile = new File(savePath + multiRequest.getParameter("originFileName"));
+						deleteFile.delete();
+						
+					} else { // 기존의 첨부파일이 없었을 경우 --> 새로이 attachment 테이블에 insert
+						at.setRefBoardNo(pcode);
+						
+					}
 				}
 			}
 			
@@ -110,7 +112,6 @@ public class ProductUpdateServlet extends HttpServlet {
 			}
 		
 		}
-	
 	
 	
 	
