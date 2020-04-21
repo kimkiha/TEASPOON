@@ -354,10 +354,7 @@ public class MemberDao {
 		return list;
 	}
 
-<<<<<<< HEAD
-	public int insertMtm(Connection conn, MenToMen m) {
-=======
-<<<<<<< HEAD
+
 	public int insertMember(Connection conn, Member m) {
 		
 		int result = 0;
