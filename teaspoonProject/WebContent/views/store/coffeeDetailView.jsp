@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
 <%
-	Product p = (Product)request.getAttribute("p");
-	ArrayList<Attachment> list = new ArrayList<>();
+	Product p = (Product)request.getAttribute("pcode");
+	int pcode = p.getPcode();
+	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
 	// 0번 인덱스 : 대표이미지(클래스이름이 thumbnail인 div에 들어갈 이미지)
 	// 1~3번 인덱스 : Content영역에 들어갈 이미지
 	Attachment titleImg = list.get(0); // 대표이미지 
+	
+	System.out.println(list.get(0));
 %>    
 <!DOCTYPE html>
 <html>
@@ -44,7 +47,8 @@
                             <div id="productList1">
                                 <div class="pList1">
                                     <div class="thumbnail">
-                                        <img src="<%=contextPath %>/resources/img/store/<%=list.get(0)%>">
+                                        <img style="width:500px; height:400px;"
+                                        	src="<%=contextPath %>/resources/img/store/<%=list.get(0).getChangeName()%>">
                                     </div>
                                     <div class="move_review">
                                         <a href="#review"><p>REVIEW &gt;&gt;</p></a>
@@ -126,24 +130,21 @@
                                 <!--제품상세버튼, 고객리뷰버튼-->
                                 <div class="pList3">
                                     <p class="">제품상세</p>
-                                    <a href="#review"><p class="">고객리뷰</p></a>
+                                    <a href="#review"><p>고객리뷰</p></a>
                                 </div>
                                 
                                 <!--상품상세페이지-->
                                 <div class="pList4">
                                     <hr>
                                     <div>
-                                    	<img src="<%=contextPath %>/resources/img/store/<%=list.get(1)%>">
-                                    </div>
-                                    <div>
                                     	<%=p.getPcontent() %>
                                     </div>
+                                   	<% for(int i=1; i<=list.size(); i++){ %>
                                     <div>
-                                    	<img src="<%=contextPath %>/resources/img/store/<%=list.get(2)%>">
+                                    	<img style="width:500px; height:400px;"
+                                    		src="<%=contextPath %>/resources/img/store/<%=list.get(i).getChangeName()%>">
                                     </div>
-                                    <div>
-                                    	<img src="<%=contextPath %>/resources/img/store/<%=list.get(3)%>">
-                                    </div>
+                                   	<%} %>
                                 </div>
 
                                 <!--고객리뷰페이지-->
