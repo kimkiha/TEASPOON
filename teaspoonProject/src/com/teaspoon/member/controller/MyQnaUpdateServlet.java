@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.member.model.service.MemberService;
-import com.teaspoon.member.model.vo.Member;
+import sun.rmi.server.Dispatcher;
 
 /**
- * Servlet implementation class MyPageMainServlet
+ * Servlet implementation class MyQnaUpdateServlet
  */
-@WebServlet("/mymain.me")
-public class MyPageMainServlet extends HttpServlet {
+@WebServlet("/myqnaUpdate.me")
+public class MyQnaUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageMainServlet() {
+    public MyQnaUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,31 +31,8 @@ public class MyPageMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		//System.out.println(userNo);
-		Member myInfo = new MemberService().MyPageInfo(userNo);
-		
-		System.out.println(myInfo);
-		
-		if(myInfo != null) {
-			
-			request.setAttribute("myInfo",myInfo);
-
-			
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_main.jsp");
-			view.forward(request, response);
-			
-			
-		}else {// 조회실패
-			
-			
-			request.setAttribute("msg", "실패햇다 힘내자");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-			
-			
-		}
+		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_qnaEnrollForm.jsp");
+		view.forward(request, response);
 		
 		
 	}

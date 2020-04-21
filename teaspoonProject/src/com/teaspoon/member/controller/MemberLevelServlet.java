@@ -33,10 +33,10 @@ public class MemberLevelServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Grade> list = new MemberService().selectGradeList();
+		ArrayList<Grade> gList = new MemberService().selectGradeList();
 		
 		//게시판글 출력을위한 list객체전달
-		request.setAttribute("list", list);
+		request.setAttribute("gList", gList);
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_level.jsp");
 		view.forward(request, response);
 		

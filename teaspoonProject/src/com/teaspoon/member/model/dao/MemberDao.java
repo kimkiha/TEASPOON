@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.member.model.vo.MemberToMember;
 
 public class MemberDao {
 
@@ -194,7 +195,7 @@ public class MemberDao {
 			while(rset.next()) {
 				list.add(new Member(rset.getInt("mtm_no"),
 									rset.getInt("user_no"),
-						            rset.getInt("mtm_type"),
+						            rset.getString("mtm_name"),
 						            rset.getString("mtm_title"),
 						            rset.getDate("create_date")
 						            ));
@@ -207,7 +208,7 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(list);
 		
 		return list;
 	}
@@ -286,7 +287,7 @@ public class MemberDao {
 	}
 
 	public Member MyPageInfo(Connection conn, int userNo) {
-		Member m = null;
+		Member myInfo = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("MyPageInfo");
@@ -296,16 +297,18 @@ public class MemberDao {
 			pstmt.setInt(1, userNo);
 			pstmt.setInt(2, userNo);
 			pstmt.setInt(3, userNo);
+			rset= pstmt.executeQuery();
+			
 			
 			if(rset.next()) {
-				m=new Member();
-				m.setUserNo(rset.getInt("userno"));
-				m.setUserName(rset.getString("username"));
-				m.setGradeName(rset.getString("grade_name"));
-				m.setPoint(rset.getInt("point"));
-				m.setW(rset.getInt("w"));
-				m.setC(rset.getInt("c"));
 				
+				myInfo=new Member(rset.getInt(1),
+								 rset.getString(2),
+								 rset.getString(3),
+								 rset.getInt(4),
+								 rset.getInt(5),
+								 rset.getInt(6));
+				 
 			}
 			
 			
@@ -319,8 +322,8 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(m);
-		return m;
+		System.out.println(myInfo);
+		return myInfo;
 		
 	}
 	
@@ -330,7 +333,7 @@ public class MemberDao {
 		ArrayList<Grade> list = new ArrayList<Grade>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectGradeList");
+		String sql = prop.getProperty("selectGradeList1");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -351,6 +354,7 @@ public class MemberDao {
 		return list;
 	}
 
+<<<<<<< HEAD
 	public int insertMember(Connection conn, Member m) {
 		
 		int result = 0;
@@ -380,6 +384,237 @@ public class MemberDao {
 		return result;
 		
 	}
+=======
+	public int insertMtm(Connection conn, MemberToMember m) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertMtm");
+		
+		
+		
+		
+	}
+	
+	
+	public int getSearchKeywordListCount(Connection conn,String searchKeyword1,String searchKeyword2) {
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getSearchKeywordListCount");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword1);
+			pstmt.setString(2,searchKeyword2);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				// 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+	
+	
+	public ArrayList<Member> selectSearchKeywordList(Connection conn,String searchKeyword1, String searchKeyword2,PageInfo pi) {
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSearchKeywordList");
+
+		/*
+		 * pi에 담겨있는 현재 페이지값과 보여질게시글 수 을 이용해 보여질 페이시 수를 정한다. ex) boardLimit = 10
+		 * currentPage = 1 --> startRow :1 endRow:10 currentPage = 2 --> startRow :11
+		 * endRow:20 currentPage = 3 --> startRow :21 endRow:30
+		 * 
+		 * startRow : (currentPage-1) * boardLimit + 1 endRow : startRow + boardLimit -1
+		 */
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword1);
+			pstmt.setString(2,searchKeyword2);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				list.add(new Member(rset.getInt("USER_NO"), rset.getString("USER_ID"),
+						rset.getString("USER_NAME"), rset.getString("PHONE"),rset.getDate("ENROLL_DATE"),
+						 rset.getString("GRADE_NAME"),
+						 rset.getInt("BIRTHDAY"),
+						 rset.getString("status")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
+		}
+		return list;
+	}
+	
+	
+	public int getSearchAllStatusListCount(Connection conn,String searchKeyword2) {
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getSearchAllStatusListCount");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword2);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				// 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+	
+	
+	public ArrayList<Member> selectAllStatusList(Connection conn, String searchKeyword2,PageInfo pi) {
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllStatusList");
+
+		/*
+		 * pi에 담겨있는 현재 페이지값과 보여질게시글 수 을 이용해 보여질 페이시 수를 정한다. ex) boardLimit = 10
+		 * currentPage = 1 --> startRow :1 endRow:10 currentPage = 2 --> startRow :11
+		 * endRow:20 currentPage = 3 --> startRow :21 endRow:30
+		 * 
+		 * startRow : (currentPage-1) * boardLimit + 1 endRow : startRow + boardLimit -1
+		 */
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword2);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				list.add(new Member(rset.getInt("USER_NO"), rset.getString("USER_ID"),
+						rset.getString("USER_NAME"), rset.getString("PHONE"),rset.getDate("ENROLL_DATE"),
+						 rset.getString("GRADE_NAME"),
+						 rset.getInt("BIRTHDAY"),
+						 rset.getString("status")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
+		}
+		return list;
+	}
+	
+	
+	
+	public int getSearchAllGradeListCount(Connection conn,String searchKeyword1) {
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getSearchAllGradeListCount");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword1);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				// 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+	
+	
+	public ArrayList<Member> selectAllGradeList(Connection conn, String searchKeyword1,PageInfo pi) {
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllGradeList");
+
+		/*
+		 * pi에 담겨있는 현재 페이지값과 보여질게시글 수 을 이용해 보여질 페이시 수를 정한다. ex) boardLimit = 10
+		 * currentPage = 1 --> startRow :1 endRow:10 currentPage = 2 --> startRow :11
+		 * endRow:20 currentPage = 3 --> startRow :21 endRow:30
+		 * 
+		 * startRow : (currentPage-1) * boardLimit + 1 endRow : startRow + boardLimit -1
+		 */
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,searchKeyword1);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				list.add(new Member(rset.getInt("USER_NO"), rset.getString("USER_ID"),
+						rset.getString("USER_NAME"), rset.getString("PHONE"),rset.getDate("ENROLL_DATE"),
+						 rset.getString("GRADE_NAME"),
+						 rset.getInt("BIRTHDAY"),
+						 rset.getString("status")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
+		}
+		return list;
+	}
+	
+	
+>>>>>>> 4cf3d287583b2b0e53594893930bfd36d4b88c79
 	
 	public int updateMember(Connection conn, Member m) {
 		int result = 0;

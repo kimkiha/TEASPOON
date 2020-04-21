@@ -80,7 +80,7 @@
                                <div class="mp-qna-title"><P>1:1문의 내역</P></div>
                                <div class="mp-qna-title1">
                                 <div class="mp-qna-title2">총<span><%=pi.getListCount() %></span>건의 상담내역이 있습니다</div>
-                                <div class="mp-qna-title3"><button onclick="">상담신청</button></div>
+                                <div class="mp-qna-title3"><button onclick="location.href='<%=contextPath%>/myqnaUpdate.me';">상담신청</button></div>
                                </div>      
                            </div>
                             </div>
@@ -102,7 +102,7 @@
                                <%}else{ %>
                               		<% for(Member m : list){ %>
                                     <tr>
-                                        <td><%= m.getMtm_type() %></td>
+                                        <td><%= m.getMtm_name() %></td>
                                         <td colspan="2"><%= m.getMtm_title() %></td>
                                         <td><%=m.getCreate_date() %></td>
                                         <td>답변완료</td>

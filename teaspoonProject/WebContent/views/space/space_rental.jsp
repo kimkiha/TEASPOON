@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공간대여 | TeaSpoon</title>
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
@@ -122,7 +122,7 @@
                             <h5><요금 및 예약 가능 여부 확인></h5>
                             
                             <br>
-                           <form action="memberEnroll" method="post"> 
+                           <form id="enrollForm" action="" method="post"> 
                             <div class="choice"> 
                                 <div class="choice1">날짜 선택</div>
                                 <div class="choice2">대여 시간</div>
@@ -133,22 +133,22 @@
                                 <input type="date"  class="date" name="dateofbirth" id="dateofbirth">
                                 
                                 <select class="box1">
-                                  <option>아카이야 09:30~11:30</option>
-                                  <option>아카이야 13:00~15:00</option>
-                                  <option>아카이야 16:30~18:30</option>
+                                  <option name="time" value="onem">아카이야 09:30~11:30</option>
+                                  <option name="time" value="twom">아카이야 13:00~15:00</option>
+                                  <option name="time" value="treem">아카이야 16:30~18:30</option>
                                   <option selected>시간선택</option>          
                                 </select>
                                 
                                 <select class="box2">
-                                  <option>10인 이하</option>
-                                  <option>20인 이하</option>
-                                  <option>30인 이하</option>
+                                  <option name="people" value="one">10인 이하</option>
+                                  <option name="people" value="two">20인 이하</option>
+                                  <option name="people" value="tree">30인 이하</option>
                                   <option selected>인원수</option>
                                 </select> 
 
                                 <select class="box3">
-                                  <option>VIP 할인</option>
-                                  <option>쿠폰 할인</option>
+                                  <option name="op" value="vip">VIP 할인</option>
+                                  <option name="op" value="coupon">쿠폰 할인</option>
                                   <option selected>없음</option>
                                 </select>
                               </div>

@@ -69,58 +69,57 @@
                             <div class="mp-qna">
                                <div class="mp-qna-title"><P>1:1문의 내역</P></div>
                                <div class="outer" align="center">
-                                    <form action="" method="post">
+                                    <form action="<%=contextPath %>/myQnaInsert.me" method="post" enctype="multipart/form-data">
+                                    	<input type="hidden" name="writer" value="<%=loginUser.getUserNo() %>">
                                         <table align="center" id="mypage_table">
                                             <tr >
                                                 <th width="170">상담구분</th>
-                                                <td width="900" id="opt">
+                                                <td width="900" id="opt" name="mtmType">
                                                     <span>
-                                                        <input type="radio"id="opt1"name="qna" checked>주문/결제
+                                                        <input type="radio"id="opt1"name="mtmType"value="10" checked>주문/결제
                                                         <label for="opt1"></label>
                                                     </span>    
                                                     <span>
-                                                        <input type="radio" id="opt2"name="qna">배송
+                                                        <input type="radio" id="opt2"name="mtmType"value="20">배송
                                                         <label for="opt2"></label>
                                                     </span>
                                                     <span>
-                                                        <input type="radio" id="opt3"name="qna">이벤트/쿠폰
+                                                        <input type="radio" id="opt3"name="mtmType"value="30">이벤트/쿠폰
                                                         <label for="opt3"></label>
                                                     </span>
                                                     <span>
-                                                        <input type="radio"id="opt4"name="qna">환불/반품/교환
+                                                        <input type="radio"id="opt4"name="mtmType"value="40">환불/반품/교환
                                                         <label for="opt4"></label>
                                                     </span>
                                                     <span>
-                                                        <input type="radio"id="opt5"name="qna">회원/포인트
+                                                        <input type="radio"id="opt5"name="mtmType"value="50">회원/포인트
                                                         <label for="opt5"></label>
                                                     </span>
                                                     <span>
-                                                        <input type="radio"id="opt6"name="qna">사이트이용/기타
+                                                        <input type="radio"id="opt6"name="mtmType"value="60">사이트이용/기타
                                                         <label for="opt6"></label>
                                                     </span>
                                                  </td>   
                                             </tr>
                                             <tr>
                                                 <th>제목</th>
-                                                <td><input type="text"id="t" placeholder="제목을 입력해 주세요"></td>
+                                                <td><input type="text"id="t"name="title" placeholder="제목을 입력해 주세요"></td>
                                             </tr>
                                         </table>
                                         <div class="mp-qna-body">
                                             <div id="textarea">
-                                                <textarea name="" id="" cols="112" rows="19" required
+                                                <textarea name="mtmContent" id="" cols="112" rows="19" required
                                                 placeholder="상담내용을 입력해주세요" style="resize: none;"></textarea>
                                             </div>
                                             <div id="uploadfile">
-                                                <input type="file" accept="image/*" >
+                                                <input type="file" accept="image/*" name="thumbnail_upfiles">
                                             </div>
-                                            <div id="email-check">
-                                                <span><input type="checkbox">답변완료시 이메일로 알림 받기(ssukpuk@naver.com)</span>
-                                            </div>
+                                           
                                           
                                         </div>
                                         <div class="func">
                                             <button class="btn btn-cancel">취소</button>
-                                            <button class="btn btn-submit">등록</button>
+                                            <button class="btn btn-submit" type="submit">등록</button>
                                         </div>
                                     </form> 
                                     <br><br>
