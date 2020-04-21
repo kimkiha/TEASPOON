@@ -145,8 +145,30 @@ public class MemberService {
 	}
 	
 	
+	public int getSearchKeywordListCount(String searchKeyword1,String searchKeyword2) {
+		Connection conn = getConnection();
+		
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new MemberDao().getSearchKeywordListCount(conn,searchKeyword1,searchKeyword2);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
 	
+	/**
+	 *  관리자 멤버현황페이지에 키워드조회시 보여질 게시글  리스트 조회용 서비스
+	 * @param pi	--> 요청한 페이지, 한페이지 보여질 게시글 최대수가 담겨있는 객체
+	 * @return
+	 */
+	public ArrayList<Member> selectSearchKeywordList(String searchKeyword1,String searchKeyword2,PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectSearchKeywordList(conn,searchKeyword1,searchKeyword2, pi);
+		close(conn);
+		return list;
+	}
 
 	
 }

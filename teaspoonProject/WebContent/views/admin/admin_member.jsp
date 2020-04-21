@@ -2,8 +2,11 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.PageInfo "%>
 <% 
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	String searchId = String.valueOf(request.getAttribute("searchId"));
+	String searchKeyword1 = String.valueOf(request.getAttribute("searchKeyword1"));
+	String searchKeyword2 = String.valueOf(request.getAttribute("searchKeyword2"));
 	//벨류오브는 문자열 null로바낌
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -90,22 +93,23 @@
                 </div>
                 <div id="c1_2">
                     <div class="dropdown"style="padding-right:10px">
-                        <button type="button1" class="btn btn-primary dropdown-toggle btn1" data-toggle="dropdown">회원상태별분류</button>
+                        <button type="button1" class="btn btn-primary dropdown-toggle btnStatus" data-toggle="dropdown">회원상태별분류</button>
                         <div class="dropdown-menu dm1">
                           <a class="dropdown-item" href="#">전체회원</a>
                           <a class="dropdown-item" href="#">활동중인회원</a>
                           <a class="dropdown-item" href="#">휴면회원</a>
                           <a class="dropdown-item" href="#">블랙리스트</a>
+                          <a class="dropdown-item" href="#">탈퇴회원</a>
                         </div>
                       </div>
                       <div class="dropdown" style="padding-right:10px">
-                        <button type="button2" class="btn btn-primary dropdown-toggle btn2" data-toggle="dropdown">회원등급별분류</button>
+                        <button type="button2" class="btn btn-primary dropdown-toggle btnLevel" data-toggle="dropdown">회원등급별분류</button>
                         <div class="dropdown-menu dm2">
                           <a class="dropdown-item" href="#">전체등급</a>
-                          <a class="dropdown-item" href="#">VIP</a>
-                          <a class="dropdown-item" href="#">골드</a>
-                          <a class="dropdown-item" href="#">실버</a>
-                          <a class="dropdown-item" href="#">브론즈</a>
+                      		<%for(Grade g : gList){ %>
+							  <a class="dropdown-item" href="#"><%=g.getGradeName()%></a>
+							<%} %>
+                         
                         </div>
                       </div>
                       <div class="search">
@@ -140,9 +144,35 @@
 			<%} %>
        	
         	
-        <%}else{  %>
+        <%}else if(!searchKeyword1.equals("null")){  %>
+        	 	           <!-- 현재 페이지에 보여질 페이징바 -->
+			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='keywordList.me?currentPage=1&searchKeyword1=<%=searchKeyword1 %>&searchKeyword2=<%=searchKeyword2 %>'">&lt;&lt;</button>
+			<!-- 이전페이지로(<) -->
+			<button onclick="location.href='keywordList.me?currentPage=<%=currentPage-1%>&searchKeyword1=<%=searchKeyword1 %>&searchKeyword2=<%=searchKeyword2 %>'">&lt;</button>
+			<%} %>
+			
+			<%for(int p=startPage; p<=endPage; p++){%>
+				<%if(currentPage != p) {%>
+				<button onclick="location.href='keywordList.me?currentPage=<%=p%>&searchKeyword1=<%=searchKeyword1 %>&searchKeyword2=<%=searchKeyword2 %>'"><%=p%></button>
+				<%}else{ %>
+				<button disabled><%=p %></button>
+				<%} %>	
+			<%} %>
+			
+			<%if(currentPage != maxPage){ %>
+			<!-- 다음페이지로(<) -->
+			<button onclick="location.href='keywordList.me?currentPage=<%=currentPage+1%>&searchKeyword1=<%=searchKeyword1 %>&searchKeyword2=<%=searchKeyword2 %>'">&gt;</button>
+			<!-- 맨 마지막으로(>>) -->
+			<button onclick="location.href='keywordList.me?currentPage=<%=maxPage %>&searchKeyword1=<%=searchKeyword1 %>&searchKeyword2=<%=searchKeyword2 %>'">&gt;&gt;</button>
+			<%} %>
+       	
+	     
+	        	
         	
-	        	           <!-- 현재 페이지에 보여질 페이징바 -->
+        <%}else{ %>
+           	           <!-- 현재 페이지에 보여질 페이징바 -->
 			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 			<!-- 맨 처음으로(<<) -->
 			<button onclick="location.href='list.me?currentPage=1'">&lt;&lt;</button>
@@ -164,9 +194,7 @@
 			<!-- 맨 마지막으로(>>) -->
 			<button onclick="location.href='list.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
 			<%} %>
-	        	
-        	
-        <%} %>
+        <%} %>>
         
 
                 </div>
@@ -181,15 +209,18 @@
                 
                 //val("값") 이렇게 값을 넣으면 벨류값을 변경하고 val()이렇게 실행만할시 이미 들어있느 벨류값을 가져온다.
                 value = $(this).text();
-                console.log(value);
-                $(".btn1").text(value);
+                
+                $(".btnStatus").text(value);
+                console.log($(".btnStatus").text());
+               
             });
             $(".dm2>.dropdown-item").click(function(){
                 
                 //val("값") 이렇게 값을 넣으면 벨류값을 변경하고 val()이렇게 실행만할시 이미 들어있느 벨류값을 가져온다.
                 value = $(this).text();
-                console.log(value);
-                $(".btn2").text(value);
+               
+                $(".btnLevel").text(value);
+                console.log($(".btnLevel").text());
             });
         });
     </script>
@@ -206,15 +237,15 @@
     <script>
     	$(function(){
     		$("#searchBtn2").click(function(){
-    			if( $(".btn1").text() == '회원상태별분류' || $(".btn2").text() =='회원등급별분류' ){
+    			if( $(".btnStatus").text() == '회원상태별분류' || $(".btnLevel").text() =='회원등급별분류' ){
     				alert("상태와 등급을 선택해주세요.");
+    			}else if( $(".btnStatus").text() == '전체회원' || $(".btnLevel").text() =='전체등급'){	
+    				location.href='list.me?currentPage=1';
     			}else{
-    				var searchKeyword1 =  $(".btn1").text();
-        			var searchKeyword2 =  $(".btn2").text();
-        			console.log(searchKeyword1);
-        			console.log(searchKeyword2);
+    				var searchKeyword1 =  $(".btnStatus").text();
+        			var searchKeyword2 =  $(".btnLevel").text();
+        			
         			location.href='keywordList.me?searchKeyword1='+searchKeyword1+"&searchKeyword2="+searchKeyword2+"&currentPage=1";
-        		
     			}
     			});
     	})

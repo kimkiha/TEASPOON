@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.PageInfo "%>
 <%
-ArrayList<Grade> list = (ArrayList<Grade>)request.getAttribute("list");
+ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
 
 %>
 <!DOCTYPE html>
@@ -44,12 +44,12 @@ ArrayList<Grade> list = (ArrayList<Grade>)request.getAttribute("list");
                             </tbody>
 
                             <tfoot>
-                     <%if(list.isEmpty()){%>
+                     <%if(gList.isEmpty()){%>
 				<tr>
 					<td colspan="8">조회된 리스트가 없습니다.</td>
 				</tr>
 				<%}else{%>
-					<%for(Grade g : list){ %>
+					<%for(Grade g : gList){ %>
 						<tr>
 							<td><%=g.getGradeCode() %></td>
 							<td><%=g.getGradeName() %></td>
