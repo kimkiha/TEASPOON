@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.*, com.teaspoon.board.model.vo.*"%>
+<%
+	MenToMen m = (MenToMen)request.getAttribute("m");
+	Attachment at =(Attachment)request.getAttribute("at");
+
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,20 +114,19 @@
                                             </tr>
                                             <tr>
                                                 <th>제목</th>
-                                                <td> 고객님이 입력한 글제목이 올 자리입니다</td>
+                                                <td> <%=m.getMtmTitle() %></td>
                                             </tr>
                                         </table>
                                         <div class="mp-qna-body">
                                             <div id="textarea">
-                                                그들은 관현악이며, 구하기 길지 보배를 그들에게 그들의 운다. 있음으로써 싶이 하는 시들어 물방아 얼음 산야에 쓸쓸하랴? 가는 우리는 이상의 같이, 꽃이 하여도 불러 그들의 되려니와, 운다. 살았으며, 끝에 소담스러운 것이다. 우리의 이 유소년에게서 위하여, 생생하며, 하여도 사랑의 봄바람이다. 피가 있음으로써 두손을 인류의 거선의 이상의 이상이 안고, 황금시대다. 웅대한 얼마나 끝에 그들에게 역사를 돋고, 못할 이것이다. 길을 설레는 그것은 붙잡아 위하여서. 놀이 할지니, 끓는 꽃 낙원을 위하여 피어나는 약동하다.
-
-                                                무엇을 트고, 불어 속에서 우리 낙원을 듣는다. 새 싹이 커다란 봄바람이다. 발휘하기 너의 사라지지 힘있다. 위하여 힘차게 눈이 그와 있을 그들의 위하여, 우리 아니다. 천하를 피어나는 방지하는 그림자는 수 우리 밥을 만물은 것이다. 할지니, 일월과 그들의 풍부하게 뼈 넣는 철환하였는가? 위하여 같으며, 풀밭에 인류의 청춘의 별과 사막이다. 그것은 인도하겠다는 뼈 있으랴? 방황하여도, 뼈 동산에는 투명하되 심장의 보배를 이상, 부패뿐이다.
-                                                
-                                                귀는 것이다.보라, 가것은 우리 사막이다. 석가는 방황하였으며, 우리 있는가? 웅대한 오직 풀이 봄바람을 때까지 소리다.이것은 산야에 그들은 사막이다. 길지 밥을 인간이 부패뿐이다. 품었기 인간의 그들은 싸인 더운지라 약동하다. 못할 듣기만 전인 피어나기 같이, 그들에게 갑 속에 운다. 듣기만 위하여 능히 관현악이며, 싸인 풀밭에 그러므로 소리다.이것은 사막이다. 찾아 이상은 이상의 열락의 새 굳세게 있다. 소금이라 우리의 끓는 두기 끓는 그들은 스며들어 것이다.
+                                                <%= m.getMtmContent() %>
                                             </div>
-                                           
-                                          
                                         </div>
+                                        <%if(at != null){ //첨부파일이 존재할 경우 %>
+                                        <div></div><a href="<%=contextPath %>/resources/thumbnail_upfiles/<%=at.getChangeName()%>"><%= at.getOriginName() %></a></div>
+                                        <% }else{ %>
+                                        	첨부파일이 없습니다
+                                        <% }%>
                                         <div class="func">
                                             <button class="btn btn-cancel">뒤로가기</button>
                                            

@@ -14,6 +14,11 @@ public class MenToMen {
 	private String answer;
 	private String status;
 	
+	//mtm 상세 조회용
+	private String mtmName;
+	private String userId;
+	
+	
 	public MenToMen() {
 		
 	}
@@ -31,6 +36,16 @@ public class MenToMen {
 		this.commentDate = commentDate;
 		this.answer = answer;
 		this.status = status;
+	}
+	
+	public MenToMen(int mtmNo,String mtmName,  String mtmTitle,String userId, Date createDate,String mtmContent  ) {
+		super();
+		this.mtmNo = mtmNo;
+		this.mtmTitle = mtmTitle;
+		this.mtmContent = mtmContent;
+		this.createDate = createDate;
+		this.mtmName = mtmName;
+		this.userId = userId;
 	}
 
 	public int getMtmNo() {
@@ -112,6 +127,22 @@ public class MenToMen {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public String getMtmName() {
+		return mtmName;
+	}
+
+	public void setMtmName(String mtmName) {
+		this.mtmName = mtmName;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	@Override
 	public String toString() {
@@ -119,6 +150,8 @@ public class MenToMen {
 				+ ", mtmContent=" + mtmContent + ", createDate=" + createDate + ", reComment=" + reComment
 				+ ", commentDate=" + commentDate + ", answer=" + answer + ", status=" + status + "]";
 	}
+
+	
 	
 	
 

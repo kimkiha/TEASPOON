@@ -122,8 +122,8 @@ public class MemberService {
 	
 	/**
 	 * 마이페이지용 상단 메뉴바
-	 * @param userNo
-	 * @return 
+	 * @param userNo -->유저 번호가 담겨있다
+	 * @return  이름,등급,쿠폰,위시리스트,포인트 값이 담겨있다
 	 */
 	public Member MyPageInfo(int userNo) {
 		Connection conn = getConnection();
@@ -135,7 +135,7 @@ public class MemberService {
 	}
 	
 	
-	 /* 등급현황 페이지에 보일 등급 객체조회 서비스
+	 /** 등급현황 페이지에 보일 등급 객체조회 서비스
 	 * @return
 	 */
 	public ArrayList<Grade> selectGradeList(){
@@ -257,7 +257,12 @@ public class MemberService {
 		return list;
 	}
 	
-	
+	/**
+	 *  1:1문의 작성하기
+	 * @param m db에 넣을 파일이 담겨있다
+	 * @param at 이미지 파일이 담겨있다
+	 * @return
+	 */
 	public int insertMtm(MenToMen m, Attachment at) {
 		
 		Connection conn = getConnection();
@@ -277,6 +282,34 @@ public class MemberService {
 		
 		close(conn);
 		return result1*result2;
+	}
+	/**
+	 *     1:1문의 상세조회용 서비스(게시판정보)
+	 * @param uno >>조회하고자하는 해당 게시글 번호
+	 * @return    
+	 */
+	public MenToMen selectMtm(int uno) {
+		Connection conn= getConnection();
+		
+		MenToMen m = new MemberDao().selectMtm(conn,uno);
+		close(conn);
+		return m;
+	}
+	
+	
+	/**
+	 *     1:1 문의 게시판 상세조회용 서비스(첨부파일 정보)
+	 * @param uno      -->조회하고자하는 해당게시글 번호
+	 * @return
+	 */
+	public Attachment selectAttachment(int uno) {
+		Connection conn = getConnection();
+		
+		Attachment at = new MemberDao().selectAttachment(conn,uno);
+		
+		close(conn);
+		return at;
+		
 	}
 
 	
