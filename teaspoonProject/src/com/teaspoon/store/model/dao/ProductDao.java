@@ -159,16 +159,46 @@ public class ProductDao {
 		return list;
 	}
 	
+	// 사용자 커피 리스트 뷰 페이징 바 
+	public int getCoffeeListCount(Connection conn) {
+		int listCount = 0;
+
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getCoffeeListCount");
+		System.out.println(sql);
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+
+			if (rset.next()) { // 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return listCount;
+	}
+	
+	
 	
 	// 사용자 coffeeListView 구문
-	public ArrayList<Product> selectCoffeeList(Connection conn){
+	public ArrayList<Product> selectCoffeeList(Connection conn, PageInfo pi){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectCoffeeThumbnailList");
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -236,32 +266,62 @@ public class ProductDao {
 	}
 	
 
+	// 사용자 아이템 리스트 뷰 페이징 바 
+		public int getItemListCount(Connection conn) {
+			int listCount = 0;
+
+			Statement stmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("getItemListCount");
+			System.out.println(sql);
+			try {
+				stmt = conn.createStatement();
+				rset = stmt.executeQuery(sql);
+
+				if (rset.next()) { // 컬럼인덱스로 추출
+					listCount = rset.getInt(1);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(stmt);
+			}
+			return listCount;
+		}
 	
 	// 사용자 item ListView구문
-	public ArrayList<Product> selectItemList(Connection conn){
+	public ArrayList<Product> selectItemList(Connection conn, PageInfo pi){
 	
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectItemThumbnailList");
+		int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow = startRow + pi.getBoardLimit()-1;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rset = pstmt.executeQuery();
 			
-			Product p  = new Product();
-			p.setPcode(rset.getInt("PCODE"));
-			p.setPname(rset.getString("PNAME"));
-			p.setSupPrice(rset.getInt("SUP_PRICE"));
-			p.setPrice(rset.getInt("PRICE"));
-			p.setStock(rset.getInt("STOCK"));
-			p.setStatus(rset.getString("STATUS"));
-			p.setKeyword(rset.getString("KEYWORD"));
-			p.setTotalCount(rset.getInt("TOTAL_COUNT"));
-			p.setKind(rset.getString("KIND"));
-			p.setPcontent(rset.getString("PCONTENT"));
-			p.setTitleImg(rset.getString("CHANGE_NAME"));
-			list.add(p);	
+			while(rset.next()) {
+				Product p  = new Product();
+				p.setPcode(rset.getInt("PCODE"));
+				p.setPname(rset.getString("PNAME"));
+				p.setSupPrice(rset.getInt("SUP_PRICE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setStock(rset.getInt("STOCK"));
+				p.setStatus(rset.getString("STATUS"));
+				p.setKeyword(rset.getString("KEYWORD"));
+				p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+				p.setKind(rset.getString("KIND"));
+				p.setPcontent(rset.getString("PCONTENT"));
+				p.setTitleImg(rset.getString("CHANGE_NAME"));
+				list.add(p);	
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
