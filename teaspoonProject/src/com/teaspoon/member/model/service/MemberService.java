@@ -123,12 +123,12 @@ public class MemberService {
 	public Member MyPageInfo(int userNo) {
 		Connection conn = getConnection();
 		
-		Member m = new MemberDao().MyPageInfo(conn,userNo);
+		Member myInfo = new MemberDao().MyPageInfo(conn,userNo);
 		
 		close(conn);
 		
 	
-		return m;
+		return myInfo;
 		
 	}
 	

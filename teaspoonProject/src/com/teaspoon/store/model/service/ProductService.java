@@ -119,16 +119,16 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
 
 	// 새롭게 등록된 파일이 있을경우 
 	public int updateProduct(Product p, ArrayList<Attachment> list) {
 		Connection conn = getConnection();
 		
 		int result1 = new ProductDao().updateProduct(conn, p);
-		int result2 = 0;
+		int result2 = 1;
 		
 		if(!list.isEmpty()) {
-			result2 = 1;
 			for(int i=0; i<=list.size(); i++) {
 				if(list.get(i).getFileNo() != 0) { // 기존 첨부파일이 있을경우 --> update
 					result2 = new ProductDao().updateAttachment(conn, list);

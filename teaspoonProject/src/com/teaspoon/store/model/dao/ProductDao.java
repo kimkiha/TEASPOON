@@ -367,17 +367,78 @@ public class ProductDao {
 		return result;
 	}
 	
-//	
-//	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
-//	
-//		
-//		
-//	}
-//	
-//	
-//	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
-//		
-//		
-//	}
+	
+	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
+		int result = 1;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAttachment");
+		
+		try {
+			for(int i=0; i<list.size(); i++) {
+				Attachment at = list.get(i);
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, at.getOriginName());
+				pstmt.setString(2, at.getChangeName());
+				pstmt.setString(3, at.getFilePath());
+				
+				if(i==0) { // 대표이미지(레벨이 1)
+					pstmt.setInt(4, 1);
+				}else {	// 상세이미지(레벨이 2)
+					pstmt.setInt(4, 2);
+				}
+				
+				result = pstmt.executeUpdate();
+				
+				if(result == 0 ) {
+					return 0;
+				}
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	
+	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
+		int result = 1;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateNewAttachment");
+		
+		try {
+			for(int i=0; i<list.size(); i++) {
+				Attachment at = list.get(i);
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, at.getOriginName());
+				pstmt.setString(2, at.getChangeName());
+				pstmt.setString(3, at.getFilePath());
+				
+				if(i==0) { // 대표이미지(레벨이 1)
+					pstmt.setInt(4, 1);
+				}else {	// 상세이미지(레벨이 2)
+					pstmt.setInt(4, 2);
+				}
+				
+				result = pstmt.executeUpdate();
+				
+				if(result == 0 ) {
+					return 0;
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 
 }

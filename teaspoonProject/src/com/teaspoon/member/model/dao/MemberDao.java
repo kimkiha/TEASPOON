@@ -286,7 +286,7 @@ public class MemberDao {
 	}
 
 	public Member MyPageInfo(Connection conn, int userNo) {
-		Member m = null;
+		Member myInfo = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("MyPageInfo");
@@ -296,16 +296,18 @@ public class MemberDao {
 			pstmt.setInt(1, userNo);
 			pstmt.setInt(2, userNo);
 			pstmt.setInt(3, userNo);
+			rset= pstmt.executeQuery();
+			
 			
 			if(rset.next()) {
-				m=new Member();
-				m.setUserNo(rset.getInt("userno"));
-				m.setUserName(rset.getString("username"));
-				m.setGradeName(rset.getString("grade_name"));
-				m.setPoint(rset.getInt("point"));
-				m.setW(rset.getInt("w"));
-				m.setC(rset.getInt("c"));
 				
+				myInfo=new Member(rset.getInt("userno"),
+								 rset.getString("username"),
+								 rset.getString("grade_name"),
+								 rset.getInt("point"),
+								 rset.getInt("pcode"),
+								 rset.getInt("count"));
+				 
 			}
 			
 			
@@ -319,8 +321,8 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(m);
-		return m;
+		System.out.println(myInfo);
+		return myInfo;
 		
 	}
 	

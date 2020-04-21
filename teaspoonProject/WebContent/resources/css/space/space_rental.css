@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /*대관 슬라이드*/
-* {box-sizing: border-box;}
+
 body {font-family: Verdana, sans-serif; margin:0}
 .mySlides {display: none}
 img {vertical-align: middle;}
@@ -248,10 +248,6 @@ img {vertical-align: middle;}
     }
   }
 
-body {
-    padding: 1%;
-    font: 1/1.5em sans-serif;
-}
 
 .btn1 {
     background: rgb(157,157,157);

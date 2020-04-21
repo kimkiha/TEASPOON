@@ -26,17 +26,37 @@ public class Member {
 	private String mtm_title; // 1:1상담 제목
 	private Date create_date; 
 	
-	private int w; //위시리스트 갯수 카운트용
-	private int c; //쿠폰 갯수 카운트용
+	private int pcode; //위시리스트 갯수 카운트용
+	private int count; //쿠폰 갯수 카운트용
 	
-	public Member(int userNo, String userName, int point, String gradeName, int w, int c) {
+	public int getPcode() {
+		return pcode;
+	}
+
+
+	public void setPcode(int pcode) {
+		this.pcode = pcode;
+	}
+
+
+	public int getCount() {
+		return count;
+	}
+
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+
+	public Member(int userNo, String userName, String gradeName,int point,  int pcode, int count) {
 		super();
 		this.userNo = userNo;
 		this.userName = userName;
 		this.point = point;
 		this.gradeName = gradeName;
-		this.w = w;
-		this.c = c;
+		this.pcode = pcode;
+		this.count = count;
 	}
 
 
@@ -92,24 +112,7 @@ public class Member {
 	}
 	
 	
-	public int getW() {
-		return w;
-	}
-
-
-	public void setW(int w) {
-		this.w = w;
-	}
-
-
-	public int getC() {
-		return c;
-	}
-
-
-	public void setC(int c) {
-		this.c = c;
-	}
+	
 
 
 	public int getMtm_no() {

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*"%>
 <%
-	//ArrayList<Item> list = (ArrayList<Item>)request.getAttribute("list");
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 
 %>    
     
@@ -41,14 +41,15 @@
                         <div id="productList">
                         
                         	<!-- listArea -->
-                            <div class="product">
+                        	<%for(Product p : list) {%>
+                            
+                            <div class="product" style="margin-top:50px; margin-right:30px;">
                                 <div class="product_img">
+                                	<input type="hidden" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath %>/resources/img/store/item3_1.jpg" style="float:left; width:300px; height:inherit">
                                 </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동">
-                                    	<p style="width:120px; color:white;"> SPECIAL COFFEE 체리향, 월넛향 </p>
-                                    </a>
+                                <div class="product_detail" style="width:300px; height:60px; padding:0px">
+                                    <a href=""><p style="padding-top:15px;padding-left:20px;"> SPECIAL COFFEE 체리향, 월넛향 </p></a>
                                 </div>
                                 <div class="like">
                                     <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
@@ -64,160 +65,7 @@
                                         </div>
                                 </div>
                             </div>
-                            <div class="p1 product" >
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="fr product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="p1 product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="fr product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="p1 product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="fr product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="p1 product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
-                            <div class="fr product">
-                                <div class="product_img">
-                                    <img src="product.jpg" style="float:left; width:100%; height:inherit">
-                                </div>
-                                <div class="product_detail">
-                                    <a href="해당 상품의 상세페이지로 이동"><p> SPECIAL COFFEE <br> 체리향, 월넛향 </p></a>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon" src="heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <a href="장바구니에 넣기"><img class="basket_icon" src="cart.png"></a>
-                                </div>
-                            </div>
+                             <%} %>
                         </div>
                         <div id="paging" class="pagination">
                             <a href="#">&laquo;</a>
