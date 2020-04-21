@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.common.*"%>
 <%
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 
 %>    
-    
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +22,7 @@
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
-	#content1 {width:100%; height:1800px; background:#ffffff;}
+	#content1 {width:100%; height:inherit; background:#ffffff;}
 	#banner {height: 270px; line-height: 270px; background:url("<%=request.getContextPath() %>/resources/img/store/storetop_item.jpg") center top no-repeat;}
 </style>
 </head>
@@ -46,10 +50,10 @@
                             <div class="product" style="margin-top:50px; margin-right:30px;">
                                 <div class="product_img">
                                 	<input type="hidden" value=<%=p.getPcode() %>>
-                                    <img src="<%=contextPath %>/resources/img/store/item3_1.jpg" style="float:left; width:300px; height:inherit">
+                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
-                                    <a href=""><p style="padding-top:15px;padding-left:20px;"> SPECIAL COFFEE 체리향, 월넛향 </p></a>
+                                    <a href=""><p style="padding-top:15px;padding-left:20px;"><%=p.getPname() %></p></a>
                                 </div>
                                 <div class="like">
                                     <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
@@ -68,13 +72,27 @@
                              <%} %>
                         </div>
                         <div id="paging" class="pagination">
-                            <a href="#">&laquo;</a>
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <a href="#">5</a>
-                            <a href="#">&raquo;</a>
+                            <%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+		<!-- 맨 처음으로(<<) -->
+		<button onclick="location.href='item.st?currentPage=1'">&lt;&lt;</button>
+		<!-- 이전페이지로(<) -->
+		<button onclick="location.href='item.st?currentPage=<%=currentPage-1%>'">&lt;</button>
+		<%} %>
+		
+		<%for(int p=startPage; p<=endPage; p++){%>
+			<%if(currentPage != p) {%>
+			<button onclick="location.href='item.st?currentPage=<%=p%>'"><%=p%></button>
+			<%}else{ %>
+			<button dispabled><%=p %></button>
+			<%} %>	
+		<%} %>
+		
+		<%if(currentPage != maxPage){ %>
+		<!-- 다음페이지로(<) -->
+		<button onclick="location.href='item.st?currentPage=<%=currentPage+1%>'">&gt;</button>
+		<!-- 맨 마지막으로(>>) -->
+		<button onclick="location.href='item.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+		<%} %>
                         </div>
                     </div> 
                 </div>
