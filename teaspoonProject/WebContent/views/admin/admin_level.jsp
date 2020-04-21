@@ -17,6 +17,9 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
         table tr{border-bottom: 1px solid lightgray;}
         table tr:first-child{border-top: 1px solid lightgray;}
         table th{background-color: #dbdbdb;}
+         #levelInsertForm,#levelUpdateForm{
+        	display:none;
+        }
     </style>
 </head>
 <body>
@@ -35,10 +38,11 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                                 <tr>
                                     <th>등급번호</th>
                                     <th>등급명</th>
-                                    <th>등급달성금액</th>
+                                    <th>최소달성금액</th>
+                                    <th>최대달성금액</th>
                                     <th>등급별할인률</th>
                                     <th>
-                                        <button type="button" style="width: 100px;">등급추가</button>
+                                        <button id="btnInsert" type="button" style="width: 100px;" >등급추가</button>
                                     </th>
                                 </tr>
                             </tbody>
@@ -46,7 +50,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                             <tfoot>
                      <%if(gList.isEmpty()){%>
 				<tr>
-					<td colspan="8">조회된 리스트가 없습니다.</td>
+					<td colspan="6">조회된 리스트가 없습니다.</td>
 				</tr>
 				<%}else{%>
 					<%for(Grade g : gList){ %>
@@ -54,9 +58,10 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
 							<td><%=g.getGradeCode() %></td>
 							<td><%=g.getGradeName() %></td>
 							<td><%=g.getMinAcount() %></td>
-							<td><%=g.getGradeRate() %>%</td>
+							<td><%=g.getMaxAcount() %></td>
+							<td><%=g.getGradeRate() %></td>
 							<td>
-							<button type="button">수정</button>
+							<button type="button" id="btnUpdate">수정</button>
 							<button type="button">삭제</button>
 							</td>
 							
@@ -71,7 +76,39 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                     </div>
                 </div>
                 <div id="c1_2" style="height: 120px;">
-                    <table>
+                	<form id="levelInsertForm" action="gradeEnroll.me" method="post">
+                	 <table>
+                        <tbody>
+                            <tr>
+                                <th>등급번호</th>
+                                <th>등급명</th>
+                                <th>최소달성금액</th>
+                                <th>최대달성금액</th>
+                                <th>등급별할인률</th>
+                                <th></th>
+                                
+                                </tr>
+                        </tbody>
+                       
+                          <tfoot>
+                              <tr>
+                                  <td><input type="text" value="자동생성" disabled></td>
+                                  <td><input type="text" name="gradeName" placeholder="추가할등급명"></td>
+                                  <td><input type="text" name="minMoney" placeholder="최소달성금액"></td>
+                                  <td><input type="text" name="maxMoney" placeholder="최대달성금액"></td>
+                                  <td><input type="text" name="discontRate" placeholder="추가할할인률"></td>
+                                  <td>
+                                   <button type="submit"  style="width: 70px;" id="enroll" >등록</button>
+                                   <button type="reset"  style="width: 70px;">취소</button>
+                                   </td>
+                                  </tr>
+
+                          </tfoot>
+                         
+                  </table>
+                	</form>
+                   <form  id="levelUpdateForm">
+                     <table>
                         <tbody>
                             <tr>
                                 <th>등급번호</th>
@@ -87,10 +124,11 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                               <tr>
                                   <td><input type="text" value="수정할등급번호" disabled></td>
                                   <td><input type="text" value="수정할등급명"></td>
-                                  <td><input type="text" value="수정할달성금액"></td>
+                                  <td><input type="text" value="수정할최소금액"></td>
+                                  <td><input type="text" value="수정할최대금액"></td>
                                   <td><input type="text" value="수정할할인률"></td>
                                   <td>
-                                      <button type="button"  style="width: 70px;">수정</button>
+                                      <button type="submit"  style="width: 70px;">수정</button>
                                       <button type="reset"  style="width: 70px;">취소</button>
                                    </td>
                                   </tr>
@@ -98,11 +136,29 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                           </tfoot>
                          
                   </table>
+                   </form>
+                 
                 </div>
                
                
             </div>
         </div>
     </div>  
+    
+    <script>
+    	$(function(){
+    		$("#btnInsert").click(function(){
+    			$("#levelInsertForm").css("display","block");
+    			$("#levelUpdateForm").css("display","none");
+    		})
+    		$("#btnUpdate").click(function(){
+    			$("#levelUpdateForm").css("display","block");
+    			$("#levelInsertForm").css("display","none");
+    		})
+    		
+    	});
+    </script> 
+    
+  
 </body>
 </html>
