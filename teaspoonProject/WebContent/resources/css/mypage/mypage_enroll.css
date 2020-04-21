@@ -229,3 +229,13 @@ li {
   width: 80px;
   height: 60px;
 }
+
+/*이메일 인증번호 발송 버튼*/
+#email_send{
+  width: 150px;
+  height: 50px;
+  margin-left: 10px;
+  background: #000;
+  color:white;
+	
+}

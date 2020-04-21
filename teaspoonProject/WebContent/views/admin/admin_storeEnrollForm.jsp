@@ -14,25 +14,10 @@
 	font-size: 30px;
 	font-weight: bold;
 }
-
-table *{
-	padding: 3px;
-	font-size: 18px;
-}
-
-table th{
-	width: 70px;
-	text-align:left;
-}
-
-
-table tr:first-child {
-	border-top: 1px solid lightgray;
-}
-
-table tr {
-	border-bottom: 1px solid lightgray;
-}
+#pcode{background:lightgray;}
+table *{padding: 3px;font-size: 18px;}
+table tr:first-child {border-top: 1px solid lightgray;}
+table tr {border-bottom: 1px solid lightgray;}
 </style>
 </head>
 <body>
@@ -46,35 +31,36 @@ table tr {
 					enctype="multipart/form-data">
 					<table>
 						<tr>
-							<th>PCODE</th>
-							<th>PNAME</th>
-							<th>SUP_PRICE</th>
-							<th>PRICE</th>
-							<th>STOCK</th>
-							<th>KEYWORD</th>
+							<th>상품코드</th>
+							<th colspan="2">상품명</th>
+							<th>공급가</th>
+							<th>가격</th>
+							<th>재고</th>
 						</tr>
 						<tr>
-							<td><input type="text" size="7px" name="pcode" placeholder="자동생성" readonly></td>
-							<td><input type="text" size="7px" name="pname" required></td>
-							<td><input type="text" size="7px" name="supPrice" required></td>
-							<td><input type="text" size="7px" name="price" required></td>
-							<td><input type="text" size="7px" name="stock" required></td>
-							<td><input type="text" size="12px" name="keyword" required></td>
+							<td><input id="pcode" type="text" style="width:90px" name="pcode" placeholder="자동생성" readonly></td>
+							<td colspan="2"><input type="text" style="width:250px;" name="pname" required></td>
+							<td><input type="text" style="width:150px" name="supPrice" required></td>
+							<td><input type="text" style="width:150px" name="price" required></td>
+							<td><input type="text" style="width:150px" name="stock" required></td>
+							
 						</tr>
 						<tr>
 							<th>상품종류</th>
-							<td>
+							<td colspan="2">
 								<input type="radio" name="kind" value="C" required>C
-								<input type="radio" name="kind" value="I" required>I
+								<input type="radio" name="kind" value="I" style="margin-left:20px;" required>I
 							</td>
+							<th>키워드</th>
+							<td colspan="2"><input type="text" style="width:310px;" name="keyword" required></td>
 						</tr>
 						<tr>
-							<th style="width:70px;">대표이미지</th>
+							<th>대표이미지</th>
 							<td>
 								<img id="titleImg" width="150" height="120" required>
 							</td>
 					
-							<th style="width:70px;">상세이미지</th>
+							<th style="width:100px;">상세이미지</th>
 							<td>
 								<img id="contentImg1" width="150" height="120">
 							</td>
@@ -88,7 +74,7 @@ table tr {
 						<tr>
 							<th>상품상세</th>
 							<td colspan="5">
-								<textarea name="pcontent" cols=75 rows=4 style="resize:none;" required></textarea>
+								<textarea name="pcontent" cols=77 rows=3 style="resize:none;" required></textarea>
 							<td>
 							
 						</tr>

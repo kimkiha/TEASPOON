@@ -16,16 +16,16 @@ import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberIdListServlet
+ * Servlet implementation class MemberKeywordListServlet
  */
-@WebServlet("/idList.me")
-public class MemberIdListServlet extends HttpServlet {
+@WebServlet("/keywordList.me")
+public class MemberKeywordListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberIdListServlet() {
+    public MemberKeywordListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,8 +34,18 @@ public class MemberIdListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String searchKeyword1 = request.getParameter("searchKeyword1");
+		switch (searchKeyword1) {
+		case "활동중인회원": searchKeyword1="Y";break;
+		case "휴면회원": searchKeyword1="S";break;
+		case "블랙리스트": searchKeyword1="B";break;
+		case "탈퇴회원": searchKeyword1="N";break;
+		default:
+			break;
+		}
 		
-		String searchId = request.getParameter("searchId");
+		String searchKeyword2 = request.getParameter("searchKeyword2");
+		
 		
 		
 		//-------------------- 페이징처리 -----------------
@@ -48,7 +58,7 @@ public class MemberIdListServlet extends HttpServlet {
 		int boardLimit;		//한페이지에 보여질 게시글 최대 갯수
 		
 		//* listCount : 총 게시글 갯수
-		listCount = new MemberService().getSearchListCount(searchId);
+		listCount = new MemberService().getSearchKeywordListCount(searchKeyword1,searchKeyword2);
 		
 		//* currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -114,18 +124,19 @@ public class MemberIdListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		//System.out.println(pi);
-		ArrayList<Member> list = new MemberService().selectSearchList(searchId,pi);
+		ArrayList<Member> list = new MemberService().selectSearchKeywordList(searchKeyword1,searchKeyword2,pi);
 		ArrayList<Grade> gList = new MemberService().selectGradeList();
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
 		//게시판글 출력을위한 list객체전달
 		request.setAttribute("list", list);
-		request.setAttribute("searchId", searchId);
+		request.setAttribute("searchKeyWord1",searchKeyword1);
+		request.setAttribute("searchKeyWord2",searchKeyword2);
 		//등급리스트 출력을 위한 gList객체 전달
 		request.setAttribute("gList", gList);
-		System.out.println(list);
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_member.jsp");
 		view.forward(request, response);
+	
 	}
 
 	/**
