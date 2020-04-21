@@ -29,7 +29,7 @@ public class Member {
 	private int pcode; //위시리스트 갯수 카운트용
 	private int count; //쿠폰 갯수 카운트용
 	
-<<<<<<< HEAD
+
 	public Member(String userName, int birthday, String phone, String userId, String userPwd, String email) {
 		super();
 		this.userName = userName;
@@ -41,11 +41,10 @@ public class Member {
 
 	}
 	
-	public Member(int userNo, String userName, int point, String gradeName, int w, int c) {
-=======
+	
 
 	public Member(int userNo, String userName, String gradeName,int point,  int pcode, int count) {
->>>>>>> 4cf3d287583b2b0e53594893930bfd36d4b88c79
+
 		super();
 		this.userNo = userNo;
 		this.userName = userName;

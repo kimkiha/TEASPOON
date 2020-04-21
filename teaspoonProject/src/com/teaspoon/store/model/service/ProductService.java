@@ -64,12 +64,26 @@ public class ProductService {
 		return list;
 	}
 	
+	
+	/**
+	 *  사용자 커피제품 리스트 총 갯수 조회용 서비스
+	 * @return	--> 상품총갯수
+	 */
+	
+	public int getCoffeeListCount() {
+		Connection conn = getConnection();
+		int listCount = new ProductDao().getCoffeeListCount(conn);
+		
+		close(conn);
+		return listCount;
+	}
+	
 	/** 사용자 스토어 커피상품 썸네일 리스트 조회용 서비스
 	 * @return  --> 조회할 Product객체가 담긴 리스트
 	 */
-	public ArrayList<Product> selectCoffeeList(){
+	public ArrayList<Product> selectCoffeeList(PageInfo pi){
 		Connection conn = getConnection();
-		ArrayList<Product> list = new ProductDao().selectCoffeeList(conn);
+		ArrayList<Product> list = new ProductDao().selectCoffeeList(conn, pi);
 		
 		close(conn);
 		return list;
@@ -87,13 +101,26 @@ public class ProductService {
 		return list;
 	}
 	
+	/**
+	 *  사용자 아이템 리스트 총 갯수 조회용 서비스
+	 * @return	--> 상품총갯수
+	 */
+	
+	public int getItemListCount() {
+		Connection conn = getConnection();
+		int listCount = new ProductDao().getItemListCount(conn);
+		
+		close(conn);
+		return listCount;
+	}
+	
 	
 	/** 사용자 스토어 아이템상품 썸네일 리스트 조회용 서비스 
 	 * @return --> 조회할 Product객체가 담긴 리스트
 	 */
-	public ArrayList<Product> selectItemList(){
+	public ArrayList<Product> selectItemList(PageInfo pi){
 		Connection conn = getConnection();
-		ArrayList<Product> list = new ProductDao().selectItemList(conn);
+		ArrayList<Product> list = new ProductDao().selectItemList(conn, pi);
 		
 		close(conn);
 		return list;

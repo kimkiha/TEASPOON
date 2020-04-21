@@ -15,7 +15,7 @@ import java.util.Properties;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.MemberToMember;
+import com.teaspoon.member.model.vo.MenToMen;
 
 public class MemberDao {
 
@@ -354,7 +354,7 @@ public class MemberDao {
 		return list;
 	}
 
-<<<<<<< HEAD
+
 	public int insertMember(Connection conn, Member m) {
 		
 		int result = 0;
@@ -384,17 +384,25 @@ public class MemberDao {
 		return result;
 		
 	}
-=======
-	public int insertMtm(Connection conn, MemberToMember m) {
+
+	public int insertMtm(Connection conn, MenToMen m) {
+
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		String sql = prop.getProperty("insertMtm");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
-		
-		
+		return result;
 	}
 	
 	
@@ -614,7 +622,7 @@ public class MemberDao {
 	}
 	
 	
->>>>>>> 4cf3d287583b2b0e53594893930bfd36d4b88c79
+
 	
 	public int updateMember(Connection conn, Member m) {
 		int result = 0;

@@ -1,7 +1,9 @@
 package com.teaspoon.member.model.service;
 
-import static com.teaspoon.common.JDBCTemplate.*;
+import static com.teaspoon.common.JDBCTemplate.close;
+import static com.teaspoon.common.JDBCTemplate.commit;
 import static com.teaspoon.common.JDBCTemplate.getConnection;
+import static com.teaspoon.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.MemberToMember;
+import com.teaspoon.member.model.vo.MenToMen;
 
 public class MemberService {
 
@@ -121,21 +123,19 @@ public class MemberService {
 	/**
 	 * 마이페이지용 상단 메뉴바
 	 * @param userNo
+	 * @return 
 	 */
 	public Member MyPageInfo(int userNo) {
 		Connection conn = getConnection();
 		
-		Member myInfo = new MemberDao().MyPageInfo(conn,userNo);
+		Member myInfo =new MemberDao().MyPageInfo(conn,userNo);
 		
 		close(conn);
-		
-	
 		return myInfo;
-		
 	}
 	
 	
-	 /** 등급현황 페이지에 보일 등급 객체조회 서비스
+	 /* 등급현황 페이지에 보일 등급 객체조회 서비스
 	 * @return
 	 */
 	public ArrayList<Grade> selectGradeList(){
@@ -145,42 +145,8 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
-
-	public int insertMtm(MemberToMember m, Attachment at) {
-		Connection conn = getConnection();
-		
-		int result1 = new MemberDao().insertMtm(conn,m);
-		
-		int result2 = 1; // 초기값 1 주기 중요함 
-		
-		if(at != null) { 
-			result2 = new MemberDao().insertAttachment(conn,at); 
-		}
-		
-		if(result1>0 && result2>0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		return result1*result2;
-		
-		
-		
-	}
 	
 	
-	public int getSearchKeywordListCount(String searchKeyword1,String searchKeyword2) {
-		Connection conn = getConnection();
-		
-		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
-		int listCount = new MemberDao().getSearchKeywordListCount(conn,searchKeyword1,searchKeyword2);
-		
-		close(conn);
-		
-		return listCount;
-	}
 	
 	
 	/**
@@ -220,7 +186,7 @@ public class MemberService {
 		
 	}
 	
-<<<<<<< HEAD
+
 	/**
 	 * 회원정보 수정용 서비스
 	 * @param m		--> 수정요청한 회원아이디와, 변경할 내용들이 담겨있는 Member 객체
@@ -240,8 +206,8 @@ public class MemberService {
 		close(conn);
 		return result;
 		
-		
-=======
+	}
+
 	public int getSearchAllStatusListCount(String searchKeyword2) {
 		Connection conn = getConnection();
 		
@@ -289,10 +255,29 @@ public class MemberService {
 		ArrayList<Member> list = new MemberDao().selectAllGradeList(conn,searchKeyword1, pi);
 		close(conn);
 		return list;
->>>>>>> 4cf3d287583b2b0e53594893930bfd36d4b88c79
 	}
 	
 	
+	public int insertMtm(MenToMen m, Attachment at) {
+		
+		Connection conn = getConnection();
+		
+		int result1 = new MemberDao().insertMtm(conn, m);
+		int result2 = 1; // 초기값 1 주기 중요함 
+		
+		if(at != null) { 
+			result2 = new MemberDao().insertAttachment(at); 
+		}
+		
+		if(result1>0 && result2>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result1*result2;
+	}
 
 	
 }
