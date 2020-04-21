@@ -1,15 +1,19 @@
 package com.teaspoon.member.model.service;
 
-import static com.teaspoon.common.JDBCTemplate.*;
+import static com.teaspoon.common.JDBCTemplate.close;
+import static com.teaspoon.common.JDBCTemplate.commit;
 import static com.teaspoon.common.JDBCTemplate.getConnection;
+import static com.teaspoon.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.member.model.vo.MenToMen;
 
 public class MemberService {
 
@@ -119,12 +123,15 @@ public class MemberService {
 	/**
 	 * 마이페이지용 상단 메뉴바
 	 * @param userNo
+	 * @return 
 	 */
-	public void MyPageInfo(int userNo) {
+	public Member MyPageInfo(int userNo) {
 		Connection conn = getConnection();
 		
-		new MemberDao().MyPageInfo(conn,userNo);
+		Member myInfo =new MemberDao().MyPageInfo(conn,userNo);
 		
+		close(conn);
+		return myInfo;
 	}
 	
 	
@@ -199,7 +206,7 @@ public class MemberService {
 		close(conn);
 		return result;
 		
-		
+	}
 
 	public int getSearchAllStatusListCount(String searchKeyword2) {
 		Connection conn = getConnection();
@@ -251,7 +258,26 @@ public class MemberService {
 	}
 	
 	
-
+	public int insertMtm(MenToMen m, Attachment at) {
+		
+		Connection conn = getConnection();
+		
+		int result1 = new MemberDao().insertMtm(conn, m);
+		int result2 = 1; // 초기값 1 주기 중요함 
+		
+		if(at != null) { 
+			result2 = new MemberDao().insertAttachment(at); 
+		}
+		
+		if(result1>0 && result2>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result1*result2;
+	}
 
 	
 }

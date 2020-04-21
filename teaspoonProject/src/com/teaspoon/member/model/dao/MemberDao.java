@@ -384,15 +384,22 @@ public class MemberDao {
 		return result;
 		
 	}
-=======
-	public int insertMtm(Connection conn, MemberToMember m) {
->>>>>>> cb2dd319b8a6b5cbc14dd304609a22796cad4df2
+
+	public int insertMtm(Connection conn, MenToMen m) {
+
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		String sql = prop.getProperty("insertMtm");
-		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		return result;
@@ -615,7 +622,7 @@ public class MemberDao {
 	}
 	
 	
->>>>>>> 4cf3d287583b2b0e53594893930bfd36d4b88c79
+
 	
 	public int updateMember(Connection conn, Member m) {
 		int result = 0;

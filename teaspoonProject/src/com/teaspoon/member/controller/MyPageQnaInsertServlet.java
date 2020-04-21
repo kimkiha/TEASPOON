@@ -17,7 +17,7 @@ import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.MyFileRenamePolicy;
 import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.MemberToMember;
+import com.teaspoon.member.model.vo.MenToMen;
 
 /**
  * Servlet implementation class MyPageQnaInsertServlet
@@ -108,7 +108,7 @@ public class MyPageQnaInsertServlet extends HttpServlet {
 					String mtmContent = multiRequest.getParameter("mtmContent");
 					int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 					
-					MemberToMember m = new MemberToMember();
+					MenToMen m = new MenToMen();
 					m.setMtmType(mtmType);
 					m.setMtmTitle(mtmTitle);
 					m.setMtmContent(mtmContent);
