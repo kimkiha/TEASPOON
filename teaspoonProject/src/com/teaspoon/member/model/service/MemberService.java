@@ -169,6 +169,58 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
+	
+	
+	public int getSearchAllStatusListCount(String searchKeyword2) {
+		Connection conn = getConnection();
+		
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new MemberDao().getSearchAllStatusListCount(conn,searchKeyword2);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 *  관리자 멤버현황페이지에 전체회원 등급조회시 보여질 게시글  리스트 조회용 서비스
+	 * @param pi	--> 요청한 페이지, 한페이지 보여질 게시글 최대수가 담겨있는 객체
+	 * @return
+	 */
+	public ArrayList<Member> selectAllStatusList(String searchKeyword2,PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectAllStatusList(conn,searchKeyword2, pi);
+		close(conn);
+		return list;
+	}
+	
+	
+	public int getSearchAllGradeListCount(String searchKeyword1) {
+		Connection conn = getConnection();
+		
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new MemberDao().getSearchAllGradeListCount(conn,searchKeyword1);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 *  관리자 멤버현황페이지에 전체등급 회원조회시 보여질 게시글  리스트 조회용 서비스
+	 * @param pi	--> 요청한 페이지, 한페이지 보여질 게시글 최대수가 담겨있는 객체
+	 * @return
+	 */
+	public ArrayList<Member> selectAllGradeList(String searchKeyword1,PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectAllGradeList(conn,searchKeyword1, pi);
+		close(conn);
+		return list;
+	}
+	
+	
 
 	
 }

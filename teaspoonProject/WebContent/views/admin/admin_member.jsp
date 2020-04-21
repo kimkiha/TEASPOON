@@ -144,7 +144,7 @@
 			<%} %>
        	
         	
-        <%}else if(!searchKeyword1.equals("null")){  %>
+        <%}else if(!searchKeyword1.equals("null") && !searchKeyword2.equals("null")){  %>
         	 	           <!-- 현재 페이지에 보여질 페이징바 -->
 			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 			<!-- 맨 처음으로(<<) -->
@@ -171,7 +171,57 @@
 	     
 	        	
         	
-        <%}else{ %>
+        <%}else if(!searchKeyword2.equals("null")){%>
+        		 	           <!-- 현재 페이지에 보여질 페이징바 -->
+			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='AllStatusList.me?currentPage=1&searchKeyword2=<%=searchKeyword2 %>'">&lt;&lt;</button>
+			<!-- 이전페이지로(<) -->
+			<button onclick="location.href='AllStatusList.me?currentPage=<%=currentPage-1%>&searchKeyword2=<%=searchKeyword2 %>'">&lt;</button>
+			<%} %>
+			
+			<%for(int p=startPage; p<=endPage; p++){%>
+				<%if(currentPage != p) {%>
+				<button onclick="location.href='AllStatusList.me?currentPage=<%=p%>&searchKeyword2=<%=searchKeyword2 %>'"><%=p%></button>
+				<%}else{ %>
+				<button disabled><%=p %></button>
+				<%} %>	
+			<%} %>
+			
+			<%if(currentPage != maxPage){ %>
+			<!-- 다음페이지로(<) -->
+			<button onclick="location.href='AllStatusList.me?currentPage=<%=currentPage+1%>&searchKeyword2=<%=searchKeyword2 %>'">&gt;</button>
+			<!-- 맨 마지막으로(>>) -->
+			<button onclick="location.href='AllStatusList.me?currentPage=<%=maxPage %>&searchKeyword2=<%=searchKeyword2 %>'">&gt;&gt;</button>
+			<%} %>
+       	
+	     
+        <%}else if(!searchKeyword1.equals("null")){%>
+        	
+        		 	           <!-- 현재 페이지에 보여질 페이징바 -->
+			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='AllGradeList.me?currentPage=1&searchKeyword1=<%=searchKeyword1 %>'">&lt;&lt;</button>
+			<!-- 이전페이지로(<) -->
+			<button onclick="location.href='AllGradeList.me?currentPage=<%=currentPage-1%>&searchKeyword1=<%=searchKeyword1 %>'">&lt;</button>
+			<%} %>
+			
+			<%for(int p=startPage; p<=endPage; p++){%>
+				<%if(currentPage != p) {%>
+				<button onclick="location.href='AllGradeList.me?currentPage=<%=p%>&searchKeyword1=<%=searchKeyword1 %>'"><%=p%></button>
+				<%}else{ %>
+				<button disabled><%=p %></button>
+				<%} %>	
+			<%} %>
+			
+			<%if(currentPage != maxPage){ %>
+			<!-- 다음페이지로(<) -->
+			<button onclick="location.href='AllGradeList.me?currentPage=<%=currentPage+1%>&searchKeyword1=<%=searchKeyword1 %>'">&gt;</button>
+			<!-- 맨 마지막으로(>>) -->
+			<button onclick="location.href='AllGradeList.me?currentPage=<%=maxPage %>&searchKeyword1=<%=searchKeyword1 %>'">&gt;&gt;</button>
+			<%} %>
+        	
+        <% }else{ %>
            	           <!-- 현재 페이지에 보여질 페이징바 -->
 			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 			<!-- 맨 처음으로(<<) -->
@@ -239,8 +289,14 @@
     		$("#searchBtn2").click(function(){
     			if( $(".btnStatus").text() == '회원상태별분류' || $(".btnLevel").text() =='회원등급별분류' ){
     				alert("상태와 등급을 선택해주세요.");
-    			}else if( $(".btnStatus").text() == '전체회원' || $(".btnLevel").text() =='전체등급'){	
+    			}else if( $(".btnStatus").text() == '전체회원' && $(".btnLevel").text() =='전체등급'){	
     				location.href='list.me?currentPage=1';
+    			}else if($(".btnStatus").text() == '전체회원'){
+    				var searchKeyword2 =  $(".btnLevel").text();
+    				location.href='AllStatusList.me?searchKeyword2='+searchKeyword2+"&currentPage=1";
+    			}else if($(".btnLevel").text() == '전체등급'){
+    				var searchKeyword1 =  $(".btnStatus").text();
+    				location.href='AllGradeList.me?searchKeyword1='+searchKeyword1+"&currentPage=1";
     			}else{
     				var searchKeyword1 =  $(".btnStatus").text();
         			var searchKeyword2 =  $(".btnLevel").text();
