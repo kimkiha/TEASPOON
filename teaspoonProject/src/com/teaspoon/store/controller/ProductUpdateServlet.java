@@ -46,6 +46,7 @@ public class ProductUpdateServlet extends HttpServlet {
 			MultipartRequest multiRequest 
 			= new MultipartRequest(request,savePath,maxSize,"utf-8", new com.teaspoon.common.MyFileRenamePolicy());
 			
+			// 상품객체 p.setPname(multirequest.getParameter("pcode");라고 해도 됨
 			int pcode = Integer.parseInt(multiRequest.getParameter("pcode"));
 			String pname = multiRequest.getParameter("pname");
 			int supPrice =  Integer.parseInt(multiRequest.getParameter("supPrice"));
@@ -55,9 +56,7 @@ public class ProductUpdateServlet extends HttpServlet {
 			String kind = multiRequest.getParameter("kind");
 			String pcontent = multiRequest.getParameter("pcontent");
 			
-			// 상품객체
 			Product p = new Product();
-			
 			p.setPname(pname);
 			p.setSupPrice(supPrice);
 			p.setPrice(price);
@@ -66,14 +65,18 @@ public class ProductUpdateServlet extends HttpServlet {
 			p.setKind(kind);
 			p.setPcontent(pcontent);
 			
+			
 			// 파일리스트
 			ArrayList<Attachment> list = null;
-			if(multiRequest.getOriginalFileName("upfile") != null) {
+			if(multiRequest.getOriginalFileName("file1") != null) {
 				list = new ArrayList<>();
 				Attachment at = new Attachment();
-				at.setOriginName(multiRequest.getOriginalFileName("upfile")); // 새로 추가된 파일의 원본명 추가
-				at.setChangeName(multiRequest.getFilesystemName("upfile")); // 새로 추가된 파일의 수정명 추가
+				at.setOriginName(multiRequest.getOriginalFileName("file1")); // 새로 추가된 파일의 원본명 추가
+				at.setChangeName(multiRequest.getFilesystemName("file1")); // 새로 추가된 파일의 수정명 추가
 				at.setFilePath(savePath);
+				list.add(at);
+				
+				System.out.println(list);
 			
 				if(multiRequest.getParameter("originFileNo") != null) {
 					at.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
