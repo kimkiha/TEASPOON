@@ -22,32 +22,13 @@ public class Member {
 	
 	//1:1 QNA 조회
 	private int mtm_no; //1:1상담번호
-	private int mtm_type; // 1:1상담 유형
+	private String mtm_name; // 1:1상담 유형
 	private String mtm_title; // 1:1상담 제목
 	private Date create_date; 
 	
 	private int pcode; //위시리스트 갯수 카운트용
 	private int count; //쿠폰 갯수 카운트용
 	
-	public int getPcode() {
-		return pcode;
-	}
-
-
-	public void setPcode(int pcode) {
-		this.pcode = pcode;
-	}
-
-
-	public int getCount() {
-		return count;
-	}
-
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
 
 	public Member(int userNo, String userName, String gradeName,int point,  int pcode, int count) {
 		super();
@@ -65,11 +46,11 @@ public class Member {
 	}
 
 	
-	public Member(int mtm_no,int userNo, int mtm_type, String mtm_title, Date create_date) {
+	public Member(int mtm_no,int userNo, String mtm_name, String mtm_title, Date create_date) {
 		super();
 		this.mtm_no = mtm_no;
 		this.userNo = userNo;
-		this.mtm_type = mtm_type;
+		this.mtm_name = mtm_name;
 		this.mtm_title = mtm_title;
 		this.create_date = create_date;
 	}
@@ -112,7 +93,26 @@ public class Member {
 	}
 	
 	
-	
+	public int getPcode() {
+		return pcode;
+	}
+
+
+	public void setPcode(int pcode) {
+		this.pcode = pcode;
+	}
+
+
+	public int getCount() {
+		return count;
+	}
+
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+
 
 
 	public int getMtm_no() {
@@ -124,13 +124,14 @@ public class Member {
 		this.mtm_no = mtm_no;
 	}
 
-	public int getMtm_type() {
-		return mtm_type;
+
+	public String getMtm_name() {
+		return mtm_name;
 	}
 
 
-	public void setMtm_type(int mtm_type) {
-		this.mtm_type = mtm_type;
+	public void setMtm_name(String mtm_name) {
+		this.mtm_name = mtm_name;
 	}
 
 

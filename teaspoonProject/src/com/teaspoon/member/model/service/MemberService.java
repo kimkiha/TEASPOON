@@ -6,10 +6,12 @@ import static com.teaspoon.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.member.model.vo.MemberToMember;
 
 public class MemberService {
 
@@ -142,6 +144,30 @@ public class MemberService {
 		ArrayList<Grade> list = new MemberDao().selectSearchList(conn);
 		close(conn);
 		return list;
+	}
+
+	public int insertMtm(MemberToMember m, Attachment at) {
+		Connection conn = getConnection();
+		
+		int result1 = new MemberDao().insertMtm(conn,m);
+		
+		int result2 = 1; // 초기값 1 주기 중요함 
+		
+		if(at != null) { 
+			result2 = new MemberDao().insertAttachment(conn,at); 
+		}
+		
+		if(result1>0 && result2>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result1*result2;
+		
+		
+		
 	}
 	
 	

@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.member.model.vo.MemberToMember;
 
 public class MemberDao {
 
@@ -194,7 +195,7 @@ public class MemberDao {
 			while(rset.next()) {
 				list.add(new Member(rset.getInt("mtm_no"),
 									rset.getInt("user_no"),
-						            rset.getInt("mtm_type"),
+						            rset.getString("mtm_name"),
 						            rset.getString("mtm_title"),
 						            rset.getDate("create_date")
 						            ));
@@ -207,7 +208,7 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(list);
 		
 		return list;
 	}
@@ -301,12 +302,12 @@ public class MemberDao {
 			
 			if(rset.next()) {
 				
-				myInfo=new Member(rset.getInt("userno"),
-								 rset.getString("username"),
-								 rset.getString("grade_name"),
-								 rset.getInt("point"),
-								 rset.getInt("pcode"),
-								 rset.getInt("count"));
+				myInfo=new Member(rset.getInt(1),
+								 rset.getString(2),
+								 rset.getString(3),
+								 rset.getInt(4),
+								 rset.getInt(5),
+								 rset.getInt(6));
 				 
 			}
 			
@@ -353,6 +354,18 @@ public class MemberDao {
 	
 	
 		return list;
+	}
+
+	public int insertMtm(Connection conn, MemberToMember m) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertMtm");
+		
+		
+		
+		
 	}
 	
 	
