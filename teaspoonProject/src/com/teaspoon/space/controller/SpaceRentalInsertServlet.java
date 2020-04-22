@@ -75,20 +75,20 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		// 3. 서비스 클래스에 메소드 호출(전달값 전달) 및 처리 결과 받기
      	int result = new SpaceService().insertSpace(s);
 		
-		// 4. 처리 결과를 가지고 성공인지 실패인지 판단해서 사용자가 보게될 뷰 지정
-				if(result > 0) { // insert됨 --> 정보입력성공
-					
-					HttpSession session = request.getSession();
-					session.setAttribute("msg", "접수되었습니다. 결제하고 승인을 기다리세요!!");
-					
-					response.sendRedirect(request.getContextPath());
-					
-				}else { // insert안됨 --> 정보입력실패
-					
-					request.setAttribute("msg", "정보 다시입력");
-					RequestDispatcher view = request.getRequestDispatcher("views/space/space_rental.jsp");
-					view.forward(request, response);
-				}
+//		// 4. 처리 결과를 가지고 성공인지 실패인지 판단해서 사용자가 보게될 뷰 지정
+//				if(result > 0) { // insert됨 --> 정보입력성공
+//					
+//					HttpSession session = request.getSession();
+//					session.setAttribute("msg", "접수되었습니다. 결제하고 승인을 기다리세요!!");
+//					
+//					response.sendRedirect(request.getContextPath());
+//					
+//				}else { // insert안됨 --> 정보입력실패
+//					
+//					request.setAttribute("msg", "정보 다시입력");
+//					RequestDispatcher view = request.getRequestDispatcher("views/space/space_rental.jsp");
+//					view.forward(request, response);
+//				}
 			
 			
 	}

@@ -40,8 +40,8 @@ public class SpaceDao {
 			pstmt.setInt(4, s.getVisitNum());
 			pstmt.setString(5, s.getPhone());
 			pstmt.setString(6, s.getReservReason());
-			pstmt.setString(7, s.getAccept());
-			pstmt.setString(8, s.getGood());
+			pstmt.setString(7, s.getGood());
+			pstmt.setInt(8, s.getGradeCode());
 			
 			
 			result = pstmt.executeUpdate();
