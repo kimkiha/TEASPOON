@@ -122,7 +122,7 @@
                             <h5><요금 및 예약 가능 여부 확인></h5>
                             
                             <br>
-                           <form id="enrollForm" action="" method="post"> 
+                           <form id="enrollForm" action="<%= contextPath %>/insert.sp" method="post"> 
                             <div class="choice"> 
                                 <div class="choice1">날짜 선택</div>
                                 <div class="choice2">대여 시간</div>
@@ -130,25 +130,25 @@
                             </div>
                             <span>  
                               <div>
-                                <input type="date"  class="date" name="dateofbirth" id="dateofbirth">
+                                <input type="date"  class="date" name="reservDate" id="dateofbirth">
                                 
-                                <select class="box1">
-                                  <option name="time" value="onem">아카이야 09:30~11:30</option>
-                                  <option name="time" value="twom">아카이야 13:00~15:00</option>
-                                  <option name="time" value="treem">아카이야 16:30~18:30</option>
+                                <select class="box1" name="reservTime">
+                                  <option value="09:30">아카이야 09:30~11:30</option>
+                                  <option value="13:00">아카이야 13:00~15:00</option>
+                                  <option value="16:30">아카이야 16:30~18:30</option>
                                   <option selected>시간선택</option>          
                                 </select>
                                 
-                                <select class="box2">
-                                  <option name="people" value="one">10인 이하</option>
-                                  <option name="people" value="two">20인 이하</option>
-                                  <option name="people" value="tree">30인 이하</option>
+                                <select class="box2" name="visitNum">
+                                  <option value="10">10인 이하</option>
+                                  <option value="20">20인 이하</option>
+                                  <option value="30">30인 이하</option>
                                   <option selected>인원수</option>
                                 </select> 
 
-                                <select class="box3">
-                                  <option name="op" value="vip">VIP 할인</option>
-                                  <option name="op" value="coupon">쿠폰 할인</option>
+                                <select class="box3" name="op">
+                                  <option value="vip">VIP 할인</option>
+                                  <option value="coupon">쿠폰 할인</option>
                                   <option selected>없음</option>
                                 </select>
                               </div>
@@ -168,10 +168,10 @@
                             <div class="sb02"><p class="ftm">대여 편의용품</p><p id="spreadBtn03" class="btn02">세부사항⇲</p></div> 
                             <ul id="hiddenList02" class="example02" style="display: none;">
                               <div class="bpf"> 
-                                <div><input type="checkbox"><span class="bpf1">빔프로젝트</span></div>
-                                <div><input type="checkbox"><span class="bpf1">노트북</span></div>
-                                <div><input type="checkbox"><span class="bpf1">스마트포인트</span></div>
-                                <div><input type="checkbox"><span class="bpf1">앰프</span></div>
+                                <input type="checkbox" name="good" value="빔프로젝트">빔프로젝트
+                                <input type="checkbox" name="good" value="노트북">노트북
+                                <input type="checkbox" name="good" value="스마트포인트">스마트포인트
+                                <input type="checkbox" name="good" value="앰프">앰프
                               </div>
                             </ul>
 
@@ -180,7 +180,7 @@
                             
                             <div>
                               <div class="perpose"><div class="pert">공간 사용 목적</div></div>
-                              <input class="perposet" id="userText" type="text" placeholder="*필수 입력사항 ex)회의 관련 목적">
+                              <input name="reservReason" class="perposet" id="userText" type="text" placeholder="*필수 입력사항 ex)회의 관련 목적">
                             </div>
                             <br>
                             

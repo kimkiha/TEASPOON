@@ -104,6 +104,7 @@
                                <%}else{ %>
                               		<% for(Member m : list){ %>
                                     <tr>
+                                    <input type="hidden"name="mtm_no" value="<%=m.getMtm_no() %>">	
                                         <td><%= m.getMtm_name() %></td>
                                         <td colspan="2"><%= m.getMtm_title() %></td>
                                         <td><%=m.getCreate_date() %></td>

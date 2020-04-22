@@ -133,7 +133,7 @@ public class MyPageQnaInsertServlet extends HttpServlet {
 						
 						
 					}
-					System.out.println(m);
+					//System.out.println(m);
 					// 4. 케시판 작성용 서비스 요청(b,at)
 					int result = new MemberService().insertMtm(m, at);
 					
