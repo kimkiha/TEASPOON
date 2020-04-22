@@ -15,16 +15,16 @@ import com.teaspoon.store.model.service.ProductService;
 import com.teaspoon.store.model.vo.Product;
 
 /**
- * Servlet implementation class StoreBestDetailServlet
+ * Servlet implementation class ItemDetailServlet
  */
-@WebServlet("/detail.sb")
-public class StoreBestDetailServlet extends HttpServlet {
+@WebServlet("/detail.co")
+public class CoffeeDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StoreBestDetailServlet() {
+    public CoffeeDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class StoreBestDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
 		
 		Product p = new ProductService().selectProduct(pcode);
@@ -43,14 +43,14 @@ public class StoreBestDetailServlet extends HttpServlet {
 			request.setAttribute("p", p);
 			request.setAttribute("list", list);
 			
-			RequestDispatcher view = request.getRequestDispatcher("views/store/itemDetailView.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/store/coffeeDetailView.jsp");
 			view.forward(request, response);
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
 			view.forward(request, response);
 			
 		}
-		
+	
 	}
 
 	/**
