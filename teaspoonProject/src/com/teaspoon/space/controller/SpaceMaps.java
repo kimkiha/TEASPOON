@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SpaceRentalServlet
+ * Servlet implementation class SpaceMaps
  */
-@WebServlet("/rental.sp")
-public class SpaceRentalServlet extends HttpServlet {
+@WebServlet("/maps.sp")
+public class SpaceMaps extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpaceRentalServlet() {
+    public SpaceMaps() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,7 @@ public class SpaceRentalServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/space/space_rental.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/space/space_maps.jsp");
 		view.forward(request, response);
 		
 	}

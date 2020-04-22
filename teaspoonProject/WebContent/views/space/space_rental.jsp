@@ -11,7 +11,7 @@
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/space/space_rental.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../../resources/js/space_rental.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/space_rental.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 
@@ -72,7 +72,7 @@
                         <!-- 푸터부분 div -->
                         <span>
                             <div class="foot-container">
-                                <img src="../../resources/img/space/imo1.png">1인 - 30인 / 면적 - 23㎡ / 컨퍼런스 룸 / 초고속 WIFI  /  공용공간 및 라운지 / 커피와 허브차
+                                <img src="<%=request.getContextPath() %>/resources/img/space/imo1.png">1인 - 30인 / 면적 - 23㎡ / 컨퍼런스 룸 / 초고속 WIFI  /  공용공간 및 라운지 / 커피와 허브차
                                 <div>
                                   <p><label class="btn" for="modal-1">예약하기</label></p>
                                 </div>    
@@ -184,7 +184,7 @@
                             <br>
                             
                             <input class="cbtn" type="button" value="취소하기" onClick="history.go(0)"> 
-                            <input class="ybtn" type="submit" value="예약하기" >
+                            <input class="ybtn" type="submit"><a href="rentalPayment.sp">예약하기</a>
                             
                           </form>  
                           </div>

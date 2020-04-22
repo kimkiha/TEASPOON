@@ -42,7 +42,7 @@ public class SpaceDao {
 			pstmt.setString(6, s.getReservReason());
 			pstmt.setString(7, s.getAccept());
 			pstmt.setString(8, s.getGood());
-			pstmt.setInt(9, s.getPayment());
+			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
