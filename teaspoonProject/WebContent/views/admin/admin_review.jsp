@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.common.*"%>
+<%
+	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>리뷰</title>
-
-    
-   
+    <title>리뷰관리 | Admin</title>
     <style>
         #c1_1_2 div{padding-left: 25px; float:left;}
         #oneToOneKinds input{margin-right: 5px; vertical-align: middle;}
@@ -36,7 +42,7 @@
                                 <tr>
                                     <th>리뷰번호</th>
                                     <th>상품명</th>
-                                    <th>작성자</th>
+                                    <th>작성자ID</th>
                                     <th>작성일자</th>
                                     <th>내용</th>
                                     <th>상세보기</th>
@@ -44,12 +50,14 @@
                             </tbody>
                            
                               <tfoot>
+                              
+                              <% for (Review r : list) {%>
                                   <tr>
-                                      <td>R0001</td>
-                                      <td>케냐응다로이니</td>
-                                      <td>USER01</td>
-                                      <td>20.03.18</td>
-                                      <td>맛있어요...</td>
+                                      <td><%=r.getReviewNo() %></td>
+                                      <td><%=r.getPname() %></td>
+                                      <td><%=r.getUserId() %></td>
+                                      <td><%=r.getCreateDate() %></td>
+                                      <td><%=r.getContent() %></td>
                                      
                                       <td>
                                           <button type="button" style="width: 100px;">
@@ -57,7 +65,7 @@
                                           <button type="button" style="width: 100px;">삭제</button>
                                         </td>
                                       </tr>
-                                   
+                                   <%} %>
                                    
                               </tfoot>
                              
@@ -68,13 +76,28 @@
                   
                 </div>
                 <div id="c1_3">
-                    <a>&lt;</a>
-                   <button>1</button>
-                   <button>2</button>
-                   <button>3</button>
-                   <button>4</button>
-                   <button>5</button>
-                   <a>&gt;</a>
+                 <!-- 현재 페이지에 보여질 페이징바 -->
+				<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+				<!-- 맨 처음으로(<<) -->
+				<button onclick="location.href='list.st?currentPage=1'">&lt;&lt;</button>
+				<!-- 이전페이지로(<) -->
+				<button onclick="location.href='list.st?currentPage=<%=currentPage-1%>'">&lt;</button>
+				<%} %>
+				
+				<%for(int p=startPage; p<=endPage; p++){%>
+					<%if(currentPage != p) {%>
+					<button onclick="location.href='list.st?currentPage=<%=p%>'"><%=p%></button>
+					<%}else{ %>
+					<button dispabled><%=p %></button>
+					<%} %>	
+				<%} %>
+				
+				<%if(currentPage != maxPage){ %>
+				<!-- 다음페이지로(<) -->
+				<button onclick="location.href='list.st?currentPage=<%=currentPage+1%>'">&gt;</button>
+				<!-- 맨 마지막으로(>>) -->
+				<button onclick="location.href='list.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+				<%} %>
 
                 </div>
                

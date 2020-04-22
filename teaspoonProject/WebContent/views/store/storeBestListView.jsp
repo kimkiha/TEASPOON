@@ -103,6 +103,7 @@
                         	<%Product p = list.get(i); %>
                             <div class="product" style="margin-top:50px; margin-right:30px;">
                             	<input type="hidden" value=<%=p.getPcode() %>>
+                            	
                                 <div class="product_img">
                                 	<input type="hidden" value=<%=list.get(i).getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">

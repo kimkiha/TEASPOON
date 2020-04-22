@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.store.model.vo.Product;
+import com.teaspoon.store.model.vo.Review;
 
 public class ProductDao {
 	
@@ -529,4 +530,44 @@ public class ProductDao {
 		return list;
 	}
 
+	
+	public ArrayList<Review> selectReviewList(Connection conn, PageInfo pi){
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+	
+		String sql = prop.getProperty("selectReviewList");
+		int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow = startRow + pi.getBoardLimit()-1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Review r  = new Review();
+				r.setReviewNo(rset.getInt("review_no"));
+				r.setPcode(rset.getInt("pcode"));
+				r.setUserNo(rset.getInt("user_no"));
+				r.setContent(rset.getString("content"));
+				r.setCreateDate(rset.getDate("create_date"));
+				r.setUserId(rset.getString("user_id"));
+				r.setUserName(rset.getString("user_name"));
+				r.setPname(rset.getString("pname"));
+				
+				list.add(r);
+			} 
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	
 }
