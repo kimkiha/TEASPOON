@@ -90,9 +90,9 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                           <tfoot>
                               <tr>
                                   <td><input type="text" value="자동생성" disabled></td>
-                                  <td><input type="text" name="gradeName" placeholder="추가할등급명" required></td>
-                                  <td><input type="text" name="minMoney" placeholder="최소달성금액" required></td>
-                                  <td><input type="text" name="discontRate" placeholder="추가할할인률" required></td>
+                                  <td><input type="text" id="gradeName" name="gradeName" placeholder="추가할등급명" required></td>
+                                  <td><input type="number" id="minMoney" name="minMoney" placeholder="최소달성금액" required></td>
+                                  <td><input type="number" id="discontRate" name="discontRate" placeholder="추가할할인률" required></td>
                                   <td>
                                    <button type="button"  style="width: 70px;" id="enroll" >등록</button>
                                    <button type="reset"  style="width: 70px;">취소</button>
@@ -120,8 +120,8 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                               <tr>
                                   <td><input type="text" value="수정할등급번호" disabled></td>
                                   <td><input type="text" placeholder="수정할등급명" required></td>
-                                  <td><input type="text" placeholder="수정할최소금액" required></td>
-                                  <td><input type="text" placeholder="수정할할인률" required></td>
+                                  <td><input type="number" placeholder="수정할최소금액" required></td>
+                                  <td><input type="number" placeholder="수정할할인률" required></td>
                                   <td>
                                       <button type="submit"  style="width: 70px;">수정</button>
                                       <button type="reset"  style="width: 70px;">취소</button>
@@ -155,14 +155,35 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     	
     	$(function(){
     		$("#enroll").click(function(){
-    			var gradeCount = <%=gList.size()%>;
     			
-    			if(gradeCount>=10){
-    				alert("10개등급이상은 추가가 불가능합니다.");
+    		
+    			
+    			
+    			
+    			var gradeCount = <%=gList.size()%>;
+    			var gradeName = $("#gradeName").val();
+    			var minMoney = $("#minMoney").val();
+    			var discountRate = $("#discontRate").val();
+				console.log(gradeName);
+				
+    			if(gradeName == ''){
+    				alert("등급명을 입력하세요.");
+    				
+    			}else if(minMoney == ''){
+    				alert("달성금액을 입력하세요.");
+    				
+    			}else if(discountRate == ''){
+    				alert("할인률을 입력하세요.");
+    				
+    			}else if(gradeCount>=10){
+    				alert("등급 10개 초과로 추가가 불가능합니다.");
+
+    			}else if($("#minMoney").val() > <%=gList.get(gList.size()-1).getMinAcount()%>){
+    				
+    				
     			}else{
     				$("#levelInsertForm").submit();
     			}
-    			
     		});
     	});
     </script> 

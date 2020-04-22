@@ -69,8 +69,8 @@
                         </div>
                         <br>  -->
                         <div class="btns">
-                            <button type="button" style="width: 100px;" ><a href="magazineList.bo">목록으로</a></button>
-                            <button type="submit" style="width: 100px;" ><a href="magazineUpdate.bo">수정하기</a></button>
+                            <button type="button" style="width: 100px;"  onclick="location.href='<%=contextPath%>/magazineList.bo?currentPage=1'">목록으로</button>
+                            <button type="submit" style="width: 100px;" >수정하기</button>
                         </div>
                     </form>
                 </div>
