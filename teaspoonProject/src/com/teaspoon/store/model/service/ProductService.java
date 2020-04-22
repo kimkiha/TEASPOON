@@ -108,7 +108,7 @@ public class ProductService {
 	
 	public int getItemListCount() {
 		Connection conn = getConnection();
-		int listCount = new ProductDao().getCoffeeListCount(conn);
+		int listCount = new ProductDao().getItemListCount(conn);
 		
 		close(conn);
 		return listCount;
@@ -174,4 +174,13 @@ public class ProductService {
 		return result1*result2;
 	}
 	
+	
+	public ArrayList<Attachment> selectAtList(int pcode){
+		Connection conn = getConnection();
+		ArrayList<Attachment> list = new ProductDao().selectAtList(conn, pcode);
+		
+		close(conn);
+		return list;
+	}
+
 }

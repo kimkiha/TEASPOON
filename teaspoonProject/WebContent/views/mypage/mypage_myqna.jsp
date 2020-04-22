@@ -2,15 +2,12 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.*"%>
 <%
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
-
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
- %>    
-    
+%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +18,13 @@
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
     <style>
         #banner {height: 170px; line-height: 170px; background:url("패턴 - 복사본.jpg") center top repeat-x;}
+          #mypage_table>tbody>tr:hover{
+   	   cursor:pointer;   
+   }
+        
     </style>
 </head>
 <body>
@@ -151,6 +153,15 @@
            <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
-   
+    <script>
+    	$(function(){
+    		$("#mypage_table>tbody>tr").click(function(){
+    			var uno= $(this).children().eq(0).text();
+    			
+    			location.href="<%=contextPath%>/myqnadetail.me?uno=" + uno;
+    			
+    		});
+    	});
+    </script>
 </body>
 </html>

@@ -7,11 +7,11 @@ a{text-decoration: none; color: black;}
 .fr {float:right}
 
 #productArea {height:inherit; margin: 0 100px;}
-#productList>div { margin-top:50px; width:300px; height:250px; float:left}
+#productList>div { margin-top:50px; width:300px; height:250px; float:left; cursor: pointer;}
 #productList {color: white;}
  
  /*1등상품*/
- .product_top {position:relative; width: 520px; height: 450px; float: left; margin-top: 150px; box-sizing: border-box;}
+ .product_top {cursor:pointer; position:relative; width: 520px; height: 450px; float: left; margin-top: 150px; box-sizing: border-box;}
  .product_top .product_img{width: 520px; height: 450px; position: absolute;}
  .product_top .product_detail{
      width: 340px;
@@ -32,6 +32,7 @@ a{text-decoration: none; color: black;}
  .product_top #open {width: 70px; height:70px;}
  .product_top .basket {top:73%; left:420px; position: absolute; opacity:0; z-index:1;}
  .product_top:hover .product_detail {opacity:1;}
+ .product_top:hover .product_detail>p{color:white;}
  .product_top:hover .basket {opacity: 1;}
  .product_top:hover .like {opacity:1;}
 
@@ -54,6 +55,7 @@ a{text-decoration: none; color: black;}
     opacity:0;
  }
  .product:hover .product_detail {opacity:1;}
+ .product:hover .product_detail>p{color:white;}
  .product .like_icon {width:50px; height:50px; cursor: pointer;}
  .product .like {top:72%; left:180px; position: absolute; opacity:0; z-index:1;}
  .product:hover .like {opacity:1;}

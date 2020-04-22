@@ -103,7 +103,7 @@
                                             </tr>
                                             <tr>
                                                 <th>제목</th>
-                                                <td><input type="text"id="t"name="title" placeholder="제목을 입력해 주세요"></td>
+                                                <td><input type="text"id="t" name="mtmTitle" placeholder="제목을 입력해 주세요"></td>
                                             </tr>
                                         </table>
                                         <div class="mp-qna-body">
