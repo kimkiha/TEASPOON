@@ -3,6 +3,7 @@
 <%
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
+	ArrayList<Review> rlist = (ArrayList<Review>)request.getAttribute("rlist"); 
 %>    
 <!DOCTYPE html>
 <html>
@@ -192,34 +193,24 @@
 
                                     <!--사용자 후기모음-->
                                     <div class="pList5_3">
-                                        <table>
+                                  
+                                    <%for(Review r : rlist){ %>
+                                    <div id="data">
+                                        <table cellpadding="0" cellspacing="0">
                                             <tr>
-                                                <td width="200px">날짜</td>
-                                                <td width="600px" style="text-align: left;">구매자(아이디**)</td>
+                                                <td id="createDate" width="200px"><%=r.getCreateDate() %></td>
+                                                <td id="user" width="600px"><%=r.getUserName() %>(<%=r.getUserId() %>)</td>
                                             </tr>
                                             <tr>
-                                                <td>평점</td>
-                                                <td><p>내용</p></td>
+                                                <td style="border-bottom:1px solid lightgray;"></td>
+                                                <td id="rcontent"  style="border-bottom:1px solid lightgray;"><p><%=r.getContent() %></p></td>
                                             </tr>
-                                            <tr>
-                                                <td>날짜</td>
-                                                <td style="text-align: left;">구매자(아이디**)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>평점</td>
-                                                <td><p>내용</p></td>
-                                            </tr>
-                                            <tr>
-                                                <td>날짜</td>
-                                                <td style="text-align: left;">구매자(아이디**)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>평점</td>
-                                                <td><p>내용</p></td>
-                                            </tr>
+                                        
                                         </table>
+                                        </div>
+                                        <%} %>
                                         <!--더보기 할때 글 3개씩 밑으로?-->
-                                        <button> 더보기 </button>
+                                        <button id="load" onclick="moreList();"> 더보기 </button>
                                         <br><br><br>
                                     </div>
                                 </div>
@@ -233,7 +224,7 @@
         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
-
+    
     <script>
         // 구매수량 변경 옵션
         $(function(){
@@ -286,12 +277,16 @@
             // checked & selected div에 띄우기
 
             
-            // 리뷰쓰기
+            // 리뷰이미지 첨부
             $(function(){
             	$("#reviewImg").click(function(){
             		$("file1").click;
             	});
             });
+            
+            
+            // 리뷰 더보기 버튼
+            
     </script>
 
 </body>

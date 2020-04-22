@@ -630,8 +630,36 @@ public class ProductDao {
 			close(pstmt);
 		}
 		return r;
-		
 	}
 	
+	public ArrayList<Review> selectProductReview(Connection conn, int pcode){
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectProductReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pcode);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Review r  = new Review();
+				r.setReviewNo(rset.getInt("review_no"));
+				r.setUserId(rset.getString("user_id"));
+				r.setUserName(rset.getString("user_name"));
+				r.setContent(rset.getString("content"));
+				r.setCreateDate(rset.getDate("create_date"));
+				list.add(r);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
 	
 }

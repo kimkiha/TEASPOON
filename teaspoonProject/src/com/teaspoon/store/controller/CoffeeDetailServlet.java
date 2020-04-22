@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.store.model.service.ProductService;
 import com.teaspoon.store.model.vo.Product;
+import com.teaspoon.store.model.vo.Review;
 
 /**
  * Servlet implementation class ItemDetailServlet
@@ -38,10 +39,12 @@ public class CoffeeDetailServlet extends HttpServlet {
 		
 		Product p = new ProductService().selectProduct(pcode);
 		ArrayList<Attachment> list = new ProductService().selectAtList(pcode);
+		ArrayList<Review> rlist = new ProductService().selectProductReview(pcode);
 		
 		if(p != null) {
 			request.setAttribute("p", p);
 			request.setAttribute("list", list);
+			request.setAttribute("rlist", rlist);
 			
 			RequestDispatcher view = request.getRequestDispatcher("views/store/coffeeDetailView.jsp");
 			view.forward(request, response);

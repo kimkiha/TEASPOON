@@ -232,5 +232,12 @@ public class ProductService {
 	}
 	
 	
+	public ArrayList<Review> selectProductReview(int pcode){
+		Connection conn = getConnection();
+		ArrayList<Review> list = new ProductDao().selectProductReview(conn, pcode);
+		
+		close(conn);
+		return list;
+	}
 
 }
