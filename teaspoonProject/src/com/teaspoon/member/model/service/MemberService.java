@@ -288,10 +288,10 @@ public class MemberService {
 	 * @param uno >>조회하고자하는 해당 게시글 번호
 	 * @return    
 	 */
-	public MenToMen selectMtm(int uno) {
+	public MenToMen selectMtm(int mno) {
 		Connection conn= getConnection();
 		
-		MenToMen m = new MemberDao().selectMtm(conn,uno);
+		MenToMen m = new MemberDao().selectMtm(conn,mno);
 		close(conn);
 		return m;
 	}

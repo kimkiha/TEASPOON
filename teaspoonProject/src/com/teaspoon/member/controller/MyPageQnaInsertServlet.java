@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -106,7 +107,8 @@ public class MyPageQnaInsertServlet extends HttpServlet {
 					int mtmType = Integer.parseInt(multiRequest.getParameter("mtmType")); // "10";
 					String mtmTitle = multiRequest.getParameter("mtmTitle");
 					String mtmContent = multiRequest.getParameter("mtmContent");
-					int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
+					HttpSession session = request.getSession();
+					int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 					
 					MenToMen m = new MenToMen();
 					m.setMtmType(mtmType);
@@ -133,7 +135,7 @@ public class MyPageQnaInsertServlet extends HttpServlet {
 						
 						
 					}
-					System.out.println(m);
+					//System.out.println(m);
 					// 4. 케시판 작성용 서비스 요청(b,at)
 					int result = new MemberService().insertMtm(m, at);
 					

@@ -18,9 +18,10 @@
     <style>
         #c1_1_2 div{padding-left: 25px; float:left;}
         #oneToOneKinds input{margin-right: 5px; vertical-align: middle;}
+        table td{text-align:center}
         table tr{border-bottom: 1px solid lightgray;}
         table tr:first-child{border-top: 1px solid lightgray;}
-        table th{background-color: #dbdbdb;}
+        table th{background-color: #dbdbdb; text-align:center}
     </style>
 </head>
 <body>
@@ -37,38 +38,42 @@
                         </div>
                     </div>
                     <div id="c1_1_2">
-                        <table>
+                        <table class="listArea" >
                             <thead>
                                 <tr>
-                                    <th width="70">글번호</th>
-                                    <th width="150">제목</th>
-                                    <th width="70">조회수</th>
-                                    <th width="90">작성일</th>
-                                    <th width="90">수정일</th>
-                                    <th width="70">상태</th>
-                                    <th width="100">상세보기</th>
-                                    <th>
+                                    <th width="100">글번호</th>
+                                    <th width="300">제목</th>
+                                    <th width="50">조회수</th>
+                                    <th width="100">작성일</th>
+                                    <th width="100">수정일</th>
+                                    <th width="50">상태</th>
+                                    <th >
                                         <button><a href="magazineInsertForm.bo">추가</a></button>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tea spoon이야기</td>
-                                    <td>10</td>
-                                    <td>20.02.12</td>
-                                    <td>20.02.12</td>
-                                    <td>Y</td>
-                                    <td><button type="button">이동</button></td>
-                                    <td>
-                                        <button><a href="adminAboutUpdateForm.html">수정</a></button>
-                                        <button>삭제</button>
-                                    </td>
-                                    
-                                </tr>
-                            </tbody>
-                             
+                             <%if(list.isEmpty()){%>
+								<tr>
+									<td colspan="8">조회된 리스트가 없습니다.</td>
+								</tr>
+								<%}else{%>
+									<%for(Board b : list){ %>
+										<tr>
+											<td><%=b.getBoardNo() %></td>
+											<td><%=b.getBoardTitle() %></td>
+											<td><%=b.getCount() %></td>
+											<td><%=b.getCreateDate() %></td>
+											<td><%=b.getModifyDate() %></td>
+											<td class="status"><%=b.getStatus()%></td>
+		                                    <td>
+	                                        <button><a href="<%=contextPath%>/magazineUpdateForm.bo?bno=<%=b.getBoardNo()%>">수정</a></button>
+	                                        <button>삭제</button>
+                                   			</td>
+										</tr>
+									
+									<%} %>
+								<%} %>
                       </table>
                     </div>
                 </div>
@@ -79,14 +84,14 @@
                      	           <!-- 현재 페이지에 보여질 페이징바 -->
 			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 			<!-- 맨 처음으로(<<) -->
-			<button onclick="location.href='magazineAdmin.bo?currentPage=1>'">&lt;&lt;</button>
+			<button onclick="location.href='magazineList.bo?currentPage=1>'">&lt;&lt;</button>
 			<!-- 이전페이지로(<) -->
-			<button onclick="location.href='magazineAdmin.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
+			<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
 			<%} %>
 			
 			<%for(int p=startPage; p<=endPage; p++){%>
 				<%if(currentPage != p) {%>
-				<button onclick="location.href='magazineAdmin.bo?currentPage=<%=p%>'"><%=p%></button>
+				<button onclick="location.href='magazineList.bo?currentPage=<%=p%>'"><%=p%></button>
 				<%}else{ %>
 				<button disabled><%=p %></button>
 				<%} %>	
@@ -94,15 +99,25 @@
 			
 			<%if(currentPage != maxPage){ %>
 			<!-- 다음페이지로(<) -->
-			<button onclick="location.href='magazineAdmin.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
+			<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
 			<!-- 맨 마지막으로(>>) -->
-			<button onclick="location.href='magazineAdmin.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+			<button onclick="location.href='magazineList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
 			<%} %>
                 </div>
                
                
             </div>
         </div>
-    </div>  
+        
+        <!--
+    <script>
+		$(function(){
+			$(".listArea>tbody>tr").click(function(){
+				var bno = $(this).children().eq(0).text();
+				location.href="<%=contextPath%>/MagazineUpdateForm.bo?bno=" + bno;
+			});
+		});
+	</script> 
+	  -->
 </body>
 </html>

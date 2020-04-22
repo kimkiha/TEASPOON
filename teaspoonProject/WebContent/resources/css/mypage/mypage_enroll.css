@@ -168,9 +168,9 @@ li {
   width:750px;
   height:310px;
   margin: 0 auto;
-  text-align: left;
   margin-top: 45px;
   border:0.3 solid lightgrey;
+  align:center;
 }
 
 

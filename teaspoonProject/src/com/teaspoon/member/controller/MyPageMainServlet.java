@@ -33,10 +33,9 @@ public class MyPageMainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		//System.out.println(userNo);
+		
 		Member myInfo = new MemberService().MyPageInfo(userNo);
 		
-		System.out.println(myInfo);
 		
 		if(myInfo != null) {
 			
@@ -45,6 +44,8 @@ public class MyPageMainServlet extends HttpServlet {
 			
 			
 			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_main.jsp");
+			
+			
 			view.forward(request, response);
 			
 			

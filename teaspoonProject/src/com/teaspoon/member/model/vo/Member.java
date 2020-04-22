@@ -25,9 +25,14 @@ public class Member {
 	private String mtm_title; // 1:1상담 제목
 	private Date create_date; 
 	
+	// 마이페이지 상단 메뉴바
+	private int pointPrice;// 포인트
 	private int pcode; //위시리스트 갯수 카운트용
 	private int count; //쿠폰 갯수 카운트용
-	
+
+	public Member(){
+		
+	}
 
 	public Member(String userName, int birthday, String phone, String userId, String userPwd, String email) {
 		super();
@@ -42,23 +47,26 @@ public class Member {
 	
 	
 
-	public Member(int userNo, String userName, String gradeName,int pcode, int count) {
 
+	
+	
+	public Member(int userNo, String userName, String gradeName, int pointPrice, int pcode, int count) {
 		super();
 		this.userNo = userNo;
 		this.userName = userName;
 		this.gradeName = gradeName;
+		this.pointPrice = pointPrice;
 		this.pcode = pcode;
 		this.count = count;
 	}
-	
+
+
+
+
+
+
 
 	
-	
-	public Member(){
-		
-	}
-
 	
 	public Member(int mtm_no,int userNo, String mtm_name, String mtm_title, Date create_date) {
 		super();
@@ -105,7 +113,20 @@ public class Member {
 		this.status = status;
 	}
 	
-	
+
+
+
+
+
+
+	public int getPointPrice() {
+		return pointPrice;
+	}
+
+	public void setPointPrice(int pointPrice) {
+		this.pointPrice = pointPrice;
+	}
+
 	public int getPcode() {
 		return pcode;
 	}

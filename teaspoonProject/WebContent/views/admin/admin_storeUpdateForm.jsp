@@ -3,7 +3,7 @@
 <%
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
-	System.out.println(list);
+	//System.out.println(list);
 	String kind = p.getKind();
 	String[] checked = new String[2];
 	

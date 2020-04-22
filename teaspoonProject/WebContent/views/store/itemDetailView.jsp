@@ -12,9 +12,12 @@
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/itemDetailView.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer1.css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
-    #content1 {width:100%; height:2300px;background: #ffffff; }
+    #content1 {width:100%; min-height:100%; background: #ffffff; }
+    #productArea{min-height:100%}
 </style>
 </head>
 <body>
@@ -25,7 +28,7 @@
         <div id="banner">
             <div class="contaniner">
                 <div style="margin: 100px 0px;">
-                    <p id="head_title"> CUP & ITEM</p>
+                    <p id="head_title"><%=p.getPname() %></p>
                 </div>
                 <div style="border: 1px solid; width:150px; float:left; margin-left: 500px;">
                 </div>
@@ -42,7 +45,7 @@
                                 <div class="pList1">
                                     <div class="thumbnail">
                                         <img width="500px" height="400px" 
-                                        	src="<%=contextPath %>/resources/img/store/product4_1.jpg">
+                                        	src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>">
                                     </div>
                                     <div class="move_review">
                                         <a href="#review"><p>REVIEW &gt;&gt;</p></a>
@@ -74,7 +77,8 @@
                                    <!--상품금액 합계, 정기배송버튼, 장바구니버튼, 바로구매버튼 -->
                                    <div class="p_explain5">
                                         <span> 상품금액합계 </span>
-                                        <span><%=p.getPrice() %></span>
+                                        <input id="price" type="hidden" value="<%=p.getPrice() %>">
+                                        <span id="totalPrice"><%=p.getPrice() %>원</span>
                                         <button id="delivery">정기배송 5%할인</button>
                                         <button id="basket">장바구니 담기</button>
                                         <button id="buyNow">바로 구매하기</button>
@@ -84,62 +88,51 @@
                                 <!--제품상세버튼, 고객리뷰버튼-->
                                 <div class="pList3">
                                     <p>제품상세</p>
-                                    <a href="#review"><p>고객리뷰</p></a>
+                                    <a href="#review"><p style="font-weight:bold;">고객리뷰</p></a>
                                 </div>
                                 
                                 <!--상품상세페이지-->
-                                <div class="pList4">
+                                <div class="pList4"style="height:inherit;">
                                     <hr>
                                     <div>
-                                    	<%=p.getPcontent() %>
+                                    	<p style="font-size:20px; text-align:left; padding-bottom:30px;"><%=p.getPcontent() %></p>
                                     </div>
-                                   	<% for(int i=1; i<=list.size(); i++){ %>
-                                    <div>
-                                    	<img style="width:500px; height:400px;"
-                                    		src="<%=contextPath %>/resources/img/store/<%=list.get(i).getChangeName()%>">
+                                   	<% for(int i=1; i<=list.size()-1; i++){ %>
+                                    <div style="text-align:center; width:inherit;">
+                                    	<img style="width:100%;"
+                                    		src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>">
                                     </div>
                                    	<%} %>
                                 </div>
 
-
+								<br><br>
                                 <div class="pList5_1">
-                                    <p>고객리뷰</p>
-                                  <% if(loginUser !=null){ %>
+                                <hr>
+                                    <p style="font-weight:bold; margin-top: 120px;">고객리뷰</p>
                                     <button class="writeReview">리뷰쓰기</button>
                                 </div>
                                 <!-- action에 경로설정(리뷰작성하면 아래 리뷰칸으로 넣어지도록? -->
+                                <div id="reviewList">
                                 <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
-	                                <table id="writeReview" >
-	                                    <tr style="height: 50px;">
-	                                        <td width="130px" style="text-align: right; font-size: 18px; padding-right: 30px;">별점</td>
-	                                        <td colspan="3" width="600px" style="text-align: left;">
-                                                <select name="starPoint" id="starPoint" style="border: 1px solid #ddd; height: 40px; width: 180px; border-radius: 5px;">
-                                                    <option value="5" selected>★★★★★</option>
-                                                    <option value="4">★★★★☆</option>
-                                                    <option value="3">★★★☆☆</option>
-                                                    <option value="2">★★☆☆☆</option>
-                                                    <option value="1">★☆☆☆☆</option>
-                                                </select>
-	                                        </td>
-	                                        
-	                                        <td width="100px"></td>
-	                                    </tr>
+	                                <table id="writeReview" cellpadding="0" cellspacing="0" >
 	                                    <tr>
-	                                        <td style="text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px;">내용</td>
-	                                        <td colspan="3"><textarea name="" id="" cols="" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
+	                                        <td style="width:130px;text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px; border-top: 1px solid #ddd;">내용</td>
+	                                        <td colspan="3" style="border-top: 1px solid #ddd;"><textarea name="" id="" cols="" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
 	                                        
-	                                        <td></td>
+	                                        <td style="width:100px; border-top: 1px solid #ddd;"></td>
 	                                    </tr>
 	                                    <tr style="height: 50px;">
 	                                        <td style="text-align: right;"></td>
 	                                        <td>
 	                                            <div>
-	                                                <div style="float: left; padding-top: 5px;">
+	                                                <div style="float: left;  padding-top: 5px; padding-right:10px;">
 	                                                    <img src="<%=contextPath %>/resources/img/store/img.png" width="40px" >
 	                                                </div>
-	                                                <div style="float: left;">
-	                                                    <button id="reviewImg" class="imgBtn" type="submit" name="img" value="img">이미지등록</button>
-	                                                </div>
+	                                                <div style="float: left; ">
+		                                                    <div id="fileArea" style="padding-top:10px;">
+		                                                    	<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
+		                                                    </div>
+		                                            </div>
 	                                            </div>
 	                                        </td>
 	                                        <td width="100px">
@@ -152,17 +145,15 @@
 	                                    </tr>
 	                                </table>
                                 </form>
-                                <%} %>
+                                </div>
                                 <!--//리뷰쓰기 버튼-->
 
                                 <!--고객리뷰페이지(상단과 엥커걸림)-->
                                 <div id="review" class="pList5">
-                                    
-                                    <hr>
-                                    <div class="pList5_2">
+                                    <br><br>
+                                    <div class="pList5_2" style="padding-bottom:20px">
                                         <button class="btn_review">전체리뷰</button>
                                         <button class="btn_review">사진리뷰</button>
-                                        <p>평점 4.5 &starf;&starf;&starf;&starf;&star;</p>
                                     </div>
                                     <!--사용자 후기모음-->
                                     <div class="pList5_3">
@@ -194,6 +185,7 @@
                                         </table>
                                         <!--더보기 할때 글 3개씩 밑으로?-->
                                         <button> 더보기 </button>
+                                        <br><br><br>
                                     </div>
                                 </div>
                             </div>
@@ -209,7 +201,12 @@
 
     <script>
         // 구매수량 변경 옵션
+        
         $(function(){
+        	
+        	var price;
+        	var num1;
+        	
             $('#decreaseQuantity').click(function(e){
                 e.preventDefault();
                 var stat = $('#numberUpDown').text();
@@ -220,6 +217,8 @@
                     num =1;
                 }
                 $('#numberUpDown').text(num);
+                totalSum();
+                
             });
                 $('#increaseQuantity').click(function(e){
                     e.preventDefault();
@@ -232,8 +231,18 @@
                     num=5;
                 }
                     $('#numberUpDown').text(num);
+                    totalSum();
+                    
             });
+                
+                function totalSum(){
+        			num1 =  $('#numberUpDown').text();
+                	price = $("#price").val();
+                	total = num1*price;
+                	$("#totalPrice").text(total+"원");
+                }
         });
+        
 
         //리뷰쓰기 버튼
         $(function(){

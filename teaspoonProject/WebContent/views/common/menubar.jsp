@@ -56,10 +56,10 @@
                                 <li><a href="<%=contextPath%>/views/board/magazine.jsp">매거진</a></li>
                             </ul>
                         </li>
-                        <li><a class="list rent" href="<%=contextPath%>/views/space/space_rental.jsp">공간대여</a>
+                        <li><a class="list rent" href="<%=contextPath%>/rental.sp">공간대여</a>
                             <ul class="ul">
-                                <li><a href="<%=contextPath%>/views/space/space_rental.jsp">예약하기</a></li>
-                                <li><a href="#">찾아오는길</a></li>
+                                <li><a href="<%=contextPath%>/rental.sp">예약하기</a></li>
+                                <li><a href="<%=contextPath%>/maps.sp">찾아오는길</a></li>
                             </ul>
                         </li>
                     </ul>

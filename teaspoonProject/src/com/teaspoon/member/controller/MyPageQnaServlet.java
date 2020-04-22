@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.service.MemberService;
@@ -44,7 +45,10 @@ public class MyPageQnaServlet extends HttpServlet {
 				int boardLimit;		//한페이지에 보여질 게시글 최대 갯수
 				
 				//* listCount : 1:1 나의 총 게시글
-				int userNo = Integer.parseInt(request.getParameter("userNo"));
+				HttpSession session = request.getSession();
+				int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+			
+				
 				listCount = new MemberService().getQnaListCount(userNo);
 				
 				//* currentPage : 현재페이지 (즉,요청한페이지)

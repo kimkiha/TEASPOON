@@ -104,6 +104,7 @@
                                <%}else{ %>
                               		<% for(Member m : list){ %>
                                     <tr>
+                                    
                                         <td><%= m.getMtm_name() %></td>
                                         <td colspan="2"><%= m.getMtm_title() %></td>
                                         <td><%=m.getCreate_date() %></td>
@@ -122,14 +123,14 @@
 									<% if(currentPage !=1) {%>
 								
 									<!--  맨처음으(<<) -->
-									<button onclick="location.href='myqna.me?currentPage=1'"> &lt;&lt;</button>
+									<button onclick="location.href='myqna.me?currentPage=1&userNo=<%=loginUser.getUserNo() %>'"> &lt;&lt;</button>
 								
 									<!--  이전페이지(<) -->
-									<button onclick="location.href='myqna.me?currentPage=<%=currentPage-1%>'"> &lt;</button>
+									<button onclick="location.href='myqna.me?currentPage=<%=currentPage-1%>&userNo=<%=loginUser.getUserNo() %>'"> &lt;</button>
 										<%} %>
 									<% for(int p=startPage; p<=endPage; p++){ %>
 										<%if(currentPage != p) {%>
-										<button onclick="location.href='myqna.me?currentPage=<%=p %>';"><%=p %></button>
+										<button onclick="location.href='myqna.me?currentPage=<%=p %>&userNo=<%=loginUser.getUserNo() %>'"><%=p %></button>
 										<%}else{ %>
 										<button disabled><%= p %></button>
 										<%} %>
@@ -137,9 +138,9 @@
 									
 									<% if(currentPage != maxPage){ %>
 									<!--  다음페이지(>) -->
-								    <button onclick="location.href='myqna.me?currentPage=<%=currentPage+1%>'"> &gt;</button>
+								    <button onclick="location.href='myqna.me?currentPage=<%=currentPage+1%>&userNo=<%=loginUser.getUserNo() %>'"> &gt;</button>
 									<!--  맨마지막으로(>>) -->
-									<button onclick="location.href='myqna.me?currentPage=<%=maxPage%>'">&gt;&gt;</button>
+									<button onclick="location.href='myqna.me?currentPage=<%=maxPage%>&userNo=<%=loginUser.getUserNo() %>'">&gt;&gt;</button>
 									<%} %>
 								</div>
                             </div>
@@ -158,7 +159,7 @@
     		$("#mypage_table>tbody>tr").click(function(){
     			var uno= $(this).children().eq(0).text();
     			
-    			location.href="<%=contextPath%>/myqnadetail.me?uno=" + uno;
+    			location.href="<%=contextPath%>/myqnadetail.me?";
     			
     		});
     	});
