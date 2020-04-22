@@ -53,22 +53,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tea spoon이야기</td>
-                                    <td>10</td>
-                                    <td>20.02.12</td>
-                                    <td>20.02.12</td>
-                                    <td>Y</td>
-                                    <td><button type="button">이동</button></td>
-                                    <td>
-                                        <button><a href="adminAboutUpdateForm.html">수정</a></button>
-                                        <button>삭제</button>
-                                    </td>
-                                    
-                                </tr>
-                            </tbody>
-                             
+                             <%if(list.isEmpty()){%>
+								<tr>
+									<td colspan="8">조회된 리스트가 없습니다.</td>
+								</tr>
+								<%}else{%>
+									<%for(Board b : list){ %>
+										<tr>
+											<td><%=b.getBoardNo() %></td>
+											<td><%=b.getBoardTitle() %></td>
+											<td><%=b.getCount() %></td>
+											<td><%=b.getCreateDate() %></td>
+											<td><%=b.getModifyDate() %></td>
+											<td><%=b.getStatus()%></td>
+		                                    <td><button type="button">이동</button></td>
+		                                    <td>
+	                                        <button><a href="adminAboutUpdateForm.html">수정</a></button>
+	                                        <button>삭제</button>
+                                   			</td>
+										</tr>
+									
+									<%} %>
+								<%} %>
                       </table>
                     </div>
                 </div>
@@ -79,14 +85,14 @@
                      	           <!-- 현재 페이지에 보여질 페이징바 -->
 			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 			<!-- 맨 처음으로(<<) -->
-			<button onclick="location.href='magazineAdmin.bo?currentPage=1>'">&lt;&lt;</button>
+			<button onclick="location.href='magazineList.bo?currentPage=1>'">&lt;&lt;</button>
 			<!-- 이전페이지로(<) -->
-			<button onclick="location.href='magazineAdmin.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
+			<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
 			<%} %>
 			
 			<%for(int p=startPage; p<=endPage; p++){%>
 				<%if(currentPage != p) {%>
-				<button onclick="location.href='magazineAdmin.bo?currentPage=<%=p%>'"><%=p%></button>
+				<button onclick="location.href='magazineList.bo?currentPage=<%=p%>'"><%=p%></button>
 				<%}else{ %>
 				<button disabled><%=p %></button>
 				<%} %>	
@@ -94,9 +100,9 @@
 			
 			<%if(currentPage != maxPage){ %>
 			<!-- 다음페이지로(<) -->
-			<button onclick="location.href='magazineAdmin.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
+			<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
 			<!-- 맨 마지막으로(>>) -->
-			<button onclick="location.href='magazineAdmin.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+			<button onclick="location.href='magazineList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
 			<%} %>
                 </div>
                
