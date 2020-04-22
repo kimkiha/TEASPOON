@@ -126,7 +126,7 @@
                             <div class="choice"> 
                                 <div class="choice1">날짜 선택</div>
                                 <div class="choice2">대여 시간</div>
-                                <div class="choice3">특별 요금</div>   
+                                <div class="choice3">등급 할인</div>   
                             </div>
                             <span>  
                               <div>
@@ -146,9 +146,8 @@
                                   <option selected>인원수</option>
                                 </select> 
 
-                                <select class="box3" name="op">
+                                <select class="box3" name="GRADE_CODE">
                                   <option value="vip">VIP 할인</option>
-                                  <option value="coupon">쿠폰 할인</option>
                                   <option selected>없음</option>
                                 </select>
                               </div>

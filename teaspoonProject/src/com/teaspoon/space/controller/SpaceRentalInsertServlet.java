@@ -48,8 +48,8 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		int visitNum = Integer.parseInt(request.getParameter("visitNum"));
 		String Phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
 		String reservReason = request.getParameter("reservReason");
-		String accept = request.getParameter("accept");
 		String [] goods = request.getParameterValues("good");
+		int gradeCode = ((Member)request.getSession().getAttribute("loginUser")).getGradeCode();
 		
 		System.out.println(userNo);
 		System.out.println(reservDate);
@@ -57,15 +57,16 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		System.out.println(visitNum);
 		System.out.println(Phone);
 		System.out.println(reservReason);
-		System.out.println(accept);
+		System.out.println(gradeCode);
 		
 		
 		String good = "";
 		if(goods != null) {
 			good = String.join(",", goods); // "빔프로젝트, 노트북"
 		}
-//		
+		
 		System.out.println(good);
+		
 //		Space s = new Space(userNo, reservDate, reservTime, visitNum, Phone, reservReason, accept, good);
 //		
 //		

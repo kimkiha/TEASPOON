@@ -58,7 +58,7 @@
                     <div class="name4">
                         <span class="foot1">주문고객정보</span>
                         <span class="foot2">고객님의 회원정보가 기본입력 됩니다.</span>
-                    </div><br>
+                    </div>
                     <hr>
                     <br>
                     <div class="name5">
