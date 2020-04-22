@@ -189,7 +189,24 @@ public class ProductService {
 	}
 	
 	
-	/** 관리자 상품 리뷰 조회용 서비스
+	/**
+	 *  상품 리스트 총 갯수 조회용 서비스
+	 * @return	--> 상품총갯수
+	 */
+	
+	public int getReviewListCount() {
+		Connection conn = getConnection();
+		
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new ProductDao().getReviewListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	
+	/** 관리자 상품 리뷰 전체조회용 서비스
 	 * @param pi
 	 * @return
 	 */
@@ -201,6 +218,18 @@ public class ProductService {
 		return list;
 	}
 	
+	
+	/** 관리자 리뷰 상세조회 서비스 
+	 * @param reviewNo 상세조회하고자하는 리뷰의 번호
+	 * @return
+	 */
+	public Review selectReviewDetail(int reviewNo) {
+		Connection conn = getConnection();
+		Review r = new ProductDao().selectReviewDetail(conn, reviewNo);
+		
+		close(conn);
+		return r;
+	}
 	
 	
 

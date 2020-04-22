@@ -44,7 +44,7 @@ public class ReviewListServlet extends HttpServlet {
 		int boardLimit;		//한페이지에 보여질 게시글 최대 갯수
 		
 		//* listCount : 총 게시글 갯수
-		listCount = new ProductService().getListCount();
+		listCount = new ProductService().getReviewListCount();
 		
 		//* currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -53,7 +53,7 @@ public class ReviewListServlet extends HttpServlet {
 		pageLimit = 5;
 		
 		//* boardLimit : 한 페이지에 보여질 게시글 최대 갯수
-		boardLimit = 9; 
+		boardLimit = 6; 
 		
 		maxPage = (int)Math.ceil(((double)listCount / boardLimit));
 		startPage = ((currentPage -1)/pageLimit) * pageLimit + 1;
@@ -64,7 +64,7 @@ public class ReviewListServlet extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
-		//System.out.println(pi);
+
 		ArrayList<Review> list = new ProductService().selectReviewList(pi);
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);

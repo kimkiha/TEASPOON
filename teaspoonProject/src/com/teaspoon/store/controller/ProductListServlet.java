@@ -56,65 +56,21 @@ public class ProductListServlet extends HttpServlet {
 		//* boardLimit : 한 페이지에 보여질 게시글 최대 갯수
 		boardLimit = 6; 
 		
-		
-		//* maxPage : (마지막 페이지) 총 페이지수 
-		/*
-		 *  ex) boardLimt : 10이라는 가정 하에 
-		 *  
-		 * 총게시글갯수   /boardLimit
-		 *   100.0 	 / 	  10	 = 10.0  	--> 10페이지
-		 *   101.0   /    10     = 10.1		--> 11페이지 
-		 *   105.0	 /	  10     = 10.5		--> 11페이지
-		 *   109.0	 /	  10	 = 10.9		--> 11페이지
-		 * (실수)listCount / boardLimit 의 결과값을 무조건 올림한값!!  
-		 */
 		maxPage = (int)Math.ceil(((double)listCount / boardLimit));
-		
-		
-		/* startPage : 현재 페이지의 보여질 페이징바의 시작 수 
-		 * 
-		 * ex) pageLimit : 10이라는 가정하에
-		 * 1, 11, 21, 31, ......		=> n * 10(pageLimit) + 1
-		 * 
-		 * currentPage = 1 				=> 0 * 10 + 1 = 1
-		 * currentPage = 5				=> 0 * 10 + 1 = 1
-		 * currentPage = 10 		    => 0 * 10 + 1 = 1
-		 * 
-		 * currentPage = 11				=> 1 * 10 + 1 = 11
-		 * currentPage = 15				=> 1 * 10 + 1 = 11
-		 * currentPage = 20				=> 1 * 10 + 1 = 11
-		 * 
-		 * currentPage = 21				=> 2 * 10 + 1 = 21
-		 * 
-		 * currenPage = 1~10 	          n=0
-		 * currenPage = 11~20 	          n=1
-		 * currenPage = 21~30 	          n=2
-		 * 							
-		 * 								  n= (currentPage -1) /pageLimit	
-		 */
 		startPage = ((currentPage -1)/pageLimit) * pageLimit + 1;
-		
-		/*endPage : 한페이지 하단에 보여질 페이징바의 끝 수 
-		 * 
-		 * ex) pageLimit : 10이라는 가정하에
-		 * 
-		 * startPage : 1				=> endPage : 10 
-		 * startPage : 11				=> endPage : 20
-		 * 
-		 */
 		endPage = startPage + pageLimit -1;
 		
-		//단, maxPage가 고작 13까지 밖에 안되면? 
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
-		//System.out.println(pi);
+
 		ArrayList<Product> list = new ProductService().selectProductList(pi);
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_store.jsp");
 		view.forward(request, response);
 	

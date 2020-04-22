@@ -27,6 +27,18 @@ public class Review {
 		this.userName = userName;
 		this.pname = pname;
 	}
+	
+	
+	// 상품 디테일 조회시 사용하는 생성자
+	public Review(int reviewNo, String pname, String userName, String userId, Date createDate, String content) {
+		super();
+		this.reviewNo = reviewNo;
+		this.content = content;
+		this.createDate = createDate;
+		this.userId = userId;
+		this.userName = userName;
+		this.pname = pname;
+	}
 
 	public int getReviewNo() {
 		return reviewNo;

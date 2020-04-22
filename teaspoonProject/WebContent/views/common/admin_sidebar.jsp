@@ -88,7 +88,7 @@
             	
             </div>
             <div class="h3">
-            	<img class="btn1" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/로그아웃.png">
+            	<img class="btn1" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/admin_logout.png">
             	</div>
         </div>
         <div id="side">
