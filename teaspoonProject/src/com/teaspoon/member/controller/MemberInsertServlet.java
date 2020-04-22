@@ -33,7 +33,7 @@ public class MemberInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		
 		// 1.전달값중에 한글이 있을 경우를 대비해서 인코딩 작업 필수
 		request.setCharacterEncoding("utf-8");

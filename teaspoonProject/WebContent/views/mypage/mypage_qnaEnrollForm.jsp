@@ -70,7 +70,7 @@
                                <div class="mp-qna-title"><P>1:1문의 내역</P></div>
                                <div class="outer" align="center">
                                     <form action="<%=contextPath %>/myQnaInsert.me" method="post" enctype="multipart/form-data">
-                                    	<input type="hidden" name="writer" value="<%=loginUser.getUserNo() %>">
+                                    	<input type="hidden" name="userNo" value="<%=loginUser.getUserNo() %>">
                                         <table align="center" id="mypage_table">
                                             <tr >
                                                 <th width="170">상담구분</th>

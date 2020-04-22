@@ -1,5 +1,6 @@
 package com.teaspoon.member.controller;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Properties;
 import java.util.Random;
 
@@ -14,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class EmailServlet
@@ -42,7 +42,7 @@ public class MemberEnrollEmail extends HttpServlet {
         String password = "tkfk5184!";//자신의 네이버 패스워드
         
         //메일 받을 주소
-        String email = request.getParameter("email");
+        String email = request.getParameter("Email");
         System.out.println(email);
         //SMTP 서버 정보를 설정한다.
         Properties props = new Properties();
@@ -72,8 +72,8 @@ public class MemberEnrollEmail extends HttpServlet {
                 break;
             }
         }
-        String AuthenticationKey = temp.toString();
-        System.out.println(AuthenticationKey);
+        String randomKey = temp.toString();
+        System.out.println(randomKey);
         
         Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -98,10 +98,13 @@ public class MemberEnrollEmail extends HttpServlet {
         }catch (Exception e) {
             e.printStackTrace();// TODO: handle exception
         }
-        HttpSession saveKey = request.getSession();
-        saveKey.setAttribute("AuthenticationKey", AuthenticationKey);
+//        HttpSession saveKey = request.getSession();
+//        saveKey.setAttribute("randomKey", randomKey);
+//        request.setAttribute("randomKey", randomKey); 
+//        request.getRequestDispatcher("memberEnroll.me").forward(request, response);
         
-        request.getRequestDispatcher("mypage_enroll.jsp").forward(request, response);
+        PrintWriter out = response.getWriter();
+        out.print(randomKey);
 	}
 
 	/**
