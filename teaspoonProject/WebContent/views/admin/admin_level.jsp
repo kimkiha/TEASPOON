@@ -139,7 +139,11 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
             </div>
         </div>
     </div>  
-    
+    <form id="maxGradeForm" action="<%=contextPath%>/maxGradeInsert.me" method="post">
+		<input type="hidden" id="maxGradeName" name="maxGradeName">
+		<input type="hidden" id="maxMinMoney" name="maxMinMoney">
+		<input type="hidden" id="maxDiscountRate" name="maxDiscountRate">
+	</form>
     <script>
     	$(function(){
     		$("#btnInsert").click(function(){
@@ -164,7 +168,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     			var gradeName = $("#gradeName").val();
     			var minMoney = $("#minMoney").val();
     			var discountRate = $("#discontRate").val();
-				console.log(gradeName);
+				
 				
     			if(gradeName == ''){
     				alert("등급명을 입력하세요.");
@@ -179,8 +183,11 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     				alert("등급 10개 초과로 추가가 불가능합니다.");
 
     			}else if($("#minMoney").val() > <%=gList.get(gList.size()-1).getMinAcount()%>){
+    				$("#maxGradeName").val(gradeName);
+    				$("#maxMinMoney").val(minMoney);
+    				$("#maxDiscountRate").val(discountRate);
     				
-    				
+    				$("#maxGradeForm").submit();
     			}else{
     				$("#levelInsertForm").submit();
     			}

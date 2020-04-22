@@ -146,7 +146,16 @@ public class MemberService {
 		return list;
 	}
 	
-	
+	public int getSearchKeywordListCount(String searchKeyword1,String searchKeyword2) {
+		Connection conn = getConnection();
+		
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new MemberDao().getSearchKeywordListCount(conn,searchKeyword1,searchKeyword2);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
 	
 	/**
@@ -353,6 +362,26 @@ public class MemberService {
 		
 		return result;
 	}
+		
+		public int updateMemberMaxGrade(Grade grade, ArrayList<Grade> gList) {
+			
+			Connection conn = getConnection();
+			int addGradeCode = gList.get(gList.size()-1).getGradeCode();
+			
+			int result = new MemberDao().updateMemberMaxGrade(conn,grade,addGradeCode);
+			
+			
+			
+			
+			if(result>0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
+		}
 
 	
 }

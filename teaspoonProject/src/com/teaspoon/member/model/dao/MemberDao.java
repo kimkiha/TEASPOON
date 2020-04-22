@@ -811,6 +811,28 @@ public int insertAttachment(Connection conn, Attachment at) {
 		}
 		
 		
+		public int updateMemberMaxGrade(Connection conn, Grade grade, int addGradeCode) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("updateMemberMaxGrade");
+		
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1,addGradeCode);
+				pstmt.setString(2, grade.getGradeName());
+			
+				
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;	
+		}
 		
 
 }
