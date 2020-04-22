@@ -42,7 +42,7 @@
 .pList3 p{width: 400px; height: 70px; float: left; background-color: white; border: 0px; font-size: 32px; font-weight: bold; }
 
 /* 상품상세페이지 */
-.pList4{float:left; width: 860px; height:400px; padding-left: 70px;padding-right: 70px; background-color:rgb(243, 242, 242);}
+.pList4{float:left; width: 860px; height:400px; padding-left: 70px;padding-right: 70px;}
 
 /* 고객리뷰페이지(상단과 엥커걸림) */
 .pList5{ float:left; width: 1000px; height:300px; }

@@ -12,9 +12,9 @@
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/coffeeDetailView.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer1.css">
 <style>
-    #content1 {width:100%; height:2300px;background: #ffffff; }
+    #content1 {width:100%; min-height:100%; background: #ffffff; }
 </style>
 </head>
 <body>
@@ -42,7 +42,7 @@
                                 <div class="pList1">
                                     <div class="thumbnail">
                                         <img style="width:500px; height:400px;"
-                                        	src="<%=contextPath %>/resources/img/store/<%=list.get(0).getChangeName()%>">
+                                        	src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>">
                                     </div>
                                     <div class="move_review">
                                         <a href="#review"><p>REVIEW &gt;&gt;</p></a>
@@ -113,7 +113,7 @@
 
                                    <!--상품금액 합계, 정기배송버튼, 장바구니버튼, 바로구매버튼 -->
                                    <div class="p_explain5">
-                                        <span> 상품금액합계</span>
+                                        <span style="padding:30px;"> 상품금액합계</span>
                                         <span><%=p.getPrice() %></span>
                                         <button id="delivery">정기배송 5%할인</button>
                                         <button id="basket">장바구니 담기</button>
@@ -128,17 +128,20 @@
                                 </div>
                                 
                                 <!--상품상세페이지-->
-                                <div class="pList4">
+                                <div class="pList4" style="height:inherit;">
                                     <hr>
+                                    
                                     <div>
-                                    	<%=p.getPcontent() %>
+                                    	<p style="font-size:20px; text-align:left; padding-bottom:30px;"><%=p.getPcontent() %></p>
                                     </div>
-                                   	<% for(int i=1; i<=list.size(); i++){ %>
-                                    <div>
+                                   	<% for(int i=1; i<=list.size()-1; i++){ %>
+                                    <div style="text-align:center; width:inherit;">
                                     	<img style="width:500px; height:400px;"
-                                    		src="<%=contextPath %>/resources/img/store/<%=list.get(i).getChangeName()%>">
+                                    		src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>">
                                     </div>
                                    	<%} %>
+                                   
+                                   
                                 </div>
 
                                 <!--고객리뷰페이지-->
@@ -146,52 +149,57 @@
                                     <p>고객리뷰</p>
                                     
                                     <!--리뷰쓰기 버튼-->
+                                    <% if(loginUser !=null){ %>
                                     <button>리뷰쓰기</button>
                                 </div>
-                                <table id="reviewForm" >
-                                    <tr style="height: 50px;">
-                                        <td width="130px" style="text-align: right; font-size: 18px; padding-right: 30px;">별점</td>
-                                        <td colspan="3" width="600px" style="text-align: left;">
-                                            <form >
-                                                <select name="starPoint" id="starPoint" style="border: 1px solid #ddd; height: 40px; width: 180px; border-radius: 5px;">
-                                                    <option value="5" selected>★★★★★</option>
-                                                    <option value="4">★★★★☆</option>
-                                                    <option value="3">★★★☆☆</option>
-                                                    <option value="2">★★☆☆☆</option>
-                                                    <option value="1">★☆☆☆☆</option>
-                                                </select>
-                                            </form>
-                                        </td>
-                                        
-                                        <td width="100px"></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px;">내용</td>
-                                        <td colspan="3"><textarea name="" id="" cols="" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
-                                        
-                                        <td></td>
-                                    </tr>
-                                    <tr style="height: 50px;">
-                                        <td style="text-align: right;"></td>
-                                        <td>
-                                            <div>
-                                                <div style="float: left; padding-top: 5px;">
-                                                    <img src="<%=contextPath %>/resources/img/store/img.png" width="40px" >
-                                                </div>
-                                                <div style="float: left;">
-                                                    <button id="reviewImg" class="imgBtn" type="submit" name="img" value="img">이미지등록</button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td width="100px">
-                                            <button id="resetReview" class="btn" type="reset" name="reset" value="reset">취소</button>
-                                        </td>
-                                        <td width="100px">
-                                            <button id="subReview" class="btn" type="submit" name="submit" value="submit"> 작성완료</button>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </table>
+                                <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
+	                                <table id="writeReview" >
+	                                    <tr style="height: 50px;">
+	                                        <td width="130px" style="text-align: right; font-size: 18px; padding-right: 30px;">별점</td>
+	                                        <td colspan="3" width="600px" style="text-align: left;">
+	                                           <select name="starPoint" id="starPoint" style="border: 1px solid #ddd; height: 40px; width: 180px; border-radius: 5px;">
+	                                               <option value="5" selected>★★★★★</option>
+	                                               <option value="4">★★★★☆</option>
+	                                               <option value="3">★★★☆☆</option>
+	                                               <option value="2">★★☆☆☆</option>
+	                                               <option value="1">★☆☆☆☆</option>
+	                                           </select>
+	                                        </td>
+	                                        
+	                                        <td width="100px"></td>
+	                                    </tr>
+	                                    <tr>
+	                                        <td style="text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px;">내용</td>
+	                                        <td colspan="3"><textarea name="" id="" cols="" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
+	                                        
+	                                        <td></td>
+	                                    </tr>
+	                                    <tr style="height: 50px;">
+	                                        <td style="text-align: right;"></td>
+	                                        <td>
+	                                            <div>
+	                                                <div style="float: left; padding-top: 5px;">
+	                                                    <img src="<%=contextPath %>/resources/img/store/img.png" width="40px" >
+	                                                </div>
+	                                                <div style="float: left;">
+	                                                    <button id="reviewImg" class="imgBtn" type="submit" name="img" value="img">이미지등록</button>
+	                                                    <div id="fileArea">
+	                                                    	<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </td>
+	                                        <td width="100px">
+	                                            <button id="resetReview" class="btn" type="reset" name="reset" value="reset">취소</button>
+	                                        </td>
+	                                        <td width="100px">
+	                                            <button id="subReview" class="btn" type="submit" name="submit" value="submit"> 작성완료</button>
+	                                        </td>
+	                                        <td></td>
+	                                    </tr>
+	                                </table>
+                                </form>
+                                <%} %>
                                 <!--//리뷰쓰기 버튼-->
                                 <br>
                                 <div id="review" class="pList5">
@@ -246,6 +254,8 @@
     </div>
 
     <script>
+    	
+    
         // 구매수량 변경 옵션
         $(function(){
             $('#decreaseQuantity').click(function(e){
@@ -275,6 +285,13 @@
 
             // checked & selected div에 띄우기
 
+            
+            // 리뷰쓰기
+            $(function(){
+            	$("#reviewImg").click(function(){
+            		$("file1").click;
+            	});
+            });
 
 
     </script>
