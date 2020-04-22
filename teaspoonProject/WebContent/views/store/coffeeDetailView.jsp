@@ -130,7 +130,6 @@
                                 <!--상품상세페이지-->
                                 <div class="pList4" style="height:inherit;">
                                     <hr>
-                                    
                                     <div>
                                     	<p style="font-size:20px; text-align:left; padding-bottom:30px;"><%=p.getPcontent() %></p>
                                     </div>

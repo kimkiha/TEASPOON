@@ -25,7 +25,7 @@
         <div id="banner">
             <div class="contaniner">
                 <div style="margin: 100px 0px;">
-                    <p id="head_title"> CUP & ITEM</p>
+                    <p id="head_title"><%=p.getPname() %></p>
                 </div>
                 <div style="border: 1px solid; width:150px; float:left; margin-left: 500px;">
                 </div>
@@ -42,7 +42,7 @@
                                 <div class="pList1">
                                     <div class="thumbnail">
                                         <img width="500px" height="400px" 
-                                        	src="<%=contextPath %>/resources/img/store/product4_1.jpg">
+                                        	src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>">
                                     </div>
                                     <div class="move_review">
                                         <a href="#review"><p>REVIEW &gt;&gt;</p></a>
@@ -91,12 +91,12 @@
                                 <div class="pList4">
                                     <hr>
                                     <div>
-                                    	<%=p.getPcontent() %>
+                                    	<p style="font-size:20px; text-align:left; padding-bottom:30px;"><%=p.getPcontent() %></p>
                                     </div>
-                                   	<% for(int i=1; i<=list.size(); i++){ %>
-                                    <div>
+                                   	<% for(int i=1; i<=list.size()-1; i++){ %>
+                                    <div style="text-align:center; width:inherit;">
                                     	<img style="width:500px; height:400px;"
-                                    		src="<%=contextPath %>/resources/img/store/<%=list.get(i).getChangeName()%>">
+                                    		src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>">
                                     </div>
                                    	<%} %>
                                 </div>

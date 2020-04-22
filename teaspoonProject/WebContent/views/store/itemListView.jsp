@@ -50,8 +50,8 @@
                         	<%for(Product p : list) {%>
                             
                             <div class="product" style="margin-top:50px; margin-right:30px;">
+                            	<input type="hidden" value=<%=p.getPcode() %>>
                                 <div class="product_img">
-                                	<input type="hidden" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
@@ -75,26 +75,26 @@
                         </div>
                         <div id="paging" class="pagination">
                             <%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-		<!-- 맨 처음으로(<<) -->
-		<button onclick="location.href='item.st?currentPage=1'">&lt;&lt;</button>
-		<!-- 이전페이지로(<) -->
-		<button onclick="location.href='item.st?currentPage=<%=currentPage-1%>'">&lt;</button>
-		<%} %>
-		
-		<%for(int p=startPage; p<=endPage; p++){%>
-			<%if(currentPage != p) {%>
-			<button onclick="location.href='item.st?currentPage=<%=p%>'"><%=p%></button>
-			<%}else{ %>
-			<button dispabled><%=p %></button>
-			<%} %>	
-		<%} %>
-		
-		<%if(currentPage != maxPage){ %>
-		<!-- 다음페이지로(<) -->
-		<button onclick="location.href='item.st?currentPage=<%=currentPage+1%>'">&gt;</button>
-		<!-- 맨 마지막으로(>>) -->
-		<button onclick="location.href='item.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-		<%} %>
+							<!-- 맨 처음으로(<<) -->
+							<button onclick="location.href='item.st?currentPage=1'">&lt;&lt;</button>
+							<!-- 이전페이지로(<) -->
+							<button onclick="location.href='item.st?currentPage=<%=currentPage-1%>'">&lt;</button>
+							<%} %>
+							
+							<%for(int p=startPage; p<=endPage; p++){%>
+								<%if(currentPage != p) {%>
+								<button onclick="location.href='item.st?currentPage=<%=p%>'"><%=p%></button>
+								<%}else{ %>
+								<button dispabled><%=p %></button>
+								<%} %>	
+							<%} %>
+							
+							<%if(currentPage != maxPage){ %>
+							<!-- 다음페이지로(<) -->
+							<button onclick="location.href='item.st?currentPage=<%=currentPage+1%>'">&gt;</button>
+							<!-- 맨 마지막으로(>>) -->
+							<button onclick="location.href='item.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+							<%} %>
                         </div>
                     </div> 
                 </div>
@@ -104,6 +104,15 @@
 
         <!--product-->
         <script>
+        $(function(){
+    		$('.product').click(function(){
+    			var pcode = $(this).children().eq(0).val();
+    			location.href="<%=contextPath%>/detail.it?pcode="+pcode;
+    		});
+    	});
+        
+        
+        
             state=0;
             function wishList() {
                if(state==0){
