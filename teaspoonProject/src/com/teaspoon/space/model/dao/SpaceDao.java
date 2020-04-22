@@ -16,7 +16,7 @@ public class SpaceDao {
 	Properties prop = new Properties();
 
 	public SpaceDao() {
-		String filePath = MemberDao.class.getResource("/sql/member/member-query.properties").getPath();
+		String filePath = MemberDao.class.getResource("/sql/space/space-query.properties").getPath();
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {

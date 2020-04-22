@@ -108,7 +108,7 @@
         	$(function(){
         		$('.product').click(function(){
         			var pcode = $(this).children().eq(0).val();
-        			location.href="<%=contextPath%>/detail.co?p="+pcode;
+        			location.href="<%=contextPath%>/detail.co?pcode="+pcode;
         		});
         	});
         

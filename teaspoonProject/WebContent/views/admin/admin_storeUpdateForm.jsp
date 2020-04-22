@@ -85,6 +85,10 @@ table tr {border-bottom: 1px solid lightgray;}
 							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
 							<td><img id="contentImg2" width="150" height="120"></td>
 							<td><img id="contentImg3" width="150" height="120"></td>
+							<%} else{%>
+							<td><img id="contentImg2" width="150" height="120"></td>
+							<td><img id="contentImg3" width="150" height="120"></td>
+							<td><img id="contentImg3" width="150" height="120"></td>
 							<%} %>
 						</tr>
 						<tr>

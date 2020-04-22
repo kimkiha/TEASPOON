@@ -14,7 +14,6 @@ public class Member {
 	private String email;		//이메일
 	private Date enrollDate;	//가입일
 	private Date modifyDate;	//수정일
-	private int point;			//적립금
 	private int buyPoint;		//누적구매금액
 	private String admin;		//관리자권한
 	private String status;		//상태
@@ -43,12 +42,11 @@ public class Member {
 	
 	
 
-	public Member(int userNo, String userName, String gradeName,int point,  int pcode, int count) {
+	public Member(int userNo, String userName, String gradeName,int pcode, int count) {
 
 		super();
 		this.userNo = userNo;
 		this.userName = userName;
-		this.point = point;
 		this.gradeName = gradeName;
 		this.pcode = pcode;
 		this.count = count;
@@ -88,7 +86,7 @@ public class Member {
 }
 
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String age, int birthday,
-			String phone, String email, Date enrollDate, Date modifyDate, int point, int buyPoint, String admin,
+			String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
 			String status) {
 		super();
 		this.userNo = userNo;
@@ -102,7 +100,6 @@ public class Member {
 		this.email = email;
 		this.enrollDate = enrollDate;
 		this.modifyDate = modifyDate;
-		this.point = point;
 		this.buyPoint = buyPoint;
 		this.admin = admin;
 		this.status = status;
@@ -291,15 +288,6 @@ public class Member {
 	}
 
 
-	public int getPoint() {
-		return point;
-	}
-
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
-
 
 	public int getBuyPoint() {
 		return buyPoint;
@@ -335,8 +323,7 @@ public class Member {
 	public String toString() {
 		return "Member [userNo=" + userNo + ", gradeCode=" + gradeCode + ", userId=" + userId + ", userPwd=" + userPwd
 				+ ", userName=" + userName + ", age=" + age + ", birthday=" + birthday + ", phone=" + phone + ", email="
-				+ email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", point=" + point
-				+ ", buyPoint=" + buyPoint + ", admin=" + admin + ", status=" + status + "]";
+				+ email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", buyPoint=" + buyPoint + ", admin=" + admin + ", status=" + status + "]";
 	}
 
 

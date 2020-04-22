@@ -130,25 +130,25 @@
                             </div>
                             <span>  
                               <div>
-                                <input type="date"  class="date" name="appDate" id="dateofbirth">
+                                <input type="date"  class="date" name="reservDate" id="dateofbirth">
                                 
-                                <select class="box1">
-                                  <option name="reservTime" value="09:30">아카이야 09:30~11:30</option>
-                                  <option name="reservTime" value="13:00">아카이야 13:00~15:00</option>
-                                  <option name="reservTime" value="16:30">아카이야 16:30~18:30</option>
+                                <select class="box1" name="reservTime">
+                                  <option value="09:30">아카이야 09:30~11:30</option>
+                                  <option value="13:00">아카이야 13:00~15:00</option>
+                                  <option value="16:30">아카이야 16:30~18:30</option>
                                   <option selected>시간선택</option>          
                                 </select>
                                 
-                                <select class="box2">
-                                  <option name="visitNum" value="10">10인 이하</option>
-                                  <option name="visitNum" value="20">20인 이하</option>
-                                  <option name="visitNum" value="30">30인 이하</option>
+                                <select class="box2" name="visitNum">
+                                  <option value="10">10인 이하</option>
+                                  <option value="20">20인 이하</option>
+                                  <option value="30">30인 이하</option>
                                   <option selected>인원수</option>
                                 </select> 
 
-                                <select class="box3">
-                                  <option name="op" value="vip">VIP 할인</option>
-                                  <option name="op" value="coupon">쿠폰 할인</option>
+                                <select class="box3" name="op">
+                                  <option value="vip">VIP 할인</option>
+                                  <option value="coupon">쿠폰 할인</option>
                                   <option selected>없음</option>
                                 </select>
                               </div>
@@ -180,7 +180,7 @@
                             
                             <div>
                               <div class="perpose"><div class="pert">공간 사용 목적</div></div>
-                              <input class="perposet" id="userText" type="text" placeholder="*필수 입력사항 ex)회의 관련 목적">
+                              <input name="reservReason" class="perposet" id="userText" type="text" placeholder="*필수 입력사항 ex)회의 관련 목적">
                             </div>
                             <br>
                             
