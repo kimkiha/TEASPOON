@@ -65,10 +65,11 @@
 #reviewList{width:100%; min-height:100%;}
 /*리뷰 입력 폼 스타일*/
 #reviewForm {width: 1000px; height:100%; border-collapse: collapse;}
+
 #reviewForm td{
-    border-top: 1px solid #ddd; 
+     
     border-bottom: 1px solid #ddd; padding: 5px;
-    vertical-align:middle
+    vertical-align:middle;
 }
 .imgBtn{background-color: white; border: 0px; cursor: pointer; width: 100px; height: 50px; margin-left: 5px;}
 
