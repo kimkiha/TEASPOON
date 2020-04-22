@@ -60,7 +60,6 @@ public class MemberDao {
 							rset.getString("EMAIL"),
 							rset.getDate("ENROLL_DATE"),
 							rset.getDate("MODIFY_DATE"),
-							rset.getInt("POINT"),
 							rset.getInt("BUY_POINT"),
 							rset.getString("admin"),
 							rset.getString("status")
