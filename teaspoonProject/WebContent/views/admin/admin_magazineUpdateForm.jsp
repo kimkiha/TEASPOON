@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.board.model.vo.*"%>
+ <% 
+ 	Board b = (Board)request.getAttribute("b"); 
+ 	String status = b.getStatus();
+ 
+ String[] selected = new String[2];
+ 
+ switch(status){
+ case "Y" : selected[0] = "checked"; break;
+ case "N" : selected[1] = "checked"; break;
+ 
+ }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,27 +36,31 @@
                 <div class="outer">
                     <p>매거진 수정</p>
                     <form id="insertForm" action="insert.th" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="bno" value="<%=b.getBoardNo() %>">
+                    	<div class="c_div">
+	                     		   	<div class="c_div_title">
+		                     		   	<p>제목 : <input type="text" style="width:90%" name="title" required><%=b.getBoardTitle() %></p> 
+		                    		    <p>내용</p>
+	                    		    </div>
+	                    		    <div class="c_div_cont">
+                                		<textarea id="summernote" name="Content"></textarea>
+                                	</div>
+                                </div>
                         <table>
                             <tr>
-                                <th width="100px">제목</th>
+                                <th width="100px"></th>
                                 <td><input type="text" size="71px" name="title" required></td>
                             </tr>
                             <tr>
                                 <th>상태</th>
-                                <td><input type="radio" name="status" required> Y
-                                    <input type="radio"  name="status" required> N
+                                <td><input type="radio" name="status" required value='Y' <%= selected[0]%>> Y
+                                    <input type="radio"  name="status" required value='N' <%= selected[1]%>> N
                                 </td>
                             </tr>
                             <tr>
                                 <th>내용</th>
                                 <td><textarea name="content" cols="70" rows="5" style="resize:none" required></textarea></td>
                             </tr>
-                        <tr>
-                            <th>썸네일</th>
-                            <td style="height: 120px;">
-                                <img id="titleImg" width="150">
-                            </td>
-                        </tr>
                         </table>
                         <br>
                         <div id="fileArea">
@@ -59,7 +75,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <script>
 		//이미지태그 클릭으로 파일 첨부할것임으로 깔끔하게 보이기위해 숨긴다.
 		$(function(){

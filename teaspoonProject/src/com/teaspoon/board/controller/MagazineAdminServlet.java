@@ -17,7 +17,7 @@ import com.teaspoon.common.PageInfo;
 /**
  * Servlet implementation class MagazineAdminServlet
  */
-@WebServlet("/magazineAdmin.bo")
+@WebServlet("/magazineList.bo")
 public class MagazineAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

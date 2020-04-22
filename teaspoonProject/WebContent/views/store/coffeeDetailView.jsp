@@ -13,8 +13,13 @@
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer1.css">
+
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
     #content1 {width:100%; min-height:100%; background: #ffffff; }
+    #productArea{min-height:100%}
+    #productArea{min-height:100%}
 </style>
 </head>
 <body>
@@ -149,57 +154,59 @@
                                     <p>고객리뷰</p>
                                     
                                     <!--리뷰쓰기 버튼-->
-                                    <% if(loginUser !=null){ %>
+                                    <% if(loginUser != null){ %>
                                     <button>리뷰쓰기</button>
                                 </div>
-                                <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
-	                                <table id="writeReview" >
-	                                    <tr style="height: 50px;">
-	                                        <td width="130px" style="text-align: right; font-size: 18px; padding-right: 30px;">별점</td>
-	                                        <td colspan="3" width="600px" style="text-align: left;">
-	                                           <select name="starPoint" id="starPoint" style="border: 1px solid #ddd; height: 40px; width: 180px; border-radius: 5px;">
-	                                               <option value="5" selected>★★★★★</option>
-	                                               <option value="4">★★★★☆</option>
-	                                               <option value="3">★★★☆☆</option>
-	                                               <option value="2">★★☆☆☆</option>
-	                                               <option value="1">★☆☆☆☆</option>
-	                                           </select>
-	                                        </td>
-	                                        
-	                                        <td width="100px"></td>
-	                                    </tr>
-	                                    <tr>
-	                                        <td style="text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px;">내용</td>
-	                                        <td colspan="3"><textarea name="" id="" cols="" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
-	                                        
-	                                        <td></td>
-	                                    </tr>
-	                                    <tr style="height: 50px;">
-	                                        <td style="text-align: right;"></td>
-	                                        <td>
-	                                            <div>
-	                                                <div style="float: left; padding-top: 5px;">
-	                                                    <img src="<%=contextPath %>/resources/img/store/img.png" width="40px" >
-	                                                </div>
-	                                                <div style="float: left;">
-	                                                    <button id="reviewImg" class="imgBtn" type="submit" name="img" value="img">이미지등록</button>
-	                                                    <div id="fileArea">
-	                                                    	<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </td>
-	                                        <td width="100px">
-	                                            <button id="resetReview" class="btn" type="reset" name="reset" value="reset">취소</button>
-	                                        </td>
-	                                        <td width="100px">
-	                                            <button id="subReview" class="btn" type="submit" name="submit" value="submit"> 작성완료</button>
-	                                        </td>
-	                                        <td></td>
-	                                    </tr>
-	                                </table>
-                                </form>
-                                <%} %>
+                                <div id="reviewList">
+	                                <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
+		                                <table id="writeReview"  cellpadding="0" cellspacing="0">
+		                                    <tr style="height: 50px;">
+		                                        <td width="130px" style="text-align: right; font-size: 18px; padding-right: 30px;">별점</td>
+		                                        <td colspan="3" width="600px" style="text-align: left;">
+		                                           <select name="starPoint" id="starPoint" style="border: 1px solid #ddd; height: 40px; width: 180px; border-radius: 5px;">
+		                                               <option value="5" selected>★★★★★</option>
+		                                               <option value="4">★★★★☆</option>
+		                                               <option value="3">★★★☆☆</option>
+		                                               <option value="2">★★☆☆☆</option>
+		                                               <option value="1">★☆☆☆☆</option>
+		                                           </select>
+		                                        </td>
+		                                        
+		                                        <td width="100px"></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td style="text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px;">내용</td>
+		                                        <td colspan="3"><textarea name="" id="" cols="" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
+		                                        
+		                                        <td></td>
+		                                    </tr>
+		                                    <tr style="height: 50px;">
+		                                        <td style="text-align: right;"></td>
+		                                        <td>
+		                                            <div>
+		                                                <div style="float: left; padding-top: 5px;">
+		                                                    <img src="<%=contextPath %>/resources/img/store/img.png" width="40px" >
+		                                                </div>
+		                                                <div style="float: left;">
+		                                                    <button id="reviewImg" class="imgBtn" type="submit" name="img" value="img">이미지등록</button>
+		                                                    <div id="fileArea">
+		                                                    	<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
+		                                                    </div>
+		                                                </div>
+		                                            </div>
+		                                        </td>
+		                                        <td width="100px">
+		                                            <button id="resetReview" class="btn" type="reset" name="reset" value="reset">취소</button>
+		                                        </td>
+		                                        <td width="100px">
+		                                            <button id="subReview" class="btn" type="submit" name="submit" value="submit"> 작성완료</button>
+		                                        </td>
+		                                        <td></td>
+		                                    </tr>
+		                                </table>
+	                                </form>
+                                </div>
+	                            <%} %>
                                 <!--//리뷰쓰기 버튼-->
                                 <br>
                                 <div id="review" class="pList5">
