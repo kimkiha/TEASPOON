@@ -34,10 +34,10 @@ public class MyQnaDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		
+		int mno = Integer.parseInt(request.getParameter("mno"));
 		
-		MenToMen mno =(MenToMen)request.getAttribute("mno"));
-		 
 		MenToMen m = new MemberService().selectMtm(mno);
 		Attachment at = new MemberService().selectAttachment(mno);
 		
