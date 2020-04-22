@@ -35,8 +35,8 @@ public class MyPageMainServlet extends HttpServlet {
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		//System.out.println(userNo);
 		Member myInfo = new MemberService().MyPageInfo(userNo);
-		
 		System.out.println(myInfo);
+		
 		
 		if(myInfo != null) {
 			
