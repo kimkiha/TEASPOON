@@ -308,6 +308,7 @@ public class MemberDao {
 								 rset.getInt(4),
 								 rset.getInt(5),
 								 rset.getInt(6));
+				
 				 
 			}
 	
@@ -322,6 +323,7 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 		System.out.println(myInfo);
 		return myInfo;
 		
@@ -718,7 +720,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 		
 	}
 
-	public MenToMen selectMtm(Connection conn, int uno) {
+	public MenToMen selectMtm(Connection conn, int mno) {
 		MenToMen m = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -726,7 +728,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, uno);
+			pstmt.setInt(1, mno);
 			
 			rset = pstmt.executeQuery();
 			

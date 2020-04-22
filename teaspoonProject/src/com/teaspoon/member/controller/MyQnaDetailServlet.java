@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.member.model.service.MemberService;
+import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
 
 /**
@@ -33,10 +35,11 @@ public class MyQnaDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int uno = Integer.parseInt(request.getParameter("uno"));
-		System.out.println(uno);
-		MenToMen m = new MemberService().selectMtm(uno);
-		Attachment at = new MemberService().selectAttachment(uno);
+		
+		MenToMen mno =(MenToMen)request.getAttribute("mno"));
+		 
+		MenToMen m = new MemberService().selectMtm(mno);
+		Attachment at = new MemberService().selectAttachment(mno);
 		
 		if(m != null) {
 			
