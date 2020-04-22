@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.board.model.vo.*,com.teaspoon.common.PageInfo "%>
+<% 
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +48,7 @@
                                     <th width="70">상태</th>
                                     <th width="100">상세보기</th>
                                     <th>
-                                        <button><a href="adminMagazineEnrollForm.html">추가</a></button>
+                                        <button><a href="magazineInsertForm.bo">추가</a></button>
                                     </th>
                                 </tr>
                             </thead>
@@ -68,13 +76,28 @@
 
                 </div>
                 <div id="c1_3">
-                        <a>&lt;</a>
-                       <button>1</button>
-                       <button>2</button>
-                       <button>3</button>
-                       <button>4</button>
-                       <button>5</button>
-                       <a>&gt;</a>
+                     	           <!-- 현재 페이지에 보여질 페이징바 -->
+			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='magazineAdmin.bo?currentPage=1>'">&lt;&lt;</button>
+			<!-- 이전페이지로(<) -->
+			<button onclick="location.href='magazineAdmin.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
+			<%} %>
+			
+			<%for(int p=startPage; p<=endPage; p++){%>
+				<%if(currentPage != p) {%>
+				<button onclick="location.href='magazineAdmin.bo?currentPage=<%=p%>'"><%=p%></button>
+				<%}else{ %>
+				<button disabled><%=p %></button>
+				<%} %>	
+			<%} %>
+			
+			<%if(currentPage != maxPage){ %>
+			<!-- 다음페이지로(<) -->
+			<button onclick="location.href='magazineAdmin.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
+			<!-- 맨 마지막으로(>>) -->
+			<button onclick="location.href='magazineAdmin.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+			<%} %>
                 </div>
                
                
