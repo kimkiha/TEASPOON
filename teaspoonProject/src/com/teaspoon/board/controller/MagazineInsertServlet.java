@@ -41,8 +41,8 @@ public class MagazineInsertServlet extends HttpServlet {
 		int result = new BoardService().insertBoard(b);
 		
 		if(result>0) {
-			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_magazine.jsp");
-			view.forward(request, response);
+            request.getSession().setAttribute("msg", "매거진이 등록되었습니다");
+            response.sendRedirect("magazineList.bo?currentPage=1");
 		}else {
 			request.setAttribute("msg", "등록실패!!");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");

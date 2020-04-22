@@ -13,16 +13,16 @@ import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.board.service.BoardService;
 
 /**
- * Servlet implementation class MagazineUpdateFormServlet
+ * Servlet implementation class MagazineUpdateServlet
  */
-@WebServlet("/magazineUpdateForm.bo")
-public class MagazineUpdateFormServlet extends HttpServlet {
+@WebServlet("/MagazineUpdate.bo")
+public class MagazineUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MagazineUpdateFormServlet() {
+    public MagazineUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +32,19 @@ public class MagazineUpdateFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int bno = Integer.parseInt(request.getParameter("bno"));
-	
-		Board b = new BoardService().selectBoard(bno);
+		Board b = new Board();
+		b.setBoardNo(bno);
+		b.setBoardTitle(request.getParameter("title"));
+		b.setBoardContent(request.getParameter("content"));
 		
-	
-		if(b != null) {
-		request.setAttribute("b", b);
-		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_magazineUpdateForm.jsp");
-		view.forward(request, response);
-		}else {
-		// 에러페이지로 포워딩
-		RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-		view.forward(request, response);
+		
+		int result = new BoardService().updateBoard(b);
+		
+		if(result > 0) {//수정성공했을 경우 상세보기 페이지 요청
+			response.sendRedirect("magazineList.bo?currentPage=1");
+		}else {//에러페이지 포워딩
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage/jsp");
+			view.forward(request, response);
 		}
 	}
 
