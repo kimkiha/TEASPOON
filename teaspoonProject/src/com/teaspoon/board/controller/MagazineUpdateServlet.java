@@ -15,7 +15,7 @@ import com.teaspoon.board.service.BoardService;
 /**
  * Servlet implementation class MagazineUpdateServlet
  */
-@WebServlet("/MagazineUpdate.bo")
+@WebServlet("/magazineUpdate.bo")
 public class MagazineUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,11 +31,16 @@ public class MagazineUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		Board b = new Board();
-		b.setBoardNo(bno);
-		b.setBoardTitle(request.getParameter("title"));
-		b.setBoardContent(request.getParameter("content"));
+		
+
+		String title = request.getParameter("title");
+		String content = request.getParameter("Content");
+		
+		Board b = new Board(bno, title, content);
+		
+		System.out.println(bno);
 		
 		
 		int result = new BoardService().updateBoard(b);

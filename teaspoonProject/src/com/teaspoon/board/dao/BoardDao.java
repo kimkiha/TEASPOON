@@ -39,7 +39,6 @@ public class BoardDao {
 		
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertBoard");
-		System.out.println(sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, b.getBoardTitle());
@@ -160,7 +159,10 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b = new Board();
-				b.setBoardTitle(rset.getString("board_title"));
+				b.setBoardNo(rset.getInt("BOARD_NO"));
+				b.setBoardCategory(rset.getInt("board_category"));
+				b.setBoardTitle(rset.getString("BOARD_TITLE"));
+				b.setBoardContent(rset.getString("board_content"));
 				b.setStatus(rset.getString("status"));
 				b.setBoardContent(rset.getString("board_content"));
 			}
@@ -175,11 +177,28 @@ public class BoardDao {
 		return b;
 	}
 	
-	public int updateBoard(Board b) {
+	public int updateBoard(Connection conn, Board b) {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("");
+		String sql = prop.getProperty("updateBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBoardTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setInt(3, b.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 				
 	}
 }

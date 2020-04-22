@@ -81,7 +81,7 @@ public class BoardService {
 	public int updateBoard(Board b) {
 		Connection conn = getConnection();
 		
-		int result = new BoardDao().updateBoard(b);
+		int result = new BoardDao().updateBoard(conn, b);
 		
 		return result;
 	}

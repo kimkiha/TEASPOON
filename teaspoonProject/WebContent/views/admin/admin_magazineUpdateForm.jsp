@@ -29,11 +29,11 @@
             <div id="c1" >
                 <div class="outer">
                     <p>매거진 수정</p>
-                    <form id="insertForm" action="insert.th" method="post" enctype="multipart/form-data">
+                    <form id="insertForm" action="magazineUpdate.bo" method="post" >
                     <input type="hidden" name="bno" value="<%=b.getBoardNo() %>">
                     	<div class="c_div">
 	                     		   	<div class="c_div_title">
-		                     		   	<p>제목 : <input type="text" style="width:93%; font-weight:500; font-color:gray" name="title" value="<%=b.getBoardTitle() %> required"></p> 
+		                     		   	<p>제목 : <input type="text" style="width:93%; font-weight:500; font-color:gray" name="title" value="<%=b.getBoardTitle() %> "></p> 
 		                     		</div>
 	                    		    <div class="c_div_title" >
 	                    		    	<p>게시상태 : <input type="radio" name="status" required value='Y' <%= selected[0]%>> Y
@@ -70,7 +70,7 @@
                         <br>  -->
                         <div class="btns">
                             <button type="button" style="width: 100px;" ><a href="magazineList.bo">목록으로</a></button>
-                            <button type="submit" style="width: 100px;" >수정하기</button>
+                            <button type="submit" style="width: 100px;" ><a href="magazineUpdate.bo">수정하기</a></button>
                         </div>
                     </form>
                 </div>
