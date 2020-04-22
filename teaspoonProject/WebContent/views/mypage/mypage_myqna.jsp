@@ -89,6 +89,7 @@
                             <table id="mypage_table" cellspacing="0">
                                 <thead>
                                     <tr>
+                                    	<th><th>
                                         <th id="category">상담유형</th>
                                         <th colspan="2"id="title">제목</th>
                                         <th id="qna-date">상담신청일</th>
@@ -104,12 +105,12 @@
                                <%}else{ %>
                               		<% for(Member m : list){ %>
                                     <tr>
-                                    
+                                    	<td style="dispaly:none"><%= m.getMtm_no() %><td>
                                         <td><%= m.getMtm_name() %></td>
                                         <td colspan="2"><%= m.getMtm_title() %></td>
                                         <td><%=m.getCreate_date() %></td>
                                         <td>답변완료</td>
-                                        <td><input type="checkbox"></td>
+                                        <th><input type="checkbox"></th>
                                     </tr>
                                     <%} %>
                                 <%} %>
@@ -157,9 +158,9 @@
     <script>
     	$(function(){
     		$("#mypage_table>tbody>tr").click(function(){
-    			var uno= $(this).children().eq(0).text();
+    			var mno= $(this).children().eq(0).text();
     			
-    			location.href="<%=contextPath%>/myqnadetail.me?";
+    			location.href="<%=contextPath%>/myqnadetail.me?mno=" + mno;
     			
     		});
     	});
