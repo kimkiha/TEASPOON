@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
@@ -208,7 +209,7 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+		
 		
 		return list;
 	}
@@ -310,8 +311,8 @@ public class MemberDao {
 								 rset.getInt(6));
 				 
 			}
-			
-			
+	
+					
 			
 			
 			
@@ -343,7 +344,8 @@ public class MemberDao {
 				list.add(new Grade(rset.getInt("GRADE_CODE"),
 								   rset.getString("GRADE_NAME"),
 								   rset.getInt("MIN_ACOUNT"),
-								   rset.getInt("GRADE_RATE")
+								   rset.getInt("GRADE_RATE"),
+								   rset.getInt("MAX_ACCOUNT")
 						));
 			}
 			
@@ -385,26 +387,6 @@ public class MemberDao {
 		
 	}
 
-	public int insertMtm(Connection conn, MenToMen m) {
-
-		
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String sql = prop.getProperty("insertMtm");
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return result;
-	}
-	
 	
 	public int getSearchKeywordListCount(Connection conn,String searchKeyword1,String searchKeyword2) {
 		int listCount = 0;
@@ -649,6 +631,125 @@ public class MemberDao {
 		}
 		
 		return result;
+	}
+	
+
+	public int insertMtm(Connection conn, MenToMen m) {
+
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertMtm");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, m.getUserNo());
+			pstmt.setInt(2, m.getMtmType());
+			pstmt.setString(3, m.getMtmTitle());
+			pstmt.setString(4, m.getMtmContent());
+			
+			
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(result);
+		
+		return result;
+	}
+	
+public int insertAttachment(Connection conn, Attachment at) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			pstmt.setInt(4, 1);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+	public MenToMen selectMtm(Connection conn, int uno) {
+		MenToMen m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMtm");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, uno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m= new MenToMen ();
+				m.setMtmNo(rset.getInt("mtm_no"));
+				m.setMtmName(rset.getString("mtm_NAME"));
+				m.setMtmTitle(rset.getString("mtm_title"));
+				m.setUserId(rset.getString("user_id"));
+				m.setCreateDate(rset.getDate("create_date"));
+				m.setMtmContent(rset.getString("mtm_content"));
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+		
+		
+		
+	}
+	public Attachment selectAttachment(Connection conn, int uno) {
+		
+		Attachment at = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql  = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, uno);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				at = new Attachment();
+				at.setFileNo(rset.getInt("file_no"));
+				at.setOriginName(rset.getString("origin_name"));
+				at.setChangeName(rset.getString("change_name"));
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(rset);
+		}
+		
+		return at;
 	}
 	
 	

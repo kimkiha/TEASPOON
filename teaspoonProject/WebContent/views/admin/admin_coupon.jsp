@@ -138,7 +138,7 @@
                                     <button type="reset" style="width: 70px;">취소</button>
                                 </td>
                             </tr>
-                        </tfoot>
+                        </table>
                         
                          <table id="cuponInsertForm">
                         <tbody>
@@ -162,6 +162,7 @@
                                 </td>
                             </tr>
                         </tfoot>
+                        </table>
                 </div>
             </div>
         </div>
@@ -181,3 +182,4 @@
     </script> 
 </body>
 </html>
+                      

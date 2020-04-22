@@ -49,9 +49,9 @@
                         	<!-- listArea -->
                         	<%for(Product p : list) {%>
                         	
-                            <div class="product" style="margin-top:50px; margin-right:30px;" onclick="">
+                            <div class="product" style="margin-top:50px; margin-right:30px;" >
+                            	<input type="hidden" name="pcode" value=<%=p.getPcode() %>>
                                 <div class="product_img">
-                                	<input type="hidden" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
@@ -104,6 +104,15 @@
 
         <!--product-->
         <script>
+        
+        	$(function(){
+        		$('.product').click(function(){
+        			var pcode = $(this).children().eq(0).val();
+        			location.href="<%=contextPath%>/detail.co?p="+pcode;
+        		});
+        	});
+        
+        
             state=0;
             function wishList() {
                if(state==0){
