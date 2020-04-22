@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+String randomKey = (String)request.getAttribute("randomKey");
+%>  
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +24,9 @@
 	
         <!-- //header -->
        
-       	
-        <div id="content" style="margin:0 auto">
+       <!-- 	<form id="enrollForm" action="<%= contextPath %>/insert.me" method="post"> -->
+       		<div id="content" style="margin:0 auto">
+        
 
             <!-- product -->
 
@@ -369,7 +375,7 @@
                         <div class="contaniner">
                           <div id="정보입력" class="tabcontent" >
                           	
-                          	<form id ="informationForm" action="" method="post">
+                          	<form id ="informationForm" action="" method="post">  
                             
                             <table id="table1" style="align:center; ">
                                     <tr>
@@ -431,52 +437,46 @@
 
                           <!-- 3. 이메일인증 페이지-->
                           <div id="이메일인증" class="tabcontent" style=" width:100%; height:100%">
-                            <form id="email_certify" name="emailcertform"style="align:center; action="email.e" onSubmit="return check();">
-                                <table style= "list-style-type: disc; align:center; padding:30px; border:1px solid lightgrey;" id="ul">
+                            <!-- <form id="email_certify" name="emailcertform" style="align:center"; action="email.e" method="post"> -->
+                                <table style="list-style-type: disc; align:center; padding:30px; border:1px solid lightgrey;" id="ul">
                                     	<tr>
-                                    		<td style="font-size:20px; width:200px;"><li>이메일</li></td>
+                                    		<td style="font-size:20px; width:400px; padding-right:20px;"><li>이메일</li></td>
                                     		<td style="text-align:left;"><input type="text" id="email" name="Email" placeholder="이메일" style="width:300px"> </td>
-                                    		<td style="width: 230px;"><button type="submit" id="email_send" name="Email_Send">인증번호 발송</button></td>
+                                    		<td style="width: 230px;"><button type="submit" id="email_send" >인증번호 발송</button></td>
                                     	</tr>	
                                     	<tr> 
-                                        	<td style="font-size:20px; width:200px;"><li>인증번호확인</li></td>
-                                       	 	<td style="text-align:left;"><input type="number" id="identify" name="identifyNum" placeholder="인증번호" style="width:300px"></td>
+                                        	<td style="font-size:20px; width:400px; padding-right:20px;"><li>인증번호확인</li></td>
+                                       	 	<td style="text-align:left;"><input type="text" id="identify" placeholder="인증번호" style="width:300px"></td>
                                        	 	<td style="width: 230px;"></td> 
                                         </tr>				
                                   	<br><br>
-                                    </ul>
                                 </table>
-                                </form>
-                               
+                                
                          		<!-- 3_1. 본인인증 및 회원가입 버튼-->
-                        	<button type="button" class="btnenroll3" id="ModifyandEnroll2" value="Submit">인증완료</button>
+                        	<input type="submit" class="btnenroll3" id="ModifyandEnroll2" value="인증완료" onclick="check();"></input> <!-- onclick="return check(); -->
                            </div>
-                        	 </form>
+                          <!--  </form> -->
+                        	 	
                                      
                         <!-- 4. 회원가입완료 페이지-->
                          <div id="가입완료" class="tabcontent">
                             <form id="enrollinfo2" action="<%= contextPath %>/insert.me" method="post">
-                                <fieldset style="list-style-type:disc; border:1px solid lightgrey; margin-left:200px; margin-right:200px; margin-bottom:150px;" id=ul2>
+                                <fieldset style="list-style-type:disc; border:1px solid lightgrey; margin-left:410px; margin-right:200px; margin-bottom:150px;" id=ul2>
                                     <ul style="border:0.3 solid lightgrey;"><br>
-                                    
-                                    <p style="padding:35px;">
-                                    <img src="<%=contextPath %>/resources/img/mypage/spoon.png" width="74px;" height="74px;">
-                                    <p style="margin:5px; font-size:24px; color:black; font-weight: bold;">회원가입완료!</p>
-                                    <p style="margin-bottom:10px;">티스푼의 가족이 되신걸 환영합니다!</p>
-                                    <h6 style="color:gray">3초뒤 메인페이지로 이동합니다.</h6>
-                                    </p>
-                                   
-                                </ul>
-                                </fieldset>
-                           
-
-                          	</div>
-                          
+		                                    <p style="padding:35px;">
+		                                    <p style="align:center;"><img src="<%=contextPath %>/resources/img/mypage/spoon.png" width="74px;" height="74px;"></p>
+		                                    <p style="margin:5px; font-size:24px; color:black; font-weight: bold; text-align:center;">회원가입완료!</p>
+		                                    <p style="margin-bottom:10px; text-align:center">티스푼의 가족이 되신걸 환영합니다!</p>
+		                                    <h6 style="color:gray; text-align:center;">3초뒤 메인페이지로 이동합니다.</h6>
+		                                    </p>
+                                		</ul>
+                                	</fieldset>
+                          		</div>
                            </form>
-                           
-                          </div>
+                         </div>
+                        </form>
+                         
                         
-	
          <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
             <script>
@@ -594,7 +594,7 @@
             if(pwd1.value != pwd2.value){
                 alert("동일한 비밀번호 확인값을 입력하세요!!");
                 pwd2.value = "";
-                pwd.focus();
+                pwd1.focus();
                 return false;
             }
 
@@ -605,6 +605,20 @@
        	 });
        	 
     	</script>
+    		
+    	<script>
+    	<%-- $(function(){
+    		
+    		randomKey ="<%=randomKey%>";
+
+    		console.log(randomKey);
+    		if(randomKey!= "null"){
+    			$("#defaultOpen3").click();
+    		}
+	
+    	}); --%>
+    	</script>
+    	
     	<script>
       	 /* (이메일) 인증번호 발송 버튼 클릭시 */
       	 $("#email_send").click(function(){
@@ -619,39 +633,72 @@
                    form.email.focus();
                    return false;
                 }
+               
+           $.ajax({
+        	   url:"email.e",
+        	   data:{Email:email.value},
+        	   success:function(data){
+        		   alert("인증번호가 발송되었습니다.");
+        		   console.log(data);
+        		   randomKey = data;
+        	   },error:function(){
+        		   alert("이메일발송실패");
+        	   }
+           })    
       		
-      		alert("인증번호가 발송되었습니다.");
+      		
        
       	 });
-
     	</script>
-    	<script>
-    	// 이메일인증
-    		function check(){
-    			var form = documemt.emailcertform;
-    			var temp = ${temp};
-    			
-    			if(!form.temp.value) {
-    				alert("인증번호를 입력하세요");
-    				return false;
-    			}
-    			
-    			if(form.temp.value!=tmep){
-    				form.temp.value="";
-    				return false;
-    			}
-    			
-    			if(form.temp.value == temp){
-    				alert("인증완료");
-    				
-    			}
-    			
-    			$("#defaultOpen4").click();	
+    	
+    	console.log(randomKey);
+    	
+    	
+    	<script> /* "인증번호 완료" 버튼 클릭시 -> ramdom키와 사용자입력키(identify)와 비교 */
+    	 function check(){
+                	
+                var Identi = document.getElementById("identify");
     		
-    		};
+    			if(randomKey != Identi.value){
+                	alert("인증에 실패하였습니다.");
+                	randomKey = "";
+                	Identi.focus();
+                	return false;
+              	}
+    				alert("인증 성공하였습니다.");
+    				$("#defaultOpen4").removeAttr("disabled").click();
+    			  	//$("#defaultOpen4").click();	
+
+       	 	}
     	
     	
     	</script>
+    	 
+    	<!-- 
+    	<script> /* "인증번호 완료" 버튼 클릭시*/
+    	$("#ModifyandEnroll2").click(function(){
+                	
+                var Identi = document.getElementById("identify");
+    		
+    			if(randomKey.value != Identi.value){
+                	alert("인증에 실패하였습니다.");
+                	randomKey.value = "";
+                	Identi.focus();
+                	return false;
+              }
+    				alert("인증 성공하였습니다.");
+    				$("#defaultOpen4").removeAttr("disabled").click();
+    			  	//$("#defaultOpen4").click();	
+
+       	 	});
+    	
+    	
+    	</script>
+    	 
+    	 -->
+    	
+    	
+    	
       
     
 </body>
