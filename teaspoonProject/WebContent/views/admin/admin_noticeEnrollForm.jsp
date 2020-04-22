@@ -30,18 +30,19 @@
                             </tr>
                             <tr>
                                 <th>내용</th>
-                                <td><textarea name="content" cols="70" rows="5" style="resize:none" required></textarea></td>
+                                <td><textarea id="summernote" name="content" cols="70" rows="5" style="resize:none" required></textarea></td>
                             </tr>
                             <tr>
                                 <th>썸네일</th>
                                 <td style="height: 120px;">
-                                    <img id="titleImg" width="150">
+                                    <img id="titleImg" width="150" height="100">
                                 </td>
+                                
                             </tr>
                         </table>
                         <br>
                         <div id="fileArea">
-                            <input type="file" name="file1" id="file1" onchange="loadImg(this);">
+                            <input type="file" name="file1" id="file1" onchange="loadImg(this);" >
                         </div>
                         <br>
                         <div class="btns">
@@ -52,8 +53,18 @@
                 </div>
             </div>
         </div>
-    </div>
     <script>
+    	$(document).ready(function() {
+	        $('#summernote').summernote({
+			
+			height: 300,                 // set editor height
+			minHeight: null,             // set minimum height of editor
+			maxHeight: null,             // set maximum height of editor
+			focus: true                  // set focus to editable area after initializing summernote
+	  
+	  
+			});
+   		 });
 		//이미지태그 클릭으로 파일 첨부할것임으로 깔끔하게 보이기위해 숨긴다.
 		$(function(){
 			$("#fileArea").hide();
