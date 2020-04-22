@@ -141,7 +141,7 @@ public class MemberService {
 	public ArrayList<Grade> selectGradeList(){
 		Connection conn = getConnection();
 		
-		ArrayList<Grade> list = new MemberDao().selectSearchList(conn);
+		ArrayList<Grade> list = new MemberDao().selectGradeList(conn);
 		close(conn);
 		return list;
 	}
@@ -310,6 +310,48 @@ public class MemberService {
 		close(conn);
 		return at;
 		
+	}
+	
+	public int insertGrade(Grade grade) {
+		
+		Connection conn = getConnection();
+		int result = new MemberDao().insertGrade(conn,grade);
+		
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+		public int updateMemberGrade(Grade grade, ArrayList<Grade> gList) {
+		
+		Connection conn = getConnection();
+		int addGradeCode=0;
+		String nextG="";
+		for(int i=0; i<gList.size(); i++) {
+			if(grade.getGradeName().equals(gList.get(i).getGradeName())){
+				nextG=gList.get(i+1).getGradeName();
+				addGradeCode=gList.get(i).getGradeCode();
+			}
+		}
+		int result = new MemberDao().updateMemberGrade(conn,grade,nextG,addGradeCode);
+		
+		
+		
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
 	}
 
 	

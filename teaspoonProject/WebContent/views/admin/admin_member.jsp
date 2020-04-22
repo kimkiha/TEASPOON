@@ -244,7 +244,7 @@
 			<!-- 맨 마지막으로(>>) -->
 			<button onclick="location.href='list.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
 			<%} %>
-        <%} %>>
+        <%} %>
         
 
                 </div>

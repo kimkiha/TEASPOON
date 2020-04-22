@@ -329,7 +329,7 @@ public class MemberDao {
 	
 	
 	
-	public ArrayList<Grade> selectSearchList(Connection conn){
+	public ArrayList<Grade> selectGradeList(Connection conn){
 		ArrayList<Grade> list = new ArrayList<Grade>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -343,8 +343,8 @@ public class MemberDao {
 				list.add(new Grade(rset.getInt("GRADE_CODE"),
 								   rset.getString("GRADE_NAME"),
 								   rset.getInt("MIN_ACOUNT"),
-								   rset.getInt("GRADE_RATE"),
-								   rset.getInt("MAX_ACCOUNT")
+								   rset.getInt("GRADE_RATE")
+								   
 						));
 			}
 			
@@ -638,33 +638,7 @@ public class MemberDao {
 
 
 	
-	public int updateMember(Connection conn, Member m) {
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("updateMember");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getUserName());
-			pstmt.setString(2, m.getPhone());
-			pstmt.setString(3, m.getEmail());
-			pstmt.setString(4, m.getAddress());
-			pstmt.setString(5, m.getInterest());
-			pstmt.setString(6, m.getUserId());
-			
-			result = pstmt.executeUpdate();
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
+
 
 	public int insertMtm(Connection conn, MenToMen m) {
 
@@ -785,6 +759,56 @@ public int insertAttachment(Connection conn, Attachment at) {
 	}
 	
 	
-	
+		public int insertGrade(Connection conn, Grade grade) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertGrade");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,grade.getGradeName());
+			pstmt.setInt(2, grade.getMinAcount());
+			pstmt.setInt(3, grade.getGradeRate());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+		
+		public int updateMemberGrade(Connection conn, Grade grade ,String nextG, int addGradeCode) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("updateMemberGrade");
+		
+			System.out.println(nextG);
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1,addGradeCode);
+				pstmt.setString(2, grade.getGradeName());
+				pstmt.setString(3, nextG);
+				
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;	
+		}
+		
+		
+		
 
 }
