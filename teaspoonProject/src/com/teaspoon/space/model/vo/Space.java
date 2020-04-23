@@ -16,6 +16,9 @@ public class Space {
 	private String good;           // 비품
 	private int gradeCode;         // 회원등급
 	
+	private Space() {
+		
+	}
 	
 	public Space(int reservNo, int userNo, Date appDate, String reservDate, String reservTime, int visitNum,
 			String phone, String reservReason, String accept, String good, int gradeCode) {

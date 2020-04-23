@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_payment.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/space/space_payment.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
@@ -100,7 +100,7 @@
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="left_text_st top_bd">티스푼포인트</td>
-                                            <td class="top_bd"> <input type="number" class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
+                                            <td class="top_bd"> <input type="text" value="150p" class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
                                             <td class="top_bd"><button style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
                                         </tr>
                                 </table>
@@ -113,25 +113,16 @@
                                         <tr>
                                             <td class="left_text_st top_bd " >이름</td>
                                             <td class="top_bd "colspan="3" >
-                                                <input type="text" name="" value="">
+                                                <input type="text" name="" value="<%=loginUser.getUserName()%>">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="left_text_st" width="170">휴대전화</td>
-                                            <td style="padding-right:0px" width="120">
-                                                <select style="padding-left:10px">
-                                                    <option>010</option>
-                                                    <option>011</option>
-                                                    <option>016</option>
-                                                    <option>018</option>
-                                                </select>
-                                            </td>
-                                            <td width="220"><input type="number" ></td>
-                                            <td width="220" colspan="2"><input type="number"></td>
+                                            <td width="220" colspan="2"><input type="text" value="<%=loginUser.getPhone()%>"></td>
                                         </tr>
                                         <tr >
                                             <td class="left_text_st" >이메일</td>
-                                            <td colspan="3" ><input type="email"></td>
+                                            <td colspan="3" ><input type="email" value="<%=loginUser.getEmail()%>"></td>
                                         </tr>
                                 </table>
                             </div>

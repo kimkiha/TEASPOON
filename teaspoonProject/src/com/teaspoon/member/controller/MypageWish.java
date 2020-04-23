@@ -1,9 +1,8 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +43,8 @@ public class MypageWish extends HttpServlet {
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_wish.jsp");
 		view.forward(request, response);
-	
+		
+		
 	
 	}
 

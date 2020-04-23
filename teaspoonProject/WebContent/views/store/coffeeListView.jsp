@@ -52,7 +52,7 @@
                             <div class="product" style="margin-top:50px; margin-right:30px;" >
                             	
                                 <div class="product_img">
-                                	<input type="hidden" name="pcode" value=<%=p.getPcode() %>>
+                                	<input type="hidden" id="pcode" name="pcode" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
@@ -115,12 +115,25 @@
         
         	$(function(){
         		$('.like_icon').click(function(){
-        			 state=1;
-        			 $(this).attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
-        			 var result = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
-        			 if(result){
-        				 location.href="<%=contextPath %>/wishList.me?pcode="+pcode;
-        			 }
+        			var pcode = $(this).parent().siblings(['.product_img']).eq(0).val();
+        			console.log(pcode);
+        			$.ajax({
+        				url:"insertWish.me",
+        				data:{pcode:pcode},
+        				success:function(result){
+        					if(result > 0){
+			        			 $(this).attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+			        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
+			        			 if(bool){
+			        				 location.href="<%=contextPath %>/wishList.me";
+			        			 }
+        					} else{
+        						window.alert("위시리스트 등록 실패")
+        					}
+        				}, error:function(){
+        					window.alert("통신실패");
+        				}
+        			});
         		 });
         	});
         	

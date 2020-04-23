@@ -8,7 +8,7 @@ public class Member {
 	private String userId;		//회원아이디
 	private String userPwd;		//회원비밀번호
 	private String userName;	//회원명
-	private String age;			//성별
+	private String gender;		//성별
 	private int birthday;		//생년월일
 	private String phone;		//전화번호
 	private String email;		//이메일
@@ -34,10 +34,11 @@ public class Member {
 		
 	}
 
-	public Member(String userName, int birthday, String phone, String userId, String userPwd, String email) {
+	public Member(String userName, int birthday, String gender, String phone, String userId, String userPwd, String email) {
 		super();
 		this.userName = userName;
 		this.birthday = birthday;
+		this.gender = gender;
 		this.phone = phone;
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -93,7 +94,7 @@ public class Member {
 	this.status = status;
 }
 
-	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String age, int birthday,
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender, int birthday,
 			String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
 			String status) {
 		super();
@@ -102,7 +103,7 @@ public class Member {
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.userName = userName;
-		this.age = age;
+		this.gender = gender;
 		this.birthday = birthday;
 		this.phone = phone;
 		this.email = email;
@@ -249,13 +250,13 @@ public class Member {
 	}
 
 
-	public String getAge() {
-		return age;
+	public String getGender() {
+		return gender;
 	}
 
 
-	public void setAge(String age) {
-		this.age = age;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 

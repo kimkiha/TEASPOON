@@ -122,7 +122,7 @@
                             <h5><요금 및 예약 가능 여부 확인></h5>
                             
                             <br>
-                           <form id="enrollForm" action="<%= contextPath %>/rentalPayment.sp" method="post"> 
+                           <form id="enrollForm" action="<%= contextPath %>/insert.sp" method="post"> 
                             <div class="choice"> 
                                 <div class="choice1">날짜 선택</div>
                                 <div class="choice2">대여 시간</div>
