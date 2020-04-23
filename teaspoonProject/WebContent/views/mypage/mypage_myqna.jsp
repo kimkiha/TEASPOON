@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.*"%>
 <%
-	Member myInfo = (Member)session.getAttribute("myInfo");
 	
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
@@ -50,8 +49,8 @@
                             <div class="user_info" style="width:450px;">
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
-                                        <td width="60" name="username"><%=myInfo.getUserName() %></td>
-                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=myInfo.getGradeName() %></td>
+                                        <td width="60" name="username"><%=loginUser.getUserName() %></td>
+                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
                                     </tr>
                                     <tr class="d2">
                                         <td colspan="2"><a href="#" >회원정보수정</a> </td>
@@ -60,15 +59,15 @@
                             </div>
                             <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
                                 <p class="info_th" >적립포인트</p>
-                                <a href="#" ><%=myInfo.getPointPrice() %></a>
+                                <a href="#" ><%=loginUser.getPointPrice() %></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%=myInfo.getCount() %></a>
+                                <a  href="#" ><%=loginUser.getCount() %></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=myInfo.getPcode() %></a>
+                                <a  href="#" ><%=loginUser.getPcode() %></a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
@@ -119,7 +118,7 @@
                                 </tbody>
                               
                             </table>
-                            <div id="delete"><button>선택삭제</button></div>
+                            <div id="delete"><button onclick="deleteAction();"class="delete">선택삭제</button></div>
                             <br><br>
                             <div class="pagingarea">
                                <div class="pagingvar" align="center">
@@ -163,6 +162,11 @@
     			var mno= $(this).siblings().eq(0).text();
     			
     			location.href="<%=contextPath%>/myqnadetail.me?mno=" + mno;
+    			
+    		});
+    	});
+    	$(function(){
+    		$(".delete").click(function(){
     			
     		});
     	});
