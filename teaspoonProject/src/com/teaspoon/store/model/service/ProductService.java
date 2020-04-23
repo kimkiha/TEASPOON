@@ -206,7 +206,7 @@ public class ProductService {
 	}
 	
 	
-	/** 관리자 상품 리뷰 전체조회용 서비스
+	/** 사용자 상품 리뷰 전체조회용 서비스
 	 * @param pi
 	 * @return
 	 */
@@ -221,6 +221,18 @@ public class ProductService {
 	public ArrayList<Review> selectAddReviewList(int addReview){
 		Connection conn = getConnection();
 		ArrayList<Review> list = new ProductDao().selectAddReviewList(conn,addReview);
+		
+		close(conn);
+		return list;
+	}
+	
+	/** 관리자 상품 리뷰 전체조회용 서비스
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Review> selectProductReviewList(PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Review> list = new ProductDao().selectProductReviewList(conn, pi);
 		
 		close(conn);
 		return list;
