@@ -14,16 +14,16 @@ import com.teaspoon.store.model.service.ProductService;
 import com.teaspoon.store.model.vo.Review;
 
 /**
- * Servlet implementation class ReviewListServlet
+ * Servlet implementation class ReviewAddListServlet
  */
-@WebServlet("/listAdd.re")
-public class ReviewListServlet extends HttpServlet {
+@WebServlet("/list.re")
+public class ReviewAddListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewListServlet() {
+    public ReviewAddListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,9 +32,8 @@ public class ReviewListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int addReview = Integer.parseInt(request.getParameter("addReview"));
-		ArrayList<Review> list = new ProductService().selectAddReviewList(addReview);
+
+		ArrayList<Review> list = new ProductService().selectReviewList();
 		//자동으로 키값이 필드명으로 생김
 		response.setContentType("aplication/json; charset=utf-8");
 				

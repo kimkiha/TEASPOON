@@ -17,7 +17,8 @@ import com.teaspoon.space.model.vo.Space;
 
 
 /**
- * Servlet implementation class SpaceRentalInsertServlet
+ * 1. 회원이 대관예약 내용 입력값 뽑기 
+ ** Servlet implementation class SpaceRentalInsertServlet
  */
 @WebServlet("/insert.sp")
 public class SpaceRentalInsertServlet extends HttpServlet {
@@ -41,7 +42,6 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		
 		// 2. request에 담겨있는 요청시 전달값 뽑아서 변수 또는 객체에 기록하기 (getParameter/getParameterValues)
 		
-		
 		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		String reservDate = request.getParameter("reservDate");	
 		String reservTime = request.getParameter("reservTime");
@@ -49,6 +49,11 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		String Phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
 		String reservReason = request.getParameter("reservReason");
 		String [] goods = request.getParameterValues("good");
+		
+		String good = "";
+		if(goods != null) {
+			good = String.join(",", goods);
+		
 		int gradeCode = ((Member)request.getSession().getAttribute("loginUser")).getGradeCode();
 		
 		System.out.println(userNo);
@@ -58,13 +63,6 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		System.out.println(Phone);
 		System.out.println(reservReason);
 		System.out.println(gradeCode);
-		
-		
-		String good = "";
-		if(goods != null) {
-			good = String.join(",", goods); // "빔프로젝트, 노트북"
-		}
-		
 		System.out.println(good);
 		
 		Space s = new Space(userNo, reservDate, reservTime, visitNum, Phone, reservReason, good, gradeCode);
@@ -76,20 +74,20 @@ public class SpaceRentalInsertServlet extends HttpServlet {
      	int result = new SpaceService().insertSpace(s);
 		
 //		// 4. 처리 결과를 가지고 성공인지 실패인지 판단해서 사용자가 보게될 뷰 지정
-//				if(result > 0) { // insert됨 --> 정보입력성공
+//			if(result > 0) { // insert됨 --> 정보입력성공
+//				
+//			HttpSession session = request.getSession();
+//			session.setAttribute("msg", "접수되었습니다. 결제하고 승인을 기다리세요!!");
 //					
-//					HttpSession session = request.getSession();
-//					session.setAttribute("msg", "접수되었습니다. 결제하고 승인을 기다리세요!!");
+//   			response.sendRedirect("retalPayment.sp");
 //					
-//					response.sendRedirect(request.getContextPath());
+//		}else { // insert안됨 --> 정보입력실패
 //					
-//				}else { // insert안됨 --> 정보입력실패
-//					
-//					request.setAttribute("msg", "정보 다시입력");
-//					RequestDispatcher view = request.getRequestDispatcher("views/space/space_rental.jsp");
-//					view.forward(request, response);
-//				}
-			
+//			request.setAttribute("msg", "정보 다시입력");
+//			RequestDispatcher view = request.getRequestDispatcher("rental.sp");
+//			view.forward(request, response);
+//			}
+		}
 			
 	}
 

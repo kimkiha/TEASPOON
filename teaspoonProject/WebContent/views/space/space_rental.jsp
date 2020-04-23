@@ -122,7 +122,7 @@
                             <h5><요금 및 예약 가능 여부 확인></h5>
                             
                             <br>
-                           <form id="enrollForm" action="<%= contextPath %>/insert.sp" method="post"> 
+                           <form id="enrollForm" action="<%= contextPath %>/rentalPayment.sp" method="post"> 
                             <div class="choice"> 
                                 <div class="choice1">날짜 선택</div>
                                 <div class="choice2">대여 시간</div>
@@ -146,7 +146,7 @@
                                   <option selected>인원수</option>
                                 </select> 
 
-                                <select class="box3" name="GRADE_CODE">
+                                <select class="box3" name="grdeCode">
                                   <option value="vip">VIP 할인</option>
                                   <option selected>없음</option>
                                 </select>
@@ -184,7 +184,7 @@
                             <br>
                             
                             <input class="cbtn" type="button" value="취소하기" onClick="history.go(0)"> 
-                            <input class="ybtn" type="submit"><a href="rentalPayment.sp">예약하기</a>
+                            <input class="ybtn" type="submit" value="예약하기">
                             
                           </form>  
                           </div>

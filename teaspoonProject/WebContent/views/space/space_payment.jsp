@@ -1,93 +1,194 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>결제 | Payment</title>
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/space/space_payment.css">
+<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/payment/space_payment.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-
 <style>
- #content1 {width:100%; height:1500px; background: #ffffff; }
-</style>
+        #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
+    
+	.adsideWrapper { 
+	  position: relative;
+	}
+	.adside {
+	  position: absolute;
+	  top: 250px; left:1000px
+	}
+	.adside.fixed {
+	  position: fixed;
+	  top: 50px;
+	}
+    </style>
+            
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+<script>
+	$(document).ready(function () {  
+        var top = $('.adside').offset().top - parseFloat($('.adside').css('marginTop').replace(/auto/, 0));
+        $(window).scroll(function (event) {
+        var y = $(this).scrollTop();
+  
+       if (y >= top) {
+          $('.adside').addClass('fixed');
+       } else {
+          $('.adside').removeClass('fixed');
+      }
+  });
+});
+</script>
 </head>
 <body>
-  <div id="wrap">
+<div id="wrap">
         <%@ include file="../common/menubar.jsp" %>
-  
-        <!-- //header -->
-        <div id="banner" style="margin-top:150px">
-            <div class="contaniner">기하의 베너존</div>
+        <div id="banner">
+            <div class="contaniner title">주문/결제</div>
         </div>
         <!-- //banner -->
-        <div id="content">
-            <!-- reserv -->
-            <div id="content1">
-                <div class="contaniner">
-                
-                <br><br><div class="dy">대여 확인(1개)</div>
-                    <br><hr>
-                    <div class="name1">
-                        <span class="top1">상품정보</span>
-                        <span class="top2">수량</span>
-                        <span class="top3">상품가격</span>
-                        <span class="top4">적립혜택</span>
+
+          <div id="content"style="width:1200px; height:100%" >
+            <!-- mypage -->
+                <div class="contaniner_1" style="height:100%">
+                <div style="height:100%; width:100%;" >
+                        <div id="order_list">
+                            <div id="mp_con1">
+                                <p>주문 상품 확인</p>
+                                <table class="mypage_table" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th width="150"></th>
+                                            <th width="300" >대관정보</th>
+                                            <th width="50">수량</th>
+                                            <th>가격</th>
+                                            <th>적립혜택</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td >
+                                                <img src="/사이트이미지/매거진/magazine_1.png" alt="" width="100" height="100">
+                                            </td>
+                                            <td style="text-align:left; padding-left:20px;font-weight: 700;">아카이야(11:00~13:00)</td>
+                                            <td>1개</td>
+                                            <td>200,000원</td>
+                                            <td>960P</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" >+빔프로젝트</td>
+                                            <td>1개</td>
+                                            <td>10,000원</td>
+                                            <td>300P</td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td colspan="2">+노트북</td>
+                                            <td>1개</td>
+                                            <td>5,000원</td>
+                                            <td>150P</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="mp_con2">
+                                <p>포인트 사용</p>
+                                <table class="tb2"  cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td class="left_text_st top_bd">티스푼포인트</td>
+                                            <td class="top_bd"> <input type="text" value="150p" class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
+                                            <td class="top_bd"><button style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
+                                        </tr>
+                                </table>
+                            </div>
+                            <!-- //mp_con2-->
+                            <div id="mp_con3" style="margin-bottom:400px">
+                                <p style="float:left; margin-bottom:0">공간대여 고객정보</p>
+                                <p style="text-align:right;font-size: 13px;">고객님의 회원정보가 기본 입력됩니다.</p>
+                                <table class="tb3"  cellspacing="0" cellpadding="0" >
+                                        <tr>
+                                            <td class="left_text_st top_bd " >이름</td>
+                                            <td class="top_bd "colspan="3" >
+                                                <input type="text" name="" value="<%=loginUser.getUserName()%>">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left_text_st" width="170">휴대전화</td>
+                                            <td width="220" colspan="2"><input type="text" value="<%=loginUser.getPhone()%>"></td>
+                                        </tr>
+                                        <tr >
+                                            <td class="left_text_st" >이메일</td>
+                                            <td colspan="3" ><input type="email" value="<%=loginUser.getEmail()%>"></td>
+                                        </tr>
+                                </table>
+                            </div>
+                            <!-- //mp_con3-->
+                        </div>
+                       <!-- //orderlist -->
+                       <div id="payment" class="adside" style="float:left">
+                        <form action="" method="POST">
+                            <table class="pay_tb" >
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">최종 결제 금액</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="pay_lt bd_none">대여비용</td>
+                                        <td class="pay_rt bd_none">200,000원</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class=" pay_lt bd_none">물품비용</td>
+                                        <td class=" pay_rt bd_none">15,000원</td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" pay_lt">포인트 할인</td>
+                                        <td class=" pay_rt">-1,000원</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td colspan="2" class="bd_none pay_lt">적립예상포인트</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class=" pay_rt">2,130p</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"  class=" pay_rt">214,000원</td>
+                                    </tr>
+                                </tbody> 
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2" class="pay_lt" style="padding-top: 20px;text-align: left;">
+                                            위 상품의 판매조건을 명확히 확인하였으며,
+                                            구매 진행에 동의합니다.
+                                            (전자상거래법 제 8조 2항)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="pay_lt " style="padding: 20px 0; text-align: left;">
+                                            <input type="checkbox">동의합니다
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><button class="pay_button">결제하기</button></td>
+                                    </tr>
+                                </tfoot>   
+                            </table>
+                        </form>
+
                     </div>
-                    <hr>
-                    <div class="name2">
-                        <br><br>
-                        <span class="mid1">아카이야(09:30~11:30)</span>
-                        <span class="mid2">1개</span>
-                        <span class="mid3">32,000원</span>
-                        <span class="mid4">960p</span>
-                    </div>
-                    <br><br><br><br><br>
-                    <hr><br>
-                    <div class="name3">
-                        <span class="bottom1">(+)빔프로젝트</span>
-                        <span class="bottom2">1개</span>
-                        <span class="bottom3">10,000원</span>
-                        <span class="bottom4">300p</span>
-                    </div>
-                    <br><hr>
-                    <br><br>
-                    <div class="name4">
-                        <span class="foot1">주문고객정보</span>
-                        <span class="foot2">고객님의 회원정보가 기본입력 됩니다.</span>
-                    </div>
-                    <hr>
-                    <br>
-                    <div class="name5">
-                        <span class="fname">이름</span>
-                        <span class="fname1"><textarea  class="fname1" name="" id="" cols="30" rows="0"></textarea></span>
-                    </div>
-                    <hr></hr><br>
-                    <div class="name6">
-                        <span class="fphone">휴대전화</span>
-                        <span class="fphone1"><textarea  class="fphone1" name="" id="" cols="30" rows="0"></textarea></span>
-                    </div>
-                    <hr><br>
-                    <div class="name7">
-                        <span class="femail">이메일</span>
-                        <span class="femail1"><textarea  class="femail1" name="" id="" cols="30" rows="0"></textarea></span>
-                    </div>
-                    <hr><br><br>
-                    <div class="name8">포인트사용</div><br>
-                    <hr><br>
-                    <div class="name9">
-                        <span class="fpoint">티프푼포인트</span>
-                        <span class="fpoint1"><textarea  class="femail1" name="" id="" cols="30" rows="0"></textarea></span>
-                        <input class="payment" type="submit" value="결제하기">
-                    </div>
-                    <br><hr>
-                
-                
+                    <!-- //payment-->
                 </div>
-            </div>
+                </div>
+            <!-- //contaniner-->
         </div>
         <!-- //content-->
         <%@ include file="../common/footer.jsp" %>

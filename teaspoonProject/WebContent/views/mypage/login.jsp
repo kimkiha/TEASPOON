@@ -17,7 +17,7 @@
          <div id="content">
             <!-- product -->
             <div id="content1">
-                <div class="contaniner">
+                <div class="contaniner" >
                     <div class="outer">
                             <div class="login-title">
                                 <img src="<%=contextPath %>/resources/img/main/logo.png" alt="" >

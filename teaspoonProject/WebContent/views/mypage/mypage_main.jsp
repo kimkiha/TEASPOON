@@ -2,8 +2,8 @@
     pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.* "%>
 <%
 
-Member myInfo = (Member)session.getAttribute("myInfo");
 
+Member myInfo = (Member)session.getAttribute("myInfo");
 %>
 <!DOCTYPE html>
 <html lang="ko">
