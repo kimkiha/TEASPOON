@@ -3,6 +3,7 @@
 <%
 
 
+Member myInfo = (Member)request.getAttribute("myInfo");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -42,6 +43,8 @@
                             <div class="user_info" style="width:450px;">
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
+                                        <td width="60" name="username"><%= myInfo.getUserName() %></td>
+                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=myInfo.getGradeName() %></td>
                                     </tr>
                                     <tr class="d2">
                                         <td colspan="2"><a href="#" >회원정보수정</a> </td>
@@ -50,12 +53,15 @@
                             </div>
                             <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
                                 <p class="info_th" >적립포인트</p>
+                                <a href="#" ><%= myInfo.getPointPrice() %></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
+                                <a  href="#" ><%= myInfo.getCount() %>장</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
+                                <a  href="#" ><%=myInfo.getPcode() %>개</a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
