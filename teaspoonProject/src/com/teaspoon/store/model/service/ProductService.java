@@ -218,6 +218,10 @@ public class ProductService {
 		return list;
 	}
 	
+	/** 사용자 상품상세 조회시 리뷰 3개씩 더보기 기능
+	 * @param addReview
+	 * @return
+	 */
 	public ArrayList<Review> selectAddReviewList(int addReview){
 		Connection conn = getConnection();
 		ArrayList<Review> list = new ProductDao().selectAddReviewList(conn,addReview);
@@ -252,12 +256,32 @@ public class ProductService {
 	}
 	
 	
+	/** 사용자 상품상세 조회시 리뷰 조회 서비스
+	 * @param pcode
+	 * @return
+	 */
 	public ArrayList<Review> selectProductReview(int pcode){
 		Connection conn = getConnection();
 		ArrayList<Review> list = new ProductDao().selectProductReview(conn, pcode);
 		
 		close(conn);
 		return list;
+	}
+	
+	/** 관리자 리뷰 삭제 서비스
+	 * @param reviewNo 삭제할 리뷰번호
+	 * @return
+	 */
+	public int deleteReview(int reviewNo) {
+		Connection conn = getConnection();
+		int result = new ProductDao().deleteReview(conn, reviewNo);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
 	}
 
 }

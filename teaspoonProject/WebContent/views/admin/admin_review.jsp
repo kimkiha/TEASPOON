@@ -65,7 +65,7 @@
                                           <button type="button" style="width: 100px;"><a href="<%=contextPath%>/reviewDetail.re?reviewNo=<%=r.getReviewNo()%>">상세보기</a></button>
                                       </td>
                                       <td>
-                                      	<button type="button" style="width: 100px;">삭제</button>
+                                      	<button type="button" style="width: 100px;" onclick="deleteReview();">삭제</button>
                                       </td>
                                   </tr>
                               </tfoot>
@@ -74,7 +74,12 @@
                       </table>
                     </div>
                 </div>
-                <div id="c1_2" >
+			<form id="postForm" method="post" action="<%=contextPath%>/delete.re">
+			<% for (Review r : list) {%>
+				<input type="hidden" name="reviewNo" value="<%=r.getReviewNo()%>">
+			<%} %>
+			</form>
+			<div id="c1_2" >
                   
                 </div>
                 <div id="c1_3">
@@ -103,5 +108,13 @@
                 </div>
             </div>
         </div>
+        
+        <script>
+        	//삭제버튼 클릭시 실행
+        	function deleteReview(){
+        		$("#postForm").submit();
+        	}
+        
+        </script>
 </body>
 </html>
