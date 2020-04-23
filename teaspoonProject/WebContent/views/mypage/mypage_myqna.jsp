@@ -101,7 +101,7 @@
                                 <tbody>
                                 <%if(list.isEmpty()){ %>
                                     <tr>
-                                        <td colspan="6">1:1 상담내역이 없습니다.</td>
+                                        <td colspan="7">1:1 상담내역이 없습니다.</td>
                                     </tr>
                                <%}else{ %>
                               		<% for(Member m : list){ %>
@@ -111,7 +111,7 @@
                                         <td colspan="2" class="qna-t"><%= m.getMtm_title() %></td>
                                         <td><%=m.getCreate_date() %></td>
                                         <td>답변완료</td>
-                                        <td><input type="checkbox" name="mtm"></th>
+                                        <td><input type="checkbox" name="mno" value="<%=m.getMtm_no()%>"></th>
                                     </tr>
                                     <%} %>
                                 <%} %>
@@ -168,7 +168,7 @@
     	$(function(){
     		$(".delete").click(function(){
     			alert("정말 삭제하시겠습니까?");
-    			var mno= $('input[name="radioTxt"]:checked').siblings().eq(0).val();
+    			var mno= $('input[name="mno"]:checked').val();
     			location.href="<%=contextPath%>/myqnadelete.me?mno=" + mno;
     		});
     	});

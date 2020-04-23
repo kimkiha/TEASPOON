@@ -464,5 +464,15 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+
+	public int updateMtm(String[] mno) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMtm(conn,mno);
+		
+		close(conn);
+		
+		return result;
+	}
 	
 }
