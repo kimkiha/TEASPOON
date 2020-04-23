@@ -375,13 +375,13 @@ String randomKey = (String)request.getAttribute("randomKey");
                         <div class="contaniner">
                           <div id="정보입력" class="tabcontent" >
                           	
-                          	<form id ="informationForm" action="" method="post">  
+                          	<form id ="informationForm" action="<%= contextPath %>/insert.me" method="post">  
                             
                             <table id="table1" style="align:center; ">
                                     <tr>
                                         <td style="font-size:20px; width: 300px;"><li>성 명</li></td>
                                         <td style= "text-align:left;"><input type="text" id="userName" name="username" placeholder="이름(실명으로 입력해주세요)."></td>
-                                        <td style= "font-size:16px; width: 310px;"></td>           
+                                        <td style= "font-size:16px; width: 150px;"></td>           
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>생 년 월 일</li></td>
@@ -411,7 +411,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                                     <tr>
                                         <td style= "font-size:20px;"><li>아 이 디</li></td>
                                         <td style= "text-align:left;"><input type="text" id="userId" name="UserId" placeholder="아이디(4 ~ 12자 영문 대,소문자)"></td>
-                                        <td></td>
+                                        <td><button type="button" id="idCheck">아이디중복확인</button></td>
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>비 밀 번 호</li></td>
@@ -427,7 +427,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                             	</table>
                             
                                  <!-- 2_1. (정보입력)본인인증 및 회원가입 버튼-->
-                                <button type="button" class="btnenroll2" id="seconde_agree_btn" >본인인증 및 회원가입</button>
+                                <button type="button" class="btnenroll2" id="seconde_agree_btn" disabled>본인인증 및 회원가입</button>
                             </div> 
                             
                             </form>	<!--  -->
@@ -460,7 +460,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                                      
                         <!-- 4. 회원가입완료 페이지-->
                          <div id="가입완료" class="tabcontent">
-                            <form id="enrollinfo2" action="<%= contextPath %>/insert.me" method="post">
+                            <form >
                                 <fieldset style="list-style-type:disc; border:1px solid lightgrey; margin-left:410px; margin-right:200px; margin-bottom:150px;" id=ul2>
                                     <ul style="border:0.3 solid lightgrey;"><br>
 		                                    <p style="padding:35px;">
@@ -603,8 +603,61 @@ String randomKey = (String)request.getAttribute("randomKey");
 				$("#defaultOpen3").click();	// 다음페이지로 이동
 
        	 });
-       	 
     	</script>
+    	
+    	
+    	<script>
+	
+		$(function(){
+			
+			// 중복확인 클릭했을 때
+			$("#idCheck").click(function(){
+				
+				// 아이디 입력하는 input요소
+				var userId = $("#informationForm input[name=userId]");
+				
+				$.ajax({
+					url:"idCheck.me",
+					data:{userId:userId.val()},
+					type:"post", 
+					success:function(result){	// 1 또는 0
+						
+						if(result == 0){		// 사용가능한 아이디
+							
+							if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){
+								
+								// 아이디 더이상 수정이 불가하게끔
+								userId.attr("readonly", "true");
+								// 회원가입버튼 활성화
+								$("#seconde_agree_btn").removeAttr("disabled");
+								
+							}else{
+								userId.forcus();
+								
+							}
+							
+						}else {					// 사용불가능한 아이디
+							
+							alert("사용할 수 없는 아이디입니다.");
+							userId.focus();
+							
+						}
+						
+					},error:function(){
+						console.log("ajax통신 실패!!");
+					}
+					
+				
+				});
+				
+			});
+			
+		});
+	
+	</script>
+    	
+    	
+    	
     		
     	<script>
     	<%-- $(function(){
@@ -645,8 +698,6 @@ String randomKey = (String)request.getAttribute("randomKey");
         		   alert("이메일발송실패");
         	   }
            })    
-      		
-      		
        
       	 });
     	</script>
@@ -664,9 +715,13 @@ String randomKey = (String)request.getAttribute("randomKey");
                 	randomKey = "";
                 	Identi.focus();
                 	return false;
-              	}
-    				alert("인증 성공하였습니다.");
+              	}else{
+              		alert("인증 성공하였습니다.");
     				$("#defaultOpen4").removeAttr("disabled").click();
+              		
+              	}
+    				
+    				
     			  	//$("#defaultOpen4").click();	
 
        	 	}

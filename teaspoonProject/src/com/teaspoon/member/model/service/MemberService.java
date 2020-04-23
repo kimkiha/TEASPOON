@@ -1,6 +1,6 @@
 package com.teaspoon.member.model.service;
 
-import static com.teaspoon.common.JDBCTemplate.close;
+import static com.teaspoon.common.JDBCTemplate.*;
 import static com.teaspoon.common.JDBCTemplate.commit;
 import static com.teaspoon.common.JDBCTemplate.getConnection;
 import static com.teaspoon.common.JDBCTemplate.rollback;
@@ -383,5 +383,20 @@ public class MemberService {
 			return result;
 		}
 
+	/**
+	 * 아이디 중복체크용 서비스
+	 * @param userId	--> 중복확인하고자 하는 사용자가 입력한 아이디값
+	 * @return			--> 해당 아이디와 일치하는 갯수
+	 */
+	public int idCheck(String userId) {
+		Connection conn = getConnection();
+		
+		int count = new MemberDao().idCheck(conn, userId);
+		
+		close(conn);
+		
+		return count;
+		
+	}
 	
 }
