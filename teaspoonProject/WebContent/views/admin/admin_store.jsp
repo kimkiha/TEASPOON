@@ -74,7 +74,7 @@
 									<td><%=p.getKind() %></td>
 									<td>
 								    	<button type="button"><a href="<%=contextPath%>/productUpdateForm.st?pcode=<%=p.getPcode()%>">수정</a></button>
-								        <button type="button">삭제</button>
+								        <button type="button" onclick="deleteProduct();">삭제</button>
 								    </td>
 								</tr>
 							</tfoot>
@@ -82,7 +82,12 @@
 				<%} %> 
                       </table>
                     </div>
-                </div>
+				<form id="postForm" method="post" action="<%=contextPath%>/delete.st">
+					<% for (Product p : list) {%>
+					<input type="hidden" name="pcode" value="<%=p.getPcode()%>">
+					<%} %>
+				</form>
+			</div>
                 <div id="c1_2">
 
                 </div>
@@ -112,5 +117,13 @@
                 </div>
             </div>
         </div>
+        
+        <script>
+        	// 삭제버튼 클릭시 실행
+        	function deleteProduct(){
+				$("#postForm").submit();
+			}
+        	
+        </script>
 </body>
 </html>

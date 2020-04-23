@@ -283,5 +283,17 @@ public class ProductService {
 		}
 		return result;
 	}
+	
+	public int deleteProduct(int pcode) {
+		Connection conn = getConnection();
+		int result = new ProductDao().deleteProduct(conn, pcode);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 
 }
