@@ -210,9 +210,17 @@ public class ProductService {
 	 * @param pi
 	 * @return
 	 */
-	public ArrayList<Review> selectReviewList(PageInfo pi){
+	public ArrayList<Review> selectReviewList(){
 		Connection conn = getConnection();
-		ArrayList<Review> list = new ProductDao().selectReviewList(conn, pi);
+		ArrayList<Review> list = new ProductDao().selectReviewList(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Review> selectAddReviewList(int addReview){
+		Connection conn = getConnection();
+		ArrayList<Review> list = new ProductDao().selectAddReviewList(conn,addReview);
 		
 		close(conn);
 		return list;
