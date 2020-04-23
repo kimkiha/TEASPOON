@@ -34,20 +34,25 @@ public class InsertWish extends HttpServlet {
 		
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-		int result;		
-		response.setContentType("application/json; charset=utf-8;");
 		
+		
+		int result;		
+
 		if(loginUser == null) {
 			result = 0;
 			PrintWriter out = response.getWriter();
 			out.print(result);
 			return;
 		}else if(loginUser != null){
-			int userNo = loginUser.getUserNo();
 			
-			int count = new MemberService().selectOneWishList(pcode, userNo); 
+			int userNo = loginUser.getUserNo();
+			System.out.println(userNo);
+			int count = new MemberService().selectOneWishList(pcode, userNo);
+			System.out.println(count);
 			if(count > 0) { // 중복된 상품이 이미 위시리스트에 있다
 				result= -1;
+				PrintWriter out = response.getWriter();
+				out.print(result);
 				return;
 			} else {		// 중복되지 않았을 경우 
 				result = new MemberService().insertWish(pcode, userNo); // 1이 리턴될 것

@@ -17,6 +17,7 @@ import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.member.model.vo.WishList;
 import com.teaspoon.store.model.vo.Product;
 
 public class MemberDao {
@@ -926,16 +927,18 @@ public int insertAttachment(Connection conn, Attachment at) {
 		}
 		
 		public int selectOneWishList(Connection conn, int pcode, int userNo) {
-			int count = 0;
+		
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			String sql = prop.getProperty("selectOneWishList");
-			
+			int count=0;
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setInt(1, rset.getInt(userNo));
-				pstmt.setInt(2, rset.getInt(pcode));
+				pstmt.setInt(1, userNo);
+				pstmt.setInt(2, pcode);
+				
+				rset = pstmt.executeQuery();
 				
 				if(rset.next()) {
 					count = rset.getInt(1);
@@ -946,6 +949,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 				close(rset);
 				close(pstmt);
 			}
+			System.out.println(count);
 			return count;
 		}
 		
@@ -958,12 +962,12 @@ public int insertAttachment(Connection conn, Attachment at) {
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setInt(1, rset.getInt(userNo));
-				pstmt.setInt(2, rset.getInt(pcode));
+				pstmt.setInt(1, userNo);
+				pstmt.setInt(2, pcode);
 				
-				if(rset.next()) {
-					result = rset.getInt(1);
-				}
+				result = pstmt.executeUpdate();
+				
+			
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
