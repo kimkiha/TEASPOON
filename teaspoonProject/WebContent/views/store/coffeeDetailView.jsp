@@ -156,19 +156,7 @@
 	                                        <td style="width:100px; border-top: 1px solid #ddd;"></td>
 	                                    </tr>
 	                                    <tr style="height: 50px;">
-	                                        <td style="text-align: right;"></td>
-	                                        <td>
-	                                            <div>
-	                                                <div style="float: left;  padding-top: 5px; padding-right:10px;">
-	                                                    <img src="<%=contextPath %>/resources/img/store/img.png" width="40px" >
-	                                                </div>
-	                                                <div style="float: left; ">
-		                                                    <div id="fileArea" style="padding-top:10px;">
-		                                                    	<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
-		                                                    </div>
-		                                            </div>
-	                                            </div>
-	                                        </td>
+	                                        <td colspan="2" style="text-align: right;"></td>
 	                                        <td width="100px">
 	                                            <button id="resetReview" class="btn" type="reset" name="reset" value="reset">취소</button>
 	                                        </td>
@@ -209,7 +197,7 @@
                                         </table>
                                         </div>
                                         <%} %>
-                                        <!--더보기 할때 글 3개씩 밑으로?-->
+                                        <!--더보기 할때 글 3개씩 밑으로-->
                                         <button id="load" onclick="moreList();"> 더보기 </button>
                                         <br><br><br>
                                     </div>
@@ -273,19 +261,10 @@
          		 
              }
             });
-			
-            // checked & selected div에 띄우기
-
-            
-            // 리뷰이미지 첨부
-            $(function(){
-            	$("#reviewImg").click(function(){
-            		$("file1").click;
-            	});
-            });
-            
             
             // 리뷰 더보기 버튼
+            
+            
             
     </script>
 
