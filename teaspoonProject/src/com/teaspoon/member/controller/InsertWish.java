@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.teaspoon.member.model.service.MemberService;
 
 /**
- * Servlet implementation class MypageWish
+ * Servlet implementation class InsertWish
  */
-@WebServlet("/wishList.me")
-public class MypageWish extends HttpServlet {
+@WebServlet("/insertWish.me")
+public class InsertWish extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MypageWish() {
+    public InsertWish() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,18 +30,13 @@ public class MypageWish extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int pcode = Integer.parseInt(request.getParameter("pcode"));
+		int uno = 회원번호 뽑기;
 		
+		int result = new MemberService().인설트(pcode, uno);
 		
-		int userNo = 세션으로 값뽑음;
-		
-		ArrayList<Product> list = new MemberService().selectWishList(pcode);
-		request.setAttribute("list", list);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_wish.jsp");
-		view.forward(request, response);
-		
-		
-	
+		PrintWriter out = response.getWriter();
+		out.print(result);
 	}
 
 	/**
