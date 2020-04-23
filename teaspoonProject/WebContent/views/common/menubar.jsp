@@ -53,7 +53,7 @@
                         <li><a class="list about" href="">어바웃티스푼</a>
                             <ul class="ul">
                                 <li><a href="#">브랜드스토리</a></li>
-                                <li><a href="<%=contextPath%>/views/board/magazine.jsp">매거진</a></li>
+                                <li><a href="<%=contextPath%>/magazineUser.bo">매거진</a></li>
                             </ul>
                         </li>
                         <li><a class="list rent" href="<%=contextPath%>/rental.sp">공간대여</a>

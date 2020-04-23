@@ -29,18 +29,29 @@
             <div id="c1">
                 <div class="outer">
                     <p>매거진 등록</p>
-                    <form id="magazineInsertForm" action="magazineInsert.bo" method="post" >
-                     		   
-                     		   <div class="c_div">
-	                     		   	<div class="c_div_title">
-		                     		   	<p>제목 : <input type="text" style="width:90%" name="title" required></p> 
-		                    		    <p>내용</p>
-	                    		    </div>
-	                    		    <div class="c_div_cont">
-                                		<textarea id="summernote" name="Content"></textarea>
-                                	</div>
-                                </div>
-                                
+                    <form id="magazineInsertForm" action="magazineInsert.bo" method="post" enctype="multipart/form-data">
+                		<table>
+                 		   	<tr>
+	                  		   	<td width="120">제목</td>
+	                  		   	<td><input type="text" style="width:80%" name="title" required></td>
+                 		   	</tr>
+                 		   	<tr>
+                 		   		<td>대표이미지</td>
+                 		   		<td><img id="titleImg" width="150" height="120" required></td>
+                 		   		
+                 		   	</tr>
+                 		   	<tr style="border-bottom:none;">
+                		   		<td colspan="2" >내용</td>
+                 		   	</tr>
+               		    </table>
+              		    <div class="c_div_cont">
+                         		<textarea id="summernote" name="Content"></textarea>
+                         </div>
+	                         
+						<div id="fileArea">
+							<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
+						</div>
+                         
                                 
                                 <!--  <textarea name="content" cols="70" rows="5" style="resize:none" required></textarea></td>
                            		-->
@@ -112,6 +123,9 @@
 			#insertForm button{
 				width:auto;
 			}
+			span.note-icon-caret{
+				display:none;
+			}
 		</style>
     <script>
     $(function(){
@@ -128,7 +142,7 @@
         $('#summernote').summernote({
            //placeholder:" ",
            //tabsize: 2,
-            height: 300,
+            height: 150,
             width:800/* ,
             toolbar: [
                 // [groupName, [list of button]]
@@ -146,11 +160,11 @@
      });
 	
 
-    $('#sb_btn').on('click', function(){
+    /* $('#sb_btn').on('click', function(){
         $('#summernote').append('<input type="hidden" name="Content", id="Content" />');
         $('#Content').val($('.summernote').code());
         $('#magazineInsertForm').submit();
-    })
+    }) */
 
 		/*
 		function loadImg(inputFile){
@@ -176,7 +190,40 @@
 			};
 			*/
 			
-		
+			$(function(){
+				$("#fileArea").hide();
+				
+				$("#titleImg").click(function(){
+					$("#file1").click();
+				});
+			});
+
+			function loadImg(inputFile, num) {
+				// inputFile : 현재 변화가 생긴 input type="file" 요소
+				// num : 몇번째 input 요소인지 확인 후 해당 영역에 미리보기 하려고 받는 숫자값
+
+				// [참고] https://developer.mozilla.org/ko/docs/Web/API/FileReader
+
+				//file이 존재할 경우 --> inputFile요소의 files속성인 배열의 0번 인덱스에  파일이 담김
+				if (inputFile.files.length == 1) {
+					// 파일을 읽어들일 FileReader 객체생성
+					var reader = new FileReader();
+
+					//파일을 읽어주는 메소드 --> 해당 파일을 읽어들이는 순간 해당 파일만의 고유한 url부여
+					reader.readAsDataURL(inputFile.files[0]);
+
+					//파일 읽기가 완료 되었을때 실행할 메소드
+					// e : 현재 이벤트가 발생한 이벤트객체
+					reader.onload = function(e) {
+						switch (num) {
+						case 1: $("#titleImg").attr("src", e.target.result); break;
+
+						}
+					};
+
+				}
+
+			}
 	</script>
 </body>
 </html>

@@ -1,28 +1,29 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
 
 /**
- * Servlet implementation class InsertWish
+ * Servlet implementation class deleteWish
  */
-@WebServlet("/insertWish.me")
-public class InsertWish extends HttpServlet {
+@WebServlet("/deleteWish.me")
+public class deleteWish extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertWish() {
+    public deleteWish() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,31 +33,22 @@ public class InsertWish extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession(); 
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-		int result;		
-		response.setContentType("application/json; charset=utf-8;");
 		
-		if(loginUser == null) {
-			result = 0;
-			PrintWriter out = response.getWriter();
-			out.print(result);
-			return;
-		}else if(loginUser != null){
-			int userNo = loginUser.getUserNo();
+		int userNo = loginUser.getUserNo();
+		
+		int result = new MemberService().deleteWish(userNo, pcode);
+		
+		if(result>0) { // 위시리스트 삭제성공
+			response.sendRedirect("coffee.st"); 
 			
-			int count = new MemberService().selectOneWishList(pcode, userNo); 
-			if(count > 0) { // 중복된 상품이 이미 위시리스트에 있다
-				result= -1;
-				return;
-			} else {		// 중복되지 않았을 경우 
-				result = new MemberService().insertWish(pcode, userNo); // 1이 리턴될 것
-				PrintWriter out = response.getWriter();
-				out.print(result);
-				return;
-			}
+		} else { // 삭제 실패
+			request.setAttribute("msg", "위시리스트 삭제 실패했습니다");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
 		}
-		
 	}
 
 	/**

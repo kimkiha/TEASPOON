@@ -400,6 +400,7 @@ public class MemberService {
 		
 	}
 	
+	// 상품 페이지에서 위시리스트로 상품 삽입
 	public int insertWish(int pcode, int userNo) {
 		Connection conn = getConnection();
 		int result = new MemberDao().insertWish(conn, pcode, userNo);
@@ -414,12 +415,37 @@ public class MemberService {
 		
 	}
 	
+	// 해당 유저의 위시리스트 목록 불러오기 
 	public ArrayList<Product> selectWishList(int pcode){
 		Connection conn = getConnection();
 		ArrayList<Product> list = new MemberDao().selectWishList(conn, pcode);
 		
 		close(conn);
 		return list;
+	}
+	
+	
+	// 위시리스트 중복검사
+	public int selectOneWishList(int pcode, int userNo) {
+		Connection conn = getConnection();
+		int count = new MemberDao().selectOneWishList(conn, pcode, userNo);
+		
+		close(conn);
+		return count;
+	}
+	
+	// 위시리스트 삭제
+	public int deleteWish(int pcode, int userNo) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().deleteWish(conn, userNo, pcode);
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 	
 }
