@@ -38,13 +38,13 @@ public class MenToMen {
 		this.status = status;
 	}
 	
-	public MenToMen(int mtmNo,String mtmName,  String mtmTitle,String userId, Date createDate,String mtmContent  ) {
+	public MenToMen(int mtmNo,int mtmType,  String mtmTitle,String userId, Date createDate,String mtmContent  ) {
 		super();
 		this.mtmNo = mtmNo;
 		this.mtmTitle = mtmTitle;
 		this.mtmContent = mtmContent;
 		this.createDate = createDate;
-		this.mtmName = mtmName;
+		this.mtmType = mtmType;
 		this.userId = userId;
 	}
 

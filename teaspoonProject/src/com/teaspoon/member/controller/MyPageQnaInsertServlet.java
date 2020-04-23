@@ -40,69 +40,16 @@ public class MyPageQnaInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 폼 전송방식이 일반방식이 아닌 multipart/form-data 로 전송할 경우
-				// 파일업로드를 위한 라이브러리 : cos.jar (com.orelilly.servlet)
-				// http://www.servlets.com >> 받아서 WEB-INF/lib/cos.jar 붙여넣기
-				
-				
-				// enctype이 multipart/form-data로 잘 전송되었을 경우 일련의 과정 진행
 				if(ServletFileUpload.isMultipartContent(request)) {
 					
-					// 1. 전송된 파일을 위해 처리할 작업(전송되는 파일의 용량 제한, 전달된 파일을 업로드 할 폴더 경로)
-					
-					// 1_1. 전송되는 파일 용량 제한 (int maxSize)
-					//      10Mbyte
-					//      byte ->kbyte -> mbyte -> 
-					//      1Kbyte = 1024byte
-					//      1Mbyte = 1024Kbyte = 1024 * 1024 byte
-					//      10Mbyte = 10*1024 *1024 byte
 					int maxSize = 10 * 1024 * 1024;
-					
-					// 1_2.  전달되는 파일을 저장할 서버의 폴더 경로 알아내기(String savePath)
-					//  >> 웹컨테이너(Webcontent) 경로 안의 resources 폴더까지의 경로 추출
 					String resources = request.getSession().getServletContext().getRealPath("/resources");
-					//System.out.println(resources);
-					//C:\webserver_workspace2\jspProject\WebContent\resources
 					
-					//C:\webserver_workspace2\jspProject\WebContent\resources + \board_upfiles\
 					String savePath = resources + "\\thumbnail_upfiles\\";
-					//System.out.println(savePath);
+					System.out.println(savePath);
 					
 					
-					/*
-					 * 2. 전달된 파일명 수정 및 업로드 작업
-					 * 
-					 * > HttpServletRequest --> MultipartRequest 로 변경
-					 * 
-					 * MultipartRequest multiRequest = new MultipartRequest(request,저장할폴더경로,파일용량제한,인코딩값, new DefaultFileRenamePolicy());
-					 * 
-					 * 
-					 *  위구문 실행되는 순간 전달된 파일들이 지정한 폴더에 업로드됨!!
-					 *  
-					 *  --> 즉, 문제가 있든 없든 간에 무조건 서버에 업로드가 됨
-					 *  --> db에 값을 넣는 과정중에 문제가 있을 경우 업로드된 파일을 삭제 해야됨!!
-					 *  
-					 *  사용자가 올린 파일 원본명 그대로 서버에 업로드 하지 않는게 일반적!!
-					 *  
-					 *  --> 같은 파일명이 있을 경우 더어씌워질  수 있고, 한글/ 특수기호/띄어쓰기가 포함된 파일명 서버에 따라 문제 발생!!
-					 *      
-					 * 기본적으로 제공하는 DefaultFileRenamePolicy 객체에서 기본적인 수정작업은 해줌
-					 * ex) aaa.zip 가 있을경우 두번째 파일에 숫자를 부여함 aaa1.zip ,aaa2.zip
-					 * 
-					 * 우리가 직접 rename해볼것!!
-					 * 
-					 */
-					
-					MultipartRequest multiRequest = new MultipartRequest(request,savePath,maxSize,"utf-8",new MyFileRenamePolicy());
-					
-					/*
-					 * 3. db에 저정할 데이터들 뽑아서 vo에 담기
-					 * > 글ㅈ목, 글내용, 카테고리, 작성자회원번호는 board테이블에 insert
-					 * > 넘어온 첨부파일이 있을 경우 원본명, 수정명, 저장경로는 Attachment 테이블에 insert
-					 *
-					 */
-					
-					// 3_1. Mtm 테이블에 insert할 값뽑아서 Mtm객체 담기
+					MultipartRequest multiRequest = new MultipartRequest(request,savePath,maxSize,"utf-8",new com.teaspoon.common.MyFileRenamePolicy());
 					
 					int mtmType = Integer.parseInt(multiRequest.getParameter("mtmType")); // "10";
 					String mtmTitle = multiRequest.getParameter("mtmTitle");

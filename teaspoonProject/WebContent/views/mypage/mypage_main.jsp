@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.* "%>
 <%
-Member myInfo = (Member)request.getAttribute("myInfo");
+
+Member myInfo = (Member)session.getAttribute("myInfo");
+
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -55,11 +57,11 @@ Member myInfo = (Member)request.getAttribute("myInfo");
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%= myInfo.getPcode() %>장</a>
+                                <a  href="#" ><%= myInfo.getCount() %>장</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=myInfo.getCount() %>개</a>
+                                <a  href="#" ><%=myInfo.getPcode() %>개</a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
