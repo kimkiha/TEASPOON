@@ -118,7 +118,7 @@
                                           
                                         </div>
                                         <div class="func">
-                                            <button class="btn btn-cancel">취소</button>
+                                            <button class="btn btn-cancel" type="reset">취소</button>
                                             <button class="btn btn-submit" type="submit">등록</button>
                                         </div>
                                     </form> 

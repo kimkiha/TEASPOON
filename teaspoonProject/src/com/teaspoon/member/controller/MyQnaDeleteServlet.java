@@ -27,8 +27,12 @@ public class MyQnaDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		MenToMen mno = request.getParameterValues(mno);
 		
-		
+		String interest = "";
+		if(interests != null) {
+			interest = String.join(",", interests);
+		}
 		
 		
 	}

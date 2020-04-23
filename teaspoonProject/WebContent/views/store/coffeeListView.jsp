@@ -122,21 +122,24 @@
         		$('.like_icon').click(function(){
         			var pcode1 = $(this).parent().siblings([".product_img"]).children().eq(0).val();
         			console.log(pcode1);
+        			
+					var icon = $(this);        			
         			$.ajax({
         				url:"insertWish.me",
         				data:{pcode:pcode1},
         				success:function(result){
         					if(result > 0){
-			        			 $(this).attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+			        			 icon.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
 			        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
 			        			 if(bool){
 			        				 location.href="<%=contextPath %>/wishList.me";
 			        			 }
-        					} else if(result==0){
-        						window.alert("로그인해주세요")
-        					} else if(result < 0){
+        					} else if(result<0){
         						$("#dPcode").val(pcode1);
         						$("#duplicateDeletePcode").submit();
+        						
+        					} else if(result == 0){
+        						window.alert("로그인해주세요");
         					}
         				}, error:function(){
         					window.alert("통신에러");
