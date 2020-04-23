@@ -115,12 +115,23 @@
         
         	$(function(){
         		$('.like_icon').click(function(){
-        			 state=1;
-        			 $(this).attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
-        			 var result = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
-        			 if(result){
-        				 location.href="<%=contextPath %>/wishList.me?pcode="+pcode;
-        			 }
+        			
+        			$.ajax({
+        				url:"insertWish.me",
+        				data:{pcode:현재클릭된상품코드},
+        				success:function(result){
+        					if(result > 0){
+			        			 $(this).attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+			        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
+			        			 if(bool){
+			        				 location.href="<%=contextPath %>/wishList.me";
+			        			 }
+
+        					}else{
+        						
+        					}
+        				}
+        			});
         		 });
         	});
         	

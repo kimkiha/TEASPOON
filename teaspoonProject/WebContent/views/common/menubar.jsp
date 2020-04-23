@@ -75,12 +75,12 @@
                         <ul>
                             <li id="login_li"><button id="login">로그인</button></li>
                             <% if(loginUser != null){ %>
-                            <li><a href="<%=contextPath %>/mymain.me?&userNo=<%=loginUser.getUserNo() %>">마이티스푼</a></li>
+                            <li><a href="<%=contextPath %>/mymain.me">마이티스푼</a></li>
                             <li>나의 배송 조회</li>
                             <li>적립포인트</li>
                             <li>할인쿠폰</li>
-                            <li>위시리스트</li>
-                            <li style="border-bottom: none;"><a href="<%=contextPath %>/myqna.me?currentPage=1&userNo=<%=loginUser.getUserNo() %>">1:1문의</a></li>
+                            <li><a href="<%=contextPath %>/wishList.me">위시리스트</a></li>
+                            <li style="border-bottom: none;"><a href="<%=contextPath %>/myqna.me?currentPage=1">1:1문의</a></li>
                             <%} %>
                         </ul>
                     </div>
