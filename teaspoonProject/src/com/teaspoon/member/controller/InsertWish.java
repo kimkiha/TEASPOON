@@ -33,12 +33,28 @@ public class InsertWish extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
-		
-		int result = new MemberService().insertWish(pcode, userNo);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		int result;		
 		response.setContentType("application/json; charset=utf-8;");
-		PrintWriter out = response.getWriter();
-		out.print(result);
+		
+		if(loginUser == null) {
+			result = 0;
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			return;
+		}else if(loginUser != null){
+			int userNo = loginUser.getUserNo();
+			
+			int count = new MemberService().selectWishList(pcode, userNo);
+			if(count>0) {
+				=
+			}
+			result = new MemberService().insertWish(pcode, userNo);
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			return;
+		}
+		
 	}
 
 	/**

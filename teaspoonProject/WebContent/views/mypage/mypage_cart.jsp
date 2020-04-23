@@ -82,7 +82,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="7" height="150">장바구니에 선택된 상품이 없습니다</td내ㅣ넴>
+                                        <td colspan="7" height="150">장바구니에 선택된 상품이 없습니다</td>
                                     </tr>
                                     <tr>
                                         <td ><input type="checkbox" name="checkRow" value="${content.IDX}" ></td>
