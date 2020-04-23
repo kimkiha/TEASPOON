@@ -924,4 +924,54 @@ public int insertAttachment(Connection conn, Attachment at) {
 			}
 			return list;
 		}
+		
+		public int selectOneWishList(Connection conn, int pcode, int userNo) {
+			int count = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectOneWishList");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, rset.getInt(userNo));
+				pstmt.setInt(2, rset.getInt(pcode));
+				
+				if(rset.next()) {
+					count = rset.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return count;
+		}
+		
+		public int deleteWish(Connection conn, int pcode, int userNo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("deleteWish");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, rset.getInt(userNo));
+				pstmt.setInt(2, rset.getInt(pcode));
+				
+				if(rset.next()) {
+					result = rset.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return result;
+			
+			
+		}
 }

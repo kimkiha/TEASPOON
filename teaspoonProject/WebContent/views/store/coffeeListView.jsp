@@ -103,9 +103,11 @@
             </div>
         </div>
 
-<form id="duplicateDeletePcode" action="deleteWish.me" method="post">
-<input type="hidden" name="pcode" id="dPcode">
-</form>
+		<form id="duplicateDeletePcode" action="deleteWish.me" method="post">
+			<input type="hidden" name="pcode" id="dPcode">
+		</form>
+		
+		
         <!--product-->
         <script>
         
@@ -132,10 +134,9 @@
 			        			 }
         					} else if(result==0){
         						window.alert("로그인해주세요")
-        					} else if(result==-10000){
+        					} else if(result < 0){
         						$("#dPcode").val(pcode1);
         						$("#duplicateDeletePcode").submit();
-        						
         					}
         				}, error:function(){
         					window.alert("통신에러");
