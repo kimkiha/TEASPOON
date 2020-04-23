@@ -50,42 +50,7 @@
             <div class="contaniner title">주문/결제</div>
         </div>
         <!-- //banner -->
-<<<<<<< HEAD
-        <div id="content">
-            <!-- reserv -->
-            <div id="content1">
-                <div class="contaniner">
-                
-                <br><br><div class="dy">대여 확인(1개)</div>
-                    <br><hr>
-                    <div class="name1">
-                        <span class="top1">상품정보</span>
-                        <span class="top2">수량</span>
-                        <span class="top3">상품가격</span>
-                        <span class="top4">적립혜택</span>
-                    </div>
-                    <hr>
-                    <div class="name2">
-                        <br><br>
-                        <span class="mid1">아카이야</span>
-                        <span class="mid2">1개</span>
-                        <span class="mid3">32,000원</span>
-                        <span class="mid4">960p</span>
-                    </div>
-                    <br><br><br><br><br>
-                    <hr><br>
-                    <div class="name3">
-                        <span class="bottom1">(+)빔프로젝트</span>
-                        <span class="bottom2">1개</span>
-                        <span class="bottom3">10,000원</span>
-                        <span class="bottom4">300p</span>
-                    </div>
-                    <br><hr>
-                    <br><br>
-                    <div class="name4">
-                        <span class="foot1">주문고객정보</span>
-                        <span class="foot2">고객님의 회원정보가 기본입력 됩니다.</span>
-=======
+
           <div id="content"style="width:1200px; height:100%" >
             <!-- mypage -->
                 <div class="contaniner_1" style="height:100%">
@@ -227,7 +192,7 @@
                                 </tfoot>   
                             </table>
                         </form>
->>>>>>> 0d64c9d2e745afffd545e29deadbc001edec5e75
+
                     </div>
                     <!-- //payment-->
                 </div>
