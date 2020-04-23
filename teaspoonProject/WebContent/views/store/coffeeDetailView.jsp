@@ -156,19 +156,7 @@
 	                                        <td style="width:100px; border-top: 1px solid #ddd;"></td>
 	                                    </tr>
 	                                    <tr style="height: 50px;">
-	                                        <td style="text-align: right;"></td>
-	                                        <td>
-	                                            <div>
-	                                                <div style="float: left;  padding-top: 5px; padding-right:10px;">
-	                                                    <img src="<%=contextPath %>/resources/img/store/img.png" width="40px" >
-	                                                </div>
-	                                                <div style="float: left; ">
-		                                                    <div id="fileArea" style="padding-top:10px;">
-		                                                    	<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
-		                                                    </div>
-		                                            </div>
-	                                            </div>
-	                                        </td>
+	                                        <td colspan="2" style="text-align: right;"></td>
 	                                        <td width="100px">
 	                                            <button id="resetReview" class="btn" type="reset" name="reset" value="reset">취소</button>
 	                                        </td>
@@ -194,23 +182,13 @@
                                     <!--사용자 후기모음-->
                                     <div class="pList5_3">
                                   
-                                    <%for(Review r : rlist){ %>
+                                    
                                     <div id="data">
-                                        <table cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td id="createDate" width="200px"><%=r.getCreateDate() %></td>
-                                                <td id="user" width="600px"><%=r.getUserName() %>(<%=r.getUserId() %>)</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-bottom:1px solid lightgray;"></td>
-                                                <td id="rcontent"  style="border-bottom:1px solid lightgray;"><p><%=r.getContent() %></p></td>
-                                            </tr>
+                                      
+                                    </div>
                                         
-                                        </table>
-                                        </div>
-                                        <%} %>
-                                        <!--더보기 할때 글 3개씩 밑으로?-->
-                                        <button id="load" onclick="moreList();"> 더보기 </button>
+                                        <!--더보기 할때 글 3개씩 밑으로-->
+                                        <button id="load"> 더보기 </button>
                                         <br><br><br>
                                     </div>
                                 </div>
@@ -273,21 +251,80 @@
          		 
              }
             });
-			
-            // checked & selected div에 띄우기
+           
 
-            
-            // 리뷰이미지 첨부
-            $(function(){
-            	$("#reviewImg").click(function(){
-            		$("file1").click;
-            	});
-            });
-            
-            
-            // 리뷰 더보기 버튼
-            
     </script>
+    
+    <script>
+    $(function(){
+		//문서다로딩되고 자동으로 실행하고 주기적으로 실행한다.
+		selectReplyList();
+		
+	})
+
+	
+	//ajax이용 : 게시글에 딸려있는 댓글 리스트 조회용 함수
+	function selectReplyList(){
+		$.ajax({
+			url:"list.re",
+			//현재보고있는 게시글 번호 보내서 이 게시글을 참조하고있는 댓글들 조회
+			data:{pcode:<%=p.getPcode()%>},
+			type:"get",
+			success:function(list){
+				console.log(list);
+				var value = "";
+				for(var i=0; i<list.length;i++){
+					value += "<table cellpadding='0' cellspacing='0'>"+
+							  "<tr><td id='createDate' width='200px'>"+list[i].createDate+"</td>"+
+                              "<td id='user' width='600px'>"+list[i].userName+"("+list[i].userId+")"+"</td></tr>"+
+                    		  "<tr><td style='border-bottom:1px solid lightgray;'></td>"+
+                        	  "<td id='rcontent'  style='border-bottom:1px solid lightgray;'><p>"+list[i].content+"</p></td></tr>"+ 
+                			   "</table>";
+				}		
+				$("#data").html(value);
+			},
+			error:function(){
+				console.log("댓글리스트조회용 ajax 통신 실패!")
+			}
+			
+		});
+	}
+    </script>
+    
+    <script>
+    $(function(){
+    	var addReview = 6;
+		$("#load").click(function(){
+			
+			$.ajax({
+				url:"listAdd.re",
+				//현재보고있는 게시글 번호 보내서 이 게시글을 참조하고있는 댓글들 조회
+				data:{pcode:<%=p.getPcode()%>,addReview:addReview},
+				type:"get",
+				success:function(list){
+					var value = "";
+					for(var i=0; i<list.length;i++){
+						value += "<table cellpadding='0' cellspacing='0'>"+
+								  "<tr><td id='createDate' width='200px'>"+list[i].createDate+"</td>"+
+	                              "<td id='user' width='600px'>"+list[i].userName+"("+list[i].userId+")"+"</td></tr>"+
+	                    		  "<tr><td style='border-bottom:1px solid lightgray;'></td>"+
+	                        	  "<td id='rcontent'  style='border-bottom:1px solid lightgray;'><p>"+list[i].content+"</p></td></tr>"+ 
+	                			   "</table>";
+					}		
+					$("#data").html(value);
+				},
+				error:function(){
+					console.log("댓글리스트조회용 ajax 통신 실패!")
+				}
+		      
+			});
+
+			addReview=addReview+3;
+			console.log(addReview);
+		});
+    });
+    </script>
+      
 
 </body>
 </html>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
+<%
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +82,7 @@
 									<th><input type="checkbox" name="checkAll"
 										id="th_checkAll" onclick="checkAll();">전체선택</th>
 									<th colspan="2">상품명</th>
-									<th>수량</th>
+									
 									<th>상품가격</th>
 
 									<th></th>
@@ -95,7 +98,7 @@
 									<td style="text-align: left;"><img src="사이트이미지/메인/1.jpg"
 										width="130px" height="130px"></td>
 									<td style="text-align: left;" class="t-title">녹차 스프레드</td>
-									<td><input type="number" value="1" class="input-qnt"></td>
+									<td></td>
 									<td><p>18,000원</p></td>
 									<td class="btn-group-cart">
 										<button>장바구니</button>
@@ -110,7 +113,7 @@
 									<td style="text-align: left;"><img src="사이트이미지/메인/1.jpg"
 										width="130px" height="130px"></td>
 									<td style="text-align: left;" class="t-title">녹차 스프레드</td>
-									<td><input type="number" value="1" class="input-qnt"></td>
+									<td></td>
 									<td><p>18,000원</p></td>
 									<td class="btn-group-cart">
 										<button>장바구니</button>

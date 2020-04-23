@@ -41,7 +41,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                                     <th>최소달성금액</th>
                                     <th>등급별할인률</th>
                                     <th>
-                                        <button id="btnInsert" type="button" style="width: 100px;" >등급추가</button>
+                                        <button id="btnInsertForm" type="button" style="width: 100px;" >등급추가</button>
                                     </th>
                                 </tr>
                             </tbody>
@@ -59,7 +59,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
 							<td><%=g.getMinAcount() %></td>
 							<td><%=g.getGradeRate() %></td>
 							<td>
-							<button type="button" id="btnUpdate">수정</button>
+							<button type="button" class="btnUpdateForm">수정</button>
 							<button type="button">삭제</button>
 							</td>
 							
@@ -118,12 +118,12 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                        
                           <tfoot>
                               <tr>
-                                  <td><input type="text" value="수정할등급번호" disabled></td>
-                                  <td><input type="text" placeholder="수정할등급명" required></td>
-                                  <td><input type="number" placeholder="수정할최소금액" required></td>
-                                  <td><input type="number" placeholder="수정할할인률" required></td>
+                                  <td><input type="text" id="gNo" disabled></td>
+                                  <td><input type="text" id="updateGradeName" placeholder="수정할등급명" required></td>
+                                  <td><input type="number" id="updateMinMoney" placeholder="수정할최소금액" required></td>
+                                  <td><input type="number" id="updateDiscountRate" placeholder="수정할할인률" required></td>
                                   <td>
-                                      <button type="submit"  style="width: 70px;">수정</button>
+                                      <button type="button" id="btnUpdate" style="width: 70px;">수정</button>
                                       <button type="reset"  style="width: 70px;">취소</button>
                                    </td>
                                   </tr>
@@ -146,24 +146,29 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
 	</form>
     <script>
     	$(function(){
-    		$("#btnInsert").click(function(){
-    			$("#levelInsertForm").css("display","block");
+    		$("#btnInsertForm").click(function(){
+    			$("#levelInsertForm").css("display","bl
+    					ock");
     			$("#levelUpdateForm").css("display","none");
     		})
-    		$("#btnUpdate").click(function(){
+    		$(".btnUpdateForm").click(function(){
     			$("#levelUpdateForm").css("display","block");
     			$("#levelInsertForm").css("display","none");
+    			
+    			var gNo = $(this).parent().parent().children().eq(0).text();
+                var updateGradeName =$(this).parent().parent().children().eq(1).text();
+                var updateMinMoney =$(this).parent().parent().children().eq(2).text();
+                var updateDiscountRate =$(this).parent().parent().children().eq(3).text();
+    			$("#gNo").val(gNo);
+    			$("#updateGradeName").val(updateGradeName);
+    			$("#updateMinMoney").val(updateMinMoney);
+    			$("#updateDiscountRate").val(updateDiscountRate);
     		})
     		
     	});
     	
     	$(function(){
     		$("#enroll").click(function(){
-    			
-    		
-    			
-    			
-    			
     			var gradeCount = <%=gList.size()%>;
     			var gradeName = $("#gradeName").val();
     			var minMoney = $("#minMoney").val();
@@ -195,6 +200,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     	});
     </script> 
     
+ 
   
 </body>
 </html>
