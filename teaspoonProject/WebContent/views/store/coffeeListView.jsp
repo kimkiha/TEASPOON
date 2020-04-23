@@ -52,7 +52,7 @@
                             <div class="product" style="margin-top:50px; margin-right:30px;" >
                             	
                                 <div class="product_img">
-                                	<input type="hidden" name="pcode" value=<%=p.getPcode() %>>
+                                	<input type="hidden" id="pcode" name="pcode" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
@@ -115,10 +115,11 @@
         
         	$(function(){
         		$('.like_icon').click(function(){
-        			
+        			var pcode = $(this).parent().siblings(['.product_img']).eq(0).val();
+        			console.log(pcode);
         			$.ajax({
         				url:"insertWish.me",
-        				data:{pcode:현재클릭된상품코드},
+        				data:{pcode:pcode},
         				success:function(result){
         					if(result > 0){
 			        			 $(this).attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
@@ -126,10 +127,11 @@
 			        			 if(bool){
 			        				 location.href="<%=contextPath %>/wishList.me";
 			        			 }
-
-        					}else{
-        						
+        					} else{
+        						window.alert("위시리스트 등록 실패")
         					}
+        				}, error:function(){
+        					window.alert("통신실패");
         				}
         			});
         		 });
