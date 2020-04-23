@@ -3,7 +3,7 @@
 <%
 
 
-Member myInfo = (Member)request.getAttribute("myInfo");
+Member myInfo = (Member)session.getAttribute("myInfo");
 %>
 <!DOCTYPE html>
 <html lang="ko">
