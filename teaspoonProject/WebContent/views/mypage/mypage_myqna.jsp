@@ -111,7 +111,7 @@
                                         <td colspan="2" class="qna-t"><%= m.getMtm_title() %></td>
                                         <td><%=m.getCreate_date() %></td>
                                         <td>답변완료</td>
-                                        <td><input type="checkbox"></th>
+                                        <td><input type="checkbox" name="mtm"></th>
                                     </tr>
                                     <%} %>
                                 <%} %>
@@ -167,7 +167,9 @@
     	});
     	$(function(){
     		$(".delete").click(function(){
-    			
+    			alert("정말 삭제하시겠습니까?");
+    			var mno= $('input[name="radioTxt"]:checked').siblings().eq(0).val();
+    			location.href="<%=contextPath%>/myqnadelete.me?mno=" + mno;
     		});
     	});
     </script>
