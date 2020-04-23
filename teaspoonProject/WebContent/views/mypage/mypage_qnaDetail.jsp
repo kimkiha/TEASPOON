@@ -3,8 +3,18 @@
 <%
 	MenToMen m = (MenToMen)request.getAttribute("m");
 	Attachment at =(Attachment)request.getAttribute("at");
-
-
+	
+	String mtmType = String.valueOf(m.getMtmType());
+	String[] checked = new String[6];
+	
+	switch(mtmType){
+	case "10" : checked[0] = "checked" ; break;
+	case "20" : checked[1] = "checked" ; break;
+	case "30" : checked[2] = "checked" ; break;
+	case "40" : checked[3] = "checked" ; break;
+	case "50" : checked[4] = "checked" ; break;
+	case "60" : checked[5] = "checked" ; break;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -80,35 +90,30 @@
                                         <table align="center" id="mypage_table">
                                             <tr >
                                                 <th width="170">상담구분</th>
-                                                <td width="900" id="opt">
-                                                    <span>
-                                                        <label for="opt1"> <input type="radio"id="opt1"name="qna" checked>주문/결제
-                                                        </label>
+                                                <td width="900" id="opt" name="mtmType">
+                                                     <span>
+                                                        <input type="radio"id="opt1"name="mtmType"value="10" <%=checked[0] %>>주문/결제
+                                                        <label for="opt1"></label>
                                                     </span>    
                                                     <span>
-                                                        <label for="opt2">
-                                                        <input type="radio" id="opt2"name="qna">배송
-                                                        </label>
+                                                        <input type="radio" id="opt2"name="mtmType"value="20" <%=checked[1] %>>배송
+                                                        <label for="opt2"></label>
                                                     </span>
                                                     <span>
-                                                        <label for="opt3">
-                                                        <input type="radio" id="opt3"name="qna">이벤트/쿠폰
-                                                        </label>
+                                                        <input type="radio" id="opt3"name="mtmType"value="30" <%=checked[2] %>>이벤트/쿠폰
+                                                        <label for="opt3"></label>
                                                     </span>
                                                     <span>
-                                                        <label for="opt4">
-                                                        <input type="radio"id="opt4"name="qna">환불/반품/교환
-                                                        </label>
+                                                        <input type="radio"id="opt4"name="mtmType"value="40" <%=checked[3] %>>환불/반품/교환
+                                                        <label for="opt4"></label>
                                                     </span>
                                                     <span>
-                                                        <label for="opt5">
-                                                        <input type="radio"id="opt5"name="qna">회원/포인트
-                                                       </label>
+                                                        <input type="radio"id="opt5"name="mtmType"value="50" <%=checked[4] %>>회원/포인트
+                                                        <label for="opt5"></label>
                                                     </span>
                                                     <span>
-                                                        <label for="opt6">
-                                                        <input type="radio"id="opt6"name="qna">사이트이용/기타
-                                                        </label>
+                                                        <input type="radio"id="opt6"name="mtmType"value="60" <%=checked[5] %>>사이트이용/기타
+                                                        <label for="opt6"></label>
                                                     </span>
                                                  </td>   
                                             </tr>

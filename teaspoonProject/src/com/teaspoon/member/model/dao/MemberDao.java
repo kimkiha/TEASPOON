@@ -689,7 +689,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 		}finally {
 			close(pstmt);
 		}
-		
+		System.out.println(result);
 		return result;
 		
 	}
@@ -709,7 +709,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 			if(rset.next()) {
 				m= new MenToMen ();
 				m.setMtmNo(rset.getInt("mtm_no"));
-				m.setMtmName(rset.getString("mtm_NAME"));
+				m.setMtmType(rset.getInt("mtm_type"));
 				m.setMtmTitle(rset.getString("mtm_title"));
 				m.setUserId(rset.getString("user_id"));
 				m.setCreateDate(rset.getDate("create_date"));
@@ -729,7 +729,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 		
 		
 	}
-	public Attachment selectAttachment(Connection conn, int uno) {
+	public Attachment selectAttachment(Connection conn, int mno) {
 		
 		Attachment at = null;
 		PreparedStatement pstmt = null;
@@ -738,7 +738,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, uno);
+			pstmt.setInt(1, mno);
 			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
@@ -756,7 +756,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 			close(rset);
 			close(rset);
 		}
-		
+		System.out.println(at);
 		return at;
 	}
 	
