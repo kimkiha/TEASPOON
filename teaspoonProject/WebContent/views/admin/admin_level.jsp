@@ -103,7 +103,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                          
                   </table>
                 	</form>
-                   <form  id="levelUpdateForm">
+                   <form  id="levelUpdateForm" action="gradeUpdate.me" method="post">
                      <table>
                         <tbody>
                             <tr>
@@ -123,7 +123,8 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                                   <td><input type="number" id="updateMinMoney" placeholder="수정할최소금액" required></td>
                                   <td><input type="number" id="updateDiscountRate" placeholder="수정할할인률" required></td>
                                   <td>
-                                      <button type="button" id="btnUpdate" style="width: 70px;">수정</button>
+                                  0
+                                      <button type="submit" id="btnUpdate" style="width: 70px;">수정</button>
                                       <button type="reset"  style="width: 70px;">취소</button>
                                    </td>
                                   </tr>
@@ -147,8 +148,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     <script>
     	$(function(){
     		$("#btnInsertForm").click(function(){
-    			$("#levelInsertForm").css("display","bl
-    					ock");
+    			$("#levelInsertForm").css("display","block");
     			$("#levelUpdateForm").css("display","none");
     		})
     		$(".btnUpdateForm").click(function(){
