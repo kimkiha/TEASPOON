@@ -109,10 +109,10 @@
                                     <tr>
                                     	<td style="dispaly:none"><%= m.getMtm_no() %><td>
                                         <td><%= m.getMtm_name() %></td>
-                                        <td colspan="2"><%= m.getMtm_title() %></td>
+                                        <td colspan="2" class="qna-t"><%= m.getMtm_title() %></td>
                                         <td><%=m.getCreate_date() %></td>
                                         <td>답변완료</td>
-                                        <th><input type="checkbox"></th>
+                                        <td><input type="checkbox"></th>
                                     </tr>
                                     <%} %>
                                 <%} %>
@@ -159,8 +159,8 @@
     </div>
     <script>
     	$(function(){
-    		$("#mypage_table>tbody>tr").click(function(){
-    			var mno= $(this).children().eq(0).text();
+    		$(".qna-t").click(function(){
+    			var mno= $(this).siblings().eq(0).text();
     			
     			location.href="<%=contextPath%>/myqnadetail.me?mno=" + mno;
     			

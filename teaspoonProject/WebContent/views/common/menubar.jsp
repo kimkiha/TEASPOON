@@ -100,9 +100,9 @@
             });  
             
             $("#navi li").hover(function(){
-                $(".ul", this).slideDown(600);
+                $(".ul", this).slideDown(250);
             },function(){
-                $(".ul", this).slideUp(600);
+                $(".ul", this).slideUp(250);
             });
             
             $("#myPage_icon").click(function(){
