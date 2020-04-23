@@ -31,7 +31,7 @@ public class SpaceRentalPaymentServlet extends HttpServlet {
 		
 		
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/space/space_payment.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/space/space_payment.jsp");
 		view.forward(request, response);
 		
 		

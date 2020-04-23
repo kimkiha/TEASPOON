@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.* "%>
-<%
 
-
-Member myInfo = (Member)session.getAttribute("myInfo");
-%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -43,8 +39,8 @@ Member myInfo = (Member)session.getAttribute("myInfo");
                             <div class="user_info" style="width:450px;">
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
-                                        <td width="60" name="username"><%= myInfo.getUserName() %></td>
-                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=myInfo.getGradeName() %></td>
+                                        <td width="60" name="username"><%= loginUser.getUserName() %></td>
+                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
                                     </tr>
                                     <tr class="d2">
                                         <td colspan="2"><a href="#" >회원정보수정</a> </td>
@@ -53,22 +49,22 @@ Member myInfo = (Member)session.getAttribute("myInfo");
                             </div>
                             <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
                                 <p class="info_th" >적립포인트</p>
-                                <a href="#" ><%= myInfo.getPointPrice() %></a>
+                                <a href="#" ><%= loginUser.getPointPrice() %></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%= myInfo.getCount() %>장</a>
+                                <a  href="#" ><%= loginUser.getCount() %>장</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=myInfo.getPcode() %>개</a>
+                                <a  href="<%=contextPath %>/wishList.me" ><%=loginUser.getPcode() %>개</a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
                             <a href="#" class=" float"> 주문배송조회</a>
                             <a href="#" class=" float">공간대여확인</a>
                             <a href="#" class=" float">나의배송지</a>
-                            <a href="<%=contextPath %>/myqna.me?currentPage=1&userNo=<%=loginUser.getUserNo() %>" class="float">1:1문의</a>
+                            <a href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
                             <a href="#" class="float">장바구니</a>
                         </div> 
                         <div class="pagename"></div>

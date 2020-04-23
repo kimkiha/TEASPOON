@@ -34,10 +34,16 @@ public class MyPageMainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		Member myInfo = new MemberService().MyPageInfo(userNo);
 		
+		System.out.println(loginUser);
+		Member myInfo = new MemberService().MyPageInfo(loginUser.getUserNo());
+		loginUser.setGradeName(myInfo.getGradeName());
+		loginUser.setCount(myInfo.getCount());
+		loginUser.setPcode(myInfo.getPcode());
+		loginUser.setPointPrice(myInfo.getPointPrice());
+		System.out.println(loginUser);
 		
 		if(myInfo != null) {
 			
@@ -54,7 +60,7 @@ public class MyPageMainServlet extends HttpServlet {
 		}else {// 조회실패
 			
 			
-			request.setAttribute("msg", "실패햇다 힘내자");
+			request.setAttribute("msg", "메인에서 실패했다  힘내자");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 			
