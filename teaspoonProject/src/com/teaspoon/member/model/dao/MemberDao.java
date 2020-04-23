@@ -359,7 +359,7 @@ public class MemberDao {
 
 
 	public int insertMember(Connection conn, Member m) {
-		
+		System.out.println(m.getGender());
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -367,13 +367,14 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, m.getUserId());					// 아이디
 			pstmt.setString(2, m.getUserPwd());					// 패스워드
 			pstmt.setString(3, m.getUserName());				// 이름
-			pstmt.setInt(4, m.getBirthday());					// 생년월일
-			pstmt.setString(5, m.getPhone());					// 전화번호
-			pstmt.setString(6, m.getEmail());					// 이메일
-
+			pstmt.setString(4, m.getGender());					// 성별
+			pstmt.setInt(5, m.getBirthday());					// 생년월일
+			pstmt.setString(6, m.getPhone());					// 전화번호
+			pstmt.setString(7, m.getEmail());					// 이메일
 			
 			result = pstmt.executeUpdate();
 			
