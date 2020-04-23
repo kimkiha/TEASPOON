@@ -3,7 +3,7 @@
 <%
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
-	//System.out.println(list);
+
 	String kind = p.getKind();
 	String[] checked = new String[2];
 	
@@ -69,6 +69,8 @@ table tr {border-bottom: 1px solid lightgray;}
 						<tr>
 							<th>대표이미지</th>
 							<td><img id="titleImg" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>" required></td>
+							
+							
 							<th style="width:100px;">상세이미지</th>
 							
 							<%if(list.size() == 4){ %>
@@ -90,6 +92,13 @@ table tr {border-bottom: 1px solid lightgray;}
 							<td><img id="contentImg3" width="150" height="120"></td>
 							<td><img id="contentImg3" width="150" height="120"></td>
 							<%} %>
+							<td>
+							<%=for(int i=0; i<list.size(); i++) { %>
+								<input type="hidden" name="originFileNo" value="<%=list.get(i).getOriginName()%>">
+								<input type="hidden" name="originFileNo" value="<%=list.get(i).getFileNo()%>">
+								<input type="hidden" name="originFileName" value="<%=list.get(i).getChangeName() %>">
+							<%} %>
+							</td>
 						</tr>
 						<tr>
 							<th>상품상세</th>
@@ -100,6 +109,7 @@ table tr {border-bottom: 1px solid lightgray;}
 
 					</table>
 					<br>
+					
 					<div id="fileArea">
 						<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
 						<input type="file" name="file2" id="file2" onchange="loadImg(this,2);"> 

@@ -128,7 +128,7 @@ public class ProductService {
 	}
 	
 	
-	/** 관리자 상품 수정용 서비스(상품객체 및 첨부파일 조회)
+	/** 관리자 상품 수정용 폼 조회서비스(2개)
 	 * @param pcode 조회하고자하는 해당 상품코드
 	 * @return
 	 */
@@ -147,9 +147,13 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
-	
 
-	// 새롭게 등록된 파일이 있을경우 
+	 
+	/** 관리자 상품 수정용 서비스 
+	 * @param p
+	 * @param list
+	 * @return
+	 */
 	public int updateProduct(Product p, ArrayList<Attachment> list) {
 		Connection conn = getConnection();
 		
