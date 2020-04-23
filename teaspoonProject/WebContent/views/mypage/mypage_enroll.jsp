@@ -375,7 +375,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                         <div class="contaniner">
                           <div id="정보입력" class="tabcontent" >
                           	
-                          	<form id ="informationForm" >  
+                          	<form id ="informationForm" method="get">  
                             
                             <table id="table1" style="align:center; ">
                                     <tr>
@@ -385,9 +385,12 @@ String randomKey = (String)request.getAttribute("randomKey");
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>생 년 월 일</li></td>
-                                        <td style= "text-align:left;" colspan="1"><input type="number" id="birthday"  name="Birthday" placeholder="생년월일8자리(ex)19940610">
-                                                                       <input type="checkbox" class="gender" value="M">남자</button> <input type="checkbox" class="gender" value="F">여자</td>
-                                        <td></td>
+                                        <td style= "text-align:left;" colspan="2">
+                                        	<input type="number" id="birthday"  name="birthday" placeholder="생년월일8자리(ex)19940610">
+ 											<label><input type="radio" name="gender" id="gender" value="1">남자 </label>
+                                            <label><input type="radio" name="gender" id="gender" value="2">여자</label>
+                                        </td>
+                                                     
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>전 화 번 호</li></td>
@@ -455,7 +458,8 @@ String randomKey = (String)request.getAttribute("randomKey");
                          		<!-- 3_1. 본인인증 및 회원가입 버튼-->
                          		    <form id="enroll_final" action="<%=contextPath%>/insert.me" method="post">
 										<input type="hidden" id="userName2" name="username">
-										<input type="hidden" id="birthday2" name="Birthday">
+										<input type="hidden" id="birthday2" name="birthday">
+										<input type="hidden" id="gender2" name="gender">
 										<input type="hidden" id="firstnumber2" name="firstnumber">
 										<input type="hidden" id="verification2" name="phonenum">
 										<input type="hidden" id="userId2" name="UserId">
@@ -625,11 +629,11 @@ String randomKey = (String)request.getAttribute("randomKey");
 			$("#idCheck").click(function(){
 				
 				// 아이디 입력하는 input요소
-				var userId = $("#informationForm input[name=userId]");
+				var userId = $("#userId").val();
 				
 				$.ajax({
 					url:"idCheck.me",
-					data:{userId:userId.val()},
+					data:{userId:userId},
 					type:"post", 
 					success:function(result){	// 1 또는 0
 						
@@ -638,19 +642,19 @@ String randomKey = (String)request.getAttribute("randomKey");
 							if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){
 								
 								// 아이디 더이상 수정이 불가하게끔
-								userId.attr("readonly", "true");
+								$("#userId").attr("readonly", "true");
 								// 회원가입버튼 활성화
 								$("#seconde_agree_btn").removeAttr("disabled");
 								
 							}else{
-								userId.forcus();
+								$("#userId").forcus();
 								
 							}
 							
 						}else {					// 사용불가능한 아이디
 							
 							alert("사용할 수 없는 아이디입니다.");
-							userId.focus();
+							UserId.focus();
 							
 						}
 						
@@ -720,6 +724,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                 
     			var username = $("#userName").val();
     			var Birthday = $("#birthday").val();
+    			var gender = $("#gender").val();
     			var firstnumber = $("#firstnumber").val();
     			var phonenum = $("#verification").val();
     			var UserId = $("#userId").val();
@@ -737,8 +742,8 @@ String randomKey = (String)request.getAttribute("randomKey");
     				//$("#defaultOpen4").removeAttr("disabled").click();
     				
     				$("#userName2").val(username);
-    
     				$("#birthday2").val(Birthday);
+    				$("#gender2").val(gender);
     				$("#firstnumber2").val(firstnumber);
     				$("#verification2").val(phonenum);
     				$("#userId2").val(UserId);
@@ -746,6 +751,8 @@ String randomKey = (String)request.getAttribute("randomKey");
     				$("#email2").val(email);
     				
     				$("#enroll_final").submit();
+    				
+    				
               		
               	
               	}

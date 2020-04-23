@@ -1,6 +1,6 @@
 package com.teaspoon.member.model.service;
 
-import static com.teaspoon.common.JDBCTemplate.*;
+import static com.teaspoon.common.JDBCTemplate.close;
 import static com.teaspoon.common.JDBCTemplate.commit;
 import static com.teaspoon.common.JDBCTemplate.getConnection;
 import static com.teaspoon.common.JDBCTemplate.rollback;
@@ -14,6 +14,7 @@ import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.store.model.vo.Product;
 
 public class MemberService {
 
@@ -397,6 +398,54 @@ public class MemberService {
 		
 		return count;
 		
+	}
+	
+	// 상품 페이지에서 위시리스트로 상품 삽입
+	public int insertWish(int pcode, int userNo) {
+		Connection conn = getConnection();
+		int result = new MemberDao().insertWish(conn, pcode, userNo);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
+	}
+	
+	// 해당 유저의 위시리스트 목록 불러오기 
+	public ArrayList<Product> selectWishList(int pcode){
+		Connection conn = getConnection();
+		ArrayList<Product> list = new MemberDao().selectWishList(conn, pcode);
+		
+		close(conn);
+		return list;
+	}
+	
+	
+	// 위시리스트 중복검사
+	public int selectOneWishList(int pcode, int userNo) {
+		Connection conn = getConnection();
+		int count = new MemberDao().selectOneWishList(conn, pcode, userNo);
+		
+		close(conn);
+		return count;
+	}
+	
+	// 위시리스트 삭제
+	public int deleteWish(int pcode, int userNo) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().deleteWish(conn, userNo, pcode);
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 	
 }

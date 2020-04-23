@@ -1,0 +1,58 @@
+
+        /*테이블초기화*/
+        table{border-spacing: 0; border-style:none; padding:0}
+        
+        
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .contaniner_1{ padding-top:80px; width:100%; margin:0 auto; }
+        #mp_con1, #mp_con2, #mp_con3{float:left; width:800px;}
+        #mp_con1 p{font-size:32px; text-align:left; margin-bottom:20px}
+        #mp_con2, #mp_con3 p{text-align:left;font-size:24px; margin:60px 0 20px 0; }
+        
+        /* 마이페이지 */
+        .title{font-size:40px}
+
+        /*테이블*/
+        .mypage_table{width:800px; height:auto; font-size: 18px; color:#333333; text-align:center}
+        .mypage_table>thead>tr>th{border-bottom:2px solid #bebebe;  border-top:1px solid #bebebe;  padding: 10px 0;}
+        .mypage_table>tbody>tr>td{border-bottom:1px solid #bebebe; }
+        .mypage_table td{ padding: 30px  0;}
+
+        .tb2 {width: 100%;}
+        .tb2 td{padding: 30px  0; border-bottom:1px solid #bebebe;}
+        .tb2 .top_bd{border-top:1px solid #bebebe; }
+        .tb2 .coupon{width: 400px; height:51px; padding-left:20px;border-radius: 5px;}
+        .tb2 .point{width: 385px; height:50px; border-radius: 5px; 
+            background-color: #fff; border:1px solid rgb(168, 168, 168);} 
+        .left_text_st{text-align: left; font-weight: 700; padding-left:15px}
+        
+            /*버튼*/
+        .btn_review{background: white; border: 1px solid #bebebe; border-radius: 5px; padding: 10px 15px}
+        .btn_review:hover{
+            cursor: pointer;
+            border-color:#ac8b5a;
+            background: #d6ae71;
+            color:white;
+        }
+        .tb3{ width: 100%; text-align: left;}
+        .tb3 .top_bd{border-top:1px solid #bebebe;}
+        .tb3 td{ padding: 20px 0px 20px 0px; text-align: left;  border-bottom:1px solid #bebebe; }
+        .tb3 input{float:left; height:51px; width:200px; border-radius: 5px;  background-color: #fff; border:1px solid rgb(168, 168, 168);}
+        .tb3 select{float:left;width:100px; height:50px; border-radius: 5px; 
+            background-color: #fff; border:1px solid #bebebe;} 
+        
+        #order_list{float: left; width:800px; min-height: 100%;}
+        #payment{float:right; width: 350px; min-height:100%; margin-left:10px; margin-top:68px}
+        #payment>.pay_tb>table>tr{padding:20px 0;}
+        .pay_button{width: 350px; height: 50px;background: #fff; border:1px solid #bebebe}
+        .pay_tb thead th{border-top:1px solid #bebebe; border-bottom: 2px solid #bebebe; padding: 10px 0;}
+        .pay_tb tbody td{border-bottom: 1px solid #bebebe;  padding: 8px 0;}
+        .pay_tb tbody .bd_none {border-bottom:none;}
+        .pay_rt{text-align: right; padding-right:20px; font-weight: 800; font-size: 20px;}
+        .pay_lt{text-align: left;  }
+        

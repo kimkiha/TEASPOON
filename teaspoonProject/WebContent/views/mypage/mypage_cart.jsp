@@ -38,8 +38,8 @@
                             <div class="user_info" style="width:450px;">
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
-                                        <td width="60" name="username">홍길동</td>
-                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" >골드등급</td>
+                                        <td width="60" name="username"><%=loginUser.getUserName() %></td>
+                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
                                     </tr>
                                     <tr class="d2">
                                         <td colspan="2"><a href="#" >회원정보수정</a> </td>
@@ -48,23 +48,23 @@
                             </div>
                             <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
                                 <p class="info_th" >적립포인트</p>
-                                <a href="#" >500Point</a>
+                                <a href="#" ><%=loginUser.getPointPrice() %>점</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" >3장</a>
+                                <a  href="#" ><%=loginUser.getCount() %>장</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" >10개</a>
+                                <a  href="#" ><%=loginUser.getPcode() %>>개</a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
-                            <a href="#" class="active float"> 주문배송조회</a>
+                            <a href="#" class="float"> 주문배송조회</a>
                             <a href="#" class="float">공간대여확인</a>
                             <a href="#" class="float">나의배송지</a>
                             <a href="#" class="float">1:1문의</a>
-                            <a href="#" class="float">장바구니</a>
+                            <a href="#" class="active float">장바구니</a>
                         </div> 
                         <div class="pagename"></div>
                         <div id="mp_con1">
@@ -82,7 +82,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="7" height="150">장바구니에 선택된 상품이 없습니다</td내ㅣ넴>
+                                        <td colspan="7" height="150">장바구니에 선택된 상품이 없습니다</td>
                                     </tr>
                                     <tr>
                                         <td ><input type="checkbox" name="checkRow" value="${content.IDX}" ></td>
@@ -129,7 +129,7 @@
         <!-- //footer-->
     </div>
     <script>
-        /* */
+        /* 전체 선택 */
         function checkAll(){
       if( $("#th_checkAll").is(':checked') ){
         $("input[name=checkRow]").prop("checked", true);
@@ -137,6 +137,7 @@
         $("input[name=checkRow]").prop("checked", false);
       }
       }
+        /* */
 
 
     </script>

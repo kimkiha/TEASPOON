@@ -38,7 +38,7 @@ public class SpaceDao {
 			pstmt.setString(2, s.getReservDate());
 			pstmt.setString(3, s.getReservTime());
 			pstmt.setInt(4, s.getVisitNum());
-			pstmt.setString(5, s.getPhone());
+			pstmt.setString(5, s.getPhone()); 
 			pstmt.setString(6, s.getReservReason());
 			pstmt.setString(7, s.getGood());
 			pstmt.setInt(8, s.getGradeCode());

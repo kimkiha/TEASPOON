@@ -17,6 +17,7 @@ import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.store.model.vo.Product;
 
 public class MemberDao {
 
@@ -359,7 +360,7 @@ public class MemberDao {
 
 
 	public int insertMember(Connection conn, Member m) {
-		
+		System.out.println(m.getGender());
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -367,13 +368,14 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, m.getUserId());					// 아이디
 			pstmt.setString(2, m.getUserPwd());					// 패스워드
 			pstmt.setString(3, m.getUserName());				// 이름
-			pstmt.setInt(4, m.getBirthday());					// 생년월일
-			pstmt.setString(5, m.getPhone());					// 전화번호
-			pstmt.setString(6, m.getEmail());					// 이메일
-
+			pstmt.setString(4, m.getGender());					// 성별
+			pstmt.setInt(5, m.getBirthday());					// 생년월일
+			pstmt.setString(6, m.getPhone());					// 전화번호
+			pstmt.setString(7, m.getEmail());					// 이메일
 			
 			result = pstmt.executeUpdate();
 			
@@ -867,5 +869,109 @@ public int insertAttachment(Connection conn, Attachment at) {
 			return result;	
 		}
 		
-
+		public int insertWish(Connection conn, int pcode, int userNo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("insertWishList");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1,userNo);
+				pstmt.setInt(2, pcode);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+			
+		}
+		
+		public ArrayList<Product> selectWishList(Connection conn, int pcode){
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectProduct");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, pcode);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					Product p  = new Product();
+					p.setPcode(rset.getInt("PCODE"));
+					p.setPname(rset.getString("PNAME"));
+					p.setSupPrice(rset.getInt("SUP_PRICE"));
+					p.setPrice(rset.getInt("PRICE"));
+					p.setStock(rset.getInt("STOCK"));
+					p.setStatus(rset.getString("STATUS"));
+					p.setKeyword(rset.getString("KEYWORD"));
+					p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+					p.setKind(rset.getString("KIND"));
+					p.setPcontent(rset.getString("PCONTENT"));
+					list.add(p);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return list;
+		}
+		
+		public int selectOneWishList(Connection conn, int pcode, int userNo) {
+			int count = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectOneWishList");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, rset.getInt(userNo));
+				pstmt.setInt(2, rset.getInt(pcode));
+				
+				if(rset.next()) {
+					count = rset.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return count;
+		}
+		
+		public int deleteWish(Connection conn, int pcode, int userNo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("deleteWish");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, rset.getInt(userNo));
+				pstmt.setInt(2, rset.getInt(pcode));
+				
+				if(rset.next()) {
+					result = rset.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return result;
+			
+			
+		}
 }

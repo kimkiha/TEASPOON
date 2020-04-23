@@ -1,8 +1,8 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,18 +12,19 @@ import javax.servlet.http.HttpSession;
 
 import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.store.model.vo.Product;
 
 /**
- * Servlet implementation class MyPageMainServlet
+ * Servlet implementation class MypageWish
  */
-@WebServlet("/mymain.me")
-public class MyPageMainServlet extends HttpServlet {
+@WebServlet("/wishList.me")
+public class MypageWish extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageMainServlet() {
+    public MypageWish() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,40 +35,17 @@ public class MyPageMainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		
+		ArrayList<Product> list = new MemberService().selectWishList(userNo);
+		
+		request.setAttribute("list", list);
+		
+		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_wish.jsp");
+		view.forward(request, response);
 		
 		
-		System.out.println(loginUser);
-		Member myInfo = new MemberService().MyPageInfo(loginUser.getUserNo());
-		loginUser.setGradeName(myInfo.getGradeName());
-		loginUser.setCount(myInfo.getCount());
-		loginUser.setPcode(myInfo.getPcode());
-		loginUser.setPointPrice(myInfo.getPointPrice());
-		System.out.println(loginUser);
-		
-		if(myInfo != null) {
-			
-			session.setAttribute("myInfo",myInfo);
-
-			
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_main.jsp");
-			
-			
-			view.forward(request, response);
-			
-			
-		}else {// 조회실패
-			
-			
-			request.setAttribute("msg", "메인에서 실패했다  힘내자");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-			
-			
-		}
-		
-		
+	
 	}
 
 	/**

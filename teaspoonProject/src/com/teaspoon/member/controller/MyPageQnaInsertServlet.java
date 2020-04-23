@@ -46,7 +46,7 @@ public class MyPageQnaInsertServlet extends HttpServlet {
 					String resources = request.getSession().getServletContext().getRealPath("/resources");
 					
 					String savePath = resources + "\\thumbnail_upfiles\\";
-					System.out.println(savePath);
+					
 					
 					
 					MultipartRequest multiRequest = new MultipartRequest(request,savePath,maxSize,"utf-8",new com.teaspoon.common.MyFileRenamePolicy());

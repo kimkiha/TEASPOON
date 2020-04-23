@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
+<%
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,9 +69,11 @@
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
-						<a href="#" class="active float"> 주문배송조회</a> <a href="#"
-							class="float">공간대여확인</a> <a href="#" class="float">나의배송지</a> <a
-							href="#" class="float">1:1문의</a> <a href="#" class="float">장바구니</a>
+						<a href="#" class="float"> 주문배송조회</a> 
+						<a href="#"class="float">공간대여확인</a> 
+						<a href="#" class="float">나의배송지</a> 
+						<a href="#" class="float">1:1문의</a> 
+						<a href="#" class="float">장바구니</a>
 					</div>
 					<div class="pagename"></div>
 					<div id="mp_con1">
@@ -76,12 +81,10 @@
 						<table id="mypage_table" cellspacing="0">
 							<thead>
 								<tr>
-									<th><input type="checkbox" name="checkAll"
-										id="th_checkAll" onclick="checkAll();">전체선택</th>
+									<th><input type="checkbox" name="checkAll"id="th_checkAll" onclick="checkAll();">전체선택</th>
 									<th colspan="2">상품명</th>
-									<th>수량</th>
+									<th></td>
 									<th>상품가격</th>
-
 									<th></th>
 								</tr>
 							</thead>
@@ -95,12 +98,12 @@
 									<td style="text-align: left;"><img src="사이트이미지/메인/1.jpg"
 										width="130px" height="130px"></td>
 									<td style="text-align: left;" class="t-title">녹차 스프레드</td>
-									<td><input type="number" value="1" class="input-qnt"></td>
+									<td></td>
 									<td><p>18,000원</p></td>
 									<td class="btn-group-cart">
 										<button>장바구니</button>
 										<br>
-									<br>
+										<br>
 										<button>바로구매</button>
 									</td>
 								</tr>
@@ -110,7 +113,7 @@
 									<td style="text-align: left;"><img src="사이트이미지/메인/1.jpg"
 										width="130px" height="130px"></td>
 									<td style="text-align: left;" class="t-title">녹차 스프레드</td>
-									<td><input type="number" value="1" class="input-qnt"></td>
+									<td></td>
 									<td><p>18,000원</p></td>
 									<td class="btn-group-cart">
 										<button>장바구니</button>
@@ -127,7 +130,7 @@
 						</table>
 						<div class="t-func">
 							<div class="t-func1">
-								<button onclick="deleteAction();">선택삭제</button>
+								<button onclick="deleteAction();" class="delete">선택삭제</button>
 							</div>
 							<div class="t-func3">
 								<span>위시리스트에 보관된 상품은 30일뒤에 삭제됩니다</span>
@@ -157,31 +160,8 @@
                 $("input[name=checkRow]").prop("checked", false);
             }
         }
-      /* 체크 삭제*/
-        function deleteAction(){
-        var checkRow = "";
-        $( "input[name='checkRow']:checked" ).each (function (){
-            checkRow = checkRow + $(this).val()+"," ;
-        });
-        checkRow = checkRow.substring(0,checkRow.lastIndexOf( ",")); //맨끝 콤마 지우기
-        
-        if(checkRow == ''){
-            alert("삭제할 대상을 선택하세요.");
-            return false;
-        }
-        console.log("### checkRow => {}"+checkRow);
-        
-        if(confirm("정보를 삭제 하시겠습니까?")){
-            
-       //삭제처리 후 다시 불러올 리스트 url      
-            var url = document.location.href;
-            var page = $("#page").val();
-            var saleType = $("#saleType").val();
-            var schtype = $("#schtype").val();
-            var schval = $("#schval").val();
-            location.href="${rc.contextPath}/test_proc.do?idx="+checkRow+"&goUrl="+url+"&page="+page+"&saleType="+saleType+"schtype="+schtype+"schval="+schval;      
-        }
-        }
+        /* 상품선택시 상세페이지 가기*/
+     
 
 
 

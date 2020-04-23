@@ -50,16 +50,18 @@
                         	<%for(Product p : list) {%>
                         	
                             <div class="product" style="margin-top:50px; margin-right:30px;" >
-                            	<input type="hidden" name="pcode" value=<%=p.getPcode() %>>
+                            	
                                 <div class="product_img">
+                                	<input type="hidden" id="pcode" name="pcode" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
                                    <p style="padding-top:20px;padding-left:15px;"><%=p.getPname() %></p>
                                 </div>
                                 <div class="like">
-                                    <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
+                                    <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
                                 </div>
+                                
                                 <div class="basket">
                                     <img id="open" class="basket_icon" src="<%=contextPath %>/resources/img/store/cart.png">
                                 </div>
@@ -101,30 +103,48 @@
             </div>
         </div>
 
-
+		<form id="duplicateDeletePcode" action="deleteWish.me" method="post">
+			<input type="hidden" name="pcode" id="dPcode">
+		</form>
+		
+		
         <!--product-->
         <script>
         
         	$(function(){
-        		$('.product').click(function(){
+        		$('.product_img').click(function(){
         			var pcode = $(this).children().eq(0).val();
         			location.href="<%=contextPath%>/detail.co?pcode="+pcode;
         		});
         	});
         
-        
-            state=0;
-            function wishList() {
-               if(state==0){
-                    state=1;
-                    $('.like_icon').attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
-                    window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
-               } else{
-                   state=0;
-                   $('.like_icon').attr("src","<%=contextPath %>/resources/img/store/heart_emtpy.png");
-                   window.alert("위시리스트에서 삭제되었습니다.")
-               }
-            }
+        	$(function(){
+        		$('.like_icon').click(function(){
+        			var pcode1 = $(this).parent().siblings([".product_img"]).children().eq(0).val();
+        			console.log(pcode1);
+        			$.ajax({
+        				url:"insertWish.me",
+        				data:{pcode:pcode1},
+        				success:function(result){
+        					if(result > 0){
+			        			 $(this).attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+			        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
+			        			 if(bool){
+			        				 location.href="<%=contextPath %>/wishList.me";
+			        			 }
+        					} else if(result==0){
+        						window.alert("로그인해주세요")
+        					} else if(result < 0){
+        						$("#dPcode").val(pcode1);
+        						$("#duplicateDeletePcode").submit();
+        					}
+        				}, error:function(){
+        					window.alert("통신에러");
+        				}
+        			});
+        		 });
+        	});
+        	
 
             // 장바구니 이동 팝업
             $("#open").click(function(){
