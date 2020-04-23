@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.teaspoon.member.model.service.MemberService;
+import com.teaspoon.member.model.vo.Member;
 
 /**
  * Servlet implementation class InsertWish
@@ -30,11 +31,12 @@ public class InsertWish extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		int uno = 회원번호 뽑기;
+		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		
-		int result = new MemberService().인설트(pcode, uno);
-		
+		int result = new MemberService().insertWish(pcode, userNo);
+		response.setContentType("application/json; charset=utf-8;");
 		PrintWriter out = response.getWriter();
 		out.print(result);
 	}

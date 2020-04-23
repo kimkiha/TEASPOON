@@ -400,6 +400,20 @@ public class MemberService {
 		
 	}
 	
+	public int insertWish(int pcode, int userNo) {
+		Connection conn = getConnection();
+		int result = new MemberDao().insertWish(conn, pcode, userNo);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
+	}
+	
 	public ArrayList<Product> selectWishList(int pcode){
 		Connection conn = getConnection();
 		ArrayList<Product> list = new MemberDao().selectWishList(conn, pcode);

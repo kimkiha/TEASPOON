@@ -868,6 +868,27 @@ public int insertAttachment(Connection conn, Attachment at) {
 			return result;	
 		}
 		
+		public int insertWish(Connection conn, int pcode, int userNo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("insertWishList");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1,userNo);
+				pstmt.setInt(2, pcode);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+			
+		}
+		
 		public ArrayList<Product> selectWishList(Connection conn, int pcode){
 			ArrayList<Product> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
