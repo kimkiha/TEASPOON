@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
@@ -32,14 +33,15 @@ public class MyPageMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		HttpSession session = request.getSession();
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		
 		Member myInfo = new MemberService().MyPageInfo(userNo);
 		
 		
 		if(myInfo != null) {
 			
-			request.setAttribute("myInfo",myInfo);
+			session.setAttribute("myInfo",myInfo);
 
 			
 			

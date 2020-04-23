@@ -367,11 +367,11 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getUserName());				// 이름
-			pstmt.setInt(2, m.getBirthday());					// 생년월일
-			pstmt.setString(3, m.getPhone());					// 전화번호
-			pstmt.setString(4, m.getUserId());					// 아이디
-			pstmt.setString(5, m.getUserPwd());					// 패스워드
+			pstmt.setString(1, m.getUserId());					// 아이디
+			pstmt.setString(2, m.getUserPwd());					// 패스워드
+			pstmt.setString(3, m.getUserName());				// 이름
+			pstmt.setInt(4, m.getBirthday());					// 생년월일
+			pstmt.setString(5, m.getPhone());					// 전화번호
 			pstmt.setString(6, m.getEmail());					// 이메일
 
 			
