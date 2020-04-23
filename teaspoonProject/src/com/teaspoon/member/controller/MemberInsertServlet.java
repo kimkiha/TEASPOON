@@ -41,40 +41,25 @@ public class MemberInsertServlet extends HttpServlet {
 		// 2. request에 담겨있는 요청시 전달값 뽑아서 변수 또는 객체에 기록하기(getParameter/getParameterValues)
 		String userName = request.getParameter("username");							// 이름
 		int birthday = IntegerparseInt(request.getParameter("Birthday"));			// 생년월일
+		String firstnumber = request.getParameter("firstnumber");							// 퍼스트넘버
 		String phone = request.getParameter("phonenum");							// 전화번호
 		String userId = request.getParameter("UserId");								// 아이디
 		String userPwd = request.getParameter("UserPwd1");							// 패스워드
 		String email = request.getParameter("Email");								// 이메일
 		
 		
-		/*
-		System.out.println("userId : " + userId);
-		System.out.println("userPwd : " + userPwd);
-		System.out.println("name : " + userName);
-		System.out.println("phone : " + phone);
-		System.out.println("email : " + email);
-		System.out.println("address : " + address);
-		if(interests != null) {
-			System.out.println("interest : " + String.join(",", interests));
-		}
-		*/	
-		Member m = new Member(userName, birthday, phone, userId, userPwd, email);
 		
-		/*
-		Member m = new Member();
-		m.setusername(userName);
-		m.setBirthday(birthday);
-		m.setphonenum(phone);
-		m.setUserId(userId);
-		m.setUserPwd1(userPwd);
-		m.setEmail(email);
-		*/
+		String ph = firstnumber + "-" + phone.substring(0,4) + "-" + phone.substring(4);
 		
-		// 3. 서비스 클래스에 메소드 호출(전달값 전달) 및 처리결과 받기
+		
+		Member m = new Member(userName, birthday, ph, userId, userPwd, email);
+	
+		
+		
 		
 		int result = new MemberService().insertMember(m);
 		
-		// 4. 처리 결과를 가지고 성공인지 실패인지 판단해서 사용자가 보게될 뷰 지정
+		
 		if(result > 0) { // insert됨 --> 회원가입성공
 			
 			HttpSession session= request.getSession();
