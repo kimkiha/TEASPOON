@@ -87,14 +87,6 @@ public class MemberInsertServlet extends HttpServlet {
 		}
 	}
 		
-		
-		
-	
-
-	private int IntegerparseInt(String parameter) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

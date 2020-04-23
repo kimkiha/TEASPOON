@@ -399,13 +399,13 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getUserName());				// 이름
-			pstmt.setInt(2, m.getBirthday());					// 생년월일
-			pstmt.setString(3, m.getPhone());					// 전화번호
-			pstmt.setString(4, m.getUserId());					// 아이디
-			pstmt.setString(5, m.getUserPwd());					// 패스워드
+			
+			pstmt.setString(1, m.getUserId());					// 아이디
+			pstmt.setString(2, m.getUserPwd());					// 패스워드
+			pstmt.setString(3, m.getUserName());				// 이름
+			pstmt.setInt(4, m.getBirthday());					// 생년월일
+			pstmt.setString(5, m.getPhone());					// 전화번호
 			pstmt.setString(6, m.getEmail());					// 이메일
-
 			
 			result = pstmt.executeUpdate();
 			
@@ -419,6 +419,45 @@ public class MemberDao {
 		return result;
 	}
 	
+	public Member selectMember(Connection conn, String userid) {
+		Member m = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMember");
+		
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,userid);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("USER_NO"),
+						rset.getInt("GRADE_CODE"),
+						rset.getString("USER_ID"),
+						rset.getString("USER_PWD"),
+						rset.getString("USER_NAME"),
+						rset.getString("GENDER"),
+						rset.getInt("BIRTHDAY"),
+						rset.getString("PHONE"),
+						rset.getString("EMAIL"),
+						rset.getDate("ENROLL_DATE"),
+						rset.getDate("MODIFY_DATE"),
+						rset.getInt("BUY_POINT"),
+						rset.getString("ADMIN"),
+						rset.getString("STATUS"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+		
+	}
 	
 	
 

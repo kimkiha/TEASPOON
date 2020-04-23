@@ -199,7 +199,7 @@ public class MemberService {
 
 	/**
 	 * 회원정보 수정용 서비스
-	 * @param m		--> 수정요청한 회원아이디와, 변경할 내용들이 담겨있는 Member 객체
+	 * @param userId		--> 수정요청한 회원아이디와, 변경할 내용들이 담겨있는 Member 객체
 	 * @return		--> 처리된 행의 갯수
 	 */
 	public int updateMember(Member m) {
@@ -215,6 +215,23 @@ public class MemberService {
 		
 		close(conn);
 		return result;
+		
+	}
+	
+	/**
+	 * 회원 재 조회용 서비스
+	 * @param userId		--> 다시 조회하고자 하는 회원 아이디
+	 * @return				--> 조회된 정보들이 담겨있는 Member 객체
+	 */
+	public Member selectMember(String userid) {
+		
+		Connection conn = getConnection();
+		
+		Member updateUser = new MemberDao().selectMember(conn, userid);
+		
+		close(conn);
+		
+		return updateUser;
 		
 	}
 
