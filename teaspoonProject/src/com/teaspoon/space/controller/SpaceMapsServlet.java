@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class SpaceMaps
  */
 @WebServlet("/maps.sp")
-public class SpaceMaps extends HttpServlet {
+public class SpaceMapsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpaceMaps() {
+    public SpaceMapsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class spaceRentalPayment
  */
 @WebServlet("/rentalPayment.sp")
-public class spaceRentalPayment extends HttpServlet {
+public class SpaceRentalPaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public spaceRentalPayment() {
+    public SpaceRentalPaymentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,8 +28,13 @@ public class spaceRentalPayment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/space/space_payment.jsp");
 		view.forward(request, response);
+		
+		
 	}
 
 	/**

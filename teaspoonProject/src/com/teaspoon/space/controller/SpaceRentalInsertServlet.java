@@ -17,7 +17,8 @@ import com.teaspoon.space.model.vo.Space;
 
 
 /**
- * Servlet implementation class SpaceRentalInsertServlet
+ * 1. 회원이 대관예약 내용 입력값 뽑기 
+ ** Servlet implementation class SpaceRentalInsertServlet
  */
 @WebServlet("/insert.sp")
 public class SpaceRentalInsertServlet extends HttpServlet {
