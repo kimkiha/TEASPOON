@@ -52,17 +52,22 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
 					<td colspan="5">조회된 리스트가 없습니다.</td>
 				</tr>
 				<%}else{%>
-					<%for(Grade g : gList){ %>
-						<tr>
-							<td><%=g.getGradeCode() %></td>
-							<td><%=g.getGradeName() %></td>
-							<td><%=g.getMinAcount() %></td>
-							<td><%=g.getGradeRate() %></td>
+					<%for(int i=0; i<gList.size();i++){ %>
+						<tr class="grade<%=gList.get(i).getGradeCode() %>">
+							<td><%=gList.get(i).getGradeCode() %></td>
+							<td><%=gList.get(i).getGradeName() %></td>
+							<td><%=gList.get(i).getMinAcount() %></td>
+							<td><%=gList.get(i).getGradeRate() %></td>
+							<%if(i==0){%>
+							<td>
+								기본 등급 수정불가
+							</td>
+							<%}else{ %>
 							<td>
 							<button type="button" class="btnUpdateForm">수정</button>
 							<button type="button">삭제</button>
 							</td>
-							
+							<%} %>
 						</tr>
 					<%} %>
 				<%} %>
@@ -118,15 +123,16 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                        
                           <tfoot>
                               <tr>
-                                  <td><input type="text" id="gNo" disabled></td>
-                                  <td><input type="text" id="updateGradeName" placeholder="수정할등급명" required></td>
-                                  <td><input type="number" id="updateMinMoney" placeholder="수정할최소금액" required></td>
-                                  <td><input type="number" id="updateDiscountRate" placeholder="수정할할인률" required></td>
+                                  <td><input type="text" id="gNo"  name="gNo" disabled></td>
+                                  <td><input type="text" id="updateGradeName" name="updateGradeName" placeholder="수정할등급명" required></td>
+                                  <td><input type="number" id="updateMinMoney" name="updateMinMoney" placeholder="수정할최소금액" required></td>
+                                  <td><input type="number" id="updateDiscountRate" name="updateDiscountRate" placeholder="수정할할인률" required></td>
                                   <td>
-                                  0
-                                      <button type="submit" id="btnUpdate" style="width: 70px;">수정</button>
+                                  
+                                      <button type="button" id="btnUpdate" style="width: 70px;">수정</button>
                                       <button type="reset"  style="width: 70px;">취소</button>
                                    </td>
+                                   <input id ="nextG" type="hidden" class="nextG" >
                                   </tr>
 
                           </tfoot>
@@ -163,6 +169,8 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     			$("#updateGradeName").val(updateGradeName);
     			$("#updateMinMoney").val(updateMinMoney);
     			$("#updateDiscountRate").val(updateDiscountRate);
+    			
+    			
     		})
     		
     	});
@@ -199,6 +207,31 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     		});
     	});
     </script> 
+    
+    <script>
+    	$(function(){
+    		$("#btnUpdate").click(function(){
+    			var gNo = $("#gNo").val();
+    			var updateMinMoney = $('#updateMinMoney').val();
+    			var updateDiscountRate =$("#updateDiscountRate").val();
+    			
+    			var nextGno= '.grade'+(gNo+10);
+    			var nextGradeMinMoney = $('.grade'+(Number(gNo)+10)).children().eq(2).text();
+    			var nextGradeDiscountGrade = $('.grade'+(Number(gNo)+10)).children().eq(3).text();
+    			
+    			console.log(updateDiscountRate);
+    			console.log(nextGradeDiscountGrade);
+    			console.log(nextGradeMinMoney);
+    			if(updateMinMoney >=nextGradeMinMoney){
+    				alert("상위 등급보다 달성금액이 크거나 같을 수 없습니다.");
+    			}else if(updateDiscountRate>=nextGradeDiscountGrade){
+    				alert("상위 등급보다 할인률이 크거나 같을 수 없습니다.");
+    			}
+    			
+    			
+    		});
+    	});
+    </script>
     
  
   
