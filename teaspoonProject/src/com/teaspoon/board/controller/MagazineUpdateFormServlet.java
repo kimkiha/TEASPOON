@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.board.service.BoardService;
 
@@ -34,10 +35,11 @@ public class MagazineUpdateFormServlet extends HttpServlet {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 	
 		Board b = new BoardService().selectBoard(bno);
-		
+		Attachment at =  new BoardService().selectAttachment(bno);
 	
 		if(b != null) {
 		request.setAttribute("b", b);
+		request.setAttribute("at", at);
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_magazineUpdateForm.jsp");
 		view.forward(request, response);
 		}else {

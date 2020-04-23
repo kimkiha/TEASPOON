@@ -29,7 +29,7 @@ public class BoardDao {
 	}
 	
 	/**
-	 * 1.매거진 content 작성용
+	 * 1_1.매거진  작성용(title,content)
 	 * @param conn 
 	 * @param b -->board 객체
 	 * @return --> 성공항 행 갯수
@@ -54,6 +54,12 @@ public class BoardDao {
 		return result;
 	}
 	
+	/**
+	 * 1_2.매거진  작성용(대표이미지)
+	 * @param conn
+	 * @param at
+	 * @return
+	 */
 	public int insertAttachemnt(Connection conn, Attachment at) {
 		int result = 0;
 		
@@ -77,9 +83,8 @@ public class BoardDao {
 		
 	}
 	
-	
 	/**
-	 * 1_2.매거진 리스트 조회용 
+	 * 2_1.매거진 리스트 조회용 
 	 * @param conn
 	 * @return 
 	 */
@@ -110,9 +115,8 @@ public class BoardDao {
 		return listCount;
 	}
 	
-	
 	/**
-	 * 1_2.매거진 리스트 조회용 
+	 * 2_2.매거진 리스트 조회용 
 	 * @param conn
 	 * @param pi
 	 * @return
@@ -159,13 +163,13 @@ public class BoardDao {
 		}
 		return list;
 	}
-	
+
 
 	/**
-	 * 2.수정페이지 조회용
-	 * @param conn  
-	 * @param bno
-	 * @return
+	 * 3_1.매거진 수정페이지 조회용(title,content)
+	 * @param conn 
+	 * @param bno --> 해당 글 번호
+	 * @return 	  --> 조회된 board 객체 
 	 */
 	public Board selectBoard(Connection conn, int bno) {
 		Board b = new Board();
@@ -200,6 +204,51 @@ public class BoardDao {
 		return b;
 	}
 	
+	/**
+	 * 3_2.매거진 수정페이지 조회용(대표이미지)
+	 * @param conn 
+	 * @param bno --> 해당 글 번호
+	 * @return	  --> 해당 Attachment 객체
+	 */
+	public Attachment selectAttachment(Connection conn, int bno) {
+		Attachment at = new Attachment();
+		
+		PreparedStatement pstmt =null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				at = new Attachment();
+				at.setFileNo(rset.getInt("file_no"));
+				at.setRefBoardNo(rset.getInt("ref_bno"));
+				at.setOriginName(rset.getString("origin_name"));
+				at.setChangeName(rset.getString("change_name"));
+				at.setFilePath(rset.getString("file_path"));
+				at.setUploadDate(rset.getDate("upload_date"));
+				at.setFileLevel(rset.getInt("file_level"));
+				at.setStatus(rset.getString("status"));
+				at.setBoardLevel(rset.getString("board_level"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return at;
+	}
+	
+	/**
+	 * 4_1.매거진 수정용(title,content)
+	 * @param conn
+	 * @param b
+	 * @return
+	 */
 	public int updateBoard(Connection conn, Board b) {
 		int result = 0;
 		
@@ -224,4 +273,56 @@ public class BoardDao {
 		
 				
 	}
+
+	/**
+	 * 4_2.매거진 수정용(대표이미지_이미지 있었을 경우)
+	 * @param conn
+	 * @param at
+	 * @return
+	 */
+	public int updateAttachment(Connection conn, Attachment at) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at.getChangeName());
+			pstmt.setString(2, at.getOriginName());
+			pstmt.setInt(3, at.getFileNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int insertNewAttachment(Connection conn, Attachment at) {
+		int result =0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNewAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, at.getRefBoardNo());
+			pstmt.setString(2, at.getOriginName());
+			pstmt.setString(3, at.getChangeName());
+			pstmt.setString(4, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
+

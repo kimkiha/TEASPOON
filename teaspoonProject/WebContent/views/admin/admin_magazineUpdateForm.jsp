@@ -3,6 +3,7 @@
  <% 
  	Board b = (Board)request.getAttribute("b"); 
  	String status = b.getStatus();
+ 	Attachment at = (Attachment)request.getAttribute("at");
  
  String[] selected = new String[2];
  
@@ -21,6 +22,15 @@
    	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/admin/admin_EnrollForm.css">
     <style>
     .outer p{font-weight: bold;}
+        table * {padding: 10px; font-size: 18px;}
+        table th{text-align: center;}
+        .outer p{margin-top: 30px; margin-bottom: 30px; font-size: 30px; font-weight: bold;}        
+        table *{padding: 5px; margin: auto;}
+        table th{width: 100px;}
+        table tr:first-child{border-top: 1px solid lightgray ;}
+        table tr{border-bottom: 1px solid lightgray ;}
+        .tb_title{background:#efefef; font-weight:700; text-align:center}
+        .tb_content{padding-left:10px}
     </style>
 </head>
 <body>
@@ -29,45 +39,41 @@
             <div id="c1" >
                 <div class="outer">
                     <p>매거진 수정</p>
-                    <form id="insertForm" action="magazineUpdate.bo" method="post" >
+                    <form id="insertForm" action="magazineUpdate.bo" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="bno" value="<%=b.getBoardNo() %>">
-                    	<div class="c_div">
-	                     		   	<div class="c_div_title">
-		                     		   	<p>제목 : <input type="text" style="width:93%; font-weight:500; font-color:gray" name="title" value="<%=b.getBoardTitle() %> "></p> 
-		                     		</div>
-	                    		    <div class="c_div_title" >
-	                    		    	<p>게시상태 : <input type="radio" name="status" required value='Y' <%= selected[0]%>> Y
-                                    	<input type="radio"  name="status" required value='N' <%= selected[1]%>> N
-                                    	</p>
-	                    		    </div>
-		                     		<div class="c_div_title">
-		                    		    <p>내용</p> 
-	                    		    </div>
-	                    		    <div class="c_div_cont">
-                                		<textarea id="summernote" name="Content"><%=b.getBoardContent() %></textarea>
-                                	</div>
-                                </div>
-                           <!--
-                            <tr>
-                                <th width="100px"></th>
-                                <td><input type="text" size="71px" name="title" required></td>
-                            </tr>
-                            <tr>
-                                <th>상태</th>
-                                <td><input type="radio" name="status" required value='Y' <%= selected[0]%>> Y
+                    	<table>
+                 		   	<tr>
+	                  		   	<td width="120" class="tb_title">제목</td>
+	                  		   	<td colspan="3" class="tb_content">
+	                  		   		<input type="text" style="width:100%" name="title" required value="<%=b.getBoardTitle() %>">
+	                  		   	</td>
+                 		   	</tr>
+                 		   	<tr>
+                 		   		<td class="tb_title">대표이미지</td>
+                 		   		<td width="270" class="tb_content">
+                 		   		
+	                 		   	<%if(at != null) {//기존에 첨부파일이 있었을 경우%>
+									<%= at.getOriginName() %><br>
+									<input type="hidden" name="originFileNo" value="<%=at.getFileNo() %>">
+									<input type="hidden" name="originFileName" value="<%=at.getChangeName() %>"> <%-- 실제서버에 올라간 파일명 --%>
+								<% } %>
+								<img id="titleImg" name="upfile" width="150" height="120" required src="<%=contextPath%>/resources/img/board/<%=at.getChangeName()%>"></td>
+	                 		   		<td width="150" class="tb_title">게시상태</td>
+                 		   		<td class="tb_content">
+                 		   			<input type="radio" name="status" required value='Y' <%= selected[0]%>> Y
                                     <input type="radio"  name="status" required value='N' <%= selected[1]%>> N
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>내용</th>
-                                <td><textarea name="content" cols="70" rows="5" style="resize:none" required></textarea></td>
-                            </tr>
-                        </table>
-                        <br>
-                        <div id="fileArea">
-                            <input type="file" name="file1" id="file1" onchange="loadImg(this);">
-                        </div>
-                        <br>  -->
+                 		   		</td>
+                 		   	</tr>
+               		    </table>
+              		    <div class="c_div_cont">
+                         		<textarea id="summernote" name="Content"><%=b.getBoardContent() %></textarea>
+                         </div>
+	                         
+						<div id="fileArea">
+							<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
+						</div>
+               		    
+               		    
                         <div class="btns">
                             <button type="button" style="width: 100px;"  onclick="location.href='<%=contextPath%>/magazineList.bo?currentPage=1'">목록으로</button>
                             <button type="submit" style="width: 100px;" >수정하기</button>
@@ -88,7 +94,7 @@
 		
 		button{width:auto;}
 		.dropdown-toggle{width:auto}
-		.c_div{text-align:left;}
+		.c_div_cont{float:left; text-align:left;  border-bottom:1px solid lightgray; padding-bottom:10px}
 		 h1,
 		.h1,
 		 h2,
@@ -106,6 +112,10 @@
 			#insertForm button{
 				width:auto;
 			}
+			.panel{margin:0}
+			span.note-icon-caret{
+				display:none;
+			}
 		</style>
     <script>
     $(document).ready(function() {
@@ -117,7 +127,7 @@
         $('#summernote').summernote({
            //placeholder:" ",
            //tabsize: 2,
-            height: 300,
+            height: 150,
             width:800/* ,
             toolbar: [
                 // [groupName, [list of button]]
@@ -134,52 +144,46 @@
         });
      });
 	
-
+    /*
     $('#sb_btn').on('click', function(){
         $('#summernote').append('<input type="hidden" name="Content", id="Content" />');
         $('#Content').val($('.summernote').code());
         $('#magazineInsertForm').submit();
-    })
-    /*
-		//이미지태그 클릭으로 파일 첨부할것임으로 깔끔하게 보이기위해 숨긴다.
-		$(function(){
-			$("#fileArea").hide();
-		});
-	
-		//이미지 태그 클릭시 파일 첨부 버튼이 눌리게한다.
-		$(function(){
-			$("#titleImg").click(function(){
-				
-				//파일첨부 클릭이미지를 실행시킨다.	
-				$("#file1").click();
-				
-			});
-		});
+    })*/
+    $(function(){
+		$("#fileArea").hide();
 		
-	
-		function loadImg(inputFile){
-			// inputFile : 현재 변화가 생긴 input type="file" 요소
-			
-			// [참고] https://developer.mozilla.org/ko/docs/Web/API/FileReader
-			
-			//file이 존재할 경우 --> inputFile요소의 files속성인 배열의 0번 인덱스에  파일이 담김
-			if(inputFile.files.length == 1){
-				// 파일을 읽어들일 FileReader 객체생성
-				var reader = new FileReader();
-				
-				//파일을 읽어주는 메소드 --> 해당 파일을 읽어들이는 순간 해당 파일만의 고유한 url부여
-				reader.readAsDataURL(inputFile.files[0]);
-				
-				//파일 읽기가 완료 되었을때 실행할 메소드
-				// e : 현재 이벤트가 발생한 이벤트객체
-				reader.onload = function(e){
-					$("#titleImg").attr("src", e.target.result);
-					}
-				};
-					
+		$("#titleImg").click(function(){
+			$("#file1").click();
+		});
+	});
+
+	function loadImg(inputFile, num) {
+		// inputFile : 현재 변화가 생긴 input type="file" 요소
+		// num : 몇번째 input 요소인지 확인 후 해당 영역에 미리보기 하려고 받는 숫자값
+
+		// [참고] https://developer.mozilla.org/ko/docs/Web/API/FileReader
+
+		//file이 존재할 경우 --> inputFile요소의 files속성인 배열의 0번 인덱스에  파일이 담김
+		if (inputFile.files.length == 1) {
+			// 파일을 읽어들일 FileReader 객체생성
+			var reader = new FileReader();
+
+			//파일을 읽어주는 메소드 --> 해당 파일을 읽어들이는 순간 해당 파일만의 고유한 url부여
+			reader.readAsDataURL(inputFile.files[0]);
+
+			//파일 읽기가 완료 되었을때 실행할 메소드
+			// e : 현재 이벤트가 발생한 이벤트객체
+			reader.onload = function(e) {
+				switch (num) {
+				case 1: $("#titleImg").attr("src", e.target.result); break;
+
+				}
 			};
-			
-		*/
+
+		}
+
+	}
 	</script>
 </body>
 </html>

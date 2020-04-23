@@ -61,9 +61,9 @@ public class BoardService {
 	}
 	
 	/**
-	 * 4. 일반 게시판 수정용 서비스
-	 * @param b		--> board 테이블 update할 데이터가 담겨있는 객체
-	 * @param at	--> Attachment 테이블에 update 또는 insert할 데이터가 담겨있는 객체 (첨부파일 없을 경우 null)
+	 * 4_1. 매거진  수정 페이지에 보여줄 content
+	 * @param bno	--> 해당 수정 글 번호
+	 * @param b		--> board객체
 	 * @return
 	 */
 	public Board selectBoard(int bno) {
@@ -80,21 +80,48 @@ public class BoardService {
 	}
 	
 	/**
+	 * 4_2. 매거진 수정 페이지 보여줄 대표이미지
+	 * @param bno -->  해당 수정 글 번호
+	 * @return at --> Attachment 객체
+	 */
+	public Attachment selectAttachment(int bno) {
+		Connection conn = getConnection();
+		
+		Attachment at = new BoardDao().selectAttachment(conn, bno);
+		
+		close(conn);
+		
+		return at;
+	}
+	
+	/**
 	 * @param b	--> board 테이블 update할 데이터가 담겨있는 객체
 	 * @return	 --> 성공한 행 갯수
 	 */
-	public int updateBoard(Board b) {
+	public int updateBoard(Board b, Attachment at) {
 		Connection conn = getConnection();
 		
-		int result = new BoardDao().updateBoard(conn, b);
+		int result1 = new BoardDao().updateBoard(conn, b);
+		int result2 = 1;
 		
-		if(result > 0 ) {
+		if(at != null) { //새로이 추가된 첨부파일이 있을 경우
+			if(at.getFileNo() != 0) { // 기존에 첨부파일이 있었을 경우
+				result2 = new BoardDao().updateAttachment(conn, at);
+			}else {	// 기존에 첨부파일이 없었을 경우
+				result2 = new BoardDao().insertNewAttachment(conn, at);
+			}
+		}
+		
+		if(result1 > 0 && result2 > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
+		close(conn);
 		
-		return result;
+		return result1 * result2;
 	}
+	
+	
 	
 }

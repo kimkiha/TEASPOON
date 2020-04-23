@@ -14,6 +14,8 @@
         table th{width: 100px;}
         table tr:first-child{border-top: 1px solid lightgray ;}
         table tr{border-bottom: 1px solid lightgray ;}
+        .tb_title{background:#efefef; font-weight:700; text-align:center}
+        .tb_content{padding-left:10px}
     </style>
     <!-- 
 	<script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/decoupled-document/ckeditor.js"></script>
@@ -32,16 +34,13 @@
                     <form id="magazineInsertForm" action="magazineInsert.bo" method="post" enctype="multipart/form-data">
                 		<table>
                  		   	<tr>
-	                  		   	<td width="120">제목</td>
-	                  		   	<td><input type="text" style="width:80%" name="title" required></td>
+	                  		   	<td width="120" class="tb_title">제목</td>
+	                  		   	<td class="tb_content"><input type="text" style="width:100%" name="title" required></td>
                  		   	</tr>
                  		   	<tr>
-                 		   		<td>대표이미지</td>
-                 		   		<td><img id="titleImg" width="150" height="120" required></td>
+                 		   		<td class="tb_title">대표이미지</td>
+                 		   		<td class="tb_content"><img id="titleImg" width="150" height="120" required></td>
                  		   		
-                 		   	</tr>
-                 		   	<tr style="border-bottom:none;">
-                		   		<td colspan="2" >내용</td>
                  		   	</tr>
                		    </table>
               		    <div class="c_div_cont">
@@ -105,7 +104,7 @@
 		<style>
 		button{width:auto;}
 		.dropdown-toggle{width:auto}
-		.c_div{text-align:left;}
+		.c_div_cont{float:left; text-align:left;  border-bottom:1px solid lightgray; padding-bottom:10px}
 		 h1,
 		.h1,
 		 h2,
