@@ -1,6 +1,6 @@
 package com.teaspoon.member.model.service;
 
-import static com.teaspoon.common.JDBCTemplate.*;
+import static com.teaspoon.common.JDBCTemplate.close;
 import static com.teaspoon.common.JDBCTemplate.commit;
 import static com.teaspoon.common.JDBCTemplate.getConnection;
 import static com.teaspoon.common.JDBCTemplate.rollback;
@@ -14,6 +14,7 @@ import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.store.model.vo.Product;
 
 public class MemberService {
 
@@ -397,6 +398,14 @@ public class MemberService {
 		
 		return count;
 		
+	}
+	
+	public ArrayList<Product> selectWishList(int pcode){
+		Connection conn = getConnection();
+		ArrayList<Product> list = new MemberDao().selectWishList(conn, pcode);
+		
+		close(conn);
+		return list;
 	}
 	
 }

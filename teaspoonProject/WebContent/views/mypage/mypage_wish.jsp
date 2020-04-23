@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
+<%
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>

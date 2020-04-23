@@ -17,6 +17,7 @@ import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.store.model.vo.Product;
 
 public class MemberDao {
 
@@ -867,5 +868,38 @@ public int insertAttachment(Connection conn, Attachment at) {
 			return result;	
 		}
 		
-
+		public ArrayList<Product> selectWishList(Connection conn, int pcode){
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectProduct");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, pcode);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					Product p  = new Product();
+					p.setPcode(rset.getInt("PCODE"));
+					p.setPname(rset.getString("PNAME"));
+					p.setSupPrice(rset.getInt("SUP_PRICE"));
+					p.setPrice(rset.getInt("PRICE"));
+					p.setStock(rset.getInt("STOCK"));
+					p.setStatus(rset.getString("STATUS"));
+					p.setKeyword(rset.getString("KEYWORD"));
+					p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+					p.setKind(rset.getString("KIND"));
+					p.setPcontent(rset.getString("PCONTENT"));
+					list.add(p);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return list;
+		}
 }
