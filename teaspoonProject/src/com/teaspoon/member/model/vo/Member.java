@@ -340,13 +340,18 @@ public class Member {
 		this.status = status;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", gradeCode=" + gradeCode + ", userId=" + userId + ", userPwd=" + userPwd
-				+ ", userName=" + userName + ", gender=" + gender + ", birthday=" + birthday + ", phone=" + phone + ", email="
-				+ email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", buyPoint=" + buyPoint + ", admin=" + admin + ", status=" + status + "]";
+				+ ", userName=" + userName + ", gender=" + gender + ", birthday=" + birthday + ", phone=" + phone
+				+ ", email=" + email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", buyPoint="
+				+ buyPoint + ", admin=" + admin + ", status=" + status + ", gradeName=" + gradeName + ", mtm_no="
+				+ mtm_no + ", mtm_name=" + mtm_name + ", mtm_title=" + mtm_title + ", create_date=" + create_date
+				+ ", pointPrice=" + pointPrice + ", pcode=" + pcode + ", count=" + count + "]";
 	}
+
+	
+	
 
 
 	

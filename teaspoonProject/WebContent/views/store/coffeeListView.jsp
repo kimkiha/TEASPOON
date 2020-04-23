@@ -61,6 +61,7 @@
                                 <div class="like">
                                     <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
                                 </div>
+                                
                                 <div class="basket">
                                     <img id="open" class="basket_icon" src="<%=contextPath %>/resources/img/store/cart.png">
                                 </div>
@@ -102,7 +103,11 @@
             </div>
         </div>
 
-
+		<form id="duplicateDeletePcode" action="deleteWish.me" method="post">
+			<input type="hidden" name="pcode" id="dPcode">
+		</form>
+		
+		
         <!--product-->
         <script>
         
@@ -115,11 +120,11 @@
         
         	$(function(){
         		$('.like_icon').click(function(){
-        			var pcode = $(this).parent().siblings(['.product_img']).eq(0).val();
-        			console.log(pcode);
+        			var pcode1 = $(this).parent().siblings([".product_img"]).children().eq(0).val();
+        			console.log(pcode1);
         			$.ajax({
         				url:"insertWish.me",
-        				data:{pcode:pcode},
+        				data:{pcode:pcode1},
         				success:function(result){
         					if(result > 0){
 			        			 $(this).attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
@@ -127,11 +132,14 @@
 			        			 if(bool){
 			        				 location.href="<%=contextPath %>/wishList.me";
 			        			 }
-        					} else{
-        						window.alert("위시리스트 등록 실패")
+        					} else if(result==0){
+        						window.alert("로그인해주세요")
+        					} else if(result < 0){
+        						$("#dPcode").val(pcode1);
+        						$("#duplicateDeletePcode").submit();
         					}
         				}, error:function(){
-        					window.alert("통신실패");
+        					window.alert("통신에러");
         				}
         			});
         		 });

@@ -33,12 +33,30 @@ public class InsertWish extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
-		
-		int result = new MemberService().insertWish(pcode, userNo);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		int result;		
 		response.setContentType("application/json; charset=utf-8;");
-		PrintWriter out = response.getWriter();
-		out.print(result);
+		
+		if(loginUser == null) {
+			result = 0;
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			return;
+		}else if(loginUser != null){
+			int userNo = loginUser.getUserNo();
+			
+			int count = new MemberService().selectOneWishList(pcode, userNo); 
+			if(count > 0) { // 중복된 상품이 이미 위시리스트에 있다
+				result= -1;
+				return;
+			} else {		// 중복되지 않았을 경우 
+				result = new MemberService().insertWish(pcode, userNo); // 1이 리턴될 것
+				PrintWriter out = response.getWriter();
+				out.print(result);
+				return;
+			}
+		}
+		
 	}
 
 	/**
