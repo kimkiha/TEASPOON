@@ -66,34 +66,48 @@
                             </div>
                         </div>
                         <div class="top_list">
-                            <table>
+                            <table id="top_list">
                                 <caption><b>베스트 상품 순위</b></caption>
                                 
                                 <tr>
+                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
+                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>1</th>
                                     <td width="400px"><a href="#"><%=list.get(0).getPname()%></a></td>
                                 </tr>
                                 <tr>
+                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
+                           			 <input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>2</th>
                                     <td><a href="#"><%=list.get(1).getPname()%></a></td>
                                 </tr>
                                 <tr>
+                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
+                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>3</th>
                                     <td><a href="#"><%=list.get(2).getPname()%></a></td>
                                 </tr>
                                 <tr>
+                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
+                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>4</th>
                                     <td><a href="#"><%=list.get(3).getPname()%></a></td>
                                 </tr>
                                 <tr>
+                               		<input type="hidden" value=<%=list.get(0).getPcode() %>>
+                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>5</th>
                                     <td><a href="#"><%=list.get(4).getPname()%></a></td>
                                 </tr>
                                 <tr>
+                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
+                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>6</th>
                                     <td><a href="#"><%=list.get(5).getPname()%></a></td>
                                 </tr>
                                 <tr>
+                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
+                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>7</th>
                                     <td><a href="#"><%=list.get(6).getPname()%></a></td>
                                 </tr>
@@ -141,6 +155,18 @@
         <script>
         $(function(){
     		$('.product_top').click(function(){
+    			var kind = $(this).children().eq(1).val();
+    			var pcode = $(this).children().eq(0).val();
+    			if(kind=='C'){
+    				location.href="<%=contextPath%>/detail.co?pcode="+pcode;
+    			} else{
+    				location.href="<%=contextPath%>/detail.it?pcode="+pcode;
+    			}
+    		});
+    	});
+        
+        $(function(){
+    		$('.product').click(function(){
     			var kind = $(this).children().eq(1).val();
     			var pcode = $(this).children().eq(0).val();
     			if(kind=='C'){
