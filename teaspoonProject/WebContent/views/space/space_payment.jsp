@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +50,7 @@
             <div class="contaniner title">주문/결제</div>
         </div>
         <!-- //banner -->
+
           <div id="content"style="width:1200px; height:100%" >
             <!-- mypage -->
                 <div class="contaniner_1" style="height:100%">
@@ -190,6 +192,7 @@
                                 </tfoot>   
                             </table>
                         </form>
+
                     </div>
                     <!-- //payment-->
                 </div>

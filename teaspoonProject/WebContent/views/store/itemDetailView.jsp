@@ -122,19 +122,7 @@
 	                                        <td style="width:100px; border-top: 1px solid #ddd;"></td>
 	                                    </tr>
 	                                    <tr style="height: 50px;">
-	                                        <td style="text-align: right;"></td>
-	                                        <td>
-	                                            <div>
-	                                                <div style="float: left;  padding-top: 5px; padding-right:10px;">
-	                                                    <img src="<%=contextPath %>/resources/img/store/img.png" width="40px" >
-	                                                </div>
-	                                                <div style="float: left; ">
-		                                                    <div id="fileArea" style="padding-top:10px;">
-		                                                    	<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
-		                                                    </div>
-		                                            </div>
-	                                            </div>
-	                                        </td>
+	                                        <td colspan="2" style="text-align: right;"></td>
 	                                        <td width="100px">
 	                                            <button id="resetReview" class="btn" type="reset" name="reset" value="reset">취소</button>
 	                                        </td>
@@ -163,23 +151,7 @@
                                                 <td width="600px" style="text-align: left;">구매자(아이디**)</td>
                                             </tr>
                                             <tr>
-                                                <td>평점</td>
-                                                <td><p>내용</p></td>
-                                            </tr>
-                                            <tr>
-                                                <td>날짜</td>
-                                                <td style="text-align: left;">구매자(아이디**)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>평점</td>
-                                                <td><p>내용</p></td>
-                                            </tr>
-                                            <tr>
-                                                <td>날짜</td>
-                                                <td style="text-align: left;">구매자(아이디**)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>평점</td>
+                                            	<td></td>
                                                 <td><p>내용</p></td>
                                             </tr>
                                         </table>
