@@ -1,5 +1,7 @@
 package com.teaspoon.board.dao;
 
+import static com.teaspoon.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,12 +11,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
-import static com.teaspoon.common.JDBCTemplate.*;
 
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
-import com.teaspoon.member.model.dao.MemberDao;
-import com.teaspoon.member.model.vo.Member;
 
 public class BoardDao {
 	private Properties prop = new Properties();
@@ -29,7 +29,7 @@ public class BoardDao {
 	}
 	
 	/**
-	 * 1.매거진 작성용
+	 * 1.매거진 content 작성용
 	 * @param conn 
 	 * @param b -->board 객체
 	 * @return --> 성공항 행 갯수
@@ -54,9 +54,32 @@ public class BoardDao {
 		return result;
 	}
 	
+	public int insertAttachemnt(Connection conn, Attachment at) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql =prop.getProperty("insertAttachemnt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
 	
 	/**
-	 * 1_1.매거진 리스트 조회용 
+	 * 1_2.매거진 리스트 조회용 
 	 * @param conn
 	 * @return 
 	 */
