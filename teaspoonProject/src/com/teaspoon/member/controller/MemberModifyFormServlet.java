@@ -28,7 +28,7 @@ public class MemberModifyFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("views/member/member_modify.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_modify.jsp");
 		view.forward(request, response);
 	}
 
