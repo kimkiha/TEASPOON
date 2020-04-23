@@ -49,13 +49,13 @@ public class MyPageQnaInsertServlet extends HttpServlet {
 					
 					
 					
-					MultipartRequest multiRequest = new MultipartRequest(request,savePath,maxSize,"utf-8",new com.teaspoon.common.MyFileRenamePolicy());
+					MultipartRequest multiRequest = new MultipartRequest(request,savePath,maxSize,"utf-8",new MyFileRenamePolicy());
 					
 					int mtmType = Integer.parseInt(multiRequest.getParameter("mtmType")); // "10";
 					String mtmTitle = multiRequest.getParameter("mtmTitle");
 					String mtmContent = multiRequest.getParameter("mtmContent");
-					HttpSession session = request.getSession();
-					int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+					
+					int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 					
 					MenToMen m = new MenToMen();
 					m.setMtmType(mtmType);
@@ -70,12 +70,12 @@ public class MyPageQnaInsertServlet extends HttpServlet {
 					// 첨부파일이 넘어왔을 경우 at 객체 생성
 					// 원본명 : getOriginalFileName("키")
 					
-					if(multiRequest.getOriginalFileName("upfile")!= null) {
+					if(multiRequest.getOriginalFileName("thumbnail_upfiles")!= null) {
 						at= new Attachment();
 						// 원본명 : getOriginalFileName("키")
-						at.setOriginName(multiRequest.getOriginalFileName("upfile"));
+						at.setOriginName(multiRequest.getOriginalFileName("thumbnail_upfiles"));
 						// 수정명: getFilesystemName("키")
-						at.setChangeName(multiRequest.getFilesystemName("upfile"));
+						at.setChangeName(multiRequest.getFilesystemName("thumbnail_upfiles"));
 						
 						at.setFilePath(savePath);
 						

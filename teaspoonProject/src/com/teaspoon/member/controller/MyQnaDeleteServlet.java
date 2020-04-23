@@ -1,16 +1,20 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.member.model.service.MemberService;
+
 /**
  * Servlet implementation class MyQnaDeleteServlet
  */
-@WebServlet("/delete.me")
+@WebServlet("/myqnadelete.me")
 public class MyQnaDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,13 +31,21 @@ public class MyQnaDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		MenToMen mno = request.getParameterValues(mno);
+		String[] mno = request.getParameterValues("mno");
 		
-		String interest = "";
-		if(interests != null) {
-			interest = String.join(",", interests);
+		int result = new MemberService().updateMtm(mno);
+
+		if(result > 0) {
+			
+			request.getSession().setAttribute("msg","게시글 삭제 성공");
+			response.sendRedirect("myqna.me?currentPage=1");
+			
+		}else {
+			
+			request.setAttribute("msg", "오늘도 절엇다. 삭제실패");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
 		}
-		
 		
 	}
 

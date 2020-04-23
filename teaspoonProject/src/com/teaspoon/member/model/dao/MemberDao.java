@@ -1017,4 +1017,29 @@ public int insertAttachment(Connection conn, Attachment at) {
 			
 			
 		}
+
+		public int updateMtm(Connection conn, String[] mno) {
+			PreparedStatement pstmt =null;
+			int result = 0;
+			
+			
+			try {
+				for(int i=0;i<mno.length;i++) {
+				String sql = prop.getProperty("updateMtm");
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1,Integer.parseInt(mno[i]));
+				
+				}
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			return result;
+		}
 }
