@@ -6,10 +6,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.teaspoon.board.dao.BoardDao;
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
-import com.teaspoon.member.model.dao.MemberDao;
-import com.teaspoon.member.model.vo.Member;
 public class BoardService {
 	
 	/**
@@ -17,14 +16,20 @@ public class BoardService {
 	 * @param b  --> Board 테이블에 insert할 데이터가 담겨있는 객체
 	 * @return	 --> 성공한 행 갯수
 	 */
-	public int insertBoard(Board b) {
+	public int insertBoard(Board b, Attachment at) {
 		Connection conn = getConnection();
 		
-		int result = new BoardDao().insertBoard(conn, b);
+		int result1 = new BoardDao().insertBoard(conn, b);
+		int result2 = new BoardDao().insertAttachemnt(conn, at);
 		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		
-		return result;
+		return result1 * result2;
 	}
 	
 	/**
@@ -82,6 +87,12 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		int result = new BoardDao().updateBoard(conn, b);
+		
+		if(result > 0 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		
 		return result;
 	}
