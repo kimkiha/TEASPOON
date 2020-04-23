@@ -110,7 +110,7 @@
 		
         <!--product-->
         <script>
-        
+        	// 개별 상품의 상세 페이지로 이동
         	$(function(){
         		$('.product_img').click(function(){
         			var pcode = $(this).children().eq(0).val();
@@ -118,10 +118,11 @@
         		});
         	});
         
+        	// 위시리스트 등록 ajax
         	$(function(){
         		$('.like_icon').click(function(){
         			var pcode1 = $(this).parent().siblings([".product_img"]).children().eq(0).val();
-        			console.log(pcode1);
+        			//console.log(pcode1);
         			
 					var icon = $(this);        			
         			$.ajax({
@@ -139,7 +140,7 @@
         						$("#duplicateDeletePcode").submit();
         						
         					} else if(result == 0){
-        						window.alert("로그인해주세요");
+        						window.alert("로그인이 필요한 서비스입니다.");
         					}
         				}, error:function(){
         					window.alert("통신에러");

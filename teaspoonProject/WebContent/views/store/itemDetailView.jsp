@@ -79,7 +79,6 @@
                                         <span> 상품금액합계 </span>
                                         <input id="price" type="hidden" value="<%=p.getPrice() %>">
                                         <span id="totalPrice"><%=p.getPrice() %>원</span>
-                                        <button id="delivery">정기배송 5%할인</button>
                                         <button id="basket">장바구니 담기</button>
                                         <button id="buyNow">바로 구매하기</button>
                                    </div>
@@ -88,7 +87,7 @@
                                 <!--제품상세버튼, 고객리뷰버튼-->
                                 <div class="pList3">
                                     <p>제품상세</p>
-                                    <a href="#review"><p style="font-weight:bold;">고객리뷰</p></a>
+                                    <a href="#review"><p>고객리뷰</p></a>
                                 </div>
                                 
                                 <!--상품상세페이지-->
@@ -103,21 +102,27 @@
                                     		src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>">
                                     </div>
                                    	<%} %>
+                                   	<hr>
                                 </div>
 
-								<br><br>
+								<br><br><br>
+								
                                 <div class="pList5_1">
-                                <hr>
-                                    <p style="font-weight:bold; margin-top: 120px;">고객리뷰</p>
-                                    <button class="writeReview">리뷰쓰기</button>
+                                    <p style="font-weight:bold; margin-top: 150px;">고객리뷰</p>
                                 </div>
-                                <!-- action에 경로설정(리뷰작성하면 아래 리뷰칸으로 넣어지도록? -->
+                                
+                                <!-- 리뷰작성Area -->
                                 <div id="reviewList">
                                 <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
-	                                <table id="writeReview" cellpadding="0" cellspacing="0" >
+	                                <table id="writeReview" cellpadding="0" cellspacing="0" style="margin-top:100px">
 	                                    <tr>
-	                                        <td style="width:130px;text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px; border-top: 1px solid #ddd;">내용</td>
-	                                        <td colspan="3" style="border-top: 1px solid #ddd;"><textarea name="" id="" cols="" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
+	                                		<td colspan="6" style="text-align:center; border-top: 1px solid #ddd; border-bottom:0px">
+	                                			<p style= "padding:15px; font-size:22px; font-weight:bold;">리뷰쓰기</p>
+	                                		</td>
+	                                	</tr>
+	                                    <tr>
+	                                        <td style="width:130px;text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px;border-top: 1px solid #ddd; ">내용</td>
+	                                        <td colspan="3" style="border-top: 1px solid #ddd;"><textarea name="reviewContent" id="reviewContent" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
 	                                        
 	                                        <td style="width:100px; border-top: 1px solid #ddd;"></td>
 	                                    </tr>
@@ -129,34 +134,28 @@
 	                                        <td width="100px">
 	                                            <button id="subReview" class="btn" type="submit" name="submit" value="submit">작성완료</button>
 	                                        </td>
-	                                        <td></td>
+	                                        <td>
+	                                        </td>
 	                                    </tr>
 	                                </table>
                                 </form>
                                 </div>
-                                <!--//리뷰쓰기 버튼-->
+                                <!--//리뷰리뷰작성Area-->
 
-                                <!--고객리뷰페이지(상단과 엥커걸림)-->
                                 <div id="review" class="pList5">
                                     <br><br>
-                                    <div class="pList5_2" style="padding-bottom:20px">
+                                    <div class="pList5_2">
                                         <button class="btn_review">전체리뷰</button>
-                                        <button class="btn_review">사진리뷰</button>
                                     </div>
-                                    <!--사용자 후기모음-->
+                                    
+                                    <!--사용자 후기모음(상단과 앵커걸림)-->
                                     <div class="pList5_3">
-                                        <table>
-                                            <tr>
-                                                <td width="200px">날짜</td>
-                                                <td width="600px" style="text-align: left;">구매자(아이디**)</td>
-                                            </tr>
-                                            <tr>
-                                            	<td></td>
-                                                <td><p>내용</p></td>
-                                            </tr>
-                                        </table>
-                                        <!--더보기 할때 글 3개씩 밑으로?-->
-                                        <button> 더보기 </button>
+                                        <div id="data">
+                                      
+                                    	</div>
+                                    	
+                                        <!--더보기 할때 글 3개씩 밑으로-->
+                                        <button id="load"> 더보기 </button>
                                         <br><br><br>
                                     </div>
                                 </div>
@@ -173,7 +172,6 @@
 
     <script>
         // 구매수량 변경 옵션
-        
         $(function(){
         	
         	var price;
@@ -204,30 +202,101 @@
                 }
                     $('#numberUpDown').text(num);
                     totalSum();
-                    
             });
                 
-                function totalSum(){
-        			num1 =  $('#numberUpDown').text();
-                	price = $("#price").val();
-                	total = num1*price;
-                	$("#totalPrice").text(total+"원");
-                }
+             // 상품금액 합계 출력
+             function totalSum(){
+     			num1 =  $('#numberUpDown').text();
+             	price = $("#price").val();
+             	total = num1*price;
+             	$("#totalPrice").text(total+"원");
+             }
         });
         
+     	// 리뷰Area
+        $(function() {
+			//문서가 다 로딩되면 자동으로 실행하고 주기적으로 실행
+			selectReplyList();
 
-        //리뷰쓰기 버튼
-        $(function(){
-            $(".writeReview").click(function(){
-                var review = $(this).next();
-                if(review.css("display")=="none"){
-                    $(this).siblings("p").slideUp();
-                    review.slideDown();
-                }
-            });
-        });
+		});
 
+		//ajax이용 : 게시글에 딸려있는 댓글 리스트 조회용 함수
+		function selectReplyList() {
+			$.ajax({
+				url : "list.re",
+				//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회
+				data : {pcode:<%=p.getPcode()%>},
+				type : "get",
+				success : function(list) {
+					console.log(list);
+					var value = "";
+					for (var i = 0; i < list.length; i++) {
+						value += "<table cellpadding='0' cellspacing='0'>"
+								+ "<tr><td id='createDate' width='200px' style='border-top:1px solid #ddd; padding:10px;'>"
+								+ list[i].createDate
+								+ "</td>"
+								+ "<td id='user' width='600px' style='border-top:1px solid #ddd; padding:10px;'>"
+								+ list[i].userName
+								+ "("
+								+ list[i].userId
+								+ ")"
+								+ "</td></tr>"
+								+ "<tr><td style='border-bottom:1px solid #ddd; padding:10px;'></td>"
+								+ "<td id='rcontent'  style='border-bottom:1px solid #ddd; padding:10px;'><p>"
+								+ list[i].content
+								+ "</p></td></tr>"
+								+ "</table>";
+					}
+					$("#data").html(value);
+				},
+				error : function() {
+					console.log("댓글리스트조회용 ajax 통신 실패!")
+				}
 
+			});
+		}
+
+		$(function() {
+			var addReview = 6;
+			$("#load").click(function() {
+				$.ajax({
+					url : "listAdd.re",
+					//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회					
+					data : {pcode :<%=p.getPcode()%>,
+							addReview : addReview},
+					type : "get",
+					success : function(list) {
+						var value = "";
+						for (var i = 0; i < list.length; i++) {
+							value += "<table cellpadding='0' cellspacing='0'>"
+									+ "<tr><td id='createDate' width='200px'>"
+									+ list[i].createDate
+									+ "</td>"
+									+ "<td id='user' width='600px'>"
+									+ list[i].userName
+									+ "("
+									+ list[i].userId
+									+ ")"
+									+ "</td></tr>"
+									+ "<tr><td style='border-bottom:1px solid lightgray;'></td>"
+									+ "<td id='rcontent'  style='border-bottom:1px solid lightgray;'><p>"
+									+ list[i].content
+									+ "</p></td></tr>"
+									+ "</table>";
+						}
+						$("#data").html(value);
+					},
+					error : function() {
+						console
+								.log("댓글리스트조회용 ajax 통신 실패!")
+					}
+
+				});
+
+				addReview = addReview + 3;
+				//console.log(addReview);
+			});
+		});
     </script>
 </body>
 </html>

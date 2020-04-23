@@ -14,19 +14,19 @@
 .move_review{width: 500px; height:100px; font-size:35px; text-align: right;}
 
 /* 상품명, 상품설명요약 */
-.p_explain1{width: 470px; height: 360px; font-size: 22px; text-align: left; margin-left: 20px;}
+.p_explain1{width: 470px; font-size: 22px; text-align: left; margin-left: 20px;}
 
 /* 구매수량 변경 옵션 */
 .p_explain4{width: 480px; font-size: 25px; 
-    text-align: center; border: 1px solid lightgray;; 
+    text-align: center; border: 1px solid lightgray; 
     border-radius: 5px; margin-left: 20px; margin-top: 20px;}
 .num{width: 240px;}
 .number{width: 240px;}
 
 /* 상품금액 합계, 정기배송버튼, 장바구니버튼, 바로구매버튼 */
 .p_explain5{width: 480px; font-size: 30px; margin-left: 20px; margin-top: 10px;}
-.p_explain5 button{font-size: 18px; border: 1px solid lightgray; background-color: white;}
-#delivery{width: 480px; height: 45px; border-radius: 5px; }
+.p_explain5 button{font-size: 18px; border: 1px solid #ddd; background-color: white;}
+#delivery{width: 480px; height: 45px; border-radius: 5px;}
 #basket{width: 233px; height: 45px; border-radius: 5px; margin-top: 10px;}
 #buyNow{width: 233px; height: 45px; border-radius: 5px; margin-top: 10px;}
 .p_explain5 button:hover{border-color:#ac8b5a; background-color: #d6ae71; color: white;}
@@ -39,20 +39,21 @@
 .pList4{float:left; width: 860px; height:400px; padding-left: 70px;padding-right: 70px;}
 
 /* 고객리뷰페이지(상단과 엥커걸림) */
-.pList5{ float:left; width: 1000px; height:520px}
+.pList5{ float:left; width: 100%;}
 .pList5 p{font-size: 32px; font-weight: bold;}
-.pList5_1{ width: 100%; height: 270px;}
+.pList5_1{ width: 100%; height: 150px;}
 .pList5_1 button{border: 1px solid lightgray; background-color: white; font-size: 18px; width: 200px; height: 50px; margin-top: 30px; border-radius: 5px;}
 .pList5_1 button:hover{border-color:#ac8b5a; background-color: #d6ae71; color: white;}
 
 .pList5_2{width: 100%; height: 100px;}
-.pList5_2 button{width: 200px; height: 70px; background-color: white; border: 0px; font-size: 28px; font-weight: bold; margin-top: 20px;}
+.pList5_2 button{width: 200px; height: 70px; background-color: white; border: 0px; font-size: 28px; font-weight: bold; }
 .pList5_2 .btn:hover{border-bottom: darkgray; }
 .pList5_2 p{font-size: 22px; font-weight: bold;}
 
 .pList5_3{width:100%;}
 .pList5_3 table{font-size: 18px; margin-left:100px}
-.pList5_3 table *{border: 0.1px solid lightgray;}
+#createDate{text-align:center;}
+#user,#rcontent{text-align:left;}
 .pList5_3 p{font-size: 18px; font-weight: 500; text-align: justify;}
 .pList5_3 button{border: 1px solid lightgray; background-color: white; font-size: 18px; width: 200px; height: 50px; margin-top: 30px; border-radius: 5px;}
 .pList5_3 button:hover{border-color:#ac8b5a; background-color: #d6ae71; color: white;}

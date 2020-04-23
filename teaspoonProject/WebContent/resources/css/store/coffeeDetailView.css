@@ -31,7 +31,7 @@
 
 /* 상품금액 합계, 정기배송버튼, 장바구니버튼, 바로구매버튼 */
 .p_explain5{width: 480px; font-size: 30px; margin-left: 20px; margin-top: 10px;}
-.p_explain5 button{font-size: 18px; border: 1px solid lightgray; background-color: white;}
+.p_explain5 button{font-size: 18px; border: 1px solid #ddd; background-color: white;}
 #delivery{width: 480px; height: 45px; border-radius: 5px; }
 #basket{width: 233px; height: 45px; border-radius: 5px; margin-top: 10px;}
 #buyNow{width: 233px; height: 45px; border-radius: 5px; margin-top: 10px;}

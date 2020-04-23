@@ -46,9 +46,7 @@ public class InsertWish extends HttpServlet {
 		}else if(loginUser != null){
 			
 			int userNo = loginUser.getUserNo();
-			System.out.println(userNo);
 			int count = new MemberService().selectOneWishList(pcode, userNo);
-			System.out.println(count);
 			if(count > 0) { // 중복된 상품이 이미 위시리스트에 있다
 				result= -1;
 				PrintWriter out = response.getWriter();

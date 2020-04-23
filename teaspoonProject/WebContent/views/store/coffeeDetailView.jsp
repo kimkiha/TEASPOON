@@ -106,13 +106,10 @@
                                         </div>
                                    </div>
 
-                                   <!-- 선택한 옵션 담아서 목록 보여주기 -->
-
                                    <!--상품금액 합계, 정기배송버튼, 장바구니버튼, 바로구매버튼 -->
                                    <div class="p_explain5">
                                         <span style="padding:30px;">상품금액합계</span>
                                         <span id="totalPrice"><%=p.getPrice() %>원</span>
-                                        <button id="delivery">정기배송 5%할인</button>
                                         <button id="basket">장바구니 담기</button>
                                         <button id="buyNow">바로 구매하기</button>
                                    </div>
@@ -136,21 +133,26 @@
                                     		src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>">
                                     </div>
                                    	<%} %>
+                                   	<hr>
                                 </div>
-								
-                                <!--고객리뷰페이지-->
-                                <br><br><br>
+                                
+								<br><br><br>
+								 
                                 <div class="pList5_1">
-                                	<hr>
-                                    <p style="font-weight:bold; margin-top: 100px;">고객리뷰</p>
-                                    <!--리뷰쓰기 버튼-->
-                                    <button>리뷰쓰기</button>
+                                	<p style="font-weight:bold; margin-top: 150px;">고객리뷰</p>
                                 </div>
+                                
+                                <!-- 리뷰작성Area -->
                                 <div id="reviewList">
-	                                <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
+                                <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
 	                                <table id="writeReview" cellpadding="0" cellspacing="0" style="margin-top:100px">
+	                                	<tr>
+	                                		<td colspan="6" style="text-align:center; border-top: 1px solid #ddd; border-bottom:0px">
+	                                			<p style= "padding:15px; font-size:22px; font-weight:bold;">리뷰쓰기</p>
+	                                		</td>
+	                                	</tr>
 	                                    <tr>
-	                                        <td style="width:130px;text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px; border-top: 1px solid #ddd;">내용</td>
+	                                        <td style="width:130px;text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px;border-top: 1px solid #ddd; ">내용</td>
 	                                        <td colspan="3" style="border-top: 1px solid #ddd;"><textarea name="reviewContent" id="reviewContent" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
 	                                        
 	                                        <td style="width:100px; border-top: 1px solid #ddd;"></td>
@@ -170,16 +172,15 @@
                                 
                                   </form>
                                   </div>
-                                <!--//리뷰쓰기 버튼-->
+                                <!--//리뷰리뷰작성Area-->
                                 
                                 <div id="review" class="pList5">
                                     <br><br>
                                     <div class="pList5_2">
                                         <button class="btn_review">전체리뷰</button>
-                                        <button class="btn_review">사진리뷰</button>
                                     </div>
 
-                                    <!--사용자 후기모음-->
+                                    <!--사용자 후기모음(상단과 앵커걸림)-->
                                     <div class="pList5_3">
                                   
                                     
@@ -202,129 +203,140 @@
         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
-    
-    <script>
-        // 구매수량 변경 옵션
-        $(function(){
-        	
-        	var amount;
-        	var num1;
-        	
-            $('#decreaseQuantity').click(function(e){
-                e.preventDefault();
-                var stat = $('#numberUpDown').text();
-                var num = parseInt(stat,10);
-                  num--;
-                if(num<=0){
-                    alert('더이상 줄일수 없습니다.');
-                    num =1;
-                }
-                $('#numberUpDown').text(num);
-                totalSum();
-            });
-            
-                $('#increaseQuantity').click(function(e){
-                    e.preventDefault();
-                    var stat = $('#numberUpDown').text();
-                    var num = parseInt(stat,10);
-                    num++;
 
-                    if(num>5){
-                    alert('더이상 늘릴수 없습니다.');
-                    num=5;
-                }
-                    $('#numberUpDown').text(num);
-                    totalSum();
-                    
-                });
-                
-             	// 상품금액 합계
-            	$('.amount').click(function(){
-            		totalSum();
-       		});
-              
-             function totalSum(){
-            	 amount = $("#amountForm > input:checked").val();
-    			 num1 =  $('#numberUpDown').text();
-         	     total = amount*num1;
-         		 $("#totalPrice").text(total+"원");
-         		 
-             }
-            });
-           
+	<script>
+		// 구매수량 변경 옵션
+		$(function() {
 
-    </script>
-    
-    <script>
-    $(function(){
-		//문서다로딩되고 자동으로 실행하고 주기적으로 실행한다.
-		selectReplyList();
-		
-	})
+			var amount;
+			var num1;
 
-	
-	//ajax이용 : 게시글에 딸려있는 댓글 리스트 조회용 함수
-	function selectReplyList(){
-		$.ajax({
-			url:"list.re",
-			//현재보고있는 게시글 번호 보내서 이 게시글을 참조하고있는 댓글들 조회
-			data:{pcode:<%=p.getPcode()%>},
-			type:"get",
-			success:function(list){
-				console.log(list);
-				var value = "";
-				for(var i=0; i<list.length;i++){
-					value += "<table cellpadding='0' cellspacing='0'>"+
-							  "<tr><td id='createDate' width='200px'>"+list[i].createDate+"</td>"+
-                              "<td id='user' width='600px'>"+list[i].userName+"("+list[i].userId+")"+"</td></tr>"+
-                    		  "<tr><td style='border-bottom:1px solid lightgray;'></td>"+
-                        	  "<td id='rcontent'  style='border-bottom:1px solid lightgray;'><p>"+list[i].content+"</p></td></tr>"+ 
-                			   "</table>";
-				}		
-				$("#data").html(value);
-			},
-			error:function(){
-				console.log("댓글리스트조회용 ajax 통신 실패!")
-			}
-			
-		});
-	}
-    </script>
-    
-    <script>
-    $(function(){
-    	var addReview = 6;
-		$("#load").click(function(){
-			
-			$.ajax({
-				url:"listAdd.re",
-				//현재보고있는 게시글 번호 보내서 이 게시글을 참조하고있는 댓글들 조회
-				data:{pcode:<%=p.getPcode()%>,addReview:addReview},
-				type:"get",
-				success:function(list){
-					var value = "";
-					for(var i=0; i<list.length;i++){
-						value += "<table cellpadding='0' cellspacing='0'>"+
-								  "<tr><td id='createDate' width='200px'>"+list[i].createDate+"</td>"+
-	                              "<td id='user' width='600px'>"+list[i].userName+"("+list[i].userId+")"+"</td></tr>"+
-	                    		  "<tr><td style='border-bottom:1px solid lightgray;'></td>"+
-	                        	  "<td id='rcontent'  style='border-bottom:1px solid lightgray;'><p>"+list[i].content+"</p></td></tr>"+ 
-	                			   "</table>";
-					}		
-					$("#data").html(value);
-				},
-				error:function(){
-					console.log("댓글리스트조회용 ajax 통신 실패!")
+			$('#decreaseQuantity').click(function(e) {
+				e.preventDefault();
+				var stat = $('#numberUpDown').text();
+				var num = parseInt(stat, 10);
+				num--;
+				if (num <= 0) {
+					alert('더이상 줄일수 없습니다.');
+					num = 1;
 				}
-		      
+				$('#numberUpDown').text(num);
+				totalSum();
 			});
 
-			addReview=addReview+3;
-			console.log(addReview);
+			$('#increaseQuantity').click(function(e) {
+				e.preventDefault();
+				var stat = $('#numberUpDown').text();
+				var num = parseInt(stat, 10);
+				num++;
+
+				if (num > 5) {
+					alert('더이상 늘릴수 없습니다.');
+					num = 5;
+				}
+				$('#numberUpDown').text(num);
+				totalSum();
+
+			});
+
+			// 상품금액 합계
+			$('.amount').click(function() {
+				totalSum();
+			});
+
+			// 상품금액 합계 출력
+			function totalSum() {
+				amount = $("#amountForm > input:checked").val();
+				num1 = $('#numberUpDown').text();
+				total = amount * num1;
+				$("#totalPrice").text(total + "원");
+
+			}
 		});
-    });
-    </script>
-      
+
+		// 리뷰Area
+		$(function() {
+			//문서가 다 로딩되면 자동으로 실행하고 주기적으로 실행
+			selectReplyList();
+
+		});
+
+		//ajax이용 : 게시글에 딸려있는 댓글 리스트 조회용 함수
+		function selectReplyList() {
+			$.ajax({
+				url : "list.re",
+				//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회
+				data : {pcode:<%=p.getPcode()%>},
+				type : "get",
+				success : function(list) {
+					console.log(list);
+					var value = "";
+					for (var i = 0; i < list.length; i++) {
+						value += "<table cellpadding='0' cellspacing='0'>"
+								+ "<tr><td id='createDate' width='200px' style='border-top:1px solid #ddd; padding:10px;'>"
+								+ list[i].createDate
+								+ "</td>"
+								+ "<td id='user' width='600px' style='border-top:1px solid #ddd; padding:10px;'>"
+								+ list[i].userName
+								+ "("
+								+ list[i].userId
+								+ ")"
+								+ "</td></tr>"
+								+ "<tr><td style='border-bottom:1px solid #ddd; padding:10px;'></td>"
+								+ "<td id='rcontent'  style='border-bottom:1px solid #ddd; padding:10px;'><p>"
+								+ list[i].content
+								+ "</p></td></tr>"
+								+ "</table>";
+					}
+					$("#data").html(value);
+				},
+				error : function() {
+					console.log("댓글리스트조회용 ajax 통신 실패!")
+				}
+
+			});
+		}
+
+		$(function() {
+			var addReview = 6;
+			$("#load").click(function() {
+				$.ajax({
+					url : "listAdd.re",
+					//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회
+					data : {pcode :<%=p.getPcode()%>,
+							addReview : addReview},
+					type : "get",
+					success : function(list) {
+						var value = "";
+						for (var i = 0; i < list.length; i++) {
+							value += "<table cellpadding='0' cellspacing='0'>"
+									+ "<tr><td id='createDate' width='200px'>"
+									+ list[i].createDate
+									+ "</td>"
+									+ "<td id='user' width='600px'>"
+									+ list[i].userName
+									+ "("
+									+ list[i].userId
+									+ ")"
+									+ "</td></tr>"
+									+ "<tr><td style='border-bottom:1px solid lightgray;'></td>"
+									+ "<td id='rcontent'  style='border-bottom:1px solid lightgray;'><p>"
+									+ list[i].content
+									+ "</p></td></tr>"
+									+ "</table>";
+						}
+						$("#data").html(value);
+					},
+					error : function() {
+						//console.log("댓글리스트조회용 ajax 통신 실패!")
+					}
+				});
+				addReview = addReview + 3;
+				//console.log(addReview);
+			});
+		});
+	</script>
+
 
 </body>
 </html>
