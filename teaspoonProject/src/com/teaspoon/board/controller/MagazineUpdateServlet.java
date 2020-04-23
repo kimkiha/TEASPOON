@@ -1,4 +1,4 @@
-package com.teaspoon.space.controller;
+package com.teaspoon.board.controller;
 
 import java.io.IOException;
 
@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.board.model.vo.Board;
+import com.teaspoon.board.service.BoardService;
+
 /**
- * Servlet implementation class SpaceRentalServlet
+ * Servlet implementation class MagazineUpdateServlet
  */
-@WebServlet("/rental.sp")
-public class SpaceRentalServlet extends HttpServlet {
+@WebServlet("/magazineUpdate.bo")
+public class MagazineUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpaceRentalServlet() {
+    public MagazineUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,10 +31,26 @@ public class SpaceRentalServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/space/space_rental.jsp");
-		view.forward(request, response);
+
+		String title = request.getParameter("title");
+		String content = request.getParameter("Content");
 		
+		Board b = new Board(bno, title, content);
+		
+		System.out.println(bno);
+		
+		
+		int result = new BoardService().updateBoard(b);
+		
+		if(result > 0) {//수정성공했을 경우 상세보기 페이지 요청
+			response.sendRedirect("magazineList.bo?currentPage=1");
+		}else {//에러페이지 포워딩
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage/jsp");
+			view.forward(request, response);
+		}
 	}
 
 	/**

@@ -88,8 +88,22 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
-		
+		<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+	    <link href="<%=contextPath%>/resources/css/admin/admin_common.css" rel="stylesheet">
+	   
 		<style>
+		button{width:auto;}
+		.dropdown-toggle{width:auto}
+		.c_div{text-align:left;}
+		 h1,
+		.h1,
+		 h2,
+		.h2,
+		 h3,
+		.h3 {
+		  margin-top: 0;
+		  margin-bottom: 0;
+		 }
 			/* 
 			[class*=" note-icon"]:before, [class^=note-icon]:before{
 				font-size:10px;
@@ -100,6 +114,10 @@
 			}
 		</style>
     <script>
+    $(function(){
+
+        $('span').removeClass('note-icon-caret');
+    });
     
     $(document).ready(function() {
         // 1. 단순히 에디터 폼만 보이게 하는거

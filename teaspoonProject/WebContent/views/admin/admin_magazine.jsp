@@ -18,9 +18,10 @@
     <style>
         #c1_1_2 div{padding-left: 25px; float:left;}
         #oneToOneKinds input{margin-right: 5px; vertical-align: middle;}
+        table td{text-align:center}
         table tr{border-bottom: 1px solid lightgray;}
         table tr:first-child{border-top: 1px solid lightgray;}
-        table th{background-color: #dbdbdb;}
+        table th{background-color: #dbdbdb; text-align:center}
     </style>
 </head>
 <body>
@@ -37,17 +38,16 @@
                         </div>
                     </div>
                     <div id="c1_1_2">
-                        <table>
+                        <table class="listArea" >
                             <thead>
                                 <tr>
-                                    <th width="70">글번호</th>
-                                    <th width="150">제목</th>
-                                    <th width="70">조회수</th>
-                                    <th width="90">작성일</th>
-                                    <th width="90">수정일</th>
-                                    <th width="70">상태</th>
-                                    <th width="100">상세보기</th>
-                                    <th>
+                                    <th width="100">글번호</th>
+                                    <th width="300">제목</th>
+                                    <th width="50">조회수</th>
+                                    <th width="100">작성일</th>
+                                    <th width="100">수정일</th>
+                                    <th width="50">상태</th>
+                                    <th >
                                         <button><a href="magazineInsertForm.bo">추가</a></button>
                                     </th>
                                 </tr>
@@ -65,10 +65,9 @@
 											<td><%=b.getCount() %></td>
 											<td><%=b.getCreateDate() %></td>
 											<td><%=b.getModifyDate() %></td>
-											<td><%=b.getStatus()%></td>
-		                                    <td><button type="button">이동</button></td>
+											<td class="status"><%=b.getStatus()%></td>
 		                                    <td>
-	                                        <button><a href="adminAboutUpdateForm.html">수정</a></button>
+	                                        <button><a href="<%=contextPath%>/magazineUpdateForm.bo?bno=<%=b.getBoardNo()%>">수정</a></button>
 	                                        <button>삭제</button>
                                    			</td>
 										</tr>
@@ -109,6 +108,16 @@
                
             </div>
         </div>
-    </div>  
+        
+        <!--
+    <script>
+		$(function(){
+			$(".listArea>tbody>tr").click(function(){
+				var bno = $(this).children().eq(0).text();
+				location.href="<%=contextPath%>/MagazineUpdateForm.bo?bno=" + bno;
+			});
+		});
+	</script> 
+	  -->
 </body>
 </html>

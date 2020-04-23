@@ -141,12 +141,21 @@ public class MemberService {
 	public ArrayList<Grade> selectGradeList(){
 		Connection conn = getConnection();
 		
-		ArrayList<Grade> list = new MemberDao().selectSearchList(conn);
+		ArrayList<Grade> list = new MemberDao().selectGradeList(conn);
 		close(conn);
 		return list;
 	}
 	
-	
+	public int getSearchKeywordListCount(String searchKeyword1,String searchKeyword2) {
+		Connection conn = getConnection();
+		
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new MemberDao().getSearchKeywordListCount(conn,searchKeyword1,searchKeyword2);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
 	
 	/**
@@ -288,10 +297,10 @@ public class MemberService {
 	 * @param uno >>조회하고자하는 해당 게시글 번호
 	 * @return    
 	 */
-	public MenToMen selectMtm(int uno) {
+	public MenToMen selectMtm(int mno) {
 		Connection conn= getConnection();
 		
-		MenToMen m = new MemberDao().selectMtm(conn,uno);
+		MenToMen m = new MemberDao().selectMtm(conn,mno);
 		close(conn);
 		return m;
 	}
@@ -311,6 +320,68 @@ public class MemberService {
 		return at;
 		
 	}
+	
+	public int insertGrade(Grade grade) {
+		
+		Connection conn = getConnection();
+		int result = new MemberDao().insertGrade(conn,grade);
+		
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+		public int updateMemberGrade(Grade grade, ArrayList<Grade> gList) {
+		
+		Connection conn = getConnection();
+		int addGradeCode=0;
+		String nextG="";
+		for(int i=0; i<gList.size(); i++) {
+			if(grade.getGradeName().equals(gList.get(i).getGradeName())){
+				nextG=gList.get(i+1).getGradeName();
+				addGradeCode=gList.get(i).getGradeCode();
+			}
+		}
+		int result = new MemberDao().updateMemberGrade(conn,grade,nextG,addGradeCode);
+		
+		
+		
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+		
+		public int updateMemberMaxGrade(Grade grade, ArrayList<Grade> gList) {
+			
+			Connection conn = getConnection();
+			int addGradeCode = gList.get(gList.size()-1).getGradeCode();
+			
+			int result = new MemberDao().updateMemberMaxGrade(conn,grade,addGradeCode);
+			
+			
+			
+			
+			if(result>0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
+		}
 
 	/**
 	 * 아이디 중복체크용 서비스

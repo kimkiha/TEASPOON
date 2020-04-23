@@ -15,16 +15,16 @@ import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Grade;
 
 /**
- * Servlet implementation class MemberGradeEnrollServlet
+ * Servlet implementation class MemberMaxGradeEnroll
  */
-@WebServlet("/insertGrade.me")
-public class MemberGradeEnrollServlet extends HttpServlet {
+@WebServlet("/maxGradeInsert.me")
+public class MemberMaxGradeEnroll extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberGradeEnrollServlet() {
+    public MemberMaxGradeEnroll() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +33,20 @@ public class MemberGradeEnrollServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String gradeName = request.getParameter("gradeName");
-		int minMoney = Integer.parseInt(request.getParameter("minMoney"));
-		int discontRate = Integer.parseInt(request.getParameter("discontRate"));
-		
+		String gradeName = request.getParameter("maxGradeName");
+		int minMoney = Integer.parseInt(request.getParameter("maxMinMoney"));
+		int discontRate = Integer.parseInt(request.getParameter("maxDiscountRate"));
+	
+
 		Grade grade = new Grade();
 		grade.setGradeName(gradeName);
 		grade.setMinAcount(minMoney);
 		grade.setGradeRate(discontRate);
-		
-		
 		int result1 = new MemberService().insertGrade(grade);
 		ArrayList<Grade> gList = new MemberService().selectGradeList();
 		
 		
-		int result2 = new MemberService().updateMemberGrade(grade,gList);
+		int result2 = new MemberService().updateMemberMaxGrade(grade,gList);
 		//4. 처리결과를 가지고 성공인지 실패인지 판단해서 사용자가 보게될 뷰 지정
 			
 		
@@ -67,7 +66,6 @@ public class MemberGradeEnrollServlet extends HttpServlet {
 
 					
 				}
-		
 		
 	}
 

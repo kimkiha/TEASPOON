@@ -51,7 +51,7 @@ Member myInfo = (Member)request.getAttribute("myInfo");
                             </div>
                             <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
                                 <p class="info_th" >적립포인트</p>
-                                <a href="#" ><%= myInfo.getPoint() %></a>
+                                <a href="#" ><%= myInfo.getPointPrice() %></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>

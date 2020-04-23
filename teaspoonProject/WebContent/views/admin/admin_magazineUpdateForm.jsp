@@ -18,15 +18,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>매거진</title>
-   
+   	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/admin/admin_EnrollForm.css">
     <style>
-        table * {padding: 10px; font-size: 18px;}
-        table th{text-align: center;}
-        .outer p{margin-top: 30px; margin-bottom: 30px; font-size: 30px; font-weight: bold;}        
-        table *{padding: 5px; margin: auto;}
-        table th{width: 100px;}
-        table tr:first-child{border-top: 1px solid lightgray ;}
-        table tr{border-bottom: 1px solid lightgray ;}
+    .outer p{font-weight: bold;}
     </style>
 </head>
 <body>
@@ -35,18 +29,25 @@
             <div id="c1" >
                 <div class="outer">
                     <p>매거진 수정</p>
-                    <form id="insertForm" action="insert.th" method="post" enctype="multipart/form-data">
+                    <form id="insertForm" action="magazineUpdate.bo" method="post" >
                     <input type="hidden" name="bno" value="<%=b.getBoardNo() %>">
                     	<div class="c_div">
 	                     		   	<div class="c_div_title">
-		                     		   	<p>제목 : <input type="text" style="width:90%" name="title" required><%=b.getBoardTitle() %></p> 
-		                    		    <p>내용</p>
+		                     		   	<p>제목 : <input type="text" style="width:93%; font-weight:500; font-color:gray" name="title" value="<%=b.getBoardTitle() %> "></p> 
+		                     		</div>
+	                    		    <div class="c_div_title" >
+	                    		    	<p>게시상태 : <input type="radio" name="status" required value='Y' <%= selected[0]%>> Y
+                                    	<input type="radio"  name="status" required value='N' <%= selected[1]%>> N
+                                    	</p>
+	                    		    </div>
+		                     		<div class="c_div_title">
+		                    		    <p>내용</p> 
 	                    		    </div>
 	                    		    <div class="c_div_cont">
-                                		<textarea id="summernote" name="Content"></textarea>
+                                		<textarea id="summernote" name="Content"><%=b.getBoardContent() %></textarea>
                                 	</div>
                                 </div>
-                        <table>
+                           <!--
                             <tr>
                                 <th width="100px"></th>
                                 <td><input type="text" size="71px" name="title" required></td>
@@ -66,16 +67,80 @@
                         <div id="fileArea">
                             <input type="file" name="file1" id="file1" onchange="loadImg(this);">
                         </div>
-                        <br>
+                        <br>  -->
                         <div class="btns">
-                            <button type="button" style="width: 100px;" ><a href="adminAbout.html">목록으로</a></button>
+                            <button type="button" style="width: 100px;"  onclick="location.href='<%=contextPath%>/magazineList.bo?currentPage=1'">목록으로</button>
                             <button type="submit" style="width: 100px;" >수정하기</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+		
+	    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+	    <link href="<%=contextPath%>/resources/css/admin/admin_common.css" rel="stylesheet">
+	   
+		<style>
+		
+		button{width:auto;}
+		.dropdown-toggle{width:auto}
+		.c_div{text-align:left;}
+		 h1,
+		.h1,
+		 h2,
+		.h2,
+		 h3,
+		.h3 {
+		  margin-top: 0;
+		  margin-bottom: 0;
+		 }
+			/* 
+			[class*=" note-icon"]:before, [class^=note-icon]:before{
+				font-size:10px;
+			} 
+			*/
+			#insertForm button{
+				width:auto;
+			}
+		</style>
     <script>
+    $(document).ready(function() {
+        // 1. 단순히 에디터 폼만 보이게 하는거
+        //$("#summernote").summernote();
+        
+        // 2. 추가적인 속성들 부여 가능
+        // 간단하게 사이즈 조정(width, height) / 미리보기 값(placeholder)
+        $('#summernote').summernote({
+           //placeholder:" ",
+           //tabsize: 2,
+            height: 300,
+            width:800/* ,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['Font Style', ['fontname']],
+                ['style', ['bold', 'italic', 'underline']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['paragraph']],
+                ['height', ['height']],
+                ['Insert', ['picture']]
+             ] */
+            
+        });
+     });
+	
+
+    $('#sb_btn').on('click', function(){
+        $('#summernote').append('<input type="hidden" name="Content", id="Content" />');
+        $('#Content').val($('.summernote').code());
+        $('#magazineInsertForm').submit();
+    })
+    /*
 		//이미지태그 클릭으로 파일 첨부할것임으로 깔끔하게 보이기위해 숨긴다.
 		$(function(){
 			$("#fileArea").hide();
@@ -114,7 +179,7 @@
 					
 			};
 			
-		
+		*/
 	</script>
 </body>
 </html>

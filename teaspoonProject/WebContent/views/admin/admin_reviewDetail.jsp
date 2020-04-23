@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.teaspoon.store.model.vo.* , com.teaspoon.common.*"%>
+<%
+	Review r = (Review)request.getAttribute("r");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,26 +26,25 @@
                     <table>
                         <tr>
                             <th width="100px">리뷰번호</th>
-                            <td>111</td>
-                            <th>상품번호</th>
-                            <td>111</td>
+                            <td><%=r.getReviewNo()%></td>
+                            <th width="100px">상품명</th>
+                            <td><%=r.getPname() %></td>
                         </tr>
                         <tr>
-                            <th>작성자</th>
-                            <td>아무개</td>
-                            <th>작성일</th>
-                            <td>2010.12.12</td>
+                            <th>작성자(작성자ID)</th>
+                            <td><%=r.getUserName() %>(<%=r.getUserId() %>)</td>
+                            <th>작성일자</th>
+                            <td><%=r.getCreateDate() %></td>
                         </tr>
                         <tr>
                             <th>내용</th>
-                            <td colspan="3"><textarea cols="70" rows="4" style="resize: none;" readonly></textarea></td>
+                            <td colspan="3"><textarea cols="70" rows="4" style="resize: none;" readonly><%=r.getContent() %></textarea></td>
                         </tr>
                         
                     </table>
                     <br>
                     <div class="btns">
-                        <button type="button" style="width: 100px;">
-                            <a href="adminReview.html">목록으로</a></button>
+                        <button onclick="history.back();" style="width:100px;'">목록으로</button>
                     </div>
                 </div>
             </div>

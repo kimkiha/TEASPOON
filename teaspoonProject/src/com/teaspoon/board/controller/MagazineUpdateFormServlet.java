@@ -15,7 +15,7 @@ import com.teaspoon.board.service.BoardService;
 /**
  * Servlet implementation class MagazineUpdateFormServlet
  */
-@WebServlet("/MagazineUpdateForm.bo")
+@WebServlet("/magazineUpdateForm.bo")
 public class MagazineUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,18 +32,18 @@ public class MagazineUpdateFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		
+	
 		Board b = new BoardService().selectBoard(bno);
 		
+	
 		if(b != null) {
-			//Board객체 전달
-			request.setAttribute("b", b);
-			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_magazineUpdateForm.jsp");
-			view.forward(request, response);
+		request.setAttribute("b", b);
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_magazineUpdateForm.jsp");
+		view.forward(request, response);
 		}else {
-			// 에러페이지로 포워딩
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
+		// 에러페이지로 포워딩
+		RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+		view.forward(request, response);
 		}
 	}
 

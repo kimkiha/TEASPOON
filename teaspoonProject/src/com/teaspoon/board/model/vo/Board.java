@@ -17,6 +17,15 @@ public class Board {
 	public Board(){
 		
 	}
+	
+
+	public Board(int boardNo, String boardTitle, String boardContent) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+	}
+
 
 	public Board(String boardTitle, String boardContent) {
 		this.boardTitle = boardTitle;

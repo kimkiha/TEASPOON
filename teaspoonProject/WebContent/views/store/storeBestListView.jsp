@@ -13,6 +13,8 @@
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
 	#content1 {width:100%; height:inherit; background: #ffffff; }
 	#banner {height: 270px; line-height: 270px; background:url("<%=request.getContextPath() %>/resources/img/store/storetop_best.jpg") center top no-repeat;}
@@ -41,12 +43,13 @@
                             </p>
                         </div>
                         <div class="product_top">
+                        	<input type="hidden" value=<%=list.get(0).getPcode() %>>
+                            <input type="hidden" value=<%=list.get(0).getKind() %>>
                             <div class="product_img">
-                            	<input type="hidden" value=<%=list.get(0).getPcode() %>>
                                 <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getTitleImg() %>" style="float:left; width:100%; height:inherit">
                             </div>
                             <div class="product_detail">
-                                <p style="padding-top:5px;padding-left:20px;"><%=list.get(0).getPname()%></p>
+                                <p style="font-size:22px; padding-bottom:10px;"><%=list.get(0).getPname()%></p>
                             </div>
                             <div class="like">
                                 <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
@@ -102,9 +105,9 @@
                         <% for(int i=1; i<list.size(); i++) { %>
                         	<%Product p = list.get(i); %>
                             <div class="product" style="margin-top:50px; margin-right:30px;">
-                            	<input type="hidden" value=<%=p.getPcode() %>>
+                            	<input type="hidden" value=<%=list.get(i).getPcode() %>>
+                            	<input type="hidden" value=<%=list.get(i).getKind() %>>
                                 <div class="product_img">
-                                	<input type="hidden" value=<%=list.get(i).getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
@@ -136,35 +139,47 @@
         <!--product-->
         
         <script>
-        
-        	
         $(function(){
-    		$('.product').click(function(){
+    		$('.product_top').click(function(){
+    			var kind = $(this).children().eq(1).val();
     			var pcode = $(this).children().eq(0).val();
-    			location.href="<%=contextPath%>/detail.sb?pcode="+pcode;
+    			if(kind=='C'){
+    				location.href="<%=contextPath%>/detail.co?pcode="+pcode;
+    			} else{
+    				location.href="<%=contextPath%>/detail.it?pcode="+pcode;
+    			}
     		});
     	});
         
+        $(function(){
+    		$('.product').click(function(){
+    			var kind = $(this).children().eq(1).val();
+    			var pcode = $(this).children().eq(0).val();
+    			if(kind=='C'){
+    				location.href="<%=contextPath%>/detail.co?pcode="+pcode;
+    			} else{
+    				location.href="<%=contextPath%>/detail.it?pcode="+pcode;
+    			}
+    		});
+    	});
         
-            state=0;
-            function wishList() {
-              
-                    $(this).attr("src","../../resources/img/store/heart_full.png");
-                    console.log("<%=contextPath %>/resources/img/store/heart_full.png");
-                    window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
-         
-            }
-
-            // 장바구니 이동 팝업
-            $("#open").click(function(){
-                $(".modal").fadeIn();
-            });
-            $("#gobasket").click(function(){
-                // 장바구니로 이동 링크
-            });
-            $(".close").click(function(){
-                $(".modal").fadeOut();
-            });
+        state=0;
+        function wishList() {
+                $(this).attr("src","../../resources/img/store/heart_full.png");
+                console.log("<%=contextPath %>/resources/img/store/heart_full.png");
+                window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
+        }
+        // 장바구니 이동 팝업
+        $("#open").click(function(){
+            $(".modal").fadeIn();
+        });
+        $("#gobasket").click(function(){
+            // 장바구니로 이동 링크
+        });
+        $(".close").click(function(){
+            $(".modal").fadeOut();
+        });
+            
 
         </script>
 

@@ -15,22 +15,23 @@ a{text-decoration: none; color: black;}
  .product_top .product_img{width: 520px; height: 450px; position: absolute;}
  .product_top .product_detail{
      width: 340px;
-     height: 60px;
+     height: 50px;
      background:rgb(101, 100, 96); 
      font-size:23px; 
      top:70%; 
      text-align: left;
+     margin-top:20px;
      padding-top:30px;
-     padding-left: 10px;
-     padding-right: 170px;
+     padding-left: 30px;
+     padding-right: 150px;
      padding-bottom: 15px;
      position: absolute;
      opacity:0;
  }
  .product_top .like_icon {width:70px; height:70px; cursor: pointer;}
- .product_top .like {top:73%; left:340px; position: absolute; opacity:0; z-index:1;}
+ .product_top .like {top:350px; left:340px; position: absolute; opacity:0; z-index:1;}
  .product_top #open {width: 70px; height:70px;}
- .product_top .basket {top:73%; left:420px; position: absolute; opacity:0; z-index:1;}
+ .product_top .basket {top:350px; left:420px; position: absolute; opacity:0; z-index:1;}
  .product_top:hover .product_detail {opacity:1;}
  .product_top:hover .product_detail>p{color:white;}
  .product_top:hover .basket {opacity: 1;}

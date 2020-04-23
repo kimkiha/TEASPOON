@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.store.model.service.ProductService;
 import com.teaspoon.store.model.vo.Product;
+import com.teaspoon.store.model.vo.Review;
 
 /**
- * Servlet implementation class CoffeeDetailServlet
+ * Servlet implementation class ItemDetailServlet
  */
 @WebServlet("/detail.co")
 public class CoffeeDetailServlet extends HttpServlet {
@@ -33,15 +34,17 @@ public class CoffeeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
 		
 		Product p = new ProductService().selectProduct(pcode);
 		ArrayList<Attachment> list = new ProductService().selectAtList(pcode);
+		ArrayList<Review> rlist = new ProductService().selectProductReview(pcode);
 		
 		if(p != null) {
 			request.setAttribute("p", p);
 			request.setAttribute("list", list);
+			request.setAttribute("rlist", rlist);
 			
 			RequestDispatcher view = request.getRequestDispatcher("views/store/coffeeDetailView.jsp");
 			view.forward(request, response);

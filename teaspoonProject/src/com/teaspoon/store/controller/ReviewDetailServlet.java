@@ -1,7 +1,6 @@
 package com.teaspoon.store.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Product;
+import com.teaspoon.store.model.vo.Review;
 
 /**
- * Servlet implementation class StoreBestDetailServlet
+ * Servlet implementation class ReviewDetailServlet
  */
-@WebServlet("/detail.sb")
-public class StoreBestDetailServlet extends HttpServlet {
+@WebServlet("/reviewDetail.re")
+public class ReviewDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StoreBestDetailServlet() {
+    public ReviewDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,23 +32,23 @@ public class StoreBestDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int pcode = Integer.parseInt(request.getParameter("pcode"));
+		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+		Review r = new ProductService().selectReviewDetail(reviewNo);
 		
-		Product p = new ProductService().selectProduct(pcode);
-		ArrayList<Attachment> list = new ProductService().selectAtList(pcode);
-		
-		if(p != null) {
-			request.setAttribute("p", p);
-			request.setAttribute("list", list);
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/store/itemDetailView.jsp");
+		if(r != null) {
+			request.setAttribute("r", r);
+			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_reviewDetail.jsp");
 			view.forward(request, response);
 		} else {
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
+			request.setAttribute("msg", "리뷰 상세보기에 실패했습니다");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errotPage_admin.jsp");
 			view.forward(request, response);
-			
 		}
 		
+		
+		
+	
+	
 	}
 
 	/**

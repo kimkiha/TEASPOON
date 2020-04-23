@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상품목록 | Admin</title>
+    <title>상품관리 | Admin</title>
    
     <style>
         #c1_1_2 div{padding-left: 25px; float:left;}
@@ -32,7 +32,7 @@
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
                     <div id="c1_1_1">
-                        <div id="c1_1_1_1"><img src="" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/커피.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>상품관리페이지입니다.</p></div>
                         <div id="c1_1_1_3">
                             <input type="text" placeholder="제목" name="idName">
@@ -58,7 +58,7 @@
 							<tfoot>
 								<%if(list.isEmpty()){%>
 								<tr>
-									<td colspan="11">조회된 리스트가 없습니다.</td>
+									<td colspan="10">조회된 리스트가 없습니다.</td>
 								</tr>
 								<%}else{%>
 								<%for(Product p : list){ %>
@@ -87,31 +87,30 @@
 
                 </div>
                 <div id="c1_3">
-                         <!-- 현재 페이지에 보여질 페이징바 -->
-		<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-		<!-- 맨 처음으로(<<) -->
-		<button onclick="location.href='list.st?currentPage=1'">&lt;&lt;</button>
-		<!-- 이전페이지로(<) -->
-		<button onclick="location.href='list.st?currentPage=<%=currentPage-1%>'">&lt;</button>
-		<%} %>
-		
-		<%for(int p=startPage; p<=endPage; p++){%>
-			<%if(currentPage != p) {%>
-			<button onclick="location.href='list.st?currentPage=<%=p%>'"><%=p%></button>
-			<%}else{ %>
-			<button dispabled><%=p %></button>
-			<%} %>	
-		<%} %>
-		
-		<%if(currentPage != maxPage){ %>
-		<!-- 다음페이지로(<) -->
-		<button onclick="location.href='list.st?currentPage=<%=currentPage+1%>'">&gt;</button>
-		<!-- 맨 마지막으로(>>) -->
-		<button onclick="location.href='list.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-		<%} %>
+                 <!-- 현재 페이지에 보여질 페이징바 -->
+				<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+				<!-- 맨 처음으로(<<) -->
+				<button onclick="location.href='list.st?currentPage=1'">&lt;&lt;</button>
+				<!-- 이전페이지로(<) -->
+				<button onclick="location.href='list.st?currentPage=<%=currentPage-1%>'">&lt;</button>
+				<%} %>
+				
+				<%for(int p=startPage; p<=endPage; p++){%>
+					<%if(currentPage != p) {%>
+					<button onclick="location.href='list.st?currentPage=<%=p%>'"><%=p%></button>
+					<%}else{ %>
+					<button dispabled><%=p %></button>
+					<%} %>	
+				<%} %>
+				
+				<%if(currentPage != maxPage){ %>
+				<!-- 다음페이지로(<) -->
+				<button onclick="location.href='list.st?currentPage=<%=currentPage+1%>'">&gt;</button>
+				<!-- 맨 마지막으로(>>) -->
+				<button onclick="location.href='list.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+				<%} %>
                 </div>
             </div>
-               
-            </div>
+        </div>
 </body>
 </html>

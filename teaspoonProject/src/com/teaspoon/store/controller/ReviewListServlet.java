@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Product;
+import com.teaspoon.store.model.vo.Review;
 
 /**
- * Servlet implementation class productListServlet
+ * Servlet implementation class ReviewListServlet
  */
-@WebServlet("/list.st")
-public class ProductListServlet extends HttpServlet {
+@WebServlet("/list.re")
+public class ReviewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductListServlet() {
+    public ReviewListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,7 +44,7 @@ public class ProductListServlet extends HttpServlet {
 		int boardLimit;		//한페이지에 보여질 게시글 최대 갯수
 		
 		//* listCount : 총 게시글 갯수
-		listCount = new ProductService().getListCount();
+		listCount = new ProductService().getReviewListCount();
 		
 		//* currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -66,14 +65,13 @@ public class ProductListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 
-		ArrayList<Product> list = new ProductService().selectProductList(pi);
+		ArrayList<Review> list = new ProductService().selectReviewList(pi);
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_store.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_review.jsp");
 		view.forward(request, response);
-	
 	}
 
 	/**
