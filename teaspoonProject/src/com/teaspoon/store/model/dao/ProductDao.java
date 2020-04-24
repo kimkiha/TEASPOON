@@ -398,7 +398,7 @@ public class ProductDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+		//System.out.println(list);
 		return list;
 		
 	}
@@ -432,28 +432,93 @@ public class ProductDao {
 		return result;
 	}
 	
+//	
+//	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
+//		int result = 1;
+//		PreparedStatement pstmt = null;
+//		String sql = prop.getProperty("updateAttachment");
+//		
+//		try {
+//			for(int i=0; i<list.size(); i++) {
+//				Attachment at = list.get(i);
+//				pstmt = conn.prepareStatement(sql);
+//				
+//				pstmt.setString(1, at.getChangeName());
+//				pstmt.setString(2, at.getOriginName());
+//				pstmt.setString(3, at.getFilePath());
+//				pstmt.setInt(4, at.getFileNo());
+//				
+//				result = pstmt.executeUpdate();
+//				
+//				if(result == 0 ) {
+//					return 0;
+//				}
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		return result;
+//		
+//	}
+//	
+//	
+//	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
+//		int result = 1;
+//		PreparedStatement pstmt = null;
+//		String sql = prop.getProperty("insertNewAttachment");
+//		
+//		try {
+//			for(int i=0; i<list.size(); i++) {
+//				Attachment at = list.get(i);
+//				
+//				pstmt = conn.prepareStatement(sql);
+//				
+//				pstmt.setInt(1, at.getRefBoardNo());
+//				pstmt.setString(2, at.getOriginName());
+//				pstmt.setString(3, at.getChangeName());
+//				pstmt.setString(4, at.getFilePath());
+//				
+//				if(i==0) { // 대표이미지(레벨이 1)
+//					pstmt.setInt(4, 1);
+//				}else {	// 상세이미지(레벨이 2)
+//					pstmt.setInt(4, 2);
+//				}
+//				
+//				result = pstmt.executeUpdate();
+//				
+//				if(result == 0 ) {
+//					return 0;
+//				}
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		return result;
+//		
+//	}
 	
-	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
+
+	public int updateAttachment(Connection conn, Attachment at) {
 		int result = 1;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateAttachment");
 		
 		try {
-			for(int i=0; i<list.size(); i++) {
-				Attachment at = list.get(i);
-				pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, at.getChangeName());
+			pstmt.setString(2, at.getOriginName());
+			pstmt.setString(3, at.getFilePath());
+			pstmt.setInt(4, at.getFileNo());
+			
+			result = pstmt.executeUpdate();
 				
-				pstmt.setString(1, at.getChangeName());
-				pstmt.setString(2, at.getOriginName());
-				pstmt.setString(3, at.getFilePath());
-				pstmt.setInt(4, at.getFileNo());
 				
-				result = pstmt.executeUpdate();
-				
-				if(result == 0 ) {
-					return 0;
-				}
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -464,34 +529,22 @@ public class ProductDao {
 	}
 	
 	
-	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
+	public int insertNewAttachment(Connection conn, Attachment at) {
 		int result = 1;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertNewAttachment");
 		
 		try {
-			for(int i=0; i<list.size(); i++) {
-				Attachment at = list.get(i);
-				
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setInt(1, at.getRefBoardNo());
-				pstmt.setString(2, at.getOriginName());
-				pstmt.setString(3, at.getChangeName());
-				pstmt.setString(4, at.getFilePath());
-				
-				if(i==0) { // 대표이미지(레벨이 1)
-					pstmt.setInt(4, 1);
-				}else {	// 상세이미지(레벨이 2)
-					pstmt.setInt(4, 2);
-				}
-				
-				result = pstmt.executeUpdate();
-				
-				if(result == 0 ) {
-					return 0;
-				}
-			}
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, at.getRefBoardNo());
+			pstmt.setString(2, at.getOriginName());
+			pstmt.setString(3, at.getChangeName());
+			pstmt.setString(4, at.getFilePath());
+			pstmt.setInt(5, at.getFileLevel());
+			
+			result = pstmt.executeUpdate();
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -558,8 +611,8 @@ public class ProductDao {
 	}		
 	
 	
-	// 관리자 리뷰 전체 조회시 서비스
-	public ArrayList<Review> selectReviewList(Connection conn){
+	// 사용자 리뷰 전체 조회시 서비스
+	public ArrayList<Review> selectReviewList(Connection conn, int pcode){
 		ArrayList<Review> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -568,6 +621,7 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pcode);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -593,40 +647,40 @@ public class ProductDao {
 	}
 	
 	// 사용자 리뷰 전체 조회시 서비스
-		public ArrayList<Review> selectAddReviewList(Connection conn,int addReview){
-			ArrayList<Review> list = new ArrayList<>();
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
+	public ArrayList<Review> selectAddReviewList(Connection conn,int addReview){
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+	
+		String sql = prop.getProperty("selectAddReviewList");
 		
-			String sql = prop.getProperty("selectAddReviewList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, addReview);
 			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, addReview);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Review r  = new Review();
+				r.setReviewNo(rset.getInt("review_no"));
+				r.setPcode(rset.getInt("pcode"));
+				r.setUserNo(rset.getInt("user_no"));
+				r.setContent(rset.getString("content"));
+				r.setCreateDate(rset.getDate("create_date"));
+				r.setUserId(rset.getString("user_id"));
+				r.setUserName(rset.getString("user_name"));
+				r.setPname(rset.getString("pname"));
 				
-				rset = pstmt.executeQuery();
-				
-				while(rset.next()) {
-					Review r  = new Review();
-					r.setReviewNo(rset.getInt("review_no"));
-					r.setPcode(rset.getInt("pcode"));
-					r.setUserNo(rset.getInt("user_no"));
-					r.setContent(rset.getString("content"));
-					r.setCreateDate(rset.getDate("create_date"));
-					r.setUserId(rset.getString("user_id"));
-					r.setUserName(rset.getString("user_name"));
-					r.setPname(rset.getString("pname"));
-					
-					list.add(r);
-				} 
-			}catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(pstmt);
-			}
-			return list;
+				list.add(r);
+			} 
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
+		return list;
+	}
 	
 		
 		// 관리자 리뷰 전체 조회시 서비스

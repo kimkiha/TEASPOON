@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.board.model.vo.Board;
+import com.teaspoon.board.service.BoardService;
+
 /**
  * Servlet implementation class MagazineUserServlet
  */
@@ -29,7 +32,13 @@ public class MagazineDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/board/magazine.jsp");
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		
+		Board b = new BoardService().selectBoard(bno);
+		
+		request.setAttribute("b", b);
+		
+		RequestDispatcher view = request.getRequestDispatcher("views/board/magazine_view.jsp");
 		view.forward(request, response);
 	}
 

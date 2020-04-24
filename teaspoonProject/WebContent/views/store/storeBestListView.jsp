@@ -44,16 +44,16 @@
                             </p>
                         </div>
                         <div class="product_top">
-                        	<input type="hidden" value=<%=list.get(0).getPcode() %>>
-                            <input type="hidden" value=<%=list.get(0).getKind() %>>
                             <div class="product_img">
+	                        	<input type="hidden" value=<%=list.get(0).getPcode() %>>
+	                            <input type="hidden" value=<%=list.get(0).getKind() %>>
                                 <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getTitleImg() %>" style="float:left; width:100%; height:inherit">
                             </div>
                             <div class="product_detail">
                                 <p style="font-size:22px; padding-bottom:10px;"><%=list.get(0).getPname()%></p>
                             </div>
                             <div class="like">
-                                <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
+                                <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
                             </div>
                             <div class="basket">
                                 <img id="open" src="<%=contextPath %>/resources/img/store/cart.png">
@@ -73,44 +73,30 @@
                                 <caption><b>베스트 상품 순위</b></caption>
                                 
                                 <tr>
-                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
-                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>1</th>
                                     <td width="400px" style="padding-left:50px; cursor:pointer;"><%=list.get(0).getPname()%></td>
                                 </tr>
                                 <tr>
-                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
-                           			 <input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>2</th>
                                     <td style="padding-left:50px; cursor:pointer;"><%=list.get(1).getPname()%></td>
                                 </tr>
                                 <tr>
-                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
-                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>3</th>
                                     <td style="padding-left:50px; cursor:pointer;"><%=list.get(2).getPname()%></td>
                                 </tr>
                                 <tr>
-                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
-                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>4</th>
                                     <td style="padding-left:50px; cursor:pointer;"><%=list.get(3).getPname()%></td>
                                 </tr>
                                 <tr>
-                               		<input type="hidden" value=<%=list.get(0).getPcode() %>>
-                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>5</th>
                                     <td style="padding-left:50px; cursor:pointer;"><%=list.get(4).getPname()%></td>
                                 </tr>
                                 <tr>
-                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
-                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>6</th>
                                     <td style="padding-left:50px; cursor:pointer;"><%=list.get(5).getPname()%></td>
                                 </tr>
                                 <tr>
-                                	<input type="hidden" value=<%=list.get(0).getPcode() %>>
-                            		<input type="hidden" value=<%=list.get(0).getKind() %>>
                                     <th>7</th>
                                     <td style="padding-left:50px; cursor:pointer;"><%=list.get(6).getPname()%></td>
                                 </tr>
@@ -122,16 +108,16 @@
                         <% for(int i=1; i<list.size(); i++) { %>
                         	<%Product p = list.get(i); %>
                             <div class="product" style="margin-top:50px; margin-right:30px;">
-                            	<input type="hidden" value=<%=list.get(i).getPcode() %>>
-                            	<input type="hidden" value=<%=list.get(i).getKind() %>>
                                 <div class="product_img">
+                            		<input type="hidden" value=<%=list.get(i).getPcode() %>>
+                            		<input type="hidden" value=<%=list.get(i).getKind() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
                                     <p style="padding-top:20px;padding-left:12px;"><%=p.getPname() %></p>
                                 </div>
                                 <div class="like">
-                                    <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
+                                    <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
                                 </div>
                                 <div class="basket">
                                     <img id="open" src="<%=contextPath %>/resources/img/store/cart.png">
@@ -153,16 +139,12 @@
             </div>
         </div>
         
-        <form id="duplicateDeletePcode" action="deleteWish.me" method="post">
-			<input type="hidden" name="pcode" id="dPcode">
-		</form>
-		
-
+        
         <!--product-->
         
         <script>
         $(function(){
-    		$('.product_top').click(function(){
+    		$('.product_img').click(function(){
     			var kind = $(this).children().eq(1).val();
     			var pcode = $(this).children().eq(0).val();
     			if(kind=='C'){
@@ -173,19 +155,9 @@
     		});
     	});
         
-        $(function(){
-    		$('.product').click(function(){
-    			var kind = $(this).children().eq(1).val();
-    			var pcode = $(this).children().eq(0).val();
-    			if(kind=='C'){
-    				location.href="<%=contextPath%>/detail.co?pcode="+pcode;
-    			} else{
-    				location.href="<%=contextPath%>/detail.it?pcode="+pcode;
-    			}
-    		});
-    	});
         
-        // 베스트 상품 목록(1~7번) 상세페이지 연결
+        
+        // 베스트 상품 목록(1~7번) 상세페이지 연결 ***********************************수정필요
         $(function(){
     		$('.top_list>table>tr>td>a').click(function(){
     			var kind = $(this).children().eq(1).val();
@@ -198,34 +170,58 @@
     		});
     	});
         
-     	// 위시리스트 등록 ajax
+     // 위시리스트 등록 ajax
     	$(function(){
     		$('.like_icon').click(function(){
-    			var pcode1 = $(this).parent().siblings(["#pcode"]).val();
+    			var pcode1 = $(this).parent().siblings([".product_img"]).children().eq(0).val();
     			//console.log(pcode1);
     			
-				var icon = $(this);        			
-    			$.ajax({
-    				url:"insertWish.me",
-    				data:{pcode:pcode1},
-    				success:function(result){
-    					if(result > 0){
-		        			 icon.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
-		        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
-		        			 if(bool){
-		        				 location.href="<%=contextPath %>/wishList.me";
-		        			 }
-    					} else if(result<0){
-    						$("#dPcode").val(pcode1);
-    						$("#duplicateDeletePcode").submit();
-    						
-    					} else if(result == 0){
-    						window.alert("로그인이 필요한 서비스입니다.");
-    					}
-    				}, error:function(){
-    					window.alert("통신에러");
-    				}
-    			});
+				var icon = $(this);
+				
+				if(icon.attr("class") == "like_icon empty"){ // 빈 하트일 경우 --> 위시리스트 등록
+        			$.ajax({
+        				url:"insertWish.me",
+        				data:{pcode:pcode1},
+        				success:function(result){
+        					if(result > 0){
+			        			 icon.removeClass("empty");
+			        			 icon.addClass("full");
+			        			 icon.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+			        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
+			        			 if(bool){
+			        				 location.href="<%=contextPath %>/wishList.me";
+			        			 }
+        					} else if(result<0){
+        						$("#dPcode").val(pcode1);
+        						$("#duplicateDeletePcode").submit();
+        						
+        					} else if(result == 0){
+        						window.alert("로그인이 필요한 서비스입니다.");
+        					}
+        				}, error:function(){
+        					window.alert("통신에러1");
+        				}
+    				});
+    			
+				}else{ // 채워진 하트일 경우 --> 위시리스트 삭제
+					
+					$.ajax({
+						url:"deleteWish.me", 
+						data:{pcode:pcode1},
+						success:function(result){
+							if(result > 0){
+			        			 icon.removeClass("full");
+			        			 icon.addClass("empty");
+								 icon.attr("src","<%=contextPath %>/resources/img/store/heart_emtpy.png");
+								 window.alert("위시리스트에서 삭제되었습니다.")
+							}else{
+								
+							}
+						},error:function(){
+							window.alert("통신에러2");
+						}
+					})
+				}
     		 });
     	});
         

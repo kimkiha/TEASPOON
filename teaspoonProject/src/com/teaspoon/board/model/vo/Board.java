@@ -12,7 +12,7 @@ public class Board {
 	private Date createDate;
 	private Date modifyDate;
 	private	String status;
-
+	private String changeName;
 
 	public Board(){
 		
@@ -46,7 +46,7 @@ public class Board {
 	}
 
 	public Board(int boardNo, int boardCategory, String boardTitle, String boardContent, int count, Date createDate,
-			Date modifyDate, String status) {
+			Date modifyDate, String status, String changeName) {
 		super();
 		this.boardNo = boardNo;
 		this.boardCategory = boardCategory;
@@ -56,8 +56,19 @@ public class Board {
 		this.createDate = createDate;
 		this.modifyDate = modifyDate;
 		this.status = status;
+		this.changeName = changeName;
 	}
 	
+
+
+	public String getChangeName() {
+		return changeName;
+	}
+
+
+	public void setChangeName(String changeName) {
+		this.changeName = changeName;
+	}
 
 
 	public int getBoardNo() {

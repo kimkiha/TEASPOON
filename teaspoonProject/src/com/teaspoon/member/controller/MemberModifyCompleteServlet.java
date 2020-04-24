@@ -1,29 +1,25 @@
-package com.teaspoon.store.controller;
+package com.teaspoon.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Review;
-
 /**
- * Servlet implementation class ReviewAddListServlet
+ * Servlet implementation class MemberModifyCompleteServlet
  */
-@WebServlet("/list.re")
-public class ReviewAddListServlet extends HttpServlet {
+@WebServlet("/memberModifyComplete.me")
+public class MemberModifyCompleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewAddListServlet() {
+    public MemberModifyCompleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +29,11 @@ public class ReviewAddListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int pcode = Integer.parseInt(request.getAttribute("pcode"));
-		ArrayList<Review> list = new ProductService().selectReviewList(pcode);
-		//자동으로 키값이 필드명으로 생김
-		response.setContentType("aplication/json; charset=utf-8");
-				
-		Gson gson = new Gson();
-		//gson.toJson(어레이객체,통로);
-		gson.toJson(list,response.getWriter()); // 이렇게하면 객체 배열로 변환후 전달됨
+		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_modify_complete.jsp");
+		view.forward(request, response); 
+	
+	
+	
 	}
 
 	/**

@@ -221,11 +221,6 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     			var updateMinMoney = $('#updateMinMoney').val();
     			var updateDiscountRate =$("#updateDiscountRate").val();
     			
-    			var prevGno= '.grade'+(gNo-10);
-    			var prevGradeMinMoney = $('.grade'+(Number(gNo)-10)).children().eq(2).text();
-    			var prevGradeDiscountGrade = $('.grade'+(Number(gNo)-10)).children().eq(3).text();
-    		
-    			
     			var nextGno= '.grade'+(gNo+10);
     			var nextGradeMinMoney = $('.grade'+(Number(gNo)+10)).children().eq(2).text();
     			var nextGradeDiscountGrade = $('.grade'+(Number(gNo)+10)).children().eq(3).text();

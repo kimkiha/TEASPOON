@@ -170,11 +170,21 @@ public class ProductService {
 		int result1 = new ProductDao().updateProduct(conn, p);
 		int result2 = 1;
 
-		if (!list.isEmpty()) { // 기존 첨부파일이 있을경우 --> update
-			result2 = new ProductDao().updateAttachment(conn, list);
-		} else { // 기존 첨부파일이 없을경우 --> insert
-			result2 = new ProductDao().insertNewAttachment(conn, list);
-		} 
+		for(int i=0; i<list.size(); i++) {
+			Attachment at = list.get(i);
+			
+			if(at.getRefBoardNo() != 0) { // 기존에 첨부파일이 없을 경우 --> inssert
+				result2 += new ProductDao().insertNewAttachment(conn, at);
+			}else {// 기존에 첨부파일이 있을 경우 --> update 
+				result2 += new ProductDao().updateAttachment(conn, at);
+			}
+		}
+		
+		//if (!list.isEmpty()) { // 기존 첨부파일이 있을경우 --> update
+		//	result2 = new ProductDao().updateAttachment(conn, list);
+		//} else { // 기존 첨부파일이 없을경우 --> insert
+		//	result2 = new ProductDao().insertNewAttachment(conn, list);
+		//} 
 
 		if (result1 > 0 && result2 > 0) {
 			commit(conn);
@@ -222,9 +232,9 @@ public class ProductService {
 	 * @param pi
 	 * @return
 	 */
-	public ArrayList<Review> selectReviewList() {
+	public ArrayList<Review> selectReviewList(int pcode) {
 		Connection conn = getConnection();
-		ArrayList<Review> list = new ProductDao().selectReviewList(conn);
+		ArrayList<Review> list = new ProductDao().selectReviewList(conn, pcode);
 
 		close(conn);
 		return list;
