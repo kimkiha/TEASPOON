@@ -72,12 +72,12 @@
                         </div>
                         <div id="next" style="float:left; margin:0 auto">
                             <figure class="snip1504" >
-                                <img src="<%=contextPath %>/resources/img/board/<%=b.get%>" >
+                                <img src="<%=contextPath %>/resources/img/board/<%=b.getChangeName()%>" >
                                 <figcaption>
                                   <h2>what's a coffee</h2>
                                   <h4>커피가 나에게 물을 때</h4>
                                 </figcaption>
-                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo()+1%>"></a>
+                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo()-1%>"></a>
                             </figure>
                         </div>
                     </div>

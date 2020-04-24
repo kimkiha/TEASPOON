@@ -146,11 +146,14 @@ public class BoardDao {
 
 			while (rset.next()) {
 				list.add(new Board(rset.getInt("BOARD_NO"),
+						rset.getInt("BOARD_CATEGORY"),
 						rset.getString("BOARD_TITLE"),
+						rset.getString("BOARD_CONTENT"),
 						rset.getInt("COUNT"),
 						rset.getDate("CREATE_DATE"),
 						rset.getDate("MODIFY_DATE"),
-						rset.getString("STATUS")
+						rset.getString("STATUS"),
+						rset.getString("CHANGE_NAME")
 						));
 			}
 
@@ -378,6 +381,24 @@ public class BoardDao {
 		return list;
 	}
 	
+	public int deleteBoard(Connection conn, int bno) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 }
 
