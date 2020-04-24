@@ -128,7 +128,7 @@ public class ProductService {
 	}
 	
 	
-	/** 관리자 상품 수정용 서비스(상품객체 및 첨부파일 조회)
+	/** 관리자 상품 수정용 폼 조회서비스(2개)
 	 * @param pcode 조회하고자하는 해당 상품코드
 	 * @return
 	 */
@@ -147,9 +147,13 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
-	
 
-	// 새롭게 등록된 파일이 있을경우 
+	 
+	/** 관리자 상품 수정용 서비스 
+	 * @param p
+	 * @param list
+	 * @return
+	 */
 	public int updateProduct(Product p, ArrayList<Attachment> list) {
 		Connection conn = getConnection();
 		
@@ -218,6 +222,10 @@ public class ProductService {
 		return list;
 	}
 	
+	/** 사용자 상품상세 조회시 리뷰 3개씩 더보기 기능
+	 * @param addReview
+	 * @return
+	 */
 	public ArrayList<Review> selectAddReviewList(int addReview){
 		Connection conn = getConnection();
 		ArrayList<Review> list = new ProductDao().selectAddReviewList(conn,addReview);
@@ -252,12 +260,44 @@ public class ProductService {
 	}
 	
 	
+	/** 사용자 상품상세 조회시 리뷰 조회 서비스
+	 * @param pcode
+	 * @return
+	 */
 	public ArrayList<Review> selectProductReview(int pcode){
 		Connection conn = getConnection();
 		ArrayList<Review> list = new ProductDao().selectProductReview(conn, pcode);
 		
 		close(conn);
 		return list;
+	}
+	
+	/** 관리자 리뷰 삭제 서비스
+	 * @param reviewNo 삭제할 리뷰번호
+	 * @return
+	 */
+	public int deleteReview(int reviewNo) {
+		Connection conn = getConnection();
+		int result = new ProductDao().deleteReview(conn, reviewNo);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
+	public int deleteProduct(int pcode) {
+		Connection conn = getConnection();
+		int result = new ProductDao().deleteProduct(conn, pcode);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
 	}
 
 }

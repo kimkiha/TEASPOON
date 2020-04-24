@@ -1,26 +1,26 @@
-package com.teaspoon.board.controller;
-
+package com.teaspoon.store.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.store.model.service.ProductService;
+
 /**
- * Servlet implementation class MagazineServlet
+ * Servlet implementation class ProductDeleteServlet
  */
-@WebServlet("/magazine.bo")
-public class MagazineServlet extends HttpServlet {
+@WebServlet("/delete.st")
+public class ProductDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MagazineServlet() {
+    public ProductDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +29,19 @@ public class MagazineServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("views/board/magazine.jsp");
-		
-		view.forward(request, response);
+
+		int pcode = Integer.parseInt(request.getParameter("pcode"));
+		int result = new ProductService().deleteProduct(pcode);
+	
+		if(result>0) { // 상품의 status값을 n으로 변경성공
+			request.getSession().setAttribute("msg", "상품이 삭제되었습니다.");
+			response.sendRedirect("list.st?currentPage=1");
+		} else {
+			request.setAttribute("msg", "상품삭제 실패");
+			request.getRequestDispatcher("views/common/errorPage_admin.jsp").forward(request, response);
+			
+		}
+	
 	}
 
 	/**

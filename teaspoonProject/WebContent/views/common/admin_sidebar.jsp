@@ -122,7 +122,7 @@
             <li><a href="adminNotice.html">공지사항</a></li>
             <li><a href="adminEvent.html">이벤트</a></li>
             <li><a href="adminAbout.html">어바웃티스푼</a></li>
-            <li><a href="<%=contextPath%>/magazineList.bo?currentPage=1">매거진</a></li>
+            <li><a href="<%=contextPath%>/magazineAdminList.bo?currentPage=1">매거진</a></li>
             </ul>
             </li>
             <br>

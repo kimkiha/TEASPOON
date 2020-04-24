@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.board.service.BoardService;
 import com.teaspoon.common.PageInfo;
@@ -17,7 +18,7 @@ import com.teaspoon.common.PageInfo;
 /**
  * Servlet implementation class MagazineAdminServlet
  */
-@WebServlet("/magazineList.bo")
+@WebServlet("/magazineAdminList.bo")
 public class MagazineAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -115,7 +116,7 @@ public class MagazineAdminServlet extends HttpServlet {
 		
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
-		//회원현황목록 출력을위한 list객체전달
+		//목록 출력을위한 list객체전달
 		request.setAttribute("list", list);
 	
 		

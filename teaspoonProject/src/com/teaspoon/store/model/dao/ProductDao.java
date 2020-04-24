@@ -473,16 +473,18 @@ public class ProductDao {
 	public int insertNewAttachment(Connection conn, ArrayList<Attachment> list) {
 		int result = 1;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("updateNewAttachment");
+		String sql = prop.getProperty("insertNewAttachment");
 		
 		try {
 			for(int i=0; i<list.size(); i++) {
 				Attachment at = list.get(i);
 				
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, at.getOriginName());
-				pstmt.setString(2, at.getChangeName());
-				pstmt.setString(3, at.getFilePath());
+				
+				pstmt.setInt(1, at.getRefBoardNo());
+				pstmt.setString(2, at.getOriginName());
+				pstmt.setString(3, at.getChangeName());
+				pstmt.setString(4, at.getFilePath());
 				
 				if(i==0) { // 대표이미지(레벨이 1)
 					pstmt.setInt(4, 1);
@@ -733,4 +735,39 @@ public class ProductDao {
 		
 	}
 	
+	public int deleteReview(Connection conn, int reviewNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reviewNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteProduct(Connection conn, int pcode) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pcode);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

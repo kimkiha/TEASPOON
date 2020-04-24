@@ -58,10 +58,10 @@ public class MagazineUpdateServlet extends HttpServlet {
 			Board b = new Board();
 			b.setBoardTitle(multiRequest.getParameter("title"));
 			b.setBoardContent(multiRequest.getParameter("Content"));
-			
+			b.setStatus(multiRequest.getParameter("status"));
 			int bno = Integer.parseInt(multiRequest.getParameter("bno"));
 			b.setBoardNo(bno);
-			
+
 			// 3_2. 새로이 추가된 첨부파일이 존재할 경우 넘길값들 --> Attachment 객체에 담기
 			Attachment at = null;
 			

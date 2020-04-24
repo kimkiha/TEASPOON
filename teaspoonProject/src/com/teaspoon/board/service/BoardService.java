@@ -121,7 +121,16 @@ public class BoardService {
 		
 		return result1 * result2;
 	}
-	
+
+	public ArrayList<Attachment> selectMagazineThumbnailList(PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Attachment> atlist = new BoardDao().selectMagazineThumbnailList(conn, pi);
+		
+		close(conn);
+		
+		return atlist;
+	}
 	
 	
 }
