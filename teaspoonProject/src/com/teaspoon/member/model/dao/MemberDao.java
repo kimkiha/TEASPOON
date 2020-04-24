@@ -1100,4 +1100,32 @@ public int insertAttachment(Connection conn, Attachment at) {
 			
 			return result;
 		}
+		
+		public int newUpdateMemberGrade(Connection conn, Grade g,String nextG) {
+			
+			int result = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			String sql = prop.getProperty("newUpdateMemberGrade");
+			System.out.println(g.getGradeName());
+			System.out.println(nextG);
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1,g.getGradeCode()-10);
+				pstmt.setString(2, g.getGradeName());
+				pstmt.setString(3, nextG);
+				pstmt.setInt(4, g.getGradeCode());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
 }
