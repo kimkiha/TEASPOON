@@ -1042,4 +1042,32 @@ public int insertAttachment(Connection conn, Attachment at) {
 			
 			return result;
 		}
+		
+		
+		public int updateGrade(Connection conn, Grade g) {
+			
+			int result = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			String sql = prop.getProperty("updateGrade");
+			System.out.println("aaa");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1,g.getGradeName());
+				pstmt.setInt(2, g.getMinAcount());
+				pstmt.setInt(3, g.getGradeRate());
+				pstmt.setInt(4, g.getGradeCode());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
 }

@@ -123,16 +123,16 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                        
                           <tfoot>
                               <tr>
-                                  <td><input type="text" id="gNo"  name="gNo" disabled></td>
+                             		 <input type="hidden" id="gno" name="gno">
+                                  <td><input type="text" id="gNo" name="gNo" disabled="disabled"></td>
                                   <td><input type="text" id="updateGradeName" name="updateGradeName" placeholder="수정할등급명" required></td>
                                   <td><input type="number" id="updateMinMoney" name="updateMinMoney" placeholder="수정할최소금액" required></td>
                                   <td><input type="number" id="updateDiscountRate" name="updateDiscountRate" placeholder="수정할할인률" required></td>
                                   <td>
                                   
-                                      <button type="button" id="btnUpdate" style="width: 70px;">수정</button>
+                                      <button type="submit" id="btnUpdate" style="width: 70px;" onclick="return updateGrade();">수정</button>
                                       <button type="reset"  style="width: 70px;">취소</button>
                                    </td>
-                                   <input id ="nextG" type="hidden" class="nextG" >
                                   </tr>
 
                           </tfoot>
@@ -146,11 +146,16 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
             </div>
         </div>
     </div>  
+    
+    
     <form id="maxGradeForm" action="<%=contextPath%>/maxGradeInsert.me" method="post">
 		<input type="hidden" id="maxGradeName" name="maxGradeName">
 		<input type="hidden" id="maxMinMoney" name="maxMinMoney">
 		<input type="hidden" id="maxDiscountRate" name="maxDiscountRate">
 	</form>
+	
+	
+	
     <script>
     	$(function(){
     		$("#btnInsertForm").click(function(){
@@ -166,6 +171,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                 var updateMinMoney =$(this).parent().parent().children().eq(2).text();
                 var updateDiscountRate =$(this).parent().parent().children().eq(3).text();
     			$("#gNo").val(gNo);
+    			$("#gno").val(gNo);
     			$("#updateGradeName").val(updateGradeName);
     			$("#updateMinMoney").val(updateMinMoney);
     			$("#updateDiscountRate").val(updateDiscountRate);
@@ -209,8 +215,8 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     </script> 
     
     <script>
-    	$(function(){
-    		$("#btnUpdate").click(function(){
+    	
+    function updateGrade(){
     			var gNo = $("#gNo").val();
     			var updateMinMoney = $('#updateMinMoney').val();
     			var updateDiscountRate =$("#updateDiscountRate").val();
@@ -226,20 +232,39 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     			
     			//console.log(updateDiscountRate);
     			//console.log(nextGradeDiscountGrade);
-    	
-    			if(Number(updateMinMoney) >=Number(nextGradeMinMoney)){
-    				alert("상위 등급보다 달성금액이 크거나 같을 수 없습니다.");
-    			}else if(Number(updateMinMoney) <=Number(prevGradeMinMoney)){
-    				alert("하위 등급보다 달성금액이 작거나 같을 수 없습니다.");
-    			}else if(Number(updateDiscountRate)<= Number(prevGradeDiscountGrade)){
-    				alert("상위 등급보다 할인률이 크거나 같을 수 없습니다.");
-    			}else if(Number(updateDiscountRate)>= Number(nextGradeDiscountGrade)){
-    				alert("하위 등급보다 할인률이 작거나 같을 수 없습니다.");
+    			
+    			if((nextGradeDiscountGrade+100000)==100000){
+    				if(Number(updateMinMoney) <= Number(prevGradeMinMoney)){
+        				alert("하위 등급보다 달성금액이 작거나 같을 수 없습니다.");
+        				return false;
+        			}else if(Number(updateDiscountRate)<= Number(prevGradeDiscountGrade)){
+        				alert("하위 등급보다 할인률이 작거나 같을 수 없습니다.");
+        				return false;
+        			}else{
+        				return true;
+        			} 
+    			}else{
+    				if(Number(updateMinMoney) >=Number(nextGradeMinMoney)){
+        				alert("상위 등급보다 달성금액이 크거나 같을 수 없습니다.");
+        				return false;
+        			}else if(Number(updateMinMoney) <=Number(prevGradeMinMoney)){
+        				alert("하위 등급보다 달성금액이 작거나 같을 수 없습니다.");
+        				return false;
+        			}else if(Number(updateDiscountRate)<= Number(prevGradeDiscountGrade)){
+        				alert("상위 등급보다 할인률이 크거나 같을 수 없습니다.");
+        				return false;
+        			}else if(Number(updateDiscountRate)>= Number(nextGradeDiscountGrade)){
+        				alert("하위 등급보다 할인률이 작거나 같을 수 없습니다.");
+        				return false;
+        			}else{
+        				return true;
+        			}
     			}
+    	       
     			
     			
-    		});
-    	});
+    		}
+    	
     </script>
     
  
