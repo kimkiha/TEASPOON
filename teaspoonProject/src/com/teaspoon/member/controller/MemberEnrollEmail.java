@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class EmailServlet
@@ -98,11 +99,7 @@ public class MemberEnrollEmail extends HttpServlet {
         }catch (Exception e) {
             e.printStackTrace();// TODO: handle exception
         }
-//        HttpSession saveKey = request.getSession();
-//        saveKey.setAttribute("randomKey", randomKey);
-//        request.setAttribute("randomKey", randomKey); 
-//        request.getRequestDispatcher("memberEnroll.me").forward(request, response);
-        
+
         PrintWriter out = response.getWriter();
         out.print(randomKey);
 	}
