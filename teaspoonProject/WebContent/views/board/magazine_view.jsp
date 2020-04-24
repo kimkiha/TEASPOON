@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.teaspoon.board.model.vo.*"%>
+<%
+ Board b = (Board)request.getAttribute("b");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>매거진 | TeaSpoon</title>
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/magazine_view.css">>
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/magazine_view.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/magazine_view_photo.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
@@ -34,12 +37,12 @@
                     <div id="magazine">
                         <div id="title">
                             <div id="title_detail">
-                                <div id="con_tt"><p>아침에 커피를 내릴때면,</div>
+                                <div id="con_tt"><p><%=b.getBoardTitle() %></p></div>
                                 <br><br>
                                 <div id="con_wr">
                                     <ul>
                                         <li>Editor's letter &nbsp;|</li>
-                                        <li>&nbsp;2020 SPRING</li>
+                                        <li>&nbsp;2020</li>
                                     </ul>
                                 </div>
                             </div>
@@ -49,38 +52,9 @@
                                     <li><a href="#"><img src="<%=contextPath %>/resources/img/board/facebook.png" alt="페이스북 공유하기"></a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="magazine_photo1">
-                            <img src="">
-                        </div>
-                        <div class="magazine_content1">
-                            <p>
-				                                커피는 아라비카, 로부스타, 리베리카 이렇게 세 종류의 나무에서 생산됩니다.
-				                                아라비카는 좋은 향미가 풍부하고 카페인 함량이 적어 전 세계 커피 산출량의 약 70%를 차지하고 있습니다. 
-				                                주요 생산국은 브라질, 콜롬비아, 멕시코, 과테말라, 에티오피아, 하와이, 인도 등이 있습니다. 
-				                                마일드 종은 향기가 풍부해 스트레이트 커피에 많이 사용되고, 브라질 종은 다른 커피콩과 섞었을 때 
-				                                향미가 특히 좋아지기 때문에 블렌드 커피에 많이 사용됩니다.
-				                                로부스타는 인스턴트 커피에 이용되며 베트남, 인도네시아, 우간다, 콩고, 필리핀 등에서 주로 생산됩니다. 
-				                                아라비카 종과 달리 척박한 환경에서도 잘 자라는데 품질이 약간 떨어져 맛이 쓰고 거칠며 향기가 약한 편입니다. 
-				                                세계 커피 수확량의 약 30%를 차지하며, 수확량이 많기 때문에 저렴한 커피의 재료로 이용되고 있습니다.
-				                                리베리카는 향기와 맛이 별로 좋지 않은데다 전체 산출량이 1%도 되지 않아 주요 생산국에서 현지 소모되고 있습니다.
-                            </p>
-                        </div>
-                        <div class="magazine_photo1">
-                            <img src="">
-                        </div>
-                        <div class="magazine_content1 magazine_content2">
-                            <p>
-				                                커피는 아라비카, 로부스타, 리베리카 이렇게 세 종류의 나무에서 생산됩니다.
-				                                아라비카는 좋은 향미가 풍부하고 카페인 함량이 적어 전 세계 커피 산출량의 약 70%를 차지하고 있습니다. 
-				                                주요 생산국은 브라질, 콜롬비아, 멕시코, 과테말라, 에티오피아, 하와이, 인도 등이 있습니다. 
-				                                마일드 종은 향기가 풍부해 스트레이트 커피에 많이 사용되고, 브라질 종은 다른 커피콩과 섞었을 때 
-				                                향미가 특히 좋아지기 때문에 블렌드 커피에 많이 사용됩니다.
-				                                로부스타는 인스턴트 커피에 이용되며 베트남, 인도네시아, 우간다, 콩고, 필리핀 등에서 주로 생산됩니다. 
-				                                아라비카 종과 달리 척박한 환경에서도 잘 자라는데 품질이 약간 떨어져 맛이 쓰고 거칠며 향기가 약한 편입니다. 
-				                                세계 커피 수확량의 약 30%를 차지하며, 수확량이 많기 때문에 저렴한 커피의 재료로 이용되고 있습니다.
-				                                리베리카는 향기와 맛이 별로 좋지 않은데다 전체 산출량이 1%도 되지 않아 주요 생산국에서 현지 소모되고 있습니다.
-                            </p>
+                            <div>
+                            <%=b.getBoardContent() %>
+                            </div>
                         </div>
                     </div>
                     <div id="pre_next">
@@ -91,17 +65,17 @@
                                   <h2>KNOW THAT EAT</h2>
                                   <h4>알고마시면 더 맛있는 커피이야기</h4>
                                 </figcaption>
-                                <a href="#"></a>
+                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo()+1 %>"></a>
                             </figure>
                         </div>
                         <div id="next" style="float:left; margin:0 auto">
                             <figure class="snip1504" >
-                                <img src="<%=contextPath %>/resources/img/board/magazine_view_2.jpg" >
+                                <img src="<%=contextPath %>/resources/img/board/<%=b.getChangeName() %>" >
                                 <figcaption>
                                   <h2>what's a coffee</h2>
                                   <h4>커피가 나에게 물을 때</h4>
                                 </figcaption>
-                                <a href="#"></a>
+                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo()+1%>"></a>
                             </figure>
                         </div>
                     </div>
@@ -109,6 +83,7 @@
             <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
+</div>
     <!-- //wrap-->
     <script src="<%=contextPath %>/resources/js/magazine_view.js"></script>
     
