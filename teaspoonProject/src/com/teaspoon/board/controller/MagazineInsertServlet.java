@@ -78,7 +78,7 @@ public class MagazineInsertServlet extends HttpServlet {
 
 		if(result > 0) { //성공했을경우
 			request.getSession().setAttribute("msg", "매거진이 등록되었습니다");
-			response.sendRedirect("magazineList.bo?currentPage=1");
+			response.sendRedirect("magazineAdminList.bo?currentPage=1");
 		}else { //실패했을경우
 			
 			// 서버에 업로드된 파일 찾아서 삭제

@@ -17,13 +17,13 @@ import com.teaspoon.member.model.vo.Grade;
  * Servlet implementation class MemberGradateUpdate
  */
 @WebServlet("/gradeUpdate.me")
-public class MemberGradateUpdate extends HttpServlet {
+public class MemberGradeteUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberGradateUpdate() {
+    public MemberGradeteUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }

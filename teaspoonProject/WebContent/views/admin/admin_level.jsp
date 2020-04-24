@@ -215,17 +215,26 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     			var updateMinMoney = $('#updateMinMoney').val();
     			var updateDiscountRate =$("#updateDiscountRate").val();
     			
+    			var prevGno= '.grade'+(gNo-10);
+    			var prevGradeMinMoney = $('.grade'+(Number(gNo)-10)).children().eq(2).text();
+    			var prevGradeDiscountGrade = $('.grade'+(Number(gNo)-10)).children().eq(3).text();
+    		
+    			
     			var nextGno= '.grade'+(gNo+10);
     			var nextGradeMinMoney = $('.grade'+(Number(gNo)+10)).children().eq(2).text();
     			var nextGradeDiscountGrade = $('.grade'+(Number(gNo)+10)).children().eq(3).text();
     			
-    			console.log(updateDiscountRate);
-    			console.log(nextGradeDiscountGrade);
-    			console.log(nextGradeMinMoney);
-    			if(updateMinMoney >=nextGradeMinMoney){
+    			//console.log(updateDiscountRate);
+    			//console.log(nextGradeDiscountGrade);
+    	
+    			if(Number(updateMinMoney) >=Number(nextGradeMinMoney)){
     				alert("상위 등급보다 달성금액이 크거나 같을 수 없습니다.");
-    			}else if(updateDiscountRate>=nextGradeDiscountGrade){
+    			}else if(Number(updateMinMoney) <=Number(prevGradeMinMoney)){
+    				alert("하위 등급보다 달성금액이 작거나 같을 수 없습니다.");
+    			}else if(Number(updateDiscountRate)<= Number(prevGradeDiscountGrade)){
     				alert("상위 등급보다 할인률이 크거나 같을 수 없습니다.");
+    			}else if(Number(updateDiscountRate)>= Number(nextGradeDiscountGrade)){
+    				alert("하위 등급보다 할인률이 작거나 같을 수 없습니다.");
     			}
     			
     			
