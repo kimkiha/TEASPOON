@@ -1,6 +1,6 @@
-#maga{width:1200px; height:2220px; margin:0 auto;}
-#magazine{width:1000px; margin: 0 100px;}
-#magazine #title{width:1000px; height:140px}
+/* #maga{width:1200px; height:2220px; margin:0 auto;} */
+#magazine{width:1000px; margin: 0 auto;}
+#magazine #title{width:100%; height:140px}
 #magazine #title #title_detail{float:left; width:700px; height: 100%;}
 /*매거진 타이틀*/
 #magazine #title #title_detail #con_tt{
@@ -17,6 +17,7 @@
 #magazine .magazine_photo1{width:100%; height: 500px; background: #000;}
 #magazine .magazine_content1>p{line-height: 35px; margin:20px 0 50px 0;text-align: left; }
 
+.maga_con{float:left; display:block; width:100%; height:100%; }
 /*이전 매거진 다음 매거진*/
-#pre_next{float:left; width: 1200px; height: 300px; }
-#pre_next #next, #pre{float:left; width: 600px; height: 100%;}
+#pre_next{display:inline-block; width: 100%; height: 250px; }
+#pre_next #next, #pre{float:left; width: 500px; height: 100%;}
