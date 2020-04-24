@@ -132,15 +132,5 @@ public class BoardService {
 		return atlist;
 	}
 	
-	public int deleteBoard(int bno) {
-		Connection conn = getConnection();
-		
-		int result = new BoardDao().deleteBoard(conn, bno);
-		
-		close(conn);
-		
-		return result;
-	}
-	
 	
 }

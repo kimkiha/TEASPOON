@@ -146,14 +146,11 @@ public class BoardDao {
 
 			while (rset.next()) {
 				list.add(new Board(rset.getInt("BOARD_NO"),
-						rset.getInt("BOARD_CATEGORY"),
 						rset.getString("BOARD_TITLE"),
-						rset.getString("BOARD_CONTENT"),
 						rset.getInt("COUNT"),
 						rset.getDate("CREATE_DATE"),
 						rset.getDate("MODIFY_DATE"),
-						rset.getString("STATUS"),
-						rset.getString("CHANGE_NAME")
+						rset.getString("STATUS")
 						));
 			}
 
@@ -190,13 +187,11 @@ public class BoardDao {
 			if(rset.next()) {
 				b = new Board();
 				b.setBoardNo(rset.getInt("BOARD_NO"));
-				b.setBoardCategory(rset.getInt("BOARD_CATEGORY"));
+				b.setBoardCategory(rset.getInt("board_category"));
 				b.setBoardTitle(rset.getString("BOARD_TITLE"));
-				b.setBoardContent(rset.getString("BOARD_CONTENT"));
-				b.setCount(rset.getInt("COUNT"));
-				b.setCreateDate(rset.getDate("CREATE_DATE"));
-				b.setModifyDate(rset.getDate("MODIFY_DATE"));
-				b.setStatus(rset.getString("STATUS"));
+				b.setBoardContent(rset.getString("board_content"));
+				b.setStatus(rset.getString("status"));
+				b.setBoardContent(rset.getString("board_content"));
 			}
 			
 		} catch (SQLException e) {
@@ -310,7 +305,6 @@ public class BoardDao {
 	}
 	
 	/**
-	 * 
 	 * @param conn
 	 * @param at
 	 * @return
@@ -337,12 +331,6 @@ public class BoardDao {
 		return result;
 	}
 	
-	/**
-	 * 5.사용자페이지 썸네일 리스트 조회용
-	 * @param conn
-	 * @param pi
-	 * @return
-	 */
 	public ArrayList<Attachment> selectMagazineThumbnailList(Connection conn, PageInfo pi){
 			
 		ArrayList<Attachment> list = new ArrayList<>();
@@ -390,23 +378,6 @@ public class BoardDao {
 		return list;
 	}
 	
-	public int deleteBoard(Connection conn, int bno) {
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("deleteBoard");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bno);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;
-	}
+	
 }
 
