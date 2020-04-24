@@ -12,7 +12,6 @@ public class Board {
 	private Date createDate;
 	private Date modifyDate;
 	private	String status;
-	private String changeName;
 
 
 	public Board(){
@@ -47,7 +46,7 @@ public class Board {
 	}
 
 	public Board(int boardNo, int boardCategory, String boardTitle, String boardContent, int count, Date createDate,
-			Date modifyDate, String status, String changeName) {
+			Date modifyDate, String status) {
 		super();
 		this.boardNo = boardNo;
 		this.boardCategory = boardCategory;
@@ -57,19 +56,8 @@ public class Board {
 		this.createDate = createDate;
 		this.modifyDate = modifyDate;
 		this.status = status;
-		this.changeName = changeName;
 	}
 	
-	
-
-	public String getChangeName() {
-		return changeName;
-	}
-
-
-	public void setChangeName(String changeName) {
-		this.changeName = changeName;
-	}
 
 
 	public int getBoardNo() {
@@ -156,15 +144,8 @@ public class Board {
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardCategory=" + boardCategory + ", boardTitle=" + boardTitle
 				+ ", boardContent=" + boardContent + ", count=" + count + ", createDate=" + createDate + ", modifyDate="
-				+ modifyDate + ", status=" + status + ", changeName=" + changeName + ", getBoardNo()=" + getBoardNo()
-				+ ", getBoardCategory()=" + getBoardCategory() + ", getBoardTitle()=" + getBoardTitle()
-				+ ", getBoardContent()=" + getBoardContent() + ", getCount()=" + getCount() + ", getCreateDate()="
-				+ getCreateDate() + ", getModifyDate()=" + getModifyDate() + ", getStatus()=" + getStatus()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+				+ modifyDate + ", status=" + status + "]";
 	}
-
-
 	
 	
 	

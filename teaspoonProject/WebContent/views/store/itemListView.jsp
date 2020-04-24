@@ -50,15 +50,15 @@
                         	<%for(Product p : list) {%>
                             
                             <div class="product" style="margin-top:50px; margin-right:30px;">
-                            	<input type="hidden" value=<%=p.getPcode() %>>
                                 <div class="product_img">
+                            		<input type="hidden" id="pcode" name="pcode" value=<%=p.getPcode() %>>
                                     <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
                                     <p style="padding-top:20px;padding-left:12px;"><%=p.getPname() %></p>
                                 </div>
                                 <div class="like">
-                                    <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
+                                    <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png" onclick="wishList();">
                                 </div>
                                 <div class="basket">
                                     <img id="open" class="basket_icon" src="<%=contextPath %>/resources/img/store/cart.png">
@@ -104,8 +104,9 @@
 
         <!--product-->
         <script>
-        $(function(){
-    		$('.product').click(function(){
+    	 // 개별 상품의 상세 페이지로 이동
+    	$(function(){
+    		$('.product_img').click(function(){
     			var pcode = $(this).children().eq(0).val();
     			location.href="<%=contextPath%>/detail.it?pcode="+pcode;
     		});
@@ -140,7 +141,7 @@
         						window.alert("로그인이 필요한 서비스입니다.");
         					}
         				}, error:function(){
-        					window.alert("통신에러");
+        					window.alert("통신에러1");
         				}
     				});
     			
@@ -159,7 +160,7 @@
 								
 							}
 						},error:function(){
-							window.alert("통신에러");
+							window.alert("통신에러2");
 						}
 					})
 				}

@@ -269,7 +269,7 @@
 				data : {pcode:<%=p.getPcode()%>},
 				type : "get",
 				success : function(list) {
-					console.log(list);
+					//console.log(list);
 					var value = "";
 					for (var i = 0; i < list.length; i++) {
 						value += "<table cellpadding='0' cellspacing='0'>"
@@ -291,7 +291,7 @@
 					$("#data").html(value);
 				},
 				error : function() {
-					console.log("댓글리스트조회용 ajax 통신 실패!")
+					//console.log("댓글리스트조회용 ajax 통신 실패!")
 				}
 
 			});

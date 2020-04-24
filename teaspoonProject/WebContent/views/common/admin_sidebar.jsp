@@ -46,7 +46,7 @@
                 //display: block 인지 판단해서 slideUp /slideDown 적용 
 
                 var p = $(this).next();
-                console.log(p);
+                //console.log(p);
                 //css("속성명") : 속성명만 제시하면 해당 요소의 속성값을 리턴한다.
                 if(p.css("display") == "none"){
                     //열려 있는 답변이 무었인지 모르니 형제관계p를 전부닫는다.

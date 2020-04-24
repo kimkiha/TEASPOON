@@ -398,7 +398,7 @@ public class ProductDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+		//System.out.println(list);
 		return list;
 		
 	}
