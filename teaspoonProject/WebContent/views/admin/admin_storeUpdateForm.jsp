@@ -72,7 +72,6 @@ table tr {border-bottom: 1px solid lightgray;}
 							
 							
 							<th style="width:100px;">상세이미지</th>
-							
 							<%if(list.size() == 4){ %>
 							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
 							<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
@@ -87,12 +86,14 @@ table tr {border-bottom: 1px solid lightgray;}
 							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
 							<td><img id="contentImg2" width="150" height="120"></td>
 							<td><img id="contentImg3" width="150" height="120"></td>
+							
 							<%} else{%>
+							<td><img id="contentImg1" width="150" height="120"></td>
 							<td><img id="contentImg2" width="150" height="120"></td>
-							<td><img id="contentImg3" width="150" height="120"></td>
 							<td><img id="contentImg3" width="150" height="120"></td>
 							<%} %>
 							<td>
+
 							<%for(int i=0; i<list.size(); i++) { %>
 								<input type="hidden" name="originFileNo<%=i %>" value="<%=list.get(i).getFileNo()%>">
 								<input type="hidden" name="originFileName<%=i %>" value="<%=list.get(i).getChangeName() %>">

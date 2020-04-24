@@ -448,13 +448,11 @@ public class ProductDao {
 				pstmt.setString(3, at.getFilePath());
 				pstmt.setInt(4, at.getFileNo());
 				
-				
 				result = pstmt.executeUpdate();
 				
 				if(result == 0 ) {
 					return 0;
 				}
-				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

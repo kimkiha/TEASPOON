@@ -42,7 +42,14 @@ public class deleteWish extends HttpServlet {
 		int result = new MemberService().deleteWish(userNo, pcode);
 		
 		if(result>0) { // 위시리스트 삭제성공
-			response.sendRedirect("coffee.st?currentPage=1"); 
+			if() {			// 요청페이지가 커피이면
+				response.sendRedirect("coffee.st?currentPage=1");
+			} else if() {	// 요청페이지가 아이템이면
+				response.sendRedirect("item.st?currentPage=1");
+			} else {		// 요청페이지가 베스트이면
+				response.sendRedirect("storeBest.st");
+			}
+			 
 			
 		} else { // 삭제 실패
 			request.setAttribute("msg", "위시리스트 삭제 실패했습니다");
