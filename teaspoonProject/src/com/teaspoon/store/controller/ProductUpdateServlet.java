@@ -75,25 +75,31 @@ public class ProductUpdateServlet extends HttpServlet {
 				String originFileNo = "originFileNo"+(i-1);
 				String originFileName = "originFileName"+(i-1);
 				
-			if(multiRequest.getOriginalFileName(name) != null) {
-				Attachment at = new Attachment();
-				
-				at.setOriginName(multiRequest.getOriginalFileName(name)); // 새로 추가된 파일의 원본명 추가
-				at.setChangeName(multiRequest.getFilesystemName(name)); // 새로 추가된 파일의 수정명 추가
-				at.setFilePath(savePath);
-				
-				if(multiRequest.getParameter(originFileNo) != null) {
-					at.setFileNo(Integer.parseInt(multiRequest.getParameter(originFileNo)));
+				if(multiRequest.getOriginalFileName(name) != null) {
+					Attachment at = new Attachment();
 					
-					// 기존에 서버에 업로드된 파일도 삭제
-					File deleteFile = new File(savePath + multiRequest.getParameter(originFileName));
-					deleteFile.delete();
+					at.setOriginName(multiRequest.getOriginalFileName(name)); // 새로 추가된 파일의 원본명 추가
+					at.setChangeName(multiRequest.getFilesystemName(name)); // 새로 추가된 파일의 수정명 추가
+					at.setFilePath(savePath);
 					
-				} else { // 기존의 첨부파일이 없었을 경우 --> 새로이 attachment 테이블에 insert
-					at.setRefBoardNo(pcode);
+					if(i == 0) {
+						at.setFileLevel(1);						
+					}else {
+						at.setFileLevel(2);
+					}
 					
-				}
-				list.add(at);
+					if(multiRequest.getParameter(originFileNo) != null) {
+						at.setFileNo(Integer.parseInt(multiRequest.getParameter(originFileNo)));
+						
+						// 기존에 서버에 업로드된 파일도 삭제
+						File deleteFile = new File(savePath + multiRequest.getParameter(originFileName));
+						deleteFile.delete();
+						
+					} else { // 기존의 첨부파일이 없었을 경우 --> 새로이 attachment 테이블에 insert
+						at.setRefBoardNo(pcode);
+						
+					}
+					list.add(at);
 				
 				}
 			}

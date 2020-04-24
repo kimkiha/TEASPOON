@@ -59,7 +59,7 @@
                                    <p style="padding-top:20px;padding-left:15px;"><%=p.getPname() %></p>
                                 </div>
                                 <div class="like">
-                                    <img class="like_icon" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
+                                    <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
                                 </div>
                                 
                                 <div class="basket">
@@ -103,9 +103,9 @@
             </div>
         </div>
 
-		<form id="duplicateDeletePcode" action="deleteWish.me" method="post">
+		<!-- <form id="duplicateDeletePcode" action="deleteWish.me" method="post">
 			<input type="hidden" name="pcode" id="dPcode">
-		</form>
+		</form> -->
 		
 		
         <!--product-->
@@ -124,28 +124,52 @@
         			var pcode1 = $(this).parent().siblings([".product_img"]).children().eq(0).val();
         			//console.log(pcode1);
         			
-					var icon = $(this);        			
-        			$.ajax({
-        				url:"insertWish.me",
-        				data:{pcode:pcode1},
-        				success:function(result){
-        					if(result > 0){
-			        			 icon.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
-			        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
-			        			 if(bool){
-			        				 location.href="<%=contextPath %>/wishList.me";
-			        			 }
-        					} else if(result<0){
-        						$("#dPcode").val(pcode1);
-        						$("#duplicateDeletePcode").submit();
-        						
-        					} else if(result == 0){
-        						window.alert("로그인이 필요한 서비스입니다.");
-        					}
-        				}, error:function(){
-        					window.alert("통신에러");
-        				}
-        			});
+					var icon = $(this);
+					
+					if(icon.attr("class") == "like_icon empty"){ // 빈 하트일 경우 --> 위시리스트 등록
+	        			$.ajax({
+	        				url:"insertWish.me",
+	        				data:{pcode:pcode1},
+	        				success:function(result){
+	        					if(result > 0){
+				        			 icon.removeClass("empty");
+				        			 icon.addClass("full");
+				        			 icon.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+				        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
+				        			 if(bool){
+				        				 location.href="<%=contextPath %>/wishList.me";
+				        			 }
+	        					} else if(result<0){
+	        						$("#dPcode").val(pcode1);
+	        						$("#duplicateDeletePcode").submit();
+	        						
+	        					} else if(result == 0){
+	        						window.alert("로그인이 필요한 서비스입니다.");
+	        					}
+	        				}, error:function(){
+	        					window.alert("통신에러");
+	        				}
+        				});
+        			
+					}else{ // 채워진 하트일 경우 --> 위시리스트 삭제
+						
+						$.ajax({
+							url:"deleteWish.me", 
+							data:{pcode:pcode1},
+							success:function(result){
+								if(result > 0){
+				        			 icon.removeClass("full");
+				        			 icon.addClass("empty");
+									 icon.attr("src","<%=contextPath %>/resources/img/store/heart_emtpy.png");
+									 window.alert("위시리스트에서 삭제되었습니다.")
+								}else{
+									
+								}
+							},error:function(){
+								window.alert("통신에러");
+							}
+						})
+					}
         		 });
         	});
         	
