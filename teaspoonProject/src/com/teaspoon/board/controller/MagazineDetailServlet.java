@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.board.model.vo.Board;
+import com.teaspoon.board.service.BoardService;
+
 /**
  * Servlet implementation class MagazineUserServlet
  */
-@WebServlet("/magazineUser.bo")
-public class MagazineUserServlet extends HttpServlet {
+@WebServlet("/magazineDetail.bo")
+public class MagazineDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MagazineUserServlet() {
+    public MagazineDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +32,13 @@ public class MagazineUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/board/magazine.jsp");
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		
+		Board b = new BoardService().selectBoard(bno);
+		
+		request.setAttribute("b", b);
+		
+		RequestDispatcher view = request.getRequestDispatcher("views/board/magazine_view.jsp");
 		view.forward(request, response);
 	}
 

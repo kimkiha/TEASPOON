@@ -51,11 +51,11 @@ table tr {border-bottom: 1px solid lightgray;}
 							<th>재고</th>
 						</tr>
 						<tr>
-							<td><input id="pcode" type="text" style="width:90px" value="<%=p.getPcode() %>" readonly></td>
-							<td colspan="2"><input type="text" style="width:250px;" value="<%=p.getPname() %>"></td>
-							<td><input type="text" style="width:150px" value="<%=p.getSupPrice() %>"></td>
-							<td><input type="text" style="width:150px" value="<%=p.getPrice() %>"></td>
-							<td><input type="text" style="width:150px" value="<%=p.getStock() %>"></td>
+							<td><input id="pcode" type="text" style="width:90px" name="pcode" value="<%=p.getPcode() %>" readonly></td>
+							<td colspan="2"><input type="text" style="width:250px;" name="pname" value="<%=p.getPname() %>"></td>
+							<td><input type="text" style="width:150px" name="supPrice" value="<%=p.getSupPrice() %>"></td>
+							<td><input type="text" style="width:150px" name="price" value="<%=p.getPrice() %>"></td>
+							<td><input type="text" style="width:150px" name="stock" value="<%=p.getStock() %>"></td>
 						</tr>
 						<tr>
 							<th>상품종류</th>
@@ -64,7 +64,7 @@ table tr {border-bottom: 1px solid lightgray;}
 								<input type="radio" name="kind" value="I" style="margin-left:20px;"<%=checked[1] %>>I
 							</td>
 							<th>키워드</th>
-							<td colspan="2"><input type="text" style="width:310px;" value="<%=p.getKeyword() %>"></td>
+							<td colspan="2"><input type="text" style="width:310px;" name="keyword" value="<%=p.getKeyword() %>"></td>
 						</tr>
 						<tr>
 							<th>대표이미지</th>
@@ -72,7 +72,6 @@ table tr {border-bottom: 1px solid lightgray;}
 							
 							
 							<th style="width:100px;">상세이미지</th>
-							
 							<%if(list.size() == 4){ %>
 							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
 							<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
@@ -87,23 +86,24 @@ table tr {border-bottom: 1px solid lightgray;}
 							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
 							<td><img id="contentImg2" width="150" height="120"></td>
 							<td><img id="contentImg3" width="150" height="120"></td>
+							
 							<%} else{%>
+							<td><img id="contentImg1" width="150" height="120"></td>
 							<td><img id="contentImg2" width="150" height="120"></td>
-							<td><img id="contentImg3" width="150" height="120"></td>
 							<td><img id="contentImg3" width="150" height="120"></td>
 							<%} %>
 							<td>
-							<%=for(int i=0; i<list.size(); i++) { %>
-								<input type="hidden" name="originFileNo" value="<%=list.get(i).getOriginName()%>">
-								<input type="hidden" name="originFileNo" value="<%=list.get(i).getFileNo()%>">
-								<input type="hidden" name="originFileName" value="<%=list.get(i).getChangeName() %>">
+
+							<%for(int i=0; i<list.size(); i++) { %>
+								<input type="hidden" name="originFileNo<%=i %>" value="<%=list.get(i).getFileNo()%>">
+								<input type="hidden" name="originFileName<%=i %>" value="<%=list.get(i).getChangeName() %>">
 							<%} %>
 							</td>
 						</tr>
 						<tr>
 							<th>상품상세</th>
 							<td colspan="5">
-								<textarea name="pcontent" cols=77 rows=3 style="resize:none;" required><%=p.getPcontent() %></textarea>
+								<textarea name="pcontent" cols=77 rows=3 style="resize:none;" name="pcontent" required><%=p.getPcontent() %></textarea>
 							<td>
 						</tr>
 

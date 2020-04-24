@@ -261,7 +261,7 @@
                 value = $(this).text();
                 
                 $(".btnStatus").text(value);
-                console.log($(".btnStatus").text());
+                //console.log($(".btnStatus").text());
                
             });
             $(".dm2>.dropdown-item").click(function(){
@@ -270,7 +270,7 @@
                 value = $(this).text();
                
                 $(".btnLevel").text(value);
-                console.log($(".btnLevel").text());
+                //console.log($(".btnLevel").text());
             });
         });
     </script>

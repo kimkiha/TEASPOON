@@ -46,7 +46,7 @@
                 //display: block 인지 판단해서 slideUp /slideDown 적용 
 
                 var p = $(this).next();
-                console.log(p);
+                //console.log(p);
                 //css("속성명") : 속성명만 제시하면 해당 요소의 속성값을 리턴한다.
                 if(p.css("display") == "none"){
                     //열려 있는 답변이 무었인지 모르니 형제관계p를 전부닫는다.
@@ -122,7 +122,7 @@
             <li><a href="adminNotice.html">공지사항</a></li>
             <li><a href="adminEvent.html">이벤트</a></li>
             <li><a href="adminAbout.html">어바웃티스푼</a></li>
-            <li><a href="<%=contextPath%>/magazineList.bo?currentPage=1">매거진</a></li>
+            <li><a href="<%=contextPath%>/magazineAdminList.bo?currentPage=1">매거진</a></li>
             </ul>
             </li>
             <br>
