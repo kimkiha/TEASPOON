@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="com.teaspoon.board.model.vo.*"%>
 <%
  Board b = (Board)request.getAttribute("b");
+ 
 %>
 <!DOCTYPE html>
 <html>
@@ -22,6 +23,7 @@
         #banner{height: 170px; line-height: 170px; background:rgb(222, 219, 210); margin-top:64px;}
     </style>
 </head>
+
 <body>
 <div id="wrap">
         <%@ include file="../common/menubar.jsp" %>
@@ -52,7 +54,7 @@
                                     <li><a href="#"><img src="<%=contextPath %>/resources/img/board/facebook.png" alt="페이스북 공유하기"></a></li>
                                 </ul>
                             </div>
-                            <div>
+                            <div style="height:100%">
                             <%=b.getBoardContent() %>
                             </div>
                         </div>
@@ -70,7 +72,7 @@
                         </div>
                         <div id="next" style="float:left; margin:0 auto">
                             <figure class="snip1504" >
-                                <img src="<%=contextPath %>/resources/img/board/<%=b.getChangeName() %>" >
+                                <img src="<%=contextPath %>/resources/img/board/<%=b.get%>" >
                                 <figcaption>
                                   <h2>what's a coffee</h2>
                                   <h4>커피가 나에게 물을 때</h4>
