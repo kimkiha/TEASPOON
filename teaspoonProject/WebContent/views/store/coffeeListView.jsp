@@ -147,7 +147,7 @@
 	        						window.alert("로그인이 필요한 서비스입니다.");
 	        					}
 	        				}, error:function(){
-	        					window.alert("통신에러");
+	        					window.alert("통신에러1");
 	        				}
         				});
         			
@@ -166,7 +166,7 @@
 									
 								}
 							},error:function(){
-								window.alert("통신에러");
+								window.alert("통신에러2");
 							}
 						})
 					}

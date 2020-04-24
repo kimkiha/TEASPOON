@@ -141,21 +141,21 @@
                 
                 //val("값") 이렇게 값을 넣으면 벨류값을 변경하고 val()이렇게 실행만할시 이미 들어있느 벨류값을 가져온다.
                 value = $(this).text();
-                console.log(value);
+               // console.log(value);
                 $(".btn1").text(value);
             });
             $(".dm2>.dropdown-item").click(function(){
                 
                 //val("값") 이렇게 값을 넣으면 벨류값을 변경하고 val()이렇게 실행만할시 이미 들어있느 벨류값을 가져온다.
                 value = $(this).text();
-                console.log(value);
+                //console.log(value);
                 $(".btn2").text(value);
             });
             $(".dm3>.dropdown-item").click(function(){
                 
                 //val("값") 이렇게 값을 넣으면 벨류값을 변경하고 val()이렇게 실행만할시 이미 들어있느 벨류값을 가져온다.
                 value = $(this).text();
-                console.log(value);
+                //console.log(value);
                 $(".btn3").text(value);
             });
         });
