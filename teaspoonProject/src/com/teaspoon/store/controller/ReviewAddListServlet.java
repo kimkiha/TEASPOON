@@ -33,7 +33,8 @@ public class ReviewAddListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int pcode = Integer.parseInt(request.getAttribute("pcode"));
+		int pcode = Integer.parseInt(request.getParameter("pcode"));
+		System.out.println(pcode);
 		ArrayList<Review> list = new ProductService().selectReviewList(pcode);
 		//자동으로 키값이 필드명으로 생김
 		response.setContentType("aplication/json; charset=utf-8");

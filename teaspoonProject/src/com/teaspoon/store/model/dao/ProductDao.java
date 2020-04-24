@@ -647,7 +647,7 @@ public class ProductDao {
 	}
 	
 	// 사용자 리뷰 전체 조회시 서비스
-	public ArrayList<Review> selectAddReviewList(Connection conn,int addReview){
+	public ArrayList<Review> selectAddReviewList(Connection conn,int addReview,int pcode){
 		ArrayList<Review> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -656,7 +656,8 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, addReview);
+			pstmt.setInt(1, pcode);
+			pstmt.setInt(2, addReview);
 			
 			rset = pstmt.executeQuery();
 			

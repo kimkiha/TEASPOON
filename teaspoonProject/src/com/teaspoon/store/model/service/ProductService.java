@@ -246,9 +246,9 @@ public class ProductService {
 	 * @param addReview
 	 * @return
 	 */
-	public ArrayList<Review> selectAddReviewList(int addReview) {
+	public ArrayList<Review> selectAddReviewList(int addReview,int pcode) {
 		Connection conn = getConnection();
-		ArrayList<Review> list = new ProductDao().selectAddReviewList(conn, addReview);
+		ArrayList<Review> list = new ProductDao().selectAddReviewList(conn, addReview,pcode);
 
 		close(conn);
 		return list;
