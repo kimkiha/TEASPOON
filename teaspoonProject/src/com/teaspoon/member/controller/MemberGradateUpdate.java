@@ -1,6 +1,7 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,8 +52,8 @@ public class MemberGradateUpdate extends HttpServlet {
 //		System.out.println(maxGradeCheck);
 		
 		
-		int result = new MemberService().updateGrade(g);
-		
+		ArrayList<Grade> gList = new MemberService().selectGradeList();
+		int result = new MemberService().updateGrade(g,gList);
 		
 		if(result > 0) { 
 			
