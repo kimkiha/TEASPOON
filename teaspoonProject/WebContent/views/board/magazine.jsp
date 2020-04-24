@@ -49,8 +49,8 @@
                                             <img src="<%=contextPath %>/resources/img/board/magazine_1.png" alt="" > 
                                             <figcaption>
                                                 <h3>KNOW THAT EAT</h3>
-                                                <p>알고마시면 더 맛있는 커피이야기</p>
-                                                <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
+                                                <p><%=b.getBoardTitle() %></p>
+                                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo() %>" class="read">매거진 보기+</a>
                                             </figcaption>
                                         </figure>
                                     </div>

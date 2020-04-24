@@ -67,13 +67,14 @@ input:disabled {
 
 }
 
-.btnenroll3 {
+#Modify_1 {
   width:140px;
   height:55px;
   font-size:20px;
   color:white;
   background-color: rgb(46, 45, 45);
   margin-top: 40px;
+  margin-bottom : 100px;
   border-radius: 5px;
 
 }
@@ -105,7 +106,7 @@ h6{
 }
 
  /* input */
- #userid, #username, #birthday, #email, #password{
+#userId, #userPwd1, #userPwd2, #email{
      width:400px;
      height: 55px;
      margin-top: 15px;
@@ -170,10 +171,10 @@ h6{
  } 
 
  /* 전화번호 input*/
- #number1{
+ #verification{
 
   width:265px;
-  height:55px;
+  height:50px;
  }
  
  /* 성별 버튼*/
@@ -182,32 +183,13 @@ h6{
   height: 60px;
 }
 
- ul.im1 {
-     list-style-type:disc; 
-     list-style-image: url( "images/marker.png" );
-     font-size: 20px;
-   }
- ul.im2 {
-     list-style-image: url( "images/marker.png" );
-     font-size: 20px;
-   }
- 
- li {
-     text-align: left;
-   }
-
-  /* */  /* */  /* */  /* */  /* */  /* */  /* */  /* */  /* */  /* */  /* */
  
  /* input */
- #userid, #email, #password{
+ #userid, #email, #password, #birthday, #userName{
      width:400px;
      height: 55px;
      margin-bottom: 30px;
      margin-right: 10px;
- }
- #username {
-  width:400px;
-  height: 55px;
  }
 
 
@@ -259,14 +241,6 @@ h6{
  
  }
  
- 
- /* 인증번호입력 input*/
- #verification{
- 
-     width:400px;
-     height:55px;
- 
- }
  
  ul.im1 {
      list-style-type:disc; 

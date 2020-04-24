@@ -387,8 +387,8 @@ String randomKey = (String)request.getAttribute("randomKey");
                                         <td style= "font-size:20px;"><li>생 년 월 일</li></td>
                                         <td style= "text-align:left;" colspan="2">
                                         	<input type="number" id="birthday"  name="birthday" placeholder="생년월일8자리(ex)19940610">
- 											<label><input type="radio" name="gender" id="gender" value="1">남자 </label>
-                                            <label><input type="radio" name="gender" id="gender" value="2">여자</label>
+ 											<input type="radio"  name="gender" value="1" checked>남자
+                                            <input type="radio"  name="gender" value="2">여자
                                         </td>
                                                      
                                     </tr>
@@ -541,9 +541,11 @@ String randomKey = (String)request.getAttribute("randomKey");
                 alert("모두 동의하셔야합니다.");
             }
         }
-    
-    
     </script>
+    
+    
+    
+    
     <script>
     $("#seconde_agree_btn").click(function(){
             // 유효성 검사할 각각의 "input 요소"들 변수에 받아두기
@@ -566,13 +568,14 @@ String randomKey = (String)request.getAttribute("randomKey");
             
             // 2) 생년월일검사
             //    숫자!!로만 8글자 이상, 8글자 이하
-            regExp = /^[0-9]{8,8}$/; 
+            regExp = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
             if(!regExp.test(birth.value)){
                 alert("유효한 생년월일을 입력하세요");
                 birth.value = "";
                 birth.focus();
                 return false;               
             }
+           
             
             // 3) 전화번호검사
             //    숫자!!로만 7글자 이상, 8글자 이하
@@ -613,7 +616,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                 return false;
             }
 
-             // '모두동의'버튼 클릭시
+             
              //$("#defaultOpen3").removeAttr("disabled");
 				$("#defaultOpen3").click();	// 다음페이지로 이동
 
@@ -627,7 +630,14 @@ String randomKey = (String)request.getAttribute("randomKey");
 			
 			// 중복확인 클릭했을 때
 			$("#idCheck").click(function(){
-				
+				  var id = document.getElementById("userId");
+				  var regExp = /^[a-z][a-z\d]{3,11}$/i;
+		            if(!regExp.test(id.value)){
+		                alert("유효한 아이디를 입력하세요!!");
+		                id.value = "";
+		                id.focus();
+		                return false;               
+		            }
 				// 아이디 입력하는 input요소
 				var userId = $("#userId").val();
 				
@@ -722,9 +732,10 @@ String randomKey = (String)request.getAttribute("randomKey");
                 	
                 var Identi = document.getElementById("identify");
                 
+                
     			var username = $("#userName").val();
     			var Birthday = $("#birthday").val();
-    			var gender = $("#gender").val();
+    		
     			var firstnumber = $("#firstnumber").val();
     			var phonenum = $("#verification").val();
     			var UserId = $("#userId").val();
@@ -740,10 +751,16 @@ String randomKey = (String)request.getAttribute("randomKey");
               	}else{
               		alert("인증 성공하였습니다.");
     				//$("#defaultOpen4").removeAttr("disabled").click();
-    				
+              		var genderArray = document.getElementsByName("gender");
+                    
+                    for(var i=0; i<genderArray.length; i++){
+          
+                        if(genderArray[i].checked){
+                          $("#gender2").val(genderArray[i].value);
+                        }
+                    }
     				$("#userName2").val(username);
     				$("#birthday2").val(Birthday);
-    				$("#gender2").val(gender);
     				$("#firstnumber2").val(firstnumber);
     				$("#verification2").val(phonenum);
     				$("#userId2").val(UserId);

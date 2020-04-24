@@ -1,4 +1,4 @@
-package com.teaspoon.board.controller;
+package com.teaspoon.member.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.board.model.vo.Board;
-import com.teaspoon.board.service.BoardService;
-
 /**
- * Servlet implementation class MagazineUserServlet
+ * Servlet implementation class MemberModifyCompleteServlet
  */
-@WebServlet("/magazineDetail.bo")
-public class MagazineDetailServlet extends HttpServlet {
+@WebServlet("/memberModifyComplete.me")
+public class MemberModifyCompleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MagazineDetailServlet() {
+    public MemberModifyCompleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +28,12 @@ public class MagazineDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		
-		Board b = new BoardService().selectBoard(bno);
-		
-		request.setAttribute("b", b);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/board/magazine_view.jsp");
-		view.forward(request, response);
+
+		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_modify_complete.jsp");
+		view.forward(request, response); 
+	
+	
+	
 	}
 
 	/**
