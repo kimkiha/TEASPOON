@@ -34,9 +34,9 @@
                             <div id="enroll">
                                 <a href="<%=contextPath%>/memberEnroll.me">회원가입</a>
                                 <span>|</span>
-                                <a href="">아이디 찾기</a>
+                                <a href="<%=contextPath %>/idsearch.me" >아이디 찾기</a>
                                 <span>|</span>
-                                <a href="">비밀번호 찾기</a>
+                                <a href="<%=contextPath %>/pwsearch.me">비밀번호 찾기</a>
                       
                             </div>
                             </fieldset>

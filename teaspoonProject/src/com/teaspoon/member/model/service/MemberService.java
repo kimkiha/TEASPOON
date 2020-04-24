@@ -14,7 +14,6 @@ import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
-import com.teaspoon.store.model.vo.Product;
 
 public class MemberService {
 
@@ -416,6 +415,23 @@ public class MemberService {
 		return count;
 		
 	}
+	
+	/**
+	 * 메일 중복체크용 서비스 (아이디찾기시, 가입된 이메일인지 확인할때)
+	 * @param userId	--> 중복확인하고자 하는 사용자가 입력한 아이디값
+	 * @return			--> 해당 아이디와 일치하는 갯수
+	 */
+	public int emailCheck(String email) {
+		Connection conn = getConnection();
+		
+		int count = new MemberDao().emailCheck(conn, email);
+		
+		close(conn);
+		
+		return count;
+		
+	}
+	
 	
 	// 상품 페이지에서 위시리스트로 상품 삽입
 	public int insertWish(int pcode, int userNo) {
