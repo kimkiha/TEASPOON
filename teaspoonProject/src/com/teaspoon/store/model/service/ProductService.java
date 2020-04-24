@@ -232,9 +232,9 @@ public class ProductService {
 	 * @param pi
 	 * @return
 	 */
-	public ArrayList<Review> selectReviewList() {
+	public ArrayList<Review> selectReviewList(int pcode) {
 		Connection conn = getConnection();
-		ArrayList<Review> list = new ProductDao().selectReviewList(conn);
+		ArrayList<Review> list = new ProductDao().selectReviewList(conn, pcode);
 
 		close(conn);
 		return list;

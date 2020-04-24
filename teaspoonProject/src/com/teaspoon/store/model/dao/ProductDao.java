@@ -611,8 +611,8 @@ public class ProductDao {
 	}		
 	
 	
-	// 관리자 리뷰 전체 조회시 서비스
-	public ArrayList<Review> selectReviewList(Connection conn){
+	// 사용자 리뷰 전체 조회시 서비스
+	public ArrayList<Review> selectReviewList(Connection conn, int pcode){
 		ArrayList<Review> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -621,6 +621,7 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pcode);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -646,40 +647,40 @@ public class ProductDao {
 	}
 	
 	// 사용자 리뷰 전체 조회시 서비스
-		public ArrayList<Review> selectAddReviewList(Connection conn,int addReview){
-			ArrayList<Review> list = new ArrayList<>();
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
+	public ArrayList<Review> selectAddReviewList(Connection conn,int addReview){
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+	
+		String sql = prop.getProperty("selectAddReviewList");
 		
-			String sql = prop.getProperty("selectAddReviewList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, addReview);
 			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, addReview);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Review r  = new Review();
+				r.setReviewNo(rset.getInt("review_no"));
+				r.setPcode(rset.getInt("pcode"));
+				r.setUserNo(rset.getInt("user_no"));
+				r.setContent(rset.getString("content"));
+				r.setCreateDate(rset.getDate("create_date"));
+				r.setUserId(rset.getString("user_id"));
+				r.setUserName(rset.getString("user_name"));
+				r.setPname(rset.getString("pname"));
 				
-				rset = pstmt.executeQuery();
-				
-				while(rset.next()) {
-					Review r  = new Review();
-					r.setReviewNo(rset.getInt("review_no"));
-					r.setPcode(rset.getInt("pcode"));
-					r.setUserNo(rset.getInt("user_no"));
-					r.setContent(rset.getString("content"));
-					r.setCreateDate(rset.getDate("create_date"));
-					r.setUserId(rset.getString("user_id"));
-					r.setUserName(rset.getString("user_name"));
-					r.setPname(rset.getString("pname"));
-					
-					list.add(r);
-				} 
-			}catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(pstmt);
-			}
-			return list;
+				list.add(r);
+			} 
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
+		return list;
+	}
 	
 		
 		// 관리자 리뷰 전체 조회시 서비스
