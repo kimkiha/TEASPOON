@@ -1,6 +1,5 @@
 package com.teaspoon.board.controller;
 
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MagazineServlet
+ * Servlet implementation class Instagram
  */
-@WebServlet("/magazine.bo")
-public class MagazineServlet extends HttpServlet {
+@WebServlet("/instagram.bo")
+public class InstagramServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MagazineServlet() {
+    public InstagramServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,8 +28,8 @@ public class MagazineServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("views/board/magazine.jsp");
-		
+
+		RequestDispatcher view = request.getRequestDispatcher("views/board/instagram.jsp");
 		view.forward(request, response);
 	}
 

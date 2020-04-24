@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.board.model.vo.*,com.teaspoon.common.PageInfo "%>
+<% 
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	ArrayList<Attachment> atList = (ArrayList<Attachment>)request.getAttribute("atList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,6 +121,32 @@
                             </div>
                         </div>
                     </div>
+                
+                	 <div id="c1_3">
+                    <!-- 현재 페이지에 보여질 페이징바 -->
+					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+						<!-- 맨 처음으로(<<) -->
+						<button onclick="location.href='magazineList.bo?currentPage=1>'">&lt;&lt;</button>
+						<!-- 이전페이지로(<) -->
+						<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
+					<%} %>
+					
+					<%for(int p=startPage; p<=endPage; p++){%>
+						<%if(currentPage != p) {%>
+						<button onclick="location.href='magazineList.bo?currentPage=<%=p%>'"><%=p%></button>
+						<%}else{ %>
+						<button disabled><%=p %></button>
+						<%} %>	
+					<%} %>
+					
+					<%if(currentPage != maxPage){ %>
+						<!-- 다음페이지로(<) -->
+						<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
+						<!-- 맨 마지막으로(>>) -->
+						<button onclick="location.href='magazineList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+					<%} %>
+                </div>
+        
                 </div>
           </div>
             <!-- 공지사항 -->
