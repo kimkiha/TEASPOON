@@ -2,7 +2,6 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.board.model.vo.*,com.teaspoon.common.PageInfo "%>
 <% 
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-	ArrayList<Attachment> atList = (ArrayList<Attachment>)request.getAttribute("atList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -25,7 +24,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <style>
-        #banner{height: 170px; line-height: 170px; background:rgb(222, 219, 210);}
+        #banner{height: 170px; line-height: 170px; background:rgb(222, 219, 210)}
+        #paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
+		#paging button:hover{cursor:pointer;color:#d6ae71;}
     </style>
 </head>
 
@@ -41,88 +42,27 @@
           <div id="content">
             <!-- magazine -->
                 <div class="contaniner" >
+                <!-- magazine -->
                     <div id="magazine">
                         <div id="line_one">
+                        	<%for(Board b : list) {%>
                                 <div class="first_mz">
                                     <div class="effect-wrap">
                                         <figure class="effect7">
-                                            <img src="<%=contextPath %>/resources/img/board/magazine_1.png" alt="" > 
+                                            <img style="width:100%;height:100%;"src="<%=contextPath%>/resources/img/board/<%=b.getChangeName() %>" alt="" > 
                                             <figcaption>
                                                 <h3>KNOW THAT EAT</h3>
-                                                <p>알고마시면 더 맛있는 커피이야기</p>
+                                                <p><%=b.getBoardTitle() %></p>
                                                 <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
                                             </figcaption>
                                         </figure>
                                     </div>
                                 </div>
-                                <div class="secon_mz">
-                                        <div class="effect-wrap">
-                                            <figure class="effect7">
-                                                <img src="<%=contextPath %>/resources/img/board/magazine_2.png" alt="">
-                                                <figcaption>
-                                                    <h3>WHAT'S A COFFEE</h3>
-                                                    <p>커피가 나에게 물을 때</p>
-                                                    <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
-                                                </figcaption>
-                                            </figure>
-                                        </div>
-                                </div>
-                        </div>
-                        <div id="line_other">
-                            <div class="first_mz">
-                                <div class="effect-wrap">
-                                    <figure class="effect7">
-                                        <img src="<%=contextPath %>/resources/img/board/magazine_2.png" alt="" > 
-                                        <figcaption>
-                                            <h3>KNOW THAT EAT</h3>
-                                            <p>알고마시면 더 맛있는 커피이야기</p>
-                                            <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                            <div class="secon_mz">
-                                    <div class="effect-wrap">
-                                        <figure class="effect7">
-                                            <img src="<%=contextPath %>/resources/img/board/magazine_1.png" alt="">
-                                            <figcaption>
-                                                <h3>WHAT'S A COFFEE</h3>
-                                                <p>커피가 나에게 물을 때</p>
-                                                <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                            </div>
-                        </div> 
-                        <div id="line_other">
-                            <div class="first_mz">
-                                <div class="effect-wrap">
-                                    <figure class="effect7">
-                                        <img src="<%=contextPath %>/resources/img/board/magazine_1.png" alt="" > 
-                                        <figcaption>
-                                            <h3>KNOW THAT EAT</h3>
-                                            <p>알고마시면 더 맛있는 커피이야기</p>
-                                            <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                            <div class="secon_mz">
-                                    <div class="effect-wrap">
-                                        <figure class="effect7">
-                                            <img src="<%=contextPath %>/resources/img/board/magazine_2.png" alt="">
-                                            <figcaption>
-                                                <h3>WHAT'S A COFFEE</h3>
-                                                <p>커피가 나에게 물을 때</p>
-                                                <a href="<%=contextPath%>/views/board/magazine_view.jsp" class="read">매거진 보기+</a>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                            </div>
+                                <%} %>
                         </div>
                     </div>
                 
-                	 <div id="c1_3">
+                	<div id="paging" class="pagination" style="height:100px">
                     <!-- 현재 페이지에 보여질 페이징바 -->
 					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 						<!-- 맨 처음으로(<<) -->
