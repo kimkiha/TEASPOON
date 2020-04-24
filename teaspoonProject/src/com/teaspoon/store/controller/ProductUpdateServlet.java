@@ -68,30 +68,40 @@ public class ProductUpdateServlet extends HttpServlet {
 			
 			
 			// 파일리스트
+			// 3-2. Attachment테이블에 insert할 정보
 			ArrayList<Attachment> list = new ArrayList<>();
 			
-			for(int i=0; i<list.size(); i++) {
-				String name = "file"+ (i+1); 
-				System.out.print(name);
+		
+			
+			for(int i=1; i<=4; i++) {
+				String name = "file"+i; // "file1~file4"
+				String originFileNo = "originFileNo"+(i-1);
+				String originFileName = "originFileName"+(i-1);
 				
-				if(multiRequest.getOriginalFileName("name") != null) {
-					Attachment at = new Attachment();
-					at.setOriginName(multiRequest.getOriginalFileName("name")); // 새로 추가된 파일의 원본명 추가
-					at.setChangeName(multiRequest.getFilesystemName("name")); // 새로 추가된 파일의 수정명 추가
-					at.setFilePath(savePath);
+			if(multiRequest.getOriginalFileName(name) != null) {
+				Attachment at = new Attachment();
+				
+				// 기존의 첨부파일이 있건 없건 공통으로 사용되는 데이터 타입
+				at.setOriginName(multiRequest.getOriginalFileName(name)); // 새로 추가된 파일의 원본명 추가
+				at.setChangeName(multiRequest.getFilesystemName(name)); // 새로 추가된 파일의 수정명 추가
+				at.setFilePath(savePath);
+				
+				// 기본의 첨부파일이 있었을 경우 (<input type="hidden" name="originFileNo" value="<%=at.getFileNo()%>">)
+				// form태그에서 기존 파일 번호를 보냈기 떄문에 null 아니면 기존 첨부파일이 있는 것
+				// 기존의 첨부파일을 찾아 update
+				if(multiRequest.getParameter(originFileNo) != null) {
+					at.setFileNo(Integer.parseInt(multiRequest.getParameter(originFileNo)));
 					
-					if(multiRequest.getParameter("originFileNo") != null) {
-						at.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
-						
-						// 기존에 서버에 업로드된 파일 삭제
-						File deleteFile = new File(savePath + multiRequest.getParameter("originFileName"));
-						deleteFile.delete();
-						
-					} else { // 기존의 첨부파일이 없었을 경우 --> 새로이 attachment 테이블에 insert
-						at.setRefBoardNo(pcode);
-						
-					}
-					list.add(at);
+					// 기존에 서버에 업로드된 파일도 삭제
+					File deleteFile = new File(savePath + multiRequest.getParameter(originFileName));
+					deleteFile.delete();
+					
+				} else { // 기존의 첨부파일이 없었을 경우 --> 새로이 attachment 테이블에 insert
+					at.setRefBoardNo(pcode);
+					
+				}
+				list.add(at);
+				
 				}
 			}
 			

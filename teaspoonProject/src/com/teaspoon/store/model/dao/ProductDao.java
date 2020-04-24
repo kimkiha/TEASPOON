@@ -443,15 +443,11 @@ public class ProductDao {
 				Attachment at = list.get(i);
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setString(1, at.getOriginName());
-				pstmt.setString(2, at.getChangeName());
+				pstmt.setString(1, at.getChangeName());
+				pstmt.setString(2, at.getOriginName());
 				pstmt.setString(3, at.getFilePath());
+				pstmt.setInt(4, at.getFileNo());
 				
-				if(i==0) { // 대표이미지(레벨이 1)
-					pstmt.setInt(4, 1);
-				}else {	// 상세이미지(레벨이 2)
-					pstmt.setInt(4, 2);
-				}
 				
 				result = pstmt.executeUpdate();
 				
