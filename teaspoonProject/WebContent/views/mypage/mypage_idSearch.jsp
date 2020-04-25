@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% 
+String randomKey = (String)request.getAttribute("randomKey");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +13,8 @@
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
 </head>
 <body>
 	<div id="wrap">
@@ -26,88 +30,104 @@
 				<p style="font-size: 18px; color: rgb(85, 83, 83);">본인인증으로 아이디를
 					찾을 수 있습니다.</p>
 			</center>
-			<!--
-            <div id="아이디찾기" class="tabcontent">
-                <form id="enrollmodify">
-                    <fieldset style="list-style-type:disc; padding-right:100px;" id=ul>
-                        <ul style="border:0.3 solid lightgrey; height:180px; width:600px"><br>
-                           
-                            <li>이&nbsp;&nbsp;메&nbsp;&nbsp;일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="enroll" type="email" placeholder="가입시 입력한 이메일로 발송됩니다."  style=width:300px; disabled> </li><br><br>
-                            <li>비밀번호 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="enroll" type="password" placeholder="비밀번호는 6~ 16자 영문 대소문자, 특수문자 중"> </li>
-
-                            </fieldset> 
-                            </form>
-                         </ul>
-                    </form>
-                    <button type="button" class="btnenroll">인증완료</button>
-                </div>
--->
 
 			<div id="아이디찾기" class="tabcontent">
 			  <center>
+			  <form name="idsearchForm" action="<%=contextPath%>/idfind.me">
 				<table style="padding-left:100px; padding-top:65px; padding-bottom:65px;" id="table1">
 						<ul class=im1>
 							<tr>
 								<td style="font-size: 20px; width: 300px;"><li>이 메 일</li></td>
 								<td style="text-align: left; width: 404px;">
-								<input type="text" id="email" type="email"
-									placeholder="가입시 입력한 이메일을 작성하세요."></td>
+								<input type="text" id="email" name="email" type="email" placeholder="가입시 입력한 이메일을 작성하세요."></td>
 								<td style="width: 230px;">
-								<button type="button" class="btn1" id="emailCheck">인증번호발송</button></td>
+								<!-- <input type="button" class="btn1" id="emailCheck" onclick="check_1();">이메일확인</button></td> -->
+								<button type="button" class="btn1" id="emailCheck">회원이메일 확인</button></td>
 							</tr>
 					
 							<tr>
 								<td style="font-size: 20px;"><li>인증번호확인</li></td>
-								<td><input type="number" id="verification" type="verification" placeholder="인증번호"></td>
-								<td style="font-size: 15px; color: rgb(131, 2, 2);"></td>
+								<td><input type="text" id="identify" placeholder="인증번호"></td>
+								<td style="font-size: 15px; color: rgb(131, 2, 2);">
+								<button type="button" class="btn1" id="numCheck" disabled>인증번호발송</button></td> 
+								<!-- "인증번호발송" 버튼은 기본값은 비활성화 -->
 							</tr>
 						</ul>
 				</table>
 			  </center>
-				<button type="button" class="btnenroll">인증완료</button>
+			  	
+					<input type="submit" class="btnenroll" value="인증완료" onclick="check();"></button> 
+					<!--submit버튼을 누르면 onsubmit이 실행되어
+						check함수가 실행되고
+						check함수의 return 값이 true일 경우에만 폼을 전송합니다.  -->
+				</form>
 			</div>
-
+			</div>
 		</div>
-		<!-- //content-->
-		  <%@ include file="../common/footer.jsp" %>
-		    	<script>
+		</form>
+		
+	 <%@ include file="../common/footer.jsp" %>
+		    	
+		    	
+	<script>
+	
+    	// '이메일확인'버튼을  클릭했을 때 (첫번째 버튼)
+		// 1) 이메일 유효성검사 후 
+		// 2) DB에서 이메일 중복확인
 	
 		$(function(){
 			
-			// '(이메일)인증번호 발송'버튼을  클릭했을 때
 			$("#emailCheck").click(function(){
-				  var id = document.getElementById("email");
-				  var regExp = /^[a-z][a-z\d]{3,11}$/i;
-		            if(!regExp.test(id.value)){
-		                alert("유효한 이메일를 입력하세요!!");
-		                id.value = "";
-		                id.focus();
-		                return false;               
-		            }
+				//function check_1(){
+					
 				// 이메일을 입력하는 input요소
 				var email = $("#email").val();
+				//var email = $("#idsearchForm input[name=email]");
 				
+				console.log(email);
+				
+				  var em = document.getElementById("email");
+				  var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+		            if(!emailRegExp.test(em.value)){
+		                alert("유효한 이메일를 입력하세요!!");
+		                form.em.value = "";
+		                form.em.focus();
+		                return false;               
+		            }
+				
+			
+				// 1. 이메일 중복검사(중복있을경우 성공)	
 				$.ajax({
 					url:"emailCheck.me",
 					data:{email:email},
 					type:"post", 
 					success:function(result){	// 1 또는 0
 						
-						if(result == 1){		// 사용가능한 아이디
+						if(result != 0){		// DB에 조회된 이메일
 							
-							if(confirm("인증번호를 메일로 발송하였습니다.")){
-							
-						}else {				
-							
-							alert("회원 이메일이 없습니다.");
-							UserId.focus();
-							
-						}
-						
-					},error:function(){
-						console.log("ajax통신 실패!!");
-					}
+							if(confirm("이메일이 조회되었습니다.")){
+								
+								// 아이디 더이상 수정이 불가하게끔
+								$("#email").attr("readonly", "true");	// 이메일이 조회되면
+								/// 인증번호 발송 버튼이 활성화 되어야함!!!
+								$("#numCheck").removeAttr("disabled"); 
 					
+							}else{
+								$("#email").forcus();
+								
+							}
+							
+						}else {					// DB에 조회되지않는 이메일
+							
+							alert("회원 이메일이 존재하지 않습니다."); 
+							email.focus();
+								
+							
+							}
+					
+						},error:function(){
+							console.log("ajax통신 실패!!");
+						}
 				
 				});
 				
@@ -116,39 +136,33 @@
 		});
 	
 	</script>
+    
+     <script>
+      	 /* (이메일) 인증번호 발송 버튼 클릭시  (두번째버튼)*/ 
+      	 
+      	 $("#numCheck").click(function(){
+
+           $.ajax({
+        	   url:"email.e",
+        	   data:{Email:email.value},
+        	   success:function(data){
+        		   alert("인증번호가 발송되었습니다.");
+        		   console.log(data);
+        		   randomKey = data;
+        	   },error:function(){
+        		   alert("이메일발송실패");
+        	   }
+           })    
+       
+      	 });
+    </script>
     	
-    	
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		
-		 <script> /* "인증번호 완료" 버튼 클릭시 -> ramdom키와 사용자입력키(identify)와 비교 */
+	<script> // "인증번호 완료" 버튼 클릭시  (마지막버튼)
+			//-> ramdom키(email.e에 있는)와 사용자입력키(identify)와 비교 
     	 function check(){
-                	
+    		 
                 var Identi = document.getElementById("identify");
-                
-                
-    			var username = $("#userName").val();
-    			var Birthday = $("#birthday").val();
-    		
-    			var firstnumber = $("#firstnumber").val();
-    			var phonenum = $("#verification").val();
-    			var UserId = $("#userId").val();
-    			var UserPwd = $("#userPwd1").val();
-    			var email = $("#email").val();
     			
-    			console.log(username);
     			if(randomKey != Identi.value){
                 	alert("인증에 실패하였습니다.");
                 	randomKey = "";
@@ -156,28 +170,11 @@
                 	return false;
               	}else{
               		alert("인증 성공하였습니다.");
-    				//$("#defaultOpen4").removeAttr("disabled").click();
-              		var genderArray = document.getElementsByName("gender");
-                    
-                    for(var i=0; i<genderArray.length; i++){
-          
-                        if(genderArray[i].checked){
-                          $("#gender2").val(genderArray[i].value);
-                        }
-                    }
-    				$("#userName2").val(username);
-    				$("#birthday2").val(Birthday);
-    				$("#firstnumber2").val(firstnumber);
-    				$("#verification2").val(phonenum);
-    				$("#userId2").val(UserId);
-    				$("#userPwd12").val(UserPwd);
-    				$("#email2").val(email);
+    				// $("#enroll_final").click(); // enroll_final이라는 hidden폼 submit
+    				//location.href ="<%= contextPath%>/idcomplete.me"; //페이지이동
     				
-    				$("#enroll_final").submit(); // enroll_final이라는 hidden폼 submit
+    				// 여기서 서블릿으로 걸고 -> 서블릿에서 포워딩 방식으로...????
     				
-    				
-              		
-              	
               	}
        	 	}
     	

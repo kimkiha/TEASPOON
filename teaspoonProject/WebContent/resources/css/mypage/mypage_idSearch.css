@@ -15,10 +15,11 @@
 .btn1 {
     background: rgb(224, 224, 224);
     color: black;
-    width:140px;
+    width:160px;
     height:55px;
     font-size:20px;
-    margin-bottom:15px;
+    margin-top:10px;
+    margin-bottom:10px;
     border-radius: 5px;
     
  }
@@ -51,11 +52,11 @@ body, input, textarea, select, button, table1 {
 
 
 /* 이메일 input*/
-#email{ width:400px; height:55px; margin-right:10px; margin-bottom:15px; align-content: center;
+#email{ width:400px; height:55px; margin-right:10px; margin-top: 10px; margin-bottom:10px; align-content: center;
 }
 
 /* 인증번호입력 input*/
-#verification{width:400px; height:55px; margin-right:10px; margin-top: 15px; align-content: center;
+#identify{width:400px; height:55px; margin-right:10px; margin-top: 10px; margin-bottom:10px; align-content: center;
 
 }
 

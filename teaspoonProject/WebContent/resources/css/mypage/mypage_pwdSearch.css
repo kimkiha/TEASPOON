@@ -9,7 +9,7 @@ body, input, textarea, select, button, table {
 }
  
  /* input */
- #userid, #username, #birthday, #email, #password{
+ #userId, #email, #identify{
      width:400px;
      height: 55px;
      margin-top: 15px;
