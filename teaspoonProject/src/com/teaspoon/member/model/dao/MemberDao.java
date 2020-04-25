@@ -327,7 +327,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		System.out.println(myInfo);
+		
 		return myInfo;
 		
 	}
@@ -730,7 +730,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 		}finally {
 			close(pstmt);
 		}
-		System.out.println(result);
+		
 		return result;
 		
 	}
@@ -797,7 +797,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 			close(rset);
 			close(rset);
 		}
-		System.out.println(at);
+		
 		return at;
 	}
 
@@ -1127,16 +1127,20 @@ public int insertAttachment(Connection conn, Attachment at) {
 			
 			return result;
 		}
-		
-		public ArrayList<Point> selectPointList(Connection conn, int userNo) {
+		// 포인트 조회 관련 
+		public ArrayList<Point> selectPointList(Connection conn, int userNo,PageInfo pi) {
 			ArrayList<Point> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			String sql = prop.getProperty("selectPointList");
-			
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
 			try {
-				pstmt = conn.prepareStatement(sql);
+				pstmt=conn.prepareStatement(sql);
 				pstmt.setInt(1,userNo);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+				
 				rset = pstmt.executeQuery();
 				
 				while(rset.next()) {
@@ -1159,7 +1163,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 			
 			return list;
 		}
-
+		//포인트 jsp페이징바 카운트
 		public int getPointListCount(Connection conn,int userNo) {
 			int listCount =0;
 			PreparedStatement pstmt = null;

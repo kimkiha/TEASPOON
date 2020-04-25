@@ -1,3 +1,4 @@
+<%@page import="oracle.net.aso.p"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.teaspoon.member.model.vo.*,com.teaspoon.common.*"%>
 <%
@@ -8,6 +9,7 @@ int currentPage = pi.getCurrentPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
 int maxPage = pi.getMaxPage();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -21,6 +23,8 @@ int maxPage = pi.getMaxPage();
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <style>
         #banner {height: 170px; line-height: 170px; background:url("패턴 - 복사본.jpg") center top repeat-x;}
+        #paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
+		#paging button:hover{cursor:pointer;color:#d6ae71;}
     </style>
 </head>
 <body>
@@ -44,7 +48,7 @@ int maxPage = pi.getMaxPage();
                             <div class="user_info" style="width:450px;">
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
-                                        <td width="60" name="username"><%=loginUser.getUserName() %></td>
+                                        <td width="60" name="username"><%=loginUser.getUserName()%></td>
                                         <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
                                     </tr>
                                     <tr class="d2">
@@ -62,7 +66,7 @@ int maxPage = pi.getMaxPage();
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=loginUser.getPcode() %>개</a>
+                                <a  href="#" ><%=loginUser.getPcode()%>개</a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
@@ -103,7 +107,7 @@ int maxPage = pi.getMaxPage();
                                       
                                         </td>
                                         <td colspan="2"class="t-title"><%=p.getContent() %></td>
-                                        <td class="in"><%=p.getPointPrice() %>></td>
+                                        <td class="in"><%=p.getPointPrice() %></td>
                                         
                                     </tr>
                                     <%} %>

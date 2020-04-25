@@ -522,10 +522,10 @@ public class MemberService {
 	 * @param userNo
 	 * @return
 	 */
-	public ArrayList<Point> selectPointList(int userNo) {
+	public ArrayList<Point> selectPointList(int userNo,PageInfo pi) {
 		Connection conn = getConnection();
 		
-		ArrayList<Point> list = new MemberDao().selectPointList(conn, userNo);
+		ArrayList<Point> list = new MemberDao().selectPointList(conn, userNo,pi);
 		
 		close(conn);
 		return list;
