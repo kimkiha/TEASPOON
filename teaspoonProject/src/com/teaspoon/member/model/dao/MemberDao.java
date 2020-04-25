@@ -17,6 +17,7 @@ import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.member.model.vo.Point;
 import com.teaspoon.member.model.vo.WishList;
 import com.teaspoon.store.model.vo.Product;
 
@@ -1125,5 +1126,64 @@ public int insertAttachment(Connection conn, Attachment at) {
 			}
 			
 			return result;
+		}
+		
+		public ArrayList<Point> selectPointList(Connection conn, int userNo) {
+			ArrayList<Point> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectPointList");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1,userNo);
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Point(rset.getDate("point_date"),
+							rset.getInt("Division"),
+							rset.getString("content"),
+							rset.getInt("point_price")));
+										
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			
+			return list;
+		}
+
+		public int getPointListCount(Connection conn,int userNo) {
+			int listCount =0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("getPointListCount");
+			
+			try {
+				pstmt= conn.prepareStatement(sql);
+				pstmt.setInt(1, userNo);
+				
+				rset = pstmt.executeQuery();
+				if(rset.next()) {
+					listCount = rset.getInt(1);
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return listCount;
 		}
 }
