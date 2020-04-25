@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.teaspoon.member.model.vo.*,com.teaspoon.common.*"%>
+<%
+	ArrayList<Point> list = (ArrayList<Point>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+
+int currentPage = pi.getCurrentPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
+int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,11 +54,11 @@
                             </div>
                             <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
                                 <p class="info_th" >적립포인트</p>
-                                <a href="#" ><%=loginUser.getPointPrice() %>>Point</a>
+                                <a href="#" ><%=loginUser.getPointPrice() %>Point</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%=loginUser.getCount() %>>장</a>
+                                <a  href="#" ><%=loginUser.getCount() %>장</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
@@ -77,32 +86,56 @@
                                         <th >구분</th>
                                         <th colspan="2">내용</th>
                                         <th>적립/사용</th>
-                                        <th>소멸예정일</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <%if(list.isEmpty()){ %>
                                     <tr>
                                         <td colspan="6"style="height:150px;">포인트 적립 및 사용내역이 없습니다</td>
                                     </tr>
+                                 <%}else{ %>
+                                  	<% for(Point p : list) {%>
                                     <tr>
-                                        <td class="in">2020.04.01</td>
-                                        <td class="in">적립</td>
-                                        <td colspan="2"class="t-title"> 회원가입 웰컴 포인트</td>
-                                        <td class="in">+500P</td>
-                                        <td class="in">2020.12.31</td>
+                                        <td class="in"><%= p.getPointDate() %></td>
+                                        <td class="in">
+                                        <%=p.getDivision()%>
+                                      
+                                        </td>
+                                        <td colspan="2"class="t-title"><%=p.getContent() %></td>
+                                        <td class="in"><%=p.getPointPrice() %>></td>
+                                        
                                     </tr>
+                                    <%} %>
+                                  <%} %>
                                 </tbody> 
                             </table>
                             
                             <br><br>
-                            <div class="fagingarea">
-                                <div class="fagingvar" align="center">
-                                    <button><<</button>
-                                    <button><</button>
-                                    <button>1</button>
-                                    <button>></button>
-                                    <button>>></button>
-                                </div>
+                            <div class="pagingarea">
+                                <div id="paging" class="pagingbar">
+                            <%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+							<!-- 맨 처음으로(<<) -->
+							<button onclick="location.href='mypoint.me?currentPage=1'">&lt;&lt;</button>
+							<!-- 이전페이지로(<) -->
+							<button onclick="location.href='mypoint.me?currentPage=<%=currentPage-1%>'">&lt;</button>
+							<%} %>
+							
+							<%for(int p=startPage; p<=endPage; p++){%>
+								<%if(currentPage != p) {%>
+								<button onclick="location.href='mypoint.me?currentPage=<%=p%>'"><%=p%></button>
+								<%}else{ %>
+								<button dispabled><%=p %></button>
+								<%} %>	
+							<%} %>
+							
+							<%if(currentPage != maxPage){ %>
+							<!-- 다음페이지로(<) -->
+							<button onclick="location.href='mypoint.me?currentPage=<%=currentPage+1%>'">&gt;</button>
+							<!-- 맨 마지막으로(>>) -->
+							<button onclick="location.href='mypoint.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+							<%} %>
+                        </div>
                             </div>
 
                         </div>

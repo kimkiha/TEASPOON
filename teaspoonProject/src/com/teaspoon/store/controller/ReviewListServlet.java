@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.teaspoon.store.model.service.ProductService;
 import com.teaspoon.store.model.vo.Review;
 
 /**
- * Servlet implementation class ReviewListServlet
+ * Servlet implementation class ReviewAddListServlet
  */
-@WebServlet("/listAdd.re")
+@WebServlet("/list.re")
 public class ReviewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,13 +33,14 @@ public class ReviewListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		int addReview = Integer.parseInt(request.getParameter("addReview"));
-		ArrayList<Review> list = new ProductService().selectAddReviewList(addReview,pcode);
+		//System.out.println(pcode);
+		ArrayList<Review> list = new ProductService().selectReviewList(pcode);
 		//자동으로 키값이 필드명으로 생김
 		response.setContentType("aplication/json; charset=utf-8");
 				
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy.MM.dd").create();
 		//gson.toJson(어레이객체,통로);
 		gson.toJson(list,response.getWriter()); // 이렇게하면 객체 배열로 변환후 전달됨
 	}

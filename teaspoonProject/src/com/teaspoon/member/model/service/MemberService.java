@@ -14,6 +14,8 @@ import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.member.model.vo.Point;
+import com.teaspoon.store.model.vo.Product;
 
 public class MemberService {
 
@@ -450,9 +452,9 @@ public class MemberService {
 	}
 	
 	// 해당 유저의 위시리스트 목록 불러오기 
-	public ArrayList<Product> selectWishList(int pcode){
+	public ArrayList<Product> selectWishList(int userNo){
 		Connection conn = getConnection();
-		ArrayList<Product> list = new MemberDao().selectWishList(conn, pcode);
+		ArrayList<Product> list = new MemberDao().selectWishList(conn, userNo);
 		
 		close(conn);
 		return list;
@@ -517,4 +519,30 @@ public class MemberService {
 	}
 
 
+	/**
+	 *  포인트 조회용
+	 * 
+	 * @param userNo
+	 * @return
+	 */
+	public ArrayList<Point> selectPointList(int userNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Point> list = new MemberDao().selectPointList(conn, userNo);
+		
+		close(conn);
+		return list;
+	}
+	/**
+	 *  포인트 페이징바용 카운트
+	 * @param userNo
+	 * @return
+	 */
+	public int getPointListCount(int userNo) {
+		Connection conn = getConnection();
+		int listCount = new MemberDao().getPointListCount(conn,userNo);
+		close(conn);
+		return listCount;
+	}
+	
 }

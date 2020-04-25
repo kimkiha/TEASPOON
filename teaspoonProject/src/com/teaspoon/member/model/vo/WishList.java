@@ -8,13 +8,19 @@ public class WishList {
 	private int pcode;
 	private Date wishDate;
 	
+	// product-Attachmemt(pcode로 조인)
+	// product-wishList(pcode로 조인)
+	private String titleImg; //해당 상품의 대표이미지 수정명 
+	
+	
 	public WishList(){}
 	
-	public WishList(int userNo, int pcode, Date wishDate) {
+	public WishList(int userNo, int pcode, Date wishDate, String titleImg) {
 		super();
 		this.userNo = userNo;
 		this.pcode = pcode;
 		this.wishDate = wishDate;
+		this.titleImg = titleImg;
 	}
 	public int getUserNo() {
 		return userNo;
@@ -33,6 +39,15 @@ public class WishList {
 	}
 	public void setWishDate(Date wishDate) {
 		this.wishDate = wishDate;
+	}
+	
+
+	public String getTitleImg() {
+		return titleImg;
+	}
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
 	}
 
 	@Override

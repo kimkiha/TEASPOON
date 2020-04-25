@@ -143,6 +143,7 @@
                                 </div>
                                 
                                 <!-- 리뷰작성Area -->
+                                <% if(loginUser != null){ %>
                                 <div id="reviewList">
                                 <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
 	                                <table id="writeReview" cellpadding="0" cellspacing="0" style="margin-top:100px">
@@ -153,7 +154,7 @@
 	                                	</tr>
 	                                    <tr>
 	                                        <td style="width:130px;text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px;border-top: 1px solid #ddd; ">내용</td>
-	                                        <td colspan="3" style="border-top: 1px solid #ddd;"><textarea name="reviewContent" id="reviewContent" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
+	                                        <td colspan="3" style="border-top: 1px solid #ddd;"><textarea name="reviewContent" id="reviewContent" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요" required></textarea></td>
 	                                        
 	                                        <td style="width:100px; border-top: 1px solid #ddd;"></td>
 	                                    </tr>
@@ -169,10 +170,10 @@
 	                                        </td>
 	                                    </tr>
 	                                </table>
-                                
                                   </form>
                                   </div>
-                                <!--//리뷰리뷰작성Area-->
+                                  <%} %>
+                                  <!--//리뷰리뷰작성Area-->
                                 
                                 <div id="review" class="pList5">
                                     <br><br>
@@ -253,12 +254,34 @@
 
 			}
 		});
+		
+		// 옵션에 따른 가격 보여주기 
+		
+		
 
 		// 리뷰Area
 		$(function() {
 			//문서가 다 로딩되면 자동으로 실행하고 주기적으로 실행
 			selectReplyList();
-
+			
+			$('#subReview').click(function(){
+				// 댓글 내용
+				var content = $('#reviewContent').val();
+				
+				$.ajax({
+					url:"insert.re",
+					type:"post",
+					data:{content:content, pcode:<%=p.getPcode()%>},
+					success:function(result){
+						if(result>0){	// 리뷰작성 성공시 
+							selectReplyList();	// 갱신된데이터를 불러오도록 리뷰작성 메소드 호출
+							$('#reviewContent').val("");
+						}
+					}, error:function(){
+						//console.log("댓글작성용 ajax 통신 실패!")
+					}
+				})
+			});
 		});
 
 		//ajax이용 : 게시글에 딸려있는 댓글 리스트 조회용 함수
@@ -273,19 +296,11 @@
 					var value = "";
 					for (var i = 0; i < list.length; i++) {
 						value += "<table cellpadding='0' cellspacing='0'>"
-								+ "<tr><td id='createDate' width='200px' style='border-top:1px solid #ddd; padding:10px;'>"
-								+ list[i].createDate
-								+ "</td>"
-								+ "<td id='user' width='600px' style='border-top:1px solid #ddd; padding:10px;'>"
-								+ list[i].userName
-								+ "("
-								+ list[i].userId
-								+ ")"
-								+ "</td></tr>"
-								+ "<tr><td style='border-bottom:1px solid #ddd; padding:10px;'></td>"
-								+ "<td id='rcontent'  style='border-bottom:1px solid #ddd; padding:10px;'><p>"
-								+ list[i].content
-								+ "</p></td></tr>"
+									+ "<tr><td id='createDate' width='200px' style='border-top:1px solid #ddd; padding:10px;'>"+ list[i].createDate	+ "</td>"
+									+ "<td id='user' width='600px' style='border-top:1px solid #ddd; padding:10px;'>"+ list[i].userName
+									+ "("+ list[i].userId + ")" + "</td></tr>"
+									+ "<tr><td style='border-bottom:1px solid #ddd; padding:10px;'></td>"
+									+ "<td id='rcontent' style='border-bottom:1px solid #ddd; padding:10px;'><p>"+ list[i].content	+ "</p></td></tr>"
 								+ "</table>";
 					}
 					$("#data").html(value);
@@ -310,19 +325,11 @@
 						var value = "";
 						for (var i = 0; i < list.length; i++) {
 							value += "<table cellpadding='0' cellspacing='0'>"
-									+ "<tr><td id='createDate' width='200px'>"
-									+ list[i].createDate
-									+ "</td>"
-									+ "<td id='user' width='600px'>"
-									+ list[i].userName
-									+ "("
-									+ list[i].userId
-									+ ")"
-									+ "</td></tr>"
-									+ "<tr><td style='border-bottom:1px solid lightgray;'></td>"
-									+ "<td id='rcontent'  style='border-bottom:1px solid lightgray;'><p>"
-									+ list[i].content
-									+ "</p></td></tr>"
+										+ "<tr><td id='createDate' width='200px' style='border-top:1px solid #ddd; padding:10px;'>" + list[i].createDate + "</td>"
+										+ "<td id='user' width='600px' style='border-top:1px solid #ddd; padding:10px;'>" + list[i].userName	
+										+ "("+ list[i].userId + ")"	+ "</td></tr>"
+										+ "<tr><td style='border-bottom:1px solid #ddd; padding:10px;'></td>"
+										+ "<td id='rcontent' style='border-bottom:1px solid #ddd; padding:10px;'><p>"+ list[i].content + "</p></td></tr>"
 									+ "</table>";
 						}
 						$("#data").html(value);

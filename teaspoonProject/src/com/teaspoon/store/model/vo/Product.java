@@ -13,7 +13,7 @@ public class Product {
 	private String kind;	// 상품종류(C:커피,I:아이템)
 	private String pcontent;// 상품상세설명(사진은 attachment와 조인)
 	
-	private String titleImg; ////해당 게시글의 대표이미지 수정명 
+	private String titleImg; // 해당 상품의 대표이미지 수정명 
 	
 	public Product(){}
 	

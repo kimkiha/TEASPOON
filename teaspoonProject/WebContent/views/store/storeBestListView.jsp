@@ -45,8 +45,8 @@
                         </div>
                         <div class="product_top">
                             <div class="product_img">
-	                        	<input type="hidden" value=<%=list.get(0).getPcode() %>>
-	                            <input type="hidden" value=<%=list.get(0).getKind() %>>
+	                        	<input type="hidden" name="pcode" value=<%=list.get(0).getPcode() %>>
+	                            <input type="hidden" name="kind" value=<%=list.get(0).getKind() %>>
                                 <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getTitleImg() %>" style="float:left; width:100%; height:inherit">
                             </div>
                             <div class="product_detail">
@@ -69,70 +69,48 @@
                         
                         
                         <div class="top_list">
-                            <table id="top_list">
+                            <table>
                                 <caption><b>베스트 상품 순위</b></caption>
-                                
-                                <tr>
-                                    <th>1</th>
-                                    <td width="400px" style="padding-left:50px; cursor:pointer;"><%=list.get(0).getPname()%></td>
+                                <% for(int i=0; i<8; i++) { %>
+                        		<% Product p = list.get(i); %>
+                                <tr id="top_list">
+                                	<td><input type="hidden" name="pcode" value=<%=p.getPcode() %>></td>
+	                            	<td><input type="hidden" name="kind" value=<%=p.getKind() %>></td>
+                                    <th><%=i+1 %></th>
+                                    <td width="400px" style="padding-left:50px; cursor:pointer;"><%=p.getPname()%></td>
                                 </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td style="padding-left:50px; cursor:pointer;"><%=list.get(1).getPname()%></td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td style="padding-left:50px; cursor:pointer;"><%=list.get(2).getPname()%></td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td style="padding-left:50px; cursor:pointer;"><%=list.get(3).getPname()%></td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td style="padding-left:50px; cursor:pointer;"><%=list.get(4).getPname()%></td>
-                                </tr>
-                                <tr>
-                                    <th>6</th>
-                                    <td style="padding-left:50px; cursor:pointer;"><%=list.get(5).getPname()%></td>
-                                </tr>
-                                <tr>
-                                    <th>7</th>
-                                    <td style="padding-left:50px; cursor:pointer;"><%=list.get(6).getPname()%></td>
-                                </tr>
+                                <%} %>
                             </table>
 
                         </div>
                         <div id="productList">
                         
                         <% for(int i=1; i<list.size(); i++) { %>
-                        	<%Product p = list.get(i); %>
-                            <div class="product" style="margin-top:50px; margin-right:30px;">
-                                <div class="product_img">
-                            		<input type="hidden" value=<%=list.get(i).getPcode() %>>
-                            		<input type="hidden" value=<%=list.get(i).getKind() %>>
-                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
-                                </div>
-                                <div class="product_detail" style="width:300px; height:60px; padding:0px">
-                                    <p style="padding-top:20px;padding-left:12px;"><%=p.getPname() %></p>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
-                                </div>
-                                <div class="basket">
-                                    <img id="open" src="<%=contextPath %>/resources/img/store/cart.png">
-                                </div>
-                                <div class="modal">
-                                        <div class="modal_content">
-                                            <p>장바구니로 이동하시겠습니까?</p>
-                                            <button class="gobasket">장바구니보기</button>
-                                            <button class="close">계속쇼핑</button>
-                                        </div>
-                                </div>
-                            </div>
-                            
-                             <%} %>
-                            
+                        	<% Product p = list.get(i); %>
+	                            <div class="product" style="margin-top:50px; margin-right:30px;">
+	                                <div class="product_img">
+	                            		<input type="hidden" name="pcode" value=<%=p.getPcode() %>>
+	                            		<input type="hidden" name="kind" value=<%=p.getKind() %>>
+	                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
+	                                </div>
+	                                <div class="product_detail" style="width:300px; height:60px; padding:0px">
+	                                    <p style="padding-top:20px;padding-left:12px;"><%=p.getPname() %></p>
+	                                </div>
+	                                <div class="like">
+	                                    <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
+	                                </div>
+	                                <div class="basket">
+	                                    <img id="open" src="<%=contextPath %>/resources/img/store/cart.png">
+	                                </div>
+	                                <div class="modal">
+	                                   <div class="modal_content">
+	                                       <p>장바구니로 이동하시겠습니까?</p>
+	                                       <button class="gobasket">장바구니보기</button>
+	                                       <button class="close">계속쇼핑</button>
+	                                   </div>
+	                                </div>
+	                            </div>
+                      		<%} %>
                         </div>
                     </div> 
                 </div>
@@ -157,11 +135,11 @@
         
         
         
-        // 베스트 상품 목록(1~7번) 상세페이지 연결 ***********************************수정필요
+        // 베스트 상품 목록(1~7번) 상세페이지 연결
         $(function(){
-    		$('.top_list>table>tr>td>a').click(function(){
-    			var kind = $(this).children().eq(1).val();
+    		$('#top_list').click(function(){
     			var pcode = $(this).children().eq(0).val();
+    			var kind = $(this).children().eq(1).val();
     			if(kind=='C'){
     				location.href="<%=contextPath%>/detail.co?pcode="+pcode;
     			} else{
