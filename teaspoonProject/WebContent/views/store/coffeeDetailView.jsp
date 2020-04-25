@@ -143,6 +143,7 @@
                                 </div>
                                 
                                 <!-- 리뷰작성Area -->
+                                <% if(loginUser != null){ %>
                                 <div id="reviewList">
                                 <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
 	                                <table id="writeReview" cellpadding="0" cellspacing="0" style="margin-top:100px">
@@ -169,10 +170,10 @@
 	                                        </td>
 	                                    </tr>
 	                                </table>
-                                
                                   </form>
                                   </div>
-                                <!--//리뷰리뷰작성Area-->
+                                  <%} %>
+                                  <!--//리뷰리뷰작성Area-->
                                 
                                 <div id="review" class="pList5">
                                     <br><br>
