@@ -277,19 +277,11 @@
 					var value = "";
 					for (var i = 0; i < list.length; i++) {
 						value += "<table cellpadding='0' cellspacing='0'>"
-								+ "<tr><td id='createDate' width='200px' style='border-top:1px solid #ddd; padding:10px;'>"
-								+ list[i].createDate
-								+ "</td>"
-								+ "<td id='user' width='600px' style='border-top:1px solid #ddd; padding:10px;'>"
-								+ list[i].userName
-								+ "("
-								+ list[i].userId
-								+ ")"
-								+ "</td></tr>"
-								+ "<tr><td style='border-bottom:1px solid #ddd; padding:10px;'></td>"
-								+ "<td id='rcontent'  style='border-bottom:1px solid #ddd; padding:10px;'><p>"
-								+ list[i].content
-								+ "</p></td></tr>"
+									+ "<tr><td id='createDate' width='200px' style='border-top:1px solid #ddd; padding:10px;'>"+ list[i].createDate	+ "</td>"
+									+ "<td id='user' width='600px' style='border-top:1px solid #ddd; padding:10px;'>"+ list[i].userName
+									+ "("+ list[i].userId + ")" + "</td></tr>"
+									+ "<tr><td style='border-bottom:1px solid #ddd; padding:10px;'></td>"
+									+ "<td id='rcontent' style='border-bottom:1px solid #ddd; padding:10px;'><p>"+ list[i].content	+ "</p></td></tr>"
 								+ "</table>";
 					}
 					$("#data").html(value);
@@ -314,19 +306,11 @@
 						var value = "";
 						for (var i = 0; i < list.length; i++) {
 							value += "<table cellpadding='0' cellspacing='0'>"
-									+ "<tr><td id='createDate' width='200px'>"
-									+ list[i].createDate
-									+ "</td>"
-									+ "<td id='user' width='600px'>"
-									+ list[i].userName
-									+ "("
-									+ list[i].userId
-									+ ")"
-									+ "</td></tr>"
-									+ "<tr><td style='border-bottom:1px solid lightgray;'></td>"
-									+ "<td id='rcontent'  style='border-bottom:1px solid lightgray;'><p>"
-									+ list[i].content
-									+ "</p></td></tr>"
+										+ "<tr><td id='createDate' width='200px' style='border-top:1px solid #ddd; padding:10px;'>" + list[i].createDate + "</td>"
+										+ "<td id='user' width='600px' style='border-top:1px solid #ddd; padding:10px;'>" + list[i].userName	
+										+ "("+ list[i].userId + ")"	+ "</td></tr>"
+										+ "<tr><td style='border-bottom:1px solid #ddd; padding:10px;'></td>"
+										+ "<td id='rcontent' style='border-bottom:1px solid #ddd; padding:10px;'><p>"+ list[i].content + "</p></td></tr>"
 									+ "</table>";
 						}
 						$("#data").html(value);
