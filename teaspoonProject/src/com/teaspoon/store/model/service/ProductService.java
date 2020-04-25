@@ -326,4 +326,17 @@ public class ProductService {
 		return result;
 	}
 
+	public int insertReview(Review r) {
+		Connection conn = getConnection();
+		int result = new ProductDao().insertReview(conn, r);
+		
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
+		
+		
+	}
 }

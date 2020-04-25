@@ -631,8 +631,8 @@ public class ProductDao {
 				r.setUserNo(rset.getInt("user_no"));
 				r.setContent(rset.getString("content"));
 				r.setCreateDate(rset.getDate("create_date"));
-				r.setUserId(rset.getString("user_id"));
-				r.setUserName(rset.getString("user_name"));
+				r.setUserId(rset.getString("RPAD(SUBSTR(USER_ID,1,3),5,'*')"));
+				r.setUserName(rset.getString("RPAD(SUBSTR(USER_NAME,1,1),3,'*')"));
 				r.setPname(rset.getString("pname"));
 				
 				list.add(r);
@@ -668,8 +668,8 @@ public class ProductDao {
 				r.setUserNo(rset.getInt("user_no"));
 				r.setContent(rset.getString("content"));
 				r.setCreateDate(rset.getDate("create_date"));
-				r.setUserId(rset.getString("user_id"));
-				r.setUserName(rset.getString("user_name"));
+				r.setUserId(rset.getString("RPAD(SUBSTR(USER_ID,1,3),5,'*')"));
+				r.setUserName(rset.getString("RPAD(SUBSTR(USER_NAME,1,1),3,'*')"));
 				r.setPname(rset.getString("pname"));
 				
 				list.add(r);
@@ -810,6 +810,27 @@ public class ProductDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, pcode);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertReview(Connection conn, Review r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, r.getPcode());
+			pstmt.setInt(2, r.getUserNo());
+			pstmt.setString(3, r.getContent());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

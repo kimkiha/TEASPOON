@@ -153,7 +153,7 @@
 	                                	</tr>
 	                                    <tr>
 	                                        <td style="width:130px;text-align: right; font-size: 18px; vertical-align: top; padding-top: 10px; padding-right: 30px;border-top: 1px solid #ddd; ">내용</td>
-	                                        <td colspan="3" style="border-top: 1px solid #ddd;"><textarea name="reviewContent" id="reviewContent" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요"></textarea></td>
+	                                        <td colspan="3" style="border-top: 1px solid #ddd;"><textarea name="reviewContent" id="reviewContent" rows="10" style="resize: none; border-radius: 5px; width: 750px; height:185px ; border-color: #ddd;" placeholder="내용을 입력해주세요" required></textarea></td>
 	                                        
 	                                        <td style="width:100px; border-top: 1px solid #ddd;"></td>
 	                                    </tr>
@@ -262,7 +262,25 @@
 		$(function() {
 			//문서가 다 로딩되면 자동으로 실행하고 주기적으로 실행
 			selectReplyList();
-
+			
+			$('#subReview').click(function(){
+				// 댓글 내용
+				var content = $('#reviewContent').val();
+				
+				$.ajax({
+					url:"insert.re",
+					type:"post",
+					data:{content:content, pcode:<%=p.getPcode()%>},
+					success:function(result){
+						if(result>0){	// 리뷰작성 성공시 
+							selectReplyList();	// 갱신된데이터를 불러오도록 리뷰작성 메소드 호출
+							$('#reviewContent').val("");
+						}
+					}, error:function(){
+						//console.log("댓글작성용 ajax 통신 실패!")
+					}
+				})
+			});
 		});
 
 		//ajax이용 : 게시글에 딸려있는 댓글 리스트 조회용 함수
