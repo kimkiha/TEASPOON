@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
 <%
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	//System.out.print(list);
 %>
 <!DOCTYPE html>
 <html>
@@ -89,17 +90,20 @@
 								</tr>
 							</thead>
 							<tbody>
+								<%if(list.isEmpty()){ %>
 								<tr>
 									<td colspan="7" height="150">위시리스트에 선택된 상품이 없습니다</td>
 								</tr>
+								<%} else{ %>
+									<%for(int i=0; i<list.size(); i++){ %>
 								<tr>
 									<td><input type="checkbox" name="checkRow"
 										value="${content.IDX}"></td>
-									<td style="text-align: left;"><img src="사이트이미지/메인/1.jpg"
+									<td style="text-align: left;"><img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(i).getTitleImg() %>"
 										width="130px" height="130px"></td>
-									<td style="text-align: left;" class="t-title">녹차 스프레드</td>
+									<td style="text-align: left;" class="t-title"><%=list.get(i).getPname()%></td>
 									<td></td>
-									<td><p>18,000원</p></td>
+									<td><p><%=list.get(i).getPrice() %>원</p></td>
 									<td class="btn-group-cart">
 										<button>장바구니</button>
 										<br>
@@ -107,26 +111,9 @@
 										<button>바로구매</button>
 									</td>
 								</tr>
-								<tr>
-									<td><input type="checkbox" name="checkRow"
-										value="${content.IDX}"></td>
-									<td style="text-align: left;"><img src="사이트이미지/메인/1.jpg"
-										width="130px" height="130px"></td>
-									<td style="text-align: left;" class="t-title">녹차 스프레드</td>
-									<td></td>
-									<td><p>18,000원</p></td>
-									<td class="btn-group-cart">
-										<button>장바구니</button>
-										<br>
-									<br>
-										<button>바로구매</button>
-									</td>
-								</tr>
-
-
-
+									<%} %>
+								<%} %>
 							</tbody>
-
 						</table>
 						<div class="t-func">
 							<div class="t-func1">

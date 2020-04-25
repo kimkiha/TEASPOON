@@ -14,6 +14,7 @@ import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.store.model.vo.Product;
 
 public class MemberService {
 
@@ -449,9 +450,9 @@ public class MemberService {
 	}
 	
 	// 해당 유저의 위시리스트 목록 불러오기 
-	public ArrayList<Product> selectWishList(int pcode){
+	public ArrayList<Product> selectWishList(int userNo){
 		Connection conn = getConnection();
-		ArrayList<Product> list = new MemberDao().selectWishList(conn, pcode);
+		ArrayList<Product> list = new MemberDao().selectWishList(conn, userNo);
 		
 		close(conn);
 		return list;
