@@ -832,6 +832,38 @@ public int insertAttachment(Connection conn, Attachment at) {
 		
 	}
 	
+	public int emailCheck(Connection conn, String email) {
+
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("emailCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt(1);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+		
+	}
+	
 	
 	
 		public int insertGrade(Connection conn, Grade grade) {
@@ -1037,6 +1069,62 @@ public int insertAttachment(Connection conn, Attachment at) {
 				e.printStackTrace();
 			}
 			
+			
+			return result;
+		}
+		
+		
+		public int updateGrade(Connection conn, Grade g) {
+			
+			int result = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			String sql = prop.getProperty("updateGrade");
+			System.out.println("aaa");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1,g.getGradeName());
+				pstmt.setInt(2, g.getMinAcount());
+				pstmt.setInt(3, g.getGradeRate());
+				pstmt.setInt(4, g.getGradeCode());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
+		
+		public int newUpdateMemberGrade(Connection conn, Grade g,String nextG) {
+			
+			int result = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			String sql = prop.getProperty("newUpdateMemberGrade");
+			System.out.println(g.getGradeName());
+			System.out.println(nextG);
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1,g.getGradeCode()-10);
+				pstmt.setString(2, g.getGradeName());
+				pstmt.setString(3, nextG);
+				pstmt.setInt(4, g.getGradeCode());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
 			
 			return result;
 		}

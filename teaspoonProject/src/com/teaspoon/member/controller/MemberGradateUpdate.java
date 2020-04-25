@@ -1,6 +1,7 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,10 +33,11 @@ public class MemberGradateUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int gNo = Integer.parseInt(request.getParameter("gNo"));
+		int gNo = Integer.parseInt(request.getParameter("gno"));
 		String updateGradeName = request.getParameter("updateGradeName");
 		int updateMinMoney = Integer.parseInt(request.getParameter("updateMinMoney"));
 		int updateDiscountRate =   Integer.parseInt(request.getParameter("updateDiscountRate"));
+		
 		
 		Grade g = new Grade();
 		g.setGradeCode(gNo);
@@ -43,9 +45,15 @@ public class MemberGradateUpdate extends HttpServlet {
 		g.setMinAcount(updateMinMoney);
 		g.setGradeRate(updateDiscountRate);
 		
+//		System.out.println(gNo);
+//		System.out.println(updateGradeName);
+//		System.out.println(updateMinMoney);
+//		System.out.println(updateDiscountRate);
+//		System.out.println(maxGradeCheck);
 		
-		int result = new MemberService().updateGrade(g);
 		
+		ArrayList<Grade> gList = new MemberService().selectGradeList();
+		int result = new MemberService().updateGrade(g,gList);
 		
 		if(result > 0) { 
 			
@@ -56,7 +64,7 @@ public class MemberGradateUpdate extends HttpServlet {
 		}else { // insert안됨 --> 회원가입실패
 			
 			request.setAttribute("msg", "등급수정 실패!");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/admin_errorPage.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
 			view.forward(request, response);
 			
 		

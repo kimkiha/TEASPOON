@@ -68,7 +68,7 @@
 											<td class="status"><%=b.getStatus()%></td>
 		                                    <td>
 	                                        <button><a href="<%=contextPath%>/magazineUpdateForm.bo?bno=<%=b.getBoardNo()%>">수정</a></button>
-	                                        <button>삭제</button>
+	                                        <button><a href="<%=contextPath%>/magazineDelete.bo?bno=<%=b.getBoardNo()%>">삭제</a></button>
                                    			</td>
 										</tr>
 									
@@ -86,12 +86,12 @@
 						<!-- 맨 처음으로(<<) -->
 						<button onclick="location.href='magazineList.bo?currentPage=1>'">&lt;&lt;</button>
 						<!-- 이전페이지로(<) -->
-						<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
+						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
 					<%} %>
 					
 					<%for(int p=startPage; p<=endPage; p++){%>
 						<%if(currentPage != p) {%>
-						<button onclick="location.href='magazineList.bo?currentPage=<%=p%>'"><%=p%></button>
+						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=p%>'"><%=p%></button>
 						<%}else{ %>
 						<button disabled><%=p %></button>
 						<%} %>	
@@ -99,9 +99,9 @@
 					
 					<%if(currentPage != maxPage){ %>
 						<!-- 다음페이지로(<) -->
-						<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
+						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
 						<!-- 맨 마지막으로(>>) -->
-						<button onclick="location.href='magazineList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
 					<%} %>
                 </div>
                

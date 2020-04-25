@@ -66,11 +66,11 @@ public class MagazineUpdateServlet extends HttpServlet {
 			Attachment at = null;
 			
 			// 새로이 추가된 첨부터일이 있을 경우
-			if(multiRequest.getOriginalFileName("upfile") != null) {
+			if(multiRequest.getOriginalFileName("file1") != null) { 
 				at = new Attachment();
 		
-				at.setOriginName(multiRequest.getOriginalFileName("upfile")); // 새로 추가된 원본명
-				at.setChangeName(multiRequest.getFilesystemName("upfile")); // 새로 추가된 파일의 수정명
+				at.setOriginName(multiRequest.getOriginalFileName("file1")); // 새로 추가된 원본명
+				at.setChangeName(multiRequest.getFilesystemName("file1")); // 새로 추가된 파일의 수정명
 				at.setFilePath(savePath);
 				
 			
@@ -89,7 +89,7 @@ public class MagazineUpdateServlet extends HttpServlet {
 			
 			if(result > 0) {//수정성공했을 경우 상세보기 페이지 요청
 				request.getSession().setAttribute("msg", "매거진이 수정되었습니다");
-				response.sendRedirect("magazineList.bo?currentPage=1");
+				response.sendRedirect("magazineAdminList.bo?currentPage=1");
 			}else {//에러페이지 포워딩
 				request.setAttribute("msg", "등록실패!!");
 				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");

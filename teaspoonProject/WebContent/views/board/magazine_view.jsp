@@ -44,7 +44,7 @@
                                 <div id="con_wr">
                                     <ul>
                                         <li>Editor's letter &nbsp;|</li>
-                                        <li>&nbsp;2020</li>
+                                        <li>&nbsp;<%=b.getCreateDate() %></li>
                                     </ul>
                                 </div>
                             </div>
@@ -54,37 +54,39 @@
                                     <li><a href="#"><img src="<%=contextPath %>/resources/img/board/facebook.png" alt="페이스북 공유하기"></a></li>
                                 </ul>
                             </div>
-                            <div style="height:100%">
+                        </div>
+                        <div class="maga_con">
                             <%=b.getBoardContent() %>
-                            </div>
                         </div>
-                    </div>
-                    <div id="pre_next">
-                        <div id="pre">
-                            <figure class="snip1504" >
-                                <img src="<%=contextPath %>/resources/img/board/magazine_view_1.jpg"/>
-                                <figcaption>
-                                  <h2>KNOW THAT EAT</h2>
-                                  <h4>알고마시면 더 맛있는 커피이야기</h4>
-                                </figcaption>
-                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo()+1 %>"></a>
-                            </figure>
-                        </div>
-                        <div id="next" style="float:left; margin:0 auto">
-                            <figure class="snip1504" >
-                                <img src="<%=contextPath %>/resources/img/board/<%=b.get%>" >
-                                <figcaption>
-                                  <h2>what's a coffee</h2>
-                                  <h4>커피가 나에게 물을 때</h4>
-                                </figcaption>
-                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo()+1%>"></a>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
+                    	<div id="pre_next">
+	                        <div id="pre">
+	                            <figure class="snip1504" >
+	                                <img src="<%=contextPath %>/resources/img/board/magazine_view_1.jpg"/>
+	                                <figcaption>
+	                                  <h2>KNOW THAT EAT</h2>
+	                                  <h4>알고마시면 더 맛있는 커피이야기</h4>
+	                                </figcaption>
+	                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo()+1 %>"></a>
+	                            </figure>
+	                        </div>
+	                        <div id="next" style="float:left; margin:0 auto">
+	                            <figure class="snip1504" >
+	                                <img src="<%=contextPath %>/resources/img/board/magazine_view_1.jpg" >
+	                                <figcaption>
+	                                  <h2>what's a coffee</h2>
+	                                  <h4>커피가 나에게 물을 때</h4>
+	                                </figcaption>
+	                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo()-1%>"></a>
+	                            </figure>
+	                        </div>
+                    	</div>
+                	</div>
+                    <!-- //magazine -->
+                <!-- //maga -->
             <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
-    </div>
+        </div>
+        <!-- //content -->
 </div>
     <!-- //wrap-->
     <script src="<%=contextPath %>/resources/js/magazine_view.js"></script>
