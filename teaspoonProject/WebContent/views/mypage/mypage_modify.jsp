@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원정보수정 | TeaSpoon</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_modify.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
