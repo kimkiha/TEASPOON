@@ -85,7 +85,7 @@
                         </div>
                         <br>-->
                         <div class="btns" style="margin-top:20px">
-                            <button type="button" style="width: 100px;"><a href="adminAbout.html">목록으로</a></button>
+                            <button type="button" style="width: 100px;"><a href="/eventAdminList.bo">목록으로</a></button>
                             <button type="submit" id="sb_btn" style="width: 100px;">등록하기</button>
                         </div>
                     </form>

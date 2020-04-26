@@ -169,7 +169,7 @@
                               <div class="bpf"> 
                                 <input type="checkbox" name="good" value="빔프로젝트">빔프로젝트
                                 <input type="checkbox" name="good" value="노트북">노트북
-                                <input type="checkbox" name="good" value="스마트포인트">스마트포인트
+                                <input type="checkbox" name="good" value="스마트포인터">스마트포인터
                                 <input type="checkbox" name="good" value="앰프">앰프
                               </div>
                             </ul>

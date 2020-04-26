@@ -1,4 +1,4 @@
-package com.teaspoon.space.controller;
+package com.teaspoon.board.controller;
 
 import java.io.IOException;
 
@@ -9,18 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
- * Servlet implementation class spaceRentalPayment
+ * Servlet implementation class NoticeInsertFormServlet
  */
-@WebServlet("/rentalPayment.sp")
-public class SpaceRentalPaymentServlet extends HttpServlet {
+@WebServlet("/noticeInsertForm.bo")
+public class NoticeInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpaceRentalPaymentServlet() {
+    public NoticeInsertFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,16 +28,9 @@ public class SpaceRentalPaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-			
-		RequestDispatcher view = request.getRequestDispatcher("views/space/space_payment.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_noticeEnrollForm.jsp");
+		
 		view.forward(request, response);
-		
-		
-		
-		
-		
-	
 	}
 
 	/**

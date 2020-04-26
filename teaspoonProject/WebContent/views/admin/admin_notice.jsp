@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.board.model.vo.*,com.teaspoon.common.PageInfo "%>
+<% 
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+
+	String noticeKeyword = String.valueOf(request.getAttribute("noticeKeyword"));
+
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,67 +29,122 @@
 <body>
  <%@include file="../common/admin_sidebar.jsp" %>
    
-   <div id="contents">
+    <div id="contents">
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
                     <div id="c1_1_1" >
-                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/공지.png" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/이벤트.png" width="50px" width="50px"></div>
                         <div id="c1_1_1_2"><p>공지사항관리 페이지입니다.</p></div>
                         <div id="c1_1_1_3">
-                            <input type="text" placeholder="키워드" name="keyword">
-                            <button type="button" id="btn">검색</button>
+                             <input type="text" placeholder="키워드" id="noticeKeyword">
+                            <button type="button" class="searchBtn" id="searchBtn1">검색</button>
                         </div>
                     </div>
                     <div id="c1_1_2">
-                        <table>
+                        <table class="listArea" >
                             <thead>
                                 <tr>
-                                    <th width="70">글번호</th>
-                                    <th width="150">제목</th>
-                                    <th width="70">조회수</th>
-                                    <th width="90">작성일</th>
-                                    <th width="90">수정일</th>
-                                    <th width="70">상태</th>
-                                    <th width="100">상세보기</th>
-                                    <th>
-                                        <button><a href="adminNoticeErollForm.html">추가</a></button>
+                                    <th width="100">글번호</th>
+                                    <th width="300">제목</th>
+                                    <th width="50">조회수</th>
+                                    <th width="100">작성일</th>
+                                    <th width="100">수정일</th>
+                                    <th width="50">상태</th>
+                                    <th >
+                                        <button><a href="noticeInsertForm.bo">추가</a></button>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>공지1 제목입니다</td>
-                                    <td>10</td>
-                                    <td>20.03.02</td>
-                                    <td>20.03.02</td>
-                                    <td>Y</td>
-                                    <td><button  type="button">이동</button></td>
-                                    <td>
-                                        <button><a href="adminNoticeUpdateForm.html">수정</a></button>
-                                        <button>삭제</button>
-                                    </td>
-                                    
-                                </tr>
-                            </tbody>
-                             
+                             <%if(list.isEmpty()){%>
+								<tr>
+									<td colspan="8">조회된 리스트가 없습니다.</td>
+								</tr>
+								<%}else{%>
+									<%for(Board b : list){ %>
+										<tr>
+											<td><%=b.getBoardNo() %></td>
+											<td><%=b.getBoardTitle() %></td>
+											<td><%=b.getCount() %></td>
+											<td><%=b.getCreateDate() %></td>
+											<td><%=b.getModifyDate() %></td>
+											<td class="status"><%=b.getStatus()%></td>
+		                                    <td>
+	                                        <button><a href="<%=contextPath%>/noticeUpdateForm.bo?bno=<%=b.getBoardNo()%>">수정</a></button>
+	                                        <button><a href="<%=contextPath%>/noticeDelete.bo?bno=<%=b.getBoardNo()%>">삭제</a></button>
+                                   			</td>
+										</tr>
+									
+									<%} %>
+								<%} %>
                       </table>
                     </div>
                 </div>
-                <div id="c1_2"></div>
+                <div id="c1_2">
+
+                </div>
                 <div id="c1_3">
-                        <a>&lt;</a>
-                       <button>1</button>
-                       <button>2</button>
-                       <button>3</button>
-                       <button>4</button>
-                       <button>5</button>
-                       <a>&gt;</a>
+                <% if(!noticeKeyword.equals("null")){ %>
+                	<!-- 현재 페이지에 보여질 페이징바 -->
+					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+						<!-- 맨 처음으로(<<) -->
+						<button onclick="location.href='noticeKeywordList.bo?currentPage=1&eventKeyword=<%=noticeKeyword %>'">&lt;&lt;</button>
+						<!-- 이전페이지로(<) -->
+						<button onclick="location.href='noticeKeywordList.bo?currentPage=<%=currentPage-1%>&eventKeyword=<%=noticeKeyword%>'">&lt;</button>
+					<%} %>
+					
+					<%for(int p=startPage; p<=endPage; p++){%>
+						<%if(currentPage != p) {%>
+						<button onclick="location.href='noticeKeywordList.bo?currentPage=<%=p%>&eventKeyword=<%=noticeKeyword %>'"><%=p%></button>
+						<%}else{ %>
+						<button disabled><%=p %></button>
+						<%} %>	
+					<%} %>
+					
+					<%if(currentPage != maxPage){ %>
+						<!-- 다음페이지로(<) -->
+						<button onclick="location.href='noticeKeywordList.bo?currentPage=<%=currentPage+1%>&noticeKeyword=<%=noticeKeyword %>'">&gt;</button>
+						<!-- 맨 마지막으로(>>) -->
+						<button onclick="location.href='noticeKeywordList.bo?currentPage=<%=maxPage %>&noticeKeyword=<%=noticeKeyword %>'">&gt;&gt;</button>
+					<%} %>
+                    
+                <%}else { %>
+                    <!-- 현재 페이지에 보여질 페이징바 -->
+					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+						<!-- 맨 처음으로(<<) -->
+						<button onclick="location.href='noticeAdminList.bo?currentPage=1>'">&lt;&lt;</button>
+						<!-- 이전페이지로(<) -->
+						<button onclick="location.href='noticeAdminList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
+					<%} %>
+					
+					<%for(int p=startPage; p<=endPage; p++){%>
+						<%if(currentPage != p) {%>
+						<button onclick="location.href='noticeAdminList.bo?currentPage=<%=p%>'"><%=p%></button>
+						<%}else{ %>
+						<button disabled><%=p %></button>
+						<%} %>	
+					<%} %>
+					
+					<%if(currentPage != maxPage){ %>
+						<!-- 다음페이지로(<) -->
+						<button onclick="location.href='noticeAdminList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
+						<!-- 맨 마지막으로(>>) -->
+						<button onclick="location.href='noticeAdminList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+					<%} %>
+				<%} %>
                 </div>
                
                
             </div>
         </div>
-    </div>  
+        
+        <script>
+    	$(function(){
+    		$("#searchBtn1").click(function(){
+    			var noticeKeyword = $("#noticeKeyword").val();
+    			location.href='noticeKeywordList.bo?eventKeyword='+noticeKeyword+"&currentPage=1";
+    		});
+    	})
+   	 	</script>     
 </body>
 </html>
