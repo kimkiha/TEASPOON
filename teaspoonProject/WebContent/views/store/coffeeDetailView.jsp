@@ -266,12 +266,11 @@
 			$('#subReview').click(function(){
 				// 댓글 내용
 				var content = $('#reviewContent').val();
-				var pcode = <%=p.getPcode() %>;
 				
 				$.ajax({
 					url:"insert.re",
 					type:"post",
-					data:{pcode:pcode, content:content},
+					data:{content:content, pcode:<%=p.getPcode()%>},
 					success:function(result){
 						if(result>0){	// 리뷰작성 성공시 
 							selectReplyList();	// 갱신된데이터를 불러오도록 리뷰작성 메소드 호출

@@ -1,4 +1,4 @@
-package com.teaspoon.space.controller;
+package com.teaspoon.board.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.space.model.service.PaymentService;
-import com.teaspoon.space.model.vo.Payment;
+import com.teaspoon.board.service.BoardService;
 
 /**
- * Servlet implementation class detailPaymentServlet
+ * Servlet implementation class EventDeleteServlet
  */
-@WebServlet("/detail.py")
-public class detailPaymentServlet extends HttpServlet {
+@WebServlet("/eventDelete.bo")
+public class EventDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public detailPaymentServlet() {
+    public EventDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +30,21 @@ public class detailPaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		
-		int pno = Integer.parseInt(request.getParameter("pno"));
+		int result = new BoardService().deleteBoard(bno);
 		
-		Payment p = new PaymentService().selectPayment(pno);
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/space/space_payment.jsp");
-		view.forward(request, response);
-		
+		if(result > 0) {
+			request.getSession().setAttribute("msg", "이벤트가 삭제되었습니다");
+			response.sendRedirect("eventAdminList.bo?currentPage=1");
+		}else {
+			request.setAttribute("msg", "삭제실패!!");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+		}
+
 	}
 
 	/**

@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.teaspoon.space.model.vo.*"%>
- 
- <%
-	
-	Space s = (Space)(request.getAttribute("s"));
- 	
-%>
+    pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
 <html>
@@ -37,7 +31,7 @@
 <script>
 	$(document).ready(function () {  
         var top = $('.adside').offset().top - parseFloat($('.adside').css('marginTop').replace(/auto/, 0));
-        $(window).scroll(function (event)
+        $(window).scroll(function (event) {
         var y = $(this).scrollTop();
   
        if (y >= top) {
@@ -79,19 +73,24 @@
                                             <td >
                                                 <img src="/사이트이미지/매거진/magazine_1.png" alt="" width="100" height="100">
                                             </td>
-                                            <td style="text-align:left; padding-left:20px;font-weight: 700;">아카이야 (<%=s.getReservTime() %>)</td>
+                                            <td style="text-align:left; padding-left:20px;font-weight: 700;">아카이야(11:00~13:00)</td>
                                             <td>1개</td>
                                             <td>200,000원</td>
                                             <td>960P</td>
                                         </tr>
-                                     
                                         <tr>
-                                            <td colspan="2" >(+)빔프로젝트</td>
+                                            <td colspan="2" >+빔프로젝트</td>
                                             <td>1개</td>
-                                            <td>20,000원</td>
+                                            <td>10,000원</td>
                                             <td>300P</td>
                                         </tr>
-                                    
+                                        
+                                        <tr>
+                                            <td colspan="2">+노트북</td>
+                                            <td>1개</td>
+                                            <td>5,000원</td>
+                                            <td>150P</td>
+                                        </tr>
                                         
                                     </tbody>
                                 </table>
@@ -101,7 +100,7 @@
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="left_text_st top_bd">티스푼포인트</td>
-                                            <td class="top_bd"> <input type="text" value="<%= loginUser.getPointPrice() %>" class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
+                                            <td class="top_bd"> <input type="text" value="150p" class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
                                             <td class="top_bd"><button style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
                                         </tr>
                                 </table>
@@ -146,7 +145,7 @@
                                     
                                     <tr>
                                         <td class=" pay_lt bd_none">물품비용</td>
-                                        <td class=" pay_rt bd_none">200,000원</td>
+                                        <td class=" pay_rt bd_none">15,000원</td>
                                     </tr>
                                     <tr>
                                         <td class=" pay_lt">포인트 할인</td>

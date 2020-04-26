@@ -494,33 +494,28 @@ public class MemberService {
 		return result;
 	}
 	
-	public int updateGrade(Grade g,ArrayList<Grade> gList,int maxGradeCheck ) {
+	public int updateGrade(Grade g,ArrayList<Grade> gList ) {
 		Connection conn = getConnection();
-		int result =0;
-		result = new MemberDao().updateGrade(conn,g);
-		
-		if(maxGradeCheck == 1) {
-			new MemberDao().newUpdateMaxMemberGrade(conn,g); 
-		}else {
-			String nextG="";
-			for(int i=0; i<gList.size(); i++) {
-				if(g.getGradeName().equals(gList.get(i).getGradeName())){
-					nextG=gList.get(i+1).getGradeName();
-					
-				}
+		String nextG="";
+		for(int i=0; i<gList.size(); i++) {
+			if(g.getGradeName().equals(gList.get(i).getGradeName())){
+				nextG=gList.get(i+1).getGradeName();
+				
 			}
-				new MemberDao().newUpdateMemberGrade(conn,g,nextG); 
 		}
-	 
-	
+		int result1 = 0;
 		
-			if(result>0) {
+			result1 = new MemberDao().updateGrade(conn,g);
+			new MemberDao().newUpdateMemberGrade(conn,g,nextG);  
+		System.out.println(result1);
+		
+			if(result1>0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
-		return result;
+		return result1;
 	}
 
 

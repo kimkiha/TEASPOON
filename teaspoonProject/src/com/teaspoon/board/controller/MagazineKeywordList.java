@@ -46,7 +46,7 @@ public class MagazineKeywordList extends HttpServlet {
 		int boardLimit;		//한페이지에 보여질 게시글 최대 갯수
 		
 		//* listCount : 총 게시글 갯수
-		listCount = new BoardService().getMagazineListCount();
+		listCount = new BoardService().getMagazineKeywordListCount(magazineKeyword);
 		
 		//* currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
