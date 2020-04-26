@@ -133,9 +133,9 @@
                                 <input type="date"  class="date" name="reservDate" id="dateofbirth">
                                 
                                 <select class="box1" name="reservTime">
-                                  <option value="09:30">아카이야 09:30~11:30</option>
-                                  <option value="13:00">아카이야 13:00~15:00</option>
-                                  <option value="16:30">아카이야 16:30~18:30</option>
+                                  <option value="09:30~11:30">아카이야 09:30~11:30</option>
+                                  <option value="13:00~15:00">아카이야 13:00~15:00</option>
+                                  <option value="16:30~18:30">아카이야 16:30~18:30</option>
                                   <option selected>시간선택</option>          
                                 </select>
                                 
