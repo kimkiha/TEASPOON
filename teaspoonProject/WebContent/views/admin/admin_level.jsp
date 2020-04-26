@@ -123,6 +123,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                        
                           <tfoot>
                               <tr>
+                             	     <input type="hidden" id="maxGradeCheck" name="maxGradeCheck">
                              		 <input type="hidden" id="gno" name="gno">
                                   <td><input type="text" id="gNo" name="gNo" disabled="disabled"></td>
                                   <td><input type="text" id="updateGradeName" name="updateGradeName" placeholder="수정할등급명" required></td>
@@ -225,8 +226,15 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     			var nextGradeMinMoney = $('.grade'+(Number(gNo)+10)).children().eq(2).text();
     			var nextGradeDiscountGrade = $('.grade'+(Number(gNo)+10)).children().eq(3).text();
     			
+    			var prevGradeMinMoney = $('.grade'+(Number(gNo)-10)).children().eq(2).text();
+    			var prevGradeDiscountGrade = $('.grade'+(Number(gNo)-10)).children().eq(3).text();
+    			
+    			
     			//console.log(updateDiscountRate);
     			//console.log(nextGradeDiscountGrade);
+    			console.log(prevGradeMinMoney);
+    			console.log(prevGradeDiscountGrade);
+    		
     			
     			if((nextGradeDiscountGrade+100000)==100000){
     				if(Number(updateMinMoney) <= Number(prevGradeMinMoney)){
@@ -236,6 +244,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
         				alert("하위 등급보다 할인률이 작거나 같을 수 없습니다.");
         				return false;
         			}else{
+        				$("#maxGradeCheck").val(1);
         				return true;
         			} 
     			}else{
@@ -246,13 +255,14 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
         				alert("하위 등급보다 달성금액이 작거나 같을 수 없습니다.");
         				return false;
         			}else if(Number(updateDiscountRate)<= Number(prevGradeDiscountGrade)){
-        				alert("상위 등급보다 할인률이 크거나 같을 수 없습니다.");
+        				alert("하쉬 등급보다 할인률이 작거나 같을 수 없습니다.");
         				return false;
         			}else if(Number(updateDiscountRate)>= Number(nextGradeDiscountGrade)){
-        				alert("하위 등급보다 할인률이 작거나 같을 수 없습니다.");
+        				alert("상위 등급보다 할인률이 크거나 같을 수 없습니다.");
         				return false;
         			}else{
-        				return true;
+        				 $("#maxGradeCheck").val(2);
+         				return true;
         			}
     			}
     	       
