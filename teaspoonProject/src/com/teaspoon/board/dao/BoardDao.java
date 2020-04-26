@@ -15,7 +15,6 @@ import java.util.Properties;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
-import com.teaspoon.member.model.vo.Member;
 
 public class BoardDao {
 	private Properties prop = new Properties();
@@ -65,7 +64,7 @@ public class BoardDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql =prop.getProperty("insertMagazineAttachemnt");
+		String sql =prop.getProperty("insertAttachemnt");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -546,6 +545,7 @@ public class BoardDao {
 						rset.getString("CHANGE_NAME")
 						));
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -556,39 +556,5 @@ public class BoardDao {
 		return list;
 	}
 
-	public ArrayList<Board> selectMagazineKeywordList(Connection conn, String magazineKeyword, PageInfo pi){
-		ArrayList<Board> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectMagazineKeywordList");
-		
-		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-		int endRow = startRow + pi.getBoardLimit() - 1;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+magazineKeyword+"%");
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new Board(rset.getInt("board_no"), rset.getString("board_title"),
-						rset.getInt("count"),rset.getDate("create_date"),
-						rset.getDate("modify_date"),rset.getString("status")));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-
-		}
-		return list;
-		
-		
-	}
 }
 

@@ -1108,8 +1108,8 @@ public int insertAttachment(Connection conn, Attachment at) {
 			PreparedStatement pstmt = null;
 			
 			String sql = prop.getProperty("newUpdateMemberGrade");
-			//System.out.println(g.getGradeName());
-			//System.out.println(nextG);
+			System.out.println(g.getGradeName());
+			System.out.println(nextG);
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
@@ -1128,33 +1128,6 @@ public int insertAttachment(Connection conn, Attachment at) {
 			
 			return result;
 		}
-		
-			public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
-			
-			int result = 0;
-			
-			PreparedStatement pstmt = null;
-			
-			String sql = prop.getProperty("newUpdateMaxMemberGrade");
-			//System.out.println(g.getGradeName());
-			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setInt(1,g.getGradeCode()-10);
-				pstmt.setString(2, g.getGradeName());
-				pstmt.setInt(3, g.getGradeCode());
-				
-				result = pstmt.executeUpdate();
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
-			
-			return result;
-			}
 		// 포인트 조회 관련 
 		public ArrayList<Point> selectPointList(Connection conn, int userNo,PageInfo pi) {
 			ArrayList<Point> list = new ArrayList<>();
@@ -1216,33 +1189,6 @@ public int insertAttachment(Connection conn, Attachment at) {
 			}
 			
 			
-			return listCount;
-		}
-
-		public int selectMtmAdminCount(Connection conn) {
-			int listCount = 0;
-
-			Statement stmt = null;
-			ResultSet rset = null;
-			String sql = prop.getProperty("getListCount");
-
-			try {
-				stmt = conn.createStatement();
-				rset = stmt.executeQuery(sql);
-
-				if (rset.next()) {
-					// 컬럼인덱스로 추출
-					listCount = rset.getInt(1);
-				}
-
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(stmt);
-			}
-
 			return listCount;
 		}
 }

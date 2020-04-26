@@ -5,28 +5,25 @@ public class Grade {
 	private String gradeName; //등급명
 	private int minAcount;	  //등급구간최소금액
 	private int gradeRate;	  //등급할인률
-	private int maxGradeCheck;//최고등급 체크조건 1이면 최고등급/아니면 2
+	
 	public Grade() {
 		
 	}
 	
+
 	public Grade(int gradeCode, String gradeName, int minAcount, int gradeRate) {
 		super();
 		this.gradeCode = gradeCode;
 		this.gradeName = gradeName;
 		this.minAcount = minAcount;
 		this.gradeRate = gradeRate;
-		
 	}
 	
-	public Grade(int gradeCode, String gradeName, int minAcount, int gradeRate, int maxGradeCheck) {
-		super();
-		this.gradeCode = gradeCode;
-		this.gradeName = gradeName;
-		this.minAcount = minAcount;
-		this.gradeRate = gradeRate;
-		this.maxGradeCheck = maxGradeCheck;
-	}
+
+
+
+
+
 	public int getGradeCode() {
 		return gradeCode;
 	}
@@ -51,18 +48,10 @@ public class Grade {
 	public void setGradeRate(int gradeRate) {
 		this.gradeRate = gradeRate;
 	}
-	public int getMaxGradeCheck() {
-		return maxGradeCheck;
-	}
-	public void setMaxGradeCheck(int maxGradeCheck) {
-		this.maxGradeCheck = maxGradeCheck;
-	}
 	@Override
 	public String toString() {
 		return "Grade [gradeCode=" + gradeCode + ", gradeName=" + gradeName + ", minAcount=" + minAcount
-				+ ", gradeRate=" + gradeRate + ", maxGradeCheck=" + maxGradeCheck + "]";
+				+ ", gradeRate=" + gradeRate + "]";
 	}
-	
-
 	
 }
