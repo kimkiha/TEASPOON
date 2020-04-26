@@ -1,29 +1,28 @@
-package com.teaspoon.store.controller;
+package com.teaspoon.space.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Review;
+import com.teaspoon.space.model.service.PaymentService;
+import com.teaspoon.space.model.vo.Payment;
 
 /**
- * Servlet implementation class ReviewInsertServlet
+ * Servlet implementation class detailPaymentServlet
  */
-@WebServlet("/insert.re")
-public class ReviewInsertServlet extends HttpServlet {
+@WebServlet("/detail.py")
+public class detailPaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewInsertServlet() {
+    public detailPaymentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +32,13 @@ public class ReviewInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int pno = Integer.parseInt(request.getParameter("pno"));
 		
-		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
-		String content = request.getParameter("content");
-		int pcode = Integer.parseInt(request.getParameter("pcode"));
+		Payment p = new PaymentService().selectPayment(pno);
 		
-		System.out.println(request.getParameter("pcode"));
-		System.out.println(pcode);
-		System.out.println(content);
+		RequestDispatcher view = request.getRequestDispatcher("views/space/space_payment.jsp");
+		view.forward(request, response);
 		
-		Review r = new Review();
-		r.setContent(content);
-		r.setPcode(pcode);
-		r.setUserNo(userNo);
-		
-		int result = new ProductService().insertReview(r);
-		
-		PrintWriter out = response.getWriter();
-		out.print(result);
 	}
 
 	/**

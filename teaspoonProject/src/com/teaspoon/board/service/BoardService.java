@@ -198,6 +198,13 @@ public class BoardService {
 		close(conn);
 		
 		return list;
+	public ArrayList<Board> selectMagazineKeywordList(String magazineKeyword, PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectMagazineKeywordList(conn, magazineKeyword, pi);
+		
+		close(conn);
+		return list;
+		
 	}
 	
 }
