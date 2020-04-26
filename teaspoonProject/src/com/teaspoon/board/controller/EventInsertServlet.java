@@ -2,7 +2,6 @@ package com.teaspoon.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,19 +17,18 @@ import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.board.service.BoardService;
 import com.teaspoon.common.MyFileRenamePolicy;
-import com.teaspoon.member.model.vo.Member;
 
 /**
- * Servlet implementation class MagazineInsertServlet
+ * Servlet implementation class EventInsertServlet
  */
-@WebServlet("/magazineInsert.bo")
-public class MagazineInsertServlet extends HttpServlet {
+@WebServlet("/eventInsert.bo")
+public class EventInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MagazineInsertServlet() {
+    public EventInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -72,13 +70,13 @@ public class MagazineInsertServlet extends HttpServlet {
 					
 			}
 		
-		int result = new BoardService().insertMagazine(b, at);
+		int result = new BoardService().insertEvent(b, at);
 		
 		
 
 		if(result > 0) { //성공했을경우
-			request.getSession().setAttribute("msg", "매거진이 등록되었습니다");
-			response.sendRedirect("magazineAdminList.bo?currentPage=1");
+			request.getSession().setAttribute("msg", "이벤트가 등록되었습니다");
+			response.sendRedirect("eventAdminList.bo?currentPage=1");
 		}else { //실패했을경우
 			
 			// 서버에 업로드된 파일 찾아서 삭제
@@ -91,8 +89,9 @@ public class MagazineInsertServlet extends HttpServlet {
 			view.forward(request, response);
 		}
 		
-	}	
 	}
+}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -133,7 +133,7 @@
                                         	첨부파일이 없습니다
                                         <% }%>
                                         <div class="func">
-                                            <button class="btn btn-cancel">뒤로가기</button>
+                                            <button class="btn btn-cancel" onclick="history.back();">뒤로가기</button>
                                            
                                         </div>
                                     </form> 

@@ -1,29 +1,25 @@
-package com.teaspoon.store.controller;
+package com.teaspoon.board.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Review;
-
 /**
- * Servlet implementation class ReviewInsertServlet
+ * Servlet implementation class EventInsertFormServlet
  */
-@WebServlet("/insert.re")
-public class ReviewInsertServlet extends HttpServlet {
+@WebServlet("/eventInsertForm.bo")
+public class EventInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewInsertServlet() {
+    public EventInsertFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +28,9 @@ public class ReviewInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_eventEnrollForm.jsp");
 		
-		
-		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
-		String content = request.getParameter("content");
-		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		
-		System.out.println(request.getParameter("pcode"));
-		System.out.println(pcode);
-		System.out.println(content);
-		
-		Review r = new Review();
-		r.setContent(content);
-		r.setPcode(pcode);
-		r.setUserNo(userNo);
-		
-		int result = new ProductService().insertReview(r);
-		
-		PrintWriter out = response.getWriter();
-		out.print(result);
+		view.forward(request, response);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.teaspoon.member.controller;
+package com.teaspoon.board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.board.model.vo.Board;
+import com.teaspoon.board.service.BoardService;
 import com.teaspoon.common.PageInfo;
-import com.teaspoon.member.model.service.MemberService;
-import com.teaspoon.member.model.vo.Grade;
-import com.teaspoon.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberIdListServlet
+ * Servlet implementation class EventAdminServlet
  */
-@WebServlet("/idList.me")
-public class MemberIdListServlet extends HttpServlet {
+@WebServlet("/eventAdminList.bo")
+public class EventAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberIdListServlet() {
+    public EventAdminServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,10 +33,7 @@ public class MemberIdListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String searchId = request.getParameter("searchId");
-		
-		
+
 		//-------------------- 페이징처리 -----------------
 		int listCount;		//총 게시글 갯수
 		int currentPage;	//현재페이지(즉, 요청한페이지)
@@ -48,7 +44,7 @@ public class MemberIdListServlet extends HttpServlet {
 		int boardLimit;		//한페이지에 보여질 게시글 최대 갯수
 		
 		//* listCount : 총 게시글 갯수
-		listCount = new MemberService().getSearchListCount(searchId);
+		listCount = new BoardService().getMagazineListCount();
 		
 		//* currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -114,22 +110,16 @@ public class MemberIdListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		//System.out.println(pi);
-		ArrayList<Member> list = new MemberService().selectSearchList(searchId,pi);
-		ArrayList<Grade> gList = new MemberService().selectGradeList();
+		ArrayList<Board> list = new BoardService().selectEventList(pi);
+		
 		
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
-		
-		//게시판글 출력을위한 list객체전달
+		//목록 출력을위한 list객체전달
 		request.setAttribute("list", list);
-		request.setAttribute("searchId", searchId);
 		
-		//등급리스트 출력을 위한 gList객체 전달
-		request.setAttribute("gList", gList);
-
-		//System.out.println(list);
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_member.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_event.jsp");
 		view.forward(request, response);
 	}
 

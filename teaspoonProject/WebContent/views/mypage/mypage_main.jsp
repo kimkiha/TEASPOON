@@ -49,7 +49,7 @@
                             </div>
                             <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
                                 <p class="info_th" >적립포인트</p>
-                                <a href="<%=contextPath%>/mypoint.me?currentPage=1" ><%= loginUser.getPointPrice() %></a>
+                                <a href="<%=contextPath%>/mypoint.me?currentPage=1" ><%= loginUser.getPointPrice() %>p</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>

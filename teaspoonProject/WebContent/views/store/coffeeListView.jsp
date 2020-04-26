@@ -8,6 +8,8 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -47,16 +49,16 @@
                         <div id="productList">
                         
                         	<!-- listArea -->
-                        	<%for(Product p : list) {%>
+                        	<%for(int i=0; i<list.size(); i++) {%>
                         	
                             <div class="product" style="margin-top:50px; margin-right:30px;" >
                             	
                                 <div class="product_img">
-                                	<input type="hidden" id="pcode" name="pcode" value=<%=p.getPcode() %>>
-                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
+                                	<input type="hidden" class="pcode<%=i%>" name="pcode" value=<%=list.get(i).getPcode() %>>
+                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(i).getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
-                                   <p style="padding-top:20px;padding-left:15px;"><%=p.getPname() %></p>
+                                   <p style="padding-top:20px;padding-left:15px;"><%=list.get(i).getPname() %></p>
                                 </div>
                                 <div class="like">
                                     <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
@@ -64,13 +66,6 @@
                                 
                                 <div class="basket">
                                     <img id="open" class="basket_icon" src="<%=contextPath %>/resources/img/store/cart.png">
-                                </div>
-                                <div class="modal">
-                                        <div class="modal_content">
-                                            <p>장바구니로 이동하시겠습니까?</p>
-                                            <button class="gobasket">장바구니보기</button>
-                                            <button class="close">계속쇼핑</button>
-                                        </div>
                                 </div>
                             </div>
                             <%} %>
@@ -118,6 +113,45 @@
         		});
         	});
         
+
+    		// 페이지로딩시 로그인한 유저의 위시리스트 목록조회
+    		$(function(){
+    			selectWishList();
+    		});
+    		
+    		function selectWishList(){
+    			
+    			var icon = $('.like_icon');
+    			var loginUser = "<%=loginUser.getUserId()%>";
+    			if(loginUser != null){
+    				$.ajax({
+    					url:"selectWish.st",
+    					type:"post",
+    					success:function(list){
+
+    					for(var i=0; i<12; i++){
+	    					var p = '.pcode'+i;	
+								for(var j=0; j<list.length; j++){
+	    							if($(p).val()==list[j].pcode){
+	    							var heart =$(p).parent().siblings().eq(1).children();
+	    							heart.removeClass("empty");
+	    							heart.addClass("full");
+	    							heart.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+	    							}
+							}
+	    					
+		    					    					 
+    					}
+    					
+    					},error:function(){
+    						console.log("사용자 위시리스트 조회용 ajax실패")
+    					}
+    				})
+    			}
+    		}
+    		
+    		
+
         	// 위시리스트 등록 ajax
         	$(function(){
         		$('.like_icon').click(function(){
@@ -174,16 +208,18 @@
         	});
         	
 
-            // 장바구니 이동 팝업
-            $("#open").click(function(){
-                $(".modal").fadeIn();
-            });
-            $("#gobasket").click(function(){
-                // 장바구니로 이동 링크
-            });
-            $(".close").click(function(){
-                $(".modal").fadeOut();
-            });
+            // 장바구니 이동
+            /*$(function(){
+            	$('.basket_icon').click(function(){
+            		$.ajax({
+            			url:,
+            			type:"post",
+            			data:{pcode:pcode},
+            			
+            		})
+            	})
+            })*/
+            
 
    
         </script>

@@ -100,7 +100,7 @@
                 <li><a href="<%=contextPath%>/level.me">회원등급관리</a></li>
                 <li><a href="admin112.html">신고목록</a></li>
                 <li><a href="adminCoupon.html">쿠폰관리</a></li>
-                <li><a href="adminOneOnOne.html">1:1문의</a></li>
+                <li><a href="<%=contextPath %>/qnalist.me">1:1문의</a></li>
             </ul>
             </li>
             <br>
@@ -120,7 +120,7 @@
             <li class="c-li"><p class="click" style="margin: 0 0;" >게시판관리</p>
             <ul class="deep">
             <li><a href="adminNotice.html">공지사항</a></li>
-            <li><a href="adminEvent.html">이벤트</a></li>
+            <li><a href="<%=contextPath%>/eventAdminList.bo?currentPage=1">이벤트</a></li>
             <li><a href="adminAbout.html">어바웃티스푼</a></li>
             <li><a href="<%=contextPath%>/magazineAdminList.bo?currentPage=1">매거진</a></li>
             </ul>

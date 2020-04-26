@@ -36,8 +36,7 @@ public class MyPagePointServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
+	
 		int listCount;		//총 게시글 갯수
 		int currentPage;	//현재페이지(즉, 요청한페이지)
 		int startPage;		//현재페이지 하단에 보여지는 페이징바의 시작수
@@ -47,7 +46,10 @@ public class MyPagePointServlet extends HttpServlet {
 		int boardLimit;		//한페이지에 보여질 게시글 최대 갯수
 		
 		//* listCount : 총 게시글 갯수
-		listCount = new MemberService().getPointListCount(loginUser.getUserNo());
+		HttpSession session = request.getSession();
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		
+		listCount = new MemberService().getPointListCount(userNo);
 		
 		//* currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -69,9 +71,10 @@ public class MyPagePointServlet extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
-		//System.out.println(pi);
 		
-		ArrayList<Point> list=  new MemberService().selectPointList(loginUser.getUserNo());
+		
+		ArrayList<Point> list=  new MemberService().selectPointList(userNo,pi);
+	
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_point.jsp");

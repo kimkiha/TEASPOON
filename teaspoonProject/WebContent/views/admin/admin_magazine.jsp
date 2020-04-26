@@ -3,6 +3,9 @@
 <% 
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	String magazineKeyword = String.valueOf(request.getAttribute("magazineKeyword"));
+	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
@@ -33,8 +36,8 @@
                         <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/매거진.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>매거진관리 페이지입니다.</p></div>
                         <div id="c1_1_1_3">
-                           <input type="text" placeholder="키워드" name="keyword">
-                            <button type="button" id="btn">검색</button>
+                           <input type="text" placeholder="제목" name="magazineKeyword">
+                            <button type="button" id="btn" id="searchBtn1">검색</button>
                         </div>
                     </div>
                     <div id="c1_1_2">
@@ -81,10 +84,36 @@
 
                 </div>
                 <div id="c1_3">
+                <% if(!magazineKeyword.equals("null")){ %>
                     <!-- 현재 페이지에 보여질 페이징바 -->
 					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 						<!-- 맨 처음으로(<<) -->
-						<button onclick="location.href='magazineList.bo?currentPage=1>'">&lt;&lt;</button>
+						<button onclick="location.href='magazineList.bo?currentPage=1&searchId=<%=magazineKeyword %>'">&lt;&lt;</button>
+						<!-- 이전페이지로(<) -->
+						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=currentPage-1%>&searchId=<%=magazineKeyword%>'">&lt;</button>
+					<%} %>
+					
+					<%for(int p=startPage; p<=endPage; p++){%>
+						<%if(currentPage != p) {%>
+						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=p%>searchId=<%=magazineKeyword %>'"><%=p%></button>
+						<%}else{ %>
+						<button disabled><%=p %></button>
+						<%} %>	
+					<%} %>
+					
+					<%if(currentPage != maxPage){ %>
+						<!-- 다음페이지로(<) -->
+						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=currentPage+1%>searchId=<%=magazineKeyword %>'">&gt;</button>
+						<!-- 맨 마지막으로(>>) -->
+						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=maxPage %>searchId=<%=magazineKeyword %>'">&gt;&gt;</button>
+					<%} %>
+                    
+                    
+				<%} else { %>
+					<!-- 현재 페이지에 보여질 페이징바 -->
+					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+						<!-- 맨 처음으로(<<) -->
+						<button onclick="location.href='magazineList.bo?currentPage=1'">&lt;&lt;</button>
 						<!-- 이전페이지로(<) -->
 						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
 					<%} %>
@@ -103,9 +132,8 @@
 						<!-- 맨 마지막으로(>>) -->
 						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
 					<%} %>
+				<%} %>
                 </div>
-               
-               
             </div>
         </div>
         

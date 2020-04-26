@@ -1,29 +1,31 @@
 package com.teaspoon.store.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Review;
+import com.teaspoon.store.model.vo.Product;
 
 /**
- * Servlet implementation class ReviewInsertServlet
+ * Servlet implementation class SelectWish
  */
-@WebServlet("/insert.re")
-public class ReviewInsertServlet extends HttpServlet {
+@WebServlet("/selectWish.st")
+public class SelectWish extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewInsertServlet() {
+    public SelectWish() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +35,15 @@ public class ReviewInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		
-		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
-		String content = request.getParameter("content");
-		int pcode = Integer.parseInt(request.getParameter("pcode"));
+		//System.out.println(session.getAttribute("loginUser"));
+		ArrayList<Product> list = new MemberService().selectWishList(userNo);
 		
-		System.out.println(request.getParameter("pcode"));
-		System.out.println(pcode);
-		System.out.println(content);
+		response.setContentType("application/json; charset=utf-8;");
+		new Gson().toJson(list,response.getWriter());
 		
-		Review r = new Review();
-		r.setContent(content);
-		r.setPcode(pcode);
-		r.setUserNo(userNo);
-		
-		int result = new ProductService().insertReview(r);
-		
-		PrintWriter out = response.getWriter();
-		out.print(result);
 	}
 
 	/**
