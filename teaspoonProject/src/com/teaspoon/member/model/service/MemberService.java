@@ -551,6 +551,8 @@ public class MemberService {
 		Member m = new MemberDao().selectUserPwd(conn,userId);
 		close(conn);
 		return m;
+	}
+	
 	/**
 	 *  관리자 1:1리스트용 페이징바
 	 * @return
