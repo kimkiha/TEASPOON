@@ -4,11 +4,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 import static com.teaspoon.common.JDBCTemplate.*;
 
 import com.teaspoon.member.model.dao.MemberDao;
+import com.teaspoon.space.model.vo.Goods;
+import com.teaspoon.space.model.vo.Payment;
 import com.teaspoon.space.model.vo.Space;
 
 public class SpaceDao {
@@ -53,9 +57,72 @@ public class SpaceDao {
 		}
 		
 		return result;
-			
-
+				
+	}
+	
+	public Payment selectPaymentList(Connection conn, int pno) {
 		
+		Payment p = null;
+		PreparedStatement pstmt =null;
+		ResultSet rset = null;
+	
+		String sql = prop.getProperty("selectPaymentList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Payment();
+				p.setGoodsPay(rset.getInt("goodspay"));
+				p.setTotal(rset.getInt("total"));
+				p.setReservPay(rset.getInt("reservpay"));
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return p;
+		
+	}
+	
+	
+	public ArrayList<Goods> selectGoodsList(Connection conn){
+		
+		ArrayList<Goods> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectGoodsList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Goods g = new Goods();
+				g.setGsName(rset.getString("GS_NAME"));
+				g.setGsPrice(rset.getInt("GS_PRICE"));
+				g.setGsCount(rset.getInt("GS_COUNT"));
+				g.setGsUsing(rset.getInt("GS_USING"));
+				
+				list.add(g);	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 	
 }

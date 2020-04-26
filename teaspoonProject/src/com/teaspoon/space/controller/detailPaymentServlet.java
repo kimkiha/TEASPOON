@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.teaspoon.space.model.service.PaymentService;
+import com.teaspoon.space.model.service.SpaceService;
 import com.teaspoon.space.model.vo.Payment;
 
 /**
@@ -34,7 +35,7 @@ public class detailPaymentServlet extends HttpServlet {
 		
 		int pno = Integer.parseInt(request.getParameter("pno"));
 		
-		Payment p = new PaymentService().selectPayment(pno);
+		Payment p = new SpaceService().selectPaymentList(pno);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/space/space_payment.jsp");
 		view.forward(request, response);
