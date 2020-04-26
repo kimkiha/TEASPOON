@@ -544,5 +544,25 @@ public class MemberService {
 		close(conn);
 		return listCount;
 	}
+
+	public Member selectUserPwd(String userId) {
+		
+		Connection conn = getConnection();
+		Member m = new MemberDao().selectUserPwd(conn,userId);
+		close(conn);
+		return m;
+	/**
+	 *  관리자 1:1리스트용 페이징바
+	 * @return
+	 */
+	public int selectMtmAdminCount() {
+		Connection conn = getConnection();
+		int listCount = new MemberDao().selectMtmAdminCount(conn);
+		
+		close(conn);
+		return listCount;
+		
+		
+	}
 	
 }

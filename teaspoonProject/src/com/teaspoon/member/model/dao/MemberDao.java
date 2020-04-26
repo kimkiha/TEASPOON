@@ -1191,4 +1191,64 @@ public int insertAttachment(Connection conn, Attachment at) {
 			
 			return listCount;
 		}
+
+		public Member selectUserPwd(Connection conn, String userId) {
+		
+			PreparedStatement pstmt = null;
+			Member m = new Member(); 
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("selectUserPwd");
+			
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, userId);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					
+					m.setUserPwd(rset.getString("user_pwd"));
+					m.setEmail(rset.getString("EMAIL"));
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return m;
+			
+			
+			
+		public int selectMtmAdminCount(Connection conn) {
+			int listCount = 0;
+
+			Statement stmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("getListCount");
+
+			try {
+				stmt = conn.createStatement();
+				rset = stmt.executeQuery(sql);
+
+				if (rset.next()) {
+					// 컬럼인덱스로 추출
+					listCount = rset.getInt(1);
+				}
+
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(stmt);
+			}
+
+			return listCount;
+		}
 }
