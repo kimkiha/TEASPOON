@@ -73,7 +73,7 @@
                                 <caption><b>베스트 상품 순위</b></caption>
                                 <% for(int i=0; i<8; i++) { %>
                         		<% Product p = list.get(i); %>
-                                <tr id="top_list">
+                                <tr class="top_list2">
                                 	<td><input type="hidden" name="pcode" value=<%=p.getPcode() %>></td>
 	                            	<td><input type="hidden" name="kind" value=<%=p.getKind() %>></td>
                                     <th><%=i+1 %></th>
@@ -81,7 +81,7 @@
                                 </tr>
                                 <%} %>
                             </table>
-
+									
                         </div>
                         <div id="productList">
                         
@@ -137,8 +137,8 @@
         
         // 베스트 상품 목록(1~7번) 상세페이지 연결
         $(function(){
-    		$('#top_list').click(function(){
-    			var pcode = $(this).children().eq(0).val();
+    		$('.top_list2').click(function(){
+    			var pcode = $(this).children().eq(0).children().val();
     			var kind = $(this).children().eq(1).val();
     			if(kind=='C'){
     				location.href="<%=contextPath%>/detail.co?pcode="+pcode;

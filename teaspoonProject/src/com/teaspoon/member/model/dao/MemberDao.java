@@ -1154,6 +1154,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 			}
 			
 			return result;
+			}
 		// 포인트 조회 관련 
 		public ArrayList<Point> selectPointList(Connection conn, int userNo,PageInfo pi) {
 			ArrayList<Point> list = new ArrayList<>();

@@ -35,7 +35,7 @@ public class ItemDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		
+	
 		Product p = new ProductService().selectProduct(pcode);
 		ArrayList<Attachment> list = new ProductService().selectAtList(pcode);
 		
