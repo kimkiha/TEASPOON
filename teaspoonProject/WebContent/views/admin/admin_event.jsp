@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.board.model.vo.*,com.teaspoon.common.PageInfo "%>
+<% 
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,40 +37,42 @@
                         </div>
                     </div>
                     <div id="c1_1_2">
-                        <table>
+                        <table class="listArea" >
                             <thead>
-                              <tr>
-                                     <th width="70">글번호</th>
-                                    <th width="150">제목</th>
-                                    <th width="70">조회수</th>
-                                    <th width="90">작성일</th>
-                                    <th width="90">수정일</th>
-                                     <th width="90">종료일</th>
-                                    <th width="70">상태</th>
-                                    <th width="100">상세보기</th>
-                                    <th>
-                                        <button><a href="adminEventEnrollForm.html">추가</a></button>
+                                <tr>
+                                    <th width="100">글번호</th>
+                                    <th width="300">제목</th>
+                                    <th width="50">조회수</th>
+                                    <th width="100">작성일</th>
+                                    <th width="100">수정일</th>
+                                    <th width="50">상태</th>
+                                    <th >
+                                        <button><a href="eventInsertForm.bo">추가</a></button>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>25</td>
-                                    <td>3월 출석체크 이벤트</td>
-                                    <td>10</td>
-                                    <td>20.02.12</td>
-                                    <td>20.03.02</td>
-                                    <td>20.03.02</td>
-                                    <td>Y</td>
-                                    <td><button type="button">이동</button></td>
-                                    <td>
-                                        <button><a href="adminEventUpdateForm.html">수정</a></button>
-                                        <button>삭제</button>
-                                    </td>
-                                    
-                                </tr>
-                            </tbody>
-                             
+                             <%if(list.isEmpty()){%>
+								<tr>
+									<td colspan="8">조회된 리스트가 없습니다.</td>
+								</tr>
+								<%}else{%>
+									<%for(Board b : list){ %>
+										<tr>
+											<td><%=b.getBoardNo() %></td>
+											<td><%=b.getBoardTitle() %></td>
+											<td><%=b.getCount() %></td>
+											<td><%=b.getCreateDate() %></td>
+											<td><%=b.getModifyDate() %></td>
+											<td class="status"><%=b.getStatus()%></td>
+		                                    <td>
+	                                        <button><a href="<%=contextPath%>/eventUpdateForm.bo?bno=<%=b.getBoardNo()%>">수정</a></button>
+	                                        <button><a href="<%=contextPath%>/eventDelete.bo?bno=<%=b.getBoardNo()%>">삭제</a></button>
+                                   			</td>
+										</tr>
+									
+									<%} %>
+								<%} %>
                       </table>
                     </div>
                 </div>
@@ -70,18 +80,33 @@
 
                 </div>
                 <div id="c1_3">
-                        <a>&lt;</a>
-                       <button>1</button>
-                       <button>2</button>
-                       <button>3</button>
-                       <button>4</button>
-                       <button>5</button>
-                       <a>&gt;</a>
+                    <!-- 현재 페이지에 보여질 페이징바 -->
+					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+						<!-- 맨 처음으로(<<) -->
+						<button onclick="location.href='magazineList.bo?currentPage=1>'">&lt;&lt;</button>
+						<!-- 이전페이지로(<) -->
+						<button onclick="location.href='eventAdminList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
+					<%} %>
+					
+					<%for(int p=startPage; p<=endPage; p++){%>
+						<%if(currentPage != p) {%>
+						<button onclick="location.href='eventAdminList.bo?currentPage=<%=p%>'"><%=p%></button>
+						<%}else{ %>
+						<button disabled><%=p %></button>
+						<%} %>	
+					<%} %>
+					
+					<%if(currentPage != maxPage){ %>
+						<!-- 다음페이지로(<) -->
+						<button onclick="location.href='eventAdminList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
+						<!-- 맨 마지막으로(>>) -->
+						<button onclick="location.href='eventAdminList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+					<%} %>
                 </div>
                
                
             </div>
         </div>
-    </div>  
+                    
 </body>
 </html>

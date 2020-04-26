@@ -116,14 +116,19 @@ public class MemberIdListServlet extends HttpServlet {
 		//System.out.println(pi);
 		ArrayList<Member> list = new MemberService().selectSearchList(searchId,pi);
 		ArrayList<Grade> gList = new MemberService().selectGradeList();
+		
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
+		
 		//게시판글 출력을위한 list객체전달
 		request.setAttribute("list", list);
 		request.setAttribute("searchId", searchId);
+		
 		//등급리스트 출력을 위한 gList객체 전달
 		request.setAttribute("gList", gList);
-		System.out.println(list);
+
+		//System.out.println(list);
+		
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_member.jsp");
 		view.forward(request, response);
 	}

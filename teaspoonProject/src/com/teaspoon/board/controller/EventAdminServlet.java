@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.board.service.BoardService;
 import com.teaspoon.common.PageInfo;
 
 /**
- * Servlet implementation class EventListServelet
+ * Servlet implementation class EventAdminServlet
  */
-@WebServlet("/eventList.bo")
-public class EventListServelet extends HttpServlet {
+@WebServlet("/eventAdminList.bo")
+public class EventAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EventListServelet() {
+    public EventAdminServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -54,7 +53,7 @@ public class EventListServelet extends HttpServlet {
 		pageLimit = 10;
 		
 		//* boardLimit : 한 페이지에 보여질 게시글 최대 갯수
-		boardLimit = 6; 
+		boardLimit = 10; 
 		
 		
 		//* maxPage : (마지막 페이지) 총 페이지수 
@@ -111,19 +110,17 @@ public class EventListServelet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		//System.out.println(pi);
-		ArrayList<Board> list = new BoardService().selectMagazineList(pi);
-		ArrayList<Attachment> atList = new BoardService().selectMagazineThumbnailList(pi);
+		ArrayList<Board> list = new BoardService().selectEventList(pi);
+		
 		
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
-		//매거진제목 출력을위한 list객체전달
+		//목록 출력을위한 list객체전달
 		request.setAttribute("list", list);
-		//매거진 썸네일 출력을 위한 list객체전달
-		request.setAttribute("atList", atList);
 		
-	RequestDispatcher view = request.getRequestDispatcher("views/board/event.jsp");
-	
-	view.forward(request, response);
+		
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_event.jsp");
+		view.forward(request, response);
 	}
 
 	/**

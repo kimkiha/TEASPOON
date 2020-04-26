@@ -1,7 +1,6 @@
-package com.teaspoon.store.controller;
+package com.teaspoon.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.teaspoon.board.model.vo.Attachment;
-import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Product;
+import com.teaspoon.board.model.vo.Board;
+import com.teaspoon.board.service.BoardService;
 
 /**
- * Servlet implementation class ItemDetailServlet
+ * Servlet implementation class EventUpdateServlet
  */
-@WebServlet("/detail.it")
-public class ItemDetailServlet extends HttpServlet {
+@WebServlet("/eventUpdateForm.bo")
+public class EventUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ItemDetailServlet() {
+    public EventUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +32,22 @@ public class ItemDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		Product p = new ProductService().selectProduct(pcode);
-		ArrayList<Attachment> list = new ProductService().selectAtList(pcode);
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		
-		if(p != null) {
-			request.setAttribute("p", p);
-			request.setAttribute("list", list);
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/store/itemDetailView.jsp");
-			view.forward(request, response);
-		} else {
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
-			view.forward(request, response);
-			
+		Board b = new BoardService().selectBoard(bno);
+		Attachment at =  new BoardService().selectAttachment(bno);
+	
+		if(b != null) {
+		request.setAttribute("b", b);
+		request.setAttribute("at", at);
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_eventUpdateForm.jsp");
+		view.forward(request, response);
+		}else {
+		// 에러페이지로 포워딩
+		RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+		view.forward(request, response);
 		}
+
 	
 	}
 
