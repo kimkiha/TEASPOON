@@ -136,12 +136,12 @@ String randomKey = (String)request.getAttribute("randomKey");
 	</script>
     
      <script>
-      	 /* (이메일) 인증번호 발송 버튼 클릭시  (두번째버튼)*/ 
+      	 /* (이메일) 아이디 발송 버튼 클릭시  (두번째버튼)*/ 
       	 
       	 $("#numCheck").click(function(){
 
            $.ajax({
-        	   url:"email.e",
+        	   url:"idSend.me",
         	   data:{Email:email.value},
         	   success:function(data){
         		   alert("아이디가 발송되었습니다.");

@@ -102,7 +102,26 @@
 			
 		});
 	
-	</script> 
+	</script>
+	     <script>
+      	 /* (이메일) 아이디 발송 버튼 클릭시  (두번째버튼)*/ 
+      	 
+      	 $("#email_send").click(function(){
+
+           $.ajax({
+        	   url:"pwdSend.me",
+        	   data:{Email:email.value},
+        	   success:function(data){
+        		   alert("비밀번호가 발송되었습니다.");
+        		   console.log(data);
+        		   randomKey = data;
+        	   },error:function(){
+        		   alert("이메일발송실패");
+        	   }
+           })    
+       
+      	 });
+    </script> 
 	
 //		<script> // "비밀번호전송" 버튼 클릭시  (마지막버튼)
 //			
@@ -112,19 +131,19 @@
 //       	 	
 //    	</script>
 
-<script>
-
-$(function(){
-	
-	// 비밀번호전송
-	$("#email_send").click(function(){
-		 alert("비밀번호를 이메일로 발송하였습니다.");
-		})
-	
-		
-	});
-
-</script>
+//<script>
+//
+//$(function(){
+//	
+//	// 비밀번호전송
+//	$("#email_send").click(function(){
+//		 alert("비밀번호를 이메일로 발송하였습니다.");
+//		})
+//	
+//		
+//	});
+//
+//</script>
       
  	
 
