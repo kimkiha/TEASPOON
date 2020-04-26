@@ -3,6 +3,7 @@
 <% 
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	String magazineKeyword = String.valueOf(request.getAttribute("magazineKeyword"));
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
@@ -82,7 +83,9 @@
                 </div>
                 <div id="c1_3">
                     <!-- 현재 페이지에 보여질 페이징바 -->
-					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+                    <%if(!magazineKeyword.equals("null")){ %>
+					<%if(currentPage != 1){%> 
+					<!-- 현재 페이지가 1페이지가 아닐경우 -->
 						<!-- 맨 처음으로(<<) -->
 						<button onclick="location.href='magazineKeywordList.bo?currentPage=1&searchId=<%=magazineKeyword %>'">&lt;&lt;</button>
 						<!-- 이전페이지로(<) -->
@@ -127,6 +130,7 @@
 						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
 						<!-- 맨 마지막으로(>>) -->
 						<button onclick="location.href='magazineAdminList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+					<%} %>
 					<%} %>
                 </div>
                
