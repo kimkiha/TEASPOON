@@ -550,12 +550,18 @@ public class MemberService {
 		return listCount;
 	}
 
+	/** userId로 pwd찾기
+	 * @param userId
+	 * @return
+	 */
 	public Member selectUserPwd(String userId) {
 		
 		Connection conn = getConnection();
 		Member m = new MemberDao().selectUserPwd(conn,userId);
 		close(conn);
 		return m;
+	}
+	
 	/**
 	 *  관리자 1:1리스트용 페이징바
 	 * @return
