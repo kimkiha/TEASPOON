@@ -1,9 +1,7 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Properties;
-import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -17,19 +15,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.member.model.vo.Member;
-
 /**
- * Servlet implementation class MemberPwdSubmit
+ * Servlet implementation class MemberIdSubmit
  */
-@WebServlet("/pwdSubmit.me")
-public class MemberPwdSubmit extends HttpServlet {
+@WebServlet("/idSubmit.me")
+public class MemberIdSubmit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberPwdSubmit() {
+    public MemberIdSubmit() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,9 +34,8 @@ public class MemberPwdSubmit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		String userPwd = String.valueOf(request.getSession().getAttribute("userPwd"));
 		
+		String userId = String.valueOf(request.getSession().getAttribute("userId"));
 		
 		
 		//mail server 설정
@@ -58,6 +53,7 @@ public class MemberPwdSubmit extends HttpServlet {
         props.put("mail.smtp.auth", "true");
        props.put("mail.smtp.ssl.enable", "true");
   
+       System.out.println(userId);
         
         Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -72,9 +68,9 @@ public class MemberPwdSubmit extends HttpServlet {
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             
             //메일 제목
-            msg.setSubject("안녕하세요 Teaspoon 비밀번호 확인 메일입니다.");
+            msg.setSubject("안녕하세요 Teaspoon 아이디 확인 메일입니다.");
             //메일 내용
-            msg.setText("비밀 번호는 :"+userPwd);
+            msg.setText("아이디는 :"+userId);
            
             Transport.send(msg);
             System.out.println("이메일 전송");
@@ -82,10 +78,13 @@ public class MemberPwdSubmit extends HttpServlet {
         }catch (Exception e) {
             e.printStackTrace();
         }
-      
-        request.getSession().setAttribute("msg", "비밀번호가 전송 되었습니다."); 
+
+        request.getSession().setAttribute("msg", "아이디가 전송 되었습니다."); 
         response.sendRedirect("loginPage.me");
 	}
+		
+		
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

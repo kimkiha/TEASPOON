@@ -557,6 +557,20 @@ public class MemberService {
 		return m;
 	}
 	
+	/** 유저 email로 id 찾기
+	 * @param email
+	 * @return
+	 */
+	public Member selectUserId(String email) {
+		
+		Connection conn = getConnection();
+		Member m = new MemberDao().selectUserId(conn,email);
+		close(conn);
+		return m;
+		
+	}
+
+	
 	/**
 	 *  관리자 1:1리스트용 페이징바
 	 * @return
@@ -578,6 +592,7 @@ public class MemberService {
 		 close(conn);
 		 return list;
 	}
+
 
 	
 }
