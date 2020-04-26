@@ -28,7 +28,7 @@
         <div id="contents">
             <div id="c1">
                 <div class="outer">
-                    <p>매거진 등록</p>
+                    <p>이벤트 등록</p>
                     <form id="magazineInsertForm" action="eventInsert.bo" method="post" enctype="multipart/form-data">
                 		<table>
                  		   	<tr>

@@ -56,16 +56,8 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		
 		int gradeCode = ((Member)request.getSession().getAttribute("loginUser")).getGradeCode();
 		
-		int total=0;
 		
-		switch(good) {
-		case "빔프로젝트": total += 10000; break;
-		case "앰프": total += 20000; break;
-		case "스마트포인터": total += 2000; break;
-		case "노트북": total += 10000; break;
-		}
-		
-		Space s = new Space(userNo, reservDate, reservTime, visitNum, Phone, reservReason, good, gradeCode, total);
+		Space s = new Space(userNo, reservDate, reservTime, visitNum, Phone, reservReason, good, gradeCode);
 	
 		
 		
@@ -83,7 +75,9 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 			view.forward(request, response);
    			
 					
-			}else { // insert안됨 --> 정보입력실패
+   			response.sendRedirect("rentalPayment.sp");
+					
+		}else { // insert안됨 --> 정보입력실패
 					
 			request.setAttribute("msg", "정보를 다시 입력해주세요!!");
 			RequestDispatcher view = request.getRequestDispatcher("views/space/space_rental.jsp");

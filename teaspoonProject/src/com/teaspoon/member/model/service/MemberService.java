@@ -494,33 +494,28 @@ public class MemberService {
 		return result;
 	}
 	
-	public int updateGrade(Grade g,ArrayList<Grade> gList,int maxGradeCheck ) {
+	public int updateGrade(Grade g,ArrayList<Grade> gList ) {
 		Connection conn = getConnection();
-		int result =0;
-		result = new MemberDao().updateGrade(conn,g);
-		
-		if(maxGradeCheck == 1) {
-			new MemberDao().newUpdateMaxMemberGrade(conn,g); 
-		}else {
-			String nextG="";
-			for(int i=0; i<gList.size(); i++) {
-				if(g.getGradeName().equals(gList.get(i).getGradeName())){
-					nextG=gList.get(i+1).getGradeName();
-					
-				}
+		String nextG="";
+		for(int i=0; i<gList.size(); i++) {
+			if(g.getGradeName().equals(gList.get(i).getGradeName())){
+				nextG=gList.get(i+1).getGradeName();
+				
 			}
-				new MemberDao().newUpdateMemberGrade(conn,g,nextG); 
 		}
-	 
-	
+		int result1 = 0;
 		
-			if(result>0) {
+			result1 = new MemberDao().updateGrade(conn,g);
+			new MemberDao().newUpdateMemberGrade(conn,g,nextG);  
+		System.out.println(result1);
+		
+			if(result1>0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
-		return result;
+		return result1;
 	}
 
 
@@ -550,12 +545,18 @@ public class MemberService {
 		return listCount;
 	}
 
+	/** userId로 pwd찾기
+	 * @param userId
+	 * @return
+	 */
 	public Member selectUserPwd(String userId) {
 		
 		Connection conn = getConnection();
 		Member m = new MemberDao().selectUserPwd(conn,userId);
 		close(conn);
 		return m;
+	}
+	
 	/**
 	 *  관리자 1:1리스트용 페이징바
 	 * @return
