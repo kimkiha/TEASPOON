@@ -546,6 +546,12 @@ public class BoardDao {
 						rset.getString("CHANGE_NAME")
 						));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
 		}
 		return list;
 	}
