@@ -1,6 +1,7 @@
 package com.teaspoon.space.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.space.model.service.SpaceService;
+import com.teaspoon.space.model.vo.Goods;
 import com.teaspoon.space.model.vo.Space;
 
 
@@ -54,6 +56,10 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		if(goods != null) {
 			good = String.join(",", goods);
 		
+		ArrayList<Goods> list = new SpaceService().selectGoodsList();
+	
+		request.setAttribute("list", list);	
+			
 		int gradeCode = ((Member)request.getSession().getAttribute("loginUser")).getGradeCode();
 		
 		
@@ -73,9 +79,6 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 			request.setAttribute("s", s);
 			RequestDispatcher view = request.getRequestDispatcher("views/space/space_payment.jsp");
 			view.forward(request, response);
-   			
-					
-   			response.sendRedirect("rentalPayment.sp");
 					
 		}else { // insert안됨 --> 정보입력실패
 					

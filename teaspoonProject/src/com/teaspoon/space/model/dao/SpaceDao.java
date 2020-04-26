@@ -60,41 +60,6 @@ public class SpaceDao {
 				
 	}
 	
-	public Payment selectPaymentList(Connection conn, int pno) {
-		
-		Payment p = null;
-		PreparedStatement pstmt =null;
-		ResultSet rset = null;
-	
-		String sql = prop.getProperty("selectPaymentList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, pno);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				p = new Payment();
-				p.setGoodsPay(rset.getInt("goodspay"));
-				p.setTotal(rset.getInt("total"));
-				p.setReservPay(rset.getInt("reservpay"));
-				
-				
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return p;
-		
-	}
-	
-	
 	public ArrayList<Goods> selectGoodsList(Connection conn){
 		
 		ArrayList<Goods> list = new ArrayList<>();

@@ -5,7 +5,8 @@
 	
 	Space s = (Space)(request.getAttribute("s"));
  	ArrayList<Goods> list = (ArrayList<Goods>)request.getAttribute("list");
- 
+ 	String[] goods = s.getGood().split(",");
+
 %>
     
 <!DOCTYPE html>
@@ -85,19 +86,19 @@
                                             <td>200,000원</td>
                                             <td>960P</td>
                                         </tr>
+                                        <%for(int i=0; i<goods.length; i++){ %>
                                         <tr>
-                                            <td colspan="2" >+빔프로젝트</td>
+                                            <td colspan="2" >(+)<%=goods[i] %></td>
                                             <td>1개</td>
-                                            <td>10,000원</td>
+                                            <td><%for(int j=0;j<list.size();j++){%> 
+                                            	<%if(goods[i].equals(list.get(j).getGsName())){%>
+                                            		 	<%=list.get(j).getGsPrice()%>원</td>
+                                            		 	<%} %>
+                                            		 <%} %>
                                             <td>300P</td>
                                         </tr>
-                                        
-                                        <tr>
-                                            <td colspan="2">+노트북</td>
-                                            <td>1개</td>
-                                            <td>5,000원</td>
-                                            <td>150P</td>
-                                        </tr>
+                                        <%} %>
+                                       
                                         
                                     </tbody>
                                 </table>
