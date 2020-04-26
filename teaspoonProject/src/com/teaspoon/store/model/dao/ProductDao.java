@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.teaspoon.board.model.vo.Attachment;
+import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.store.model.vo.Product;
 import com.teaspoon.store.model.vo.Review;
@@ -802,6 +803,7 @@ public class ProductDao {
 		return result;
 	}
 	
+	// 관리자페이지 상품삭제
 	public int deleteProduct(Connection conn, int pcode) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -820,6 +822,7 @@ public class ProductDao {
 		return result;
 	}
 	
+	// 사용자 상품상세 하단 리뷰작성 서비스
 	public int insertReview(Connection conn, Review r) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -840,4 +843,128 @@ public class ProductDao {
 		}
 		return result;
 	}
+	
+	
+	// 관리자 상품 키워드검색 서비스 
+	public int getProductKeywordListCount(Connection conn, String productKeyword) {
+		
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getProductKeywordListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, productKeyword);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+		
+	}
+
+	public ArrayList<Product> selectProductKeywordList(Connection conn, String productKeyword, PageInfo pi){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectProductKeywordList");
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+productKeyword+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("pcode"), rset.getString("pname"),
+						rset.getInt("sup_price"),rset.getInt("price"),
+						rset.getInt("stock"),rset.getString("status"),
+						rset.getString("keyword"),rset.getInt("total_count"),
+						rset.getString("kind"),rset.getString("pcontent")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	// 관리자 리뷰 키워드검색 서비스 
+	public int getReviewKeywordListCount(Connection conn, String reviewKeyword) {
+		
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getReviewKeywordListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reviewKeyword);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+		
+	}
+
+	public ArrayList<Review> selectReviewKeywordList(Connection conn, String reviewKeyword, PageInfo pi){
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReviewKeywordList");
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+reviewKeyword+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Review(rset.getInt("REVIEW_NO"), rset.getString("pname"),
+						rset.getString("USER_ID"),rset.getDate("CREATE_DATE"),
+						rset.getString("CONTENT")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+
 }

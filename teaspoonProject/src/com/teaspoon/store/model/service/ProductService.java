@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.teaspoon.board.model.vo.Attachment;
+import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.store.model.dao.ProductDao;
 import com.teaspoon.store.model.vo.Product;
@@ -314,6 +315,10 @@ public class ProductService {
 		return result;
 	}
 
+	/** 관리자 상품삭제
+	 * @param pcode
+	 * @return
+	 */
 	public int deleteProduct(int pcode) {
 		Connection conn = getConnection();
 		int result = new ProductDao().deleteProduct(conn, pcode);
@@ -326,6 +331,10 @@ public class ProductService {
 		return result;
 	}
 
+	/** 상품상세페이지 리뷰등록
+	 * @param r
+	 * @return
+	 */
 	public int insertReview(Review r) {
 		Connection conn = getConnection();
 		int result = new ProductDao().insertReview(conn, r);
@@ -339,4 +348,49 @@ public class ProductService {
 		
 		
 	}
+	
+	/** 상품리스트 키워드 검색 
+	 * @param productKeyword
+	 * @return
+	 */
+	public int getProductKeywordListCount(String productKeyword) {
+		Connection conn = getConnection();
+		int listCount = new ProductDao().getProductKeywordListCount(conn,productKeyword);
+		
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Product> selectProductKeywordList(String productKeyword, PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectProductKeywordList(conn, productKeyword, pi);
+		
+		close(conn);
+		return list;
+		
+	}
+	
+	
+	
+	/** 상품리뷰 키워드 검색
+	 * @param reviewKeyword
+	 * @return
+	 */
+	public int getReviewKeywordListCount(String reviewKeyword) {
+		Connection conn = getConnection();
+		int listCount = new ProductDao().getReviewKeywordListCount(conn,reviewKeyword);
+		
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Review> selectReviewKeywordList(String reviewKeyword, PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Review> list = new ProductDao().selectReviewKeywordList(conn, reviewKeyword, pi);
+		
+		close(conn);
+		return list;
+		
+	}
+	
 }
