@@ -65,7 +65,7 @@ public class BoardDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql =prop.getProperty("insertAttachemnt");
+		String sql =prop.getProperty("insertMagazineAttachemnt");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
