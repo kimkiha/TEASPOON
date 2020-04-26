@@ -15,13 +15,13 @@ public class Space {
 	private String accept;         // 승인여부
 	private String good;           // 비품
 	private int gradeCode;         // 회원등급
-	private int total;             // 비품총가격
-	public Space() {
+	
+	private Space() {
 		
 	}
 	
 	public Space(int reservNo, int userNo, Date appDate, String reservDate, String reservTime, int visitNum,
-			String phone, String reservReason, String accept, String good, int gradeCode, int total) {
+			String phone, String reservReason, String accept, String good, int gradeCode) {
 		super();
 		this.reservNo = reservNo;
 		this.userNo = userNo;
@@ -34,13 +34,12 @@ public class Space {
 		this.accept = accept;
 		this.good = good;
 		this.gradeCode = gradeCode;
-		this.total = total;
 	}
 	
 	
 	// 대관예약에 뽑아낼 매개변수
 	public Space(int userNo, String reservDate, String reservTime, int visitNum, String phone, String reservReason,
-			String good, int gradeCode, int total) {
+			String good, int gradeCode) {
 		super();
 		this.userNo = userNo;
 		this.reservDate = reservDate;
@@ -50,7 +49,6 @@ public class Space {
 		this.reservReason = reservReason;
 		this.good = good;
 		this.gradeCode = gradeCode;
-		this.total = total;
 	}
 
 
@@ -121,22 +119,13 @@ public class Space {
 	public void setGradeCode(int gradeCode) {
 		this.gradeCode = gradeCode;
 	}
-	public int getTotal() {
-		return total;
-	}
-
-	public void setTotal(int total) {
-		this.total = total;
-	}
-
 	@Override
 	public String toString() {
 		return "Space [reservNo=" + reservNo + ", userNo=" + userNo + ", appDate=" + appDate + ", reservDate="
 				+ reservDate + ", reservTime=" + reservTime + ", visitNum=" + visitNum + ", phone=" + phone
 				+ ", reservReason=" + reservReason + ", accept=" + accept + ", good=" + good + ", gradeCode="
-				+ gradeCode + ", total=" + total + "]";
+				+ gradeCode + "]";
 	}
-
 	
 	
 

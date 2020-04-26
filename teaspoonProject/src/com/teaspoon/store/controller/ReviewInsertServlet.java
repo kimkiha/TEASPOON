@@ -33,15 +33,10 @@ public class ReviewInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		int pcode = Integer.parseInt(request.getParameter("pcode"));
 		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		String content = request.getParameter("content");
-		int pcode = Integer.parseInt(request.getParameter("pcode"));
-		
-		System.out.println(request.getParameter("pcode"));
-		System.out.println(pcode);
-		System.out.println(content);
-		
+
 		Review r = new Review();
 		r.setContent(content);
 		r.setPcode(pcode);

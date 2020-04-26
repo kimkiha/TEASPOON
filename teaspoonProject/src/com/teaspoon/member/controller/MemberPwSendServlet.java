@@ -1,28 +1,27 @@
-package com.teaspoon.space.controller;
+package com.teaspoon.member.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.space.model.service.PaymentService;
-import com.teaspoon.space.model.vo.Payment;
+import com.teaspoon.member.model.service.MemberService;
+import com.teaspoon.member.model.vo.Member;
 
 /**
- * Servlet implementation class detailPaymentServlet
+ * Servlet implementation class MemberPwSendServlet
  */
-@WebServlet("/detail.py")
-public class detailPaymentServlet extends HttpServlet {
+@WebServlet("/pwdSend.me")
+public class MemberPwSendServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public detailPaymentServlet() {
+    public MemberPwSendServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,12 +31,14 @@ public class detailPaymentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int pno = Integer.parseInt(request.getParameter("pno"));
+		String userId = request.getParameter("userId");
+		//System.out.println(userId);
+		Member m = new MemberService().selectUserPwd(userId);
 		
-		Payment p = new PaymentService().selectPayment(pno);
+		request.getSession().setAttribute("email", m.getEmail());
+		request.getSession().setAttribute("userPwd", m.getUserPwd());
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/space/space_payment.jsp");
-		view.forward(request, response);
+		request.getRequestDispatcher("pwdSubmit.me").forward(request, response);
 		
 	}
 

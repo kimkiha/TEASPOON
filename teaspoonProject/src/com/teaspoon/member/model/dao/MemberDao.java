@@ -1108,8 +1108,8 @@ public int insertAttachment(Connection conn, Attachment at) {
 			PreparedStatement pstmt = null;
 			
 			String sql = prop.getProperty("newUpdateMemberGrade");
-			//System.out.println(g.getGradeName());
-			//System.out.println(nextG);
+			System.out.println(g.getGradeName());
+			System.out.println(nextG);
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
@@ -1128,33 +1128,6 @@ public int insertAttachment(Connection conn, Attachment at) {
 			
 			return result;
 		}
-		
-			public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
-			
-			int result = 0;
-			
-			PreparedStatement pstmt = null;
-			
-			String sql = prop.getProperty("newUpdateMaxMemberGrade");
-			//System.out.println(g.getGradeName());
-			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setInt(1,g.getGradeCode()-10);
-				pstmt.setString(2, g.getGradeName());
-				pstmt.setInt(3, g.getGradeCode());
-				
-				result = pstmt.executeUpdate();
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
-			
-			return result;
-			}
 		// 포인트 조회 관련 
 		public ArrayList<Point> selectPointList(Connection conn, int userNo,PageInfo pi) {
 			ArrayList<Point> list = new ArrayList<>();
@@ -1219,6 +1192,39 @@ public int insertAttachment(Connection conn, Attachment at) {
 			return listCount;
 		}
 
+		public Member selectUserPwd(Connection conn, String userId) {
+		
+			PreparedStatement pstmt = null;
+			Member m = new Member(); 
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("selectUserPwd");
+			
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, userId);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					
+					m.setUserPwd(rset.getString("user_pwd"));
+					m.setEmail(rset.getString("EMAIL"));
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return m;
+			
+		}			
+			
 		public int selectMtmAdminCount(Connection conn) {
 			int listCount = 0;
 
@@ -1242,7 +1248,42 @@ public int insertAttachment(Connection conn, Attachment at) {
 				close(rset);
 				close(stmt);
 			}
-
+			System.out.println(listCount);
 			return listCount;
+		}
+
+		public ArrayList<MenToMen> selectMtmAdminList(Connection conn, PageInfo pi) {
+			ArrayList<MenToMen> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectMtmAdminList");
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, endRow);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new MenToMen(rset.getInt("MTM_NO"),
+								rset.getInt("MTM_TYPE"),
+								rset.getString("MTM_title"),
+								rset.getDate("CREATE_DATE"),
+								rset.getString("MTM_NAME")));						
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			System.out.println(list);
+			
+			return list;
 		}
 }

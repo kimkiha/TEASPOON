@@ -49,16 +49,16 @@
                         <div id="productList">
                         
                         	<!-- listArea -->
-                        	<%for(int i=0; i<list.size(); i++) {%>
+                        	<%for(Product p : list) {%>
                         	
                             <div class="product" style="margin-top:50px; margin-right:30px;" >
                             	
                                 <div class="product_img">
-                                	<input type="hidden" class="pcode<%=i%>" name="pcode" value=<%=list.get(i).getPcode() %>>
-                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(i).getTitleImg() %>" style="float:left; width:300px; height:inherit">
+                                	<input type="hidden" id="pcode" name="pcode" value=<%=p.getPcode() %>>
+                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
-                                   <p style="padding-top:20px;padding-left:15px;"><%=list.get(i).getPname() %></p>
+                                   <p style="padding-top:20px;padding-left:15px;"><%=p.getPname() %></p>
                                 </div>
                                 <div class="like">
                                     <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
@@ -122,29 +122,22 @@
     		function selectWishList(){
     			
     			var icon = $('.like_icon');
-    			var loginUser = "<%=loginUser.getUserId()%>";
+    			
     			if(loginUser != null){
     				$.ajax({
     					url:"selectWish.st",
     					type:"post",
     					success:function(list){
-
-    					for(var i=0; i<12; i++){
-	    					var p = '.pcode'+i;	
-								for(var j=0; j<list.length; j++){
-	    							if($(p).val()==list[j].pcode){
-	    							var heart =$(p).parent().siblings().eq(1).children();
-	    							heart.removeClass("empty");
-	    							heart.addClass("full");
-	    							heart.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
-	    							}
-							}
-	    					
-		    					    					 
-    					}
-    					
+    						if(!list.isEmpty()){
+    							for(var i=0; i<list.length; i++){
+    								
+    								//console.log(list);
+    							}
+    						} else{
+    							
+    						}
     					},error:function(){
-    						console.log("사용자 위시리스트 조회용 ajax실패")
+    						//console.log("사용자 위시리스트 조회용 ajax실패")
     					}
     				})
     			}

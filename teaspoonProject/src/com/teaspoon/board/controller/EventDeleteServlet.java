@@ -1,7 +1,6 @@
-package com.teaspoon.space.controller;
+package com.teaspoon.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,26 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.teaspoon.board.model.vo.Attachment;
-import com.teaspoon.space.model.service.GoodsService;
-import com.teaspoon.space.model.vo.Goods;
-import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Product;
-import com.teaspoon.store.model.vo.Review;
+import com.teaspoon.board.service.BoardService;
 
 /**
- * Servlet implementation class detailGoodsServlet
+ * Servlet implementation class EventDeleteServlet
  */
-@WebServlet("/detail.go")
-public class detailGoodsServlet extends HttpServlet {
+@WebServlet("/eventDelete.bo")
+public class EventDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public detailGoodsServlet() {
+    public EventDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,15 +30,21 @@ public class detailGoodsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		
+		int result = new BoardService().deleteBoard(bno);
 		
 		
-		ArrayList<Goods> list = new GoodsService().selectGoodsList();
-		request.setAttribute("list", list);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/space/space_payment.jsp");
-		view.forward(request, response);
-	
-		
+		if(result > 0) {
+			request.getSession().setAttribute("msg", "이벤트가 삭제되었습니다");
+			response.sendRedirect("eventAdminList.bo?currentPage=1");
+		}else {
+			request.setAttribute("msg", "삭제실패!!");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+		}
+
 	}
 
 	/**

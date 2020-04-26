@@ -75,7 +75,7 @@
                		    
                		    
                         <div class="btns">
-                            <button type="button" style="width: 100px;"  onclick="location.href='<%=contextPath%>/magazineList.bo?currentPage=1'">목록으로</button>
+                            <button type="button" style="width: 100px;"  onclick="location.href='<%=contextPath%>/magazineAdminList.bo?currentPage=1'">목록으로</button>
                             <button type="submit" style="width: 100px;" >수정하기</button>
                         </div>
                     </form>

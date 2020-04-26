@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%String newEmail = (String)request.getAttribute("newEmail"); 
+System.out.println(newEmail);%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +30,7 @@
                 <p style="font-size:12px; text-align:left; margin-left: 450px;"> 이메일로 비밀번호 발송요청 <br>
                     	고객님이 가입하실 때 입력하신 이메일로 비밀번호를 발송해 드립니다. <br>
                     	아래  비밀번호 발송 버튼을 선택해 주세요. <br>
-                    	발송은 버튼을 클릭 후 이메일를 확인해 주시기 바랍니다. <br>
+                    	발송은 버튼을 클릭 후 메일을 확인해 주시기 바랍니다. <br>
                 		</p>                                      
             </center>
  
@@ -38,23 +40,47 @@
 
         <ul class=im1>
            
-            <p style="font-size:20px; text-align:center;"><input type="text" id="userid" type="userid" placeholder="hong*@naver.com" style="text-align:center;" disabled></p>
+            <p style="font-size:20px; text-align:center;"><input type="text" id="userid" type="userid" placeholder="" style="text-align:center;" disabled></p>
           
             <center>
             <p style="font-size:15px; text-align:left; color:rgb(85, 83, 83); margin-left: 200px;">고객님의 개인정보 보호를 위해 이메일의 일부를 별표(*)로 표시 하였습니다.<br>
 			</center>
-            <button type="button" class="password2" onclick="password_change();">비밀번호 발송</button> 
+            <button type="submit" class="password2" id="password_change()">비밀번호 발송</button> 
  
             <button type="button" class="login" style="margin-bottom:110px;">로그인</button>
    
         </ul>   
+    </div>
     </div>
 
 
       <!-- //content-->
        <%@ include file="../common/footer.jsp" %>
        
+       <script>
+    	 /* (이메일) 인증번호 발송 버튼 클릭시 */
+    	 $("#password_change").click(function(){
+    		var email = document.getElementById("email"); // 이메일
+             
+         $.ajax({
+      	   url:"email.e",
+      	   data:{Email:email.value},
+      	   success:function(data){
+      		   alert("인증번호가 발송되었습니다.");
+      		   console.log(data);
+      		   randomKey = data;
+      	   },error:function(){
+      		   alert("이메일발송실패");
+      	   }
+         })    
+     
+    	 });      
        
+       
+       
+       
+       
+       </script>
        
        
        
