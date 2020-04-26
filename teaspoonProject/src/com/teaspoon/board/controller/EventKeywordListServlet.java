@@ -79,7 +79,7 @@ public class EventKeywordListServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("searchId", eventKeyword);
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/board/admin_event.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_event.jsp");
 		view.forward(request, response);
 	
 	}
