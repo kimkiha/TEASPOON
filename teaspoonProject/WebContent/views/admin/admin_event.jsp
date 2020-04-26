@@ -104,7 +104,7 @@
 						<!-- 다음페이지로(<) -->
 						<button onclick="location.href='eventKeywordList.bo?currentPage=<%=currentPage+1%>&eventKeyword=<%=eventKeyword %>'">&gt;</button>
 						<!-- 맨 마지막으로(>>) -->
-						<button onclick="location.href='eventKeywordList.bo?currentPage=<%=maxPage %>&searchId=<%=eventKeyword %>'">&gt;&gt;</button>
+						<button onclick="location.href='eventKeywordList.bo?currentPage=<%=maxPage %>&eventKeyword=<%=eventKeyword %>'">&gt;&gt;</button>
 					<%} %>
                     
                 <%}else { %>
