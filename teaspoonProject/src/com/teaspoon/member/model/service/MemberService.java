@@ -544,5 +544,14 @@ public class MemberService {
 		close(conn);
 		return listCount;
 	}
+
+	public Member selectUserPwd(String userId) {
+		
+		Connection conn = getConnection();
+		Member m = new MemberDao().selectUserPwd(conn,userId);
+		close(conn);
+		return m;
+		
+	}
 	
 }
