@@ -1,17 +1,7 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Properties;
-import java.util.Random;
 
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,16 +12,16 @@ import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberpwSearchServlet
+ * Servlet implementation class MemberPwSendServlet
  */
-@WebServlet("/pwsearch.me")
-public class MemberpwSearchServlet extends HttpServlet {
+@WebServlet("/pwdSend.me")
+public class MemberPwSendServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberpwSearchServlet() {
+    public MemberPwSendServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,13 +31,14 @@ public class MemberpwSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String userId = request.getParameter("userId");
+		//System.out.println(userId);
+		Member m = new MemberService().selectUserPwd(userId);
 		
-	
+		request.getSession().setAttribute("email", m.getEmail());
+		request.getSession().setAttribute("userPwd", m.getUserPwd());
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_pwdSearch.jsp");
-		view.forward(request, response);
-		
-		
+		request.getRequestDispatcher("pwdSubmit.me").forward(request, response);
 		
 	}
 

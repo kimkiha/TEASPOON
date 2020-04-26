@@ -21,13 +21,13 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class EmailServlet
  */
 @WebServlet("/email.e")
-public class MemberEnrollEmail extends HttpServlet {
+public class MemberEnrollEmailConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberEnrollEmail() {
+    public MemberEnrollEmailConfirm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -97,7 +97,7 @@ public class MemberEnrollEmail extends HttpServlet {
             System.out.println("이메일 전송");
             
         }catch (Exception e) {
-            e.printStackTrace();// TODO: handle exception
+            e.printStackTrace();
         }
 
         PrintWriter out = response.getWriter();
