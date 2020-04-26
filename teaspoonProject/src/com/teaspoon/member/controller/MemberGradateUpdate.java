@@ -37,14 +37,14 @@ public class MemberGradateUpdate extends HttpServlet {
 		String updateGradeName = request.getParameter("updateGradeName");
 		int updateMinMoney = Integer.parseInt(request.getParameter("updateMinMoney"));
 		int updateDiscountRate =   Integer.parseInt(request.getParameter("updateDiscountRate"));
-		
+		int maxGradeCheck = Integer.parseInt(request.getParameter("maxGradeCheck"));
 		
 		Grade g = new Grade();
 		g.setGradeCode(gNo);
 		g.setGradeName(updateGradeName);
 		g.setMinAcount(updateMinMoney);
 		g.setGradeRate(updateDiscountRate);
-		
+//		
 //		System.out.println(gNo);
 //		System.out.println(updateGradeName);
 //		System.out.println(updateMinMoney);
@@ -53,7 +53,7 @@ public class MemberGradateUpdate extends HttpServlet {
 		
 		
 		ArrayList<Grade> gList = new MemberService().selectGradeList();
-		int result = new MemberService().updateGrade(g,gList);
+		int result = new MemberService().updateGrade(g,gList,maxGradeCheck);
 		
 		if(result > 0) { 
 			
