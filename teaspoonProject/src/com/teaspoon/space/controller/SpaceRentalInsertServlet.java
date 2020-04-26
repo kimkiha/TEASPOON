@@ -70,13 +70,17 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 				
 			HttpSession session = request.getSession();
 			session.setAttribute("msg", "접수되었습니다. 결제하고 승인을 기다리세요!!");
+			request.setAttribute("s", s);
+			RequestDispatcher view = request.getRequestDispatcher("views/space/space_payment.jsp");
+			view.forward(request, response);
+   			
 					
    			response.sendRedirect("rentalPayment.sp");
 					
 		}else { // insert안됨 --> 정보입력실패
 					
-			request.setAttribute("msg", "정보 다시입력");
-			RequestDispatcher view = request.getRequestDispatcher("rental.sp");
+			request.setAttribute("msg", "정보를 다시 입력해주세요!!");
+			RequestDispatcher view = request.getRequestDispatcher("views/space/space_rental.jsp");
 			view.forward(request, response);
 			}
 		}

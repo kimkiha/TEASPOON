@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.space.model.vo.*"%>
+ 
+ <%
+	
+	Space s = (Space)(request.getAttribute("s"));
+ 	ArrayList<Goods> list = (ArrayList<Goods>)request.getAttribute("list");
+ 
+%>
     
 <!DOCTYPE html>
 <html>

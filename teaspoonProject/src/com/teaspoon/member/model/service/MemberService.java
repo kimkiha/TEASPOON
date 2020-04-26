@@ -550,6 +550,10 @@ public class MemberService {
 		return listCount;
 	}
 
+	/** userId로 pwd찾기
+	 * @param userId
+	 * @return
+	 */
 	public Member selectUserPwd(String userId) {
 		
 		Connection conn = getConnection();
@@ -570,5 +574,14 @@ public class MemberService {
 		
 		
 	}
+
+	public ArrayList<MenToMen> selectMtmAdminList(PageInfo pi) {
+		Connection conn = getConnection();
+		 ArrayList<MenToMen> list = new MemberDao().selectMtmAdminList(conn,pi);
+		 
+		 close(conn);
+		 return list;
+	}
+
 	
 }

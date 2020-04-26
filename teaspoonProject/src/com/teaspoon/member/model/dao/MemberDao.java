@@ -1275,7 +1275,42 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				close(rset);
 				close(stmt);
 			}
-
+			System.out.println(listCount);
 			return listCount;
+		}
+
+		public ArrayList<MenToMen> selectMtmAdminList(Connection conn, PageInfo pi) {
+			ArrayList<MenToMen> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectMtmAdminList");
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, endRow);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new MenToMen(rset.getInt("MTM_NO"),
+								rset.getInt("MTM_TYPE"),
+								rset.getString("MTM_title"),
+								rset.getDate("CREATE_DATE"),
+								rset.getString("MTM_NAME")));						
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			System.out.println(list);
+			
+			return list;
 		}
 }

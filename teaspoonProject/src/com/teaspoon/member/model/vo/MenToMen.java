@@ -17,6 +17,7 @@ public class MenToMen {
 	//mtm 상세 조회용
 	private String mtmName;
 	private String userId;
+	//admin mtm 조회용
 	
 	
 	public MenToMen() {
@@ -46,6 +47,16 @@ public class MenToMen {
 		this.createDate = createDate;
 		this.mtmType = mtmType;
 		this.userId = userId;
+	}
+	
+
+	public MenToMen(int mtmNo, int mtmType, String mtmTitle, Date createDate, String mtmName) {
+		super();
+		this.mtmNo = mtmNo;
+		this.mtmType = mtmType;
+		this.mtmTitle = mtmTitle;
+		this.createDate = createDate;
+		this.mtmName = mtmName;
 	}
 
 	public int getMtmNo() {
