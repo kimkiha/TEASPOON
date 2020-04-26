@@ -9,6 +9,7 @@ import com.teaspoon.board.dao.BoardDao;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
+import com.teaspoon.member.model.dao.MemberDao;
 public class BoardService {
 	// -------------------------------  매거진시작    ------------------------------- //
 	/**
@@ -200,6 +201,16 @@ public class BoardService {
 		return list;
 	}
 	
+	
+	// 매거진 키워드검색
+	public int getMagazineKeywordListCount(String magazineKeyword) {
+		Connection conn = getConnection();
+		int listCount = new BoardDao().getMagazineKeywordListCount(conn,magazineKeyword);
+		
+		close(conn);
+		return listCount;
+	}
+	
 	public ArrayList<Board> selectMagazineKeywordList(String magazineKeyword, PageInfo pi){
 		Connection conn = getConnection();
 		ArrayList<Board> list = new BoardDao().selectMagazineKeywordList(conn, magazineKeyword, pi);
@@ -208,5 +219,24 @@ public class BoardService {
 		return list;
 		
 	}
+	
+	// 이벤트 키워드검색
+	public int getEventKeywordListCount(String eventKeyword) {
+		Connection conn = getConnection();
+		int listCount = new BoardDao().getEventKeywordListCount(conn,eventKeyword);
+		
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Board> eventKeywordList(String eventKeyword, PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().eventKeywordList(conn, eventKeyword, pi);
+		
+		close(conn);
+		return list;
+		
+	}
+	
 	
 }

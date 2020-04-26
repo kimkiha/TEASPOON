@@ -555,6 +555,34 @@ public class BoardDao {
 		}
 		return list;
 	}
+	
+	
+	// 매거진 키워드조회
+	public int getMagazineKeywordListCount(Connection conn, String magazineKeyword) {
+		
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getMagazineKeywordListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, magazineKeyword);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+		
+	}
 
 	public ArrayList<Board> selectMagazineKeywordList(Connection conn, String magazineKeyword, PageInfo pi){
 		ArrayList<Board> list = new ArrayList<>();
@@ -590,5 +618,69 @@ public class BoardDao {
 		
 		
 	}
+	
+	
+	// 이벤트 키워드 조회
+	public int getEventKeywordListCount(Connection conn, String eventKeyword) {
+		
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getEventKeywordListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, eventKeyword);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+		
+	}
+
+	public ArrayList<Board> eventKeywordList(Connection conn, String eventKeyword, PageInfo pi){
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("eventKeywordList");
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+eventKeyword+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Board(rset.getInt("board_no"), rset.getString("board_title"),
+						rset.getInt("count"),rset.getDate("create_date"),
+						rset.getDate("modify_date"),rset.getString("status")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
+		}
+		return list;
+		
+		
+	}
+	
 }
 
