@@ -769,8 +769,6 @@ String randomKey = (String)request.getAttribute("randomKey");
     				
     				$("#enroll_final").submit();
     				
-    				
-              		
               	
               	}
        	 	}

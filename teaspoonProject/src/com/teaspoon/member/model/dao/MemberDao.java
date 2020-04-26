@@ -17,6 +17,7 @@ import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.member.model.vo.Point;
 import com.teaspoon.member.model.vo.WishList;
 import com.teaspoon.store.model.vo.Product;
 
@@ -326,7 +327,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		System.out.println(myInfo);
+		
 		return myInfo;
 		
 	}
@@ -729,7 +730,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 		}finally {
 			close(pstmt);
 		}
-		System.out.println(result);
+		
 		return result;
 		
 	}
@@ -796,7 +797,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 			close(rset);
 			close(rset);
 		}
-		System.out.println(at);
+		
 		return at;
 	}
 
@@ -864,6 +865,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 		
 	}
 	
+
 	
 	
 		public int insertGrade(Connection conn, Grade grade) {
@@ -1152,5 +1154,67 @@ public int insertAttachment(Connection conn, Attachment at) {
 			}
 			
 			return result;
+		// 포인트 조회 관련 
+		public ArrayList<Point> selectPointList(Connection conn, int userNo,PageInfo pi) {
+			ArrayList<Point> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectPointList");
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1,userNo);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Point(rset.getDate("point_date"),
+							rset.getInt("Division"),
+							rset.getString("content"),
+							rset.getInt("point_price")));
+										
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			
+			return list;
+		}
+		//포인트 jsp페이징바 카운트
+		public int getPointListCount(Connection conn,int userNo) {
+			int listCount =0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("getPointListCount");
+			
+			try {
+				pstmt= conn.prepareStatement(sql);
+				pstmt.setInt(1, userNo);
+				
+				rset = pstmt.executeQuery();
+				if(rset.next()) {
+					listCount = rset.getInt(1);
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return listCount;
 		}
 }

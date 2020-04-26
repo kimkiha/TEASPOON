@@ -8,6 +8,8 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -65,13 +67,6 @@
                                 <div class="basket">
                                     <img id="open" class="basket_icon" src="<%=contextPath %>/resources/img/store/cart.png">
                                 </div>
-                                <div class="modal">
-                                        <div class="modal_content">
-                                            <p>장바구니로 이동하시겠습니까?</p>
-                                            <button class="gobasket">장바구니보기</button>
-                                            <button class="close">계속쇼핑</button>
-                                        </div>
-                                </div>
                             </div>
                             <%} %>
                         </div>
@@ -118,6 +113,38 @@
         		});
         	});
         
+
+    		// 페이지로딩시 로그인한 유저의 위시리스트 목록조회
+    		$(function(){
+    			selectWishList();
+    		});
+    		
+    		function selectWishList(){
+    			
+    			var icon = $('.like_icon');
+    			
+    			if(loginUser != null){
+    				$.ajax({
+    					url:"selectWish.st",
+    					type:"post",
+    					success:function(list){
+    						if(!list.isEmpty()){
+    							for(var i=0; i<list.length; i++){
+    								
+    								//console.log(list);
+    							}
+    						} else{
+    							
+    						}
+    					},error:function(){
+    						//console.log("사용자 위시리스트 조회용 ajax실패")
+    					}
+    				})
+    			}
+    		}
+    		
+    		
+
         	// 위시리스트 등록 ajax
         	$(function(){
         		$('.like_icon').click(function(){
@@ -174,16 +201,18 @@
         	});
         	
 
-            // 장바구니 이동 팝업
-            $("#open").click(function(){
-                $(".modal").fadeIn();
-            });
-            $("#gobasket").click(function(){
-                // 장바구니로 이동 링크
-            });
-            $(".close").click(function(){
-                $(".modal").fadeOut();
-            });
+            // 장바구니 이동
+            /*$(function(){
+            	$('.basket_icon').click(function(){
+            		$.ajax({
+            			url:,
+            			type:"post",
+            			data:{pcode:pcode},
+            			
+            		})
+            	})
+            })*/
+            
 
    
         </script>

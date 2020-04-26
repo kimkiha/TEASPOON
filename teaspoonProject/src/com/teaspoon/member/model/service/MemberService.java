@@ -14,6 +14,7 @@ import com.teaspoon.member.model.dao.MemberDao;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.member.model.vo.Point;
 import com.teaspoon.store.model.vo.Product;
 
 public class MemberService {
@@ -418,8 +419,8 @@ public class MemberService {
 	}
 	
 	/**
-	 * 메일 중복체크용 서비스 (아이디찾기시, 가입된 이메일인지 확인할때)
-	 * @param userId	--> 중복확인하고자 하는 사용자가 입력한 아이디값
+	 * 메일 중복체크용 서비스 (아이디찾기 시, 가입된 이메일인지 확인할때)
+	 * @param email	--> 중복확인하고자 하는 사용자가 입력한 아이디값
 	 * @return			--> 해당 아이디와 일치하는 갯수
 	 */
 	public int emailCheck(String email) {
@@ -429,9 +430,10 @@ public class MemberService {
 		
 		close(conn);
 		
-		return count;
+		return count; 
 		
 	}
+	
 	
 	
 	// 상품 페이지에서 위시리스트로 상품 삽입
@@ -519,6 +521,33 @@ public class MemberService {
 		}
 		close(conn);
 		return result;
+	}
+
+
+	/**
+	 *  포인트 조회용
+	 * 
+	 * @param userNo
+	 * @return
+	 */
+	public ArrayList<Point> selectPointList(int userNo,PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Point> list = new MemberDao().selectPointList(conn, userNo,pi);
+		
+		close(conn);
+		return list;
+	}
+	/**
+	 *  포인트 페이징바용 카운트
+	 * @param userNo
+	 * @return
+	 */
+	public int getPointListCount(int userNo) {
+		Connection conn = getConnection();
+		int listCount = new MemberDao().getPointListCount(conn,userNo);
+		close(conn);
+		return listCount;
 	}
 	
 }

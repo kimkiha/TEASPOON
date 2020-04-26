@@ -3,7 +3,6 @@
 <%
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
-	ArrayList<Review> rlist = (ArrayList<Review>)request.getAttribute("rlist"); 
 %>    
 <!DOCTYPE html>
 <html>

@@ -37,13 +37,13 @@ public class MyPageMainServlet extends HttpServlet {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		
-		System.out.println(loginUser);
+		
 		Member myInfo = new MemberService().MyPageInfo(loginUser.getUserNo());
 		loginUser.setGradeName(myInfo.getGradeName());
 		loginUser.setCount(myInfo.getCount());
 		loginUser.setPcode(myInfo.getPcode());
 		loginUser.setPointPrice(myInfo.getPointPrice());
-		System.out.println(loginUser);
+		
 		
 		if(myInfo != null) {
 			
