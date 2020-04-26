@@ -10,17 +10,17 @@ import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
 public class BoardService {
-	
+	// -------------------------------  매거진시작    ------------------------------- //
 	/**
 	 * 1_1. 매거진 작성용 서비스
 	 * @param b  --> Board 테이블에 insert할 데이터가 담겨있는 객체
 	 * @return	 --> 성공한 행 갯수
 	 */
-	public int insertBoard(Board b, Attachment at) {
+	public int insertMagazine(Board b, Attachment at) {
 		Connection conn = getConnection();
 		
-		int result1 = new BoardDao().insertBoard(conn, b);
-		int result2 = new BoardDao().insertAttachemnt(conn, at);
+		int result1 = new BoardDao().insertMagazine(conn, b);
+		int result2 = new BoardDao().insertMagazineAttachemnt(conn, at);
 		
 		if(result1 > 0 && result2 > 0) {
 			commit(conn);
@@ -108,7 +108,7 @@ public class BoardService {
 			if(at.getFileNo() != 0) { // 기존에 첨부파일이 있었을 경우
 				result2 = new BoardDao().updateAttachment(conn, at);
 			}else {	// 기존에 첨부파일이 없었을 경우
-				result2 = new BoardDao().insertNewAttachment(conn, at);
+				result2 = new BoardDao().insertMagazineNewAttachment(conn, at);
 			}
 		}
 		
@@ -137,9 +137,67 @@ public class BoardService {
 		
 		int result = new BoardDao().deleteBoard(conn, bno);
 		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
 		close(conn);
 		
 		return result;
+	}
+	
+	
+	// -------------------------------  이벤트시작    ------------------------------- //
+	/**
+	 * 1_1. 이벤트 작성용 서비스
+	 * @param b  --> Board 테이블에 insert할 데이터가 담겨있는 객체
+	 * @return	 --> 성공한 행 갯수
+	 */
+	public int insertEvent(Board b, Attachment at) {
+		Connection conn = getConnection();
+		
+		int result1 = new BoardDao().insertEvent(conn, b);
+		int result2 = new BoardDao().insertEventAttachemnt(conn, at);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result1 * result2;
+	}
+	
+	
+	/**
+	 * 1-2. 이벤트 리스트 총 갯수 조회용 서비스
+	 * @return
+	 */
+	public int getEventListCount() {
+		Connection conn = getConnection();
+		
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new BoardDao().getMagazineListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	/**
+	 * 1_3. 해당 페이지에 보여질 매거진 게시글 리스트 조회용 서비스
+	 * @param pi -> 요청한 페이지 currentPage, 한페이지에 보여질 게시글 최대수boardLimit가 담경있는 객체 
+	 * @return
+	 */
+	public ArrayList<Board> selectEventList(PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().selectEventList(conn, pi);
+		close(conn);
+		
+		return list;
 	}
 	
 }
