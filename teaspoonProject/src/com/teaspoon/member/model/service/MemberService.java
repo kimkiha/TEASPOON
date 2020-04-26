@@ -545,6 +545,10 @@ public class MemberService {
 		return listCount;
 	}
 
+	/** userId로 pwd찾기
+	 * @param userId
+	 * @return
+	 */
 	public Member selectUserPwd(String userId) {
 		
 		Connection conn = getConnection();
