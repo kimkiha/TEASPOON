@@ -100,7 +100,7 @@
                 <li><a href="<%=contextPath%>/level.me">회원등급관리</a></li>
                 <li><a href="admin112.html">신고목록</a></li>
                 <li><a href="adminCoupon.html">쿠폰관리</a></li>
-                <li><a href="adminOneOnOne.html">1:1문의</a></li>
+                <li><a href="<%=contextPath %>/qnalist.me">1:1문의</a></li>
             </ul>
             </li>
             <br>
