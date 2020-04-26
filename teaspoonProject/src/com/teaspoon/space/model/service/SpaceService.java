@@ -1,11 +1,13 @@
 package com.teaspoon.space.model.service;
 
-import static com.teaspoon.common.JDBCTemplate.*;
+import static com.teaspoon.common.JDBCTemplate.close;
+import static com.teaspoon.common.JDBCTemplate.commit;
+import static com.teaspoon.common.JDBCTemplate.getConnection;
+import static com.teaspoon.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.teaspoon.space.model.dao.PaymentDao;
 import com.teaspoon.space.model.dao.SpaceDao;
 import com.teaspoon.space.model.vo.Goods;
 import com.teaspoon.space.model.vo.Payment;

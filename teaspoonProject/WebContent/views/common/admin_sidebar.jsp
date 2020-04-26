@@ -119,9 +119,9 @@
             <br>
             <li class="c-li"><p class="click" style="margin: 0 0;" >게시판관리</p>
             <ul class="deep">
-            <li><a href="adminNotice.html">공지사항</a></li>
+            <li><a href="<%=contextPath%>/noticeAdminList.bo?currentPage=1">공지사항</a></li>
             <li><a href="<%=contextPath%>/eventAdminList.bo?currentPage=1">이벤트</a></li>
-            <li><a href="adminAbout.html">어바웃티스푼</a></li>
+            <li><a href="<%=contextPath%>/about.bo">어바웃티스푼</a></li>
             <li><a href="<%=contextPath%>/magazineAdminList.bo?currentPage=1">매거진</a></li>
             </ul>
             </li>
