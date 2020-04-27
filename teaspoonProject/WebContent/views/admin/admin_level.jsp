@@ -152,6 +152,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     <form id="deleteGrade" action="<%=contextPath%>/deleteGrade.me" method="post">
 		<input type="hidden" id="deleteGradeCode" name="deleteGradeCode">
 	</form>
+	
 	  <form id="maxGradeForm" action="<%=contextPath%>/maxGradeInsert.me" method="post">
 		<input type="hidden" id="maxGradeName" name="maxGradeName">
 		<input type="hidden" id="maxMinMoney" name="maxMinMoney">
@@ -227,6 +228,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     <script>
     	$(".deleteButton").click(function(){
     		var deleteCode = $(this).parent().parent().children().eq(0).text();
+    		console.log(deleteCode);
     		$("#deleteGradeCode").val(deleteCode);
     		$("#deleteGrade").submit();
     	});
@@ -264,7 +266,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
         				return false;
         			}else{
         				$("#maxGradeCheck").val(1);
-        				return false;
+        				return true;
         			} 
     			}else{
     				if(Number(updateMinMoney) >=Number(nextGradeMinMoney)){
@@ -281,7 +283,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
         				return false;
         			}else{
         				 $("#maxGradeCheck").val(2);
-         				return false;
+         				return true;
         			}
     			}
 

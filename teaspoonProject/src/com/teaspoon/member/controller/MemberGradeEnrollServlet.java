@@ -47,11 +47,11 @@ public class MemberGradeEnrollServlet extends HttpServlet {
 		ArrayList<Grade> gList = new MemberService().selectGradeList();
 		
 		
-		int result2 = new MemberService().updateMemberGrade(grade,gList);
-		//4. 처리결과를 가지고 성공인지 실패인지 판단해서 사용자가 보게될 뷰 지정
+		new MemberService().updateMemberGrade(grade,gList);
+		
 			
 		
-				if(result1 * result2 >0) { //insert --> 회원가입 성공
+				if(result1>0) { //insert --> 회원가입 성공
 					
 					//forword방식이 아니므로 request를 전송하지않아 session객체에 남아서 어느페이지에서나 사용가능하게한다.
 					HttpSession session = request.getSession();

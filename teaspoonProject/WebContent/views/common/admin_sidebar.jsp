@@ -69,7 +69,8 @@
     
             <!-- Modal footer -->
             <div class="modal-footer" >
-              <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:150px">로그아웃</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:150px" id="logout">로그아웃</button>
+              <a href="<%= contextPath %>/logout.me" style="padding-bottom:10px"></a>
             </div>
       
           </div>
@@ -138,5 +139,24 @@
 	<%}else{%> 
    	 접속불가
     <%} %>
+    <script>
+    $(function(){
+	    $("#logout").click(function(){
+	    	var result1 = window.confirm("로그아웃 하시겠습니까?");
+	    
+	        if(result1){
+	        	location.href = "<%=contextPath%>/logout.me";
+	        } 
+   		});
+	});
+    
+    
+    </script>
+    
+    
+    
+    
+    
+    
 </body>
 </html>
