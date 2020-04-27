@@ -31,10 +31,10 @@ String randomKey = (String)request.getAttribute("randomKey");
 					찾을 수 있습니다.</p>
 			</center>
 
-			<div id="아이디찾기" class="tabcontent">
+			<div id="아이디찾기" class="tabcontent" id="id">
 			  <center>
-			  <form name="idsearchForm" action="<%=contextPath%>/idfind.me">
-				<table style="padding-left:100px; padding-top:65px; padding-bottom:65px;" id="table1">
+			  <form action="idSend.me" method="post">  
+				<table style="padding-left:100px; padding-top:65px; padding-bottom:65px; margin-bottom:30px;" id="table1">
 						<ul class=im1>
 							<tr>
 								<td style="font-size: 20px; width: 300px;"><li>이 메 일</li></td>
@@ -46,20 +46,18 @@ String randomKey = (String)request.getAttribute("randomKey");
 							</tr>
 					
 							<tr>
-								<td style="font-size: 20px;"><li>인증번호확인</li></td>
-								<td><input type="text" id="identify" placeholder="인증번호"></td>
+								<td style="font-size: 20px;"></td>
+								<td style= "text-align:left; font-size:15px;">* 회원가입시 작성한 이메일로 아이디 전송</td>
 								<td style="font-size: 15px; color: rgb(131, 2, 2);">
-								<button type="button" class="btn1" id="numCheck" disabled>인증번호발송</button></td> 
+								<!--  <button type="button" class="btn1" id="numCheck" disabled>아이디발송</button></td> -->
 								<!-- "인증번호발송" 버튼은 기본값은 비활성화 -->
 							</tr>
 						</ul>
 				</table>
 			  </center>
 			  	
-					<input type="submit" class="btnenroll" value="인증완료" onclick="check();"></button> 
-					<!--submit버튼을 누르면 onsubmit이 실행되어
-						check함수가 실행되고
-						check함수의 return 값이 true일 경우에만 폼을 전송합니다.  -->
+					<input type="submit" class="btnenroll" id="numCheck" value="아이디발송" >
+			
 				</form>
 			</div>
 			</div>
@@ -138,15 +136,15 @@ String randomKey = (String)request.getAttribute("randomKey");
 	</script>
     
      <script>
-      	 /* (이메일) 인증번호 발송 버튼 클릭시  (두번째버튼)*/ 
+      	 /* (이메일) 아이디 발송 버튼 클릭시  (두번째버튼)*/ 
       	 
       	 $("#numCheck").click(function(){
 
            $.ajax({
-        	   url:"email.e",
+        	   url:"idSend.me",
         	   data:{Email:email.value},
         	   success:function(data){
-        		   alert("인증번호가 발송되었습니다.");
+        		   alert("아이디가 발송되었습니다.");
         		   console.log(data);
         		   randomKey = data;
         	   },error:function(){
@@ -173,7 +171,7 @@ String randomKey = (String)request.getAttribute("randomKey");
     				// $("#enroll_final").click(); // enroll_final이라는 hidden폼 submit
     				//location.href ="<%= contextPath%>/idcomplete.me"; //페이지이동
     				
-    				// 여기서 서블릿으로 걸고 -> 서블릿에서 포워딩 방식으로...????
+
     				
               	}
        	 	}

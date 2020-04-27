@@ -122,20 +122,23 @@
     		function selectWishList(){
     			
     			var icon = $('.like_icon');
-    			
+    			var loginUser = "<%=loginUser.getUserId()%>";
     			if(loginUser != null){
     				$.ajax({
     					url:"selectWish.st",
     					type:"post",
     					success:function(list){
-    						if(!list.isEmpty()){
-    							for(var i=0; i<list.length; i++){
-    								
-    								//console.log(list);
-    							}
-    						} else{
-    							
-    						}
+							for(var i=0; i<12; i++){
+								var p = '.pcode'+i;	
+								for(var j=0; j<list.length; j++){
+									if($(p).val()==list[j].pcode){
+										var heart =$(p).parent().siblings().eq(1).children();
+										heart.removeClass("empty");
+										heart.addClass("full");
+										heart.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+									}
+								}
+							}
     					},error:function(){
     						//console.log("사용자 위시리스트 조회용 ajax실패")
     					}

@@ -34,7 +34,7 @@
                         <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/매거진.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>매거진관리 페이지입니다.</p></div>
                         <div id="c1_1_1_3">
-                           <input type="text" placeholder="제목" id="magazineKeyword">
+                           <input type="text" placeholder="매거진제목" id="magazineKeyword">
                             <button type="button" class="searchBtn" id="searchBtn1">검색</button>
                         </div>
                     </div>
