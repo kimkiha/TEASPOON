@@ -966,5 +966,79 @@ public class ProductDao {
 		return list;
 	}
 
+	
+	public int selectOptionCode(Connection conn,String optionGram,String optionGrind) {
+		int optionCode = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOptionCode");
+		//System.out.println(sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, optionGram);
+			pstmt.setString(2, optionGrind);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) { // 컬럼인덱스로 추출
+				optionCode = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return optionCode;
+	}		
+	
+	
+	public int insertPdetailNo(Connection conn,int cartPcode,int optionCode) {
+		int pDetailNo = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertPdetailNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setInt(1, cartPcode);
+			pstmt.setInt(2, optionCode);
+		
+			
+			pDetailNo = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return pDetailNo;		
+	}
+	
+	public int insertOrderBy(Connection conn,int userNo,int pDetailNo, int pCount) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertOrderBy");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, pDetailNo);
+			pstmt.setInt(3,pCount);
+		
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;		
+	}
 
 }
