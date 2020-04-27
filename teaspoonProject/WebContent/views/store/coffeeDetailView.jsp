@@ -78,8 +78,8 @@
                                         <p><b>&gt; 갈아드릴까요?</b></p>
                                         <form action="">
                                             <select name="grind" id="bean" style="width: 100%; height: 40px; font-size: medium;">
-                                                <option value="holeBean" selected>홀빈(갈지않음)</option>
-                                                <option value="handDrip">핸드드립/클레버용</option>
+                                                <option name="holeBean" value="holeBean" selected>홀빈(갈지않음)</option>
+                                                <option namevalue="handDrip">핸드드립/클레버용</option>
                                                 <option value="coffeeMaker">커피메이커용</option>
                                                 <option value="franchPress">프렌치프레스용</option>
                                                 <option value="mokaPot">모카포트/에어로프레스용</option>
@@ -144,7 +144,7 @@
                                 <!-- 리뷰작성Area -->
                                 <% if(loginUser != null){ %>
                                 <div id="reviewList">
-                                <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
+                                <%-- <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post"> --%>
 	                                <table id="writeReview" cellpadding="0" cellspacing="0" style="margin-top:100px">
 	                                	<tr>
 	                                		<td colspan="6" style="text-align:center; border-top: 1px solid #ddd; border-bottom:0px">
@@ -169,7 +169,7 @@
 	                                        </td>
 	                                    </tr>
 	                                </table>
-                                  </form>
+                                 <!--  </form> -->
                                   </div>
                                   <%} %>
                                   <!--//리뷰리뷰작성Area-->
