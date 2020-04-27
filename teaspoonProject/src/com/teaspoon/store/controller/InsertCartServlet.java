@@ -43,6 +43,10 @@ public class InsertCartServlet extends HttpServlet {
 	
 	int result = new ProductService().insertOrderBy(userNo,pDetailNo,pCount);
 	
+	if(result>0) {
+		
+		
+	}
 	}
 
 	/**

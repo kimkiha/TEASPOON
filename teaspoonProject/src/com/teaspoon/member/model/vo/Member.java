@@ -29,6 +29,11 @@ public class Member {
 	private int pointPrice;// 포인트
 	private int pcode; //위시리스트 갯수 카운트용
 	private int count; //쿠폰 갯수 카운트용
+	
+	// 마이페이지 카트에 뿌려줄 값
+	private int pDetailNo;	// 상품상세코드
+	private int pCount;		// 장바구니에 담을 상품수량
+	
 
 	public Member(){
 		
@@ -119,6 +124,55 @@ public class Member {
 
 
 
+
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
+			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
+			String status, String gradeName, int mtm_no, String mtm_name, String mtm_title, Date create_date,
+			int pointPrice, int pcode, int count, int pDetailNo, int pCount) {
+		super();
+		this.userNo = userNo;
+		this.gradeCode = gradeCode;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.buyPoint = buyPoint;
+		this.admin = admin;
+		this.status = status;
+		this.gradeName = gradeName;
+		this.mtm_no = mtm_no;
+		this.mtm_name = mtm_name;
+		this.mtm_title = mtm_title;
+		this.create_date = create_date;
+		this.pointPrice = pointPrice;
+		this.pcode = pcode;
+		this.count = count;
+		this.pDetailNo = pDetailNo;
+		this.pCount = pCount;
+	}
+	
+	
+
+	public int getpDetailNo() {
+		return pDetailNo;
+	}
+
+	public void setpDetailNo(int pDetailNo) {
+		this.pDetailNo = pDetailNo;
+	}
+
+	public int getpCount() {
+		return pCount;
+	}
+
+	public void setpCount(int pCount) {
+		this.pCount = pCount;
+	}
 
 	public int getPointPrice() {
 		return pointPrice;
@@ -347,9 +401,11 @@ public class Member {
 				+ ", email=" + email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", buyPoint="
 				+ buyPoint + ", admin=" + admin + ", status=" + status + ", gradeName=" + gradeName + ", mtm_no="
 				+ mtm_no + ", mtm_name=" + mtm_name + ", mtm_title=" + mtm_title + ", create_date=" + create_date
-				+ ", pointPrice=" + pointPrice + ", pcode=" + pcode + ", count=" + count + "]";
+				+ ", pointPrice=" + pointPrice + ", pcode=" + pcode + ", count=" + count + ", pDetailNo=" + pDetailNo
+				+ ", pCount=" + pCount + "]";
 	}
 
+	
 	
 	
 

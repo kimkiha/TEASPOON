@@ -1028,7 +1028,7 @@ public class ProductDao {
 			
 			pstmt.setInt(1, userNo);
 			pstmt.setInt(2, pDetailNo);
-			pstmt.setInt(3,pCount);
+			pstmt.setInt(3, pCount);
 		
 			
 			result = pstmt.executeUpdate();
