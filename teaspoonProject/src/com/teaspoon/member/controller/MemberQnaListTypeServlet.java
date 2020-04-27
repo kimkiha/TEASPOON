@@ -12,20 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.service.MemberService;
-import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.MenToMen;
 
 /**
- * Servlet implementation class MemberQnaListServlet
+ * Servlet implementation class MemberQnaListTypeServlet
  */
-@WebServlet("/qnalist.me")
-public class MemberQnaListServlet extends HttpServlet {
+@WebServlet("/qnalisttype.me")
+public class MemberQnaListTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberQnaListServlet() {
+    public MemberQnaListTypeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,9 +41,10 @@ public class MemberQnaListServlet extends HttpServlet {
 		int maxPage; // 전체페이지에서의 가장 마지막 페이지
 		int pageLimit; // 한페이지 하단에 보여질 페이지 최대 갯수
 		int boardLimit; // 한페이지에 보여질 게시글 최대 갯수
-
+		String mtmName = request.getParameter("mtmName");
+		System.out.println(mtmName);
 		// * listCount : 총 게시글 갯수
-		listCount = new MemberService().selectMtmAdminCount();
+		listCount = new MemberService().selectMtmTypeAdminCount(mtmName);
 
 		// * currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -70,16 +70,15 @@ public class MemberQnaListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
-		// System.out.println(pi);
-		ArrayList<MenToMen> list = new MemberService().selectMtmAdminList(pi);
 		
-		// 페이지바만들기위한 pi객체전달
+		
+		System.out.println(mtmName);
+		ArrayList<MenToMen> list = new MemberService().selectMtmAdminListType(mtmName,pi);
+		System.out.println(list);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-	
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1.jsp");
 		view.forward(request, response);
-		
 	}
 
 	/**

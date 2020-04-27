@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*, com.teaspoon.common.*"%>
 <%
 	ArrayList<MenToMen> list = (ArrayList<MenToMen>)request.getAttribute("list");
-	ArrayList<MenToMen> TypeList = (ArrayList<MenToMen>)request.getAttribute("TypeList");
+	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
 	int currentPage = pi.getCurrentPage();
@@ -123,7 +123,7 @@
 	$('#searchBtn').click(function(){
 		var mtmName = $('input[name="advice"]:checked').val();
 		
-		location.href="<%=contextPath%>/myqnadelete.me?mtmName=" + mtmName;
+		location.href="<%=contextPath%>/qnalisttype.me?mtmName=" + mtmName+'&currentPage=1';
 		
 	});
 	});
