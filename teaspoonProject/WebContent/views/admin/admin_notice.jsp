@@ -17,13 +17,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지</title>
-   
      <style>
         #c1_1_2 div{padding-left: 25px; float:left;}
         #oneToOneKinds input{margin-right: 5px; vertical-align: middle;}
+        table td{text-align:center}
         table tr{border-bottom: 1px solid lightgray;}
         table tr:first-child{border-top: 1px solid lightgray;}
-        table th{background-color: #dbdbdb;}
+        table th{background-color: #dbdbdb; text-align:center}
     </style>
 </head>
 <body>
@@ -45,8 +45,8 @@
                             <thead>
                                 <tr>
                                     <th width="100">글번호</th>
-                                    <th width="300">제목</th>
-                                    <th width="50">조회수</th>
+                                    <th width="250">제목</th>
+                                    <th width="80">조회수</th>
                                     <th width="100">작성일</th>
                                     <th width="100">수정일</th>
                                     <th width="50">상태</th>

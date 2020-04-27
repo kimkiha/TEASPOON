@@ -44,7 +44,6 @@
                                 <tr>
                                     <th width="100">글번호</th>
                                     <th width="300">제목</th>
-                                    <th width="50">조회수</th>
                                     <th width="100">작성일</th>
                                     <th width="100">수정일</th>
                                     <th width="50">상태</th>
@@ -63,7 +62,6 @@
 										<tr>
 											<td><%=b.getBoardNo() %></td>
 											<td><%=b.getBoardTitle() %></td>
-											<td><%=b.getCount() %></td>
 											<td><%=b.getCreateDate() %></td>
 											<td><%=b.getModifyDate() %></td>
 											<td class="status"><%=b.getStatus()%></td>
