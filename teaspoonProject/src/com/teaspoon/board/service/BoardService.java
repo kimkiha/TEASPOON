@@ -13,6 +13,40 @@ import com.teaspoon.member.model.dao.MemberDao;
 public class BoardService {
 	// -------------------------------  공통시작    ------------------------------- //
 	/**
+	 * 1. Board  수정 페이지에 보여줄 content
+	 * @param bno	--> 해당 수정 글 번호
+	 * @param b		--> board객체
+	 * @return
+	 */
+	public Board selectBoard(int bno) {
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectBoard(conn, bno);
+		
+		close(conn);
+		
+		return b;
+		
+	}
+	
+	/**
+	 * 2. Board 수정 페이지 보여줄 대표이미지
+	 * @param bno -->  해당 수정 글 번호
+	 * @return at --> Attachment 객체
+	 */
+	public Attachment selectAttachment(int bno) {
+		Connection conn = getConnection();
+		
+		Attachment at = new BoardDao().selectAttachment(conn, bno);
+		
+		close(conn);
+		
+		return at;
+	}
+	
+	
+	/**
+	 * 3.Board 수정용
 	 * @param b	--> board 테이블 update할 데이터가 담겨있는 객체
 	 * @return	 --> 성공한 행 갯수
 	 */
@@ -40,17 +74,14 @@ public class BoardService {
 		return result1 * result2;
 	}
 
-	public ArrayList<Attachment> selectMagazineThumbnailList(PageInfo pi){
-		Connection conn = getConnection();
-		
-		ArrayList<Attachment> atlist = new BoardDao().selectMagazineThumbnailList(conn, pi);
-		
-		close(conn);
-		
-		return atlist;
-	}
 	
+	/**
+	 * 4.Board 삭제용
+	 * @param bno
+	 * @return
+	 */
 	public int deleteBoard(int bno) {
+
 		Connection conn = getConnection();
 		
 		int result = new BoardDao().deleteBoard(conn, bno);
@@ -118,39 +149,19 @@ public class BoardService {
 	}
 	
 	/**
-	 * 4_1. 매거진  수정 페이지에 보여줄 content
-	 * @param bno	--> 해당 수정 글 번호
-	 * @param b		--> board객체
+	 * 2.매거진 사용자단 대표이미지 리스트 조회용
+	 * @param pi
 	 * @return
 	 */
-	public Board selectBoard(int bno) {
+	public ArrayList<Attachment> selectMagazineThumbnailList(PageInfo pi){
 		Connection conn = getConnection();
 		
-		Board b = new BoardDao().selectBoard(conn, bno);
+		ArrayList<Attachment> atlist = new BoardDao().selectMagazineThumbnailList(conn, pi);
 		
 		close(conn);
 		
-		return b;
-		
-		
-		
+		return atlist;
 	}
-	
-	/**
-	 * 4_2. 매거진 수정 페이지 보여줄 대표이미지
-	 * @param bno -->  해당 수정 글 번호
-	 * @return at --> Attachment 객체
-	 */
-	public Attachment selectAttachment(int bno) {
-		Connection conn = getConnection();
-		
-		Attachment at = new BoardDao().selectAttachment(conn, bno);
-		
-		close(conn);
-		
-		return at;
-	}
-	
 	
 	// 매거진 키워드검색
 	public int getMagazineKeywordListCount(String magazineKeyword) {
@@ -222,6 +233,21 @@ public class BoardService {
 		return list;
 	}
 	
+	/**
+	 * 2.이벤트 사용자단 대표이미지 리스트 조회용
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Attachment> selectEventThumbnailList(PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Attachment> atlist = new BoardDao().selectEventThumbnailList(conn, pi);
+		
+		close(conn);
+		
+		return atlist;
+	}
+	
 	// 이벤트 키워드검색
 	public int getEventKeywordListCount(String eventKeyword) {
 		Connection conn = getConnection();
@@ -263,7 +289,6 @@ public class BoardService {
 		return result1 * result2;
 	}
 	
-	
 	/**
 	 * 1-2. 공지사항 리스트 총 갯수 조회용 서비스
 	 * @return
@@ -293,6 +318,20 @@ public class BoardService {
 		return list;
 	}
 	
+	/**
+	 * 2.공지사항 사용자단 대표이미지 리스트 조회용
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Attachment> selectNoticeThumbnailList(PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Attachment> atlist = new BoardDao().selectNoticeThumbnailList(conn, pi);
+		
+		close(conn);
+		
+		return atlist;
+	}
 		
 	// 공지사항 키워드검색
 	public int getNoticeKeywordListCount(String noticeKeyword) {
