@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div id="c1_2" style="height: 370px;">
-                    <table>
+                    <table id="listArea">
                         <tbody>
                             <tr>
                                 <th>상담번호</th>
@@ -83,7 +83,11 @@
                                 <td><%=mtm.getMtmTitle() %></td>
                                 <td><%=mtm.getCreateDate() %></td>
                                 <td><button type="button" style="width: 100px;"><a href="<%=contextPath%>/QnaDetail.me">상세보기</a></button></td>
-                                <td><button type="button" style="width: 100px;"><a href="<%=contextPath %>/QnaAnswer.me">답변달기</a></button></td>
+                                <td>
+                                	<button type="button" style="width: 100px;"class="answer">
+                                		답변달기
+                                	</button>
+                                </td>
                               </tr>
                             <%} %>
                           </tfoot>
@@ -129,6 +133,14 @@
 		}
 			});
 	});
+	$(function(){
+		$('.answer').click(function(){
+			var mtmNo = $('#listArea>tfoot>tr').children.eq(0).text();
+			console.log(mtmNo);
+			location.href="<%=contextPath%>/QnaAnswer.me?mtmNo=" + mtmNo;
+		});
+	});
+	
 </script>     
 </body>
 </html>
