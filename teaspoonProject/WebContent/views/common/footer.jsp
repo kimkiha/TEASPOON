@@ -15,8 +15,8 @@
                 <table>
                     <tr>
                         <td width="270">공지사항</td>
-                        <td width="670"><a href="#">[공지] 서비스 정검 안내_ 3/28(일) 00:00~03:00</a></td>
-                        <td width="230" style="text-align: right;"><a href="#">+더보기</a></td>
+                        <td width="670"><a href="<%=contextPath%>/noticeList.bo?currentPage=1"></a></td>
+                        <td width="230" style="text-align: right;"><a href="<%=contextPath%>/noticeList.bo?currentPage=1">+더보기</a></td>
                     </tr>
                 </table>
             </div>

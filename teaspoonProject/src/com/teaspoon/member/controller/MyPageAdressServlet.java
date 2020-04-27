@@ -9,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.member.model.service.MemberService;
-import com.teaspoon.member.model.vo.MenToMen;
-
 /**
- * Servlet implementation class MemberQnaAnswerServlet
+ * Servlet implementation class MyPageAdressServlet
  */
-@WebServlet("/QnaAnswer.me")
-public class MemberQnaAnswerServlet extends HttpServlet {
+@WebServlet("/myAdress.me")
+public class MyPageAdressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberQnaAnswerServlet() {
+    public MyPageAdressServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +28,13 @@ public class MemberQnaAnswerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int mtmNo = Integer.parseInt(request.getParameter("mtmNo"));
 		
-		MenToMen mtm = new MemberService().mtmQnaAnswer(mtmNo);
 		
-		request.setAttribute("mtm", mtm);
-		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Answer.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_address1.jsp");
 		view.forward(request, response);
+		
+		
+		
 	}
 
 	/**

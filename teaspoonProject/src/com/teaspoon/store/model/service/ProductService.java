@@ -393,4 +393,51 @@ public class ProductService {
 		
 	}
 	
+	
+	public int selectOptionCode(String optionGram,String optionGrind) {
+		Connection conn = getConnection();
+		int optionCode = new ProductDao().selectOptionCode(conn, optionGram,optionGrind);
+
+		close(conn);
+		return optionCode;
+	}
+	
+	public int insertPdetailNo(int cartPcode,int optionCode) {
+
+		Connection conn = getConnection();
+
+		int pDetailNo = new ProductDao().insertPdetailNo(conn,cartPcode, optionCode);
+		
+
+		if (pDetailNo>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return pDetailNo;
+
+	}
+	
+
+	public int insertOrderBy(int userNo,int pDetailNo, int pCount) {
+
+		Connection conn = getConnection();
+
+		int result = new ProductDao().insertOrderBy(conn,userNo,pDetailNo, pCount);
+		
+
+		if (result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+
+	}
+	
+	
+	
+	
 }

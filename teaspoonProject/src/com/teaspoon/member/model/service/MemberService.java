@@ -641,6 +641,14 @@ public class MemberService {
 		return listCount;
 	}
 
+	public MenToMen mtmQnaAnswer(int mtmNo) {
+		Connection conn = getConnection();
+		MenToMen mtm = new MemberDao().mtmQnaAnswer(conn,mtmNo);
+		
+		close(conn);
+		return mtm ;
+	}
+
 	
 	
 	

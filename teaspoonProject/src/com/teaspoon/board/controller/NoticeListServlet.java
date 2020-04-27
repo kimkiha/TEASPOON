@@ -34,7 +34,7 @@ public class NoticeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 			//-------------------- 페이징처리 -----------------
 			int listCount;		//총 게시글 갯수
 			int currentPage;	//현재페이지(즉, 요청한페이지)

@@ -1,28 +1,27 @@
-package com.teaspoon.member.controller;
+package com.teaspoon.store.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.member.model.service.MemberService;
-import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.store.model.service.ProductService;
 
 /**
- * Servlet implementation class MemberQnaAnswerServlet
+ * Servlet implementation class InsertCartServlet
  */
-@WebServlet("/QnaAnswer.me")
-public class MemberQnaAnswerServlet extends HttpServlet {
+@WebServlet("/insertCart.st")
+public class InsertCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberQnaAnswerServlet() {
+    public InsertCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +30,19 @@ public class MemberQnaAnswerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int mtmNo = Integer.parseInt(request.getParameter("mtmNo"));
+	
+	int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		
-		MenToMen mtm = new MemberService().mtmQnaAnswer(mtmNo);
-		
-		request.setAttribute("mtm", mtm);
-		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Answer.jsp");
-		view.forward(request, response);
+	int cartPcode = Integer.parseInt(request.getParameter("cartPcode"));
+	String optionGram = request.getParameter("optionGram");
+	String optionGrind = request.getParameter("optionGrind");
+	int pCount = Integer.parseInt(request.getParameter("pCount"));
+	
+	int optionCode = new ProductService().selectOptionCode(optionGram,optionGrind);
+	int pDetailNo = new ProductService().insertPdetailNo(cartPcode,optionCode);
+	
+	int result = new ProductService().insertOrderBy(userNo,pDetailNo,pCount);
+	
 	}
 
 	/**

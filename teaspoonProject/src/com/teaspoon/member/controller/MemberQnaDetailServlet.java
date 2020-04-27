@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.member.model.service.MemberService;
+import com.teaspoon.member.model.vo.MenToMen;
+
 /**
  * Servlet implementation class MemberQnaDetailServlet
  */
@@ -28,8 +31,6 @@ public class MemberQnaDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Detail.jsp");

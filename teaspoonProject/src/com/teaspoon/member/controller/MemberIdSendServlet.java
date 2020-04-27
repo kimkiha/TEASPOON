@@ -31,7 +31,7 @@ public class MemberIdSendServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String email = request.getParameter("email");
-		System.out.println(email);
+		//System.out.println(email);
 		Member m = new MemberService().selectUserId(email);
 		//System.out.println(m.getUserId()+"aaaaa");
 		request.getSession().setAttribute("userId", m.getUserId());
