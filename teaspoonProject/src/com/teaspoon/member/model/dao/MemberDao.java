@@ -65,7 +65,8 @@ public class MemberDao {
 							rset.getDate("MODIFY_DATE"),
 							rset.getInt("BUY_POINT"),
 							rset.getString("admin"),
-							rset.getString("status")
+							rset.getString("status"),
+							rset.getString("ADDRESS")
 						);
 				
 			}
@@ -447,7 +448,8 @@ public class MemberDao {
 						rset.getDate("MODIFY_DATE"),
 						rset.getInt("BUY_POINT"),
 						rset.getString("ADMIN"),
-						rset.getString("STATUS"));
+						rset.getString("STATUS"),
+						rset.getString("ADDRESS"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
