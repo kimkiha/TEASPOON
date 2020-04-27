@@ -1358,14 +1358,14 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1,mtmName);
+				pstmt.setString(1, mtmName);
 				pstmt.setInt(2, startRow);
 				pstmt.setInt(3, endRow);
 				rset = pstmt.executeQuery();
 				while(rset.next()) {
 					list.add(new MenToMen(rset.getInt("MTM_NO"),
 							rset.getInt("MTM_TYPE"),
-							rset.getString("MTM_title"),
+							rset.getString("MTM_TITLE"),
 							rset.getDate("CREATE_DATE"),
 							rset.getString("MTM_NAME")));		
 					
@@ -1378,10 +1378,38 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				close(rset);
 				close(pstmt);
 			}
-	
+			System.out.println(list);
 			return list;
 			
 			
 			
+		}
+
+		public int selectMtmAdminCount(Connection conn, String mtmName) {
+			int listCount = 0;
+
+			PreparedStatement	pstmt  = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectMtmAdminCount");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mtmName);
+				rset = pstmt.executeQuery();
+
+				if (rset.next()) {
+					// 컬럼인덱스로 추출
+					listCount = rset.getInt(1);
+				}
+
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			System.out.println(listCount);
+			return listCount;
 		}
 }

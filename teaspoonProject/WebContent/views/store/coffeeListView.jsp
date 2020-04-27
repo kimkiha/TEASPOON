@@ -49,16 +49,16 @@
                         <div id="productList">
                         
                         	<!-- listArea -->
-                        	<%for(Product p : list) {%>
+                        	<%for(int i=0; i<list.size(); i++) {%>
                         	
                             <div class="product" style="margin-top:50px; margin-right:30px;" >
                             	
                                 <div class="product_img">
-                                	<input type="hidden" id="pcode" name="pcode" value=<%=p.getPcode() %>>
-                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
+                                	<input type="hidden" class="pcode<%=i%>" name="pcode" value=<%=list.get(i).getPcode() %>>
+                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(i).getTitleImg() %>" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
-                                   <p style="padding-top:20px;padding-left:15px;"><%=p.getPname() %></p>
+                                   <p style="padding-top:20px;padding-left:15px;"><%=list.get(i).getPname() %></p>
                                 </div>
                                 <div class="like">
                                     <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
