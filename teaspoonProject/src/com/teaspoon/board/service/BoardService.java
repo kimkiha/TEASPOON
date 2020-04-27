@@ -9,7 +9,6 @@ import com.teaspoon.board.dao.BoardDao;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
-import com.teaspoon.member.model.dao.MemberDao;
 public class BoardService {
 	// -------------------------------  공통시작    ------------------------------- //
 	/**
@@ -97,7 +96,26 @@ public class BoardService {
 		return result;
 	}
 	
-	
+	/**
+	 * 5.count용
+	 * @param bno
+	 * @return
+	 */
+	public int increaseCount(int bno) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().increaseCount(conn, bno);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	// -------------------------------  매거진시작    ------------------------------- //
 	/**
 	 * 1_1. 매거진 작성용 서비스
@@ -300,7 +318,7 @@ public class BoardService {
 		int listCount = new BoardDao().getNoticeListCount(conn);
 		
 		close(conn);
-		
+
 		return listCount;
 	}
 
@@ -314,7 +332,7 @@ public class BoardService {
 		
 		ArrayList<Board> list = new BoardDao().selectNoticeList(conn, pi);
 		close(conn);
-		
+
 		return list;
 	}
 	
@@ -329,7 +347,6 @@ public class BoardService {
 		ArrayList<Attachment> atlist = new BoardDao().selectNoticeThumbnailList(conn, pi);
 		
 		close(conn);
-		
 		return atlist;
 	}
 		
