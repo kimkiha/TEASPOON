@@ -235,6 +235,9 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     			console.log(prevGradeMinMoney);
     			console.log(prevGradeDiscountGrade);
     		
+    			console.log(nextGradeMinMoney);
+    			console.log(nextGradeDiscountGrade);
+    			
     			
     			if((nextGradeDiscountGrade+100000)==100000){
     				if(Number(updateMinMoney) <= Number(prevGradeMinMoney)){
@@ -245,7 +248,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
         				return false;
         			}else{
         				$("#maxGradeCheck").val(1);
-        				return true;
+        				return false;
         			} 
     			}else{
     				if(Number(updateMinMoney) >=Number(nextGradeMinMoney)){
@@ -262,7 +265,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
         				return false;
         			}else{
         				 $("#maxGradeCheck").val(2);
-         				return true;
+         				return false;
         			}
     			}
     	       
