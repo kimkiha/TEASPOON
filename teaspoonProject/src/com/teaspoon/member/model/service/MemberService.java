@@ -356,6 +356,30 @@ public class MemberService {
 		return result;
 	}
 	
+	public int deleteGrade(int deleteGradeCode) {
+		
+		Connection conn = getConnection();
+		new MemberDao().MemberGradeDown(conn,deleteGradeCode);
+		
+		int result = new MemberDao().deleteGrade(conn,deleteGradeCode);
+		
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
 		public int updateMemberGrade(Grade grade, ArrayList<Grade> gList) {
 		
 		Connection conn = getConnection();
@@ -617,5 +641,7 @@ public class MemberService {
 		return listCount;
 	}
 
+	
+	
 	
 }

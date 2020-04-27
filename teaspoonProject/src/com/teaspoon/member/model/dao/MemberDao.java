@@ -899,7 +899,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 			PreparedStatement pstmt = null;
 			String sql = prop.getProperty("updateMemberGrade");
 		
-			System.out.println(nextG);
+			//System.out.println(nextG);
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1,addGradeCode);
@@ -1081,7 +1081,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 			PreparedStatement pstmt = null;
 			
 			String sql = prop.getProperty("updateGrade");
-			System.out.println("aaa");
+			
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
@@ -1108,8 +1108,8 @@ public int insertAttachment(Connection conn, Attachment at) {
 			PreparedStatement pstmt = null;
 			
 			String sql = prop.getProperty("newUpdateMemberGrade");
-			System.out.println(g.getGradeName());
-			System.out.println(nextG);
+			//System.out.println(g.getGradeName());
+			//System.out.println(nextG);
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
@@ -1412,4 +1412,55 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			System.out.println(listCount);
 			return listCount;
 		}
+		
+		
+		public void MemberGradeDown(Connection conn, int deleteGradeCode) {
+			
+			PreparedStatement pstmt  = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("memberGradeDown");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, deleteGradeCode-10);
+				pstmt.setInt(2, deleteGradeCode);
+			    pstmt.executeUpdate();
+	
+
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return;
+		}
+		
+	public int deleteGrade(Connection conn, int deleteGradeCode) {
+			int result=0;
+			PreparedStatement pstmt  = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("deleteGrade");
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, deleteGradeCode);
+			    pstmt.executeUpdate();
+	
+
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return result;
+		}
+		
+		
+		
 }
