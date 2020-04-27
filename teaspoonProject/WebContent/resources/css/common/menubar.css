@@ -39,4 +39,8 @@
 .header_mypage>ul>li a:hover{ color:#fff ; }
 .header_mypage>ul #login{width:210px; height:35px; border-radius: 5px; background: #fff; border:1px solid rgb(190, 190, 190)  }
 .header_mypage>ul #login_li:hover{background:#fff}
-
+#search_icon{position:relative; }
+#search_wrap{display:none; position:absolute;left:1100px; top:120px; width:300px; height:50px; background:#fff; border-radius:5px}
+#search{margin:10px 10px;width:270px; height:40px; }
+.search_form{float:left}
+.search_btn{width:60px; height:30px;background:#9f9f9f; color:#fff; font-weight:500; border:1px solid #9f9f9f;}
