@@ -41,7 +41,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                                     <th>최소달성금액</th>
                                     <th>등급별할인률</th>
                                     <th>
-                                        <button id="btnInsertForm" type="button" style="width: 100px;" >등급추가</button>
+                                        <button id="btnInsertForm" type="button" style="width: 100px;" >상위등급추가</button>
                                     </th>
                                 </tr>
                             </tbody>
@@ -65,7 +65,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
 							<%}else{ %>
 							<td>
 							<button type="button" class="btnUpdateForm">수정</button>
-							<button type="button">삭제</button>
+							<button type="button" class="deleteButton">삭제</button>
 							</td>
 							<%} %>
 						</tr>
@@ -149,12 +149,14 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     </div>  
     
     
-    <form id="maxGradeForm" action="<%=contextPath%>/maxGradeInsert.me" method="post">
+    <form id="deleteGrade" action="<%=contextPath%>/deleteGrade.me" method="post">
+		<input type="hidden" id="deleteGradeCode" name="deleteGradeCode">
+	</form>
+	  <form id="maxGradeForm" action="<%=contextPath%>/maxGradeInsert.me" method="post">
 		<input type="hidden" id="maxGradeName" name="maxGradeName">
 		<input type="hidden" id="maxMinMoney" name="maxMinMoney">
 		<input type="hidden" id="maxDiscountRate" name="maxDiscountRate">
 	</form>
-	
 	
 	
     <script>
@@ -189,6 +191,10 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     			var minMoney = $("#minMoney").val();
     			var discountRate = $("#discontRate").val();
 				
+    			var maxGradeMinAcount = <%=gList.get(gList.size()-1).getMinAcount()%>;
+    			var maxGradeRate = <%=gList.get(gList.size()-1).getGradeRate()%>;
+    			
+    			
 				
     			if(gradeName == ''){
     				alert("등급명을 입력하세요.");
@@ -201,7 +207,10 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     				
     			}else if(gradeCount>=10){
     				alert("등급 10개 초과로 추가가 불가능합니다.");
-
+    			}else if(maxGradeMinAcount>=minMoney){
+    				alert("하위 등급보다 달성금액이 작거나 같을 수 없습니다.");
+    			}else if(maxGradeRate>=discountRate){
+    				alert("하쉬 등급보다 할인률이 작거나 같을 수 없습니다.");
     			}else if($("#minMoney").val() > <%=gList.get(gList.size()-1).getMinAcount()%>){
     				$("#maxGradeName").val(gradeName);
     				$("#maxMinMoney").val(minMoney);
@@ -216,7 +225,14 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     </script> 
     
     <script>
-    	
+    	$(".deleteButton").click(function(){
+    		var deleteCode = $(this).parent().parent().children().eq(0).text();
+    		$("#deleteGradeCode").val(deleteCode);
+    		$("#deleteGrade").submit();
+    	});
+    </script>
+    
+    <script>
     function updateGrade(){
     			var gNo = $("#gNo").val();
     			var updateMinMoney = $('#updateMinMoney').val();
@@ -268,12 +284,10 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
          				return false;
         			}
     			}
-    	       
-    			
-    			
+
     		}
-    	
     </script>
+    
     
  
   
