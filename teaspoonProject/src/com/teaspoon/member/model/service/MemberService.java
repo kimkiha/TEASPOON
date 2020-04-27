@@ -583,5 +583,15 @@ public class MemberService {
 		 return list;
 	}
 
+	public ArrayList<MenToMen> selectMtmAdminListType(String mtmName) {
+		Connection conn = getConnection();
+		ArrayList<MenToMen> list = new MemberDao().selectMtmAdminListType(conn,mtmName);
+		
+		close(conn);
+		return list;
+		
+		
+	}
+
 	
 }

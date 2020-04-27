@@ -1275,7 +1275,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				close(rset);
 				close(stmt);
 			}
-			System.out.println(listCount);
+			
 			return listCount;
 		}
 
@@ -1309,8 +1309,42 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				close(pstmt);
 			}
 			
-			System.out.println(list);
+		
 			
 			return list;
+		}
+
+		public ArrayList<MenToMen> selectMtmAdminListType(Connection conn, String mtmName) {
+			ArrayList<MenToMen> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("selectMtmAdminListType");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,mtmName);
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new MenToMen(rset.getInt("MTM_NO"),
+							rset.getInt("MTM_TYPE"),
+							rset.getString("MTM_title"),
+							rset.getDate("CREATE_DATE"),
+							rset.getString("MTM_NAME")));		
+					
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+	
+			return list;
+			
+			
+			
 		}
 }

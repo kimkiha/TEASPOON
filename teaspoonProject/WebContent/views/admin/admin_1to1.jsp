@@ -47,8 +47,8 @@
                             </p>
                         </div>
                         <div id="oneToOneKinds" style="text-align: left; padding-top: 20px;">
-                            <input type="radio" name="advice" value="전체">전체
-                            <input type="radio" name="advice" value="주문/결제">주문/결제
+                            <input type="radio" name="advice" value="전체" >전체
+                            <input type="radio" name="advice" value="주문/결제" checked>주문/결제
                             <input type="radio" name="advice" value="이벤트/쿠폰">이벤트/쿠폰
                             <br>
                             <input type="radio" name="advice" value="환불/반품/교환">환불/반품/교환
@@ -57,7 +57,7 @@
                             <input type="radio" name="advice" value="기타">기타
                         </div>
                         <div style="padding-top: 20px;">
-                            <button type="button" style="height: 50px;">조회</button>
+                            <button type="button" style="height: 50px;" id="searchBtn">조회</button>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                           <tfoot>
 						  <% for(MenToMen mtm : list){ %>      
                               <tr>
-                                <td><%=mtm.getMtmNo() %>></td>
+                                <td><%=mtm.getMtmNo() %></td>
                                 <td><%=mtm.getMtmName() %></td>
                                 <td><%=mtm.getMtmTitle() %></td>
                                 <td><%=mtm.getCreateDate() %></td>
@@ -117,6 +117,16 @@
                
             </div>
         </div>
-    </div>  
+
+<script>
+	$(function(){
+	$('#searchBtn').click(function(){
+		var mtmName = $('input[name="advice"]:checked').val();
+		
+		location.href="<%=contextPath%>/myqnadelete.me?mtmName=" + mtmName;
+		
+	});
+	});
+</script>     
 </body>
 </html>

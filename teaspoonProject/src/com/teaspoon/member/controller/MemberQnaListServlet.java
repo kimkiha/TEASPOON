@@ -53,7 +53,7 @@ public class MemberQnaListServlet extends HttpServlet {
 		pageLimit = 10;
 
 		// * boardLimit : 한 페이지에 보여질 게시글 최대 갯수
-		boardLimit = 10;
+		boardLimit = 5;
 
 		// * maxPage : (마지막 페이지) 총 페이지수
 		/*
@@ -72,11 +72,14 @@ public class MemberQnaListServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		// System.out.println(pi);
 		ArrayList<MenToMen> list = new MemberService().selectMtmAdminList(pi);
+		String mtmName = request.getParameter("mtmName");
+		System.out.println(mtmName);
+		ArrayList<MenToMen> TypeList = new MemberService().selectMtmAdminListType(mtmName);
 		System.out.println(list);
 		// 페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-
+		request.setAttribute("TypeList", TypeList);
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1.jsp");
 		view.forward(request, response);
 		
