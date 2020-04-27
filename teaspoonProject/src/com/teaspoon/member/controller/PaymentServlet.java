@@ -16,16 +16,16 @@ import com.teaspoon.member.model.vo.Cart;
 import com.teaspoon.member.model.vo.Member;
 
 /**
- * Servlet implementation class MyPageCartServlet
+ * Servlet implementation class PaymentServlet
  */
-@WebServlet("/mycart.me")
-public class MyPageCartServlet extends HttpServlet {
+@WebServlet("/payment.me")
+public class PaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageCartServlet() {
+    public PaymentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +34,7 @@ public class MyPageCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession(); 
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		System.out.print(loginUser);
@@ -42,19 +42,13 @@ public class MyPageCartServlet extends HttpServlet {
 		if(loginUser != null) {
 			int userNo = loginUser.getUserNo();
 			ArrayList<Cart> list = new MemberService().selectMemberCartList(userNo);
-			
 			request.setAttribute("list", list);
 			
-			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_cart.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_payment.jsp");
 			view.forward(request, response);
 			
-		} else {
-			request.setAttribute("msg","로그인한 회원만 이용 가능한 서비스입니다.");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
 		}
-		
-		
+	
 	}
 
 	/**

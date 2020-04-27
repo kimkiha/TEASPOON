@@ -2,6 +2,7 @@ package com.teaspoon.store.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,10 +45,14 @@ public class InsertCartServlet extends HttpServlet {
 	
 	int result2 = new ProductService().insertOrderBy(userNo,pCount);
 	
-	if(result>0) {
-		
-		
+	if(result2>0) {
+		response.sendRedirect("detail.co?pcode="+cartPcode);
+	} else {
+		RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+		view.forward(request, response);
 	}
+	
+	
 	}
 
 	/**
