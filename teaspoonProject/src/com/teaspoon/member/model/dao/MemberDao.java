@@ -1251,6 +1251,39 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			return m;
 			
 		}
+		
+		public Member selectUserId(Connection conn, String email) {
+			
+			PreparedStatement pstmt = null;
+			Member m = new Member(); 
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("selectUserId");
+			
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, email);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					
+					m.setUserId(rset.getString("user_id"));
+					
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return m;
+			
+		}	
 			
 		public int selectMtmAdminCount(Connection conn) {
 			int listCount = 0;

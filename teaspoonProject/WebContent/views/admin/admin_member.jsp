@@ -120,7 +120,7 @@
                 <div id="c1_3">
         <%if(!searchId.equals("null")){ %>
         	
-	        	           <!-- 현재 페이지에 보여질 페이징바 -->
+	        <!-- 현재 페이지에 보여질 페이징바 -->
 			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 			<!-- 맨 처음으로(<<) -->
 			<button onclick="location.href='idList.me?currentPage=1&searchId=<%=searchId %>'">&lt;&lt;</button>

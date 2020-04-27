@@ -1,5 +1,7 @@
 package com.teaspoon.store.model.vo;
 
+import java.sql.Date;
+
 public class Product {
 
 	private int pcode;		// 상품번호
@@ -45,6 +47,8 @@ public class Product {
 		this.kind = kind;
 		this.pcontent = pcontent;
 	}
+	
+	
 
 	public int getPcode() {
 		return pcode;

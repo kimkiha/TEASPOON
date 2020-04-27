@@ -29,13 +29,13 @@
             <div id="비밀번호찾기" class="tabcontent" id="password">
               <center>
               <form action="pwdSend.me" method="post">           
-                <table style="padding-top:60px; padding-bottom:30px; padding-right:60px" id="table1">
+                <table style="padding-top:60px; padding-bottom:30px; padding-right:60px; margin-bottom:200px;" id="table1">
                     <thead>
                         <td class=im1>
                          <tr>
                             <td style=width:130px;></td>
                             <td style= "font-size:20px; width:160px; text-align:left;"><li>아 이 디</li></td>
-                            <td style= "width:400px; text-align:left"><input type="text" id="userId" name="userId" placeholder="아이디(4 ~ 12자 영문 대,소문자"></td>
+                            <td style= "width:500px; text-align:left"><input type="text" id="userId" name="userId" placeholder="아이디(4 ~ 12자 영문 대,소문자"></td>
                             <td ><button type="button" class="btn1" id="idCheck" style="margin-left:15px;">아이디확인</button></td>
                             
                          </tr>
@@ -43,9 +43,9 @@
                     <tbody id="tbody">
                         <tr>
                             <td></td>
-                            <td style= "font-size:20px; text-align:left;"><li></li></td>
-                            <td style= "text-align:left;">검색하신 아이디 가입시 작성한 이메일로 비밀번호 전송</td>
-                            <td><button type="submit" class="btn1" id="email_send" style="margin-left:15px;" disabled>비밀번호발송</button></td>
+                            <td style= "font-size:20px; text-align:left;" colspan="1"></td>
+                            <td style= "text-align:left; font-size:15px;">* 검색하신 아이디 가입시 작성한 이메일로 비밀번호 전송</td>
+                            <td><input type="submit" class="btn1" id="email_send" value="비밀번호발송" style="margin-left:15px;" disabled></td>
                         </tr>  
                     </ul>             
                     </tbody>
@@ -79,6 +79,7 @@
 					type:"post", 
 					success:function(result){	// 1 또는 0
 						
+						
 						if(result != 0){		// 사용가능한 아이디
 							
 						confirm("회원아이디가 조회되었습니다.")
@@ -91,7 +92,7 @@
 						}
 						
 					},error:function(){
-						console.log("ajax통신 실패!!");
+						console.log("ajax 실패!!");
 					}
 					
 				
@@ -101,7 +102,48 @@
 			
 		});
 	
-	</script>      
+	</script>
+	     <script>
+      	 /* (이메일) 아이디 발송 버튼 클릭시  (두번째버튼)*/ 
+      	 
+      	 $("#email_send").click(function(){
+
+           $.ajax({
+        	   url:"pwdSend.me",
+        	   data:{Email:email.value},
+        	   success:function(data){
+        		   alert("비밀번호가 발송되었습니다.");
+        		   console.log(data);
+        		   randomKey = data;
+        	   },error:function(){
+        		   alert("이메일발송실패");
+        	   }
+           })    
+       
+      	 });
+    </script> 
+	
+//		<script> // "비밀번호전송" 버튼 클릭시  (마지막버튼)
+//			
+//    	 function check(){
+//              alert("비밀번호를 이메일로 발송하였습니다.");
+//       }
+//       	 	
+//    	</script>
+
+//<script>
+//
+//$(function(){
+//	
+//	// 비밀번호전송
+//	$("#email_send").click(function(){
+//		 alert("비밀번호를 이메일로 발송하였습니다.");
+//		})
+//	
+//		
+//	});
+//
+//</script>
       
  	
 

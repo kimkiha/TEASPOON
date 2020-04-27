@@ -339,7 +339,7 @@ public class BoardDao {
 	}
 	
 	/**
-	 * ?.매거진 썸네일 조회용
+	 * 사용자단 매거진 썸네일 조회용
 	 * @param conn
 	 * @param pi
 	 * @return
@@ -617,6 +617,60 @@ public class BoardDao {
 		return list;
 	}
 	
+	
+	/**
+	 * 사용자단 이벤트 썸네일 조회용
+	 * @param conn
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Attachment> selectEventThumbnailList(Connection conn, PageInfo pi){
+			
+		ArrayList<Attachment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectEventThumbnailList");
+	
+		/*
+		 * pi에 담겨있는 현재 페이지값과 보여질게시글 수 을 이용해 보여질 페이시 수를 정한다. ex) boardLimit = 10
+		 * currentPage = 1 --> startRow :1 endRow:10 currentPage = 2 --> startRow :11
+		 * endRow:20 currentPage = 3 --> startRow :21 endRow:30
+		 * 
+		 * startRow : (currentPage-1) * boardLimit + 1 endRow : startRow + boardLimit -1
+		 */
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+	
+			rset = pstmt.executeQuery();
+	
+			while (rset.next()) {
+				list.add(new Attachment(rset.getInt("FILE_NO"),
+						rset.getInt("REF_BNO"),
+						rset.getString("ORIGIN_NAME"),
+						rset.getString("CHANGE_NAME"),
+						rset.getString("FILE_PATH"),
+						rset.getDate("UPLOAD_DATE"),
+						rset.getInt("FILE_LEVEL"),
+						rset.getString("STATUS"),
+						rset.getString("BOARD_LEVEL")
+						));
+			}
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+	
+		}
+		return list;
+	}
+	
 	// 이벤트 키워드 조회
 	public int getEventKeywordListCount(Connection conn, String eventKeyword) {
 		
@@ -815,6 +869,59 @@ public class BoardDao {
 		} finally {
 			close(rset);
 			close(pstmt);
+		}
+		return list;
+	}
+	
+	/**
+	 * 사용자단 공지사항 썸네일 조회용
+	 * @param conn
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Attachment> selectNoticeThumbnailList(Connection conn, PageInfo pi){
+			
+		ArrayList<Attachment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNoticeThumbnailList");
+	
+		/*
+		 * pi에 담겨있는 현재 페이지값과 보여질게시글 수 을 이용해 보여질 페이시 수를 정한다. ex) boardLimit = 10
+		 * currentPage = 1 --> startRow :1 endRow:10 currentPage = 2 --> startRow :11
+		 * endRow:20 currentPage = 3 --> startRow :21 endRow:30
+		 * 
+		 * startRow : (currentPage-1) * boardLimit + 1 endRow : startRow + boardLimit -1
+		 */
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+	
+			rset = pstmt.executeQuery();
+	
+			while (rset.next()) {
+				list.add(new Attachment(rset.getInt("FILE_NO"),
+						rset.getInt("REF_BNO"),
+						rset.getString("ORIGIN_NAME"),
+						rset.getString("CHANGE_NAME"),
+						rset.getString("FILE_PATH"),
+						rset.getDate("UPLOAD_DATE"),
+						rset.getInt("FILE_LEVEL"),
+						rset.getString("STATUS"),
+						rset.getString("BOARD_LEVEL")
+						));
+			}
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+	
 		}
 		return list;
 	}

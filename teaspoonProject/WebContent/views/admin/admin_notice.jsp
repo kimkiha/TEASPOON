@@ -36,7 +36,7 @@
                         <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/이벤트.png" width="50px" width="50px"></div>
                         <div id="c1_1_1_2"><p>공지사항관리 페이지입니다.</p></div>
                         <div id="c1_1_1_3">
-                             <input type="text" placeholder="키워드" id="noticeKeyword">
+                             <input type="text" placeholder="공지사항제목" id="noticeKeyword">
                             <button type="button" class="searchBtn" id="searchBtn1">검색</button>
                         </div>
                     </div>
@@ -88,14 +88,14 @@
                 	<!-- 현재 페이지에 보여질 페이징바 -->
 					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 						<!-- 맨 처음으로(<<) -->
-						<button onclick="location.href='noticeKeywordList.bo?currentPage=1&eventKeyword=<%=noticeKeyword %>'">&lt;&lt;</button>
+						<button onclick="location.href='noticeKeywordList.bo?currentPage=1&noticeKeyword=<%=noticeKeyword %>'">&lt;&lt;</button>
 						<!-- 이전페이지로(<) -->
-						<button onclick="location.href='noticeKeywordList.bo?currentPage=<%=currentPage-1%>&eventKeyword=<%=noticeKeyword%>'">&lt;</button>
+						<button onclick="location.href='noticeKeywordList.bo?currentPage=<%=currentPage-1%>&noticeKeyword=<%=noticeKeyword%>'">&lt;</button>
 					<%} %>
 					
 					<%for(int p=startPage; p<=endPage; p++){%>
 						<%if(currentPage != p) {%>
-						<button onclick="location.href='noticeKeywordList.bo?currentPage=<%=p%>&eventKeyword=<%=noticeKeyword %>'"><%=p%></button>
+						<button onclick="location.href='noticeKeywordList.bo?currentPage=<%=p%>&noticeKeyword=<%=noticeKeyword %>'"><%=p%></button>
 						<%}else{ %>
 						<button disabled><%=p %></button>
 						<%} %>	
@@ -142,7 +142,7 @@
     	$(function(){
     		$("#searchBtn1").click(function(){
     			var noticeKeyword = $("#noticeKeyword").val();
-    			location.href='noticeKeywordList.bo?eventKeyword='+noticeKeyword+"&currentPage=1";
+    			location.href='noticeKeywordList.bo?noticeKeyword='+noticeKeyword+"&currentPage=1";
     		});
     	})
    	 	</script>     

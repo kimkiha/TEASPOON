@@ -35,7 +35,7 @@
                         <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/이벤트.png" width="50px" width="50px"></div>
                         <div id="c1_1_1_2"><p>이벤트관리 페이지입니다.</p></div>
                         <div id="c1_1_1_3">
-                             <input type="text" placeholder="키워드" id="eventKeyword">
+                             <input type="text" placeholder="이벤트제목" id="eventKeyword">
                             <button type="button" class="searchBtn" id="searchBtn1">검색</button>
                         </div>
                     </div>
