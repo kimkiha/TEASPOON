@@ -19,11 +19,12 @@
     <title>이벤트</title>
   
     <style>
-        #c1_1_2 div{padding-left: 25px; float:left;}
+     	#c1_1_2 div{padding-left: 25px; float:left;}
         #oneToOneKinds input{margin-right: 5px; vertical-align: middle;}
+        table td{text-align:center}
         table tr{border-bottom: 1px solid lightgray;}
         table tr:first-child{border-top: 1px solid lightgray;}
-        table th{background-color: #dbdbdb;}
+        table th{background-color: #dbdbdb; text-align:center}
     </style>
 </head>
 <body>
@@ -45,7 +46,6 @@
                                 <tr>
                                     <th width="100">글번호</th>
                                     <th width="300">제목</th>
-                                    <th width="50">조회수</th>
                                     <th width="100">작성일</th>
                                     <th width="100">수정일</th>
                                     <th width="50">상태</th>
@@ -64,7 +64,6 @@
 										<tr>
 											<td><%=b.getBoardNo() %></td>
 											<td><%=b.getBoardTitle() %></td>
-											<td><%=b.getCount() %></td>
 											<td><%=b.getCreateDate() %></td>
 											<td><%=b.getModifyDate() %></td>
 											<td class="status"><%=b.getStatus()%></td>

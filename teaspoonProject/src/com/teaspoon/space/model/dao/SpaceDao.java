@@ -77,6 +77,7 @@ public class SpaceDao {
 				g.setGsPrice(rset.getInt("GS_PRICE"));
 				g.setGsCount(rset.getInt("GS_COUNT"));
 				g.setGsUsing(rset.getInt("GS_USING"));
+				g.setGsSaving(rset.getInt("GS_SAVING"));
 				
 				list.add(g);	
 			}

@@ -1415,6 +1415,41 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			
 			return listCount;
 		}
+
+		public MenToMen mtmQnaAnswer(Connection conn, int mtmNo) {
+			MenToMen mtm = new MenToMen();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("mtmQnaAnswer");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mtmNo);
+				rset= pstmt.executeQuery();
+				if(rset.next()) {
+					mtm.setMtmNo(rset.getInt("MTM_NO"));
+					mtm.setMtmName(rset.getString("MTM_NAME"));
+					mtm.setMtmTitle(rset.getString("MTM_TITLE"));
+					mtm.setMtmContent(rset.getString("MTM_CONTENT"));
+					mtm.setCreateDate(rset.getDate("CREATE_DATE"));
+					mtm.setUserName(rset.getString("USER_NAME"));
+					mtm.setUserId(rset.getString("USER_ID"));
+					
+					
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			System.out.println(mtm);
+			return mtm;
+			
+		}
+		
 		
 		
 		public void MemberGradeDown(Connection conn, int deleteGradeCode) {

@@ -406,25 +406,25 @@ public class ProductService {
 
 		Connection conn = getConnection();
 
-		int pDetailNo = new ProductDao().insertPdetailNo(conn,cartPcode, optionCode);
+		int result = new ProductDao().insertPdetailNo(conn,cartPcode, optionCode);
 		
 
-		if (pDetailNo>0) {
+		if (result>0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
-		return pDetailNo;
+		return result;
 
 	}
 	
 
-	public int insertOrderBy(int userNo,int pDetailNo, int pCount) {
+	public int insertOrderBy(int userNo, int pCount) {
 
 		Connection conn = getConnection();
 
-		int result = new ProductDao().insertOrderBy(conn,userNo,pDetailNo, pCount);
+		int result = new ProductDao().insertOrderBy(conn,userNo, pCount);
 		
 
 		if (result>0) {

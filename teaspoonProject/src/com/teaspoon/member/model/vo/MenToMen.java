@@ -18,6 +18,8 @@ public class MenToMen {
 	private String mtmName;
 	private String userId;
 	//admin mtm 조회용
+	private String userName;
+	
 	
 	
 	public MenToMen() {
@@ -57,6 +59,19 @@ public class MenToMen {
 		this.mtmTitle = mtmTitle;
 		this.createDate = createDate;
 		this.mtmName = mtmName;
+	}
+	
+
+	public MenToMen(int mtmNo, String mtmName,  String mtmTitle, String mtmContent, Date createDate,
+			String userName,String userId) {
+		super();
+		this.mtmNo = mtmNo;
+		this.mtmTitle = mtmTitle;
+		this.mtmContent = mtmContent;
+		this.createDate = createDate;
+		this.mtmName = mtmName;
+		this.userId = userId;
+		this.userName = userName;
 	}
 
 	public int getMtmNo() {
@@ -154,13 +169,25 @@ public class MenToMen {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	@Override
 	public String toString() {
 		return "MenToMen [mtmNo=" + mtmNo + ", userNo=" + userNo + ", mtmType=" + mtmType + ", mtmTitle=" + mtmTitle
 				+ ", mtmContent=" + mtmContent + ", createDate=" + createDate + ", reComment=" + reComment
-				+ ", commentDate=" + commentDate + ", answer=" + answer + ", status=" + status + "]";
+				+ ", commentDate=" + commentDate + ", answer=" + answer + ", status=" + status + ", mtmName=" + mtmName
+				+ ", userId=" + userId + ", userName=" + userName + "]";
 	}
+
+
+	
 
 	
 	

@@ -55,7 +55,7 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		String good = "";
 		if(goods != null) {
 			good = String.join(",", goods);
-			
+		}
 		int total = 0;
 		switch(good) {
 		case "노트북": total =+ 20000; break;
@@ -94,7 +94,7 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("views/space/space_rental.jsp");
 			view.forward(request, response);
 			}
-		}
+		
 			
 	}
 
