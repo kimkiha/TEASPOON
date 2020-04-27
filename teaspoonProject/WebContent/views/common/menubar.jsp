@@ -75,7 +75,7 @@
 	                    </div>
 	                </div>
                     <img id="myPage_icon" src="<%=contextPath%>/resources/img/main/mypage.png">
-                    <a href="#" id="basket_icon"><img src="<%=contextPath%>/resources/img/main/cart.png"></a>
+                    <a href="<%=contextPath %>/mycart.me" id="basket_icon"><img src="<%=contextPath%>/resources/img/main/cart.png"></a>
                     <div class="header_mypage" >
                         <ul>
                         <% if(loginUser == null){ %>
