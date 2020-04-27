@@ -78,13 +78,13 @@
                                         <p><b>&gt; 갈아드릴까요?</b></p>
                                         <form action="">
                                             <select name="grind" id="bean" style="width: 100%; height: 40px; font-size: medium;">
-                                                <option value="holeBean" selected>홀빈(갈지않음)</option>
-                                                <option value="handDrip">핸드드립/클레버용</option>
-                                                <option value="coffeeMaker">커피메이커용</option>
-                                                <option value="franchPress">프렌치프레스용</option>
-                                                <option value="mokaPot">모카포트/에어로프레스용</option>
-                                                <option value="espresso">에스프레소머신용</option>
-                                                <option value="dutch">더치/콜드브루용</option>
+                                                <option selected>홀빈(갈지않음)</option>
+                                                <option>핸드드립/클레버용</option>
+                                                <option>커피메이커용</option>
+                                                <option>프렌치프레스용</option>
+                                                <option>모카포트/에어로프레스용</option>
+                                                <option>에스프레소머신용</option>
+                                                <option>더치/콜드브루용</option>
                                             </select>
                                         </form>
                                    </div>
@@ -202,9 +202,47 @@
         <!-- //content-->
         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
+        
+        <form id="insertCart" action="insertCart.st" method="post">
+        	<input type="hidden" id="cartPcode" name="cartPcode">
+        	<input type="hidden" id="optionGram" name="optionGram">
+        	<input type="hidden" id="optionGrind" name="optionGrind">
+        	<input type="hidden" id="pCount" name="pCount">
+        </form>
     </div>
 
+
 	<script>
+		$(function(){
+			$("#basket").click(function(){
+				var cartPcode= <%=p.getPcode()%>;
+				var optionGram;
+				var pCount = $("#numberUpDown").text();
+				var gram = $("input[class='amount']:checked").val();
+				var optionGrind = $("#bean").val();
+				
+				if(gram==18000){
+					optionGram='200g';
+				}else if(gram==30000){
+					optionGram='400g';
+				}else if(gram==42000){
+					optionGram='600g';
+				}
+				
+				$("#cartPcode").val(cartPcode);
+				$("#optionGram").val(optionGram);
+				$("#pCount").val(pCount);
+				$("#optionGrind").val(optionGrind);
+				
+				$("#insertCart").submit();
+			});
+		});
+	
+	
+	</script>
+
+
+	<script>	
 		// 구매수량 변경 옵션
 		$(function() {
 
