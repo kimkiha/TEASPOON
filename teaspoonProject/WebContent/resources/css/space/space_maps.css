@@ -2,28 +2,23 @@
 
 
 /*찾아오시는길*/
-#map{
-    width:993px;
-    height:566px;
-    border:1px solid black;
-    margin-top:74px;
-    margin-left:105px;
-}
+
+
+
 #hr{
     width:993px;
     margin-top:74px;
     margin-left:105px;
     border:1px solid gray;   
 }
+span{width:100%; dispaly:block; top:200px}
 #font1{
-    position:relative;
     right:300px;
     top:25px;
     font-size:20px;
     font-weight:bold;
 }
 #font2{
-    position:relative;
     left:230px;
     font-size:20px;
     font-weight:bold;
