@@ -73,8 +73,12 @@
                     <a href="#" id="basket_icon"><img src="<%=contextPath%>/resources/img/main/cart.png"></a>
                     <div class="header_mypage" >
                         <ul>
+                        <% if(loginUser == null){ %>
                             <li id="login_li"><button id="login">로그인</button></li>
-                            <% if(loginUser != null){ %>
+                            <%}else{ %> 
+                            <li style="padding:20px 0"><b><%= loginUser.getUserName() %></b>님  환영합니다.<br>
+                            <a id="logout">로그아웃</a>
+                            <a href="<%= contextPath %>/logout.me" style="padding-bottom:10px"></a></li>
                             <li><a href="<%=contextPath %>/mymain.me">마이티스푼</a></li>
                             <li>나의 배송 조회</li>
                             <li><a href="<%=contextPath%>/mypoint.me?currentPage=1">적립포인트</a></li>
@@ -114,6 +118,14 @@
                 }
                 
              });
+            
+           $("#logout").click(function(){
+            	var result1 = window.confirm("로그아웃 하시겠습니까?");
+            
+                if(result1){
+                	location.href = "<%=contextPath%>/logout.me";
+                } 
+           	});
         });
 
     </script>

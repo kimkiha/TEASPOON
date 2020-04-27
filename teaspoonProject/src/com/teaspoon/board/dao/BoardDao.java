@@ -197,6 +197,26 @@ public class BoardDao {
 		return result;
 	}
 
+	public int increaseCount(Connection conn, int bno) {
+		int result=0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	// -------------------------------  매거진시작    ------------------------------- //
 	/**
@@ -816,7 +836,6 @@ public class BoardDao {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(rset);
