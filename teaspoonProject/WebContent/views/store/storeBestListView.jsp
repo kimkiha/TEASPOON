@@ -73,7 +73,7 @@
                                 <caption><b>베스트 상품 순위</b></caption>
                                 <% for(int i=0; i<8; i++) { %>
                         		<% Product p = list.get(i); %>
-                                <tr id="top_list">
+                                <tr class="top_list2">
                                 	<td><input type="hidden" name="pcode" value=<%=p.getPcode() %>></td>
 	                            	<td><input type="hidden" name="kind" value=<%=p.getKind() %>></td>
                                     <th><%=i+1 %></th>
@@ -81,7 +81,7 @@
                                 </tr>
                                 <%} %>
                             </table>
-
+									
                         </div>
                         <div id="productList">
                         
@@ -137,8 +137,8 @@
         
         // 베스트 상품 목록(1~7번) 상세페이지 연결
         $(function(){
-    		$('#top_list').click(function(){
-    			var pcode = $(this).children().eq(0).val();
+    		$('.top_list2').click(function(){
+    			var pcode = $(this).children().eq(0).children().val();
     			var kind = $(this).children().eq(1).val();
     			if(kind=='C'){
     				location.href="<%=contextPath%>/detail.co?pcode="+pcode;
@@ -147,41 +147,6 @@
     			}
     		});
     	});
-        
-        
-     // 페이지로딩시 로그인한 유저의 위시리스트 목록조회
-		$(function(){
-			selectWishList();
-		});
-		
-		function selectWishList(){
-			
-			var icon = $('.like_icon');
-			var loginUser = "<%=loginUser.getUserId()%>";
-			if(loginUser != null){
-				$.ajax({
-					url:"selectWish.st",
-					type:"post",
-					success:function(list){
-						for(var i=0; i<12; i++){
-							var p = '.pcode'+i;	
-							for(var j=0; j<list.length; j++){
-								if($(p).val()==list[j].pcode){
-									var heart =$(p).parent().siblings().eq(1).children();
-									heart.removeClass("empty");
-									heart.addClass("full");
-									heart.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
-								}
-							}
-						}
-					},error:function(){
-						//console.log("사용자 위시리스트 조회용 ajax실패")
-					}
-				})
-			}
-		}
-		
-		
         
      	// 위시리스트 등록 ajax
     	$(function(){
@@ -240,7 +205,7 @@
         
         
         // 장바구니 이동 팝업
-       /* $("#open").click(function(){
+        $("#open").click(function(){
             $(".modal").fadeIn();
         });
         $("#gobasket").click(function(){
@@ -249,7 +214,7 @@
         $(".close").click(function(){
             $(".modal").fadeOut();
         });
-            */
+            
 
         </script>
 

@@ -597,15 +597,24 @@ public class MemberService {
 		 close(conn);
 		 return list;
 	}
+	
 
-	public ArrayList<MenToMen> selectMtmAdminListType(String mtmName) {
+	public ArrayList<MenToMen> selectMtmAdminListType(String mtmName,PageInfo pi) {
 		Connection conn = getConnection();
-		ArrayList<MenToMen> list = new MemberDao().selectMtmAdminListType(conn,mtmName);
+		ArrayList<MenToMen> list = new MemberDao().selectMtmAdminListType(conn,mtmName,pi);
 		
 		close(conn);
 		return list;
 		
 		
+	}
+
+	public int selectMtmTypeAdminCount(String mtmName) {
+		Connection conn = getConnection();
+		int listCount = new MemberDao().selectMtmAdminCount(conn,mtmName);
+		
+		close(conn);
+		return listCount;
 	}
 
 	

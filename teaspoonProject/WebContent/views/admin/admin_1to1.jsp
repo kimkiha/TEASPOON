@@ -47,8 +47,8 @@
                             </p>
                         </div>
                         <div id="oneToOneKinds" style="text-align: left; padding-top: 20px;">
-                            <input type="radio" name="advice" value="전체" >전체
-                            <input type="radio" name="advice" value="주문/결제" checked>주문/결제
+                            <input type="radio" name="advice" value="전체" checked>전체
+                            <input type="radio" name="advice" value="주문/결제" >주문/결제
                             <input type="radio" name="advice" value="이벤트/쿠폰">이벤트/쿠폰
                             <br>
                             <input type="radio" name="advice" value="환불/반품/교환">환불/반품/교환
@@ -123,7 +123,7 @@
 	$('#searchBtn').click(function(){
 		var mtmName = $('input[name="advice"]:checked').val();
 		
-		location.href="<%=contextPath%>/myqnadelete.me?mtmName=" + mtmName;
+		location.href="<%=contextPath%>/qnalisttype.me?mtmName=" + mtmName+'&currentPage=1';
 		
 	});
 	});
