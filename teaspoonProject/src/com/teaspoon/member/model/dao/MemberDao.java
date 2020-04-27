@@ -1353,6 +1353,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			ResultSet rset = null;
 			
 			String sql = prop.getProperty("selectMtmAdminListType");
+			
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
 			
@@ -1378,7 +1379,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				close(rset);
 				close(pstmt);
 			}
-			System.out.println(list);
+			
 			return list;
 			
 			
@@ -1409,7 +1410,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				close(rset);
 				close(pstmt);
 			}
-			System.out.println(listCount);
+			
 			return listCount;
 		}
 		

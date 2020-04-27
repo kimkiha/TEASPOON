@@ -153,7 +153,7 @@
                                     
                                     <tr>
                                         <td class=" pay_lt bd_none">물품비용</td>
-                                        <td class=" pay_rt bd_none">15,000원</td>
+                                        <td class=" pay_rt bd_none"><%= s.getTotal() %>원</td>
                                     </tr>
                                     <tr>
                                         <td class=" pay_lt">포인트 할인</td>
