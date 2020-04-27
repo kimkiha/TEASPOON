@@ -649,6 +649,17 @@ public class MemberService {
 		return mtm ;
 	}
 
+	public int insertAnswer(int mtmNo,String reComment) {
+		
+		Connection conn = getConnection();
+		int	result = new MemberDao().insertAnswer(conn, mtmNo,reComment);
+		close(conn);
+		return result;
+		
+		
+		
+	}
+
 	
 	
 	

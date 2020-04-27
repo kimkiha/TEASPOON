@@ -8,12 +8,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의배송지 | TeaSpoon </title>
  	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_address1.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
     <style>
         #banner {height: 170px; line-height: 170px; background:url("패턴 - 복사본.jpg") center top repeat-x;}
     </style>
@@ -64,13 +65,14 @@
                         <div id="mypage_menu_tab">
                             <a href="#" class=" float"> 주문배송조회</a>
                             <a href="#" class=" float">공간대여확인</a>
-                            <a href="#" class="active float">나의배송지</a>
+                            <a href="<%=contextPath %>/myAdress.me" class="active float">나의배송지</a>
                             <a href="#" class="float">1:1문의</a>
                             <a href="#" class="float">장바구니</a>
                         </div> 
                         <div class="pagename"></div>
                         <div id="mp_con1">
                            <div class="addresstitle">
+                           	
                                <div class="adtitle1"><P>배송지추가</P></div>
                                <div></div>
                                <div class="adtitle2"><button onclick="add(this);"id="add">배송지추가</button></div>
@@ -91,7 +93,9 @@
                                     <tr id="adAdd"class="add">
                                         <td><input type="text" name="" id="address-info"></td>
                                         <td><input type="text" id="name"></td>
-                                        <td colspan="2"><input type="address" id="address"></td>
+                                        <!--  <td colspan="2"><input type="address" id="address"></td>-->
+                                        <td><input type="address" id="address"></td>
+                                        <td><button type="button" onclick="goPopup();">주소찾기</button></td>
                                         <td><input type="phone" id="phone"></td>
                                         <td><input type="phone" id="tel"></td>
                                         <td>

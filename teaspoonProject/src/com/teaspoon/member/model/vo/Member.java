@@ -18,6 +18,7 @@ public class Member {
 	private String admin;		//관리자권한
 	private String status;		//상태
 	private String gradeName;   //등급네임
+	private String address;		//주소
 	
 	//1:1 QNA 조회
 	private int mtm_no; //1:1상담번호
@@ -101,7 +102,7 @@ public class Member {
 
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender, int birthday,
 			String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status) {
+			String status, String address) {
 		super();
 		this.userNo = userNo;
 		this.gradeCode = gradeCode;
@@ -117,12 +118,16 @@ public class Member {
 		this.buyPoint = buyPoint;
 		this.admin = admin;
 		this.status = status;
+		this.address = address;
 	}
 	
+	public String getAddress() {
+		return address;
+	}
 
-
-
-
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
