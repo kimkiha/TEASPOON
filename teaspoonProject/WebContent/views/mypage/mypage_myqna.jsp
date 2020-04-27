@@ -110,7 +110,7 @@
                                         <td><%= m.getMtm_name() %></td>
                                         <td colspan="2" class="qna-t"><%= m.getMtm_title() %></td>
                                         <td><%=m.getCreate_date() %></td>
-                                        <td>답변완료</td>
+                                        <td>답변대기중</td>
                                         <td><input type="checkbox" name="mno" value="<%=m.getMtm_no()%>"></th>
                                     </tr>
                                     <%} %>

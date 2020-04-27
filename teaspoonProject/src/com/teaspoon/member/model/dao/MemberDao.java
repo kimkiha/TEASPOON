@@ -1347,16 +1347,20 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			return list;
 		}
 
-		public ArrayList<MenToMen> selectMtmAdminListType(Connection conn, String mtmName) {
+		public ArrayList<MenToMen> selectMtmAdminListType(Connection conn, String mtmName,PageInfo pi) {
 			ArrayList<MenToMen> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			
 			String sql = prop.getProperty("selectMtmAdminListType");
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1,mtmName);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
 				rset = pstmt.executeQuery();
 				while(rset.next()) {
 					list.add(new MenToMen(rset.getInt("MTM_NO"),

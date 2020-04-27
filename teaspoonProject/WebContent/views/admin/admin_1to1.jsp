@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*, com.teaspoon.common.*"%>
 <%
 	ArrayList<MenToMen> list = (ArrayList<MenToMen>)request.getAttribute("list");
-	
+	ArrayList<MenToMen> TypeList = (ArrayList<MenToMen>)request.getAttribute("TypeList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
 	int currentPage = pi.getCurrentPage();
@@ -47,8 +47,8 @@
                             </p>
                         </div>
                         <div id="oneToOneKinds" style="text-align: left; padding-top: 20px;">
-                            <input type="radio" name="advice" value="전체" >전체
-                            <input type="radio" name="advice" value="주문/결제" checked>주문/결제
+                            <input type="radio" name="advice" value="전체" checked>전체
+                            <input type="radio" name="advice" value="주문/결제" >주문/결제
                             <input type="radio" name="advice" value="이벤트/쿠폰">이벤트/쿠폰
                             <br>
                             <input type="radio" name="advice" value="환불/반품/교환">환불/반품/교환

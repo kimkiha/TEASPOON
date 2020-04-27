@@ -74,8 +74,8 @@ public class MemberQnaListServlet extends HttpServlet {
 		ArrayList<MenToMen> list = new MemberService().selectMtmAdminList(pi);
 		String mtmName = request.getParameter("mtmName");
 		System.out.println(mtmName);
-		ArrayList<MenToMen> TypeList = new MemberService().selectMtmAdminListType(mtmName);
-		System.out.println(list);
+		ArrayList<MenToMen> TypeList = new MemberService().selectMtmAdminListType(mtmName,pi);
+		System.out.println(TypeList);
 		// 페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
