@@ -7,18 +7,21 @@ public class Goods {
 	private int gsPrice;     // 비품대여비
 	private int gsCount;     // 비품수량
 	private int gsUsing;     // 비품사용수
+	private int gsSaving;     // 비품적립금
+	
 	
 	public Goods() {
 		
 	}
 
-	public Goods(int gsNo, String gsName, int gsPrice, int gsCount, int gsUsing) {
+	public Goods(int gsNo, String gsName, int gsPrice, int gsCount, int gsUsing, int gsSaving) {
 		super();
 		this.gsNo = gsNo;
 		this.gsName = gsName;
 		this.gsPrice = gsPrice;
 		this.gsCount = gsCount;
 		this.gsUsing = gsUsing;
+		this.gsSaving = gsSaving;
 	}
 
 	public int getGsNo() {
@@ -35,6 +38,14 @@ public class Goods {
 
 	public void setGsName(String gsName) {
 		this.gsName = gsName;
+	}
+
+	public int getGsSaving() {
+		return gsSaving;
+	}
+
+	public void setGsSaving(int gsSaving) {
+		this.gsSaving = gsSaving;
 	}
 
 	public int getGsPrice() {
@@ -64,8 +75,9 @@ public class Goods {
 	@Override
 	public String toString() {
 		return "Goods [gsNo=" + gsNo + ", gsName=" + gsName + ", gsPrice=" + gsPrice + ", gsCount=" + gsCount
-				+ ", gsUsing=" + gsUsing + "]";
+				+ ", gsUsing=" + gsUsing + ", gsSaving=" + gsSaving + "]";
 	}
+
 	
 	
 	

@@ -74,7 +74,11 @@
                             <div class="foot-container">
                                 <img src="<%=request.getContextPath() %>/resources/img/space/imo1.png">1인 - 30인 / 면적 - 23㎡ / 컨퍼런스 룸 / 초고속 WIFI  /  공용공간 및 라운지 / 커피와 허브차
                                 <div>
-                                  <p><label class="btn" for="modal-1">예약하기</label></p>
+                                <%if(loginUser == null){ %>
+                               	  <p><label class="btn" >로그인후 예약가능</label></p>
+                               	<%}else{ %>
+                                  <p><label id="rentalready" class="btn" for="modal-1">예약하기</label></p>
+                               	<%} %>
                                 </div>    
                             </div>
                         </span>
@@ -130,23 +134,23 @@
                             </div>
                             <span>  
                               <div>
-                                <input type="date"  class="date" name="reservDate" id="dateofbirth">
+                                <input type="date" id="date" class="date" name="reservDate" id="dateofbirth">
                                 
-                                <select class="box1" name="reservTime">
+                                <select id ="box1" class="box1" name="reservTime">
                                   <option value="09:30">아카이야 09:30~11:30</option>
                                   <option value="13:00">아카이야 13:00~15:00</option>
                                   <option value="16:30">아카이야 16:30~18:30</option>
                                   <option selected>시간선택</option>          
                                 </select>
                                 
-                                <select class="box2" name="visitNum">
+                                <select id ="box2" class="box2" name="visitNum">
                                   <option value="10">10인 이하</option>
                                   <option value="20">20인 이하</option>
                                   <option value="30">30인 이하</option>
                                   <option selected>인원수</option>
                                 </select> 
 
-                                <select class="box3" name="grdeCode">
+                                <select id ="box3" class="box3" name="grdeCode">
                                   <option value="vip">VIP 할인</option>
                                   <option selected>없음</option>
                                 </select>
@@ -167,10 +171,10 @@
                             <div class="sb02"><p class="ftm">대여 편의용품</p><p id="spreadBtn03" class="btn02">세부사항⇲</p></div> 
                             <ul id="hiddenList02" class="example02" style="display: none;">
                               <div class="bpf"> 
-                                <input type="checkbox" name="good" value="빔프로젝트">빔프로젝트
-                                <input type="checkbox" name="good" value="노트북">노트북
-                                <input type="checkbox" name="good" value="스마트포인터">스마트포인터
-                                <input type="checkbox" name="good" value="앰프">앰프
+                                <input type="checkbox" class='goods' name="good" value="빔프로젝트">빔프로젝트
+                                <input type="checkbox" class='goods' name="good" value="노트북">노트북
+                                <input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터
+                                <input type="checkbox" class='goods' name="good" value="앰프">앰프
                               </div>
                             </ul>
 
@@ -184,7 +188,7 @@
                             <br>
                             
                             <input class="cbtn" type="button" value="취소하기" onClick="history.go(0)"> 
-                            <input class="ybtn" type="submit" value="예약하기">
+                            <input class="ybtn" type="submit" value="예약하기" onClick="return rental();">
                             
                           </form>  
                           </div>
@@ -200,4 +204,41 @@
     </div>
 
 </body>
+<script>
+
+function rental(){
+	 var box1Value = $("#box1 option:selected").val();
+	 var box2Value = $("#box2 option:selected").val();
+	 var userText = $("#userText").val();
+	 var date = $("#date").val();
+	 
+	 var goods = $(".bpf input[class='goods']:checked").val();
+	
+	 
+	 if(date == ''){
+		 alert("날짜를 선택해주세요!");
+		 return false;
+	 }else if(box1Value=='시간선택'){
+		 alert("시간을 선택해주세요!");
+		 return false;
+	 }else if(box2Value=='인원수'){
+		 alert("인원을 선택해주세요!");
+		 return false;
+	 }else if(goods==undefined){
+		 alert("비품선택을 1개이상 선택해주세요!");
+		 return false;
+	 }else if(userText==''){
+		 alert("대여목적을 작성해주세요!");
+		 return false;
+	 }else{
+		 return true;
+	 }
+  
+}
+        
+       
+
+      
+</script>
+
 </html>
