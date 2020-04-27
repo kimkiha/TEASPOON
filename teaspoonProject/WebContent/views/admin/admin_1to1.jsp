@@ -82,8 +82,8 @@
                                 <td><%=mtm.getMtmName() %></td>
                                 <td><%=mtm.getMtmTitle() %></td>
                                 <td><%=mtm.getCreateDate() %></td>
-                                <td><button type="button" style="width: 100px;"><a href="adminOneOnOneDetailView.html">상세보기</a></button></td>
-                                <td><button type="button" style="width: 100px;"><a href="adminOneOnOneAnswer.html">답변달기</a></button></td>
+                                <td><button type="button" style="width: 100px;"><a href="<%=contextPath%>/QnaDetail.me">상세보기</a></button></td>
+                                <td><button type="button" style="width: 100px;"><a href="<%=contextPath %>/QnaAnswer.me">답변달기</a></button></td>
                               </tr>
                             <%} %>
                           </tfoot>
@@ -122,10 +122,12 @@
 	$(function(){
 	$('#searchBtn').click(function(){
 		var mtmName = $('input[name="advice"]:checked').val();
-		
-		location.href="<%=contextPath%>/qnalisttype.me?mtmName=" + mtmName+'&currentPage=1';
-		
-	});
+		if(mtmName=='전체'){
+			location.href="<%=contextPath%>/qnalist.me?currentPage=1";
+		}else{
+			location.href="<%=contextPath%>/qnalisttype.me?mtmName=" + mtmName+'&currentPage=1';
+		}
+			});
 	});
 </script>     
 </body>
