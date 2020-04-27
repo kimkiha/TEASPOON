@@ -1028,9 +1028,9 @@ public class ProductDao {
 			
 			pstmt.setInt(1, userNo);
 			pstmt.setInt(2,pCount);
-			System.out.println(userNo);
-			System.out.println(pCount);
-			
+//			System.out.println(userNo);
+//			System.out.println(pCount);
+//			
 			
 			result = pstmt.executeUpdate();
 			
