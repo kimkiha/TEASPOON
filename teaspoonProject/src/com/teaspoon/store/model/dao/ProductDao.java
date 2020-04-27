@@ -1027,10 +1027,10 @@ public class ProductDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, userNo);
-			pstmt.setInt(2, pCount);
-			System.out.println(userNo);
-			System.out.println(pCount);
-			
+			pstmt.setInt(2,pCount);
+//			System.out.println(userNo);
+//			System.out.println(pCount);
+//			
 			
 			result = pstmt.executeUpdate();
 			
