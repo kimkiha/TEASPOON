@@ -1333,7 +1333,8 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 								rset.getInt("MTM_TYPE"),
 								rset.getString("MTM_title"),
 								rset.getDate("CREATE_DATE"),
-								rset.getString("MTM_NAME")));						
+								rset.getString("MTM_NAME"),	
+								rset.getString("answer")));
 				}
 				
 			} catch (SQLException e) {
@@ -1370,8 +1371,8 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 							rset.getInt("MTM_TYPE"),
 							rset.getString("MTM_TITLE"),
 							rset.getDate("CREATE_DATE"),
-							rset.getString("MTM_NAME")));		
-					
+							rset.getString("MTM_NAME"),		
+							rset.getString("answer")));
 				}
 				
 			} catch (SQLException e) {
@@ -1432,8 +1433,12 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 					mtm.setMtmTitle(rset.getString("MTM_TITLE"));
 					mtm.setMtmContent(rset.getString("MTM_CONTENT"));
 					mtm.setCreateDate(rset.getDate("CREATE_DATE"));
+					mtm.setReComment(rset.getString("re_Comment"));
+					mtm.setCommentDate(rset.getDate("comment_date"));
+					mtm.setAnswer(rset.getString("answer"));
 					mtm.setUserName(rset.getString("USER_NAME"));
 					mtm.setUserId(rset.getString("USER_ID"));
+					
 					
 					
 				}
@@ -1499,11 +1504,11 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			return result;
 		}
 
-	public int insertAnswer(Connection conn, int mtmNo, String reComment) {
+	public int updateAnswer(Connection conn, int mtmNo, String reComment) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("insertAnswer");
+		String sql = prop.getProperty("updateAnswer");
 		
 		try {
 			pstmt=conn.prepareStatement(sql);

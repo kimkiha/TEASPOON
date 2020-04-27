@@ -69,7 +69,7 @@
                                 <th>상담유형</th>
                                 <th>제목</th>
                                 <th>상담신청일</th>
-                                <th>상세보기</th>
+                                <th>상태보기</th>
                                 <th>답변여부</th>
                                 
                             </tr>
@@ -82,7 +82,7 @@
                                 <td><%=mtm.getMtmName() %></td>
                                 <td><%=mtm.getMtmTitle() %></td>
                                 <td><%=mtm.getCreateDate() %></td>
-                                <td><button type="button" style="width: 100px;"><a href="<%=contextPath%>/QnaDetail.me">상세보기</a></button></td>
+                                <td><%=mtm.getAnswer() %></td>
                                 <td>
                                 	<button type="submit" style="width: 100px;"class="answer">
                                 	

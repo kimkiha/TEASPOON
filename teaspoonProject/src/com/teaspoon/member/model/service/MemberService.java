@@ -649,18 +649,25 @@ public class MemberService {
 		return mtm ;
 	}
 
-	public int insertAnswer(int mtmNo,String reComment) {
+	
+	public int updateAnswer(int mtmNo,String reComment) {
 		
 		Connection conn = getConnection();
-		int	result = new MemberDao().insertAnswer(conn, mtmNo,reComment);
+		int	result = new MemberDao().updateAnswer(conn, mtmNo,reComment);
+		
+		if(result >0 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		
+		
 		close(conn);
 		return result;
 		
 		
 		
 	}
-
-	
-	
 	
 }
