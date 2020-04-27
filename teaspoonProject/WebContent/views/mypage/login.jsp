@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+-<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/login_css.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">

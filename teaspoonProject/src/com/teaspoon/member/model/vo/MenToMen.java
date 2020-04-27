@@ -73,6 +73,12 @@ public class MenToMen {
 		this.userId = userId;
 		this.userName = userName;
 	}
+	
+	public MenToMen(int mtmNo, String reComment) {
+		super();
+		this.mtmNo = mtmNo;
+		this.reComment = reComment;
+	}
 
 	public int getMtmNo() {
 		return mtmNo;

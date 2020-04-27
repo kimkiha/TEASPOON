@@ -32,9 +32,22 @@ public class MemberQnaDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int mtmNo = Integer.parseInt(request.getParameter("mtmNo"));
+		System.out.println(mtmNo);
+	
+		String reComment = request.getParameter("reComment");
+	
+	
+		int result = new MemberService().insertAnswer(mtmNo,reComment);
+		if (result != 0) {
+			MenToMen mtm = new MemberService().mtmQnaAnswer(mtmNo);
+			request.setAttribute("mtm", mtm);
+			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Detail.jsp");
+			view.forward(request, response);
+		}
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Detail.jsp");
-		view.forward(request, response);
+		
+		
 	}
 
 	/**

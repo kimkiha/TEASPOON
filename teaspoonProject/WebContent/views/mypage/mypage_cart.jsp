@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int optionCode = Integer.parseInt(request.getAttribute("optionCode"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,11 +59,11 @@
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=loginUser.getPcode() %>>개</a>
+                                <a  href="#" ><%=loginUser.getPcode() %>개</a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
-                            <a href="#" class="float"> 주문배송조회</a>
+                            <a href="#" class="float">주문배송조회</a>
                             <a href="#" class="float">공간대여확인</a>
                             <a href="#" class="float">나의배송지</a>
                             <a href="#" class="float">1:1문의</a>

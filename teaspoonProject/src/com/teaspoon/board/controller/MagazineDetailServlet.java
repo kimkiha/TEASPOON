@@ -36,10 +36,20 @@ public class MagazineDetailServlet extends HttpServlet {
 		
 		Board b = new BoardService().selectBoard(bno);
 		
-		request.setAttribute("b", b);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/board/magazine_view.jsp");
-		view.forward(request, response);
+			if(b != null) {// 조회성공
+			
+			// 조회성공했기 때문에 해당 글 조회수 1증가 시키는 서비스 요청
+			new BoardService().increaseCount(bno);
+			
+			request.setAttribute("b", b);
+			RequestDispatcher view = request.getRequestDispatcher("views/board/magazine_view.jsp");
+			view.forward(request, response);
+			
+		}else {//조회실패
+			request.setAttribute("msg", "공지사항 조회 실패했습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+		}
 	}
 
 	/**

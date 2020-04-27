@@ -65,7 +65,8 @@ public class MemberDao {
 							rset.getDate("MODIFY_DATE"),
 							rset.getInt("BUY_POINT"),
 							rset.getString("admin"),
-							rset.getString("status")
+							rset.getString("status"),
+							rset.getString("ADDRESS")
 						);
 				
 			}
@@ -447,7 +448,8 @@ public class MemberDao {
 						rset.getDate("MODIFY_DATE"),
 						rset.getInt("BUY_POINT"),
 						rset.getString("ADMIN"),
-						rset.getString("STATUS"));
+						rset.getString("STATUS"),
+						rset.getString("ADDRESS"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1496,6 +1498,26 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			
 			return result;
 		}
+
+	public int insertAnswer(Connection conn, int mtmNo, String reComment) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertAnswer");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, reComment);
+			pstmt.setInt(2, mtmNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
 		
 		
 		

@@ -12,10 +12,10 @@
 <div id="content7">
         <div class="contaniner">
             <div id="notice">
-                <table>
+                <table class="replyArea">
                     <tr>
                         <td width="270">공지사항</td>
-                        <td width="670"><a href="<%=contextPath%>/noticeList.bo?currentPage=1"></a></td>
+                        <td width="670"><a href="<%=contextPath%>/noticeList.bo?currentPage=1" class="notice_title"></a></td>
                         <td width="230" style="text-align: right;"><a href="<%=contextPath%>/noticeList.bo?currentPage=1">+더보기</a></td>
                     </tr>
                 </table>
@@ -52,7 +52,10 @@
         </div>
     </div>
     </div>
+<script>
 
+	
+</script>
     <!-- //footer-->
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.*"%>
 <%
-	MenToMen mtm = (MenToMen)request.getAttribute("mtm");
+	MenToMen mtm = (MenToMen) request.getAttribute("mtm");
 %>
 
 <!DOCTYPE html>
@@ -58,47 +58,52 @@ table tr {
 		<div id="c1">
 			<div class="outer">
 				<p>1:1문의 답변</p>
+				<form method="post" action="<%=contextPath%>/QnaDetail.me" id="qnaForm">
 				<table>
+
 					<tr>
 						<th width="100px">문의번호</th>
-						<td><%=mtm.getMtmNo() %></td>
+						<td><%=mtm.getMtmNo()%></td>
 						<th>상담유형</th>
-						<td><%=mtm.getMtmName() %></td>
+						<td><%=mtm.getMtmName()%></td>
 					</tr>
 					<tr>
 						<th>제목</th>
-						<td><%=mtm.getMtmTitle() %></td>
+						<td><%=mtm.getMtmTitle()%></td>
 						<th>상담신청일</th>
-						<td><%=mtm.getCreateDate() %></td>
+						<td><%=mtm.getCreateDate()%></td>
 					</tr>
 					<tr>
 						<th>회원명</th>
-						<td><%=mtm.getUserName() %></td>
+						<td><%=mtm.getUserName()%></td>
 						<th>회원아이디</th>
-						<td><%=mtm.getUserId() %></td>
+						<td><%=mtm.getUserId()%></td>
 					</tr>
 					<tr>
 						<th>고객 내용</th>
 						<td colspan="3"><textarea cols="60" rows="5"
-								style="resize: none" required><%=mtm.getMtmContent() %></textarea></td>
+								style="resize: none" required><%=mtm.getMtmContent()%></textarea></td>
 					</tr>
 					<tr>
 						<th>답변내용</th>
 						<td colspan="3"><textarea cols="60" rows="5"
-								style="resize: none" required></textarea></td>
+								style="resize: none" required name="reComment"></textarea></td>
 					</tr>
-
+					<div class="btns">
+						<button type="button" style="width: 100px;">
+							<a href="<%=contextPath%>/qnalist.me?currentPage=1">목록으로</a>
+						</button>
+						<button type="submit" style="width: 100px;">답변달기</button>
+					</div>
 				</table>
+				</form>
 				<br>
-				<div class="btns">
-					<button type="button" style="width: 100px;">
-						<a href="<%=contextPath %>/qnalist.me?currentPage=1">목록으로</a>
-					</button>
-					<button type="button" style="width: 100px;">답변달기</button>
-				</div>
+
 			</div>
 		</div>
 	</div>
-	</div>
+	<script>
+		
+	</script>
 </body>
 </html>
