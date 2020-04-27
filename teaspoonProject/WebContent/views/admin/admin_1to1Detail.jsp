@@ -43,6 +43,10 @@
                             <td>userId</td>
                         </tr>
                         <tr>
+                            <th>문의내용</th>
+                            <td colspan="3"><textarea cols="60" rows="5" style="resize:none" required></textarea></td>
+                        </tr>
+                        <tr>
                             <th>답변내용</th>
                             <td colspan="3"><textarea cols="60" rows="5" style="resize:none" required></textarea></td>
                         </tr>
@@ -51,7 +55,7 @@
                     <br>
                     <div class="btns" >
                         <button type="button" style="width: 100px;">
-                            <a>목록으로</a>
+                            <a href="<%=contextPath%>/qnalist.me?currentPage=1">목록으로</a>
                         </button>
                     </div>
                 </div>

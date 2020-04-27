@@ -126,6 +126,9 @@
                                             <div id="textarea">
                                                 <%= m.getMtmContent() %>
                                             </div>
+                                            <div id="textarea">
+                                            
+                                            </div>
                                         </div>
                                         <%if(at != null){ //첨부파일이 존재할 경우 %>
                                         <div></div><a href="<%=contextPath %>/resources/thumbnail_upfiles/<%=at.getChangeName()%>"><%= at.getOriginName() %></a></div>
