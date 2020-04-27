@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
+import com.teaspoon.member.model.vo.Cart;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
@@ -1517,6 +1518,54 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		
 		
 		return result;
+	}
+	
+	public ArrayList<Cart> selectMemberCart(Connection conn, int userNo) {
+		ArrayList<Cart> list = null;
+		PreparedStatement pstmt  = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMemberCart");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rset= pstmt.executeQuery();
+			
+			if(rset.next()) {
+				list = new ArrayList<>();
+				Cart c = new Cart();
+				c.setCart(rset.getInt("cart"));
+				c.setMadeDate(rset.getDate("madeDate"));
+				c.setPcode(rset.getInt("pcode"));
+				c.setOptionCode(rset.getInt("option_Code"));
+				c.setpDetailNo(rset.getInt("p_Detail_No"));
+				c.setAmount(rset.getInt("amount"));
+				c.setAddPrice(rset.getInt("add_Price"));
+				c.setOptionType1(rset.getString("option_Type1"));
+				c.setOptionType2(rset.getString("option_Type2"));
+				c.setPname(rset.getString("pname"));
+				c.setSupPrice(rset.getInt("sup_price"));
+				c.setPrice(rset.getInt("price"));
+				c.setStock(rset.getInt("stock"));
+				c.setStatus(rset.getString("status"));
+				c.setKeyword(rset.getString("keyword"));
+				c.setTotalCount(rset.getInt("total_count"));
+				c.setKind(rset.getString("kind"));
+				c.setPcontent(rset.getString("pcontent"));
+
+				list.add(c);
+			}
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	
 	}
 		
 		

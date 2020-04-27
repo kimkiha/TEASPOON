@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList,com.teaspoon.member.model.vo.*"%>
+<%
+	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+	//System.out.print(list);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +15,7 @@
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <style>
-        #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
-    
+    #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
 	.adsideWrapper { 
 	  position: absolute;
 	}
@@ -67,16 +70,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%for(int i=0; i<list.size(); i++) {%>
                                         <tr>
                                             <td >
                                                 <img src="/사이트이미지/매거진/magazine_1.png" alt="" width="100" height="100">
                                             </td>
-                                            <td style="text-align:left; padding-left:20px;font-weight: 700;">녹차 스프레드</td>
-                                            <td>2개</td>
-                                            <td>18,000원</td>
-                                            <td>180p</td>
+                                            <td style="text-align:left; padding-left:20px;font-weight: 700;"><%=list.get(i).getPname() %></td>
+                                            <td><%=list.get(i).getAmount() %>개</td>
+                                            <td><%=list.get(i).getPrice() %>원</td>
+                                            <td><%=list.get(i).getPrice() *0.01 %>p</td>
                                         </tr>
-                                        
+                                    <%} %>
                                     </tbody>
                                 </table>
                             </div>
@@ -107,27 +111,18 @@
                                 <p style="text-align:right;font-size: 13px;">고객님의 회원정보가 기본 입력됩니다.</p>
                                 <table class="tb3"  cellspacing="0" cellpadding="0" >
                                         <tr>
-                                            <td class="left_text_st top_bd " >이름</td>
+                                            <td class="left_text_st top_bd ">이름</td>
                                             <td class="top_bd "colspan="3" >
-                                                <input type="text" name="" value="">
+                                                <input type="text" name="userName" value="<%=loginUser.getUserName()%>" style="padding-left:20px;">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="left_text_st" width="170">휴대전화</td>
-                                            <td style="padding-right:0px" width="120">
-                                                <select style="padding-left:10px">
-                                                    <option>010</option>
-                                                    <option>011</option>
-                                                    <option>016</option>
-                                                    <option>018</option>
-                                                </select>
-                                            </td>
-                                            <td width="220"><input type="number" ></td>
-                                            <td width="220" colspan="2"><input type="number"></td>
+                                            <td><input type="text" value="<%=loginUser.getPhone() %>" style="padding-left:20px;"></td>
                                         </tr>
                                         <tr >
                                             <td class="left_text_st" >이메일</td>
-                                            <td colspan="3" ><input type="email"></td>
+                                            <td colspan="3" ><input type="email" value="<%=loginUser.getEmail()%>" style="padding-left:20px;"></td>
                                         </tr>
                                 </table>
                             </div>
@@ -146,22 +141,22 @@
                                         <tr>
                                             <td class="left_text_st" width="170" rowspan="2">받으시는분</td>
                                             <td style="padding-right:0px; width: 220px; border-bottom: none;" >
-                                                <input type="text" placeholder="이름" >
+                                                <input type="text" placeholder="이름" style="padding-left:20px;">
                                             </td>
-                                            <td style="text-align: left; border-bottom: none;"><input type="text" placeholder="휴대전화번호 필수"></td>
+                                            <td style="text-align: left; border-bottom: none;"><input type="text" placeholder="휴대전화번호 필수"  style="padding-left:20px;"></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" style="width:200px; padding-top:0">
-                                                <button style="background: rgb(158, 158, 158); color:#fff; width:150px;height:53px; padding-left:10px; border:1px solid darkgray">
+                                                <button style="background: rgb(158, 158, 158); color:#fff; width:130px;height:53px; padding-left:10px; border:1px solid darkgray">
                                                 	주소찾기
                                                 </button>
-                                                <input type="text" placeholder="주소" style="width: 400px; border-radius:0px">
+                                                <input type="text" placeholder="주소" style="width: 350px; border-radius:5px; padding-left:20px;">
                                             </td>
                                         </tr>
                                         
                                         <tr>
                                             <td class="left_text_st">배송 요청 사항</td>
-                                            <td colspan="2"><input type="text" placeholder="요청사항" style="width:550px"></td>
+                                            <td colspan="2"><input type="text" placeholder="요청사항" style="width:520px; padding-left:20px;"></td>
                                         </tr>
                                 </table>
                             </div>

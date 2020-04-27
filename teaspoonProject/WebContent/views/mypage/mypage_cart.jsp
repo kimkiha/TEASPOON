@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList,com.teaspoon.member.model.vo.*"%>
 <%
-	int optionCode = Integer.parseInt(request.getAttribute("optionCode"));
+	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+	//System.out.print(list);
 %>
 <!DOCTYPE html>
 <html>
@@ -35,7 +36,7 @@
                         <div id="mypage_info">
                             <div class="user_info" style="width:95px; border-left:1px solid #bebbb6">
                                 <div class="user_photo" style="margin-top:30px; padding-left:10px; float: left;">
-                                    <img src="사이트이미지/user.png">
+                                    <img src="<%=contextPath%>/resources/img/main/mypage.png">
                                 </div>
                             </div>
                             <div class="user_info" style="width:450px;">
@@ -75,7 +76,7 @@
                             <table id="mypage_table" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();"/>전체선택</th>
+                                        <th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();">전체선택</th>
                                         <th colspan="2">상품명</th>
                                         <th>수량</th>
                                         <th>상품가격</th>
@@ -84,19 +85,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <%if(list.isEmpty()){ %>
                                     <tr>
                                         <td colspan="7" height="150">장바구니에 선택된 상품이 없습니다</td>
                                     </tr>
+                                <%}else{ %>
+                                	<%for(int i=0; i<list.size(); i++) {%>
                                     <tr>
                                         <td ><input type="checkbox" name="checkRow" value="${content.IDX}" ></td>
-                                        <td  style="text-align:left;"><img src="사이트이미지/메인/1.jpg" width="130px" height="130px"></td>
-                                        <td  style="text-align:left;" class="t-title">녹차 스프레드</td>
+                                        <td  style="text-align:left;"><img src="" width="130px" height="130px"></td>
+                                        <td  style="text-align:left;" class="t-title"><%=list.get(i).getPname() %></td>
                                         <td><input type="number" value="1" class="input-qnt"></td>
-                                        <td><p>18,000원</p></td>
-                                        <td><p>18,000원</p></td>
+                                        <td><p><%=list.get(i).getPrice() %>원</p></td>
+                                        <td><p><%=list.get(i).getPrice() %>원</p></td>
                                         <td><p>2,500원</p></td>
                                     </tr>
-                                    
+                                    <%} %>
+                                 <%} %>
                                  
                                 </tbody>
                                 
@@ -119,8 +124,8 @@
                             </div>
                             <div class="func">
                                 <div class="func-group">
-                                    <button type="submit" >선택상품 주문</button>
-                                    <button type="submit" id="btn-func">전체상품 주문</button>
+                                    <button type="submit" onclick="location.href='payment.me'" >선택상품 주문</button>
+                                    <button type="submit" onclick="location.href='payment.me'" id="btn-func">전체상품 주문</button>
                                 </div>
                             </div>
                         </div>

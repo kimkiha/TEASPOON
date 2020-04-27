@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.dao.MemberDao;
+import com.teaspoon.member.model.vo.Cart;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
@@ -658,6 +659,14 @@ public class MemberService {
 		
 		
 		
+	}
+	
+	public ArrayList<Cart> selectMemberCartList(int userNo) {
+		Connection conn = getConnection();
+		ArrayList<Cart> list = new MemberDao().selectMemberCart(conn, userNo);
+		
+		close(conn);
+		return list;
 	}
 
 	
