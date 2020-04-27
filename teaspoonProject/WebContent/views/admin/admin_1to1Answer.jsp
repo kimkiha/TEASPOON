@@ -60,7 +60,7 @@ table tr {
 				<p>1:1문의 답변</p>
 				<form method="post" action="<%=contextPath%>/QnaDetail.me" id="qnaForm">
 				<table>
-
+						<input type="hidden" name="mtmNo" value="<%=mtm.getMtmNo()%>">
 					<tr>
 						<th width="100px">문의번호</th>
 						<td><%=mtm.getMtmNo()%></td>
@@ -86,8 +86,11 @@ table tr {
 					</tr>
 					<tr>
 						<th>답변내용</th>
-						<td colspan="3"><textarea cols="60" rows="5"
-								style="resize: none" required name="reComment"></textarea></td>
+						<td colspan="3"><textarea cols="60" rows="5"style="resize: none" required name="reComment">
+								<%if(mtm.getReComment() != null){ %>
+									<%=mtm.getReComment() %>
+								<%} %>
+					</textarea></td>
 					</tr>
 					<div class="btns">
 						<button type="button" style="width: 100px;">

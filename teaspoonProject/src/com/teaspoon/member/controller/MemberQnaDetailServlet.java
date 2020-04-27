@@ -33,17 +33,21 @@ public class MemberQnaDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int mtmNo = Integer.parseInt(request.getParameter("mtmNo"));
-		System.out.println(mtmNo);
-	
+		
 		String reComment = request.getParameter("reComment");
-	
-	
-		int result = new MemberService().insertAnswer(mtmNo,reComment);
-		if (result != 0) {
-			MenToMen mtm = new MemberService().mtmQnaAnswer(mtmNo);
-			request.setAttribute("mtm", mtm);
-			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Detail.jsp");
+		
+		//System.out.println(mtmNo);
+		//System.out.println(reComment);
+		
+		
+		int result = new MemberService().updateAnswer(mtmNo,reComment);
+		if (result > 0) {
+			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Answer.jsp");
 			view.forward(request, response);
+		}else {
+			request.setAttribute("msg","답변달기 실패 했습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
+			view.forward(request,response);
 		}
 		
 		
