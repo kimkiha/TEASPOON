@@ -996,7 +996,7 @@ public class ProductDao {
 	
 	
 	public int insertPdetailNo(Connection conn,int cartPcode,int optionCode) {
-		int pDetailNo = 0;
+		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertPdetailNo");
 		
@@ -1008,17 +1008,17 @@ public class ProductDao {
 			pstmt.setInt(2, optionCode);
 		
 			
-			pDetailNo = pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		return pDetailNo;		
+		return result;		
 	}
 	
-	public int insertOrderBy(Connection conn,int userNo,int pDetailNo, int pCount) {
+	public int insertOrderBy(Connection conn,int userNo,int pCount) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertOrderBy");
@@ -1027,9 +1027,10 @@ public class ProductDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, userNo);
-			pstmt.setInt(2, pDetailNo);
-			pstmt.setInt(3,pCount);
-		
+			pstmt.setInt(2,pCount);
+			System.out.println(userNo);
+			System.out.println(pCount);
+			
 			
 			result = pstmt.executeUpdate();
 			

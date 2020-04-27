@@ -39,9 +39,10 @@ public class InsertCartServlet extends HttpServlet {
 	int pCount = Integer.parseInt(request.getParameter("pCount"));
 	
 	int optionCode = new ProductService().selectOptionCode(optionGram,optionGrind);
-	int pDetailNo = new ProductService().insertPdetailNo(cartPcode,optionCode);
+	int result1 = new ProductService().insertPdetailNo(cartPcode,optionCode);
 	
-	int result = new ProductService().insertOrderBy(userNo,pDetailNo,pCount);
+	
+	int result2 = new ProductService().insertOrderBy(userNo,pCount);
 	
 	}
 
