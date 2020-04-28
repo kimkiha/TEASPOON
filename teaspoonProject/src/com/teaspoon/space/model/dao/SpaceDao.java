@@ -63,8 +63,11 @@ public class SpaceDao {
 	public ArrayList<Goods> selectGoodsList(Connection conn){
 		
 		ArrayList<Goods> list = new ArrayList<>();
+		
 		PreparedStatement pstmt = null;
+		
 		ResultSet rset = null;
+		
 		String sql = prop.getProperty("selectGoodsList");
 		
 		try {
@@ -89,6 +92,33 @@ public class SpaceDao {
 		}
 		
 		return list;
+	}
+	
+	
+	public int insertPayment(Connection conn, Payment p) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertPayment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, p.getGoodsPay());
+			pstmt.setInt(2, p.getTotal());
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	
 	}
 	
 }
