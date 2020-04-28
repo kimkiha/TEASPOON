@@ -43,7 +43,7 @@
                                 <li><a href="<%=contextPath%>/item.st?currentPage=1">컵 & 아이템</a></li>
                             </ul>
                         </li>
-                        <li><a class="list recommend" href="">맞춤추천</a>
+                        <li><a class="list recommend" href="<%=contextPath%>/selectitem.st">맞춤추천</a>
                         <li><a class="list event" href="<%=contextPath%>/eventList.bo">이벤트</a>
                             <ul class="ul ">
                                 <li><a href="<%=contextPath%>/eventList.bo">이벤트</a></li>
