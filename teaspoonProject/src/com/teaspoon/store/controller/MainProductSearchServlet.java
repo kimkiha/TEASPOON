@@ -45,7 +45,7 @@ public class MainProductSearchServlet extends HttpServlet {
 		
 		//* listCount : 총 게시글 갯수
 		listCount = new ProductService().getSearchListCount(keyword);
-		System.out.println(listCount);
+		//System.out.println(listCount);
 		//* currentPage : 현재페이지 (즉,요청한페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		

@@ -48,7 +48,6 @@ public class BoardDao {
 			pstmt.setInt(1, bno);
 			
 			rset = pstmt.executeQuery();
-			
 			if(rset.next()) {
 				b = new Board();
 				b.setBoardNo(rset.getInt("BOARD_NO"));
@@ -68,7 +67,7 @@ public class BoardDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(b);
 		return b;
 	}
 	

@@ -175,7 +175,7 @@ public class Member {
 		this.admin = admin;
 		this.status = status;
 		this.address = address;
-		this.buyPoint = point;
+		this.point = point;
 		
 	}
 
