@@ -44,3 +44,4 @@
 #search{margin:10px 10px;width:270px; height:40px; }
 .search_form{float:left}
 .search_btn{width:60px; height:30px;background:#9f9f9f; color:#fff; font-weight:500; border:1px solid #9f9f9f;}
+#logout{cursor: pointer }

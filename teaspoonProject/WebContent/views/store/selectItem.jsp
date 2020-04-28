@@ -39,7 +39,7 @@
 
 				</div>
 				<div>
-					<img id="head_img" src="<%=contextPath %>img/store/storetop_coffee.jpg" width="1200"
+					<img id="head_img" src="<%=contextPath %>/resources/img/store/storetop_coffee.jpg" width="1200"
 						height="270">
 				</div>
 			</div>
@@ -59,8 +59,7 @@
 						<div class="select-list">
 							<div class="select-item">
 								<div class="select-img" border="1">
-									<img
-										src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\정기-원두.jpg"
+									<img src="<%=contextPath %>/resources/img/store/product5_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -80,7 +79,7 @@
 							<div class="select-item">
 								<div class="select-img" border="1">
 									<img
-										src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\정기-드립.jpg"
+										src="<%=contextPath %>/resources/img/store/product8_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -100,7 +99,7 @@
 							<div class="select-item">
 								<div class="select-img" border="1">
 									<img
-										src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\정기-콜브.jpg"
+										src="<%=contextPath %>/resources/img/store/product2_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -128,7 +127,8 @@
 							<div class="select-list2">
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/product4_1.jpg" 
+										width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -149,7 +149,7 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/product13_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -171,7 +171,7 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/product12_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -201,7 +201,7 @@
 							<div class="select-list2">
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/nutty.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -223,7 +223,7 @@
 								<div class="select-item2">
 									<div class="select-img" border="1">
 										<img
-											src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\정기-드립.jpg"
+											src="<%=contextPath %>/resources/img/store/fruty.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
@@ -245,7 +245,7 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/nuttynpruty.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -663,7 +663,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\콜드브루2병.png"
+											src="<%=contextPath %>/resources/img/store/product2_2.jpg.jsp"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">

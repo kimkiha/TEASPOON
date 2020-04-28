@@ -23,14 +23,13 @@
         <!-- //header -->
         <br clear="both">
         <div id="banner" >
-            <div class="title" style="line-height:40px; padding-top:55px">인스타그램
-            <p style="line-height:25px; font-size:14px;">티스푼의 최근 이야기들을 놓치지마세요!</p></div>
+            <div class="title" style="line-height:40px; padding-top:55px">개인정보처리방침</div>
         </div>
         <!-- //banner -->
           <div id="content">
             <!-- 개인정보처리방침 -->
-      		  <div>
-      		  	<p style="font-size:30px">개인정보처리방침</p>
+      		  <div style="width:1200px; margin:0 auto">
+      		  	<p style="font-size:30px; float:left">개인정보처리방침</p>
 					주식회사 티스푼(이하 '회사')은 회사에서 제공하는 오설록 매장 및 인터넷 사이트(www.teaspoon.com)를 이용하는 이용자님의 개인정보를 매우 소중하게 생각하고 있으며, 이용자의 개인정보를 보호하기 위하여 최선의 노력을 다하고 있습니다.
 					
 					회사는 『개인정보 보호법』, 『정보통신망 이용촉진 및 정보보호 등에 관한 법률』을 비롯한 모든 개인정보보호 관련 법률규정을 준수하고 있으며, 회사의 개인정보처리방침을 별도로 제정하고 이를 준수함으로써 이용자의 개인정보를 더욱 보호하고 있습니다. 또한 회사는 개인정보처리방침을 항상 회사 홈페이지 첫 화면에 공개함으로써 이용자들이 언제나 쉽게 열람할 수 있도록 조치하고 있습니다.
