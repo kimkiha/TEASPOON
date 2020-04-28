@@ -52,7 +52,7 @@ int maxPage = pi.getMaxPage();
                                         <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
                                     </tr>
                                     <tr class="d2">
-                                        <td colspan="2"><a href="#" >회원정보수정</a> </td>
+                                        <td colspan="2"><a href="<%=contextPath %>/memberModifyForm.me" >회원정보수정</a> </td>
                                     </tr>
                                 </table>
                             </div>

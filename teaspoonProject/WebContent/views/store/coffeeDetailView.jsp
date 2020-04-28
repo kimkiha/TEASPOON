@@ -208,39 +208,9 @@
         	<input type="hidden" id="optionGram" name="optionGram">
         	<input type="hidden" id="optionGrind" name="optionGrind">
         	<input type="hidden" id="pCount" name="pCount">
+        	<input type="hidden" id="totalPrice" name="totalPrice">
         </form>
     </div>
-
-
-	<script>
-		$(function(){
-			$("#basket").click(function(){
-				var cartPcode= <%=p.getPcode()%>;
-				var optionGram;
-				var pCount = $("#numberUpDown").text();
-				var gram = $("input[class='amount']:checked").val();
-				var optionGrind = $("#bean").val();
-				
-				if(gram==18000){
-					optionGram='200g';
-				}else if(gram==30000){
-					optionGram='400g';
-				}else if(gram==42000){
-					optionGram='600g';
-				}
-				
-				$("#cartPcode").val(cartPcode);
-				$("#optionGram").val(optionGram);
-				$("#pCount").val(pCount);
-				$("#optionGrind").val(optionGrind);
-				
-				$("#insertCart").submit();
-			});
-		});
-	
-	
-	</script>
-
 
 	<script>	
 		// 구매수량 변경 옵션
@@ -292,10 +262,33 @@
 			}
 		});
 		
-		// 옵션에 따른 가격 보여주기 
+		// 장바구니로 이동
+		$(function(){
+			$("#basket").click(function(){
+				var cartPcode= <%=p.getPcode()%>;
+				var optionGram;
+				var pCount = $("#numberUpDown").text();
+				var gram = $("input[class='amount']:checked").val();
+				var optionGrind = $("#bean").val();
+				
+				if(gram==18000){
+					optionGram='200g';
+				}else if(gram==30000){
+					optionGram='400g';
+				}else if(gram==42000){
+					optionGram='600g';
+				}
+				
+				$("#cartPcode").val(cartPcode); 	// 장바구니에 담을 상품
+				$("#optionGram").val(optionGram);	// 장바구니에 담길 옵션1
+				$("#pCount").val(pCount);			// 장바구니에 담길 상품갯수
+				$("#optionGrind").val(optionGrind);	// 장바구니에 담길 옵션2
+				
+				$("#insertCart").submit();
+			});
+		});
+	
 		
-		
-
 		// 리뷰Area
 		$(function() {
 			//문서가 다 로딩되면 자동으로 실행하고 주기적으로 실행
