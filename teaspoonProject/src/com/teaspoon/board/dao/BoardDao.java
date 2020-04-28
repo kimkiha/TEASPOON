@@ -501,6 +501,7 @@ public class BoardDao {
 	}
 
 
+
 	
 	// -------------------------------  이벤트시작    ------------------------------- //
 	/**
@@ -947,6 +948,42 @@ public class BoardDao {
 	
 		}
 		return list;
+	}
+	
+	public Board selectNotice(Connection conn){
+		Board b = new Board();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNotice");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				b = new Board();
+				b.setBoardNo(rset.getInt(2));
+				b.setBoardTitle(rset.getString(3));
+				b.setCount(rset.getInt(4));
+				b.setCreateDate(rset.getDate(5));
+				b.setModifyDate(rset.getDate(6));
+				b.setStatus(rset.getString(7));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		System.out.println(b);
+		return b;
+		 
+		
+		
 	}
 	
 	// 공지사항 키워드 조회

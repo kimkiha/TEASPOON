@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.Member, com.teaspoon.board.model.vo.*"%>
+<%Board b = (Board)session.getAttribute("b"); 
+System.out.print(b);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +18,11 @@
                 <table class="replyArea">
                     <tr>
                         <td width="270">공지사항</td>
-                        <td width="670"><a href="<%=contextPath%>/noticeList.bo?currentPage=1" class="notice_title"></a></td>
-                        <td width="230" style="text-align: right;"><a href="<%=contextPath%>/noticeList.bo?currentPage=1">+더보기</a></td>
+                        <%if(b==null){ %>
+                        <%}else{ %>
+                        <td width="670"><a href="#" class="notice_title"><%=b.getBoardTitle() %></a></td>
+                        <%} %>
+                        <td width="230" style="text-align: right;"><a href="<%--<%=contextPath%>/noticeList.bo?currentPage=1%>--%>#">+더보기</a></td>
                     </tr>
                 </table>
             </div>
@@ -31,7 +37,7 @@
             </div>
             <div class="ft_content">
                 <ul>
-                    <li style="padding-left: 0"><a href="#">브랜드소개</a></li>
+                    <li style="padding-left: 0"><a href="<%=contextPath%>/about.bo">브랜드소개</a></li>
                     <li><a href="#">서비스 이용약관</a></li>
                     <li><a href="#">개인정보 처리방침</a></li>
                     <li><a href="#">영상정보 처리방침</a></li>
@@ -52,10 +58,6 @@
         </div>
     </div>
     </div>
-<script>
-
-	
-</script>
     <!-- //footer-->
 </body>
 </html>

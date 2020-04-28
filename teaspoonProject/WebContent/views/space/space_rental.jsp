@@ -75,7 +75,7 @@
                                 <img src="<%=request.getContextPath() %>/resources/img/space/imo1.png">1인 - 30인 / 면적 - 23㎡ / 컨퍼런스 룸 / 초고속 WIFI  /  공용공간 및 라운지 / 커피와 허브차
                                 <div>
                                 <%if(loginUser == null){ %>
-                               	  <p><label class="btn" >로그인후 예약가능</label></p>
+                               	  <p><label class="btn">Login후</label></p>
                                	<%}else{ %>
                                   <p><label id="rentalready" class="btn" for="modal-1">예약하기</label></p>
                                	<%} %>

@@ -33,6 +33,17 @@ public class ProductService {
 
 		return listCount;
 	}
+	
+	public int getSearchListCount(String keyword) {
+		Connection conn = getConnection();
+
+		// 받아오는값 int형이라고 DML아님 SELECT문에서 갯수만뽑아올것임
+		int listCount = new ProductDao().getSearchListCount(conn,keyword);
+
+		close(conn);
+
+		return listCount;
+	}
 
 	/**
 	 * @param p    --> Product 테이블에 추가할 상품 데이터를 담은 객체
@@ -68,6 +79,7 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
 
 	/**
 	 * 사용자 커피제품 리스트 총 갯수 조회용 서비스
@@ -438,6 +450,16 @@ public class ProductService {
 	}
 	
 	
-	
-	
+	/**
+	 * 메인 검색용
+	 * 
+	 * @return --> 조회할 Product객체가 담긴 리스트
+	 */
+	public ArrayList<Product> selectSearchList(PageInfo pi, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectSearchList(conn, pi, keyword);
+
+		close(conn);
+		return list;
+	}
 }

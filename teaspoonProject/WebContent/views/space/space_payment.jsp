@@ -6,6 +6,8 @@
 	Space s = (Space)(request.getAttribute("s"));
  	ArrayList<Goods> list = (ArrayList<Goods>)request.getAttribute("list");
  	String[] goods = s.getGood().split(",");
+ 	int gTotalPrice =0;
+ 	int gToralSaving=0;
 
 %>
     
@@ -93,10 +95,13 @@
                                             <td><%for(int j=0;j<list.size();j++){%> 
                                             	<%if(goods[i].equals(list.get(j).getGsName())){%>
                                             		 	<%=list.get(j).getGsPrice()%>원</td>
-                                            		 	<%} %>
-                                            		 <%} %>
-                                            <td>300P</td>
+                                            		 	<td><%=list.get(j).getGsSaving()%>P</td>
+                                            		 	<%gTotalPrice=+list.get(j).getGsPrice(); %>
+                                            		 	<%gToralSaving=+list.get(j).getGsSaving(); %>
+                                            			<%} %>
+                                            		<%} %>
                                         </tr>
+                                        
                                         <%} %>
                                        
                                         
@@ -108,8 +113,8 @@
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="left_text_st top_bd">티스푼포인트</td>
-                                            <td class="top_bd"> <input type="text" value="150p" class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
-                                            <td class="top_bd"><button style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
+                                            <td class="top_bd"> <input type="text" id='pointUse' class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
+                                            <td class="top_bd"><button id="pointUseBtn" style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
                                         </tr>
                                 </table>
                             </div>
@@ -148,28 +153,28 @@
                                 <tbody>
                                     <tr>
                                         <td class="pay_lt bd_none">대여비용</td>
-                                        <td class="pay_rt bd_none">200,000원</td>
+                                        <td class="pay_rt bd_none">200000원</td>
                                     </tr>
                                     
                                     <tr>
                                         <td class=" pay_lt bd_none">물품비용</td>
-                                        <td class=" pay_rt bd_none"><%= s.getTotal() %>원</td>
+                                        <td class=" pay_rt bd_none"><%=gTotalPrice %>원</td>
                                     </tr>
                                     <tr>
                                         <td class=" pay_lt">포인트 할인</td>
-                                        <td class=" pay_rt">-1,000원</td>
+                                        <td class=" pay_rt" id='useP'>-0원</td>
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="bd_none pay_lt">적립예상포인트</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" class=" pay_rt">2,130p</td>
+                                        <td colspan="2" class=" pay_rt"><%=gToralSaving+960 %>P</td>
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"  class=" pay_rt">214,000원</td>
+                                        <td colspan="2"  class=" pay_rt" id='totalPay'><%=gTotalPrice+200000%></td>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -182,11 +187,11 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="pay_lt " style="padding: 20px 0; text-align: left;">
-                                            <input type="checkbox">동의합니다
+                                            <input type="checkbox" class="yes">동의합니다
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><button class="pay_button">결제하기</button></td>
+                                        <td colspan="2"><button class="pay_button" onclick="return paym();">결제하기</button></td>
                                     </tr>
                                 </tfoot>   
                             </table>
@@ -204,4 +209,28 @@
     </div>
 
 </body>
+<script>
+	function paym(){
+		
+	var yes = $("input[class='yes']:checked").val();	
+	
+	if(yes==undefined){
+		alert("전자결제 동의해주세요.");
+		return false;
+	}else{
+		return true;
+	}
+	
+	}
+	
+	$(function(){
+		$("#pointUseBtn").click(function(){
+			var pointUse= $("#pointUse").val();
+		
+			$("#useP").text('-'+pointUse+'원');
+			
+			$('#totalPay').text(200000+<%=gTotalPrice%>-pointUse);
+		})
+	})
+</script>
 </html>
