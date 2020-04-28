@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.*"%>
+	pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.* , com.teaspoon.board.model.vo.*"%>
 <%
 	MenToMen mtm = (MenToMen) request.getAttribute("mtm");
+	Attachment at = (Attachment)request.getAttribute("at");
+	//System.out.println(mtm);
 %>
 
 <!DOCTYPE html>
@@ -60,7 +62,7 @@ table tr {
 				<p>1:1문의 답변</p>
 				<form method="post" action="<%=contextPath%>/QnaDetail.me" id="qnaForm">
 				<table>
-
+						<input type="hidden" name="mtmNo" value="<%=mtm.getMtmNo()%>">
 					<tr>
 						<th width="100px">문의번호</th>
 						<td><%=mtm.getMtmNo()%></td>
@@ -86,15 +88,26 @@ table tr {
 					</tr>
 					<tr>
 						<th>답변내용</th>
-						<td colspan="3"><textarea cols="60" rows="5"
-								style="resize: none" required name="reComment"></textarea></td>
+						<td colspan="3"><textarea cols="60" rows="5"style="resize: none" required name="reComment">
+								<%if(mtm.getReComment() != null){ %>
+									<%=mtm.getReComment() %>
+								<%} %>
+					</textarea></td>
 					</tr>
-					<div class="btns">
+					<%if(at != null){ //첨부파일이 존재할 경우 %>
+							<div>첨부파일 :
+								 <a href="<%=contextPath %>/resources/thumbnail_upfiles/<%=at.getChangeName()%>"><%= at.getOriginName() %></a>
+							</div>
+							<% }else{ %>
+							첨부파일이 없습니다
+							<% }%>
+					
+						<div class="btns">
 						<button type="button" style="width: 100px;">
 							<a href="<%=contextPath%>/qnalist.me?currentPage=1">목록으로</a>
 						</button>
 						<button type="submit" style="width: 100px;">답변달기</button>
-					</div>
+						</div>
 				</table>
 				</form>
 				<br>

@@ -246,5 +246,13 @@
     </div>
     <!-- //wrap-->
     </div>
+    <script>
+	    if(<%=request.getSession().getAttribute("b")%> == null){
+	    	location.href='noticeMain.bo';
+	    }
+    	
+	    
+    	
+    </script>    
 </body>
 </html>

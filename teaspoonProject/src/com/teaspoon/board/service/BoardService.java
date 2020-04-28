@@ -200,6 +200,7 @@ public class BoardService {
 	}
 	
 	
+	
 	// -------------------------------  이벤트시작    ------------------------------- //
 	/**
 	 * 1_1. 이벤트 작성용 서비스
@@ -350,6 +351,16 @@ public class BoardService {
 		return atlist;
 	}
 		
+	public Board selectNotice(){
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectNotice(conn);
+		
+		close(conn);
+		System.out.println(b);
+		return b;
+	}
+	
 	// 공지사항 키워드검색
 	public int getNoticeKeywordListCount(String noticeKeyword) {
 		Connection conn = getConnection();

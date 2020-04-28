@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.Member, com.teaspoon.board.model.vo.*"%>
+<%
+	Board b = (Board)session.getAttribute("b"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +18,11 @@
                 <table class="replyArea">
                     <tr>
                         <td width="270">공지사항</td>
-                        <td width="670"><a href="<%=contextPath%>/noticeList.bo?currentPage=1" class="notice_title"></a></td>
-                        <td width="230" style="text-align: right;"><a href="<%=contextPath%>/noticeList.bo?currentPage=1">+더보기</a></td>
+                        <%if(b==null){ %>
+                        <%}else{ %>
+                        <td width="670"><a href="#" class="notice_title"><%=b.getBoardTitle() %></a></td>
+                        <%} %>
+                        <td width="230" style="text-align: right;"><a href="<%--<%=contextPath%>/noticeList.bo?currentPage=1%>--%>#">+더보기</a></td>
                     </tr>
                 </table>
             </div>
@@ -31,14 +37,14 @@
             </div>
             <div class="ft_content">
                 <ul>
-                    <li style="padding-left: 0"><a href="#">브랜드소개</a></li>
+                    <li style="padding-left: 0"><a href="<%=contextPath%>/about.bo">브랜드소개</a></li>
                     <li><a href="#">서비스 이용약관</a></li>
                     <li><a href="#">개인정보 처리방침</a></li>
                     <li><a href="#">영상정보 처리방침</a></li>
                 </ul>
                 <br>
                 <p>(주)TEA SPOON<br>
-                    서울특별시 강남구 테헤란로 14길 6 남도빌딩 | 사업자등록번호 : 111 - 22 - 33333<br>
+                                             서울특별시 강남구 테헤란로 14길 6 남도빌딩 | 사업자등록번호 : 111 - 22 - 33333<br>
                     (주)ooo 구매안전서비스 고객님의 안전거래를 위해 현금 거래에 대해 ooo 에스크로 서비스를 이용하실 수 있습니다.
                     <br><br>
                     TEA SPOON. All rights reserved.
@@ -52,10 +58,6 @@
         </div>
     </div>
     </div>
-<script>
-
-	
-</script>
     <!-- //footer-->
 </body>
 </html>

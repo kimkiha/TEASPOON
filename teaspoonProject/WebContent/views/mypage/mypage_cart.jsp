@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
 <%
-	int optionCode = Integer.parseInt(request.getAttribute("optionCode"));
+	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+    //int onePrice = (list.get(0).getPrice()+list.get(0).getAddPrice());
+	//int totalPrice = (list.get(0).getPrice()+list.get(0).getAddPrice())*list.get(0).getAmount();
+	//System.out.print(list);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-  	 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_cart.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_cart.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
@@ -35,17 +37,17 @@
                         <div id="mypage_info">
                             <div class="user_info" style="width:95px; border-left:1px solid #bebbb6">
                                 <div class="user_photo" style="margin-top:30px; padding-left:10px; float: left;">
-                                    <img src="사이트이미지/user.png">
+                                    <img src="<%=contextPath%>/resources/img/main/mypage.png">
                                 </div>
                             </div>
                             <div class="user_info" style="width:450px;">
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
                                         <td width="60" name="username"><%=loginUser.getUserName() %></td>
-                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
+                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" >silver</td>
                                     </tr>
                                     <tr class="d2">
-                                        <td colspan="2"><a href="#" >회원정보수정</a> </td>
+                                        <td colspan="2"><a href="<%=contextPath %>/memberModifyForm.me">회원정보수정</a> </td>
                                     </tr>
                                 </table>
                             </div>
@@ -59,7 +61,7 @@
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=loginUser.getPcode() %>개</a>
+                                <a  href="#" ><%=list.size() %>개</a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
@@ -75,28 +77,48 @@
                             <table id="mypage_table" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();"/>전체선택</th>
+                                        <th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();">전체선택</th>
                                         <th colspan="2">상품명</th>
                                         <th>수량</th>
-                                        <th>상품가격</th>
                                         <th>판매가격</th>
                                         <th>배송비</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <%if(list.isEmpty()){ %>
                                     <tr>
                                         <td colspan="7" height="150">장바구니에 선택된 상품이 없습니다</td>
                                     </tr>
+                                <%}else{ %>
+                                	<%for(int i=0; i<list.size(); i++) {%>
                                     <tr>
-                                        <td ><input type="checkbox" name="checkRow" value="${content.IDX}" ></td>
-                                        <td  style="text-align:left;"><img src="사이트이미지/메인/1.jpg" width="130px" height="130px"></td>
-                                        <td  style="text-align:left;" class="t-title">녹차 스프레드</td>
-                                        <td><input type="number" value="1" class="input-qnt"></td>
-                                        <td><p>18,000원</p></td>
-                                        <td><p>18,000원</p></td>
-                                        <td><p>2,500원</p></td>
+                                        <td><input type="checkbox" name="checkRow" value="${content.IDX}" ></td>
+                                        <td style="text-align:left;">
+                                        	<img width="130px" height="130px" src="">
+                                        </td>
+                                        <td style="text-align:left;" class="t-title">
+                                        	<p class="pDetail" style="cursor:pointer"><%=list.get(i).getPname() %></p>
+                                        	<input type="hidden" class="pcode" name="pcode" value=<%=list.get(i).getPcode() %>>
+                                        	<input type="hidden" name="kind" value=<%=list.get(i).getKind() %>>
+                                        	<p style="font-weight:100; font-size:16px;"><%=list.get(i).getOptionType1() %>, <%=list.get(i).getOptionType2() %></p>
+                                        </td>
+                                        <td>
+                                        	<div class="number">
+                                            <a href="#" id="decreaseQuantity">
+                                                <img src="<%=contextPath %>/resources/img/store/minus.png" width="20px" height="20px">
+                                            </a>
+                                            <b><span id="numberUpDown" style="padding-left: 20px; padding-right: 20px;"><%=list.get(i).getAmount()%></span></b>
+                                            <a href="#" id="increaseQuantity">
+                                                <img src="<%=contextPath %>/resources/img/store/plus.png" width="20px" height="20px">
+                                            </a>
+                                        </div>
+                                        </td>
+                                        <td id='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()%></td>
+                                        <td>2,500원</td>
+                                        <td><input type="hidden" id='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'></td>
                                     </tr>
-                                    
+                                    <%} %>
+                                 <%} %>
                                  
                                 </tbody>
                                 
@@ -109,18 +131,18 @@
                             <div class="bill-box">
                                 <div class="billbox">
                                     <span>상품가격</span>
-                                    <b>18,000원</b>
+                                    <b>~~~~~~~~~~~~~~~~~~</b>
                                     <b>+</b>
-                                    <span>총배송비</span>
+                                    <span>배송비</span>
                                     <b>2,500원</b>
                                     <b>=</b>
-                                    <b>20,500원</b>
+                                    <b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~원</b>
                                 </div>
                             </div>
                             <div class="func">
                                 <div class="func-group">
-                                    <button type="submit" >선택상품 주문</button>
-                                    <button type="submit" id="btn-func">전체상품 주문</button>
+                                    <button type="submit" onclick="location.href='payment.me'" >선택상품 주문</button>
+                                    <button type="submit" onclick="location.href='payment.me'" id="btn-func">전체상품 주문</button>
                                 </div>
                             </div>
                         </div>
@@ -131,18 +153,86 @@
          <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
+    
+    
+    
     <script>
-        /* 전체 선택 */
-        function checkAll(){
-      if( $("#th_checkAll").is(':checked') ){
-        $("input[name=checkRow]").prop("checked", true);
-      }else{
-        $("input[name=checkRow]").prop("checked", false);
-      }
-      }
-        /* */
+    /* 전체 선택 */
+    function checkAll(){
+	    if( $("#th_checkAll").is(':checked') ){
+	      $("input[name=checkRow]").prop("checked", true);
+	    }else{
+	      $("input[name=checkRow]").prop("checked", false);
+	    }
+    }
+    </script>
+    
+    <script>
+	
+	// 상품상세로 이동
+	$(function(){
+   		$('.pDetail').click(function(){
+   			var kind = $(this).siblings(['#kind']).val();
+   			var pcode = $(this).siblings(['#pcode']).val();
+   			if(kind=='C'){
+   				location.href="<%=contextPath%>/detail.co?pcode="+pcode;
+   			} else{
+   				location.href="<%=contextPath%>/detail.it?pcode="+pcode;
+   			}
+   		});
+   	});
+	
+	// 구매수량 변경 옵션
+	$(function() {
 
+		var amount;
+		var num1;
 
+		$('#decreaseQuantity').click(function(e) {
+			e.preventDefault();
+			var stat = $('#numberUpDown').text();
+			var num = parseInt(stat, 10);
+			num--;
+			if (num <= 0) {
+				alert('더이상 줄일수 없습니다.');
+				num = 1;
+			}
+			$('#numberUpDown').text(num);
+			totalSum();
+		});
+
+		$('#increaseQuantity').click(function(e) {
+			e.preventDefault();
+			var stat = $('#numberUpDown').text();
+			var num = parseInt(stat, 10);
+			num++;
+
+			if (num > 5) {
+				alert('더이상 늘릴수 없습니다.');
+				num = 5;
+			}
+			$('#numberUpDown').text(num);
+			totalSum();
+
+		});
+
+		// 상품금액 합계
+		$('.amount').click(function() {
+			totalSum();
+		});
+
+		// 상품금액 합계 출력
+		function totalSum() {
+			var onePrice = $("#onePrice").val();
+			amount = $("#numberUpDown").val();
+			num1 = $('#numberUpDown').text();
+			
+			var totalPrice = onePrice * num1;
+			$("#totalProductPrice").text(totalPrice);
+
+		}
+	});
+	
     </script>
 </body>
 </html>

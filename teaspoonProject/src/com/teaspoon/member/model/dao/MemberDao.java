@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
+import com.teaspoon.member.model.vo.Cart;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
@@ -66,7 +67,8 @@ public class MemberDao {
 							rset.getInt("BUY_POINT"),
 							rset.getString("admin"),
 							rset.getString("status"),
-							rset.getString("ADDRESS")
+							rset.getString("ADDRESS"),
+							rset.getInt("POINT")
 						);
 				
 			}
@@ -201,7 +203,9 @@ public class MemberDao {
 									rset.getInt("user_no"),
 						            rset.getString("mtm_name"),
 						            rset.getString("mtm_title"),
-						            rset.getDate("create_date")
+						            rset.getDate("create_date"),
+						            rset.getString("re_comment"),
+						            rset.getString("answer")
 						            ));
 				
 			}
@@ -757,7 +761,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 				m.setUserId(rset.getString("user_id"));
 				m.setCreateDate(rset.getDate("create_date"));
 				m.setMtmContent(rset.getString("mtm_content"));
-				
+				m.setReComment(rset.getString("re_comment"));
 			}
 			
 		} catch (SQLException e) {
@@ -1333,7 +1337,8 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 								rset.getInt("MTM_TYPE"),
 								rset.getString("MTM_title"),
 								rset.getDate("CREATE_DATE"),
-								rset.getString("MTM_NAME")));						
+								rset.getString("MTM_NAME"),	
+								rset.getString("answer")));
 				}
 				
 			} catch (SQLException e) {
@@ -1370,8 +1375,8 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 							rset.getInt("MTM_TYPE"),
 							rset.getString("MTM_TITLE"),
 							rset.getDate("CREATE_DATE"),
-							rset.getString("MTM_NAME")));		
-					
+							rset.getString("MTM_NAME"),		
+							rset.getString("answer")));
 				}
 				
 			} catch (SQLException e) {
@@ -1432,8 +1437,12 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 					mtm.setMtmTitle(rset.getString("MTM_TITLE"));
 					mtm.setMtmContent(rset.getString("MTM_CONTENT"));
 					mtm.setCreateDate(rset.getDate("CREATE_DATE"));
+					mtm.setReComment(rset.getString("re_Comment"));
+					mtm.setCommentDate(rset.getDate("comment_date"));
+					mtm.setAnswer(rset.getString("answer"));
 					mtm.setUserName(rset.getString("USER_NAME"));
 					mtm.setUserId(rset.getString("USER_ID"));
+					
 					
 					
 				}
@@ -1499,11 +1508,11 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			return result;
 		}
 
-	public int insertAnswer(Connection conn, int mtmNo, String reComment) {
+	public int updateAnswer(Connection conn, int mtmNo, String reComment) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("insertAnswer");
+		String sql = prop.getProperty("updateAnswer");
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -1517,6 +1526,85 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		
 		
 		return result;
+	}
+	
+	public ArrayList<Cart> selectMemberCart(Connection conn, int userNo) {
+		ArrayList<Cart> list = null;
+		PreparedStatement pstmt  = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMemberCart");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rset= pstmt.executeQuery();
+			
+			if(rset.next()) {
+				list = new ArrayList<>();
+				Cart c = new Cart();
+				c.setCart(rset.getInt("cart"));
+				c.setMadeDate(rset.getDate("madeDate"));
+				c.setPcode(rset.getInt("pcode"));
+				c.setOptionCode(rset.getInt("option_Code"));
+				c.setpDetailNo(rset.getInt("p_Detail_No"));
+				c.setAmount(rset.getInt("amount"));
+				c.setAddPrice(rset.getInt("add_Price"));
+				c.setOptionType1(rset.getString("option_Type1"));
+				c.setOptionType2(rset.getString("option_Type2"));
+				c.setPname(rset.getString("pname"));
+				c.setSupPrice(rset.getInt("sup_price"));
+				c.setPrice(rset.getInt("price"));
+				c.setStock(rset.getInt("stock"));
+				c.setStatus(rset.getString("status"));
+				c.setKeyword(rset.getString("keyword"));
+				c.setTotalCount(rset.getInt("total_count"));
+				c.setKind(rset.getString("kind"));
+				c.setPcontent(rset.getString("pcontent"));
+
+				list.add(c);
+			}
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	
+	}
+	
+	public Attachment selectQnaAttachment(Connection conn, int mtmNo) {
+		
+		Attachment at = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql  = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mtmNo);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				at = new Attachment();
+				at.setFileNo(rset.getInt("file_no"));
+				at.setOriginName(rset.getString("origin_name"));
+				at.setChangeName(rset.getString("change_name"));
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(rset);
+		}
+		
+		return at;
 	}
 		
 		
