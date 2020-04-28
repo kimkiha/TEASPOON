@@ -66,7 +66,7 @@
                 </div>
                 <div id="header_3">
                     <img id="search_icon" src="<%=contextPath%>/resources/img/main/search.png">
-                    <div id="search_wrap">
+                    <div id="search_wrap" style="display:none">
 	                    <div id="search">
 	                        <div class="search_form">
 	                        	<input type="text" name="search" class="search" >
