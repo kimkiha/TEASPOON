@@ -14,12 +14,29 @@ public class Product {
 	private int totalCount;	// 누적판매개수
 	private String kind;	// 상품종류(C:커피,I:아이템)
 	private String pcontent;// 상품상세설명(사진은 attachment와 조인)
+	private String changeName;
 	
 	private String titleImg; // 해당 상품의 대표이미지 수정명 
 	
 	public Product(){}
 	
 	// 전체 컬럼 생성자
+	public Product(int pcode, String pname, int supPrice, int price, int stock, String status, String keyword,
+			int totalCount, String kind, String pcontent, String changeName) {
+		super();
+		this.pcode = pcode;
+		this.pname = pname;
+		this.supPrice = supPrice;
+		this.price = price;
+		this.stock = stock;
+		this.status = status;
+		this.keyword = keyword;
+		this.totalCount = totalCount;
+		this.kind = kind;
+		this.pcontent = pcontent;
+		this.changeName = changeName;
+	}
+	
 	public Product(int pcode, String pname, int supPrice, int price, int stock, String status, String keyword,
 			int totalCount, String kind, String pcontent) {
 		super();
@@ -49,6 +66,14 @@ public class Product {
 	}
 	
 	
+
+	public String getChangeName() {
+		return changeName;
+	}
+
+	public void setChangeName(String changeName) {
+		this.changeName = changeName;
+	}
 
 	public int getPcode() {
 		return pcode;

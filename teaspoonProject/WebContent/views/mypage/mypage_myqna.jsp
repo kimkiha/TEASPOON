@@ -9,7 +9,7 @@
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
 	
-
+    
 	
 %>  
 <!DOCTYPE html>
@@ -53,7 +53,7 @@
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
                                         <td width="60" name="username"><%=loginUser.getUserName() %></td>
-                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
+                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName()%></td>
                                     </tr>
                                     <tr class="d2">
                                         <td colspan="2"><a href="<%=contextPath %>/memberModifyForm.me" >회원정보수정</a> </td>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=loginUser.getPcode() %></a>
+                                <a  href="<%=contextPath %>/wishList.me" ><%=loginUser.getPcode() %></a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">

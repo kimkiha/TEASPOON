@@ -462,4 +462,16 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+
+	/**
+	 * 메인 product List
+	 * @return
+	 */
+	public ArrayList<Product> mainProductList(){
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().mainProductList(conn);
+
+		close(conn);
+		return list;
+	}
 }

@@ -18,6 +18,14 @@ public class Payment {
 		this.total = total;
 		this.reservPay = reservPay;
 	}
+	
+	
+
+	public Payment(int goodsPay, int total) {
+		super();
+		this.goodsPay = goodsPay;
+		this.total = total;
+	}
 
 	public int getReservNo() {
 		return reservNo;

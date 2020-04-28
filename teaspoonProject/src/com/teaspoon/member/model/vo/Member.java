@@ -32,6 +32,9 @@ public class Member {
 	private int pcode; //위시리스트 갯수 카운트용
 	private int count; //쿠폰 갯수 카운트용
 	
+	private int wishCount; // 위시카운트  쎄션담기
+	private int couponCount; // 쿠폰 갯수  쎄션담기
+	
 	// 마이페이지 카트에 뿌려줄 값
 	private int pDetailNo;	// 상품상세코드
 	private int pCount;		// 장바구니에 담을 상품수량
@@ -58,6 +61,29 @@ public class Member {
 	
 
 	
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
+			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
+			String status, String address, int point, String gradeName) {
+		super();
+		this.userNo = userNo;
+		this.gradeCode = gradeCode;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.buyPoint = buyPoint;
+		this.admin = admin;
+		this.status = status;
+		this.gradeName = gradeName;
+		this.address = address;
+		this.point = point;
+	}
+
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
 			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
 			String status, String gradeName, String address, int point, int mtm_no, String mtm_name, String mtm_title,
@@ -178,6 +204,9 @@ public class Member {
 		this.point = point;
 		
 	}
+	
+	
+	
 
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
 			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
@@ -210,6 +239,50 @@ public class Member {
 		this.pCount = pCount;
 	}
 	
+	
+	
+	
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
+			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
+			String status, String address, int point, String gradeName, int wishCount, int couponCount) {
+		super();
+		this.userNo = userNo;
+		this.gradeCode = gradeCode;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.buyPoint = buyPoint;
+		this.admin = admin;
+		this.status = status;
+		this.gradeName = gradeName;
+		this.address = address;
+		this.point = point;
+		this.wishCount = wishCount;
+		this.couponCount = couponCount;
+	}
+
+	public int getWishCount() {
+		return wishCount;
+	}
+
+	public void setWishCount(int wishCount) {
+		this.wishCount = wishCount;
+	}
+
+	public int getCouponCount() {
+		return couponCount;
+	}
+
+	public void setCouponCount(int couponCount) {
+		this.couponCount = couponCount;
+	}
+
 	
 
 	public String getRe_comment() {
@@ -472,12 +545,13 @@ public class Member {
 				+ ", userName=" + userName + ", gender=" + gender + ", birthday=" + birthday + ", phone=" + phone
 				+ ", email=" + email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", buyPoint="
 				+ buyPoint + ", admin=" + admin + ", status=" + status + ", gradeName=" + gradeName + ", address="
-				+ address + ", mtm_no=" + mtm_no + ", mtm_name=" + mtm_name + ", mtm_title=" + mtm_title
-				+ ", create_date=" + create_date + ", re_comment=" + re_comment + ", answer=" + answer + ", point="
-				+ point + ", pcode=" + pcode + ", count=" + count + ", pDetailNo=" + pDetailNo + ", pCount="
-				+ pCount + "]";
+				+ address + ", point=" + point + ", mtm_no=" + mtm_no + ", mtm_name=" + mtm_name + ", mtm_title="
+				+ mtm_title + ", create_date=" + create_date + ", re_comment=" + re_comment + ", answer=" + answer
+				+ ", pcode=" + pcode + ", count=" + count + ", wishCount=" + wishCount + ", couponCount=" + couponCount
+				+ ", pDetailNo=" + pDetailNo + ", pCount=" + pCount + "]";
 	}
 
+	
 	
 
 	

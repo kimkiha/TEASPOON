@@ -1,29 +1,30 @@
-package com.teaspoon.member.controller;
+package com.teaspoon.store.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.teaspoon.member.model.service.MemberService;
-import com.teaspoon.member.model.vo.Member;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.teaspoon.store.model.service.ProductService;
+import com.teaspoon.store.model.vo.Product;
 
 /**
- * Servlet implementation class MyPageMainServlet
+ * Servlet implementation class MainProductList
  */
-@WebServlet("/mymain.me")
-public class MyPageMainServlet extends HttpServlet {
+@WebServlet("/mainProductList.st")
+public class MainProductList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageMainServlet() {
+    public MainProductList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +34,15 @@ public class MyPageMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
+		ArrayList<Product> list = new ProductService().mainProductList();
 		
-	
-		
-		if(loginUser != null) {
+		if(list != null) {
+			response.setContentType("application/json; charset=utf-8");
+			Gson gson = new GsonBuilder().create();
+			gson.toJson(list, response.getWriter());
 			
-			
-
-			
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_main.jsp");
-			view.forward(request, response);
-		}else {// 조회실패
-			request.setAttribute("msg", "메인에서 실패했다  힘내자");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
 		}
+		
 	}
 
 	/**
