@@ -105,11 +105,14 @@
                                         	<p style="font-weight:100; font-size:16px;"><%=list.get(i).getOptionType1() %>, <%=list.get(i).getOptionType2() %></p>
                                         </td>
                                         <td>
+                                        	<input type="hidden" id='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'>
                                         	<div class="number">
 	                                            <a href="#" id="decreaseQuantity">
 	                                                <img src="<%=contextPath %>/resources/img/store/minus.png" width="20px" height="20px">
 	                                            </a>
-	                                            <b><span id="numberUpDown" style="padding-left: 20px; padding-right: 20px;"><%=list.get(i).getAmount()%></span></b>
+	                                            <b>
+	                                            	<span id="numberUpDown" style="padding-left: 20px; padding-right: 20px;"><%=list.get(i).getAmount()%></span>
+	                                            </b>
 	                                            <a href="#" id="increaseQuantity">
 	                                                <img src="<%=contextPath %>/resources/img/store/plus.png" width="20px" height="20px">
 	                                            </a>
@@ -117,7 +120,6 @@
                                         </td>
                                         <td id='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*(list.get(i).getAmount())%></td>
                                         <td>2,500원</td>
-                                        <td><input type="hidden" id='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'></td>
                                     </tr>
                                     <% totalPrice += (list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount(); %>
                                     
