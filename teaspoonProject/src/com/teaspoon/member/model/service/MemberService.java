@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.dao.MemberDao;
+import com.teaspoon.member.model.vo.Cart;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
@@ -649,15 +650,33 @@ public class MemberService {
 		return mtm ;
 	}
 
-	public int insertAnswer(int mtmNo,String reComment) {
+	
+	public int updateAnswer(int mtmNo,String reComment) {
 		
 		Connection conn = getConnection();
-		int	result = new MemberDao().insertAnswer(conn, mtmNo,reComment);
+		int	result = new MemberDao().updateAnswer(conn, mtmNo,reComment);
+		
+		if(result >0 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		
+		
 		close(conn);
 		return result;
 		
 		
 		
+	}
+	
+	public ArrayList<Cart> selectMemberCartList(int userNo) {
+		Connection conn = getConnection();
+		ArrayList<Cart> list = new MemberDao().selectMemberCart(conn, userNo);
+		
+		close(conn);
+		return list;
 	}
 
 	

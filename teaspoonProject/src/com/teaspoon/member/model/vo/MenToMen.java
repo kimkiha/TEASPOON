@@ -52,13 +52,14 @@ public class MenToMen {
 	}
 	
 
-	public MenToMen(int mtmNo, int mtmType, String mtmTitle, Date createDate, String mtmName) {
+	public MenToMen(int mtmNo, int mtmType, String mtmTitle, Date createDate, String mtmName,String answer) {
 		super();
 		this.mtmNo = mtmNo;
 		this.mtmType = mtmType;
 		this.mtmTitle = mtmTitle;
 		this.createDate = createDate;
 		this.mtmName = mtmName;
+		this.answer = answer;
 	}
 	
 
@@ -78,6 +79,22 @@ public class MenToMen {
 		super();
 		this.mtmNo = mtmNo;
 		this.reComment = reComment;
+	}
+	
+
+	public MenToMen(int mtmNo, String mtmName, String mtmTitle, String mtmContent, Date createDate, String reComment, Date commentDate,
+			String answer,  String userName,String userId) {
+		super();
+		this.mtmNo = mtmNo;
+		this.mtmTitle = mtmTitle;
+		this.mtmContent = mtmContent;
+		this.createDate = createDate;
+		this.reComment = reComment;
+		this.commentDate = commentDate;
+		this.answer = answer;
+		this.mtmName = mtmName;
+		this.userId = userId;
+		this.userName = userName;
 	}
 
 	public int getMtmNo() {
@@ -192,7 +209,7 @@ public class MenToMen {
 				+ ", userId=" + userId + ", userName=" + userName + "]";
 	}
 
-
+	
 	
 
 	

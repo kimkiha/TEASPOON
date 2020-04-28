@@ -108,7 +108,6 @@
 				//쿼리스트링을 이용해서 전달값 전달
 				location.href="<%=contextPath%>/noticeDetail.bo?bno=" + bno;
 			});	
-		
 		});
 		
 	</script>

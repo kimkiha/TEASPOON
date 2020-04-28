@@ -66,11 +66,16 @@
                 </div>
                 <div id="header_3">
                     <img id="search_icon" src="<%=contextPath%>/resources/img/main/search.png">
-                    <div id="search">
-                        
-                    </div>
+                    <div id="search_wrap">
+	                    <div id="search">
+	                        <div class="search_form">
+	                        	<input type="text" name="search" class="search" >
+	                        	<button class="search_btn">검색</button>
+	                        </div>
+	                    </div>
+	                </div>
                     <img id="myPage_icon" src="<%=contextPath%>/resources/img/main/mypage.png">
-                    <a href="#" id="basket_icon"><img src="<%=contextPath%>/resources/img/main/cart.png"></a>
+                    <a href="<%=contextPath %>/mycart.me" id="basket_icon"><img src="<%=contextPath%>/resources/img/main/cart.png"></a>
                     <div class="header_mypage" >
                         <ul>
                         <% if(loginUser == null){ %>
@@ -126,6 +131,18 @@
                 	location.href = "<%=contextPath%>/logout.me";
                 } 
            	});
+           
+           $("#search_icon").click(function(){
+               var p = $(this).next(); //해당 p요소 
+               if(p.css("display") == "none"){ //css("속성명")속성명만 작성시 속성값 리턴
+                   p.slideDown("slow"); 
+               }else{
+               	p.slideUp("slow");
+               }
+               
+               h
+            });
+           
         });
 
     </script>
