@@ -20,6 +20,8 @@ public class Member {
 	private String gradeName;   //등급네임
 	private int point;// 포인트
 	
+	
+	private String gradeName;   //등급네임
 	//1:1 QNA 조회
 	private int mtm_no; //1:1상담번호
 	private String mtm_name; // 1:1상담 유형
@@ -43,26 +45,9 @@ public class Member {
 		
 	}
 
-	public Member(String userName, int birthday, String gender, String phone, String userId, String userPwd, String email) {
-		super();
-		this.userName = userName;
-		this.birthday = birthday;
-		this.gender = gender;
-		this.phone = phone;
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.email = email;
-
-	}
-	
-	
-	
-	
-
-	
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
 			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status, int point, String gradeName) {
+			String status, String address, int point, String gradeName, int wishCount, int couponCount) {
 		super();
 		this.userNo = userNo;
 		this.gradeCode = gradeCode;
@@ -80,11 +65,111 @@ public class Member {
 		this.status = status;
 		this.gradeName = gradeName;
 		this.point = point;
+		this.wishCount = wishCount;
+		this.couponCount = couponCount;
+	}
+
+	
+	
+
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
+			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
+			String status, String gradeName, int mtm_no, String mtm_name, String mtm_title, Date create_date,
+			int point, int pcode, int count, int pDetailNo, int pCount) {
+		super();
+		this.userNo = userNo;
+		this.gradeCode = gradeCode;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.buyPoint = buyPoint;
+		this.admin = admin;
+		this.status = status;
+		this.gradeName = gradeName;
+		this.point = point;
+		this.mtm_no = mtm_no;
+		this.mtm_name = mtm_name;
+		this.mtm_title = mtm_title;
+		this.create_date = create_date;
+		this.point = point;
+		this.pcode = pcode;
+		this.count = count;
+		this.pDetailNo = pDetailNo;
+		this.pCount = pCount;
+	}
+	
+	
+	
+	
+	
+	public Member(String userName, int birthday, String gender, String phone, String userId, String userPwd, String email) {
+		super();
+		this.userName = userName;
+		this.birthday = birthday;
+		this.gender = gender;
+		this.phone = phone;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.email = email;
+
+	}
+	
+
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
+			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
+			String status, String address,int point) {
+		super();
+		this.userNo = userNo;
+		this.gradeCode = gradeCode;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.buyPoint = buyPoint;
+		this.admin = admin;
+		this.status = status;
+	}
+	
+
+
+	
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
+			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
+			String status, String address, int point, String gradeName) {
+		super();
+		this.userNo = userNo;
+		this.gradeCode = gradeCode;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.buyPoint = buyPoint;
+		this.admin = admin;
+		this.status = status;
+		this.gradeName = gradeName;
+		this.address = address;
+		this.point = point;
 	}
 
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
 			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status, String gradeName, int point, int mtm_no, String mtm_name, String mtm_title,
+			String status, String gradeName, String address, int point, int mtm_no, String mtm_name, String mtm_title,
 			Date create_date, String re_comment, String answer, int pcode, int count, int pDetailNo, int pCount) {
 		super();
 		this.userNo = userNo;
@@ -102,6 +187,7 @@ public class Member {
 		this.admin = admin;
 		this.status = status;
 		this.gradeName = gradeName;
+		this.address = address;
 		this.point = point;
 		this.mtm_no = mtm_no;
 		this.mtm_name = mtm_name;
@@ -151,88 +237,7 @@ public class Member {
 
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender, int birthday,
 			String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status) {
-		super();
-		this.userNo = userNo;
-		this.gradeCode = gradeCode;
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.phone = phone;
-		this.email = email;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.buyPoint = buyPoint;
-		this.admin = admin;
-		this.status = status;
-	}
-	
-
-
-	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
-			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status, int point) {
-		super();
-		this.userNo = userNo;
-		this.gradeCode = gradeCode;
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.phone = phone;
-		this.email = email;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.buyPoint = buyPoint;
-		this.admin = admin;
-		this.status = status;
-		this.point = point;
-		
-	}
-	
-	
-	
-
-	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
-			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status, String gradeName, int mtm_no, String mtm_name, String mtm_title, Date create_date,
-			int point, int pcode, int count, int pDetailNo, int pCount) {
-		super();
-		this.userNo = userNo;
-		this.gradeCode = gradeCode;
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.phone = phone;
-		this.email = email;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.buyPoint = buyPoint;
-		this.admin = admin;
-		this.status = status;
-		this.gradeName = gradeName;
-		this.mtm_no = mtm_no;
-		this.mtm_name = mtm_name;
-		this.mtm_title = mtm_title;
-		this.create_date = create_date;
-		this.point = point;
-		this.pcode = pcode;
-		this.count = count;
-		this.pDetailNo = pDetailNo;
-		this.pCount = pCount;
-	}
-	
-	
-	
-	
-	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
-			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status, /*String address,*/ int point, String gradeName, int wishCount, int couponCount) {
+			String status, String address) {
 		super();
 		this.userNo = userNo;
 		this.gradeCode = gradeCode;
@@ -254,6 +259,7 @@ public class Member {
 		this.wishCount = wishCount;
 		this.couponCount = couponCount;
 	}
+
 
 	public int getWishCount() {
 		return wishCount;
@@ -539,6 +545,7 @@ public class Member {
 				+ ", pDetailNo=" + pDetailNo + ", pCount=" + pCount + "]";
 	}
 
+	
 	
 	
 
