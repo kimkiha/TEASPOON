@@ -33,6 +33,7 @@
 		<div id="banner">
 		
 			<div class="contaniner">
+				<div style="height:30px;"></div>
 				<div>
 					<p id="head_title">맞춤추천</p>
 

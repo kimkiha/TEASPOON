@@ -42,7 +42,7 @@ public class MyPageMainServlet extends HttpServlet {
 		loginUser.setGradeName(myInfo.getGradeName());
 		loginUser.setCount(myInfo.getCount());
 		loginUser.setPcode(myInfo.getPcode());
-		loginUser.setPointPrice(myInfo.getPointPrice());
+		loginUser.setPoint(myInfo.getPoint());
 		
 		
 		if(myInfo != null) {
