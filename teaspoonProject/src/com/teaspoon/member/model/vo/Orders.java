@@ -6,16 +6,13 @@ public class Orders {
 
 	private int orderNo;
 	private int userNo;
-	private int productCount;
 	private String orderer;
 	private String ordererPhone;
-	private String ordererEmail;
 	private String recipient;
 	private String recipientPhone;
 	private String recipientAddress;
 	private String orderMessage;
 	private int shippingFee;
-	private int point;
 	private int payment;
 	private Date orderDate;
 	private int prograss;
@@ -24,22 +21,19 @@ public class Orders {
 	
 	public Orders() {}
 	
-	public Orders(int orderNo, int userNo, int productCount, String orderer, String ordererPhone, String ordererEmail,
+	public Orders(int orderNo, int userNo, String orderer, String ordererPhone,
 			String recipient, String recipientPhone, String recipientAddress, String orderMessage, int shippingFee,
-			int point, int payment, Date orderDate, int prograss, String status, int cart) {
+			int payment, Date orderDate, int prograss, String status, int cart) {
 		super();
 		this.orderNo = orderNo;
 		this.userNo = userNo;
-		this.productCount = productCount;
 		this.orderer = orderer;
 		this.ordererPhone = ordererPhone;
-		this.ordererEmail = ordererEmail;
 		this.recipient = recipient;
 		this.recipientPhone = recipientPhone;
 		this.recipientAddress = recipientAddress;
 		this.orderMessage = orderMessage;
 		this.shippingFee = shippingFee;
-		this.point = point;
 		this.payment = payment;
 		this.orderDate = orderDate;
 		this.prograss = prograss;
@@ -58,12 +52,6 @@ public class Orders {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-	public int getProductCount() {
-		return productCount;
-	}
-	public void setProductCount(int productCount) {
-		this.productCount = productCount;
-	}
 	public String getOrderer() {
 		return orderer;
 	}
@@ -75,12 +63,6 @@ public class Orders {
 	}
 	public void setOrdererPhone(String ordererPhone) {
 		this.ordererPhone = ordererPhone;
-	}
-	public String getOrdererEmail() {
-		return ordererEmail;
-	}
-	public void setOrdererEmail(String ordererEmail) {
-		this.ordererEmail = ordererEmail;
 	}
 	public String getRecipient() {
 		return recipient;
@@ -111,12 +93,6 @@ public class Orders {
 	}
 	public void setShippingFee(int shippingFee) {
 		this.shippingFee = shippingFee;
-	}
-	public int getPoint() {
-		return point;
-	}
-	public void setPoint(int point) {
-		this.point = point;
 	}
 	public int getPayment() {
 		return payment;
@@ -150,10 +126,10 @@ public class Orders {
 	}
 	@Override
 	public String toString() {
-		return "Orders [orderNo=" + orderNo + ", userNo=" + userNo + ", productCount=" + productCount + ", orderer="
-				+ orderer + ", ordererPhone=" + ordererPhone + ", ordererEmail=" + ordererEmail + ", recipient="
+		return "Orders [orderNo=" + orderNo + ", userNo=" + userNo + ", orderer="
+				+ orderer + ", ordererPhone=" + ordererPhone +  ", recipient="
 				+ recipient + ", recipientPhone=" + recipientPhone + ", recipientAddress=" + recipientAddress
-				+ ", orderMessage=" + orderMessage + ", shippingFee=" + shippingFee + ", point=" + point + ", payment="
+				+ ", orderMessage=" + orderMessage + ", shippingFee=" + shippingFee + ", payment="
 				+ payment + ", orderDate=" + orderDate + ", prograss=" + prograss + ", status=" + status + ", cart="
 				+ cart + "]";
 	}
