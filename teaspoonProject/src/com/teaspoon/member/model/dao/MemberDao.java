@@ -363,7 +363,7 @@ public class MemberDao {
 
 
 	public int insertMember(Connection conn, Member m) {
-		System.out.println(m.getGender());
+		//System.out.println(m.getGender());
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
