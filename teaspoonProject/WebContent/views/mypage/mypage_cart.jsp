@@ -115,7 +115,7 @@
 	                                            </a>
                                         	</div>
                                         </td>
-                                        <td id='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()%></td>
+                                        <td id='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*(list.get(i).getAmount())%></td>
                                         <td>2,500원</td>
                                         <td><input type="hidden" id='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'></td>
                                     </tr>

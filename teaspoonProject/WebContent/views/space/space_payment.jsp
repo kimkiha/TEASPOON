@@ -205,7 +205,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><button class="pay_button" onclick="return paym();">결제하기</button></td>
+                                        <td colspan="2"><button class="pay_button" onclick="location.href='storePayment.st'">결제하기</button></td>
                                     </tr>
                                 </tfoot>   
                             </table>

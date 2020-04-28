@@ -251,9 +251,11 @@
 
 				$("#useP").text('-'+pointUse+'원');
 				
-				var tPay= $("#totalPay").text();
-				var aa = tPay.substring(0,tPay.length-1);
-				$("#totalPay").text(aa-pointUse+"원");
+				//var tPay= $("#totalPay").text();
+				//var aa = tPay.substring(0,tPay.length-1);
+				//$("#totalPay").text(aa-pointUse+"원");
+				$('#totalPay').text((<%=totalPrice+2500%>-pointUse)+"원");
+
 				
 			}
 		
