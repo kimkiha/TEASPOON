@@ -474,4 +474,19 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+
+	public int ordersUpdate(int mprice, int amount) {
+		Connection conn = getConnection();
+
+		int result = new ProductDao().ordersUpdate(conn, mprice, amount);
+		
+
+		if (result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
