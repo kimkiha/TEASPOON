@@ -188,7 +188,7 @@
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"  class=" pay_rt" id='totalPay'><%=gTotalPrice+200000%></td>
+                                        <td colspan="2"  class=" pay_rt" id='totalPay'><%=gTotalPrice+200000%>원</td>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -243,16 +243,16 @@
 			var pointUse= $("#pointUse").val();
 			
 			
-			if(userSaving<pointUse){
+			if(Number(userSaving)<Number(pointUse)){
 				alert("보유포인트를 초과하셨습니다.");
 				
-			}else if(pointUse<0){
+			}else if(Number(pointUse)<0){
 				alert("양수를 입력하세요.");			
 			}else{
 
 				$("#useP").text('-'+pointUse+'원');
 				
-				$('#totalPay').text(200000+<%=gTotalPrice%>-pointUse);
+				$('#totalPay').text((200000+<%=gTotalPrice%>-pointUse)+"원");
 			}
 		
 			
