@@ -58,7 +58,7 @@ public class BoardDao {
 				b.setCreateDate(rset.getDate("CREATE_DATE"));
 				b.setModifyDate(rset.getDate("MODIFY_DATE"));
 				b.setStatus(rset.getString("STATUS"));
-			/*	b.setChangeName(rset.getString("CHANGE_NAME"));*/
+				b.setChangeName(rset.getString("CHANGE_NAME"));
 			}
 			
 		} catch (SQLException e) {
