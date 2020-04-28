@@ -40,7 +40,7 @@
                     <li style="padding-left: 0"><a href="<%=contextPath%>/about.bo">브랜드소개</a></li>
                     <li><a href="<%=contextPath%>/userNotice.ad">서비스 이용약관</a></li>
                     <li><a href="<%=contextPath%>/personalInfo.ad">개인정보 처리방침</a></li>
-                    <li><a href="#">영상정보 처리방침</a></li>
+                    <li><a href="<%=contextPath%>/pictureInfo.ad">영상정보 처리방침</a></li>
                 </ul>
                 <br>
                 <p>(주)TEA SPOON<br>
