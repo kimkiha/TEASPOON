@@ -121,6 +121,9 @@
                                             <td class="left_text_st top_bd">고객총포인트</td>
                                             <td class="top_bd"> <input type="text" id='pointUse1' readonly class="point" name="point" width="400" style="padding-inline-start: 15px;"><%=loginUser.getPoint() %></td>
                                             
+                                           <td class="left_text_st" style="border-top:1px solid #bebebe;">보유포인트</td>
+                                       <td style="border-top:1px solid #bebebe;"><input type="number" id='pointUse1' class="point" name="point" width="400" style="padding-left: 15px; border:0px;" value="<%=loginUser.getPoint() %>" readonly></td>
+                                       <td style="border-top:1px solid #bebebe;"></td>
                                         </tr>
                                 </table>
                                 
@@ -205,7 +208,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><button class="pay_button" onclick="return paym();">결제하기</button></td>
+                                        <td colspan="2"><button class="pay_button" onclick="location.href='storePayment.st'">결제하기</button></td>
                                     </tr>
                                 </tfoot>   
                             </table>
@@ -243,16 +246,16 @@
 			var pointUse= $("#pointUse").val();
 			
 			
-			if(userSaving<pointUse){
+			if(Number(userSaving)<Number(pointUse)){
 				alert("보유포인트를 초과하셨습니다.");
 				
-			}else if(pointUse<0){
+			}else if(Number(pointUse)<0){
 				alert("양수를 입력하세요.");			
 			}else{
 
 				$("#useP").text('-'+pointUse+'원');
 				
-				$('#totalPay').text(200000+<%=gTotalPrice%>-pointUse);
+				$('#totalPay').text((200000+<%=gTotalPrice%>-pointUse)+"원");
 			}
 		
 			
