@@ -1528,7 +1528,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 	}
 	
 	public ArrayList<Cart> selectMemberCart(Connection conn, int userNo) {
-		ArrayList<Cart> list = null;
+		ArrayList<Cart> list =new ArrayList<>();
 		PreparedStatement pstmt  = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectMemberCart");
@@ -1538,8 +1538,8 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			pstmt.setInt(1, userNo);
 			rset= pstmt.executeQuery();
 			
-			if(rset.next()) {
-				list = new ArrayList<>();
+		 
+			while(rset.next()) {
 				Cart c = new Cart();
 				c.setCart(rset.getInt("cart"));
 				c.setMadeDate(rset.getDate("madeDate"));
@@ -1559,6 +1559,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				c.setTotalCount(rset.getInt("total_count"));
 				c.setKind(rset.getString("kind"));
 				c.setPcontent(rset.getString("pcontent"));
+				c.setChangeName(rset.getString("change_name"));
 
 				list.add(c);
 			}

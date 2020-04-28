@@ -357,7 +357,7 @@ public class BoardService {
 		Board b = new BoardDao().selectNotice(conn);
 		
 		close(conn);
-		System.out.println(b);
+		//System.out.println(b);
 		return b;
 	}
 	

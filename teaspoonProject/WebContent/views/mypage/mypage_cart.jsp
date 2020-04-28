@@ -94,7 +94,7 @@
                                     <tr>
                                         <td><input type="checkbox" name="checkRow" value="${content.IDX}" ></td>
                                         <td style="text-align:left;">
-                                        	<img width="130px" height="130px" src="">
+                                        	<img width="130px" height="130px" src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>">
                                         </td>
                                         <td style="text-align:left;" class="t-title">
                                         	<p class="pDetail" style="cursor:pointer"><%=list.get(i).getPname() %></p>
@@ -104,14 +104,14 @@
                                         </td>
                                         <td>
                                         	<div class="number">
-                                            <a href="#" id="decreaseQuantity">
-                                                <img src="<%=contextPath %>/resources/img/store/minus.png" width="20px" height="20px">
-                                            </a>
-                                            <b><span id="numberUpDown" style="padding-left: 20px; padding-right: 20px;"><%=list.get(i).getAmount()%></span></b>
-                                            <a href="#" id="increaseQuantity">
-                                                <img src="<%=contextPath %>/resources/img/store/plus.png" width="20px" height="20px">
-                                            </a>
-                                        </div>
+	                                            <a href="#" id="decreaseQuantity">
+	                                                <img src="<%=contextPath %>/resources/img/store/minus.png" width="20px" height="20px">
+	                                            </a>
+	                                            <b><span id="numberUpDown" style="padding-left: 20px; padding-right: 20px;"><%=list.get(i).getAmount()%></span></b>
+	                                            <a href="#" id="increaseQuantity">
+	                                                <img src="<%=contextPath %>/resources/img/store/plus.png" width="20px" height="20px">
+	                                            </a>
+                                        	</div>
                                         </td>
                                         <td id='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()%></td>
                                         <td>2,500원</td>

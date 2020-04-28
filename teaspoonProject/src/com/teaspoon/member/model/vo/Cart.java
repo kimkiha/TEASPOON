@@ -24,6 +24,8 @@ public class Cart {
 	private String kind;
 	private String pcontent;
 	
+	private String changeName; // 썸네일
+	
 	public Cart() {}
 	
 	public Cart(int cart, Date madeDate, int pcode, int optionCode, int pDetailNo, int amount, int addPrice,
@@ -48,6 +50,41 @@ public class Cart {
 		this.totalCount = totalCount;
 		this.kind = kind;
 		this.pcontent = pcontent;
+		
+	}
+	
+	public Cart(int cart, Date madeDate, int pcode, int optionCode, int pDetailNo, int amount, int addPrice,
+			String optionType1, String optionType2, String pname, int supPrice, int price, int stock, String status,
+			String keyword, int totalCount, String kind, String pcontent,String changeName) {
+		super();
+		this.cart = cart;
+		this.madeDate = madeDate;
+		this.pcode = pcode;
+		this.optionCode = optionCode;
+		this.pDetailNo = pDetailNo;
+		this.amount = amount;
+		this.addPrice = addPrice;
+		this.optionType1 = optionType1;
+		this.optionType2 = optionType2;
+		this.pname = pname;
+		this.supPrice = supPrice;
+		this.price = price;
+		this.stock = stock;
+		this.status = status;
+		this.keyword = keyword;
+		this.totalCount = totalCount;
+		this.kind = kind;
+		this.pcontent = pcontent;
+		this.changeName = changeName;
+	}
+
+	
+	public String getChangeName() {
+		return changeName;
+	}
+
+	public void setChangeName(String changeName) {
+		this.changeName = changeName;
 	}
 
 	public int getCart() {
