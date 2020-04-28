@@ -24,8 +24,9 @@ public class Member {
 	private int mtm_no; //1:1상담번호
 	private String mtm_name; // 1:1상담 유형
 	private String mtm_title; // 1:1상담 제목
-	private Date create_date; 
-	
+	private Date create_date;  
+	private String re_comment;
+	private String answer; 
 	// 마이페이지 상단 메뉴바
 	private int pointPrice;// 포인트
 	private int pcode; //위시리스트 갯수 카운트용
@@ -66,27 +67,18 @@ public class Member {
 		this.pcode = pcode;
 		this.count = count;
 	}
-
-
-
-
-
-
-
 	
-	
-	public Member(int mtm_no,int userNo, String mtm_name, String mtm_title, Date create_date) {
+	public Member( int mtm_no,int userNo, String mtm_name, String mtm_title, Date create_date, String re_comment,
+			String answer) {
 		super();
-		this.mtm_no = mtm_no;
 		this.userNo = userNo;
+		this.mtm_no = mtm_no;
 		this.mtm_name = mtm_name;
 		this.mtm_title = mtm_title;
 		this.create_date = create_date;
+		this.re_comment = re_comment;
+		this.answer = answer;
 	}
-
-
-	
-
 
 	public Member(int userNo, String userId, String userName, String phone, Date enrollDate, String gradeName,int birthday, String status ) {
 	super();
@@ -162,6 +154,22 @@ public class Member {
 	}
 	
 	
+
+	public String getRe_comment() {
+		return re_comment;
+	}
+
+	public void setRe_comment(String re_comment) {
+		this.re_comment = re_comment;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 
 	public int getpDetailNo() {
 		return pDetailNo;
@@ -404,11 +412,14 @@ public class Member {
 		return "Member [userNo=" + userNo + ", gradeCode=" + gradeCode + ", userId=" + userId + ", userPwd=" + userPwd
 				+ ", userName=" + userName + ", gender=" + gender + ", birthday=" + birthday + ", phone=" + phone
 				+ ", email=" + email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", buyPoint="
-				+ buyPoint + ", admin=" + admin + ", status=" + status + ", gradeName=" + gradeName + ", mtm_no="
-				+ mtm_no + ", mtm_name=" + mtm_name + ", mtm_title=" + mtm_title + ", create_date=" + create_date
-				+ ", pointPrice=" + pointPrice + ", pcode=" + pcode + ", count=" + count + ", pDetailNo=" + pDetailNo
-				+ ", pCount=" + pCount + "]";
+				+ buyPoint + ", admin=" + admin + ", status=" + status + ", gradeName=" + gradeName + ", address="
+				+ address + ", mtm_no=" + mtm_no + ", mtm_name=" + mtm_name + ", mtm_title=" + mtm_title
+				+ ", create_date=" + create_date + ", re_comment=" + re_comment + ", answer=" + answer + ", pointPrice="
+				+ pointPrice + ", pcode=" + pcode + ", count=" + count + ", pDetailNo=" + pDetailNo + ", pCount="
+				+ pCount + "]";
 	}
+
+	
 
 	
 	

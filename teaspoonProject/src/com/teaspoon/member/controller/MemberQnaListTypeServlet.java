@@ -72,9 +72,9 @@ public class MemberQnaListTypeServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
 		
-		System.out.println(mtmName);
+		//System.out.println(mtmName);
 		ArrayList<MenToMen> list = new MemberService().selectMtmAdminListType(mtmName,pi);
-		System.out.println(list);
+		//System.out.println(list);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1.jsp");

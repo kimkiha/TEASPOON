@@ -202,7 +202,9 @@ public class MemberDao {
 									rset.getInt("user_no"),
 						            rset.getString("mtm_name"),
 						            rset.getString("mtm_title"),
-						            rset.getDate("create_date")
+						            rset.getDate("create_date"),
+						            rset.getString("re_comment"),
+						            rset.getString("answer")
 						            ));
 				
 			}
@@ -758,7 +760,7 @@ public int insertAttachment(Connection conn, Attachment at) {
 				m.setUserId(rset.getString("user_id"));
 				m.setCreateDate(rset.getDate("create_date"));
 				m.setMtmContent(rset.getString("mtm_content"));
-				
+				m.setReComment(rset.getString("re_comment"));
 			}
 			
 		} catch (SQLException e) {
@@ -1571,6 +1573,37 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		
 		return list;
 	
+	}
+	
+	public Attachment selectQnaAttachment(Connection conn, int mtmNo) {
+		
+		Attachment at = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql  = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mtmNo);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				at = new Attachment();
+				at.setFileNo(rset.getInt("file_no"));
+				at.setOriginName(rset.getString("origin_name"));
+				at.setChangeName(rset.getString("change_name"));
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(rset);
+		}
+		
+		return at;
 	}
 		
 		

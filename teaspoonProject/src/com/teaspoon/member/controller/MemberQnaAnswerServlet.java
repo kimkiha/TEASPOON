@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.MenToMen;
 
@@ -34,7 +35,9 @@ public class MemberQnaAnswerServlet extends HttpServlet {
 		int mtmNo = Integer.parseInt(request.getParameter("mtmNo"));
 		
 		MenToMen mtm = new MemberService().mtmQnaAnswer(mtmNo);
+		Attachment at = new MemberService().selectQnaAttachment(mtmNo);
 		
+		request.setAttribute("at", at);
 		request.setAttribute("mtm", mtm);
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Answer.jsp");
 		view.forward(request, response);
