@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.Member, com.teaspoon.board.model.vo.*"%>
 <%
-	Board b = (Board)session.getAttribute("b"); 
+	Board notice = (Board)session.getAttribute("b"); 
 %>
 <!DOCTYPE html>
 <html>
@@ -18,9 +18,9 @@
                 <table class="replyArea">
                     <tr>
                         <td width="270">공지사항</td>
-                        <%if(b==null){ %>
+                        <%if(notice==null){ %>
                         <%}else{ %>
-                        <td width="670"><a href="<%=contextPath%>/noticeDetail.bo?bno=<%=b.getBoardNo()%>" class="notice_title"><%=b.getBoardTitle() %></a></td>
+                        <td width="670"><a href="<%=contextPath%>/noticeDetail.bo?bno=<%=notice.getBoardNo()%>" class="notice_title"><%=notice.getBoardTitle() %></a></td>
                         <%} %>
                         <td width="230" style="text-align: right;"><a href="<%=contextPath%>/noticeList.bo?currentPage=1">+더보기</a></td>
                     </tr>
