@@ -9,7 +9,7 @@
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
 	
-
+    
 	
 %>  
 <!DOCTYPE html>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=loginUser.getPcode() %></a>
+                                <a  href="<%=contextPath %>/wishList.me" ><%=loginUser.getPcode() %></a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
