@@ -140,7 +140,7 @@
                                         <tr>
                                             <td class="left_text_st top_bd " >이름</td>
                                             <td class="top_bd "colspan="3" >
-                                                <input type="text" name="" value="<%=loginUser.getPoint()%>">
+                                                <input type="text" name="userName" value="<%=loginUser.getPoint()%>">
                                             </td>
                                         </tr>
                                         <tr>

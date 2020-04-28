@@ -68,7 +68,8 @@ public class MemberDao {
 							rset.getString("admin"),
 							rset.getString("status"),
 							rset.getString("ADDRESS"),
-							rset.getInt("POINT")
+							rset.getInt("POINT"),
+							rset.getString("grade_name")
 						);
 				
 			}
@@ -331,7 +332,7 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(myInfo);
 		
 		return myInfo;
 		

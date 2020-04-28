@@ -65,7 +65,7 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
 							<%}else{ %>
 							<td>
 							<button type="button" class="btnUpdateForm">수정</button>
-							<button type="button" class="deleteButton">삭제</button>
+							<button type="button" class="deleteButtondeleteButtondeleteButton">삭제</button>
 							</td>
 							<%} %>
 						</tr>

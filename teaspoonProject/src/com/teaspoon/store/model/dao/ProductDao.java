@@ -433,6 +433,8 @@ public class ProductDao {
 		return result;
 	}
 	
+	
+
 //	
 //	public int updateAttachment(Connection conn, ArrayList<Attachment> list) {
 //		int result = 1;
@@ -1114,5 +1116,40 @@ public class ProductDao {
 		return listCount;
 	}
 	
-	
+	public ArrayList<Product>  mainProductList(Connection conn) {
+		ArrayList<Product> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("mainProductList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setPcode(rset.getInt("PCODE"));
+				p.setPname(rset.getString("PNAME"));
+				p.setSupPrice(rset.getInt("SUP_PRICE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setStock(rset.getInt("STOCK"));
+				p.setStatus(rset.getString("STATUS"));
+				p.setKeyword(rset.getString("KEYWORD"));
+				p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+				p.setKind(rset.getString("KIND"));
+				p.setPcontent(rset.getString("PCONTENT"));
+				p.setChangeName(rset.getString("CHANGE_NAME"));
+				list.add(p);	
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
 }

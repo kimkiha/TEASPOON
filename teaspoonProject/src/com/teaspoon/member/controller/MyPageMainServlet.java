@@ -45,29 +45,19 @@ public class MyPageMainServlet extends HttpServlet {
 		loginUser.setPoint(myInfo.getPoint());
 		
 		
-		if(myInfo != null) {
+		if(loginUser != null) {
 			
-			session.setAttribute("myInfo",myInfo);
+			
 
 			
 			
 			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_main.jsp");
-			
-			
 			view.forward(request, response);
-			
-			
 		}else {// 조회실패
-			
-			
 			request.setAttribute("msg", "메인에서 실패했다  힘내자");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
-			
-			
 		}
-		
-		
 	}
 
 	/**
