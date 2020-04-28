@@ -2,9 +2,11 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
 <%
 	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+	int totalPrice = 0;
     //int onePrice = (list.get(0).getPrice()+list.get(0).getAddPrice());
 	//int totalPrice = (list.get(0).getPrice()+list.get(0).getAddPrice())*list.get(0).getAmount();
 	//System.out.print(list);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -44,7 +46,7 @@
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
                                         <td width="60" name="username"><%=loginUser.getUserName() %></td>
-                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" >silver</td>
+                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
                                     </tr>
                                     <tr class="d2">
                                         <td colspan="2"><a href="<%=contextPath %>/memberModifyForm.me">회원정보수정</a> </td>
@@ -113,10 +115,12 @@
 	                                            </a>
                                         	</div>
                                         </td>
-                                        <td id='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()%></td>
+                                        <td id='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*(list.get(i).getAmount())%></td>
                                         <td>2,500원</td>
                                         <td><input type="hidden" id='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'></td>
                                     </tr>
+                                    <% totalPrice += (list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount(); %>
+                                    
                                     <%} %>
                                  <%} %>
                                  
@@ -131,12 +135,12 @@
                             <div class="bill-box">
                                 <div class="billbox">
                                     <span>상품가격</span>
-                                    <b>~~~~~~~~~~~~~~~~~~</b>
+                                    <b><%=totalPrice %></b>
                                     <b>+</b>
                                     <span>배송비</span>
                                     <b>2,500원</b>
                                     <b>=</b>
-                                    <b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~원</b>
+                                    <b><%=totalPrice+2500 %>원</b>
                                 </div>
                             </div>
                             <div class="func">

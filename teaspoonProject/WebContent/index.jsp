@@ -33,81 +33,11 @@
                         <div class="pname"><p>PRODUCT</p></div>
                         <div id="product_item">
                             <div id="product_item_1"> 
-                                <div>
-                                    <a href="">
-                                        <img src="<%=contextPath %>/resources/img/store/main_product9_1.jpg" alt="">
-                                    </a>
-                                    <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                    <p>
-                                        <b>\18,000원</b>
-                                    </p>
-                                </div>
-                                <div >
-                                    <a href="">
-                                        <img src="<%=contextPath %>/resources/img/store/main_product11_1.jpg" alt="">
-                                    </a>
-                                    <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                    <p>
-                                        <b>\18,000원</b>
-                                    </p>
-                                </div>
-                                <div>
-                                    <a href="">
-                                        <img src="<%=contextPath %>/resources/img/store/main_product12_1.jpg" alt="">
-                                    </a>
-                                    <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                    <p>
-                                        <b>\18,000원</b>
-                                    </p>
-                                </div>
-                                <div>
-                                    <a href="#">
-                                        <img src="<%=contextPath %>/resources/img/store/main_product13_1.jpg" alt="">
-                                    </a>
-                                    <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                    <p>
-                                        <b>\18,000원</b>
-                                    </p>
-                                </div>
+                            
                             </div>
                             <br clear="both">
-                            <div id="product_item_1"> 
-                                <div>
-                                    <a href="">
-                                        <img src="<%=contextPath %>/resources/img/store/main_item2_1.jpg" alt="">
-                                    </a>
-                                    <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                    <p>
-                                        <b>\18,000원</b>
-                                    </p>
-                                </div>
-                                <div >
-                                    <a href="">
-                                        <img src="<%=contextPath %>/resources/img/store/main_product1_1.jpg" alt="">
-                                    </a>
-                                    <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                    <p>
-                                        <b>\18,000원</b>
-                                    </p>
-                                </div>
-                                <div>
-                                    <a href="">
-                                        <img src="<%=contextPath %>/resources/img/store/main_product2_1.jpg" alt="">
-                                    </a>
-                                    <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                    <p>
-                                        <b>\18,000원</b>
-                                    </p>
-                                </div>
-                                <div>
-                                    <a href="">
-                                        <img src="<%=contextPath %>/resources/img/store/main_item4_1.jpg" alt="">
-                                    </a>
-                                    <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-                                    <p>
-                                        <b>\18,000원</b>
-                                    </p>
-                                </div>
+                            <div id="product_item_2"> 
+                                
                             </div>
                         </div>
                     </div>
@@ -247,11 +177,43 @@
     <!-- //wrap-->
     </div>
     <script>
-	    if(<%=request.getSession().getAttribute("b")%> == null){
+	    <%-- if(<%=request.getSession().getAttribute("b")%> == null){
 	    	location.href='noticeMain.bo';
-	    }
+	    } --%>
     	
-	    
+	    $(function(){
+	    	$.ajax({
+	    		url:"mainProductList.st",
+	    		type:"post",
+	    		success:function(list){
+	    			var value ="";
+	    			console.log(list);
+	    			for(var i=0; i<list.length; i++){
+	    			  value += "<div>" +
+		                        "<a href='<%=contextPath%>/detail.co?pcode=" + list[i].pcode + "'>"+
+		                        "<img src='<%=contextPath %>/resources/thumbnail_upfiles/" + list[i].changeName + "'>" +
+		                        "</a>"+
+		                        "<p class='best_product_name'>"+"<a href='<%=contextPath%>/detail.co?" + list[i].pcode +"'>" + list[i].pname + "</a>"+"</p>"+
+		                        "<p>"+"<b>"+list[i].price+"</b>"+
+		                        "</p>"+
+		                    	"</div>";
+	    			}
+	    			$("#product_item_1").html(value);
+	    			
+	    		},error:function(){
+	    			console.log("ajax 통신실패!");
+	    		}
+	    	})
+	    	
+	    	
+	    	$.ajax({
+	    		url:"mainBestList.st",
+	    		type:"post",
+	    		success:function(list){
+	    			
+	    		}
+	    	})
+	    });
     	
     </script>    
 </body>
