@@ -105,7 +105,7 @@
                                         	<p style="font-weight:100; font-size:16px;"><%=list.get(i).getOptionType1() %>, <%=list.get(i).getOptionType2() %></p>
                                         </td>
                                         <td>
-                                        <input type="hidden" class='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'>
+                                        	<input type="hidden" id='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'>
                                         	<div class="number">
 	                                            <a href="#" class="decreaseQuantity">
 	                                                <img src="<%=contextPath %>/resources/img/store/minus.png" width="20px" height="20px">
@@ -116,7 +116,7 @@
 	                                            </a>
                                         	</div>
                                         </td>
-                                        <td class='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*(list.get(i).getAmount())%></td>
+                                        <td class='totalProductPrice'></td>
                                         <td>2,500원</td>
                                     </tr>
                                     <% totalPrice += (list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount(); %>
