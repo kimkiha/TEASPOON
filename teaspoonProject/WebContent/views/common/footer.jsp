@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.Member, com.teaspoon.board.model.vo.*"%>
-<%Board b = (Board)session.getAttribute("b"); 
-System.out.print(b);
+<%
+	Board b = (Board)session.getAttribute("b"); 
 %>
 <!DOCTYPE html>
 <html>
@@ -44,7 +44,7 @@ System.out.print(b);
                 </ul>
                 <br>
                 <p>(주)TEA SPOON<br>
-                    서울특별시 강남구 테헤란로 14길 6 남도빌딩 | 사업자등록번호 : 111 - 22 - 33333<br>
+                                             서울특별시 강남구 테헤란로 14길 6 남도빌딩 | 사업자등록번호 : 111 - 22 - 33333<br>
                     (주)ooo 구매안전서비스 고객님의 안전거래를 위해 현금 거래에 대해 ooo 에스크로 서비스를 이용하실 수 있습니다.
                     <br><br>
                     TEA SPOON. All rights reserved.

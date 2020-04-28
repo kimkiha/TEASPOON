@@ -10,6 +10,8 @@ int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
 int maxPage = pi.getMaxPage();
 
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -102,10 +104,16 @@ int maxPage = pi.getMaxPage();
                                   	<% for(Point p : list) {%>
                                     <tr>
                                         <td class="in"><%= p.getPointDate() %></td>
-                                        <td class="in">
-                                        <%=p.getDivision()%>
-                                      
+                                        <%if(p.getDivision() ==1){ %>
+                                        <td class="in" >
+                                       	적립
                                         </td>
+                                         <%}else{%>
+                                         <td class="in" >
+                                       	사용
+                                        </td>
+                                        <%} %>
+                                      
                                         <td colspan="2"class="t-title"><%=p.getContent() %></td>
                                         <td class="in"><%=p.getPointPrice() %></td>
                                         

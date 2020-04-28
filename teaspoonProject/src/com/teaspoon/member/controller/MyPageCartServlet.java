@@ -45,17 +45,19 @@ public class MyPageCartServlet extends HttpServlet {
 		if(loginUser != null) {
 			int userNo = loginUser.getUserNo();
 			ArrayList<Cart> list = new MemberService().selectMemberCartList(userNo);
-			
+			System.out.println();
+			System.out.println("\n"+list);
 			request.setAttribute("list", list);
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_cart.jsp");
-			view.forward(request, response);
-			
-		} else {
-			request.setAttribute("msg","로그인한 회원만 이용 가능한 서비스입니다.");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
 		}
+//			
+//			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_cart.jsp");
+//			view.forward(request, response);
+//			
+//		} else {
+//			request.setAttribute("msg","로그인한 회원만 이용 가능한 서비스입니다.");
+//			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+//			view.forward(request, response);
+//		}
 		
 		
 	}

@@ -678,6 +678,16 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
+	
+	public Attachment selectQnaAttachment(int mtmNo) {
+		Connection conn = getConnection();
+		
+		Attachment at = new MemberDao().selectQnaAttachment(conn,mtmNo);
+		
+		close(conn);
+		return at;
+		
+	}
 
 	
 	

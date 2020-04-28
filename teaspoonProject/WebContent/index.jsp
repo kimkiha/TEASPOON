@@ -247,10 +247,11 @@
     <!-- //wrap-->
     </div>
     <script>
-    if(<%=request.getSession().getAttribute("b")%> == null){
-    	location.href='noticeMain.bo';
-    	console.log("보드불러옴");
-    }
+	    if(<%=request.getSession().getAttribute("b")%> == null){
+	    	location.href='noticeMain.bo';
+	    }
+    	
+	    
     	
     </script>    
 </body>

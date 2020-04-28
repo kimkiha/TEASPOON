@@ -42,13 +42,14 @@ public class MemberQnaDetailServlet extends HttpServlet {
 		
 		int result = new MemberService().updateAnswer(mtmNo,reComment);
 		if (result > 0) {
-			RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Answer.jsp");
-			view.forward(request, response);
+			response.sendRedirect("qnalist.me?currentPage=1");
+			//RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_1to1Answer.jsp");
+			//view.forward(request, response);
 		}else {
 			request.setAttribute("msg","답변달기 실패 했습니다.");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage_admin.jsp");
 			view.forward(request,response);
-		}
+			}
 		
 		
 		

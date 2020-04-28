@@ -108,12 +108,23 @@
                                     </tbody>
                                 </table>
                             </div>
+                            
+                            
                             <div id="mp_con2">
                                 <p>포인트 사용</p>
+                                
+                                <table class="tb2"  cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td class="left_text_st top_bd">고객총포인트</td>
+                                            <td class="top_bd"> <div type="text" id='pointUse1' class="point" name="point"width="400" style="padding-inline-start: 15px;"></div></td>
+                                            
+                                        </tr>
+                                </table>
+                                
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="left_text_st top_bd">티스푼포인트</td>
-                                            <td class="top_bd"> <input type="text" id='pointUse' class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
+                                            <td class="top_bd"> <input type="text" id='pointUse' class="point" name="point" placeholder="포인트 사용값을 입력하세요." width="400" style="padding-inline-start: px;"></td>
                                             <td class="top_bd"><button id="pointUseBtn" style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
                                         </tr>
                                 </table>
