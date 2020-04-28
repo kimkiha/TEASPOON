@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-
-
+String Address = (String)request.getAttribute("Address");
+int count =0;
 %>
 <!DOCTYPE html>
 <html>
@@ -65,53 +65,58 @@
                         <div id="mypage_menu_tab">
                             <a href="#" class=" float"> 주문배송조회</a>
                             <a href="#" class=" float">공간대여확인</a>
-                            <a href="<%=contextPath %>/myAdress.me" class="active float">나의배송지</a>
+                            <a href="#" class="active float" id="my_receive">나의배송지</a>
                             <a href="#" class="float">1:1문의</a>
                             <a href="#" class="float">장바구니</a>
                         </div> 
                         <div class="pagename"></div>
                         <div id="mp_con1">
                            <div class="addresstitle">
-                           	
                                <div class="adtitle1"><P>배송지추가</P></div>
                                <div></div>
-                               <div class="adtitle2"><button onclick="add(this);"id="add">배송지추가</button></div>
+                               <div class="adtitle2"><button onclick="add(this);"id="add">배송지변경</button></div>
                            </div>
                             </div>
+                           
                             <table id="mypage_table" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th id="address">배송지명</th>
-                                        <th id="name">받는분</th>
-                                        <th colspan="2"id="address">주소</th>
+                                        <th id="address_name">배송지명</th>
+                                        <th id="receive">받는분</th>
+                                        <th colspan="2"id="place">주소</th>
                                         <th >휴대폰번호</th>
-                                        <th >일반전화</th>
                                         <th >선택</th>
                                     </tr>
                                 </thead>
+                                <%if(count !=0) {%>
                                 <tbody >
                                     <tr id="adAdd"class="add">
-                                        <td><input type="text" name="" id="address-info"></td>
-                                        <td><input type="text" id="name"></td>
-                                        <!--  <td colspan="2"><input type="address" id="address"></td>-->
-                                        <td><input type="address" id="address"></td>
+                                        <td><input type="text" name="address-info" id="address-info"></td><!-- 배송지명 -->
+                                        <td><input type="text" id="name" name="name"></td><!-- 받는분 -->
+                                        <td><input type="address" id="address" name="address"></td><!-- 주소 -->
                                         <td><button type="button" onclick="goPopup();">주소찾기</button></td>
-                                        <td><input type="phone" id="phone"></td>
-                                        <td><input type="phone" id="tel"></td>
+                                        <td colspan="2"><input type="phone" id="phone"></td><!-- 휴대폰번호 -->
                                         <td>
-                                            <di id="func">
-                                                <button>확인</button>
+                                            <div id="func">
+                                             <form id="AddressInsert" action="<%=contextPath %>/insertAddress.me" method="post">
+                                             <input type="hidden" id="address-info2" name="address-info">
+                                             <input type="hidden" id="name2" name="name">
+                                             <input type="hidden" id="address2" name="address">
+                                             <input type="hidden" id="phone2" name="phone">
+                                                <input type="button" value="확인" onclick="check();"></input>
                                                 <button>취소</button>
                                             </div>
-                                            
+                                            </form><!--  -->
                                         </td>
                                       
                                     </tr>
                                     
                                 </tbody>
+                                <%} %>
                             </table>
+                            </form>
                             <div class="non-address">
-                                <p>등록된 배송지가 없습니다</p>
+                                <p>조회된주소</p>
                             </div>
                             <div class="my-ad">
                                 <div><p>*연락처등록시 - 입력해야합니다</p> </div>
@@ -124,18 +129,32 @@
            <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
-    <script>
-        function add(element){
-			var tag = document.getElementsByClassName("add");
-			for(var i=0 ; i<tag.length ; i++){
-				if(element.id+"Add" == tag[i].id)
-					tag[i].style.display = "block";
-				else
-					tag[i].style.display = "none";
-			}
+   
+    
+    
+     	<script> /* "확인" 버튼 클릭시 -> 값을 담아줌 */
+    	 function check(){
+                	
+                var Address = document.getElementById("Address");
+                
+    			var addressinfo = $("#addressinfo").val();
+    			var name = $("#name").val();
+    			var address = $("#address").val();
+    			var phone = $("#phone").val();
 
-		}
 
-    </script>
+    				$("#address-info2").val(address-info);
+    				$("#name2").val(name2);
+    				$("#address2").val(address2);
+    				$("#phone2").val(phone2);
+
+    				$("#AddressInsert").submit();
+    				
+              	
+              	}
+       	 	
+    	
+    	
+    	</script>
 </body>
 </html>

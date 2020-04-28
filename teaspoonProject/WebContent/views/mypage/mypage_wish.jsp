@@ -47,8 +47,8 @@
 						<div class="user_info" style="width: 450px;">
 							<table class="detail_tb" cellpadding="0" cellspacing="0">
 								<tr class="d1">
-									<td width="60" name="username">홍길동</td>
-									<td style="color: #d6ae71; font-size: 15px;" name="usergrade">골드등급</td>
+									<td width="60" name="username"><%= loginUser.getUserName() %></td>
+									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"><%=loginUser.getGradeName() %></td>
 								</tr>
 								<tr class="d2">
 									<td colspan="2"><a href="<%=contextPath %>/memberModifyForm.me">회원정보수정</a></td>
@@ -58,15 +58,15 @@
 						<div class="detail_info2"
 							style="border-left: 1px solid #bebbb6; height: inherit;">
 							<p class="info_th">적립포인트</p>
-							<a href="#">500Point</a>
+							<a href="<%=contextPath%>/mypoint.me?currentPage=1"><%= loginUser.getPoint() %>Point</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">할인쿠폰</p>
-							<a href="#">3장</a>
+							<a href="#"><%= loginUser.getCount() %>장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="#">10개</a>
+							<a href="<%=contextPath %>/wishList.me"><%=loginUser.getPcode() %>개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">

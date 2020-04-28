@@ -48,7 +48,6 @@ public class BoardDao {
 			pstmt.setInt(1, bno);
 			
 			rset = pstmt.executeQuery();
-			
 			if(rset.next()) {
 				b = new Board();
 				b.setBoardNo(rset.getInt("BOARD_NO"));
@@ -59,7 +58,7 @@ public class BoardDao {
 				b.setCreateDate(rset.getDate("CREATE_DATE"));
 				b.setModifyDate(rset.getDate("MODIFY_DATE"));
 				b.setStatus(rset.getString("STATUS"));
-				b.setChangeName(rset.getString("CHANGE_NAME"));
+			/*	b.setChangeName(rset.getString("CHANGE_NAME"));*/
 			}
 			
 		} catch (SQLException e) {
@@ -68,7 +67,7 @@ public class BoardDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(b);
 		return b;
 	}
 	
