@@ -17,7 +17,7 @@ public class Member {
 	private int buyPoint;		//누적구매금액
 	private String admin;		//관리자권한
 	private String status;		//상태
-	private String address;		//주소
+	private String gradeName;   //등급네임
 	private int point;// 포인트
 	
 	
@@ -64,7 +64,6 @@ public class Member {
 		this.admin = admin;
 		this.status = status;
 		this.gradeName = gradeName;
-		this.address = address;
 		this.point = point;
 		this.wishCount = wishCount;
 		this.couponCount = couponCount;
@@ -93,6 +92,7 @@ public class Member {
 		this.admin = admin;
 		this.status = status;
 		this.gradeName = gradeName;
+		this.point = point;
 		this.mtm_no = mtm_no;
 		this.mtm_name = mtm_name;
 		this.mtm_title = mtm_title;
@@ -139,12 +139,9 @@ public class Member {
 		this.buyPoint = buyPoint;
 		this.admin = admin;
 		this.status = status;
-		this.address = address;
-		this.point = point;
-		
 	}
 	
-	
+
 
 	
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
@@ -256,15 +253,11 @@ public class Member {
 		this.buyPoint = buyPoint;
 		this.admin = admin;
 		this.status = status;
-		this.address = address;
-	}
-	
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
+		this.gradeName = gradeName;
+	//	this.address = address;
+		this.point = point;
+		this.wishCount = wishCount;
+		this.couponCount = couponCount;
 	}
 
 
@@ -545,8 +538,8 @@ public class Member {
 		return "Member [userNo=" + userNo + ", gradeCode=" + gradeCode + ", userId=" + userId + ", userPwd=" + userPwd
 				+ ", userName=" + userName + ", gender=" + gender + ", birthday=" + birthday + ", phone=" + phone
 				+ ", email=" + email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", buyPoint="
-				+ buyPoint + ", admin=" + admin + ", status=" + status + ", address=" + address + ", point=" + point
-				+ ", gradeName=" + gradeName + ", mtm_no=" + mtm_no + ", mtm_name=" + mtm_name + ", mtm_title="
+				+ buyPoint + ", admin=" + admin + ", status=" + status + ", gradeName=" + gradeName + /*", address="
+				+ address +*/", point=" + point + ", mtm_no=" + mtm_no + ", mtm_name=" + mtm_name + ", mtm_title="
 				+ mtm_title + ", create_date=" + create_date + ", re_comment=" + re_comment + ", answer=" + answer
 				+ ", pcode=" + pcode + ", count=" + count + ", wishCount=" + wishCount + ", couponCount=" + couponCount
 				+ ", pDetailNo=" + pDetailNo + ", pCount=" + pCount + "]";

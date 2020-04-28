@@ -2,6 +2,7 @@ package com.teaspoon.space.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.teaspoon.space.model.service.SpaceService;
 import com.teaspoon.space.model.vo.Payment;
+import com.teaspoon.space.model.vo.Space;
 
 /**
  * Servlet implementation class SpacePaymentInsertServlet
@@ -33,13 +35,15 @@ public class SpacePaymentInsertServlet extends HttpServlet {
 		
 		int goodsPay = Integer.parseInt(request.getParameter("goodsPay"));
 		int total = Integer.parseInt(request.getParameter("total"));
-		
+		Space s = (Space)request.getSession().getAttribute("s");
 		Payment p = new Payment(goodsPay, total);
 		
-		int result = new SpaceService().insertPayment(p);
+		int result = new SpaceService().insertPayment(p,s);
+		request.setAttribute("total",total);
 		
-		System.out.println(goodsPay);
-		System.out.println(total);
+		RequestDispatcher view = request.getRequestDispatcher("views/space/payment.jsp");
+		view.forward(request, response);
+		
 	}
 
 	/**

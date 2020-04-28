@@ -15,20 +15,7 @@ import com.teaspoon.space.model.vo.Space;
 
 public class SpaceService {
 
-	public int insertSpace(Space s) {
-		
-		Connection conn = getConnection();
-		
-		int result = new SpaceDao().insertSpace(conn, s);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		return result;
-	}
+
 	
 
 	public ArrayList<Goods> selectGoodsList() {
@@ -43,19 +30,19 @@ public class SpaceService {
 	}
 	
 	
-		public int insertPayment(Payment p) {
+		public int insertPayment(Payment p,Space s) {
 		
 		Connection conn = getConnection();
+		int result1 = new SpaceDao().insertSpace(conn,s);
+		int result2 = new SpaceDao().insertPayment(conn, p);
 		
-		int result = new SpaceDao().insertPayment(conn, p);
-		
-		if(result > 0) {
+		if(result1 > 0 && result2 >0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
 		
-		return result;
+		return result1*result2;
 	}
 	
 	
