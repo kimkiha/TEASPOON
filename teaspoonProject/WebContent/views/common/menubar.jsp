@@ -85,12 +85,12 @@
                             <li id="login_li"><button id="login">로그인</button></li>
                             <%}else{ %> 
                             <li style="padding:20px 0"><b><%= loginUser.getUserName() %></b>님  환영합니다.<br>
-                            <a id="logout">로그아웃</a>
-                            <a href="<%= contextPath %>/logout.me" style="padding-bottom:10px"></a></li>
+                            <a id="logout" style="curcor:pointer">로그아웃</a>
+                            <a href="<%= contextPath %>/logout.me" style="padding-bottom:10px;"></a></li>
                             <li><a href="<%=contextPath %>/mymain.me">마이티스푼</a></li>
-                            <li>나의 배송 조회</li>
+                            <li><a>나의 배송 조회</a></li>
                             <li><a href="<%=contextPath%>/mypoint.me?currentPage=1">적립포인트</a></li>
-                            <li>할인쿠폰</li>
+                            <li><a>할인쿠폰</a></li>
                             <li><a href="<%=contextPath %>/wishList.me">위시리스트</a></li>
                             <li style="border-bottom: none;"><a href="<%=contextPath %>/myqna.me?currentPage=1">1:1문의</a></li>
                             <%} %>

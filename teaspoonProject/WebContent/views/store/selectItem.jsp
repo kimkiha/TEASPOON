@@ -38,7 +38,7 @@
 
 				</div>
 				<div>
-					<img id="head_img" src="<%=contextPath %>img/store/storetop_coffee.jpg" width="1200"
+					<img id="head_img" src="<%=contextPath %>/resources/img/store/storetop_coffee.jpg" width="1200"
 						height="270">
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 							<div class="select-item">
 								<div class="select-img" border="1">
 									<img
-										src="<%=contextPath %>/resources/img/store/product10_1.jpg"
+										src="<%=contextPath %>/resources/img/store/product8_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -200,7 +200,7 @@
 							<div class="select-list2">
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product10_2.jpg" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/nutty.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -222,7 +222,7 @@
 								<div class="select-item2">
 									<div class="select-img" border="1">
 										<img
-											src="<%=contextPath %>/resources/img/store/product7_1.jpg"
+											src="<%=contextPath %>/resources/img/store/fruty.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
@@ -244,7 +244,7 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product10_3.jpg" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/nuttynpruty.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
