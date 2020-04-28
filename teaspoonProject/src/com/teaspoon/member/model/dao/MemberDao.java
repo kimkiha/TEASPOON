@@ -67,7 +67,8 @@ public class MemberDao {
 							rset.getInt("BUY_POINT"),
 							rset.getString("admin"),
 							rset.getString("status"),
-							rset.getString("ADDRESS")
+							rset.getString("ADDRESS"),
+							rset.getInt("POINT")
 						);
 				
 			}
