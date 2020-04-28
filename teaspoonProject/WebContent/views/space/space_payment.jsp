@@ -119,7 +119,7 @@
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="left_text_st top_bd">고객총포인트</td>
-                                            <td class="top_bd"> <div type="text" id='pointUse1' class="point" name="point"width="400" style="padding-inline-start: 15px;"><%=loginUser.getPoint() %></div></td>
+                                            <td class="top_bd"> <input type="text" id='pointUse1' readonly class="point" name="point" width="400" style="padding-inline-start: 15px;"><%=loginUser.getPoint() %></td>
                                             
                                         </tr>
                                 </table>
