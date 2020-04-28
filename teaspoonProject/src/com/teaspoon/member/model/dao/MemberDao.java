@@ -46,9 +46,9 @@ public class MemberDao {
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
-			pstmt.setString(2, userPwd);
+			pstmt.setString(2, userId);
 			pstmt.setString(3, userId);
-			pstmt.setString(4, userId);
+			pstmt.setString(4, userPwd);
 			
 			rset = pstmt.executeQuery();
 
@@ -77,7 +77,7 @@ public class MemberDao {
 						);
 				
 			}
-			//System.out.println(loginUser);
+			System.out.println(loginUser);
 			
 		}catch (SQLException e) {
 			e.printStackTrace();
