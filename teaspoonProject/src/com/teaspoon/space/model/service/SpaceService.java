@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.teaspoon.space.model.dao.SpaceDao;
 import com.teaspoon.space.model.vo.Goods;
+import com.teaspoon.space.model.vo.Payment;
 import com.teaspoon.space.model.vo.Space;
 
 public class SpaceService {
@@ -41,6 +42,21 @@ public class SpaceService {
 		return list;
 	}
 	
+	
+		public int insertPayment(Payment p) {
+		
+		Connection conn = getConnection();
+		
+		int result = new SpaceDao().insertPayment(conn, p);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
 	
 	
 	

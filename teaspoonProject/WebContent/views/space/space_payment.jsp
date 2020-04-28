@@ -99,8 +99,8 @@
                                             	<%if(goods[i].equals(list.get(j).getGsName())){%>
                                             		 	<%=list.get(j).getGsPrice()%>원</td>
                                             		 	<td><%=list.get(j).getGsSaving()%>P</td>
-                                            		 	<%gTotalPrice=+list.get(j).getGsPrice(); %>
-                                            		 	<%gToralSaving=+list.get(j).getGsSaving(); %>
+                                            		 	<%gTotalPrice+=list.get(j).getGsPrice(); %>
+                                            		 	<%gToralSaving+=list.get(j).getGsSaving(); %>
                                             			<%} %>
                                             		<%} %>
                                         </tr>
@@ -118,9 +118,9 @@
                                 
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
-                                            <td class="left_text_st top_bd">고객총포인트</td>
-                                            <td class="top_bd"> <div type="text" id='pointUse1' class="point" name="point"width="400" style="padding-inline-start: 15px;"><%=loginUser.getPoint() %></div></td>
-                                            
+                                           <td class="left_text_st" style="border-top:1px solid #bebebe;">보유포인트</td>
+                                       <td style="border-top:1px solid #bebebe;"><input type="number" id='pointUse1' class="point" name="point" width="400" style="padding-left: 15px; border:0px;" value="<%=loginUser.getPoint() %>" readonly></td>
+                                       <td style="border-top:1px solid #bebebe;"></td>
                                         </tr>
                                 </table>
                                 
@@ -157,7 +157,7 @@
                         </div>
                        <!-- //orderlist -->
                        <div id="payment" class="adside" style="float:left">
-                        <form action="" method="POST">
+                        <form action="<%= contextPath %>/insert.py" method="POST">
                             <table class="pay_tb" >
                                 <thead>
                                     <tr>
@@ -171,8 +171,8 @@
                                     </tr>
                                     
                                     <tr>
-                                        <td class=" pay_lt bd_none">물품비용</td>
-                                        <td class=" pay_rt bd_none"><%=gTotalPrice %>원</td>
+                                        <td class=" pay_lt bd_none">비품비용</td>
+                                        <td class=" pay_rt bd_none" name="goodsPay" ><%=gTotalPrice %>원</td>
                                     </tr>
                                     <tr>
                                         <td class=" pay_lt">포인트 할인</td>
@@ -188,7 +188,7 @@
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"  class=" pay_rt" id='totalPay'><%=gTotalPrice+200000%></td>
+                                        <td colspan="2"  class=" pay_rt" id='totalPay' name="total"><%=gTotalPrice+200000%></td>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -243,16 +243,16 @@
 			var pointUse= $("#pointUse").val();
 			
 			
-			if(userSaving<pointUse){
+			if(Number(userSaving)<Number(pointUse)){
 				alert("보유포인트를 초과하셨습니다.");
 				
-			}else if(pointUse<0){
+			}else if(Number(pointUse)<0){
 				alert("양수를 입력하세요.");			
 			}else{
 
 				$("#useP").text('-'+pointUse+'원');
 				
-				$('#totalPay').text(200000+<%=gTotalPrice%>-pointUse);
+				$('#totalPay').text((200000+<%=gTotalPrice%>-pointUse)+"원");
 			}
 		
 			
