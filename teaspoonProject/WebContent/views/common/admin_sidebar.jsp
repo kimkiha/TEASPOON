@@ -84,11 +84,14 @@
             </div>
             <div class="h2" style="text-align:left;">
             <a href="<%=contextPath%>/main.ad">
-            <img src="<%=contextPath %>/resources/img/admin/admin_moveHome.png" style="width:50px; height:50px; margin-top:25px; cursor:pointer;">
-            </a>
-            	
-            </div>
-            <div class="h3">
+            <img src="<%=contextPath %>/resources/img/admin/admin_moveHome.png" style="width:50px; height:50px; margin-top:25px; cursor:pointer;"></a>
+            	</div>
+            <div class="h4">
+            <a href="<%=contextPath %>/index.jsp">
+           
+            <img class="btn2" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/홈페이지2.png"></a> 
+            	</div>
+            <div class="h3" style="align:right;">
             	<img class="btn1" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/admin_logout.png">
             	</div>
         </div>

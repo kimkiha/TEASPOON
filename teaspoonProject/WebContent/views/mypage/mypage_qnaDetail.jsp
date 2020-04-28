@@ -48,11 +48,7 @@
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <style>
-#banner {
-	height: 170px;
-	line-height: 170px;
-	background: url("패턴 - 복사본.jpg") center top repeat-x;
-}
+#banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
 </style>
 </head>
 <body>

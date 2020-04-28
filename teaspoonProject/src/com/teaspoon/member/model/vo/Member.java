@@ -18,9 +18,10 @@ public class Member {
 	private String admin;		//관리자권한
 	private String status;		//상태
 	private String gradeName;   //등급네임
-	private String address;		//주소
 	private int point;// 포인트
 	
+	
+	private String gradeName;   //등급네임
 	//1:1 QNA 조회
 	private int mtm_no; //1:1상담번호
 	private String mtm_name; // 1:1상담 유형
@@ -32,6 +33,9 @@ public class Member {
 	private int pcode; //위시리스트 갯수 카운트용
 	private int count; //쿠폰 갯수 카운트용
 	
+	private int wishCount; // 위시카운트  쎄션담기
+	private int couponCount; // 쿠폰 갯수  쎄션담기
+	
 	// 마이페이지 카트에 뿌려줄 값
 	private int pDetailNo;	// 상품상세코드
 	private int pCount;		// 장바구니에 담을 상품수량
@@ -41,6 +45,69 @@ public class Member {
 		
 	}
 
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
+			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
+			String status, String address, int point, String gradeName, int wishCount, int couponCount) {
+		super();
+		this.userNo = userNo;
+		this.gradeCode = gradeCode;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.buyPoint = buyPoint;
+		this.admin = admin;
+		this.status = status;
+		this.gradeName = gradeName;
+		this.point = point;
+		this.wishCount = wishCount;
+		this.couponCount = couponCount;
+	}
+
+	
+	
+
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
+			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
+			String status, String gradeName, int mtm_no, String mtm_name, String mtm_title, Date create_date,
+			int point, int pcode, int count, int pDetailNo, int pCount) {
+		super();
+		this.userNo = userNo;
+		this.gradeCode = gradeCode;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.buyPoint = buyPoint;
+		this.admin = admin;
+		this.status = status;
+		this.gradeName = gradeName;
+		this.point = point;
+		this.mtm_no = mtm_no;
+		this.mtm_name = mtm_name;
+		this.mtm_title = mtm_title;
+		this.create_date = create_date;
+		this.point = point;
+		this.pcode = pcode;
+		this.count = count;
+		this.pDetailNo = pDetailNo;
+		this.pCount = pCount;
+	}
+	
+	
+	
+	
+	
 	public Member(String userName, int birthday, String gender, String phone, String userId, String userPwd, String email) {
 		super();
 		this.userName = userName;
@@ -53,9 +120,28 @@ public class Member {
 
 	}
 	
+
+	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
+			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
+			String status, String address,int point) {
+		super();
+		this.userNo = userNo;
+		this.gradeCode = gradeCode;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.buyPoint = buyPoint;
+		this.admin = admin;
+		this.status = status;
+	}
 	
-	
-	
+
 
 	
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
@@ -167,72 +253,30 @@ public class Member {
 		this.buyPoint = buyPoint;
 		this.admin = admin;
 		this.status = status;
-		this.address = address;
-	}
-	
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-
-	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
-			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status, String address,int point) {
-		super();
-		this.userNo = userNo;
-		this.gradeCode = gradeCode;
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.phone = phone;
-		this.email = email;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.buyPoint = buyPoint;
-		this.admin = admin;
-		this.status = status;
-		this.address = address;
-		this.point = point;
-		
-	}
-
-	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
-			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status, String gradeName, int mtm_no, String mtm_name, String mtm_title, Date create_date,
-			int point, int pcode, int count, int pDetailNo, int pCount) {
-		super();
-		this.userNo = userNo;
-		this.gradeCode = gradeCode;
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.phone = phone;
-		this.email = email;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.buyPoint = buyPoint;
-		this.admin = admin;
-		this.status = status;
 		this.gradeName = gradeName;
-		this.mtm_no = mtm_no;
-		this.mtm_name = mtm_name;
-		this.mtm_title = mtm_title;
-		this.create_date = create_date;
+	//	this.address = address;
 		this.point = point;
-		this.pcode = pcode;
-		this.count = count;
-		this.pDetailNo = pDetailNo;
-		this.pCount = pCount;
+		this.wishCount = wishCount;
+		this.couponCount = couponCount;
 	}
-	
+
+
+	public int getWishCount() {
+		return wishCount;
+	}
+
+	public void setWishCount(int wishCount) {
+		this.wishCount = wishCount;
+	}
+
+	public int getCouponCount() {
+		return couponCount;
+	}
+
+	public void setCouponCount(int couponCount) {
+		this.couponCount = couponCount;
+	}
+
 	
 
 	public String getRe_comment() {
@@ -494,13 +538,15 @@ public class Member {
 		return "Member [userNo=" + userNo + ", gradeCode=" + gradeCode + ", userId=" + userId + ", userPwd=" + userPwd
 				+ ", userName=" + userName + ", gender=" + gender + ", birthday=" + birthday + ", phone=" + phone
 				+ ", email=" + email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", buyPoint="
-				+ buyPoint + ", admin=" + admin + ", status=" + status + ", gradeName=" + gradeName + ", address="
-				+ address + ", mtm_no=" + mtm_no + ", mtm_name=" + mtm_name + ", mtm_title=" + mtm_title
-				+ ", create_date=" + create_date + ", re_comment=" + re_comment + ", answer=" + answer + ", point="
-				+ point + ", pcode=" + pcode + ", count=" + count + ", pDetailNo=" + pDetailNo + ", pCount="
-				+ pCount + "]";
+				+ buyPoint + ", admin=" + admin + ", status=" + status + ", gradeName=" + gradeName + /*", address="
+				+ address +*/", point=" + point + ", mtm_no=" + mtm_no + ", mtm_name=" + mtm_name + ", mtm_title="
+				+ mtm_title + ", create_date=" + create_date + ", re_comment=" + re_comment + ", answer=" + answer
+				+ ", pcode=" + pcode + ", count=" + count + ", wishCount=" + wishCount + ", couponCount=" + couponCount
+				+ ", pDetailNo=" + pDetailNo + ", pCount=" + pCount + "]";
 	}
 
+	
+	
 	
 
 	
