@@ -2,7 +2,8 @@
     pageEncoding="UTF-8" import="java.util.ArrayList,com.teaspoon.member.model.vo.*"%>
 <%
 	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
-	//System.out.print(list);
+	int totalPrice = 0;
+	int totalPoint = 0;
 %>
 <!DOCTYPE html>
 <html>
@@ -72,7 +73,7 @@
                                     <tbody>
                                     <%for(int i=0; i<list.size(); i++) {%>
                                         <tr>
-                                            <td >
+                                            <td>
                                                 <img src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>" width="100" height="100">
                                             </td>
                                             <td style="text-align:left; padding-left:20px;font-weight: 700;">
@@ -81,8 +82,10 @@
                                             </td>
                                             <td><%=list.get(i).getAmount() %>개</td>
                                             <td><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()%>원</td>
-                                            <td><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()*0.01 %>p</td>
+                                            <td><%=(int)((list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()*0.01) %>p</td>
                                         </tr>
+                                        <% totalPrice += (list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount(); %>
+                                        <% totalPoint += (int)((list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()*0.01); %>
                                     <%} %>
                                     </tbody>
                                 </table>
@@ -91,9 +94,14 @@
                                 <p>포인트 사용</p>
                                 <table class="tb2"  cellspacing="0" cellpadding="0" style="margin-top:10px">
                                    <tr>
-                                       <td class="left_text_st" style="border-top:1px solid #bebebe;">티스푼포인트</td>
-                                       <td style="border-top:1px solid #bebebe;"> <input type="number" class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
-                                       <td style="border-top:1px solid #bebebe;"><button style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
+                                       <td class="left_text_st" style="border-top:1px solid #bebebe;">보유포인트</td>
+                                       <td style="border-top:1px solid #bebebe;"><input type="number" id='pointUse1' class="point" name="point" width="400" style="padding-left: 15px; border:0px;" value="<%=loginUser.getPoint() %>" readonly></td>
+                                       <td style="border-top:1px solid #bebebe;"></td>
+                                   </tr>
+                                   <tr>
+                                       <td class="left_text_st">사용할포인트</td>
+                                       <td> <input type="number" id='pointUse' class="point" name="point" placeholder="사용할 포인트를 입력하세요." width="400" style="padding-inline-start: 15px;"></td>
+                                       <td><button id="pointUseBtn" style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
                                    </tr>
                                 </table>
                             </div>
@@ -112,10 +120,6 @@
                                             <td class="left_text_st" width="170">휴대전화</td>
                                             <td><input type="text" value="<%=loginUser.getPhone() %>" style="padding-left:20px;"></td>
                                         </tr>
-                                        <tr >
-                                            <td class="left_text_st" >이메일</td>
-                                            <td colspan="3" ><input type="email" value="<%=loginUser.getEmail()%>" style="padding-left:20px;"></td>
-                                        </tr>
                                 </table>
                             </div>
                             <!-- //mp_con3-->
@@ -133,7 +137,7 @@
                                         <tr>
                                             <td class="left_text_st" width="170" rowspan="2">받으시는분</td>
                                             <td style="padding-right:0px; width: 220px; border-bottom: none;" >
-                                                <input type="text" placeholder="이름" style="padding-left:20px;">
+                                                <input type="text" placeholder="이름" style="padding-left:20px;" required>
                                             </td>
                                             <td style="text-align: left; border-bottom: none;"><input type="text" placeholder="휴대전화번호"  style="padding-left:20px;" required></td>
                                         </tr>
@@ -142,7 +146,7 @@
                                                 <button style="background: rgb(158, 158, 158); color:#fff; width:130px;height:53px; padding-left:10px; border:1px solid darkgray">
                                                 	주소찾기
                                                 </button>
-                                                <input type="text" placeholder="주소" style="width: 350px; border-radius:5px; padding-left:20px;">
+                                                <input type="text" placeholder="주소" style="width: 350px; border-radius:5px; padding-left:20px;"required>
                                             </td>
                                         </tr>
                                         
@@ -166,11 +170,11 @@
                                 <tbody>
                                     <tr>
                                         <td class="pay_lt">상품가격</td>
-                                        <td id="pay_rt">원</td>
+                                        <td class="pay_rt"><%=totalPrice %>원</td>
                                     </tr>
                                     <tr>
                                         <td class="bd_none pay_lt">포인트 할인</td>
-                                        <td class="bd_none pay_rt">원</td>
+                                        <td class="bd_none pay_rt" id='useP'>-0원</td>
                                     </tr>
                                     
                                     <tr>
@@ -181,30 +185,28 @@
                                         <td colspan="2" class="bd_none pay_lt">적립예상포인트</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" class=" pay_rt">p</td>
+                                        <td colspan="2" class=" pay_rt"><%=totalPoint %>p</td>
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"  class=" pay_rt">원</td>
+                                        <td colspan="2"  id='totalPay' class=" pay_rt"><%=totalPrice+2500 %>원</td>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
                                     <tr>
                                         <td colspan="2" class="pay_lt" style="padding-top: 20px;text-align: left;">
-                                            위 상품의 판매조건을 명확히 확인하였으며,
-                                            구매 진행에 동의합니다.
-                                            (전자상거래법 제 8조 2항)
+                                        위 상품의 판매조건을 명확히 확인하였으며,구매 진행에 동의합니다.(전자상거래법 제 8조 2항)
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="pay_lt " style="padding: 20px 0; text-align: left;">
-                                            <input type="checkbox">동의합니다
+                                            <input type="checkbox" class="yes">동의합니다
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><button class="pay_button">결제하기</button></td>
+                                        <td colspan="2"><button class="pay_button" onclick="return paym();">결제하기</button></td>
                                     </tr>
                                 </tfoot>   
                             </table>
@@ -221,12 +223,44 @@
     <!--//wrap-->
     
     <script>
-    	$(function(){
-    		var a = 
-    			console.log(a);
-    	});
-    
-    </script>
+	function paym(){
+		
+	var yes = $("input[class='yes']:checked").val();	
+	
+	if(yes==undefined){
+		alert("전자결제 동의해주세요.");
+		return false;
+	}else{
+		return true;
+	}
+	
+	}
+	
+	$(function(){
+		$("#pointUseBtn").click(function(){
+			var userSaving = $("#pointUse1").val();
+			var pointUse= $("#pointUse").val();
+			
+			
+			if(Number(userSaving)<Number(pointUse)){
+				alert("보유포인트를 초과하셨습니다.");
+				
+			}else if(Number(pointUse)<0){
+				alert("양수를 입력하세요.");			
+			}else{
+
+				$("#useP").text('-'+pointUse+'원');
+				
+				var tPay= $("#totalPay").text();
+				var aa = tPay.substring(0,tPay.length-1);
+				$("#totalPay").text(aa-pointUse+"원");
+				
+			}
+		
+			
+		})
+	})
+	</script>
  
 </body>
 </html>
