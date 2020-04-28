@@ -56,13 +56,7 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		if(goods != null) {
 			good = String.join(",", goods);
 		}
-		int total = 0;
-		switch(good) {
-		case "노트북": total =+ 20000; break;
-		case "앰프" : total =+ 20000; break;
-		case "빔프로젝트" : total =+ 10000; break;
-		case "스마트포인터" : total =+ 2000; break;
-		}
+		
 		
 		ArrayList<Goods> list = new SpaceService().selectGoodsList();
 	
@@ -71,7 +65,7 @@ public class SpaceRentalInsertServlet extends HttpServlet {
 		int gradeCode = ((Member)request.getSession().getAttribute("loginUser")).getGradeCode();
 		
 		
-		Space s = new Space(userNo, reservDate, reservTime, visitNum, Phone, reservReason, good, gradeCode, total);
+		Space s = new Space(userNo, reservDate, reservTime, visitNum, Phone, reservReason, good, gradeCode);
 	
 		
 		

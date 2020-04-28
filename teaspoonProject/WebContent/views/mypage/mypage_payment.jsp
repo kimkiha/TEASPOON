@@ -73,43 +73,35 @@
                                     <%for(int i=0; i<list.size(); i++) {%>
                                         <tr>
                                             <td >
-                                                <img src="/사이트이미지/매거진/magazine_1.png" alt="" width="100" height="100">
+                                                <img src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>" width="100" height="100">
                                             </td>
-                                            <td style="text-align:left; padding-left:20px;font-weight: 700;"><%=list.get(i).getPname() %></td>
+                                            <td style="text-align:left; padding-left:20px;font-weight: 700;">
+                                            	<%=list.get(i).getPname() %>
+                                            	<p style="font-weight:100; font-size:16px;padding:0px;"><%=list.get(i).getOptionType1() %>, <%=list.get(i).getOptionType2() %></p>
+                                            </td>
                                             <td><%=list.get(i).getAmount() %>개</td>
-                                            <td><%=list.get(i).getPrice() %>원</td>
-                                            <td><%=list.get(i).getPrice() *0.01 %>p</td>
+                                            <td><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()%>원</td>
+                                            <td><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()*0.01 %>p</td>
                                         </tr>
                                     <%} %>
                                     </tbody>
                                 </table>
                             </div>
                             <div id="mp_con2">
-                                <p>쿠폰 및 포인트 사용</p>
-                                <table class="tb2"  cellspacing="0" cellpadding="0">
-                                        <tr>
-                                            <td class="top_bd left_text_st" width="150" >쿠폰할인</td>
-                                            <td class="top_bd" width="450">
-                                                <select class="coupon">
-                                                        <option>티스푼 회원가입 웰컴 쿠폰 5,000원</option>
-                                                        <option>bronze 회원 정기 쿠폰 3,000원</option>
-                                                        <option>30,000원 구매 시 10% 할인 쿠폰</option>
-                                                </select>
-                                            </td>
-                                            <td width="200" class="top_bd">0원 할인</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="left_text_st">티스푼포인트</td>
-                                            <td> <input type="number" class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
-                                            <td><button style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
-                                        </tr>
+                                <p>포인트 사용</p>
+                                <table class="tb2"  cellspacing="0" cellpadding="0" style="margin-top:10px">
+                                   <tr>
+                                       <td class="left_text_st" style="border-top:1px solid #bebebe;">티스푼포인트</td>
+                                       <td style="border-top:1px solid #bebebe;"> <input type="number" class="point" name="point"width="400" style="padding-inline-start: 15px;"></td>
+                                       <td style="border-top:1px solid #bebebe;"><button style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
+                                   </tr>
                                 </table>
                             </div>
                             <!-- //mp_con2-->
                             <div id="mp_con3">
                                 <p style="float:left; margin-bottom:0">주문고객정보</p>
                                 <p style="text-align:right;font-size: 13px;">고객님의 회원정보가 기본 입력됩니다.</p>
-                                <table class="tb3"  cellspacing="0" cellpadding="0" >
+                                <table class="tb3" cellspacing="0" cellpadding="0" >
                                         <tr>
                                             <td class="left_text_st top_bd ">이름</td>
                                             <td class="top_bd "colspan="3" >
@@ -143,7 +135,7 @@
                                             <td style="padding-right:0px; width: 220px; border-bottom: none;" >
                                                 <input type="text" placeholder="이름" style="padding-left:20px;">
                                             </td>
-                                            <td style="text-align: left; border-bottom: none;"><input type="text" placeholder="휴대전화번호 필수"  style="padding-left:20px;"></td>
+                                            <td style="text-align: left; border-bottom: none;"><input type="text" placeholder="휴대전화번호"  style="padding-left:20px;" required></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" style="width:200px; padding-top:0">
@@ -174,16 +166,13 @@
                                 <tbody>
                                     <tr>
                                         <td class="pay_lt">상품가격</td>
-                                        <td class="pay_rt">56,000원</td>
+                                        <td id="pay_rt">원</td>
                                     </tr>
                                     <tr>
                                         <td class="bd_none pay_lt">포인트 할인</td>
-                                        <td class="bd_none pay_rt">0원</td>
+                                        <td class="bd_none pay_rt">원</td>
                                     </tr>
-                                    <tr>
-                                        <td class="bd_none pay_lt">쿠폰 할인</td>
-                                        <td class="bd_none pay_rt">-5,000원</td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td class=" pay_lt">배송비</td>
                                         <td class=" pay_rt">2,500원</td>
@@ -192,13 +181,13 @@
                                         <td colspan="2" class="bd_none pay_lt">적립예상포인트</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" class=" pay_rt">1,680p</td>
+                                        <td colspan="2" class=" pay_rt">p</td>
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"  class=" pay_rt">53,500원</td>
+                                        <td colspan="2"  class=" pay_rt">원</td>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -231,6 +220,13 @@
     </div>
     <!--//wrap-->
     
+    <script>
+    	$(function(){
+    		var a = 
+    			console.log(a);
+    	});
+    
+    </script>
  
 </body>
 </html>

@@ -54,8 +54,7 @@ public class InsertCartServlet extends HttpServlet {
 			request.getSession().setAttribute("msg", "선택한 상품이 장바구니에 담겼습니다");
 			response.sendRedirect("detail.co?pcode="+cartPcode);
 		} else {
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
+
 		}
 		
 	}
