@@ -116,7 +116,7 @@
 	                                            </a>
                                         	</div>
                                         </td>
-                                        <td class='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*(list.get(i).getAmount())%></td>
+                                        <td class='totalProductPrice'></td>
                                         <td>2,500원</td>
                                     </tr>
                                     <% totalPrice += (list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount(); %>
