@@ -34,12 +34,13 @@ float: left;
 }
 .h1{ width:240px;}
 .h2{
-width:860px;
+width:810px;
 text-align: right;
 font-weight: bolder;
 font-size: 20px;
 }
 .h3 img{width: 50px; padding-top: 20px;}
+.h4 img{width: 50px; padding-top: 20px; margin-right:20px;}
 .deep{display: none;}
 #side{background-color: #efefef;}
 #side li.c-li {list-style:none; width:100%; text-align:left; font-size: 28px; font-weight: bold; cursor: pointer; color:#4e4f53 }

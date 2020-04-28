@@ -66,11 +66,11 @@
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%=loginUser.getCount() %></a>
+                                <a  href="#" ><%=loginUser.getCouponCount()() %></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="<%=contextPath %>/wishList.me" ><%=loginUser.getPcode() %></a>
+                                <a  href="<%=contextPath %>/wishList.me" ><%=loginUser.getWishCount()() %></a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
