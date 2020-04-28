@@ -205,28 +205,7 @@ public class Member {
 		
 	}
 	
-	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
-			int birthday, String phone, String email, Date enrollDate, Date modifyDate, int buyPoint, String admin,
-			String status, String address,int point, String gradeName) {
-		super();
-		this.userNo = userNo;
-		this.gradeCode = gradeCode;
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.phone = phone;
-		this.email = email;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.buyPoint = buyPoint;
-		this.admin = admin;
-		this.status = status;
-		this.address = address;
-		this.point = point;
-		this.gradeName = gradeName;
-	}
+	
 	
 
 	public Member(int userNo, int gradeCode, String userId, String userPwd, String userName, String gender,
