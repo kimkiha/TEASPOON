@@ -118,9 +118,9 @@
                                 
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
-                                            <td class="left_text_st top_bd">고객총포인트</td>
-                                            <td class="top_bd"> <div type="text" id='pointUse1' class="point" name="point"width="400" style="padding-inline-start: 15px;"><%=loginUser.getPoint() %></div></td>
-                                            
+                                           <td class="left_text_st" style="border-top:1px solid #bebebe;">보유포인트</td>
+                                       <td style="border-top:1px solid #bebebe;"><input type="number" id='pointUse1' class="point" name="point" width="400" style="padding-left: 15px; border:0px;" value="<%=loginUser.getPoint() %>" readonly></td>
+                                       <td style="border-top:1px solid #bebebe;"></td>
                                         </tr>
                                 </table>
                                 
