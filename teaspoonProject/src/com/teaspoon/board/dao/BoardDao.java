@@ -964,13 +964,12 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b = new Board();
-				b.setBoardNo(rset.getInt("BOARD_NO"));
-				b.setBoardTitle(rset.getString("BOARD_TITLE"));
-				b.setBoardCategory(rset.getInt("BOARD_CATEGORY"));
-				b.setCount(rset.getInt("COUNT"));
-				b.setCreateDate(rset.getDate("CREATE_DATE"));
-				b.setModifyDate(rset.getDate("MODIFY_DATE"));
-				b.setStatus(rset.getString("STATUS"));
+				b.setBoardNo(rset.getInt(2));
+				b.setBoardTitle(rset.getString(3));
+				b.setCount(rset.getInt(4));
+				b.setCreateDate(rset.getDate(5));
+				b.setModifyDate(rset.getDate(6));
+				b.setStatus(rset.getString(7));
 			}
 			
 		} catch (SQLException e) {
