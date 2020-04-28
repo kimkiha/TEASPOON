@@ -171,6 +171,13 @@
         <!-- //content-->
         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
+        <form id="insertCart" action="insertCart.st" method="post">
+        	<input type="hidden" id="cartPcode" name="cartPcode">
+        	<input type="hidden" id="optionGram" name="optionGram">
+        	<input type="hidden" id="optionGrind" name="optionGrind">
+        	<input type="hidden" id="pCount" name="pCount">
+        	<input type="hidden" id="totalPrice" name="totalPrice">
+        </form>
     </div>
 
     <script>

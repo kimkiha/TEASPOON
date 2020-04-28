@@ -1042,4 +1042,77 @@ public class ProductDao {
 		return result;		
 	}
 
+	
+	/**
+	 * 메인 메뉴 keyword검색
+	 * @param conn
+	 * @param productKeyword
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Product> selectSearchList(Connection conn, PageInfo pi, String keyword){
+		System.out.println(pi);
+		System.out.println(keyword);
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSearchList");
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(2, "%"+keyword+"%");
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("pcode"), rset.getString("pname"),
+						rset.getInt("sup_price"),rset.getInt("price"),
+						rset.getInt("stock"),rset.getString("status"),
+						rset.getString("keyword"),rset.getInt("total_count"),
+						rset.getString("kind"),rset.getString("pcontent")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	public int getSearchListCount(Connection conn,String keyword) {
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getSearchListCount");
+		//System.out.println(sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) { // 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
+	
+	
 }

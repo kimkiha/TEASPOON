@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Cart;
 import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.store.model.service.ProductService;
+import com.teaspoon.store.model.vo.Product;
 
 /**
  * Servlet implementation class MyPageCartServlet
@@ -37,7 +40,7 @@ public class MyPageCartServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(); 
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		System.out.print(loginUser);
+		//System.out.print(loginUser);
 		
 		if(loginUser != null) {
 			int userNo = loginUser.getUserNo();

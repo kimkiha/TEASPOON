@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.Member, com.teaspoon.board.model.vo.*"%>
 <%
 	String contextPath = request.getContextPath();
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	String msg = (String)session.getAttribute("msg");
+	
+
 %>
 <!DOCTYPE html>
 <html>
@@ -36,7 +38,7 @@
                 </div>
                 <div id="header_2">
                     <ul id="navi">
-                        <li><a class="list store" href="">스토어</a>
+                        <li><a class="list store" href="<%=contextPath%>/coffee.st?currentPage=1">스토어</a>
                             <ul class="ul">
                                 <li><a href="<%=contextPath%>/coffee.st?currentPage=1">커피</a></li>
                                 <li><a href="<%=contextPath%>/storeBest.st">금주의 베스트</a></li>
@@ -68,10 +70,13 @@
                     <img id="search_icon" src="<%=contextPath%>/resources/img/main/search.png">
                     <div id="search_wrap" style="display:none">
 	                    <div id="search">
-	                        <div class="search_form">
-	                        	<input type="text" name="search" class="search" >
-	                        	<button class="search_btn">검색</button>
-	                        </div>
+		                    <form id="search_item" action="searchItem.st" method="post">
+		                    <input type='hidden' name='currentPage' value='1'>
+		                        <div class="search_form">
+		                        	<input type="text" name="keyword" class="search">
+		                        	<button type="submit" class="search_btn">검색</button>
+		                        </div>
+		                    </form>
 	                    </div>
 	                </div>
                     <img id="myPage_icon" src="<%=contextPath%>/resources/img/main/mypage.png">
@@ -139,9 +144,8 @@
                }else{
                	p.slideUp("slow");
                }
-               
-               h
             });
+           
            
         });
 
