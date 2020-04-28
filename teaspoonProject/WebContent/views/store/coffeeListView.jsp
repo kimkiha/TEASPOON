@@ -123,7 +123,7 @@
     		function selectWishList(){
     			
     			var icon = $('.like_icon');
-    			var loginUser = "<%=loginUser.getUserId()%>";
+    			var loginUser = "<%=loginUser%>";
     			if(loginUser != null){
     				$.ajax({
     					url:"selectWish.st",
