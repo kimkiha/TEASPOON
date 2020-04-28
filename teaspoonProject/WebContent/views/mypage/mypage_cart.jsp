@@ -107,18 +107,16 @@
                                         <td>
                                         	<input type="hidden" id='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'>
                                         	<div class="number">
-	                                            <a href="#" id="decreaseQuantity">
+	                                            <a href="#" class="decreaseQuantity">
 	                                                <img src="<%=contextPath %>/resources/img/store/minus.png" width="20px" height="20px">
 	                                            </a>
-	                                            <b>
-	                                            	<span id="numberUpDown" style="padding-left: 20px; padding-right: 20px;"><%=list.get(i).getAmount()%></span>
-	                                            </b>
-	                                            <a href="#" id="increaseQuantity">
+	                                            <b><span class="numberUpDown" style="padding-left: 20px; padding-right: 20px;"><%=list.get(i).getAmount()%></span></b>
+	                                            <a href="#" class="increaseQuantity">
 	                                                <img src="<%=contextPath %>/resources/img/store/plus.png" width="20px" height="20px">
 	                                            </a>
                                         	</div>
                                         </td>
-                                        <td id='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*(list.get(i).getAmount())%></td>
+                                        <td class='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*(list.get(i).getAmount())%></td>
                                         <td>2,500원</td>
                                     </tr>
                                     <% totalPrice += (list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount(); %>
@@ -194,22 +192,32 @@
 		var amount;
 		var num1;
 
-		$('#decreaseQuantity').click(function(e) {
+		$('.decreaseQuantity').click(function(e) {
 			e.preventDefault();
-			var stat = $('#numberUpDown').text();
+			
+			var stat = $(this).siblings().eq(0).children().text();
+			//console.log(stat);
 			var num = parseInt(stat, 10);
 			num--;
 			if (num <= 0) {
 				alert('더이상 줄일수 없습니다.');
 				num = 1;
 			}
-			$('#numberUpDown').text(num);
-			totalSum();
+			//$('.numberUpDown').text(num);
+			$(this).siblings().eq(0).children().text(num);
+			
+			var onePrice = $(this).parent().prev().val();
+			var amount = $(this).siblings().eq(0).children().text();
+			var totalPrice = onePrice * amount;
+			
+			$(this).parent().parent().next().text(totalPrice);
+			
 		});
 
-		$('#increaseQuantity').click(function(e) {
+		$('.increaseQuantity').click(function(e) {
 			e.preventDefault();
-			var stat = $('#numberUpDown').text();
+			var stat = $(this).siblings().eq(1).children().text();
+			//console.log(stat);
 			var num = parseInt(stat, 10);
 			num++;
 
@@ -217,26 +225,21 @@
 				alert('더이상 늘릴수 없습니다.');
 				num = 5;
 			}
-			$('#numberUpDown').text(num);
-			totalSum();
-
-		});
-
-		// 상품금액 합계
-		$('.amount').click(function() {
-			totalSum();
-		});
-
-		// 상품금액 합계 출력
-		function totalSum() {
-			var onePrice = $("#onePrice").val();
-			amount = $("#numberUpDown").val();
-			num1 = $('#numberUpDown').text();
+			//$('#numberUpDown').text(num);
+			$(this).siblings().eq(1).children().text(num);
 			
-			var totalPrice = onePrice * num1;
-			$("#totalProductPrice").text(totalPrice);
+			
+			var onePrice = $(this).parent().prev().val();
+			var amount = $(this).siblings().eq(1).children().text();
+			var totalPrice = onePrice * amount;
+			
+			
+			$(this).parent().parent().next().text(totalPrice);
+			
 
-		}
+		});
+
+		
 	});
 	
     </script>

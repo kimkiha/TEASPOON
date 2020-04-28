@@ -27,7 +27,7 @@
 	 <%@include file="../common/admin_sidebar.jsp" %>
    
         <div id="contents">
-            
+          <!-- <img id="main_img" src="/resources/img/main/main.jpg">   --> 
         </div>
     </div>  
 </body>

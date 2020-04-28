@@ -689,6 +689,22 @@ public class MemberService {
 		
 	}
 
+	public int MemberInsertCart() {
+		
+		Connection conn = getConnection();
+		
+		int	result  = new MemberDao().MemberInsertCart(conn);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
 	
 	
 	
