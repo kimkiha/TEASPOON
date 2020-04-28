@@ -45,9 +45,9 @@ public class MyPageMainServlet extends HttpServlet {
 		loginUser.setPoint(myInfo.getPoint());
 		
 		
-		if(myInfo != null) {
+		if(loginUser != null) {
 			
-			session.setAttribute("myInfo",myInfo);
+			
 
 			
 			
