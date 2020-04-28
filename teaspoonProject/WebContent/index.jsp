@@ -120,12 +120,12 @@
                         <div id="link1" align="center">
                                <p style="padding-top:65px"><small>나의 커피찾기,</small></p>
                                <p><b>내 입맞에 맞는 커피를 추천받아보세요</b></p>
-                                <button id="btnLink1">추천 바로가기</button>
+                                <button id="btnLink1"><a href="<%=contextPath %>/selectitem.st">추천 바로가기</a></button>
                         </div>
                         <div id="link2" align="center">
                             <p style="padding-top:65px"><small>티스푼 공간대여 서비스</small></p>
                             <p><b>특별한 날 특별한 장소, 다양한 공간에서 즐기는 티타임</b></p>
-                            <button id="btnLink2">공간대여 바로가기</button>
+                            <button id="btnLink2"><a href="<%=contextPath %>/rental.sp">공간대여 바로가기</a></button>
                         </div>
                     </div>
                 </div>
@@ -206,15 +206,15 @@
                         <table id="etc_tb" cellspacing="0" cellpadding="0" border-spacing="0">
                             <tr>
                                 <td rowspan="2" width="400" height="550">
-                                <p></p>
-                                    <a href="#"><img id="maga" src="<%=contextPath %>/resources/img/main/magazine.jpg"></a>
-                                </td>
+                                <p></p> <!-- 이벤트 -->
+                                    <a href="<%=contextPath %>/eventList.bo"><img id="maga" src="<%=contextPath %>/resources/img/main/magazine.jpg"></a>
+                                </td>   <!-- 어바웃티스푼 -->
                                 <td width="600" height="275">
-                                    <a href="#"><img id="eve" src="<%=contextPath %>/resources/img/main/event.jpg"></a>
+                                    <a href="<%=contextPath %>/about.bo"><img id="eve" src="<%=contextPath %>/resources/img/main/event.jpg"></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><a href=""><img id="abo" src="<%=contextPath %>/resources/img/main/brandstory.jpg"></a></td>
+                            <tr>	    <!-- 매거진 -->
+                                <td><a href="<%=contextPath %>/magazineList.bo?currentPage=1"><img id="abo" src="<%=contextPath %>/resources/img/main/brandstory.jpg"></a></td>
                             </tr>
                         </table>
                     </div>
