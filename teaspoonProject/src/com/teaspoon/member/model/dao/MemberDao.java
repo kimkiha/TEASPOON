@@ -46,7 +46,9 @@ public class MemberDao {
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
-			pstmt.setString(2, userPwd);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, userId);
+			pstmt.setString(4, userPwd);
 			
 			rset = pstmt.executeQuery();
 
@@ -68,7 +70,10 @@ public class MemberDao {
 							rset.getString("admin"),
 							rset.getString("status"),
 							rset.getString("ADDRESS"),
-							rset.getInt("POINT")
+							rset.getInt("POINT"),
+							rset.getString("grade_name"),
+							rset.getInt("wishCount"),
+							rset.getInt("couponCount")
 						);
 				
 			}

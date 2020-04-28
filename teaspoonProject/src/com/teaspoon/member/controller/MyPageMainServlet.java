@@ -36,14 +36,7 @@ public class MyPageMainServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		
-		
-		Member myInfo = new MemberService().MyPageInfo(loginUser.getUserNo());
-		loginUser.setGradeName(myInfo.getGradeName());
-		loginUser.setCount(myInfo.getCount());
-		loginUser.setPcode(myInfo.getPcode());
-		loginUser.setPoint(myInfo.getPoint());
-		
+	
 		
 		if(loginUser != null) {
 			
