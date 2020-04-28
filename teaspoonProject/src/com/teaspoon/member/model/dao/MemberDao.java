@@ -1607,6 +1607,26 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		
 		return at;
 	}
+
+	public int MemberInsertCart(Connection conn) {
+		
+		int result=0;
+		PreparedStatement pstmt = null;
+		String sql  = prop.getProperty("memberInsertCart");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
 		
 		
 		
