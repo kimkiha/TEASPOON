@@ -93,10 +93,12 @@
                                             <td><%for(int j=0;j<list.size();j++){%> 
                                             	<%if(goods[i].equals(list.get(j).getGsName())){%>
                                             		 	<%=list.get(j).getGsPrice()%>원</td>
-                                            		 	<%} %>
-                                            		 <%} %>
-                                            <td>300P</td>
+                                            		 	<td><%=list.get(j).getGsSaving()%>P</td>
+                                            		 	
+                                            			<%} %>
+                                            		<%} %>
                                         </tr>
+                                        
                                         <%} %>
                                        
                                         
@@ -182,11 +184,11 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="pay_lt " style="padding: 20px 0; text-align: left;">
-                                            <input type="checkbox">동의합니다
+                                            <input type="checkbox" class="yes">동의합니다
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><button class="pay_button">결제하기</button></td>
+                                        <td colspan="2"><button class="pay_button" onclick="return paym();">결제하기</button></td>
                                     </tr>
                                 </tfoot>   
                             </table>
@@ -204,4 +206,18 @@
     </div>
 
 </body>
+<script>
+	function paym(){
+		
+	var yes = $("input[class='yes']:checked").val();	
+	
+	if(yes==undefined){
+		alert("전자결제 동의해주세요.");
+		return false;
+	}else{
+		return true;
+	}
+	
+	}
+</script>
 </html>
