@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.space.model.vo.*,com.teaspoon.common.PageInfo "%>
 <%
 
-ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+ArrayList<Space> list = (ArrayList<Space>)request.getAttribute("list");
 PageInfo pi = (PageInfo)request.getAttribute("pi");
 int currentPage = pi.getCurrentPage();
 int startPage = pi.getStartPage();
@@ -52,27 +52,29 @@ int maxPage = pi.getMaxPage();
                                     <th width="100px">비품요청</th>
                                     <th>결제금액</th>
                                     <th>승인여부</th>
-                                    
+                                    <th>승인결제</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            <%for(int i=0; i<list.size(); i++){ %>
                                 <tr>
-                                    <td>1</td>
-                                    <td>20.04.03</td>
-                                    <td>14:00-16:00</td>
+                                    <td><%=list.get(i).getReservNo() %></td>
+                                    <td><%=list.get(i).getAppDate() %></td>
+                                    <td><%=list.get(i).getReservTime() %></td>
                                     <!--예약은 로그인한 회원만 가능하며 예약자명과 연락처는 회원번호로 불러옴-->
-                                    <td>홍길동</td>
-                                    <td>010-1111-2222</td>
-                                    <td>6</td>
-                                    <td>회의하려고 사용하려고합니다아아아아아아아아아</td>
-                                    <td>모니터1,화이트보드2,책상6,의자6</td>
-                                    <td>56,000</td>
+                                    <td><%=list.get(i).getUserName() %></td>
+                                    <td><%=list.get(i).getPhone() %></td>
+                                    <td><%=list.get(i).getVisitNum() %></td>
+                                    <td><%=list.get(i).getReservReason() %></td>
+                                    <td><%=list.get(i).getGood() %></td>
+                                    <td><%=list.get(i).getTotal() %></td>
+                                    <td><%=list.get(i).getAccept() %></td>
                                     <td>
                                         <button>거절</button>
                                         <button>승인</button>
                                     </td>
-                                    
                                 </tr>
+                                <%} %>
                             </tbody>
                              
                       </table>

@@ -53,7 +53,7 @@ public class SpacelistAdminServlet extends HttpServlet {
 		pageLimit = 10;
 		
 		//* boardLimit : 한 페이지에 보여질 게시글 최대 갯수
-		boardLimit = 10; 
+		boardLimit = 5; 
 		
 		
 		//* maxPage : (마지막 페이지) 총 페이지수 
@@ -112,7 +112,7 @@ public class SpacelistAdminServlet extends HttpServlet {
 		//System.out.println(pi);
 		ArrayList<Space> list = new SpaceService().selectSpaceList(pi);
 		
-		System.out.println(list);
+		//System.out.println(list);
 		
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
