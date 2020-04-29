@@ -56,6 +56,11 @@ int maxPage = pi.getMaxPage();
                                 </tr>
                             </thead>
                             <tbody>
+                  			<%if(list.isEmpty()){%>
+								<tr>
+									<td colspan="11">조회된 리스트가 없습니다.</td>
+								</tr>
+							<%}else{%>
                             <%for(int i=0; i<list.size(); i++){ %>
                                 <tr>
                                     <td><%=list.get(i).getReservNo() %></td>
@@ -75,6 +80,7 @@ int maxPage = pi.getMaxPage();
                                     </td>
                                 </tr>
                                 <%} %>
+                              <%} %>
                             </tbody>
                              
                       </table>
