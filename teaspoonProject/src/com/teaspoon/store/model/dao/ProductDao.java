@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
+import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.store.model.vo.Product;
 import com.teaspoon.store.model.vo.Review;
 
@@ -1173,6 +1174,10 @@ public class ProductDao {
 			close(pstmt);
 		}
 		return result;
+		
+	}
+	
+	
 	public ArrayList<Product> mainBestProductList(Connection conn) {
 	ArrayList<Product> list = new ArrayList<>();
 		
@@ -1207,6 +1212,29 @@ public class ProductDao {
 			close(pstmt);
 		}
 		return list;
+		
+	}
+	
+	public int ordersInsert(Connection conn, Orders order, int userNo, String phone, int total) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("ordersInsert");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, userName);
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 		
 	}
 }

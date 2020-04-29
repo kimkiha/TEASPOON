@@ -17,7 +17,7 @@
             <div id="notice">
                 <table class="replyArea">
                     <tr>
-                        <td width="270">공지사항</td>
+                        <td width="213">공지사항</td>
                         <td width="670" id="ajax_notice">
                         </td>
                         <td width="230" style="text-align: right;"><a href="<%=contextPath%>/noticeList.bo?currentPage=1">+더보기</a></td>

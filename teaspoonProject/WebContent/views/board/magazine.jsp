@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main/main.css">
     
     <script type="text/javascript" src="resources/js/main.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

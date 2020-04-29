@@ -41,7 +41,7 @@
 							style="width: 95px; border-left: 1px solid #bebbb6">
 							<div class="user_photo"
 								style="margin-top: 30px; padding-left: 10px; float: left;">
-								<img src="">
+								<img src="<%=contextPath%>/resources/img/admin/user.png">
 							</div>
 						</div>
 						<div class="user_info" style="width: 450px;">
@@ -71,7 +71,7 @@
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
-						<a href="#" class=" float"> 주문배송조회</a>
+						<a href="<%=contextPath %>//mydelivery.me" class=" float"> 주문배송조회</a>
 						<a href="#" class=" float">공간대여확인</a>
 						<a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a>
 						<a href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
@@ -95,7 +95,7 @@
 									</div>
 									<div class="myorder">
 										<div class="l">
-											<img src="..\mypage main\마페아이콘\주문관리_1.png" width="80"
+											<img src="<%=contextPath%>/resources/img/mypage/주문관리.png" width="80"
 												height="80"><br>
 											<br>주문접수
 											<P>0</P>
@@ -104,7 +104,7 @@
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="..\mypage main\마페아이콘\카드_2.png" width="80"
+											<img src="<%=contextPath%>/resources/img/mypage/카드.png" width="80"
 												height="80"><br>
 											<br>결제완료
 											<P>0</P>
@@ -113,7 +113,7 @@
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="..\mypage main\마페아이콘\상품준비2.png" width="80"
+											<img src="<%=contextPath%>/resources/img/mypage/상품준비.png" width="80"
 												height="80"><br>
 											<br>상품준비
 											<P>0</P>
@@ -122,7 +122,7 @@
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="..\mypage main\마페아이콘\배송중.png" width="80"
+											<img src="<%=contextPath%>/resources/img/mypage/배송중.png" width="80"
 												height="80"><br>
 											<br>배송중
 											<P>0</P>
@@ -131,7 +131,7 @@
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="..\mypage main\마페아이콘\배송완료.png" width="80"
+											<img src="<%=contextPath%>/resources/img/mypage/배송완료.png" width="80"
 												height="80"><br>
 											<br>배송완료
 											<P>0</P>
@@ -151,19 +151,19 @@
 								<div class="cp2">
 									<div class="cp">
 										<div align="center">
-											<img src="../mypage main\coupon.png" width="150" height="110">
+											<img src="<%=contextPath%>/resources/img/mypage/쿠폰.png" width="150" height="110">
 										</div>
 										<span>멤버십 3천원할인쿠폰</span>
 									</div>
 									<div class="cp">
 										<div align="center">
-											<img src="../mypage main\coupon.png" width="150" height="110">
+											<img src="<%=contextPath%>/resources/img/mypage/쿠폰.png" width="150" height="110">
 										</div>
 										<span>멤버십 3천원할인쿠폰</span>
 									</div>
 									<div class="cp">
 										<div align="center">
-											<img src="../mypage main\coupon.png" width="150" height="110">
+											<img src="<%=contextPath%>/resources/img/mypage/쿠폰.png" width="150" height="110">
 										</div>
 										<span>멤버십 3천원할인쿠폰</span>
 									</div>
