@@ -186,7 +186,8 @@
                                     <tr class="">
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
-                                    <tr>
+                                    <tr> 
+                                    
                                         <td colspan="2"  class=" pay_rt" id='totalPay'><input type="hidden" name="total" value=<%=gTotalPrice+200000%>><%=gTotalPrice+200000%></td>
                                     </tr>
                                 </tbody> 

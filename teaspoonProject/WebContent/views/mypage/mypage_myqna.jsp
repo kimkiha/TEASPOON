@@ -24,7 +24,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
     <style>
-        #banner {height: 170px; line-height: 170px; background:url("패턴 - 복사본.jpg") center top repeat-x;}
+       #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
           #mypage_table>tbody>tr:hover{
    	   cursor:pointer;   
    }
@@ -66,11 +66,11 @@
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%=loginUser.getCouponCount()() %></a>
+                                <a  href="#" ><%=loginUser.getCouponCount()%></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="<%=contextPath %>/wishList.me" ><%=loginUser.getWishCount()() %></a>
+                                <a  href="<%=contextPath %>/wishList.me" ><%=loginUser.getWishCount()%></a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
