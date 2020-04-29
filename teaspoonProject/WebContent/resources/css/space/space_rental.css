@@ -400,7 +400,8 @@ img {vertical-align: middle;}
 	font-size:20px;
 	text-align:center;
 	vertical-align:middle;
-	width:100px;
+	width:200px;
+	font-size:20px
 }
 .aka{
 	font-weight:bold;

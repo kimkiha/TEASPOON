@@ -180,10 +180,10 @@
                             <div class="sb02"><p class="ftm">대여 비품용품</p><p id="spreadBtn03" class="btn02">세부사항⇲</p></div> 
                             <ul id="hiddenList02" class="example02" style="display: none; padding:20px;" >
                              
-                                <li id="span1"><label for="goodd"><input type="checkbox" id="goodd" class='goods' name="good" value="빔프로젝트">빔프로젝트 (+)10,000원</label></li>
-                                <li id="span2"><input type="checkbox" class='goods' name="good" value="노트북">노트북 (+)20,000원</li>
-                                <li id="span3"><input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터 (+),2000원</li>
-                                <li id="span4"><input type="checkbox" class='goods' name="good" value="앰프">앰프 (+)20,000원</li>
+                                <li id="span1" style="width:150px"><label for="goodd"><input type="checkbox" id="goodd" class='goods' name="good" value="빔프로젝트">빔프로젝트 <span style="color:lightgray;font-size:15px">(+)10,000원</span></label></li>
+                                <li id="span2" style="width:150px"><input type="checkbox" class='goods' name="good" value="노트북">노트북<span style="color:lightgray;font-size:15px"> (+)20,000원</span></li>
+                                <li id="span3" style="width:150px"><input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터 <span style="color:lightgray;font-size:15px">(+),2000원</span></li>
+                                <li id="span4" style="width:150px"><input type="checkbox" class='goods' name="good" value="앰프">앰프<span style="color:lightgray;font-size:15px">(+)20,000원</span></li>
             
                             </ul>
 
