@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
+import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.store.model.dao.ProductDao;
 import com.teaspoon.store.model.vo.Product;
 import com.teaspoon.store.model.vo.Review;
@@ -475,17 +476,8 @@ public class ProductService {
 		return list;
 	}
 
+	
 	public int ordersUpdate(int amount, int userNo, int pDetailNo) {
-	public ArrayList<Product> mainBestProductList() {
-		Connection conn = getConnection();
-		ArrayList<Product> list = new ProductDao().mainBestProductList(conn);
-
-		close(conn);
-		return list;
-	}
-	
-	
-	public int ordersUpdate(int mprice, int amount) {
 		Connection conn = getConnection();
 
 		int result = new ProductDao().ordersUpdate(conn, amount, userNo, pDetailNo);
@@ -499,4 +491,34 @@ public class ProductService {
 		close(conn);
 		return result;
 	}
+	
+	public ArrayList<Product> mainBestProductList() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().mainBestProductList(conn);
+
+		close(conn);
+		return list;
+	}
+	
+	
+	
+	/** 사용자 최종주문내역 저장하는 서비스 
+	 * @return
+	 */
+	public int ordersInsert(Orders order, int userNo, String phone, int total) {
+		Connection conn = getConnection();
+		int result = new ProductDao().ordersInsert(conn, order, userNo, phone, total);
+		
+
+		if (result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
+	}
+	
+	
 }
