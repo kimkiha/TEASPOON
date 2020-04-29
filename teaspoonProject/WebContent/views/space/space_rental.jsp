@@ -32,7 +32,7 @@
         <div id="banner">
         	
             <div class="contaniner" style="width:100%; height:100%;">
-            	<b><p style="font-size:40px;">공간대여</p></b>
+            	<b><p style="font-size:40px; position:relative; top:50px;">공간대여</p></b>
             </div>
         </div>
         <!-- //banner -->
@@ -49,19 +49,19 @@
                         <!-- 1번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">1 / 3</div>
-                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv3.png;" style="width:100%;">
+                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv4.png;" style="width:1000px; height:550px;">
                           <div class="text"></div>
                         </div>
                         <!-- 2번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">2 / 3</div>
-                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv1.png;" style="width:100%;">
+                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv1.png;" style="width:1000px; height:550px;">
                           <div class="text"></div>
                         </div>
                         <!-- 3번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">3 / 3</div>
-                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv4.png;" style="width:100%;">
+                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv3.png;" style="width:1000px; height:550px;">
                           <div class="text"></div>
                         </div>
                         
