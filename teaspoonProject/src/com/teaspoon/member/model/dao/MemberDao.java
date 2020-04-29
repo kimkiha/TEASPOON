@@ -1632,6 +1632,81 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		
 		return result;
 	}
+
+	public ArrayList<Member> SelectReservCafe(Connection conn,int userNo,PageInfo pi) {
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		String sql = prop.getProperty("SelectReservCafe");
+		
+		int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow = startRow + pi.getBoardLimit()-1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member m = new Member();
+				m.setReservNo(rset.getInt("reserv_no"));
+				m.setAppDate(rset.getDate("app_date"));
+				m.setReservDate(rset.getString("reserv_date"));
+				m.setReservTime(rset.getString("reserv_time"));
+				m.setVisitNum(rset.getInt("visit_num"));
+				m.setAccept(rset.getString("accept"));
+				m.setTotal(rset.getInt("total"));
+				
+				
+				list.add(m);
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		return list ;
+			
+			
+		
+		
+	}
+
+	public int reservListCount(Connection conn, int userNo) {
+		int listCount =0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("reservListCount");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println(listCount);
+		return listCount;
+	}
+	
 		
 		
 		

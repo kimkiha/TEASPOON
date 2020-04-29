@@ -705,6 +705,21 @@ public class MemberService {
 		return result;
 	}
 
+	public ArrayList<Member> SelectReservCafe(int userNo,PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Member> list = new MemberDao().SelectReservCafe(conn,userNo,pi);
+		close(conn);
+		return list;
+		
+	}
+
+	public int getreservListCount(int userNo) {
+		Connection conn = getConnection();
+		int listCount = new MemberDao().reservListCount(conn,userNo);
+		close(conn);
+		return listCount;
+	}
+
 	
 	
 	
