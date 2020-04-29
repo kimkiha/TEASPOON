@@ -474,4 +474,14 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+
+	public ArrayList<Product> mainBestProductList() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().mainBestProductList(conn);
+
+		close(conn);
+		return list;
+	}
+	
+	
 }

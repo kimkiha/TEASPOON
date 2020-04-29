@@ -66,54 +66,7 @@
                     <div id="best">
                         <div class="bestname"><p>BEST COFFEE 4</p></div>
                         <div id="best_item"> 
-                            <div class="best_content">
-                            	<div class="best_num">
-	                                <p class="num">1</p>
-	                                <a href="">
-	                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product1_1.jpg" alt="">
-	                                </a>
-	                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-	                                <p class="best_product_price">
-	                                   <b>\18,000원</b>
-	                                </p>
-                                </div>
-                            </div>
-                            <div class="best_content">
-                            	<div class="best_num">
-	                                <p class="num">2</p>
-	                                <a href="">
-	                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product2_1.jpg" alt="">
-	                                </a>
-	                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-	                                <p class="best_product_price">
-	                                   <b>\18,000원</b>
-	                                </p>
-                                </div>
-                            </div>
-                            <div class="best_content">
-                            	<div class="best_num">
-	                                <p class="num">3</p>
-	                                <a href="">
-	                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product3_1.jpg" alt="">
-	                                </a>
-	                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-	                                <p class="best_product_price">
-	                                   <b>\18,000원</b>
-	                                </p>
-                                </div>
-                            </div>
-                            <div class="best_content">
-                            	<div class="best_num">
-	                                <p class="num">4</p>
-	                                <a href="">
-	                                    <img src="<%=contextPath %>/resources/img/store/mainBest_product4_1.jpg" alt="">
-	                                </a>
-	                                <p class="best_product_name"><a href="#">콜롬비아 비오타 팔마레스</a></p>
-	                                <p class="best_product_price">
-	                                   <b>\18,000원</b>
-	                                </p>
-                                </div>
-                            </div>
+                            
                         </div>
                       
                     </div>
@@ -180,14 +133,13 @@
 	    <%-- if(<%=request.getSession().getAttribute("b")%> == null){
 	    	location.href='noticeMain.bo';
 	    } --%>
-    	
+	    
 	    $(function(){
 	    	$.ajax({
 	    		url:"mainProductList.st",
 	    		type:"post",
 	    		success:function(list){
 	    			var value ="";
-	    			console.log(list);
 	    			for(var i=0; i<list.length; i++){
 	    			  value += "<div>" +
 		                        "<a href='<%=contextPath%>/detail.co?pcode=" + list[i].pcode + "'>"+
@@ -204,13 +156,30 @@
 	    			console.log("ajax 통신실패!");
 	    		}
 	    	})
-	    	
-	    	
+	    });
+	    
+            
+	    $(function(){
 	    	$.ajax({
 	    		url:"mainBestList.st",
 	    		type:"post",
-	    		success:function(list){
-	    			
+	    		success:function(bestlist){
+	    			var value = "";
+	    			for(var i=0; i<bestlist.length; i++){
+	    				value += "<div class='best_content'>"+
+	    		    			 "<div class='best_num'>"+	
+		    					"<p class='num'>"+(i+1) +"</p>"+
+			    				"<a href='<%=contextPath%>/detail.co?pcode=" + bestlist[i].pcode + "'>"+
+			    				"<img src='<%=contextPath %>/resources/thumbnail_upfiles/" + bestlist[i].changeName + "'>" +
+			                    "</a>"+
+			                    "<p class='best_product_name'>"+"<a href='<%=contextPath%>/detail.co?" + bestlist[i].pcode +"'>" + bestlist[i].pname + "</a>"+"</p>"+
+			                    "<p class='best_product_price'><b>"+bestlist[i].price+"</b></p>"+
+			                    "</div>"+
+			                    "</div>"
+	    			}
+	    			$("#best_item").html(value);
+	    		},error:function(){
+	    			console.log("ajax 통신실패!");
 	    		}
 	    	})
 	    });
