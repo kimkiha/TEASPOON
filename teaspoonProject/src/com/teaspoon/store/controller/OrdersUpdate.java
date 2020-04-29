@@ -1,29 +1,28 @@
-package com.teaspoon.space.controller;
+package com.teaspoon.store.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.space.model.service.SpaceService;
-import com.teaspoon.space.model.vo.Payment;
-import com.teaspoon.space.model.vo.Space;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.teaspoon.store.model.service.ProductService;
 
 /**
- * Servlet implementation class SpacePaymentInsertServlet
+ * Servlet implementation class OrdersUpdate
  */
-@WebServlet("/insert.py")
-public class SpacePaymentInsertServlet extends HttpServlet {
+@WebServlet("/ordersUpdate.st")
+public class OrdersUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpacePaymentInsertServlet() {
+    public OrdersUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +31,14 @@ public class SpacePaymentInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int mprice = Integer.parseInt(request.getParameter("mprice"));
+		int amount = Integer.parseInt(request.getParameter("amount"));
+		int result = new ProductService().ordersUpdate(mprice, amount);
 		
-		int goodsPay = Integer.parseInt(request.getParameter("goodsPay"));
-		int total = Integer.parseInt(request.getParameter("total"));
-		Space s = (Space)request.getSession().getAttribute("s");
-		Payment p = new Payment(goodsPay, total);
-		
-		int result = new SpaceService().insertPayment(p,s);
-		request.setAttribute("total",total);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/space/payment.jsp");
-		view.forward(request, response);
-		
+		response.setContentType("application/jason; charset=utf-8;");
+		Gson gson = new GsonBuilder().create();
+		gson.toJson(result, response.getWriter());
+	
 	}
 
 	/**

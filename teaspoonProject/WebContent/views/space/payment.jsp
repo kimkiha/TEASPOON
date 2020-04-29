@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+<% int total = (int)request.getAttribute("total"); %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '주문명:결제테스트',
-	    amount : 1000,
+	    amount : <%=total%>,
 	    buyer_email : 'iamport@siot.do',
 	    buyer_name : '구매자이름',
 	    buyer_tel : '010-1234-5678',
@@ -30,6 +31,8 @@
 	        msg += '상점 거래ID : ' + rsp.merchant_uid;
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	        
+	        location.href="/PaymentPass.py";
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
@@ -39,7 +42,7 @@
 </script>
 </head>
 <body>
-	<p>아임 서포트 결제 모듈 테스트 해보기</p>
+	
 	
 	
 </body>
