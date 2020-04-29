@@ -18,6 +18,7 @@ import com.teaspoon.member.model.vo.Cart;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.member.model.vo.Point;
 import com.teaspoon.member.model.vo.WishList;
 import com.teaspoon.store.model.vo.Product;
@@ -1708,7 +1709,72 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 	}
 	
 		
+	public int getOrderCount(Connection conn) {
+		int listCount = 0;
+
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getOrderCount");
+		//System.out.println(sql);
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+
+			if (rset.next()) { // 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return listCount;
+	}		
 		
+	
+	public ArrayList<Orders> orderConditionList(Connection conn, PageInfo pi) {
+		ArrayList<Orders> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("orderConditionList");
+		
+		int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow = startRow + pi.getBoardLimit()-1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Orders(rset.getInt("ORDER_NO"),
+						rset.getInt("USER_NO"),
+						rset.getString("ORDERER"),
+						rset.getString("ORDERER_PHONE"),
+						rset.getString("RECIPIENT"),
+						rset.getString("RECIPIENT_PHONE"),
+						rset.getString("RECIPIENT_ADDRESS"),
+						rset.getString("ORDER_MAESSAGE"),	
+						rset.getInt("SHIPPING_FEE"),
+						rset.getInt("PAYMENT"),
+						rset.getDate("ORDER_DATE"),
+						rset.getInt("PROGRESS"),
+						rset.getInt("CART")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 		
 }
 

@@ -44,9 +44,9 @@
                             </ul>
                         </li>
                         <li><a class="list recommend" href="<%=contextPath%>/selectitem.st">맞춤추천</a>
-                        <li><a class="list event" href="<%=contextPath%>/eventList.bo">이벤트</a>
+                        <li><a class="list event" href="<%=contextPath%>/eventList.bo?currentPage=1">이벤트</a>
                             <ul class="ul ">
-                                <li><a href="<%=contextPath%>/eventList.bo">이벤트</a></li>
+                                <li><a href="<%=contextPath%>/eventList.bo?currentPage=1">이벤트</a></li>
                                 <li><a href="<%=contextPath%>/instagram.bo">인스타그램</a></li>
                             </ul>
                         </li>

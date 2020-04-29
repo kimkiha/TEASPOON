@@ -115,7 +115,7 @@
             <br>
             <li class="c-li"><p class="click" style="margin: 0 0;" >주문관리</p>
             <ul class="deep">
-            <li><a href="<%=contextPath%>/ProductPresentConditionList.st">주문/취소/반품</a></li>
+            <li><a href="<%=contextPath%>/orderCondition.st?currentPage=1">주문/취소/반품</a></li>
             </ul>
             </li>
             <br>

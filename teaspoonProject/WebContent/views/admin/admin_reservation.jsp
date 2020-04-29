@@ -70,8 +70,8 @@ int maxPage = pi.getMaxPage();
                                     <td><%=list.get(i).getTotal() %></td>
                                     <td><%=list.get(i).getAccept() %></td>
                                     <td>
-                                        <button>거절</button>
-                                        <button>승인</button>
+                                        <button class="deny">거절</button>
+                                        <button class="accept">승인</button>
                                     </td>
                                 </tr>
                                 <%} %>
@@ -112,18 +112,52 @@ int maxPage = pi.getMaxPage();
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-        
-    </div>  
 </body>
+
+ <script>
+ 
+
+
+ 
+	 	$(function(){
+	 		$(".deny").click(function(){
+	 			var reservNo = $(this).parent().parent().children().eq(0).text();
+	 			var deny = $(this).parent().parent().children().eq(9);
+	 			$.ajax({
+	 				url:"reservationDeny.re",
+	 				type:"post",
+	 				data:{reservNo:reservNo},
+	 				success:function(list){
+	 					deny.text('N');
+	 				
+	 				},
+	 				error:function(){
+	 					console.log("ajax 통신 실패!!");
+	 				}
+	 				
+	 			});
+	 		});
+	 	});
+	 	
+	 	
+	 	$(function(){
+	 		$(".accept").click(function(){
+	 			var reservNo = $(this).parent().parent().children().eq(0).text();
+	 			var deny = $(this).parent().parent().children().eq(9);
+	 			$.ajax({
+	 				url:"reservationAccept.re",
+	 				type:"post",
+	 				data:{reservNo:reservNo},
+	 				success:function(list){
+	 					deny.text('Y');
+	 				
+	 				},
+	 				error:function(){
+	 					console.log("ajax 통신 실패!!");
+	 				}
+	 				
+	 			});
+	 		});
+	 	});
+	 </script>
 </html>

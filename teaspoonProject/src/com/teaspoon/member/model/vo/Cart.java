@@ -7,22 +7,22 @@ public class Cart {
 	private int cart;	//카트번호(userNo)
 	private Date madeDate; // 카트생성날짜
 	
-	private int pcode;
-	private int optionCode;
-	private int pDetailNo;
-	private int amount;
-	private int addPrice;
-	private String optionType1;
-	private String optionType2;
-	private String pname;
-	private int supPrice;
-	private int price;
-	private int stock;
-	private String status;
-	private String keyword;
-	private int totalCount;
-	private String kind;
-	private String pcontent;
+	private int pcode;		//상품코드
+	private int optionCode;	//상품옵션코드
+	private int pDetailNo;	//상품상세코드
+	private int amount;		//수량
+	private int addPrice;	//추가금액
+	private String optionType1;//옵션타입1
+	private String optionType2;//옵션타입2
+	private String pname;	//상품이름
+	private int supPrice;	//공급가
+	private int price;		//판매가
+	private int stock;		//재고
+	private String status;	//상태
+	private String keyword;	//키워드
+	private int totalCount;	//판매총수량
+	private String kind;	//커피/아이템
+	private String pcontent;//
 	
 	private String changeName; // 썸네일
 	

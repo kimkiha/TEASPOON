@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>인스타그램 | TeaSpoon</title>
  	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
