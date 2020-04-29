@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.member.model.vo.Orders;
+import com.teaspoon.store.model.service.ProductService;
+import com.teaspoon.store.model.vo.Product;
 
 /**
  * Servlet implementation class StorePayment
@@ -32,7 +35,23 @@ public class StorePayment extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
+		String phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
+		String phone = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
 		int total = Integer.parseInt(request.getParameter("total"));
+		
+		String recipient = request.getParameter("recipient");
+		String recipientPhone = request.getParameter("recipientPhone");
+		String recipientAddress = request.getParameter("recipientAddress");
+		String orderMessage = request.getParameter("orderMessage");
+		
+		
+		Orders order = new Orders();
+		order.setRecipient(recipient);
+		order.setRecipientPhone(recipientPhone);
+		order.setRecipientAddress(recipientAddress);
+		order.setOrderMessage(orderMessage);
+		
+		int result = new ProductService().ordersInsert(order, userNo, phone, total);
 
 		request.setAttribute("total", total);
 		

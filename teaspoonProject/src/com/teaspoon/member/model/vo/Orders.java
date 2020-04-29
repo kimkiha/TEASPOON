@@ -4,29 +4,28 @@ import java.sql.Date;
 
 public class Orders {
 
-	private int orderNo;
-	private int userNo;
-	private String orderer;
-	private String ordererPhone;
-	private String recipient;
-	private String recipientPhone;
-	private String recipientAddress;
-	private String orderMessage;
-	private int shippingFee;
-	private int payment;
-	private Date orderDate;
-	private int prograss;
-	private String status;
-	private int cart;
+	private int orderNo;			// 주문번호
+	private int userNo;				// userNo
+	private String orderer;			// userName
+	private String ordererPhone;	// userPhone
+	private String recipient;		// 수령인
+	private String recipientPhone;	// 수령인전화번호
+	private String recipientAddress;// 배송지
+	private String orderMessage;	// 배송메세지
+	private int shippingFee;		// 배송비(2500원고정)
+	private int payment;			// 최종결제금액
+	private Date orderDate;			// 주문일자
+	private int progress;			// 배송상태(배송중-->배송완료)
+	private int cart;				// 장바구니번호
 	
 	public Orders() {}
 	
 	public Orders(int orderNo, int userNo, String orderer, String ordererPhone,
 			String recipient, String recipientPhone, String recipientAddress, String orderMessage, int shippingFee,
-			int payment, Date orderDate, int prograss, String status, int cart) {
+			int payment, Date orderDate, int progress, String status, int cart) {
 		super();
-		this.orderNo = orderNo;
-		this.userNo = userNo;
+		this.orderNo = orderNo;	
+		this.userNo = userNo;	
 		this.orderer = orderer;
 		this.ordererPhone = ordererPhone;
 		this.recipient = recipient;
@@ -36,8 +35,7 @@ public class Orders {
 		this.shippingFee = shippingFee;
 		this.payment = payment;
 		this.orderDate = orderDate;
-		this.prograss = prograss;
-		this.status = status;
+		this.progress = progress;
 		this.cart = cart;
 	}
 	public int getOrderNo() {
@@ -106,17 +104,11 @@ public class Orders {
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-	public int getPrograss() {
-		return prograss;
+	public int getProgress() {
+		return progress;
 	}
-	public void setPrograss(int prograss) {
-		this.prograss = prograss;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setProgress(int progress) {
+		this.progress = progress;
 	}
 	public int getCart() {
 		return cart;
@@ -130,7 +122,7 @@ public class Orders {
 				+ orderer + ", ordererPhone=" + ordererPhone +  ", recipient="
 				+ recipient + ", recipientPhone=" + recipientPhone + ", recipientAddress=" + recipientAddress
 				+ ", orderMessage=" + orderMessage + ", shippingFee=" + shippingFee + ", payment="
-				+ payment + ", orderDate=" + orderDate + ", prograss=" + prograss + ", status=" + status + ", cart="
+				+ payment + ", orderDate=" + orderDate + ", progress=" + progress + ", cart="
 				+ cart + "]";
 	}
 	
