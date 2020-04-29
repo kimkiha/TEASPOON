@@ -1152,4 +1152,27 @@ public class ProductDao {
 		return list;
 		
 	}
+
+	public int ordersUpdate(Connection conn, int amount, int userNo, int pDetailNo) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("ordersUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, userNo);
+			pstmt.setInt(3, pDetailNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 }
