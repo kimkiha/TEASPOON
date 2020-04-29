@@ -16,7 +16,7 @@ int count =0;
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
     <style>
-        #banner {height: 170px; line-height: 170px; background:url("패턴 - 복사본.jpg") center top repeat-x;}
+      #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
     </style>
 </head>
 <body>
@@ -35,7 +35,7 @@ int count =0;
                         <div id="mypage_info">
                             <div class="user_info" style="width:95px; border-left:1px solid #bebbb6">
                                 <div class="user_photo" style="margin-top:30px; padding-left:10px; float: left;">
-                                    <img src="">
+                                    <img src="<%=contextPath%>/resources/img/admin/user.png">
                                 </div>
                             </div>
                             <div class="user_info" style="width:450px;">
@@ -51,15 +51,15 @@ int count =0;
                             </div>
                             <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
                                 <p class="info_th" >적립포인트</p>
-                                <a href="#" ><%=loginUser.getPointPrice() %></a>
+                                <a href="#" ><%=loginUser.getPoint()%></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%=loginUser.getCount() %></a>
+                                <a  href="#" ><%=loginUser.getCouponCount()%></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=loginUser.getPcode() %></a>
+                                <a  href="#" ><%=loginUser.getWishCount() %></a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
