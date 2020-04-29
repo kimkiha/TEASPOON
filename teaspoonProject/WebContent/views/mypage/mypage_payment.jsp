@@ -49,6 +49,7 @@
 <body>
 <div id="wrap">
         <%@ include file="../common/menubar.jsp" %>
+        <form action="<%=contextPath %>/storePayment.st" method="POST">
         <div id="banner">
             <div class="contaniner title">주문/결제</div>
         </div>
@@ -60,6 +61,7 @@
                         <div id="order_list" >
                             <div id="mp_con1">
                                 <p>주문 상품 확인</p>
+                                 
                                 <table class="mypage_table" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -160,7 +162,7 @@
                         </div>
                        <!-- //orderlist -->
                        <div id="payment" class="adside">
-                        <form action="<%=contextPath %>/storePayment.st" method="POST">
+                       
                             <table class="pay_tb" >
                                 <thead>
                                     <tr>
@@ -212,7 +214,6 @@
                                     </tr>
                                 </tfoot>   
                             </table>
-                        </form>
                     </div>
                     <!-- //payment-->
                 </div>
@@ -221,6 +222,7 @@
         </div>
    <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
+    </form>
     </div>
     <!--//wrap-->
     

@@ -87,9 +87,9 @@
             <img src="<%=contextPath %>/resources/img/admin/admin_moveHome.png" style="width:50px; height:50px; margin-top:25px; cursor:pointer;"></a>
             	</div>
             <div class="h4">
-            <a href="<%=contextPath %>/index.jsp">
            
-            <img class="btn2" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/홈페이지2.png"></a> 
+          	  <img class="btn2" onclick='return home();' style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/홈페이지2.png">
+            
             	</div>
             <div class="h3" style="align:right;">
             	<img class="btn1" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" src="<%=contextPath%>/resources/img/admin/admin_logout.png">
@@ -102,8 +102,6 @@
             <ul class="deep">
                 <li><a href="<%=contextPath%>/list.me?currentPage=1">회원현황</a></li>
                 <li><a href="<%=contextPath%>/level.me">회원등급관리</a></li>
-                <li><a href="admin112.html">신고목록</a></li>
-                <li><a href="adminCoupon.html">쿠폰관리</a></li>
                 <li><a href="<%=contextPath %>/qnalist.me?currentPage=1">1:1문의</a></li>
             </ul>
             </li>
@@ -152,7 +150,19 @@
 	        } 
    		});
 	});
+    </script>
     
+    <script>
+    	function home(){
+    			
+    		var home = confirm("사용자홈으로 가시겠습니까?");
+    		if(home){
+    			location.href="index.jsp";
+    		}else{
+    			
+    		}
+    		
+    	}
     
     </script>
     

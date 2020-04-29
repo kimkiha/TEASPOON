@@ -36,7 +36,7 @@ public class StorePayment extends HttpServlet {
 
 		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		String phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
-		String phone = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
+		String userName = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
 		int total = Integer.parseInt(request.getParameter("total"));
 		
 		String recipient = request.getParameter("recipient");
@@ -44,19 +44,21 @@ public class StorePayment extends HttpServlet {
 		String recipientAddress = request.getParameter("recipientAddress");
 		String orderMessage = request.getParameter("orderMessage");
 		
-		
 		Orders order = new Orders();
 		order.setRecipient(recipient);
 		order.setRecipientPhone(recipientPhone);
 		order.setRecipientAddress(recipientAddress);
 		order.setOrderMessage(orderMessage);
 		
-		int result = new ProductService().ordersInsert(order, userNo, phone, total);
+		int result = new ProductService().ordersInsert(order, userNo, userName, phone, total);
 
-		request.setAttribute("total", total);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/store/storePayment.jsp");
-		view.forward(request, response);
+		if(result>0) {
+			request.getSession().setAttribute("msg", "상품주문이 완료되었습니다");
+			response.sendRedirect("orderBoard.me");
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("views/store/storePayment.jsp");
+			view.forward(request, response);
+		}
 	
 	}
 

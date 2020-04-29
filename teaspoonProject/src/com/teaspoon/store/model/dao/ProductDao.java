@@ -1215,7 +1215,7 @@ public class ProductDao {
 		
 	}
 	
-	public int ordersInsert(Connection conn, Orders order, int userNo, String phone, int total) {
+	public int ordersInsert(Connection conn, Orders order, int userNo, String userName, String phone, int total) {
 		int result =0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("ordersInsert");
@@ -1225,7 +1225,13 @@ public class ProductDao {
 			
 			pstmt.setInt(1, userNo);
 			pstmt.setString(2, userName);
-			
+			pstmt.setString(3, phone);
+			pstmt.setString(4, order.getRecipient());
+			pstmt.setString(5, order.getRecipientPhone());
+			pstmt.setString(6, order.getRecipientAddress());
+			pstmt.setString(7, order.getOrderMessage());
+			pstmt.setInt(8, total);
+			pstmt.setInt(9, userNo);
 			
 			result = pstmt.executeUpdate();
 			
