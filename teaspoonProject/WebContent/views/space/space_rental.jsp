@@ -14,9 +14,14 @@
 <script src="<%=request.getContextPath() %>/resources/js/space_rental.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-
 <style>
  #content1 {width:100%; height:1500px; background: #ffffff; }
+
+    #content1 {width:100%; height:inherit; background: #ffffff; }
+	#banner{height: 270px; line-height: 270px; background:url("/teaspoon/resources/img/store/storetop_coffee.jpg") center top no-repeat;}
+	#paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
+	#paging button:hover{cursor:pointer;color:#d6ae71;}
+
 </style>
 </head>
 <body>
@@ -24,14 +29,17 @@
         <%@ include file="../common/menubar.jsp" %>
   
         <!-- //header -->
-        <div id="banner" style="margin-top:150px">
-            <div class="contaniner">기하의 베너존</div>
+        <div id="banner">
+        	
+            <div class="contaniner" style="width:100%; height:100%;">
+            	<b><p style="font-size:40px;">공간대여</p></b>
+            </div>
         </div>
         <!-- //banner -->
         <div id="content">
             <!-- reserv -->
             <div id="content1">
-                <div class="contaniner">
+                <div class="contaniner" style="height:1000px;">
                     
                     <!-- 헤더부분 div -->
                     <div class="head-container">티모르(TIMOR)</div>
@@ -41,20 +49,20 @@
                         <!-- 1번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">1 / 3</div>
-                          <img src="http://placehold.it/300x100" style="width:100%">
-                          <div class="text">Caption Text</div>
+                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv3.png;" style="width:100%;">
+                          <div class="text"></div>
                         </div>
                         <!-- 2번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">2 / 3</div>
-                          <img src="http://placehold.it/300x100" style="width:100%">
-                          <div class="text">Caption Two</div>
+                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv1.png;" style="width:100%;">
+                          <div class="text"></div>
                         </div>
                         <!-- 3번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">3 / 3</div>
-                          <img src="http://placehold.it/300x100" style="width:100%">
-                          <div class="text">Caption Three</div>
+                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv4.png;" style="width:100%;">
+                          <div class="text"></div>
                         </div>
                         
                         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -75,7 +83,7 @@
                                 <img src="<%=request.getContextPath() %>/resources/img/space/imo1.png">1인 - 30인 / 면적 - 23㎡ / 컨퍼런스 룸 / 초고속 WIFI  /  공용공간 및 라운지 / 커피와 허브차
                                 <div>
                                 <%if(loginUser == null){ %>
-                               	  <p><label class="btn">Login후</label></p>
+                               	  <p style="margin-bottom:100px;"><label class="btn" style="left:750px;">로그인후 이용가능</label></p>
                                	<%}else{ %>
                                   <p><label id="rentalready" class="btn" for="modal-1">예약하기</label></p>
                                	<%} %>
@@ -170,12 +178,12 @@
                                 
                             </ul>
                             <div class="sb02"><p class="ftm">대여 비품용품</p><p id="spreadBtn03" class="btn02">세부사항⇲</p></div> 
-                            <ul id="hiddenList02" class="example02" style="display: none;">
-                              <div class="bpf"> 
-                                <span><input type="checkbox" class='goods' name="good" value="빔프로젝트">빔프로젝트 <p class="gfont"> (+)10,000원</p>
-                                <input type="checkbox" class='goods' name="good" value="노트북">노트북 <p class="gfont"> (+)20,000원</p></span>
-                                <span><input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터<p class="gfont"> (+),2000원</p>
-                                <input type="checkbox" class='goods' name="good" value="앰프">앰프<p class="gfont"> (+)20,000원</p></span>
+                            <ul id="hiddenList02" class="example02" style="display: none; padding:20px;" >
+                              <div class="bpf" style="line-height:250%"> 
+                                <span id="span1"><input type="checkbox" class='goods' name="good" value="빔프로젝트">빔프로젝트 (+)10,000원</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span id="span2"><input type="checkbox" class='goods' name="good" value="노트북">노트북 (+)20,000원</span><br>
+                                <span id="span3"><input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터 (+),2000원</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span id="span4"><input type="checkbox" class='goods' name="good" value="앰프">앰프 (+)20,000원</span>
                               </div>
                             </ul>
 

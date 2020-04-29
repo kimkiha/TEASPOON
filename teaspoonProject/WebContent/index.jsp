@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main/main.css">
 
+<script src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 <script type="text/javascript" src="resources/js/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -88,10 +89,12 @@
                     <div id="etc">
                         <table id="etc_tb" cellspacing="0" cellpadding="0" border-spacing="0">
                             <tr>
+                            <figure class="snip1273 hover">
                                 <td rowspan="2" width="400" height="550">
                                 <p></p> <!-- 이벤트 -->
                                     <a href="<%=contextPath %>/eventList.bo"><img id="maga" src="<%=contextPath %>/resources/img/main/magazine.jpg"></a>
-                                </td>   <!-- 어바웃티스푼 -->
+                                </td>
+                                </figure>   <!-- 어바웃티스푼 -->
                                 <td width="600" height="275">
                                     <a href="<%=contextPath %>/about.bo"><img id="eve" src="<%=contextPath %>/resources/img/main/event.jpg"></a>
                                 </td>
@@ -184,6 +187,7 @@
 	    	})
 	    });
     	
-    </script>    
+    </script>
+
 </body>
 </html>

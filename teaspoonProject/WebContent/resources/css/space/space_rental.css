@@ -5,6 +5,8 @@
 body {font-family: Verdana, sans-serif; margin:0}
 .mySlides {display: none}
 img {vertical-align: middle;}
+
+/*#banner{width: 1200px; height: 270px; background: pink;}*/
     
 /* 슬라이드쇼 div 사이즈 */
 .slideshow-container {
@@ -386,7 +388,8 @@ img {vertical-align: middle;}
     width:650px;
     height:100px;
     margin-top:5px;
-    border-radius:10px;          
+    border-radius:10px;
+       
 }
 .aka{
 	font-weight:bold;
@@ -546,4 +549,9 @@ img {vertical-align: middle;}
 	color:lightgray;
 	font-size:14px;
 	font-weight:bold;
+}
+
+#span1, #span2, #span3, #span4{
+	width:20px; height:20px; padding:5px; margin:5px;
+	
 }
