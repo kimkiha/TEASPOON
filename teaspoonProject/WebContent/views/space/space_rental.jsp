@@ -90,6 +90,7 @@
                             <div class="modal__inner">
                             <label class="modal__close" for="modal-1"></label>
                             <!-- 안에부분 -->
+                            <br>
                             <p><label class="btn1">아카이야</label></p>  <br>
                             <h4>파격적 세련된 인싸들의 공간</h4>
                               <!-- 사진 div 들어가는 공간 --><br>
@@ -98,20 +99,20 @@
 
                                 <div class="mySlidet fades" >
                                   <div class="numbertexts">1 / 3</div>
-                                  <img src="http://placehold.it/300x100" style="width:100%">
-                                  <div class="texts">Caption One</div>
+                                  <img src="<%=request.getContextPath() %>/resources/img/space/reserv2.png" style="width:650px; height:250px;">
+                                  <div class="texts">TeaSpoon 내부</div>
                                 </div>
                                 
                                 <div class="mySlidet fades">
                                   <div class="numbertexts">2 / 3</div>
-                                  <img src="http://placehold.it/300x100" style="width:100%">
-                                  <div class="texts">Caption Two</div>
+                                  <img src="<%=request.getContextPath() %>/resources/img/space/reserv4.png" style="width:650px; height:250px;">
+                                  <div class="texts">TeaSpoon 휴식공간</div>
                                 </div>
                                 
                                 <div class="mySlidet fades">
                                   <div class="numbertexts">3 / 3</div>
-                                  <img src="http://placehold.it/300x100" style="width:100%">
-                                  <div class="texts">Caption Three</div>
+                                  <img src="<%=request.getContextPath() %>/resources/img/space/reserv1.png" style="width:650px; height:250px;">
+                                  <div class="texts">아카이야 내부</div>
                                 </div>
                                 
                                 </div>
@@ -168,13 +169,13 @@
                                	</li>
                                 
                             </ul>
-                            <div class="sb02"><p class="ftm">대여 편의용품</p><p id="spreadBtn03" class="btn02">세부사항⇲</p></div> 
+                            <div class="sb02"><p class="ftm">대여 비품용품</p><p id="spreadBtn03" class="btn02">세부사항⇲</p></div> 
                             <ul id="hiddenList02" class="example02" style="display: none;">
                               <div class="bpf"> 
-                                <input type="checkbox" class='goods' name="good" value="빔프로젝트">빔프로젝트
-                                <input type="checkbox" class='goods' name="good" value="노트북">노트북
-                                <input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터
-                                <input type="checkbox" class='goods' name="good" value="앰프">앰프
+                                <span><input type="checkbox" class='goods' name="good" value="빔프로젝트">빔프로젝트 <p class="gfont"> (+)10,000원</p>
+                                <input type="checkbox" class='goods' name="good" value="노트북">노트북 <p class="gfont"> (+)20,000원</p></span>
+                                <span><input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터<p class="gfont"> (+),2000원</p>
+                                <input type="checkbox" class='goods' name="good" value="앰프">앰프<p class="gfont"> (+)20,000원</p></span>
                               </div>
                             </ul>
 
