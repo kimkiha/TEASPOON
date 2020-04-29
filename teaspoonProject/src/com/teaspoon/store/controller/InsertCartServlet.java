@@ -48,9 +48,8 @@ public class InsertCartServlet extends HttpServlet {
 		int result1 = new ProductService().insertPdetailNo(cartPcode,optionCode);
 		
 		int result2 = new ProductService().insertOrderBy(userNo,pCount);
-		
+		 
 		if(result2>0) {
-			
 			request.getSession().setAttribute("msg", "선택한 상품이 장바구니에 담겼습니다");
 			response.sendRedirect("detail.co?pcode="+cartPcode);
 		} else {
