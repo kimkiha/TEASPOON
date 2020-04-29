@@ -37,7 +37,7 @@
 							style="width: 95px; border-left: 1px solid #bebbb6">
 							<div class="user_photo"
 								style="margin-top: 30px; padding-left: 10px; float: left;">
-								<img src="사이트이미지/user.png">
+								<img src="<%=contextPath%>/resources/img/admin/user.png">
 							</div>
 						</div>
 						<div class="user_info" style="width: 450px;">
