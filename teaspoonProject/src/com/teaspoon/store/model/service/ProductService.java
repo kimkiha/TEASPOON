@@ -492,7 +492,7 @@ public class ProductService {
 		return result;
 	}
 	
-	public ArrayList<Product> mainBestProductList() {
+	public ArrayList<Product> mainBestProductList(){
 		Connection conn = getConnection();
 		ArrayList<Product> list = new ProductDao().mainBestProductList(conn);
 
