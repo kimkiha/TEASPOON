@@ -21,7 +21,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <style>
-        #banner{height: 170px; line-height: 170px; background:rgb(222, 219, 210);}
+        #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
+    	#paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
+		#paging button:hover{cursor:pointer;color:#d6ae71;}
     </style>
 </head>
 <body>
@@ -66,6 +68,30 @@
                             </div>
                         </div>
                     </div>
+                        <div id="paging" class="pagination" style="height:100px">
+                    <!-- 현재 페이지에 보여질 페이징바 -->
+					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+						<!-- 맨 처음으로(<<) -->
+						<button onclick="location.href='magazineList.bo?currentPage=1>'">&lt;&lt;</button>
+						<!-- 이전페이지로(<) -->
+						<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
+					<%} %>
+					
+					<%for(int p=startPage; p<=endPage; p++){%>
+						<%if(currentPage != p) {%>
+						<button onclick="location.href='magazineList.bo?currentPage=<%=p%>'"><%=p%></button>
+						<%}else{ %>
+						<button disabled><%=p %></button>
+						<%} %>	
+					<%} %>
+					
+					<%if(currentPage != maxPage){ %>
+						<!-- 다음페이지로(<) -->
+						<button onclick="location.href='magazineList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
+						<!-- 맨 마지막으로(>>) -->
+						<button onclick="location.href='magazineList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+					<%} %>
+                	</div>
                 </div>
             </div>
         </div>
