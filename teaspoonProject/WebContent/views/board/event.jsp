@@ -24,6 +24,9 @@
         #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
     	#paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
 		#paging button:hover{cursor:pointer;color:#d6ae71;}
+		#goEvent:hover{
+			cusor:pointer;
+		}
     </style>
 </head>
 <body>
@@ -47,18 +50,16 @@
                                 <li><a href="#">종료된이벤트</a></li>
                             </ul>
                         </div>
-                        <div>
                             <div id="event_content">
                                 <ul>
                                 <%for(Board b : list){ %>
                                     <li>
-                                        <div class="img">
-                                        <a href="#">
-                                                <img src="<%=contextPath %>/resources/img/board/<%=b.getChangeName()%>">
-                                        </a>
+                                        <div class="img" id="goEvent">
+                                          <img src="<%=contextPath %>/resources/img/board/<%=b.getChangeName()%>">
+                                        
                                         </div>
                                         <div class="event_text">
-                                            <span><</span>
+                                            <span><%=b.getCreateDate()%></span>
                                             <h1><%=b.getBoardTitle() %></h1>
                                             <p>2020.04.01~2020.04.30</p>
                                         </div>
@@ -67,8 +68,7 @@
                                 </ul>  
                             </div>
                         </div>
-                    </div>
-                        <div id="paging" class="pagination" style="height:100px">
+                           <div id="paging" class="pagination" style="height:100px">
                     <!-- 현재 페이지에 보여질 페이징바 -->
 					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 						<!-- 맨 처음으로(<<) -->
@@ -92,6 +92,8 @@
 						<button onclick="location.href='magazineList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
 					<%} %>
                 	</div>
+                    </div>
+                     
                 </div>
             </div>
         </div>
@@ -100,5 +102,12 @@
         <!-- //footer-->
     </div>
     <!-- //wrap-->
+ <script>
+ 	$(function(){
+ 		$("#goEvent").onclick(){
+ 			href.location="";
+ 		}
+ 	});
+ </script>
  </body>
 </html>

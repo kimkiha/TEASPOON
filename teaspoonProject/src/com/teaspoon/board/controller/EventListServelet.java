@@ -111,8 +111,8 @@ public class EventListServelet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		//System.out.println(pi);
-		ArrayList<Board> list = new BoardService().selectMagazineList(pi);
-		ArrayList<Attachment> atList = new BoardService().selectMagazineThumbnailList(pi);
+		ArrayList<Board> list = new BoardService().selectEventList(pi);
+		ArrayList<Attachment> atList = new BoardService().selectEventThumbnailList(pi);
 		
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
