@@ -1,6 +1,7 @@
 package com.teaspoon.store.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.store.model.service.ProductService;
-import com.teaspoon.store.model.vo.Product;
+import com.teaspoon.store.model.vo.Option;
 
 /**
  * Servlet implementation class StorePayment
@@ -36,14 +37,14 @@ public class StorePayment extends HttpServlet {
 
 		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		String phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
-		String phone = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
+		String userName = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
 		int total = Integer.parseInt(request.getParameter("total"));
+		
 		
 		String recipient = request.getParameter("recipient");
 		String recipientPhone = request.getParameter("recipientPhone");
 		String recipientAddress = request.getParameter("recipientAddress");
 		String orderMessage = request.getParameter("orderMessage");
-		
 		
 		Orders order = new Orders();
 		order.setRecipient(recipient);
@@ -51,9 +52,22 @@ public class StorePayment extends HttpServlet {
 		order.setRecipientAddress(recipientAddress);
 		order.setOrderMessage(orderMessage);
 		
-		int result = new ProductService().ordersInsert(order, userNo, phone, total);
-
 		request.setAttribute("total", total);
+		
+		 ArrayList<Option> productInfo = new ProductService(). extractProductInfo(userNo);
+		
+		 String totalProductInfo ="";
+		 
+		 for(int i=0; i<productInfo.size(); i++) {
+		  
+			 totalProductInfo += "(" + i+ "번쨰 상품명 " + productInfo.get(i).getPname()+ ", 옵션1 : " + productInfo.get(i).getOptionType1() + ", 옵션2 : " + productInfo.get(i).getOptionType2() + ");";
+		 
+		 }
+		
+		 //System.out.println(totalProductInfo);
+		 
+		 int result = new ProductService().ordersInsert(order, userNo, userName, phone, total,totalProductInfo);
+		 			  new ProductService().cartEmpty(userNo);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/store/storePayment.jsp");
 		view.forward(request, response);

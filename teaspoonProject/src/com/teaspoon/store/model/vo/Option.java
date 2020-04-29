@@ -5,6 +5,26 @@ public class Option {
 	private int addPrice; 	//추가가격
 	private String optionType1; //옵션 그램
 	private String optionType2; //옵션 원두 그라인더
+	private String pname;	//주문자 상품내역용 
+	
+	public Option() {
+		
+	}
+	
+	public String getPname() {
+		return pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+
+	public Option(String optionType1,String optionType2, String pname) {
+		super();
+		this.optionType1 = optionType1;
+		this.optionType2 = optionType2;
+		this.pname = pname;
+	}
 	
 	public Option(int optionCode, int addPrice, String optionType1, String optionType2) {
 		super();
