@@ -99,8 +99,8 @@
                                             	<%if(goods[i].equals(list.get(j).getGsName())){%>
                                             		 	<%=list.get(j).getGsPrice()%>원</td>
                                             		 	<td><%=list.get(j).getGsSaving()%>P</td>
-                                            		 	<%gTotalPrice=+list.get(j).getGsPrice(); %>
-                                            		 	<%gToralSaving=+list.get(j).getGsSaving(); %>
+                                            		 	<%gTotalPrice+=list.get(j).getGsPrice(); %>
+                                            		 	<%gToralSaving+=list.get(j).getGsSaving(); %>
                                             			<%} %>
                                             		<%} %>
                                         </tr>
@@ -119,8 +119,7 @@
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="left_text_st top_bd">고객총포인트</td>
-                                            <td class="top_bd"> <div type="text" id='pointUse1' class="point" name="point"width="400" style="padding-inline-start: 15px;"><%=loginUser.getPoint() %></div></td>
-                                            
+                                            <td class="top_bd"> <div id='pointUse1' class="point" name="point" width="400" style="padding-inline-start: 15px;"><%=loginUser.getPoint() %></div></td>
                                         </tr>
                                 </table>
                                 
@@ -140,7 +139,7 @@
                                         <tr>
                                             <td class="left_text_st top_bd " >이름</td>
                                             <td class="top_bd "colspan="3" >
-                                                <input type="text" name="" value="<%=loginUser.getPoint()%>">
+                                                <input type="text" name="userName" value="<%=loginUser.getPoint()%>">
                                             </td>
                                         </tr>
                                         <tr>
@@ -157,7 +156,7 @@
                         </div>
                        <!-- //orderlist -->
                        <div id="payment" class="adside" style="float:left">
-                        <form action="" method="POST">
+                        <form action="<%= contextPath %>/insert.py" method="POST">
                             <table class="pay_tb" >
                                 <thead>
                                     <tr>
@@ -171,8 +170,8 @@
                                     </tr>
                                     
                                     <tr>
-                                        <td class=" pay_lt bd_none">물품비용</td>
-                                        <td class=" pay_rt bd_none"><%=gTotalPrice %>원</td>
+                                        <td class=" pay_lt bd_none">비품비용</td>
+                                        <td class=" pay_rt bd_none" ><input type="hidden" name="goodsPay" value=<%=gTotalPrice %>><%=gTotalPrice %></td>
                                     </tr>
                                     <tr>
                                         <td class=" pay_lt">포인트 할인</td>
@@ -187,8 +186,9 @@
                                     <tr class="">
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="2"  class=" pay_rt" id='totalPay'><%=gTotalPrice+200000%></td>
+                                    <tr> 
+                                    
+                                        <td colspan="2"  class=" pay_rt" id='totalPay'><input type="hidden" name="total" value=<%=gTotalPrice+200000%>><%=gTotalPrice+200000%></td>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -237,22 +237,23 @@
 	
 	}
 	
+	
 	$(function(){
 		$("#pointUseBtn").click(function(){
 			var userSaving = $("#pointUse1").text();
 			var pointUse= $("#pointUse").val();
 			
 			
-			if(userSaving<pointUse){
+			if(Number(userSaving)<Number(pointUse)){
 				alert("보유포인트를 초과하셨습니다.");
 				
-			}else if(pointUse<0){
+			}else if(Number(pointUse)<0){
 				alert("양수를 입력하세요.");			
 			}else{
 
 				$("#useP").text('-'+pointUse+'원');
 				
-				$('#totalPay').text(200000+<%=gTotalPrice%>-pointUse);
+				$('#totalPay').text((200000+<%=gTotalPrice%>-pointUse)+"원");
 			}
 		
 			

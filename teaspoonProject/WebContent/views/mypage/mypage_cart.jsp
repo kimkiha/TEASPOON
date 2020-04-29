@@ -2,9 +2,11 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
 <%
 	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+	int totalPrice = 0;
     //int onePrice = (list.get(0).getPrice()+list.get(0).getAddPrice());
 	//int totalPrice = (list.get(0).getPrice()+list.get(0).getAddPrice())*list.get(0).getAmount();
 	//System.out.print(list);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -44,7 +46,7 @@
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
                                         <td width="60" name="username"><%=loginUser.getUserName() %></td>
-                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" >silver</td>
+                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
                                     </tr>
                                     <tr class="d2">
                                         <td colspan="2"><a href="<%=contextPath %>/memberModifyForm.me">회원정보수정</a> </td>
@@ -57,11 +59,11 @@
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%=loginUser.getCount() %>장</a>
+                                <a  href="#" ><%=loginUser.getCouponCount() %>장</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=loginUser.getPcode() %>개</a>
+                                <a  href="#" ><%=loginUser.getWishCount() %>개</a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
@@ -103,20 +105,22 @@
                                         	<p style="font-weight:100; font-size:16px;"><%=list.get(i).getOptionType1() %>, <%=list.get(i).getOptionType2() %></p>
                                         </td>
                                         <td>
+                                        	<input type="hidden" id='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'>
                                         	<div class="number">
-	                                            <a href="#" id="decreaseQuantity">
+	                                            <a href="#" class="decreaseQuantity">
 	                                                <img src="<%=contextPath %>/resources/img/store/minus.png" width="20px" height="20px">
 	                                            </a>
-	                                            <b><span id="numberUpDown" style="padding-left: 20px; padding-right: 20px;"><%=list.get(i).getAmount()%></span></b>
-	                                            <a href="#" id="increaseQuantity">
+	                                            <b><span class="numberUpDown" style="padding-left: 20px; padding-right: 20px;"><%=list.get(i).getAmount()%></span></b>
+	                                            <a href="#" class="increaseQuantity">
 	                                                <img src="<%=contextPath %>/resources/img/store/plus.png" width="20px" height="20px">
 	                                            </a>
                                         	</div>
                                         </td>
-                                        <td id='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()%></td>
+                                        <td class='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount() %></td>
                                         <td>2,500원</td>
-                                        <td><input type="hidden" id='onePrice' value='<%=list.get(i).getPrice()+list.get(i).getAddPrice()%>'></td>
                                     </tr>
+                                    <% totalPrice += (list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount(); %>
+                                    
                                     <%} %>
                                  <%} %>
                                  
@@ -131,12 +135,12 @@
                             <div class="bill-box">
                                 <div class="billbox">
                                     <span>상품가격</span>
-                                    <b>~~~~~~~~~~~~~~~~~~</b>
+                                    <b><%=totalPrice %></b>
                                     <b>+</b>
                                     <span>배송비</span>
                                     <b>2,500원</b>
                                     <b>=</b>
-                                    <b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~원</b>
+                                    <b><%=totalPrice+2500 %>원</b>
                                 </div>
                             </div>
                             <div class="func">
@@ -188,22 +192,43 @@
 		var amount;
 		var num1;
 
-		$('#decreaseQuantity').click(function(e) {
+		$('.decreaseQuantity').click(function(e) {
 			e.preventDefault();
-			var stat = $('#numberUpDown').text();
+			
+			var stat = $(this).siblings().eq(0).children().text();
+			//console.log(stat);
 			var num = parseInt(stat, 10);
 			num--;
 			if (num <= 0) {
 				alert('더이상 줄일수 없습니다.');
 				num = 1;
 			}
-			$('#numberUpDown').text(num);
-			totalSum();
+			//$('.numberUpDown').text(num);
+			$(this).siblings().eq(0).children().text(num);
+			
+			var onePrice = $(this).parent().prev().val();
+			var amount = $(this).siblings().eq(0).children().text();
+			var totalPrice = onePrice * amount;
+			
+			var mprice = $(this).parent().parent().next().text(totalPrice);
+			
+			$.ajax({
+				url:"ordersUpdate.st",
+				data:{mprice:mprice, amount:amount},
+				success:function(result){
+					if(result>0){
+						console.log("ajax통신 성공")
+					}
+				}
+				
+			})	
+			
 		});
 
-		$('#increaseQuantity').click(function(e) {
+		$('.increaseQuantity').click(function(e) {
 			e.preventDefault();
-			var stat = $('#numberUpDown').text();
+			var stat = $(this).siblings().eq(1).children().text();
+			//console.log(stat);
 			var num = parseInt(stat, 10);
 			num++;
 
@@ -211,27 +236,19 @@
 				alert('더이상 늘릴수 없습니다.');
 				num = 5;
 			}
-			$('#numberUpDown').text(num);
-			totalSum();
-
-		});
-
-		// 상품금액 합계
-		$('.amount').click(function() {
-			totalSum();
-		});
-
-		// 상품금액 합계 출력
-		function totalSum() {
-			var onePrice = $("#onePrice").val();
-			amount = $("#numberUpDown").val();
-			num1 = $('#numberUpDown').text();
+			//$('#numberUpDown').text(num);
+			$(this).siblings().eq(1).children().text(num);
 			
-			var totalPrice = onePrice * num1;
-			$("#totalProductPrice").text(totalPrice);
-
-		}
+			var onePrice = $(this).parent().prev().val();
+			var amount = $(this).siblings().eq(1).children().text();
+			var totalPrice = onePrice * amount;
+						
+			$(this).parent().parent().next().text(totalPrice);
+		});
 	});
+	
+	
+	
 	
     </script>
 </body>

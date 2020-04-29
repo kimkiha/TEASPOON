@@ -10,24 +10,12 @@ import java.util.ArrayList;
 
 import com.teaspoon.space.model.dao.SpaceDao;
 import com.teaspoon.space.model.vo.Goods;
+import com.teaspoon.space.model.vo.Payment;
 import com.teaspoon.space.model.vo.Space;
 
 public class SpaceService {
 
-	public int insertSpace(Space s) {
-		
-		Connection conn = getConnection();
-		
-		int result = new SpaceDao().insertSpace(conn, s);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		return result;
-	}
+
 	
 
 	public ArrayList<Goods> selectGoodsList() {
@@ -41,6 +29,21 @@ public class SpaceService {
 		return list;
 	}
 	
+	
+		public int insertPayment(Payment p,Space s) {
+		
+		Connection conn = getConnection();
+		int result1 = new SpaceDao().insertSpace(conn,s);
+		int result2 = new SpaceDao().insertPayment(conn, p);
+		
+		if(result1 > 0 && result2 >0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result1*result2;
+	}
 	
 	
 	

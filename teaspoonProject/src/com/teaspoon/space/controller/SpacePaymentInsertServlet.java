@@ -1,4 +1,4 @@
-package com.teaspoon.member.controller;
+package com.teaspoon.space.controller;
 
 import java.io.IOException;
 
@@ -8,22 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.teaspoon.member.model.service.MemberService;
-import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.space.model.service.SpaceService;
+import com.teaspoon.space.model.vo.Payment;
+import com.teaspoon.space.model.vo.Space;
 
 /**
- * Servlet implementation class MyPageMainServlet
+ * Servlet implementation class SpacePaymentInsertServlet
  */
-@WebServlet("/mymain.me")
-public class MyPageMainServlet extends HttpServlet {
+@WebServlet("/insert.py")
+public class SpacePaymentInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageMainServlet() {
+    public SpacePaymentInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +33,17 @@ public class MyPageMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
+		int goodsPay = Integer.parseInt(request.getParameter("goodsPay"));
+		int total = Integer.parseInt(request.getParameter("total"));
+		Space s = (Space)request.getSession().getAttribute("s");
+		Payment p = new Payment(goodsPay, total);
 		
-	
+		int result = new SpaceService().insertPayment(p,s);
+		request.setAttribute("total",total);
 		
-		if(loginUser != null) {
-			
-			
-
-			
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_main.jsp");
-			view.forward(request, response);
-		}else {// 조회실패
-			request.setAttribute("msg", "메인에서 실패했다  힘내자");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-		}
+		RequestDispatcher view = request.getRequestDispatcher("views/space/payment.jsp");
+		view.forward(request, response);
+		
 	}
 
 	/**

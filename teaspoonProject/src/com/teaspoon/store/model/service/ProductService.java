@@ -1,4 +1,4 @@
-package com.teaspoon.store.model.service;
+cpackage com.teaspoon.store.model.service;
 
 import static com.teaspoon.common.JDBCTemplate.close;
 import static com.teaspoon.common.JDBCTemplate.commit;
@@ -484,4 +484,18 @@ public class ProductService {
 	}
 	
 	
+	public int ordersUpdate(int mprice, int amount) {
+		Connection conn = getConnection();
+
+		int result = new ProductDao().ordersUpdate(conn, mprice, amount);
+		
+
+		if (result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

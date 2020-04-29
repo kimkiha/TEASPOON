@@ -16,11 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
-#banner {
-	height: 170px;
-	line-height: 170px;
-	background: url("패턴 - 복사본.jpg") center top repeat-x;
-}
+#banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
 </style>
 </head>
 <body>
@@ -62,11 +58,11 @@
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">할인쿠폰</p>
-							<a href="#"><%= loginUser.getCount() %>장</a>
+							<a href="#"><%= loginUser.getCouponCount() %>장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="<%=contextPath %>/wishList.me"><%=loginUser.getPcode() %>개</a>
+							<a href="<%=contextPath %>/wishList.me"><%=loginUser.getWishCount()%>개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
@@ -74,7 +70,7 @@
 						<a href="#"class="float">공간대여확인</a> 
 						<a href="<%=contextPath %>/myAdress.me" class="float">나의배송지</a> 
 						<a href="#" class="float">1:1문의</a> 
-						<a href="#" class="float">장바구니</a>
+						<a href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
 					</div>
 					<div class="pagename"></div>
 					<div id="mp_con1">
