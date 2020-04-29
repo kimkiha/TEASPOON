@@ -37,7 +37,7 @@ public class PaymentServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(); 
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		System.out.print(loginUser);
+		//System.out.print(loginUser);
 		
 		if(loginUser != null) {
 			int userNo = loginUser.getUserNo();

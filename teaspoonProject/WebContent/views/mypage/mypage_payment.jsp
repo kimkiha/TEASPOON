@@ -160,7 +160,7 @@
                         </div>
                        <!-- //orderlist -->
                        <div id="payment" class="adside">
-                        <form action="" method="POST">
+                        <form action="<%=contextPath %>/storePayment.st" method="POST">
                             <table class="pay_tb" >
                                 <thead>
                                     <tr>
@@ -192,6 +192,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2"  id='totalPay' class=" pay_rt"><%=totalPrice+2500 %>원</td>
+                                        <input type="hidden" name="total" value="<%=totalPrice+2500 %>">
                                     </tr>
                                 </tbody> 
                                 <tfoot>

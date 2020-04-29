@@ -475,6 +475,7 @@ public class ProductService {
 		return list;
 	}
 
+	public int ordersUpdate(int amount, int userNo, int pDetailNo) {
 	public ArrayList<Product> mainBestProductList() {
 		Connection conn = getConnection();
 		ArrayList<Product> list = new ProductDao().mainBestProductList(conn);
@@ -484,18 +485,18 @@ public class ProductService {
 	}
 	
 	
-//	public int ordersUpdate(int mprice, int amount) {
-//		Connection conn = getConnection();
-//
-//		int result = new ProductDao().ordersUpdate(conn, mprice, amount);
-//		
-//
-//		if (result>0) {
-//			commit(conn);
-//		} else {
-//			rollback(conn);
-//		}
-//		close(conn);
-//		return result;
-//	}
+	public int ordersUpdate(int mprice, int amount) {
+		Connection conn = getConnection();
+
+		int result = new ProductDao().ordersUpdate(conn, amount, userNo, pDetailNo);
+		
+
+		if (result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

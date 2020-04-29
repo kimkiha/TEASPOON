@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.member.model.vo.Member;
+
 /**
  * Servlet implementation class StorePayment
  */
@@ -29,6 +31,11 @@ public class StorePayment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
+		int total = Integer.parseInt(request.getParameter("total"));
+
+		request.setAttribute("total", total);
+		
 		RequestDispatcher view = request.getRequestDispatcher("views/store/storePayment.jsp");
 		view.forward(request, response);
 	
