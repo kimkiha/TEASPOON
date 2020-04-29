@@ -130,7 +130,7 @@
             <br>
             <li class="c-li"><p class="click" style="margin: 0 0;" >대관관리</p>
             <ul class="deep">
-            <li><a href="adminReservation.html">대관현황</a></li>
+            <li><a href="<%=contextPath%>/Spacelist.sp?currentPage=1">대관현황</a></li>
             <li><a href="adminGoods.html">비품관리</a></li>
             </ul>
             </li>

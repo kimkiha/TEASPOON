@@ -113,12 +113,12 @@
                                         <tr>
                                             <td class="left_text_st top_bd ">이름</td>
                                             <td class="top_bd "colspan="3" >
-                                                <input type="text" name="userName" value="<%=loginUser.getUserName()%>" style="padding-left:20px;">
+                                                <input type="text" name="userName" value="<%=loginUser.getUserName()%>" style="padding-left:20px;" readonly>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="left_text_st" width="170">휴대전화</td>
-                                            <td><input type="text" value="<%=loginUser.getPhone() %>" style="padding-left:20px;"></td>
+                                            <td><input type="text" name="phone" value="<%=loginUser.getPhone() %>" style="padding-left:20px;" readonly></td>
                                         </tr>
                                 </table>
                             </div>
@@ -137,22 +137,22 @@
                                         <tr>
                                             <td class="left_text_st" width="170" rowspan="2">받으시는분</td>
                                             <td style="padding-right:0px; width: 220px; border-bottom: none;" >
-                                                <input type="text" placeholder="이름" style="padding-left:20px;" required>
+                                                <input type="text" placeholder="이름" style="padding-left:20px;" name="recipient" required>
                                             </td>
-                                            <td style="text-align: left; border-bottom: none;"><input type="text" placeholder="휴대전화번호"  style="padding-left:20px;" required></td>
+                                            <td style="text-align: left; border-bottom: none;"><input type="text" name="recipientPhone" placeholder="휴대전화번호"  style="padding-left:20px;" required></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" style="width:200px; padding-top:0">
                                                 <button style="background: rgb(158, 158, 158); color:#fff; width:130px;height:53px; padding-left:10px; border:1px solid darkgray">
                                                 	주소찾기
                                                 </button>
-                                                <input type="text" placeholder="주소" style="width: 350px; border-radius:5px; padding-left:20px;"required>
+                                                <input type="text" placeholder="주소" name="recipientAddress" style="width: 350px; border-radius:5px; padding-left:20px;"required>
                                             </td>
                                         </tr>
                                         
                                         <tr>
                                             <td class="left_text_st">배송 요청 사항</td>
-                                            <td colspan="2"><input type="text" placeholder="요청사항" style="width:520px; padding-left:20px;"></td>
+                                            <td colspan="2"><input type="text" name="orderMessage" placeholder="요청사항" style="width:520px; padding-left:20px;"></td>
                                         </tr>
                                 </table>
                             </div>
@@ -160,7 +160,7 @@
                         </div>
                        <!-- //orderlist -->
                        <div id="payment" class="adside">
-                        <form action="" method="POST">
+                        <form action="<%=contextPath %>/storePayment.st" method="POST">
                             <table class="pay_tb" >
                                 <thead>
                                     <tr>
@@ -180,6 +180,7 @@
                                     <tr>
                                         <td class=" pay_lt">배송비</td>
                                         <td class=" pay_rt">2,500원</td>
+                                        <input type="hidden" name="shippingFee" value="2500">
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="bd_none pay_lt">적립예상포인트</td>
@@ -192,6 +193,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2"  id='totalPay' class=" pay_rt"><%=totalPrice+2500 %>원</td>
+                                        <input type="hidden" name="total" value="<%=totalPrice+2500 %>">
                                     </tr>
                                 </tbody> 
                                 <tfoot>

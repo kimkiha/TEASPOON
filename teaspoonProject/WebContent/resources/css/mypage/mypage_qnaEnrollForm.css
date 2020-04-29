@@ -74,7 +74,7 @@
         #t{width: 780px;height: 40px;border-radius: 5px;border: 1px solid#bebebe;}
         #textarea{width: 1000px;height: 500px;margin-top: 15px;}
         #textarea *{border-radius: 5px;}
-        #uploadfile{height: 54px;border-bottom: 1px solid rgb(224,224,224);float: left;width: 1000px;margin: auto;}
+        #uploadfile{height: 54px;border-bottom: 1px solid rgb(224,224,224);float: left;width: 1000px;margin: auto;margin-top:10px;}
         #uploadfile>input{float: left;line-height: 3;}
         #email-check{height: 54px;width: 1000px;display: inline-block;
             border-bottom: 1px solid rgb(224,224,224);line-height: 3;}

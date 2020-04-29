@@ -39,26 +39,7 @@ public class MyPageAdressServlet extends HttpServlet {
 		
 		HttpSession Session = request.getSession();
 		String userId=((Member)Session.getAttribute("loginUser")).getUserId();		// userId로 가져오기
-		String Address = ((Member)Session.getAttribute("loginUser")).getAddress();
 		
-		Member m = new Member();
-		m.setAddress(address);
-		
-//		int result = new MemberService().insertAddress(m);
-//		
-//		if(result>0) { // result에 값이 담기면 -> 수정이 됐다는것
-//			
-//			Member addressUser = new MemberService().selectMember(userId);
-//			
-//			HttpSession session = request.getSession();
-//			session.setAttribute("loginUser", addressUser);
-//			session.setAttribute("msg", "배송지를 추가하였습니다.");
-//			//response.sendRedirect("memberModifyComplete.me"); // memberModifyComplete.me url로 요청
-//
-//		}else { // 회원정보수정 실패시
-//			request.setAttribute("msg", "배송지추가실패!!");
-//
-//		}
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_address1.jsp");
 		view.forward(request, response);

@@ -37,7 +37,7 @@
 							style="width: 95px; border-left: 1px solid #bebbb6">
 							<div class="user_photo"
 								style="margin-top: 30px; padding-left: 10px; float: left;">
-								<img src="사이트이미지/user.png">
+								<img src="<%=contextPath%>/resources/img/admin/user.png">
 							</div>
 						</div>
 						<div class="user_info" style="width: 450px;">
@@ -62,7 +62,7 @@
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="<%=contextPath %>/wishList.me"><%=list.size() %>개</a>
+							<a href="<%=contextPath %>/wishList.me"><%=loginUser.getWishCount()%>개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
@@ -70,7 +70,7 @@
 						<a href="#"class="float">공간대여확인</a> 
 						<a href="<%=contextPath %>/myAdress.me" class="float">나의배송지</a> 
 						<a href="#" class="float">1:1문의</a> 
-						<a href="#" class="float">장바구니</a>
+						<a href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
 					</div>
 					<div class="pagename"></div>
 					<div id="mp_con1">

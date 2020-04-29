@@ -17,11 +17,9 @@
             <div id="notice">
                 <table class="replyArea">
                     <tr>
-                        <td width="270">공지사항</td>
-                        <%if(notice==null){ %>
-                        <%}else{ %>
-                        <td width="670"><a href="<%=contextPath%>/noticeDetail.bo?bno=<%=notice.getBoardNo()%>" class="notice_title"><%=notice.getBoardTitle() %></a></td>
-                        <%} %>
+                        <td width="213">공지사항</td>
+                        <td width="670" id="ajax_notice">
+                        </td>
                         <td width="230" style="text-align: right;"><a href="<%=contextPath%>/noticeList.bo?currentPage=1">+더보기</a></td>
                     </tr>
                 </table>
@@ -58,6 +56,25 @@
         </div>
     </div>
 </div>
+<script>
+	$(function(){
+		$.ajax({
+			url:"noticeMain.bo",
+			type:"post",
+			success:function(b){
+				var value="";
+				if(b != null){
+				value += "<a href='<%=contextPath%>/noticeDetail.bo?bno=" + b.boardNo + "' class='notice_title'>" +
+            			 b.boardTitle + "</a>";
+				}
+				$("#ajax_notice").html(value);
+			},error:function(){
+				console.log("ajax 통신실패!");
+			}
+		})
+	});
+	
+</script>
     <!-- //footer-->
 </body>
 </html>

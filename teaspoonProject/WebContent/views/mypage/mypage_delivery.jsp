@@ -11,7 +11,7 @@
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <style>
-         #banner {height: 170px; line-height: 170px; background:url("패턴 - 복사본.jpg") center top repeat-x;}
+        #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
       
     </style>
 </head>
@@ -30,7 +30,7 @@
                         <div id="mypage_info">
                             <div class="user_info" style="width:95px; border-left:1px solid #bebbb6">
                                 <div class="user_photo" style="margin-top:30px; padding-left:10px; float: left;">
-                                    <img src="사이트이미지/user.png">
+                                    <img src="<%=contextPath%>/resources/img/admin/user.png">
                                 </div>
                             </div>
                             <div class="user_info" style="width:450px;">
@@ -44,25 +44,26 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
-                                <p class="info_th" >적립포인트</p>
-                                <a href="#" >500Point</a>
-                            </div>
-                            <div class="detail_info2">
-                                <p class="info_th">할인쿠폰</p>
-                                <a  href="#" >3장</a>
-                            </div>
-                            <div class="detail_info2">
-                                <p class="info_th"  >위시리스트</p>
-                                <a  href="#" >10개</a>
-                            </div>
+                            <div class="detail_info2"
+							style="border-left: 1px solid #bebbb6; height: inherit;">
+								<p class="info_th">적립포인트</p>
+								<a href="<%=contextPath%>/mypoint.me?currentPage=1"><%= loginUser.getPoint() %>Point</a>
+							</div>
+							<div class="detail_info2">
+								<p class="info_th">할인쿠폰</p>
+								<a href="#"><%= loginUser.getCouponCount() %>장</a>
+							</div>
+							<div class="detail_info2">
+								<p class="info_th">위시리스트</p>
+								<a href="<%=contextPath %>/wishList.me"><%=loginUser.getWishCount() %>개</a>
+						</div>
                         </div>
                         <div id="mypage_menu_tab">
-                            <a href="#" class="active float"> 주문배송조회</a>
-                            <a href="#" class=" float">공간대여확인</a>
-                            <a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a>
-                            <a href="#" class=" float">1:1문의</a>
-                            <a href="#" class="float">장바구니</a>
+                            <a href="<%=contextPath %>//mydelivery.me" class=" float"> 주문배송조회</a>
+							<a href="#" class=" float">공간대여확인</a>
+							<a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a>
+							<a href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
+							<a href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
                         </div> 
                         <div class="pagename"></div>
 
@@ -153,13 +154,17 @@
                                         <td  style="text-align:left;">녹차 스프레드</td>
                                         <td>상품준비중</td>
                                         <td>18,000원</td>
-                                        <td><a><button class="btn_review">구매확정</button></a></td>
+                                        <td>
+                                        <a><button class="btn_review">구매확정</button></a>
+                                        <a><button class="btn_review">리뷰쓰기</button></a>
+                                        </td>
+                                        
                                     </tr>
                                 </tbody>
                             </table>
-                            
-                            <div class="fagingarea">
-                                <div class="fagingvar" align="center">
+
+                            <div class="pagingarea">
+                                <div class="pagingvar" align="center">
                                     <button><<</button>
                                     <button><</button>
                                     <button>1</button>

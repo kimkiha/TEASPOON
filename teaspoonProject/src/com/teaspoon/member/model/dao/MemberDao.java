@@ -77,7 +77,7 @@ public class MemberDao {
 						);
 				
 			}
-			System.out.println(loginUser);
+			//System.out.println(loginUser);
 			
 		}catch (SQLException e) {
 			e.printStackTrace();

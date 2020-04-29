@@ -48,7 +48,14 @@
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <style>
-#banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
+#banner {
+	margin-top: 115px;
+	height: 170px;
+	line-height: 170px;
+	background:
+		url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg")
+		center top repeat-x;
+}
 </style>
 </head>
 <body>
@@ -69,7 +76,7 @@
 							style="width: 95px; border-left: 1px solid #bebbb6">
 							<div class="user_photo"
 								style="margin-top: 30px; padding-left: 10px; float: left;">
-								<img src="사이트이미지/user.png">
+								<img src="<%=contextPath%>/resources/img/admin/user.png">
 							</div>
 						</div>
 						<div class="user_info" style="width: 450px;">
@@ -86,24 +93,24 @@
 						<div class="detail_info2"
 							style="border-left: 1px solid #bebbb6; height: inherit;">
 							<p class="info_th">적립포인트</p>
-							<a href="#"><%=loginUser.getPoint()%></a>
+							<a href="<%=contextPath%>/mypoint.me?currentPage=1"><%= loginUser.getPoint() %>Point</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">할인쿠폰</p>
-							<a href="#"><%=loginUser.getCount()%></a>
+							<a href="#"><%= loginUser.getCouponCount() %>장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="#"><%=loginUser.getPcode()%></a>
+							<a href="<%=contextPath %>/wishList.me"><%=loginUser.getWishCount() %>개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
-						<a href="#" class=" float"> 주문배송조회</a>
-					    <a href="#" class=" float">공간대여확인</a>
-						<a href="#" class=" float">나의배송지</a> 
-						<a href="<%=contextPath %>/myqna.me?currentPage=1"class="active float">1:1문의</a> 
-						<a href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
-							
+						<a href="#" class=" float"> 주문배송조회</a> <a href="#" class=" float">공간대여확인</a>
+						<a href="#" class=" float">나의배송지</a> <a
+							href="<%=contextPath%>/myqna.me?currentPage=1"
+							class="active float">1:1문의</a> <a
+							href="<%=contextPath%>/mycart.me" class="float">장바구니</a>
+
 					</div>
 					<div class="pagename"></div>
 					<div id="mp_con1">
@@ -160,21 +167,21 @@
 										if (at != null) { //첨부파일이 존재할 경우
 									%>
 									<div></div>
-									<a href="<%=contextPath%>/resources/thumbnail_upfiles/<%=at.getChangeName()%>"><%=at.getOriginName()%></a>
-							</div>
-							<%
-								} else {
-							%>
-							첨부파일이 없습니다
-							<%
-								}
-							%>
-							<div class="func">
-								<button class="btn btn-cancel" onclick="history.back();">뒤로가기</button>
-
-							</div>
-							</form>
-							<br> <br>
+									<a href="<%=contextPath%>/resources/thumbnail_upfiles/<%=at.getChangeName()%>"><%=at.getOriginName()%></a>	
+									</div>
+									<%
+										} else {
+									%>
+									첨부파일이 없습니다
+									<%
+										}
+									%>
+									<div class="func">
+										<button class="btn btn-cancel" value="뒤로가기"onclick="goBack();">뒤로가기</button>
+		
+									</div>
+									</form>
+									<br> <br>
 
 
 						</div>
@@ -192,5 +199,10 @@
 	<%@ include file="../common/footer.jsp"%>
 	<!-- //footer-->
 	</div>
+	<script type="text/javascript">
+		function goBack(){
+			window.history.back();
+		}
+	</script>
 </body>
 </html>

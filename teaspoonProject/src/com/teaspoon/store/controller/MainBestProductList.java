@@ -1,27 +1,30 @@
-package com.teaspoon.member.controller;
+package com.teaspoon.store.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teaspoon.member.model.service.MemberService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.teaspoon.store.model.service.ProductService;
+import com.teaspoon.store.model.vo.Product;
 
 /**
- * Servlet implementation class MemberInsertCartServlet
+ * Servlet implementation class MainBestProductList
  */
-@WebServlet("/insertCart.me")
-public class MemberInsertCartServlet extends HttpServlet {
+@WebServlet("/mainBestList.st")
+public class MainBestProductList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberInsertCartServlet() {
+    public MainBestProductList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,12 +33,14 @@ public class MemberInsertCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Product> list = new ProductService().mainBestProductList();
 		
-		int result = new MemberService().MemberInsertCart();
-		
-		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-		view.forward(request, response);
-		
+		if(list != null) {
+			response.setContentType("application/json; charset=utf-8");
+			Gson gson = new GsonBuilder().create();
+			gson.toJson(list, response.getWriter());
+			
+		}
 	}
 
 	/**

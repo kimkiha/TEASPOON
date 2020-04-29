@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
+import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.store.model.vo.Product;
 import com.teaspoon.store.model.vo.Review;
 
@@ -1150,6 +1151,90 @@ public class ProductDao {
 			close(pstmt);
 		}
 		return list;
+		
+	}
+
+	public int ordersUpdate(Connection conn, int amount, int userNo, int pDetailNo) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("ordersUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, userNo);
+			pstmt.setInt(3, pDetailNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	
+	public ArrayList<Product> mainBestProductList(Connection conn) {
+	ArrayList<Product> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("mainBestProductList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setPcode(rset.getInt("PCODE"));
+				p.setPname(rset.getString("PNAME"));
+				p.setSupPrice(rset.getInt("SUP_PRICE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setStock(rset.getInt("STOCK"));
+				p.setStatus(rset.getString("STATUS"));
+				p.setKeyword(rset.getString("KEYWORD"));
+				p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+				p.setKind(rset.getString("KIND"));
+				p.setPcontent(rset.getString("PCONTENT"));
+				p.setChangeName(rset.getString("CHANGE_NAME"));
+				list.add(p);	
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public int ordersInsert(Connection conn, Orders order, int userNo, String phone, int total) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("ordersInsert");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, userName);
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 		
 	}
 }

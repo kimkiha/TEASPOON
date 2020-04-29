@@ -6,11 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 import static com.teaspoon.common.JDBCTemplate.*;
 
+import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.dao.MemberDao;
+import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.space.model.vo.Goods;
 import com.teaspoon.space.model.vo.Payment;
 import com.teaspoon.space.model.vo.Space;
@@ -119,6 +122,84 @@ public class SpaceDao {
 		
 		return result;
 	
+	}
+	
+	public int getSpaceListCount(Connection conn) {
+		int listCount = 0;
+
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getSpaceListCount");
+
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+
+			if (rset.next()) {
+				// 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return listCount;
+	}
+	
+	
+	public ArrayList<Space> selectSpaceList(Connection conn, PageInfo pi) {
+		ArrayList<Space> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSpaceList");
+
+		/*
+		 * pi에 담겨있는 현재 페이지값과 보여질게시글 수 을 이용해 보여질 페이시 수를 정한다. ex) boardLimit = 10
+		 * currentPage = 1 --> startRow :1 endRow:10 currentPage = 2 --> startRow :11
+		 * endRow:20 currentPage = 3 --> startRow :21 endRow:30
+		 * 
+		 * startRow : (currentPage-1) * boardLimit + 1 endRow : startRow + boardLimit -1
+		 */
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				list.add(new Space(
+							rset.getInt("RESERV_NO"),
+							rset.getDate("APP_DATE"),
+							rset.getString("RESERV_TIME"),
+							rset.getString("RESERV_DATE"),
+							rset.getString("USER_NAME"),
+							rset.getString("PHONE"),
+							rset.getInt("VISIT_NUM"),
+							rset.getString("RESERV_REASON"),
+							rset.getString("GOODS"),
+							rset.getInt("GRADE_CODE"),
+							rset.getString("ACCEPT"),
+							rset.getInt("TOTAL")
+						));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
+		}
+		return list;
 	}
 	
 }
