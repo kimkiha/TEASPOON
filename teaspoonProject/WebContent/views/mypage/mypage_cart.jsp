@@ -135,9 +135,8 @@
                                 <div class="t-func2"><button>선택상품 위시리스트 담기</button></div>
                                 <div class="t-func3"><span>장바구니에 보관된 상품은 15일뒤에 삭제됩니다</span></div>
                             </div>
-                            <div class="bill-box">
-                                <div class="billbox">
-                                    
+                            <div>
+                                <div>
                                 </div>
                             </div>
                             <div class="func">
