@@ -70,7 +70,7 @@ int maxPage = pi.getMaxPage();
                                     <td><%=list.get(i).getTotal() %></td>
                                     <td><%=list.get(i).getAccept() %></td>
                                     <td>
-                                        <button>거절</button>
+                                        <button class="deny">거절</button>
                                         <button>승인</button>
                                     </td>
                                 </tr>
@@ -112,18 +112,33 @@ int maxPage = pi.getMaxPage();
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-        
-    </div>  
 </body>
+
+ <script>
+ 
+
+
+ 
+	 	$(function(){
+	 		$(".deny").click(function(){
+	 			var reservNo = $(this).parent().parent().children().eq(0).text();
+	 			
+	 			$.ajax({
+	 				url:"reservationDeny.re",
+	 				type:"post",
+	 				data:{reservNo:reservNo},
+	 				success:function(list){
+	 					
+	 					//빈문자열에 tbody에 들아갈 태그와값을 전부 작성하고 html함수로 추가해준다.
+	 					var result = "";
+	 				
+	 				},
+	 				error:function(){
+	 					console.log("ajax 통신 실패!!");
+	 				}
+	 				
+	 			});
+	 		});
+	 	});
+	 </script>
 </html>
