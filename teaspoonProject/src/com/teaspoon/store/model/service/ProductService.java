@@ -505,9 +505,9 @@ public class ProductService {
 	/** 사용자 최종주문내역 저장하는 서비스 
 	 * @return
 	 */
-	public int ordersInsert(Orders order, int userNo, String phone, int total) {
+	public int ordersInsert(Orders order, int userNo, String userName, String phone, int total) {
 		Connection conn = getConnection();
-		int result = new ProductDao().ordersInsert(conn, order, userNo, phone, total);
+		int result = new ProductDao().ordersInsert(conn, order, userNo, userName, phone, total);
 		
 
 		if (result>0) {
