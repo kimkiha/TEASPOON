@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.board.service.BoardService;
 
@@ -36,18 +38,12 @@ public class NoticeMainServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		Board b = new BoardService().selectNotice();
-		
-		System.out.println(b);
 		if(b != null) {
-			HttpSession session= request.getSession();
-			session.setAttribute("b", b);
-			response.sendRedirect(request.getContextPath());
-		}else {
-			request.setAttribute("msg", "메인불러오기를 실패했습니다.");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
+			response.setContentType("application/json; charset=utf-8");
+			Gson gson = new GsonBuilder().create();
+			gson.toJson(b, response.getWriter());
+			
 		}
-		
 	}
 
 	/**

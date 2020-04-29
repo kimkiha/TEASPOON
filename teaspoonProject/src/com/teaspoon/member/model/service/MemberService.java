@@ -183,9 +183,9 @@ public class MemberService {
 		
 		Connection conn = getConnection();
 		
-		int result = new MemberDao().insertMember(conn, m);
-		
-		if(result > 0) {
+		int result1 = new MemberDao().insertMember(conn, m);
+		int result2 = new MemberDao().MemberInsertCart(conn);
+		if(result1 > 0 && result2 >0 ) {
 			commit(conn);
 		}else {
 			rollback(conn);
@@ -194,7 +194,7 @@ public class MemberService {
 		
 		close(conn);
 		
-		return result;
+		return result1*result2;
 		
 	}
 	
