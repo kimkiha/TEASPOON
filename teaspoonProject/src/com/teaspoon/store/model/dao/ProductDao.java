@@ -1173,6 +1173,40 @@ public class ProductDao {
 			close(pstmt);
 		}
 		return result;
+	public ArrayList<Product> mainBestProductList(Connection conn) {
+	ArrayList<Product> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("mainBestProductList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setPcode(rset.getInt("PCODE"));
+				p.setPname(rset.getString("PNAME"));
+				p.setSupPrice(rset.getInt("SUP_PRICE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setStock(rset.getInt("STOCK"));
+				p.setStatus(rset.getString("STATUS"));
+				p.setKeyword(rset.getString("KEYWORD"));
+				p.setTotalCount(rset.getInt("TOTAL_COUNT"));
+				p.setKind(rset.getString("KIND"));
+				p.setPcontent(rset.getString("PCONTENT"));
+				p.setChangeName(rset.getString("CHANGE_NAME"));
+				list.add(p);	
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 		
 	}
 }
