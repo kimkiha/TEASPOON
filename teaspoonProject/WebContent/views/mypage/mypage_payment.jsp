@@ -103,7 +103,7 @@
                                    <tr>
                                        <td class="left_text_st">사용할포인트</td>
                                        <td> <input type="number" id='pointUse' class="point" name="point" placeholder="사용할 포인트를 입력하세요." width="400" style="padding-inline-start: 15px;"></td>
-                                       <td><button id="pointUseBtn" style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
+                                       <td><button type="button" id="pointUseBtn" style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
                                    </tr>
                                 </table>
                             </div>
@@ -114,7 +114,7 @@
                                 <table class="tb3" cellspacing="0" cellpadding="0" >
                                         <tr>
                                             <td class="left_text_st top_bd ">이름</td>
-                                            <td class="top_bd "colspan="3" >
+                                            <td class="top_bd "colspan="3">
                                                 <input type="text" name="userName" value="<%=loginUser.getUserName()%>" style="padding-left:20px;" readonly>
                                             </td>
                                         </tr>
@@ -128,27 +128,27 @@
                             <div id="mp_con3" style="margin-bottom:400px">
                                 <p style="float:left; margin-bottom:0">배송 정보 입력</p>
                                 <table class="tb3"  cellspacing="0" cellpadding="0" >
-                                        <tr>
+                                        <!-- <tr>
                                             <td class="left_text_st top_bd " >배송지 선택</td>
                                             <td class="top_bd "colspan="2" >
                                                 <select style="width:200px; padding-left:15px">
                                                     <option>우리집</option>
                                                 </select>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
-                                            <td class="left_text_st" width="170" rowspan="2">받으시는분</td>
-                                            <td style="padding-right:0px; width: 220px; border-bottom: none;" >
-                                                <input type="text" placeholder="이름" style="padding-left:20px;" name="recipient" required>
+                                            <td class="left_text_st top_bd " width="170" rowspan="2">받으시는분</td>
+                                            <td style="padding-right:0px; width: 220px; border-bottom: none;" class="left_text_st top_bd " >
+                                                <input type="text" placeholder="이름" style="padding-left:20px;width:200px;" name="recipient" required>
                                             </td>
-                                            <td style="text-align: left; border-bottom: none;"><input type="text" name="recipientPhone" placeholder="휴대전화번호"  style="padding-left:20px;" required></td>
+                                            <td class="left_text_st top_bd "style="text-align: left; border-bottom: none;">
+                                            	<input type="text" name="recipientPhone" placeholder="휴대전화번호"  style="padding-left:20px; width:320px;" required>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" style="width:200px; padding-top:0">
-                                                <button style="background: rgb(158, 158, 158); color:#fff; width:130px;height:53px; padding-left:10px; border:1px solid darkgray">
-                                                	주소찾기
-                                                </button>
-                                                <input type="text" placeholder="주소" name="recipientAddress" style="width: 350px; border-radius:5px; padding-left:20px;"required>
+                                                
+                                                <input type="text" placeholder="배송받을 주소입력" name="recipientAddress" style="width: 520px; border-radius:5px; padding-left:20px;"required>
                                             </td>
                                         </tr>
                                         
