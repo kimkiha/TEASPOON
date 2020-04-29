@@ -1636,3 +1636,4 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		
 		
 }
+
