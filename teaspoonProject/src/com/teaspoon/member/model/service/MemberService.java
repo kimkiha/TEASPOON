@@ -15,6 +15,7 @@ import com.teaspoon.member.model.vo.Cart;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.member.model.vo.Point;
 import com.teaspoon.store.model.vo.Product;
 
@@ -705,6 +706,23 @@ public class MemberService {
 		return result;
 	}
 
+	
+	//
+	public int getOrderCount() {
+		Connection conn = getConnection();
+		int listCount = new MemberDao().getOrderCount(conn);
+
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Orders> orderConditionList(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Orders> list = new MemberDao().orderConditionList(conn, pi);
+
+		close(conn);
+		return list;
+	}
 	
 	
 	
