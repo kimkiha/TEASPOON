@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.store.model.service.ProductService;
 
 /**
@@ -31,13 +32,20 @@ public class OrdersUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int mprice = Integer.parseInt(request.getParameter("mprice"));
-		int amount = Integer.parseInt(request.getParameter("amount"));
-		int result = new ProductService().ordersUpdate(mprice, amount);
 		
-		response.setContentType("application/jason; charset=utf-8;");
-		Gson gson = new GsonBuilder().create();
-		gson.toJson(result, response.getWriter());
+		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
+		int amount = Integer.parseInt(request.getParameter("amount"));
+		int pDetailNo = Integer.parseInt(request.getParameter("pDetailNo"));
+		
+		int result = new ProductService().ordersUpdate(amount, userNo, pDetailNo);
+		
+		//System.out.println(userNo);
+		//System.out.println(amount);
+		//System.out.println(pDetailNo);
+		
+//		response.setContentType("application/jason; charset=utf-8;");
+//		Gson gson = new GsonBuilder().create();
+//		gson.toJson(result, response.getWriter());
 	
 	}
 

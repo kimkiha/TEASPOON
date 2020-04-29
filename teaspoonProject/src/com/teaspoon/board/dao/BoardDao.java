@@ -67,7 +67,6 @@ public class BoardDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(b);
 		return b;
 	}
 	
@@ -978,7 +977,6 @@ public class BoardDao {
 			close(pstmt);
 		}
 
-		System.out.println(b);
 		return b;
 		 
 		

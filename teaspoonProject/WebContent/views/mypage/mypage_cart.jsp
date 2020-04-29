@@ -3,6 +3,7 @@
 <%
 	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
 	int totalPrice = 0;
+	// list.get(0).getpDetailNo()
     //int onePrice = (list.get(0).getPrice()+list.get(0).getAddPrice());
 	//int totalPrice = (list.get(0).getPrice()+list.get(0).getAddPrice())*list.get(0).getAmount();
 	//System.out.print(list);
@@ -80,7 +81,7 @@
                             <table id="mypage_table" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();">전체선택</th>
+                                        <th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();"><label for="th_checkAll">전체선택</label></th>
                                         <th colspan="2">상품명</th>
                                         <th>수량</th>
                                         <th>판매가격</th>
@@ -103,6 +104,7 @@
                                         	<p class="pDetail" style="cursor:pointer"><%=list.get(i).getPname() %></p>
                                         	<input type="hidden" class="pcode" name="pcode" value=<%=list.get(i).getPcode() %>>
                                         	<input type="hidden" name="kind" value=<%=list.get(i).getKind() %>>
+                                        	<input type="hidden" name="pDetailNo" value=<%=list.get(i).getpDetailNo()%>>
                                         	<p style="font-weight:100; font-size:16px;"><%=list.get(i).getOptionType1() %>, <%=list.get(i).getOptionType2() %></p>
                                         </td>
                                         <td>
@@ -135,13 +137,7 @@
                             </div>
                             <div class="bill-box">
                                 <div class="billbox">
-                                    <span>상품가격</span>
-                                    <b><%=totalPrice %></b>
-                                    <b>+</b>
-                                    <span>배송비</span>
-                                    <b>2,500원</b>
-                                    <b>=</b>
-                                    <b><%=totalPrice+2500 %>원</b>
+                                    
                                 </div>
                             </div>
                             <div class="func">
@@ -207,22 +203,24 @@
 			//$('.numberUpDown').text(num);
 			$(this).siblings().eq(0).children().text(num);
 			
-			var onePrice = $(this).parent().prev().val();
-			var amount = $(this).siblings().eq(0).children().text();
-			var totalPrice = onePrice * amount;
+			var onePrice = $(this).parent().prev().val();	// 한상품의 본래 가격에 옵션을 더한 가격(P_DETAIL)
+			var pDetailNo = $(this).parent().parent().siblings().eq(2).children().eq(3).val();
+			var amount = $(this).siblings().eq(0).children().text();	// 사용자가 정하는 상품갯수(1~5)
+			var totalPrice = onePrice * amount;	// 총 가격
 			
-			var mprice = $(this).parent().parent().next().text(totalPrice);
-			
+			var minusPrice = $(this).parent().parent().next().text(totalPrice);
+
+			//console.log(pDetailNo);
 			$.ajax({
 				url:"ordersUpdate.st",
-				data:{mprice:mprice, amount:amount},
+				data:{amount:amount, pDetailNo:pDetailNo},
 				success:function(result){
 					if(result>0){
-						console.log("ajax통신 성공")
+
 					}
 				}
 				
-			})	
+			})
 			
 		});
 
@@ -240,16 +238,25 @@
 			//$('#numberUpDown').text(num);
 			$(this).siblings().eq(1).children().text(num);
 			
-			var onePrice = $(this).parent().prev().val();
-			var amount = $(this).siblings().eq(1).children().text();
-			var totalPrice = onePrice * amount;
-						
-			$(this).parent().parent().next().text(totalPrice);
+			var onePrice = $(this).parent().prev().val();	// 한상품의 본래 가격에 옵션을 더한 가격(수정불가)
+			var pDetailNo = $(this).parent().parent().siblings().eq(2).children().eq(3).val();
+			var amount = $(this).siblings().eq(1).children().text(); // 사용자가 정하는 상품갯수(1~5로 변경가능)
+			var totalPrice = onePrice * amount;		// 총 가격
+			
+			var plusPrice = $(this).parent().parent().next().text(totalPrice);
+			
+			$.ajax({
+				url:"ordersUpdate.st",
+				data:{amount:amount, pDetailNo:pDetailNo},
+				success:function(result){
+					
+				}, error:function(){
+					console.log("너 실패다아아아")
+				}
+				
+			})
 		});
 	});
-	
-	
-	
 	
     </script>
 </body>
