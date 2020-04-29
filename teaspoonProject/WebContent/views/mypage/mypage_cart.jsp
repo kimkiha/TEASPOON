@@ -59,11 +59,11 @@
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%=loginUser.getCount() %>장</a>
+                                <a  href="#" ><%=loginUser.getCouponCount() %>장</a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=loginUser.getPcode() %>개</a>
+                                <a  href="#" ><%=loginUser.getWishCount() %>개</a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
@@ -116,7 +116,7 @@
 	                                            </a>
                                         	</div>
                                         </td>
-                                        <td class='totalProductPrice'></td>
+                                        <td class='totalProductPrice'><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount() %></td>
                                         <td>2,500원</td>
                                     </tr>
                                     <% totalPrice += (list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount(); %>
@@ -210,7 +210,18 @@
 			var amount = $(this).siblings().eq(0).children().text();
 			var totalPrice = onePrice * amount;
 			
-			$(this).parent().parent().next().text(totalPrice);
+			var mprice = $(this).parent().parent().next().text(totalPrice);
+			
+			$.ajax({
+				url:"ordersUpdate.st",
+				data:{mprice:mprice, amount:amount},
+				success:function(result){
+					if(result>0){
+						console.log("ajax통신 성공")
+					}
+				}
+				
+			})	
 			
 		});
 
@@ -228,19 +239,16 @@
 			//$('#numberUpDown').text(num);
 			$(this).siblings().eq(1).children().text(num);
 			
-			
 			var onePrice = $(this).parent().prev().val();
 			var amount = $(this).siblings().eq(1).children().text();
 			var totalPrice = onePrice * amount;
-			
-			
+						
 			$(this).parent().parent().next().text(totalPrice);
-			
-
 		});
-
-		
 	});
+	
+	
+	
 	
     </script>
 </body>
