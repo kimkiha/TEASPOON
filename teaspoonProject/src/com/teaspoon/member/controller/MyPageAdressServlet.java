@@ -35,7 +35,7 @@ public class MyPageAdressServlet extends HttpServlet {
 		
 		
 
-		String address = request.getParameter("address");
+		
 		
 		HttpSession Session = request.getSession();
 		String userId=((Member)Session.getAttribute("loginUser")).getUserId();		// userId로 가져오기

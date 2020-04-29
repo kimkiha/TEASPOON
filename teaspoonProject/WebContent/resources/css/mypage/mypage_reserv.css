@@ -26,7 +26,7 @@
     #mypage_info div p{line-height: 43px;}
     /*선택되어있을때*/
    #mypage_menu_tab>a.active{background:white; color:#333333; transform: translateY(-5px);}
-   #mp_con1{text-align:left; width:100%; }
+   #mp_con1{width:100%; }
    #mp_con1>p{padding-left:20px; padding-bottom:10px; border-bottom:1px solid black;}
 
    /*마이페이지 tab메뉴*/
@@ -144,7 +144,7 @@
   #mypage_table td{border-bottom:1px solid #bebebe; padding: 30px  0;}
   
   /*페이징 바*/
-  .fagingarea{width:1000px;height: 155px;}
-  .fagingvar{width: 1000px;height:35px;line-height: 18;}
+ .fagingarea{width:1000px;height:300px;text-align: center; }
+  .fagingvar{width: 900px;height:35px;display: inline-block;}
      
 

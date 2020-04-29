@@ -140,7 +140,7 @@
   #mypage_table th{border-bottom:2px solid #bebebe;  border-top: 1px solid #bebebe; padding: 10px 0;}
   #mypage_table td{border-bottom:1px solid #bebebe; padding: 30px  0;}
   /*페이징 바*/
-  .fagingarea{width:1000px;height:155px}
-  .fagingvar{width: 1000px;height:35px;}
+  .fagingarea{width:1000px;height:155px;text-align: center; border:1px solid black;background:red}
+  .fagingvar{width: 900px;height:35px;display: inline-block;border:1px solid black;background:red}
      
 

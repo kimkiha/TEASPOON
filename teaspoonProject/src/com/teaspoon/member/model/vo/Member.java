@@ -39,6 +39,15 @@ public class Member {
 	private int pDetailNo;	// 상품상세코드
 	private int pCount;		// 장바구니에 담을 상품수량
 	
+	private int reservNo;
+	private Date appDate;
+	private String reservDate;
+	private String reservTime;
+	private int visitNum;
+	private String accept;
+	private int total;
+	
+	
 
 	public Member(){
 		
@@ -256,7 +265,77 @@ public class Member {
 		this.wishCount = wishCount;
 		this.couponCount = couponCount;
 	}
+	
 
+
+	public Member(int reservNo, Date appDate, String reservDate, String reservTime, int visitNum, String accept,
+			int total) {
+		super();
+		this.reservNo = reservNo;
+		this.appDate = appDate;
+		this.reservDate = reservDate;
+		this.reservTime = reservTime;
+		this.visitNum = visitNum;
+		this.accept = accept;
+		this.total = total;
+	}
+	
+
+	public int getReservNo() {
+		return reservNo;
+	}
+
+	public void setReservNo(int reservNo) {
+		this.reservNo = reservNo;
+	}
+
+	public Date getAppDate() {
+		return appDate;
+	}
+
+	public void setAppDate(Date appDate) {
+		this.appDate = appDate;
+	}
+
+	public String getReservDate() {
+		return reservDate;
+	}
+
+	public void setReservDate(String reservDate) {
+		this.reservDate = reservDate;
+	}
+
+	public String getReservTime() {
+		return reservTime;
+	}
+
+	public void setReservTime(String reservTime) {
+		this.reservTime = reservTime;
+	}
+
+	public int getVisitNum() {
+		return visitNum;
+	}
+
+	public void setVisitNum(int visitNum) {
+		this.visitNum = visitNum;
+	}
+
+	public String getAccept() {
+		return accept;
+	}
+
+	public void setAccept(String accept) {
+		this.accept = accept;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
 
 	public int getWishCount() {
 		return wishCount;
@@ -539,10 +618,14 @@ public class Member {
 				+ ", mtm_no=" + mtm_no + ", mtm_name=" + mtm_name + ", mtm_title=" + mtm_title + ", create_date="
 				+ create_date + ", re_comment=" + re_comment + ", answer=" + answer + ", pcode=" + pcode + ", count="
 				+ count + ", wishCount=" + wishCount + ", couponCount=" + couponCount + ", pDetailNo=" + pDetailNo
-				+ ", pCount=" + pCount + "]";
+				+ ", pCount=" + pCount + ", reservNo=" + reservNo + ", appDate=" + appDate + ", reservDate="
+				+ reservDate + ", reservTime=" + reservTime + ", visitNum=" + visitNum + ", accept=" + accept
+				+ ", total=" + total + "]";
 	}
-
 	
+	
+
+
 	
 	
 	

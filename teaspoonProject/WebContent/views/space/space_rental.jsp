@@ -32,7 +32,7 @@
         <div id="banner">
         	
             <div class="contaniner" style="width:100%; height:100%;">
-            	<b><p style="font-size:40px;">공간대여</p></b>
+            	<b><p style="font-size:40px; position:relative; top:50px;">공간대여</p></b>
             </div>
         </div>
         <!-- //banner -->
@@ -42,27 +42,27 @@
                 <div class="contaniner" style="height:1000px;">
                     
                     <!-- 헤더부분 div -->
-                    <div class="head-container">티모르(TIMOR)</div>
+                    <div class="head-container">아카이야(ACHAEA)</div>
 
                     <!-- 예약 슬라이드 div -->
                     <div class="slideshow-container">
                         <!-- 1번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">1 / 3</div>
-                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv3.png;" style="width:100%;">
-                          <div class="text"></div>
+                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv4.png;" style="width:1000px; height:550px;">
+                          <div class="text">세련된 인싸들의 공간 ACHAEA</div>
                         </div>
                         <!-- 2번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">2 / 3</div>
-                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv1.png;" style="width:100%;">
-                          <div class="text"></div>
+                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv1.png;" style="width:1000px; height:550px;">
+                          <div class="text">세련된 인싸들의 공간 ACHAEA</div>
                         </div>
                         <!-- 3번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">3 / 3</div>
-                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv4.png;" style="width:100%;">
-                          <div class="text"></div>
+                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv3.png;" style="width:1000px; height:550px;">
+                          <div class="text">세련된 인싸들의 공간 ACHAEA</div>
                         </div>
                         
                         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -120,7 +120,7 @@
                                 <div class="mySlidet fades">
                                   <div class="numbertexts">3 / 3</div>
                                   <img src="<%=request.getContextPath() %>/resources/img/space/reserv1.png" style="width:650px; height:250px;">
-                                  <div class="texts">아카이야 내부</div>
+                                  <div class="texts">ACHAEA 내부</div>
                                 </div>
                                 
                                 </div>
@@ -171,20 +171,20 @@
                             <div class="sb01"><p class="ftm">대여 정보</p><p id="spreadBtn02" class="btn01">세부사항⇲</p></div> 
                             <ul id="hiddenList01" class="example01" style="display: none;">
                                <li class="aka">아카이야 정보 <br><br>
-                               	<p>이 공간은 예약시간 초과로부터 분단위 추가요금이 발생합니다.<br></p>
-                               	<p>즐거운 모임과 회의 진행을 위해 음식 반입 허용합니다. <br><p>
+                               		<p>이 공간은 예약시간 초과로부터 분단위 추가요금이 발생합니다.<br></p>
+                               		<p>즐거운 모임과 회의 진행을 위해 음식 반입 허용합니다. <br><p>
                                		(매장 내 요리조리 불가), (접시,포크등 대여불가)
-                               	</li>
+                               </li>
                                 
                             </ul>
                             <div class="sb02"><p class="ftm">대여 비품용품</p><p id="spreadBtn03" class="btn02">세부사항⇲</p></div> 
                             <ul id="hiddenList02" class="example02" style="display: none; padding:20px;" >
-                              <div class="bpf" style="line-height:250%"> 
-                                <span id="span1"><input type="checkbox" class='goods' name="good" value="빔프로젝트">빔프로젝트 (+)10,000원</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span id="span2"><input type="checkbox" class='goods' name="good" value="노트북">노트북 (+)20,000원</span><br>
-                                <span id="span3"><input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터 (+),2000원</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span id="span4"><input type="checkbox" class='goods' name="good" value="앰프">앰프 (+)20,000원</span>
-                              </div>
+                             
+                                <li id="span1"><label for="goodd"><input type="checkbox" id="goodd" class='goods' name="good" value="빔프로젝트">빔프로젝트 (+)10,000원</label></li>
+                                <li id="span2"><input type="checkbox" class='goods' name="good" value="노트북">노트북 (+)20,000원</li>
+                                <li id="span3"><input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터 (+),2000원</li>
+                                <li id="span4"><input type="checkbox" class='goods' name="good" value="앰프">앰프 (+)20,000원</li>
+            
                             </ul>
 
 

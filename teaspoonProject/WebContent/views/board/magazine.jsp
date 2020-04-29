@@ -27,6 +27,7 @@
          #banner {margin-top:84px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
         #paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
 		#paging button:hover{cursor:pointer;color:#d6ae71;}
+		#content1{height:100%}
     </style>
 </head>
 
