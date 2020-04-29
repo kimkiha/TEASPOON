@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.teaspoon.board.model.vo.Attachment;
-import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Orders;
+import com.teaspoon.store.model.vo.Option;
 import com.teaspoon.store.model.vo.Product;
 import com.teaspoon.store.model.vo.Review;
 
@@ -1215,7 +1215,7 @@ public class ProductDao {
 		
 	}
 	
-	public int ordersInsert(Connection conn, Orders order, int userNo, String userName, String phone, int total) {
+	public int ordersInsert(Connection conn, Orders order, int userNo, String userName, String phone, int total, String totalProductInfo) {
 		int result =0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("ordersInsert");
@@ -1229,10 +1229,70 @@ public class ProductDao {
 			pstmt.setString(4, order.getRecipient());
 			pstmt.setString(5, order.getRecipientPhone());
 			pstmt.setString(6, order.getRecipientAddress());
-			pstmt.setString(7, order.getOrderMessage());
-			pstmt.setInt(8, total);
-			pstmt.setInt(9, userNo);
+			pstmt.setInt(7, total);
+			pstmt.setInt(8, userNo);
+			pstmt.setString(9, order.getOrderMessage());
+			pstmt.setString(10, totalProductInfo);
 			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	
+	
+	public ArrayList<Option> extractProductInfo(Connection conn, int userNo){
+		ArrayList<Option> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("extractProductInfo");
+		
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Option p = new Option(
+						rset.getString("OPTION_TYPE1"),
+						rset.getString("OPTION_TYPE2"),
+						rset.getString("PNAME")
+	
+						);
+				
+				
+				list.add(p);	
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	public int cartEmpty(Connection conn, int userNo) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("cartEmpty");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+		
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

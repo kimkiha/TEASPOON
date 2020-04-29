@@ -10,6 +10,7 @@
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script type="text/javascript"src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <body>
 	<div id="wrap">

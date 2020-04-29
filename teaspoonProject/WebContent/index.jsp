@@ -148,7 +148,7 @@
 		                        "<a href='<%=contextPath%>/detail.co?pcode=" + list[i].pcode + "'>"+
 		                        "<img src='<%=contextPath %>/resources/thumbnail_upfiles/" + list[i].changeName + "'>" +
 		                        "</a>"+
-		                        "<p class='best_product_name'>"+"<a href='<%=contextPath%>/detail.co?" + list[i].pcode +"'>" + list[i].pname + "</a>"+"</p>"+
+		                        "<p class='best_product_name'>"+"<a href='<%=contextPath%>/detail.co?pcode=" + list[i].pcode +"'>" + list[i].pname + "</a>"+"</p>"+
 		                        "<p>"+"<b>"+list[i].price+"</b>"+
 		                        "</p>"+
 		                    	"</div>";
@@ -175,7 +175,7 @@
 			    				"<a href='<%=contextPath%>/detail.co?pcode=" + bestlist[i].pcode + "'>"+
 			    				"<img src='<%=contextPath %>/resources/thumbnail_upfiles/" + bestlist[i].changeName + "'>" +
 			                    "</a>"+
-			                    "<p class='best_product_name'>"+"<a href='<%=contextPath%>/detail.co?" + bestlist[i].pcode +"'>" + bestlist[i].pname + "</a>"+"</p>"+
+			                    "<p class='best_product_name'>"+"<a href='<%=contextPath%>/detail.co?pcode=" + bestlist[i].pcode +"'>" + bestlist[i].pname + "</a>"+"</p>"+
 			                    "<p class='best_product_price'><b>"+bestlist[i].price+"</b></p>"+
 			                    "</div>"+
 			                    "</div>"

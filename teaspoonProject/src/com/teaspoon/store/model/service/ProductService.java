@@ -9,10 +9,10 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.teaspoon.board.model.vo.Attachment;
-import com.teaspoon.board.model.vo.Board;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.store.model.dao.ProductDao;
+import com.teaspoon.store.model.vo.Option;
 import com.teaspoon.store.model.vo.Product;
 import com.teaspoon.store.model.vo.Review;
 
@@ -492,7 +492,7 @@ public class ProductService {
 		return result;
 	}
 	
-	public ArrayList<Product> mainBestProductList() {
+	public ArrayList<Product> mainBestProductList(){
 		Connection conn = getConnection();
 		ArrayList<Product> list = new ProductDao().mainBestProductList(conn);
 
@@ -505,9 +505,32 @@ public class ProductService {
 	/** 사용자 최종주문내역 저장하는 서비스 
 	 * @return
 	 */
-	public int ordersInsert(Orders order, int userNo, String userName, String phone, int total) {
+	public int ordersInsert(Orders order, int userNo, String userName, String phone, int total,String totalProductInfo) {
 		Connection conn = getConnection();
-		int result = new ProductDao().ordersInsert(conn, order, userNo, userName, phone, total);
+		int result = new ProductDao().ordersInsert(conn, order, userNo, userName, phone, total,totalProductInfo);
+		
+
+		if (result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
+	}
+	
+	public ArrayList<Option> extractProductInfo(int userNo) {
+		Connection conn = getConnection();
+		ArrayList<Option> list = new ProductDao().extractProductInfo(conn, userNo);
+
+		close(conn);
+		return list;
+	}
+
+	public int cartEmpty(int userNo) {
+		Connection conn = getConnection();
+		int result = new ProductDao().cartEmpty(conn,userNo);
 		
 
 		if (result>0) {
