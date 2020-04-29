@@ -1,7 +1,6 @@
 package com.teaspoon.space.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.teaspoon.space.model.service.SpaceService;
 
 /**
- * Servlet implementation class SpaceReservationDeny
+ * Servlet implementation class SpaceReservationAccept
  */
-@WebServlet("/reservationDeny.re")
-public class SpaceReservationDeny extends HttpServlet {
+@WebServlet("/reservationAccept.re")
+public class SpaceReservationAccept extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpaceReservationDeny() {
+    public SpaceReservationAccept() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +32,7 @@ public class SpaceReservationDeny extends HttpServlet {
 		//System.out.println(reservNo);
 		
 		
-		new SpaceService().reservationDeny(reservNo);
-		
-		//응답데이터에 한글이 있을경우 인코딩 작업
-		response.setCharacterEncoding("utf-8");
-		
-		//통로생성후 통로로 데이터 전달
-		//PrintWriter out = response.getWriter();
-		//응답페이지를 지정하는게 아닌 비동식임으로 페이지는 유지상태 데이터 그냥 데이터 전달하면
-		//자동으로 응답한 페이지의 함수로 돌아감
-		//index.jsp에 ajax success:function(){} 이함수에서 매개변수로 응답데이터를 받아줌
-		//out.print(responseData);
-		
-	
+		new SpaceService().reservationAccept(reservNo);
 	}
 
 	/**

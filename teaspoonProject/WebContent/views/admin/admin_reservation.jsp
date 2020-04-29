@@ -71,7 +71,7 @@ int maxPage = pi.getMaxPage();
                                     <td><%=list.get(i).getAccept() %></td>
                                     <td>
                                         <button class="deny">거절</button>
-                                        <button>승인</button>
+                                        <button class="accept">승인</button>
                                     </td>
                                 </tr>
                                 <%} %>
@@ -122,15 +122,34 @@ int maxPage = pi.getMaxPage();
 	 	$(function(){
 	 		$(".deny").click(function(){
 	 			var reservNo = $(this).parent().parent().children().eq(0).text();
-	 			
+	 			var deny = $(this).parent().parent().children().eq(9);
 	 			$.ajax({
 	 				url:"reservationDeny.re",
 	 				type:"post",
 	 				data:{reservNo:reservNo},
 	 				success:function(list){
-	 					
-	 					//빈문자열에 tbody에 들아갈 태그와값을 전부 작성하고 html함수로 추가해준다.
-	 					var result = "";
+	 					deny.text('N');
+	 				
+	 				},
+	 				error:function(){
+	 					console.log("ajax 통신 실패!!");
+	 				}
+	 				
+	 			});
+	 		});
+	 	});
+	 	
+	 	
+	 	$(function(){
+	 		$(".accept").click(function(){
+	 			var reservNo = $(this).parent().parent().children().eq(0).text();
+	 			var deny = $(this).parent().parent().children().eq(9);
+	 			$.ajax({
+	 				url:"reservationAccept.re",
+	 				type:"post",
+	 				data:{reservNo:reservNo},
+	 				success:function(list){
+	 					deny.text('Y');
 	 				
 	 				},
 	 				error:function(){

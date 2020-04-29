@@ -112,6 +112,7 @@ public class SpacelistAdminServlet extends HttpServlet {
 		//System.out.println(pi);
 		ArrayList<Space> list = new SpaceService().selectSpaceList(pi);
 		
+		
 		//System.out.println(list);
 		
 		//페이지바만들기위한 pi객체전달
