@@ -13,7 +13,7 @@ int maxPage = pi.getMaxPage();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의대관현황 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/resources/css/mypage/mypage_reserv.css">
 <link rel="styleSheet"

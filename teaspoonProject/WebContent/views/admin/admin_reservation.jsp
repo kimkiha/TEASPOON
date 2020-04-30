@@ -14,7 +14,7 @@ int maxPage = pi.getMaxPage();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>대관</title>
+    <title>대관관리  | Admin</title>
 
     <style>
         #c1_1_2 div{padding-left: 25px; float:left;}

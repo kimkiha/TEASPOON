@@ -6,7 +6,7 @@ System.out.println(newEmail);%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호찾기완료 | TeaSpoon</title>
+<title>비밀번호찾기 | TeaSpoon</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_idSearch_complete.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>맞춤추천 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/resources/css/store/selectItem.css">
 <link rel="styleSheet"
