@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="com.teaspoon.board.model.vo.*"%>
 <%
  Board b = (Board)request.getAttribute("b");
+int random = (int)(Math.random() * 100 +1);
 %>
 <!DOCTYPE html>
 <html>
@@ -54,23 +55,40 @@
                             </div>
                         </div>
                         <div class="maga_con">
-                            <%=b.getBoardContent() %>
-                        </div>
-                        <div>
-                        	<button></button>
+                            <div class="event_img_1" style="position: relative;">
+						        <img src="<%=contextPath%>/resources/img/board/teaspoonevent.jpg">
+						    </div>
+						    <div class="click_div" style="position:absolute; top:50.7%; left:36.1%; z-index:100;width:277px; height:73px; border:1px solid red; border-radius:50px;" ></div>
                         </div>
                 	</div>
                     <!-- //event -->
+                  </div>
                 <!-- //maga -->
-         </div>
          <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
-        
         </div>
         <!-- //content -->
-</div>
+	</div>
     <!-- //wrap-->
-    <script src="<%=contextPath %>/resources/js/magazine_view.js"></script>
-    
+    <script>
+    	$(function(){
+    		$(".click_div").click(function(){
+    			alert(<%=random%>+"포인트 지급되었습니다!");
+    			$.ajax({
+    				url:"eventPoint.bo",
+    				type:"post",
+    				data:{random : random,
+    					 userNo : <%=loginUser.getUserNo()%>},
+    				success:function(result){
+    					if(result>0){
+    						console.log("ajax 통신성공!");
+    					}
+    				},error:function(){
+    					console.log("ajax 통신실패!");
+    				}
+    			})
+    		});
+    	})
+    </script>
 </body>
 </html>

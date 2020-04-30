@@ -1847,7 +1847,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			close(rset);
 			close(pstmt);
 		}
-		return or;
+		return list;
 	}
 	
 	public int insertPoint(Connection conn, int userNo, int addPoint) {
@@ -1990,9 +1990,47 @@ public int insertReservPoint(Connection conn, int userNo, int addPoint) {
 		
 	}
 	
+	public int eventUpdatePoint(Connection conn, int point, int userNo) {
+		int result=0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("eventUpdatePoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, point);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		return result;
+		
+	}
 	
-	
-	
+	public int insertEventPoint(Connection conn, int point, int userNo){
+		int result=0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertEventPoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, point);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		return result;
+		
+	}
 		
 }
 
