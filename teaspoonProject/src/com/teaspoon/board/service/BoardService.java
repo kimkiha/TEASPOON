@@ -199,7 +199,33 @@ public class BoardService {
 			
 	}
 	
+	/**
+	 * 3_1.매거진 디테일 이전글 페이지 정보
+	 * @param bno
+	 * @return
+	 */
+	public Board preSelectBoard(int bno){
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().preSelectBoard(conn, bno);
+		
+		close(conn);
+		return b;
+	}
 	
+	/**
+	 * 3_2.매거진 디테일 다음글 페이지 정보
+	 * @param bno
+	 * @return
+	 */
+	public Board nextSelectBoard(int bno){
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().nextSelectBoard(conn, bno);
+		
+		close(conn);
+		return b;
+	}
 	
 	// -------------------------------  이벤트시작    ------------------------------- //
 	/**
@@ -286,6 +312,16 @@ public class BoardService {
 	}
 	
 	
+	public Board selectEvent(int bno) {
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectEvent(conn, bno);
+		
+		close(conn);
+		return b;
+	}
+	
+	
 	// -------------------------------  공지사항 시작    ------------------------------- //
 	/**
 	 * 1_1. 공지사항 작성용 서비스
@@ -357,7 +393,6 @@ public class BoardService {
 		Board b = new BoardDao().selectNotice(conn);
 		
 		close(conn);
-		//System.out.println(b);
 		return b;
 	}
 	
@@ -378,6 +413,7 @@ public class BoardService {
 		return list;
 		
 	}
+	
 	
 	
 }

@@ -49,7 +49,7 @@
 							</tbody>
 						</table>
 						<div style="width:90%">
-							<button id="btn" type="button">
+							<button id="notice_btn" type="button">
 								<a href="<%=contextPath%>/noticeList.bo?currentPage=1"  style="color:white;" >목록으로</a>
 							</button>
 						</div>

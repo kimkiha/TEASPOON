@@ -1,15 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.teaspoon.board.model.vo.*"%>
 <%
  Board b = (Board)request.getAttribute("b");
- Board preb = (Board)request.getAttribute("preb");
- Board nextb = (Board)request.getAttribute("nextb");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매거진 | TeaSpoon</title>
+<title>이벤트 | TeaSpoon</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/magazine_view.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/magazine_view_photo.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
@@ -31,7 +29,7 @@
         <!-- //header -->
         <br clear="both">
         <div id="banner" >
-            <div class="title">매거진</div>
+            <div class="title">이벤트</div>
         </div>
         <!-- //banner -->
           <div id="content">
@@ -44,7 +42,7 @@
                                 <br><br>
                                 <div id="con_wr">
                                     <ul>
-                                        <li>Editor's letter &nbsp;|</li>
+                                        <li>티스푼 이벤트 &nbsp;|</li>
                                         <li>&nbsp;<%=b.getCreateDate() %></li>
                                     </ul>
                                 </div>
@@ -58,59 +56,25 @@
                         </div>
                         <div class="maga_con">
                             <%=b.getBoardContent() %>
+                         
+                         	
+						<div style="width:1000px; float:right; border-top:1px solid #bebebe; margin: 10px 0;">
+                        	<button id="event_btn" type="button" onclick="location.href='<%=contextPath%>/eventList.bo?currentPage=1'">목록으로</button>
                         </div>
-                    	<div id="pre_next">
-	                        <div id="pre">
-	                        	<figure class="snip1504" >
-	                            <%if(nextb.getBoardTitle() != null){ %>	
-	                                <img src="<%=contextPath %>/resources/img/board/<%=nextb.getChangeName()%>" >
-	                                <figcaption>
-	                                  <h2>"<%=nextb.getBoardTitle() %>"</h2>
-	                                  <h4>Next magazine</h4>
-	                                </figcaption>
-	                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=nextb.getBoardNo()%>"></a>
-	                            <%}else{ %>
-	                            	<img src="<%=contextPath %>/resources/img/board/magazine_view_11.jpg" />
-	                                <figcaption>
-	                                  <h2>다음글이 없습니다.</h2>
-	                                  <h4>go-to-list</h4>
-	                                </figcaption>
-	                                <a href="<%=contextPath%>/magazineList.bo?currentPage=1"></a>
-	                            <%} %>
-	                            </figure>
-	                        </div>
-	                        <div id="next" style="float:left; margin:0 auto">
-	                             <figure class="snip1504">
-	                            <%if(preb.getBoardTitle() != null){ %>
-	                                <img src="<%=contextPath %>/resources/img/board/<%=preb.getChangeName()%>"/>
-	                                <figcaption>
-	                                  <h2>"<%=preb.getBoardTitle() %>"</h2>
-	                                  <h4>Previous magazine</h4>
-	                                </figcaption>
-	                                <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=preb.getBoardNo() %>"></a>
-	                            <%}else {%>
-	                            	<img src="<%=contextPath %>/resources/img/board/magazine_view_22.jpg"/>
-	                                <figcaption>
-	                                  <h2>이전글이 없습니다.</h2>
-	                                  <h4>go-to-list</h4>
-	                                </figcaption>
-	                                <a href="<%=contextPath%>/magazineList.bo?currentPage=1"></a>
-	                            <%} %>
-	                            </figure>
-	                        </div>
-                    	</div>
+                        </div>
                 	</div>
                     <!-- //magazine -->
                 <!-- //maga -->
          </div>
-         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
         
         </div>
         <!-- //content -->
+        
+         <%@ include file="../common/footer.jsp" %>
 </div>
     <!-- //wrap-->
     <script src="<%=contextPath %>/resources/js/magazine_view.js"></script>
-    
+
 </body>
 </html>
