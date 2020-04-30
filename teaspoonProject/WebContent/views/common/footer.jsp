@@ -12,6 +12,7 @@
 <title>Document</title>
 </head>
 <body>
+<div id="footer_flex">
 <div id="content7">
         <div class="contaniner">
             <div id="notice">
@@ -55,6 +56,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <script>
 	$(function(){

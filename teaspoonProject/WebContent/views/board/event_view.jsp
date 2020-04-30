@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>이벤트 | TeaSpoon</title>
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/magazine_view.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/magazine_view_photo.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/event_view.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
@@ -24,7 +23,7 @@
 </head>
 
 <body>
-<div id="wrap">
+<div id="wrap" style="position:relative; min-height:100%;">
         <%@ include file="../common/menubar.jsp" %>
         <!-- //header -->
         <br clear="both">
@@ -32,9 +31,8 @@
             <div class="title">이벤트</div>
         </div>
         <!-- //banner -->
-          <div id="content">
+          <div id="content" style=" min-height:100%;">
             <!-- product -->
-                <div id="maga" >
                     <div id="magazine">
                         <div id="title">
                             <div id="title_detail">
@@ -42,7 +40,7 @@
                                 <br><br>
                                 <div id="con_wr">
                                     <ul>
-                                        <li>티스푼 이벤트 &nbsp;|</li>
+                                        <li>Editor's letter &nbsp;|</li>
                                         <li>&nbsp;<%=b.getCreateDate() %></li>
                                     </ul>
                                 </div>
@@ -56,23 +54,16 @@
                         </div>
                         <div class="maga_con">
                             <%=b.getBoardContent() %>
-                         	
-                         	
-						<div style="width:1000px; float:right; border-top:1px solid #bebebe; margin: 10px 0;">
-                        	<button id="event_btn" type="button" onclick="location.href='<%=contextPath%>/eventList.bo?currentPage=1'">목록으로</button>
-                        </div>
                         </div>
                 	</div>
                     <!-- //magazine -->
-                <!-- //maga -->
+         <%@ include file="../common/footer.jsp" %>
          </div>
         <!-- //footer-->
         
         </div>
         <!-- //content -->
-        
-         <%@ include file="../common/footer.jsp" %>
-</div>
+       
     <!-- //wrap-->
     <script src="<%=contextPath %>/resources/js/magazine_view.js"></script>
 
