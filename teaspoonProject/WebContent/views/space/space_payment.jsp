@@ -177,7 +177,7 @@
                                     <tr>
                                         <td class=" pay_lt">포인트 할인</td>
                                         <td class=" pay_rt" id='useP'>-0원</td>
-                                        <input type="hidden" id="usePoint" name="usePoint">
+                                        <input type="hidden" id="usePoint" name="usePoint" value='0'>
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="bd_none pay_lt">적립예상포인트</td>
@@ -193,7 +193,7 @@
                                     <tr> 
                                     
                                         <td colspan="2"  class=" pay_rt" id='totalPay'><%=gTotalPrice+200000%></td>
-                                        <input type="hidden" id="total" name="total">
+                                        <input type="hidden" id="total" name="total" value='<%=gTotalPrice+200000%>'>
                                     </tr>
                                 </tbody> 
                                 <tfoot>

@@ -739,6 +739,14 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
+	
+	public Orders orderConditionDetailList(int orderNo) {
+		Connection conn = getConnection();
+		Orders or = new MemberDao().orderConditionDetailList(conn, orderNo);
+
+		close(conn);
+		return or;
+	}
 
 	public int orderHistoryListCount(int userNo) {
 	
