@@ -22,6 +22,7 @@
 
 <style>
  #content1 {width:100%; height:1000px; background: #ffffff; }
+
 </style>
 </head>
 <body>
@@ -47,7 +48,7 @@
         <!-- //footer-->
     </div>
  <style>
- #map{width:100%; height:512px; top:150px; overflow:none;}
+ #map{ width:100%; height:512px; top:150px; overflow:none;}
  </style>
     <script>
 	//지도를 담을 영역의 dom 레퍼런스
