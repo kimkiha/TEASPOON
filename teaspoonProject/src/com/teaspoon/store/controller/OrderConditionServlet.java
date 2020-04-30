@@ -61,18 +61,19 @@ public class OrderConditionServlet extends HttpServlet {
 		
 		if(endPage > maxPage) {
 			endPage = maxPage;
-		}
+		
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 
 		ArrayList<Orders> list = new MemberService().orderConditionList(pi);
+		//System.out.println(list);
 		//페이지바만들기위한 pi객체전달
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/admin/admin_order.jsp");
 		view.forward(request, response);
-	
+		}
 	}
 
 	/**

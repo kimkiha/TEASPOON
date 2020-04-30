@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.* "%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.PageInfo "%>
 <%
 	ArrayList<Orders> list = (ArrayList<Orders>)request.getAttribute("list");
-	
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,10 +75,15 @@
 	                                <td><%=list.get(i).getOrderer() %></td>
 	                                <td><%=list.get(i).getRecipient() %></td>
 	                                <td><%=list.get(i).getPayment() %></td>
-	                                <td><%=list.get(i).getProgress() %></td>
+	                                <td><%if(list.get(i).getProgress()==0){%>
+	                                	배송중
+	                                <%}else{%>
+	                                	구매완료
+	                                <%} %>
+	                                </td>
 	                                <td>
-		                                <button type="button" style="width: 100px;">
-		                                    <a href="adminOrderDetailView.html">상세보기</a>
+		                                <button class='Pdetail' type="button" style="width: 100px;">
+		                                    		상세보기
 		                                </button>
 	                                </td>
                                 </tr>
@@ -87,13 +97,29 @@
                     
                 </div>
                 <div id="c1_3">
-                    <a>&lt;</a>
-                   <button>1</button>
-                   <button>2</button>
-                   <button>3</button>
-                   <button>4</button>
-                   <button>5</button>
-                   <a>&gt;</a>
+                             <!-- 현재 페이지에 보여질 페이징바 -->
+			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='orderCondition.st?currentPage=1'">&lt;&lt;</button>
+			<!-- 이전페이지로(<) -->
+			<button onclick="location.href='orderCondition.st?currentPage=<%=currentPage-1%>'">&lt;</button>
+			<%} %>
+			
+			<%for(int p=startPage; p<=endPage; p++){%>
+				<%if(currentPage != p) {%>
+				<button onclick="location.href='orderCondition.st?currentPage=<%=p%>'"><%=p%></button>
+				<%}else{ %>
+				<button disabled><%=p %></button>
+				<%} %>	
+			<%} %>
+			
+			<%if(currentPage != maxPage){ %>
+			<!-- 다음페이지로(<) -->
+			<button onclick="location.href='orderCondition.st?currentPage=<%=currentPage+1%>'">&gt;</button>
+			<!-- 맨 마지막으로(>>) -->
+			<button onclick="location.href='orderCondition.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+			<%} %>
+      
 
                 </div>
             </div>
@@ -128,7 +154,20 @@
             });
         });
     </script>
-    <!--드롭다운 버튼 스크립트 끝-->
+    <!--드롭다운 버튼 스크립트 끝-->'
+    
+    <script>
+    	$(function(){
+    		$(".Pdetail").click(function(){
+    			var orderNo = $(this).parent().parent().children().eq(1).text();
+        		location.href='orderdetail.st?orderNo='+orderNo;
+    			
+    		})
+        		
+    	});
+    	
+    </script>
+    
     
 </body>
 </html>

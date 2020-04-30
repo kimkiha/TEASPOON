@@ -60,7 +60,7 @@ public class StorePayment extends HttpServlet {
 		 
 		 for(int i=0; i<productInfo.size(); i++) {
 		  
-			 totalProductInfo += "(" + i+ "번쨰 상품명 " + productInfo.get(i).getPname()+ ", 옵션1 : " + productInfo.get(i).getOptionType1() + ", 옵션2 : " + productInfo.get(i).getOptionType2() + ");";
+			 totalProductInfo += "(" + i+ "번쨰 상품명 " + productInfo.get(i).getPname()+ ", 옵션1 : " + productInfo.get(i).getOptionType1() + ", 옵션2 : " + productInfo.get(i).getOptionType2() + "),";
 		 
 		 }
 		
