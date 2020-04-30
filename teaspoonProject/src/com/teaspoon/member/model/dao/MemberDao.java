@@ -1184,7 +1184,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				
 				while(rset.next()) {
 					list.add(new Point(
-							rset.getInt("userNo"),
+							rset.getInt("user_No"),
 							rset.getDate("point_date"),
 							rset.getInt("Division"),
 							rset.getString("content"),
