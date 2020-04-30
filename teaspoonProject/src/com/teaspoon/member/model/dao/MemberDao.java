@@ -1712,7 +1712,8 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		int listCount = 0;
 
 		Statement stmt = null;
-		ResultSet rset = null;
+		ResultSet rset = null; 
+		
 		String sql = prop.getProperty("getOrderCount");
 		//System.out.println(sql);
 		try {
