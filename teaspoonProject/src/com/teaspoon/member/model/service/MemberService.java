@@ -750,22 +750,13 @@ public class MemberService {
 		
 	}
 
-	public ArrayList<Member> orderHistoryList(int userNo, PageInfo pi) {
+	public ArrayList<Orders> orderHistoryList(int userNo, PageInfo pi) {
 		Connection conn = getConnection();
-		int list = new MemberDao().orderHistoryList(conn,userNo,pi);
+		ArrayList<Orders> list = new MemberDao().orderHistoryList(conn,userNo,pi);
 
 		close(conn);
 		return list;
 	}
-	
-	public Orders orderConditionDetailList(int orderNo) {
-		Connection conn = getConnection();
-		Orders or = new MemberDao().orderConditionDetailList(conn, orderNo);
-
-		close(conn);
-		return or;
-	}
-	
 	
 	
 	
