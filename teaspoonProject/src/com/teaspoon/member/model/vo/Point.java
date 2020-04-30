@@ -4,23 +4,31 @@ import java.sql.Date;
 
 public class Point {
 	
-	
+	private int userNo;
 	private Date pointDate;
 	private int division;
 	private String content;
 	private int pointPrice;
+	private int demiseDate;
 	
-	public Point() {
-		
-		
-	}
+	public Point() {}
 
-	public Point(Date pointDate, int division, String content, int pointPrice) {
+	public Point(int userNo, Date pointDate, int division, String content, int pointPrice, int demiseDate) {
 		super();
+		this.userNo = userNo;
 		this.pointDate = pointDate;
 		this.division = division;
 		this.content = content;
 		this.pointPrice = pointPrice;
+		this.demiseDate = demiseDate;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public Date getPointDate() {
@@ -55,12 +63,22 @@ public class Point {
 		this.pointPrice = pointPrice;
 	}
 
+	public int getDemiseDate() {
+		return demiseDate;
+	}
+
+	public void setDemiseDate(int demiseDate) {
+		this.demiseDate = demiseDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Point [pointDate=" + pointDate + ", division=" + division + ", content=" + content + ", pointPrice="
-				+ pointPrice + "]";
+		return "Point [userNo=" + userNo + ", pointDate=" + pointDate + ", division=" + division + ", content="
+				+ content + ", pointPrice=" + pointPrice + ", demiseDate=" + demiseDate + "]";
 	}
-	
-	
 
+	
+	
+	
+	
 }

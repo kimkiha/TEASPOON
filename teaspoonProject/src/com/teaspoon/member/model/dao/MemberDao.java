@@ -1821,6 +1821,79 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		}
 		return or;
 	}
+	
+	public int insertPoint(Connection conn, int userNo, int addPoint) {
+		
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertPoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, addPoint);
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+
+	public int deletePoint(Connection conn, int userNo, int usePoint) {
+		
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deletePoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, usePoint);
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+
+	public int updatePoint(Connection conn, int userNo, int finalPoint) {
+
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updatePoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, finalPoint);
+			pstmt.setInt(2, userNo);
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	
+	
+	}
+	
+	
+	
 		
 }
 
