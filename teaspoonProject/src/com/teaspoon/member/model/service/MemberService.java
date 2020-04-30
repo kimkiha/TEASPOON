@@ -773,8 +773,14 @@ public class MemberService {
 		int result1 = new MemberDao().MyPageOrderConfirm(conn, OrderNo);
 
 		if (result1 > 0) {
-			}
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+
+		return result1;
 	}
+	
 	public int updatePoint(int userNo, int addPoint, int usePoint) {
 		
 		Connection conn = getConnection();

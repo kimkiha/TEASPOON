@@ -22,6 +22,16 @@ public class Point {
 		this.pointPrice = pointPrice;
 		this.demiseDate = demiseDate;
 	}
+	
+
+	public Point(int userNo, Date pointDate, int division, String content, int pointPrice) {
+		super();
+		this.userNo = userNo;
+		this.pointDate = pointDate;
+		this.division = division;
+		this.content = content;
+		this.pointPrice = pointPrice;
+	}
 
 	public int getUserNo() {
 		return userNo;

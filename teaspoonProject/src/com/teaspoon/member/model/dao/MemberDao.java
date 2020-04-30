@@ -1183,7 +1183,9 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				rset = pstmt.executeQuery();
 				
 				while(rset.next()) {
-					list.add(new Point(rset.getDate("point_date"),
+					list.add(new Point(
+							rset.getInt("userNo"),
+							rset.getDate("point_date"),
 							rset.getInt("Division"),
 							rset.getString("content"),
 							rset.getInt("point_price")));
@@ -1897,20 +1899,25 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 
 	public int MyPageOrderConfirm(Connection conn, int OrderNo) {
 		int result = 0;
-		
+
 		PreparedStatement pstmt = null;
-		
+
 		String sql = prop.getProperty("MyPageOrderConfirm");
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, OrderNo);
 
 			result = pstmt.executeUpdate();
-		
+
 		} catch (SQLException e) {
-			
-		return or;
+
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 	
 	public int insertPoint(Connection conn, int userNo, int addPoint) {
