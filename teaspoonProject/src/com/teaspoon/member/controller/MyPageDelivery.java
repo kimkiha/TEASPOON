@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
-import com.teaspoon.member.model.vo.Point;
+import com.teaspoon.member.model.vo.Orders;
 
 /**
  * Servlet implementation class MyPageDelivery
@@ -71,7 +71,7 @@ public class MyPageDelivery extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
 		
-		ArrayList<Member> list=  new MemberService().orderHistoryList(userNo,pi);
+		ArrayList<Orders> list=  new MemberService().orderHistoryList(userNo,pi);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_delivery.jsp");

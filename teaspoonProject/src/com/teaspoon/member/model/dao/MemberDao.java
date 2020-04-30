@@ -1782,13 +1782,14 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		
 		int listCount = 0;
 
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("getOrderCount");
+		String sql = prop.getProperty("orderHistoryListCount");
 		//System.out.println(sql);
 		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
 
 			if (rset.next()) { // 컬럼인덱스로 추출
 				listCount = rset.getInt(1);
@@ -1798,17 +1799,17 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		return listCount;
 	}
 
-	public int orderHistoryList(Connection conn, int userNo, PageInfo pi) {
+	public ArrayList<Orders> orderHistoryList(Connection conn, int userNo, PageInfo pi) {
 		ArrayList<Orders> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("orderConditionList");
+		String sql = prop.getProperty("orderHistoryList");
 		
 		int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 		int endRow = startRow + pi.getBoardLimit()-1;
@@ -1822,22 +1823,23 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Orders(rset.getInt("ORDER_NO"),
-						rset.getInt("USER_NO"),
-						rset.getString("ORDERER"),
-						rset.getString("ORDERER_PHONE"),
-						rset.getString("RECIPIENT"),
-						rset.getString("RECIPIENT_PHONE"),
-						rset.getString("RECIPIENT_ADDRESS"),
-						rset.getString("ORDER_MAESSAGE"),	
-						rset.getInt("SHIPPING_FEE"),
-						rset.getInt("PAYMENT"),
-						rset.getDate("ORDER_DATE"),
-						rset.getInt("PROGRESS"),
-						rset.getInt("CART"),
-						rset.getString("ORDER_MAESSAGE"),
-						rset.getString("product_info")));
-			}
+				  Orders or = new Orders();
+					or.setUserNo(rset.getInt("USER_NO"));
+					or.setOrderNo(rset.getInt("ORDER_NO"));
+					or.setOrderer(rset.getString("ORDERER"));
+					or.setOrdererPhone(rset.getString("ORDERER_PHONE"));
+					or.setRecipient(rset.getString("RECIPIENT"));
+					or.setRecipient(rset.getString("RECIPIENT_PHONE"));
+					or.setRecipientAddress(rset.getString("RECIPIENT_ADDRESS"));
+					or.setShippingFee(rset.getInt("shipping_fee"));
+					or.setPayment(rset.getInt("PAYMENT"));
+					or.setOrderDate(rset.getDate("ORDER_DATE"));
+					or.setProgress(rset.getInt("PROGRESS"));
+					or.setCart(rset.getInt("CART"));
+					or.setOrderMessage(rset.getString("ORDER_MAESSAGE"));
+					or.setProductInfo(rset.getString("PRODUCT_INFO"));
+							list.add(or);
+				}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
