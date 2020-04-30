@@ -1226,8 +1226,9 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				close(pstmt);
 			}
 			
-			
+			System.out.println(listCount);
 			return listCount;
+			
 		}
 
 		public Member selectUserPwd(Connection conn, String userId) {
@@ -1848,6 +1849,29 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public int MyPageOrderConfirm(Connection conn, int OrderNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("MyPageOrderConfirm");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, OrderNo);
+
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}		
 }
 
