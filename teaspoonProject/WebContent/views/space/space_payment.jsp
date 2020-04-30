@@ -126,6 +126,7 @@
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="left_text_st top_bd" width="150">티스푼포인트</td>
+                                          
                                             <td class="top_bd"> <input type="number" id='pointUse' class="point" name="point"  placeholder="포인트 사용값을 입력하세요." width="400" style="padding-inline-start: 15px;"></td>
                                             <td class="top_bd"><button id="pointUseBtn"  style="width:180px; height:50px; background: #fff; border:1px solid #bebebe">포인트사용</button></td>
                                         </tr>
