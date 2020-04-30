@@ -103,15 +103,16 @@ int maxPage = pi.getMaxPage();
 					</div>
 					<div id="mypage_menu_tab">
 						<a href="<%=contextPath %>/mydelivery.me?currentPage=1" class=" float"> 주문내역확인</a>
-						<a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a> <a
-							href="<%=contextPath %>/myqna.me?currentPage=1" class=" float">1:1문의</a>
+						<a href="<%=contextPath %>/myReserv.me?currentPage=1" class=" float">공간대여확인</a>
+						<a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a>
+						<a href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
 						<a href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
 					</div>
 					<div class="pagename"></div>
 					<div id="mp_con1">
 						<div class="mp-point">
 							<div class="mp-point-title">
-								<P>포인트 적립 및 사용내역</P>
+								<P style="float:left">포인트 적립 및 사용내역</P>
 							</div>
 
 						</div>

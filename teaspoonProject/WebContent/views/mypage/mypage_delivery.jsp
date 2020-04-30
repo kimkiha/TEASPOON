@@ -61,8 +61,8 @@ int maxPage = pi.getMaxPage();
 						<div class="user_info" style="width: 450px;">
 							<table class="detail_tb" cellpadding="0" cellspacing="0">
 								<tr class="d1">
-									<td width="60" name="username">홍길동</td>
-									<td style="color: #d6ae71; font-size: 15px;" name="usergrade">골드등급</td>
+									<td width="60" name="username"><%=loginUser.getUserName() %></td>
+									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"><%=loginUser.getGradeName() %></td>
 								</tr>
 								<tr class="d2">
 									<td colspan="2"><a
@@ -97,7 +97,8 @@ int maxPage = pi.getMaxPage();
 
 						<!-- 배송 아이콘 확인칸 -->
 						<div class="mypage-outer">
-							<div class="order-outer-wrap">
+								<div align="center" class="order"
+									style="width: 100%; height: 60px;">주문현황</div>
 								<div class="order-outer">
 									<div class="order-state">
 										<p>나의주문내역</p>
@@ -106,7 +107,8 @@ int maxPage = pi.getMaxPage();
 									</div>
 									<div class="myorder">
 										<div class="l">
-											<img src="주문관리_1.png" width="80" height="80"><br>
+											<img src="<%=contextPath%>/resources/img/mypage/주문관리.png" width="80"
+												height="80"><br>
 											<br>주문접수
 											<P>0</P>
 										</div>
@@ -114,7 +116,8 @@ int maxPage = pi.getMaxPage();
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="카드_2.png" width="80" height="80"><br>
+											<img src="<%=contextPath%>/resources/img/mypage/카드.png" width="80"
+												height="80"><br>
 											<br>결제완료
 											<P>0</P>
 										</div>
@@ -122,7 +125,8 @@ int maxPage = pi.getMaxPage();
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="상품준비2.png" width="80" height="80"><br>
+											<img src="<%=contextPath%>/resources/img/mypage/상품준비.png" width="80"
+												height="80"><br>
 											<br>상품준비
 											<P>0</P>
 										</div>
@@ -130,7 +134,8 @@ int maxPage = pi.getMaxPage();
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="배송중.png" width="80" height="80"><br>
+											<img src="<%=contextPath%>/resources/img/mypage/배송중.png" width="80"
+												height="80"><br>
 											<br>배송중
 											<P>0</P>
 										</div>
@@ -138,14 +143,14 @@ int maxPage = pi.getMaxPage();
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="배송완료.png" width="80" height="80"><br>
+											<img src="<%=contextPath%>/resources/img/mypage/배송완료.png" width="80"
+												height="80"><br>
 											<br>배송완료
 											<P>0</P>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 						<!-- 배송 아이콘 끝 -->
 						<!-- 날짜 조회 -->
 					
@@ -154,7 +159,7 @@ int maxPage = pi.getMaxPage();
 
 						<!-- 주문 내역-->
 						<div class="order-list">
-							<p>주문내역</p>
+							<p style="float:left">주문내역</p>
 						</div>
 						<table id="mypage_table" cellspacing="0">
 							<thead>

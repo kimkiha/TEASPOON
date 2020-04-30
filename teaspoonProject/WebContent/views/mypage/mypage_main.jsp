@@ -172,7 +172,7 @@
 							<!-- 마이쿠폰 끝-->
 
 							<!-- 최근 주문내역 -->
-							<div class="rd-outer">
+							<div class="rd-outer" >
 								<div class="rd-1"></div>
 								<div class="rd-2">
 									<p>최근 주문내역</p>

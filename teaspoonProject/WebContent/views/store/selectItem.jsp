@@ -20,9 +20,12 @@
 
 <style>
 #banner {
+	margin-top: 115px;
 	height: 170px;
 	line-height: 170px;
-	background: url("패턴 - 복사본.jpg") center top repeat-x;
+	background:
+		url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg")
+		center top repeat-x;
 }
 </style>
 </head>
@@ -31,9 +34,7 @@
 		<%@ include file="../common/menubar.jsp"%>
 		<!-- //header -->
 		<div id="banner">
-		
 			<div class="contaniner">
-				<div style="height:30px;"></div>
 				<div>
 					<p id="head_title">맞춤추천</p>
 
@@ -59,7 +60,8 @@
 						<div class="select-list">
 							<div class="select-item">
 								<div class="select-img" border="1">
-									<img src="<%=contextPath %>/resources/img/store/product5_1.jpg"
+									<img
+										src="<%=contextPath %>/resources/img/store/product3_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -79,7 +81,7 @@
 							<div class="select-item">
 								<div class="select-img" border="1">
 									<img
-										src="<%=contextPath %>/resources/img/store/product8_1.jpg"
+										src="<%=contextPath %>/resources/img/store/product8_3.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -127,12 +129,11 @@
 							<div class="select-list2">
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product4_1.jpg" 
-										width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/product11_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
-											<p>티스푼 오리지날</p>
+											<p>에티오피아 라로 보다</p>
 										</div>
 										<div>
 											<span>추천 싱글오리진</span>
@@ -149,11 +150,11 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product13_1.jpg" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/product12_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
-											<p>블랙수트</p>
+											<p>에스쇼콜라 블렌드</p>
 										</div>
 										<div>
 											<span>시그니처 블렌드</span>
@@ -171,11 +172,11 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product12_1.jpg" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/product13_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
-											<p>벨벳화이트</p>
+											<p>오시게 블렌드</p>
 										</div>
 										<div>
 											<span>시그니처 블렌드</span>
@@ -277,7 +278,7 @@
 							<div class="select-list3">
 								<div class="select-item3">
 									<div class="select-img" border="1">
-										<img src="2.맞춤추천/이달의 티스푼.png" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/product11_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
 
@@ -287,45 +288,21 @@
 									</div>
 									<div class="select-text3">
 										<div>
-											<p class="t">15000원</p>
+											<p class="t">14,000원</p>
 										</div>
 										<div>
 											<p>
-												<s>정가 16,000원</s>
+												<s></s>
 											</p>
 											<br>
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button>선택</button>
+										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=18'">옵션 고르러가기</button>
 									</div>
 								</div>
 
-								<div class="select-item3">
-									<div class="select-img" border="1">
-										<img src="2.맞춤추천/정기-원두.jpg" width="250" height="200">
-									</div>
-									<div class="select-title3" border="1">
 
-										<div>
-											<p>400g</p>
-										</div>
-									</div>
-									<div class="select-text3" border="1">
-										<div>
-											<p class="t">25,500원</p>
-										</div>
-										<div>
-											<p>
-												<s>정가 27,000원</s>
-											</p>
-											<br>
-										</div>
-									</div>
-									<div class="select-btnwrap" border="1">
-										<button>선택</button>
-									</div>
-								</div>
 							</div>
 						</div>
 						<!--  blacksuit price -->
@@ -335,7 +312,7 @@
 							<div class="select-list3">
 								<div class="select-item3">
 									<div class="select-img" border="1">
-										<img src="2.맞춤추천/블랙수트.png" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/product12_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
 
@@ -345,45 +322,21 @@
 									</div>
 									<div class="select-text3">
 										<div>
-											<p class="t">15000원</p>
+											<p class="t">12,000원</p>
 										</div>
 										<div>
 											<p>
-												<s>정가 16,000원</s>
+												<s></s>
 											</p>
 											<br>
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button>선택</button>
+										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=14'">옵션 고르러가기</button>
 									</div>
 								</div>
 
-								<div class="select-item3">
-									<div class="select-img" border="1">
-										<img src="2.맞춤추천/정기-400g.png" width="250" height="200">
-									</div>
-									<div class="select-title3" border="1">
 
-										<div>
-											<p>400g</p>
-										</div>
-									</div>
-									<div class="select-text3" border="1">
-										<div>
-											<p class="t">25,500원</p>
-										</div>
-										<div>
-											<p>
-												<s>정가 27,000원</s>
-											</p>
-											<br>
-										</div>
-									</div>
-									<div class="select-btnwrap" border="1">
-										<button>선택</button>
-									</div>
-								</div>
 							</div>
 						</div>
 						<!-- velvetwhite coffee -->
@@ -393,7 +346,7 @@
 							<div class="select-list3">
 								<div class="select-item3">
 									<div class="select-img" border="1">
-										<img src="2.맞춤추천/벨벳화이트.png" width="250" height="200">
+										<img src="<%=contextPath %>/resources/img/store/product13_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
 
@@ -403,45 +356,21 @@
 									</div>
 									<div class="select-text3">
 										<div>
-											<p class="t">15000원</p>
+											<p class="t">12,000원</p>
 										</div>
 										<div>
 											<p>
-												<s>정가 16,000원</s>
+												<s></s>
 											</p>
 											<br>
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button>선택</button>
+										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=14'">옵션 고르러가기</button>
 									</div>
 								</div>
 
-								<div class="select-item3">
-									<div class="select-img" border="1">
-										<img src="2.맞춤추천/정기-원두.jpg" width="250" height="200">
-									</div>
-									<div class="select-title3" border="1">
 
-										<div>
-											<p>400g</p>
-										</div>
-									</div>
-									<div class="select-text3" border="1">
-										<div>
-											<p class="t">25,500원</p>
-										</div>
-										<div>
-											<p>
-												<s>정가 27,000원</s>
-											</p>
-											<br>
-										</div>
-									</div>
-									<div class="select-btnwrap" border="1">
-										<button>선택</button>
-									</div>
-								</div>
 							</div>
 						</div>
 						<!-- 2-2-1 price select dripbag -->
@@ -451,7 +380,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\티백상자.png"
+											src="<%=contextPath %>/resources/img/store/product7_2.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
@@ -462,47 +391,21 @@
 									</div>
 									<div class="select-text3">
 										<div>
-											<p class="t">11,500원</p>
+											<p class="t">14,000원</p>
 										</div>
 										<div>
 											<p>
-												<s>정가 12,000원</s>
+												<s></s>
 											</p>
 											<br>
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button>선택</button>
+										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=5'">옵션 고르러가기</button>
 									</div>
 								</div>
 
-								<div class="select-item3">
-									<div class="select-img" border="1">
-										<img
-											src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\티백상자 2개짜리.png"
-											width="250" height="200">
-									</div>
-									<div class="select-title3" border="1">
 
-										<div>
-											<p>2 Box|16개입</p>
-										</div>
-									</div>
-									<div class="select-text3" border="1">
-										<div>
-											<p class="t">22,500원</p>
-										</div>
-										<div>
-											<p>
-												<s>정가 24,000원</s>
-											</p>
-											<br>
-										</div>
-									</div>
-									<div class="select-btnwrap" border="1">
-										<button>선택</button>
-									</div>
-								</div>
 							</div>
 						</div>
 						<!-- 2-2-2 price select dripbag -->
@@ -512,7 +415,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\티백상자.png"
+											src="<%=contextPath %>/resources/img/store/product7_2.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
@@ -527,43 +430,17 @@
 										</div>
 										<div>
 											<p>
-												<s>정가 12,000원</s>
+											
 											</p>
 											<br>
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button>선택</button>
+										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=5'">옵션 고르러가기</button>
 									</div>
 								</div>
 
-								<div class="select-item3">
-									<div class="select-img" border="1">
-										<img
-											src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\티백상자 2개짜리.png"
-											width="250" height="200">
-									</div>
-									<div class="select-title3" border="1">
 
-										<div>
-											<p>2 Box|16개입</p>
-										</div>
-									</div>
-									<div class="select-text3" border="1">
-										<div>
-											<p class="t">22,500원</p>
-										</div>
-										<div>
-											<p>
-												<s>정가 24,000원</s>
-											</p>
-											<br>
-										</div>
-									</div>
-									<div class="select-btnwrap" border="1">
-										<button>선택</button>
-									</div>
-								</div>
 							</div>
 						</div>
 						<!-- 2-2-3 price select dripbag -->
@@ -573,7 +450,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\티백상자.png"
+											src="<%=contextPath %>/resources/img/store/product7_2.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
@@ -584,7 +461,7 @@
 									</div>
 									<div class="select-text3">
 										<div>
-											<p class="t">11,500원</p>
+											<p class="t"></p>
 										</div>
 										<div>
 											<p>
@@ -594,37 +471,10 @@
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button>선택</button>
+										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=5'">옵션 고르러가기</button>
 									</div>
 								</div>
 
-								<div class="select-item3">
-									<div class="select-img" border="1">
-										<img
-											src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\티백상자 2개짜리.png"
-											width="250" height="200">
-									</div>
-									<div class="select-title3" border="1">
-
-										<div>
-											<p>2 Box|16개입</p>
-										</div>
-									</div>
-									<div class="select-text3" border="1">
-										<div>
-											<p class="t">22,500원</p>
-										</div>
-										<div>
-											<p>
-												<s>정가 24,000원</s>
-											</p>
-											<br>
-										</div>
-									</div>
-									<div class="select-btnwrap" border="1">
-										<button>선택</button>
-									</div>
-								</div>
 							</div>
 						</div>
 						<!-- 3-3 price selectcoldbrew-->
@@ -635,7 +485,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="C:\4_FrontEnd\작업은 여기서 해보자\selectItem\2.맞춤추천\정기-콜브.jpg"
+											src="<%=contextPath %>/resources/img/store/product2_1.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
@@ -646,47 +496,21 @@
 									</div>
 									<div class="select-text3">
 										<div>
-											<p class="t">14000원</p>
+											<p class="t"></p>
 										</div>
 										<div>
 											<p>
-												<s>정가 15,000원</s>
+												<s> 22,000원</s>
 											</p>
 											<br>
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button>선택</button>
+										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=8'">옵션 고르러가기</button>
 									</div>
 								</div>
 
-								<div class="select-item3">
-									<div class="select-img" border="1">
-										<img
-											src="<%=contextPath %>/resources/img/store/product2_2.jpg.jsp"
-											width="250" height="200">
-									</div>
-									<div class="select-title3" border="1">
 
-										<div>
-											<p>1000ml</p>
-										</div>
-									</div>
-									<div class="select-text3" border="1">
-										<div>
-											<p class="t">26,500원</p>
-										</div>
-										<div>
-											<p>
-												<s>정가 28,000원</s>
-											</p>
-											<br>
-										</div>
-									</div>
-									<div class="select-btnwrap" border="1">
-										<button>선택</button>
-									</div>
-								</div>
 							</div>
 						</div>
 						<!-- 3-3 end-->
@@ -822,11 +646,6 @@
     });
     });
     
-
-
-
-
-
 
     </script>
 </body>

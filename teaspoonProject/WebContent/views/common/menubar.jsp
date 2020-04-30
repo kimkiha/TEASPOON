@@ -91,7 +91,7 @@
                             <a id="logout" style="curcor:pointer">로그아웃</a></li>
                             <a href="<%= contextPath %>/logout.me" style="padding-bottom:10px;"></a></li>
                             <li><a href="<%=contextPath %>/mymain.me">마이티스푼</a></li>
-                            <li><a>나의 배송 조회</a></li>
+                            <li><a  href="<%=contextPath%>/mydelivery.me?currentPage=1">나의 주문 내역</a></li>
                             <li><a href="<%=contextPath%>/mypoint.me?currentPage=1">적립포인트</a></li>
                             <li><a>할인쿠폰</a></li>
                             <li><a href="<%=contextPath %>/wishList.me">위시리스트</a></li>

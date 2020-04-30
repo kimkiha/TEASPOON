@@ -10,24 +10,24 @@
 	String[] checked = new String[6];
 
 	switch (mtmType) {
-	case "10":
-		checked[0] = "checked";
-		break;
-	case "20":
-		checked[1] = "checked";
-		break;
-	case "30":
-		checked[2] = "checked";
-		break;
-	case "40":
-		checked[3] = "checked";
-		break;
-	case "50":
-		checked[4] = "checked";
-		break;
-	case "60":
-		checked[5] = "checked";
-		break;
+		case "10" :
+			checked[0] = "checked";
+			break;
+		case "20" :
+			checked[1] = "checked";
+			break;
+		case "30" :
+			checked[2] = "checked";
+			break;
+		case "40" :
+			checked[3] = "checked";
+			break;
+		case "50" :
+			checked[4] = "checked";
+			break;
+		case "60" :
+			checked[5] = "checked";
+			break;
 	}
 %>
 <!DOCTYPE html>
@@ -47,7 +47,8 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-	<script type="text/javascript"src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
 #banner {
 	margin-top: 115px;
@@ -94,24 +95,25 @@
 						<div class="detail_info2"
 							style="border-left: 1px solid #bebbb6; height: inherit;">
 							<p class="info_th">적립포인트</p>
-							<a href="<%=contextPath%>/mypoint.me?currentPage=1"><%= loginUser.getPoint() %>Point</a>
+							<a href="<%=contextPath%>/mypoint.me?currentPage=1"><%=loginUser.getPoint()%>Point</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">할인쿠폰</p>
-							<a href="#"><%= loginUser.getCouponCount() %>장</a>
+							<a href="#"><%=loginUser.getCouponCount()%>장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="<%=contextPath %>/wishList.me"><%=loginUser.getWishCount() %>개</a>
+							<a href="<%=contextPath%>/wishList.me"><%=loginUser.getWishCount()%>개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
-						<a href="#" class=" float"> 주문배송조회</a> <a href="#" class=" float">공간대여확인</a>
-						<a href="#" class=" float">나의배송지</a> <a
+						<a href="<%=contextPath%>/mydelivery.me?currentPage=1"
+							class=" float"> 주문내역확인</a> <a
+							href="<%=contextPath%>/myReserv.me?currentPage=1" class=" float">공간대여확인</a>
+						<a href="<%=contextPath%>/myAdress.me" class=" float">나의배송지</a> <a
 							href="<%=contextPath%>/myqna.me?currentPage=1"
 							class="active float">1:1문의</a> <a
 							href="<%=contextPath%>/mycart.me" class="float">장바구니</a>
-
 					</div>
 					<div class="pagename"></div>
 					<div id="mp_con1">
@@ -150,16 +152,12 @@
 										</tr>
 									</table>
 									<div class="mp-qna-body">
-										<div id="textarea">
-											<%=m.getMtmContent()%>
-										</div>
+										<div id="textarea"><textarea rows="10" cols="108" style="resize: none;border:none;"><%=m.getMtmContent()%></textarea></div>
 
 										<%
 											if (m.getReComment() != null) {
 										%>
-										<div id="textarea">
-											<%=m.getReComment()%>
-										</div>
+										<div id="textarea"><textarea rows="10" cols="108" style="resize: none;border:none;"><%=m.getMtmContent()%></textarea></div>
 										<%
 											}
 										%>
@@ -168,29 +166,24 @@
 										if (at != null) { //첨부파일이 존재할 경우
 									%>
 									<div></div>
-									<a href="<%=contextPath%>/resources/thumbnail_upfiles/<%=at.getChangeName()%>"><%=at.getOriginName()%></a>	
-									</div>
-									<%
-										} else {
-									%>
-									첨부파일이 없습니다
-									<%
-										}
-									%>
-									<div class="func">
-										<button class="btn btn-cancel" value="뒤로가기"onclick="goBack();">뒤로가기</button>
-		
-									</div>
-									</form>
-									<br> <br>
-
+									<a
+										href="<%=contextPath%>/resources/thumbnail_upfiles/<%=at.getChangeName()%>"style="float:left"><%=at.getOriginName()%></a>
+							</div>
+							<%
+								} else {
+							%>
+							<span style="float:left">첨부파일이 없습니다</span>
+							<%
+								}
+							%>
+							<div class="func">
+								<button class="btn btn-cancel" value="뒤로가기" onclick="goBack();">뒤로가기</button>
+							</div>
+							</form>
+							<br> <br>
 
 						</div>
-
 					</div>
-
-
-
 				</div>
 			</div>
 		</div>
@@ -201,7 +194,7 @@
 	<!-- //footer-->
 	</div>
 	<script type="text/javascript">
-		function goBack(){
+		function goBack() {
 			window.history.back();
 		}
 	</script>
