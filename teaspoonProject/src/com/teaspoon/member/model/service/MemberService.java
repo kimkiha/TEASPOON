@@ -738,6 +738,25 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
+
+	public int orderHistoryListCount(int userNo) {
+	
+		Connection conn = getConnection();
+		int listCount = new MemberDao().orderHistoryListCount(conn,userNo);
+
+		close(conn);
+		return listCount;
+		
+		
+	}
+
+	public ArrayList<Member> orderHistoryList(int userNo, PageInfo pi) {
+		Connection conn = getConnection();
+		int list = new MemberDao().orderHistoryList(conn,userNo,pi);
+
+		close(conn);
+		return list;
+	}
 	
 	public Orders orderConditionDetailList(int orderNo) {
 		Connection conn = getConnection();

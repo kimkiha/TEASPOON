@@ -1777,40 +1777,66 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		}
 		return list;
 	}
-	
-	
-	public Orders orderConditionDetailList(Connection conn, int orderNo) {
-		Orders or = new Orders();
+
+	public int orderHistoryListCount(Connection conn, int userNo) {
+		
+		int listCount = 0;
+
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getOrderCount");
+		//System.out.println(sql);
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+
+			if (rset.next()) { // 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return listCount;
+	}
+
+	public int orderHistoryList(Connection conn, int userNo, PageInfo pi) {
+		ArrayList<Orders> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("orderConditionDetailList");
+		String sql = prop.getProperty("orderConditionList");
 		
+		int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow = startRow + pi.getBoardLimit()-1;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, orderNo);
-			
+			pstmt.setInt(1,userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
-			
-				or.setUserNo(rset.getInt("USER_NO"));
-				or.setOrderNo(rset.getInt("ORDER_NO"));
-				or.setOrderer(rset.getString("ORDERER"));
-				or.setOrdererPhone(rset.getString("ORDERER_PHONE"));
-				or.setRecipient(rset.getString("RECIPIENT"));
-				or.setRecipientPhone(rset.getString("RECIPIENT_PHONE"));
-				or.setRecipientAddress(rset.getString("RECIPIENT_ADDRESS"));
-				or.setShippingFee(rset.getInt("shipping_fee"));
-				or.setPayment(rset.getInt("PAYMENT"));
-				or.setOrderDate(rset.getDate("ORDER_DATE"));
-				or.setProgress(rset.getInt("PROGRESS"));
-				or.setCart(rset.getInt("CART"));
-				or.setOrderMessage(rset.getString("ORDER_MAESSAGE"));
-				or.setProductInfo(rset.getString("PRODUCT_INFO"));
-						
+			while(rset.next()) {
+				list.add(new Orders(rset.getInt("ORDER_NO"),
+						rset.getInt("USER_NO"),
+						rset.getString("ORDERER"),
+						rset.getString("ORDERER_PHONE"),
+						rset.getString("RECIPIENT"),
+						rset.getString("RECIPIENT_PHONE"),
+						rset.getString("RECIPIENT_ADDRESS"),
+						rset.getString("ORDER_MAESSAGE"),	
+						rset.getInt("SHIPPING_FEE"),
+						rset.getInt("PAYMENT"),
+						rset.getDate("ORDER_DATE"),
+						rset.getInt("PROGRESS"),
+						rset.getInt("CART"),
+						rset.getString("ORDER_MAESSAGE"),
+						rset.getString("product_info")));
 			}
 			
 		} catch (SQLException e) {
@@ -1819,8 +1845,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			close(rset);
 			close(pstmt);
 		}
-		return or;
-	}
-		
+		return list;
+	}		
 }
 
