@@ -139,7 +139,7 @@
                                             </td>
                                         </tr> -->
                                         <tr>
-                                            <td class="left_text_st top_bd " width="170" rowspan="2">받으시는분</td>
+                                            <td class="left_text_st top_bd " width="170" rowspan="4">받으시는분</td>
                                             <td style="padding-right:0px; width: 220px; border-bottom: none;" class="left_text_st top_bd " >
                                                 <input type="text" placeholder="이름" style="padding-left:20px;width:200px;" name="recipient" required>
                                             </td>
@@ -151,15 +151,26 @@
                                             <td class="left_text_st" colspan="2" style="width:200px; padding-top:0">
                                                 
                                                 <!--  <input type="text" placeholder="배송받을 주소입력" name="recipientAddress" style="width: 520px; border-radius:5px; padding-left:20px;"required>-->
-												<input type="text" id="del_postcode" placeholder="우편번호">
-												<input type="button" onclick="del_execDaumPostcode()" value="우편번호 찾기"><br>
-												<input type="text" id="del_detailAddress" placeholder="상세주소">
-												<input type="text" id="del_address" placeholder="주소">
-												<input type="text" id="del_extraAddress" placeholder="참고항목">
+												<input type="text" id="del_postcode" placeholder="우편번호" readonly>
+												<input type="button" onclick="del_execDaumPostcode()" value="우편번호 찾기" style="background-color:gray; color:white;" readonly>
+											</td>
 												
-                                            </td>
+                                        </tr>
+                                         <tr>
+                                        	<td class="left_text_st" colspan="2" style="width:200px; padding-top:0">
+                                        		<input type="text" id="del_address" placeholder="주소" style="width:380px;" readonly>											
+												<input type="text" id="del_extraAddress" placeholder="참고항목" style="width:150px;" readonly>
+                                        	</td>
+                                        </tr>
+                                        <tr>
+                                        	<td class="left_text_st" colspan="2" style="width:200px; padding-top:0">
+                                        	<input type="text" id="del_detailAddress" placeholder="상세주소" style="width:540px;"> <!-- 사용자가 직접 입력하는 칸  -->
+                                        	</td>
                                         </tr>
                                         
+                                    
+                                        
+                                        <!--                                                                               -->
                                         <tr>
                                             <td class="left_text_st">배송 요청 사항</td>
                                             <td colspan="2"><input type="text" name="orderMessage" placeholder="요청사항" style="width:520px; padding-left:20px;"></td>
