@@ -140,7 +140,7 @@
                                         <tr>
                                             <td class="left_text_st top_bd " >이름</td>
                                             <td class="top_bd "colspan="3" >
-                                                <input type="text" name="userName" value="<%=loginUser.getPoint()%>">
+                                                <input type="text" name="userName" value="<%=loginUser.getUserName()%>">
                                             </td>
                                         </tr>
                                         <tr>
@@ -177,19 +177,23 @@
                                     <tr>
                                         <td class=" pay_lt">포인트 할인</td>
                                         <td class=" pay_rt" id='useP'>-0원</td>
+                                        <input type="hidden" id="usePoint" name="usePoint" value='0'>
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="bd_none pay_lt">적립예상포인트</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" class=" pay_rt"><%=gToralSaving+960 %>P</td>
+                                        <td colspan="2" id="savePoint" class=" pay_rt"><%=gToralSaving+960 %>P</td>
+                                        <input type="hidden" id="addPoint" name='addPoint' value="<%=gToralSaving+960 %>">
+                                    
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
                                     <tr> 
                                     
-                                        <td colspan="2"  class=" pay_rt" id='totalPay'><input type="hidden" name="total" value=<%=gTotalPrice+200000%>><%=gTotalPrice+200000%></td>
+                                        <td colspan="2"  class=" pay_rt" id='totalPay'><%=gTotalPrice+200000%></td>
+                                        <input type="hidden" id="total" name="total" value='<%=gTotalPrice+200000%>'>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -253,8 +257,12 @@
 			}else{
 
 				$("#useP").text('-'+pointUse+'원');
-				
 				$('#totalPay').text((200000+<%=gTotalPrice%>-pointUse)+"원");
+				$("#total").val(200000+<%=gTotalPrice%>-pointUse);
+				
+				
+				$('#usePoint').val(pointUse);
+				
 			}
 		
 			

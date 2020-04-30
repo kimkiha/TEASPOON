@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.store.model.service.ProductService;
@@ -40,10 +41,13 @@ public class StorePayment extends HttpServlet {
 		String userName = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
 		int total = Integer.parseInt(request.getParameter("total"));
 		
+		int usePoint = Integer.parseInt(request.getParameter("usePoint"));
+		int addPoint = Integer.parseInt(request.getParameter("addPoint"));
+		
 		
 		String recipient = request.getParameter("recipient");
 		String recipientPhone = request.getParameter("recipientPhone");
-		String recipientAddress = request.getParameter("recipientAddress");
+		String recipientAddress = "우편번호 : " + request.getParameter("address1")+ ", 주소 : " + request.getParameter("address2")+ ", 참고항목 : " +request.getParameter("address3")+ ", 상세주소 : "+ request.getParameter("address4");
 		String orderMessage = request.getParameter("orderMessage");
 		
 		Orders order = new Orders();
@@ -56,6 +60,9 @@ public class StorePayment extends HttpServlet {
 		
 		 ArrayList<Option> productInfo = new ProductService(). extractProductInfo(userNo);
 		
+		 int result1 = new MemberService().updatePoint(userNo, addPoint,usePoint);
+		 
+		 
 		 String totalProductInfo ="";
 		 
 		 for(int i=0; i<productInfo.size(); i++) {

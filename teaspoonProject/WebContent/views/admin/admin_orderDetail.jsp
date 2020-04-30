@@ -81,7 +81,7 @@
                     
                     <div class="btns">
                         <button type="submit" style="width: 100px;">
-                            <a href="adminOder.html">목록보기</a>
+                            <a href="<%=contextPath%>/orderCondition.st?currentPage=1">목록보기</a>
                         </button>
                     </div>
                     
