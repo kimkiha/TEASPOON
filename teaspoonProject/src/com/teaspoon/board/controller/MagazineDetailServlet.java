@@ -35,6 +35,8 @@ public class MagazineDetailServlet extends HttpServlet {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		Board b = new BoardService().selectBoard(bno);
+		Board preb = new BoardService().preSelectBoard(bno);
+		Board nextb = new BoardService().nextSelectBoard(bno);
 		
 			if(b != null) {// 조회성공
 			
@@ -42,11 +44,13 @@ public class MagazineDetailServlet extends HttpServlet {
 			new BoardService().increaseCount(bno);
 			
 			request.setAttribute("b", b);
+			request.setAttribute("preb", preb);
+			request.setAttribute("nextb", nextb);
 			RequestDispatcher view = request.getRequestDispatcher("views/board/magazine_view.jsp");
 			view.forward(request, response);
 			
 		}else {//조회실패
-			request.setAttribute("msg", "공지사항 조회 실패했습니다.");
+			request.setAttribute("msg", "매거진 조회 실패했습니다.");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 		}

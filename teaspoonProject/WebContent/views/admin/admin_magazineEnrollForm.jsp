@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>매거진</title>
+    <title>매거진 | Admin</title>
     <style>
         table * {padding: 10px; font-size: 18px;}
         table th{text-align: center;}

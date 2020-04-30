@@ -61,5 +61,36 @@ public class SpaceService {
 		close(conn);
 		return list;
 	}
+	
+	
+	public int reservationDeny(int reservNo) {
+
+		Connection conn = getConnection();
+		int result1 = new SpaceDao().reservationDeny(conn, reservNo);
+		
+
+		if (result1 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+
+		return result1;
+		}
+	
+	public int reservationAccept(int reservNo) {
+
+		Connection conn = getConnection();
+		int result1 = new SpaceDao().reservationAccept(conn, reservNo);
+		
+
+		if (result1 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+
+		return result1;
+		}
 
 }

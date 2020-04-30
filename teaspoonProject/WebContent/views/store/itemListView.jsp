@@ -202,7 +202,7 @@
     	});
 
         // 장바구니 이동 팝업
-        $("#open").click(function(){
+       /* $("#open").click(function(){
             $(".modal").fadeIn();
         });
         $("#gobasket").click(function(){
@@ -210,7 +210,7 @@
         });
         $(".close").click(function(){
             $(".modal").fadeOut();
-        });
+        });*/
 
    
         </script>

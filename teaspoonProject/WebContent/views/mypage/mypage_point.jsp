@@ -18,7 +18,7 @@ int maxPage = pi.getMaxPage();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의포인트 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/resources/css/mypage/mypage_point.css">
 <link rel="styleSheet"

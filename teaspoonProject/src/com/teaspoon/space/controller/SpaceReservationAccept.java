@@ -1,29 +1,25 @@
-package com.teaspoon.member.controller;
+package com.teaspoon.space.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.teaspoon.member.model.service.MemberService;
-import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.space.model.service.SpaceService;
 
 /**
- * Servlet implementation class MyPageAdressServlet
+ * Servlet implementation class SpaceReservationAccept
  */
-@WebServlet("/myAdress.me")
-public class MyPageAdressServlet extends HttpServlet {
+@WebServlet("/reservationAccept.re")
+public class SpaceReservationAccept extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageAdressServlet() {
+    public SpaceReservationAccept() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +28,12 @@ public class MyPageAdressServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int reservNo = Integer.parseInt(request.getParameter("reservNo"));
+		//System.out.println(reservNo);
 		
 		
-
-		
-		
-		HttpSession Session = request.getSession();
-		String userId=((Member)Session.getAttribute("loginUser")).getUserId();		// userId로 가져오기
-		
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/mypage/mypage_address1.jsp");
-		view.forward(request, response);
-		
-	
-		
+		new SpaceService().reservationAccept(reservNo);
 	}
-			
-	
-		
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

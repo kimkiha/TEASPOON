@@ -47,13 +47,16 @@ img {vertical-align: middle;}
     
 /* 사진설명 텍스트 스타일 */
 .text {
-    color: #f2f2f2;
-    font-size: 15px;
+    
     padding: 8px 12px;
     position: absolute;
     bottom: 8px;
     width: 100%;
     text-align: center;
+    color:white;
+	font-weight:bold;
+	font-size:20px;
+	font-style:italic;	
     }
     
 /* 사진 페이지수 스타일 */
@@ -105,7 +108,7 @@ img {vertical-align: middle;}
     }
 
 .head-container{
-    border:1px solid #bbb;
+    border:1.5px solid #bbb;
     border-top-left-radius:5px;
     border-top-right-radius:5px;
     height:60px;
@@ -118,7 +121,7 @@ img {vertical-align: middle;}
     text-align: left;
 }
 .foot-container{
-     border:1px solid #bbb;
+     border:1.5px solid #bbb;
      width:955px;
      height:35px;
      margin-left:100px;
@@ -385,11 +388,20 @@ img {vertical-align: middle;}
 }
 .example02{
     border:1px solid gray;
-    width:650px;
+    width:613px;
     height:100px;
     margin-top:5px;
     border-radius:10px;
-       
+    list-style:none;
+    padding-left:0px;
+}
+.example02 li{
+	display:table-cell;
+	font-size:20px;
+	text-align:center;
+	vertical-align:middle;
+	width:200px;
+	font-size:20px
 }
 .aka{
 	font-weight:bold;
@@ -482,13 +494,16 @@ img {vertical-align: middle;}
 
 /* 사진설명 텍스트 */
 .texts {
-  color: #000000;
+  color: white;
   font-size: 15px;
   padding: 8px 12px;
   position: absolute;
   bottom: 8px;
   width: 100%;
   text-align: center;
+  padding: 8px 12px;
+  font-weight:bold;
+  font-style:italic;
 }
 
 /* 사진 장수 폰트 1/3 */
@@ -540,11 +555,6 @@ img {vertical-align: middle;}
   .texts {font-size: 11px}
 }
 
-.texts{
-	font-weight:bold;
-	color:skyblue;
-}
-
 .gfont{
 	color:lightgray;
 	font-size:14px;
@@ -553,5 +563,6 @@ img {vertical-align: middle;}
 
 #span1, #span2, #span3, #span4{
 	width:20px; height:20px; padding:5px; margin:5px;
-	
 }
+
+

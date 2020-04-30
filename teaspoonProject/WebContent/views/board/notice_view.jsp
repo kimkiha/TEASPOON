@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/board/notice.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
@@ -49,7 +49,7 @@
 							</tbody>
 						</table>
 						<div style="width:90%">
-							<button id="btn" type="button">
+							<button id="notice_btn" type="button">
 								<a href="<%=contextPath%>/noticeList.bo?currentPage=1"  style="color:white;" >목록으로</a>
 							</button>
 						</div>

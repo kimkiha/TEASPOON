@@ -24,9 +24,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <style>
-         #banner {margin-top:84px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
+         #banner {height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
         #paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
 		#paging button:hover{cursor:pointer;color:#d6ae71;}
+		#content1{height:100%}
     </style>
 </head>
 
@@ -35,7 +36,7 @@
         <%@ include file="../common/menubar.jsp" %>
         <!-- //header -->
         <br clear="both">
-        <div id="banner" >
+        <div id="banner" style="float:left; width:100%; margin-top:88px;">
             <div class="contaniner title">매거진</div>
         </div>
         <!-- //banner -->

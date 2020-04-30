@@ -216,6 +216,86 @@ public class BoardDao {
 		return result;
 	}
 	
+	/**
+	 * 매거진 디테일 이전글 정보
+	 * @param conn
+	 * @param bno
+	 * @return
+	 */
+	public Board preSelectBoard(Connection conn, int bno) {
+		Board b = new Board();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("preSelectBoard");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				b = new Board();
+				b.setBoardNo(rset.getInt("BOARD_NO"));
+				b.setBoardCategory(rset.getInt("BOARD_CATEGORY"));
+				b.setBoardTitle(rset.getString("BOARD_TITLE"));
+				b.setBoardContent(rset.getString("BOARD_CONTENT"));
+				b.setCount(rset.getInt("COUNT"));
+				b.setCreateDate(rset.getDate("CREATE_DATE"));
+				b.setModifyDate(rset.getDate("MODIFY_DATE"));
+				b.setStatus(rset.getString("STATUS"));
+				b.setChangeName(rset.getString("CHANGE_NAME"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return b;
+	}
+	
+	/**
+	 * 매거진 디테일 다음글 정보
+	 * @param conn
+	 * @param bno
+	 * @return
+	 */
+	public Board nextSelectBoard(Connection conn, int bno) {
+		Board b = new Board();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("nextSelectBoard");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				b = new Board();
+				b.setBoardNo(rset.getInt("BOARD_NO"));
+				b.setBoardCategory(rset.getInt("BOARD_CATEGORY"));
+				b.setBoardTitle(rset.getString("BOARD_TITLE"));
+				b.setBoardContent(rset.getString("BOARD_CONTENT"));
+				b.setCount(rset.getInt("COUNT"));
+				b.setCreateDate(rset.getDate("CREATE_DATE"));
+				b.setModifyDate(rset.getDate("MODIFY_DATE"));
+				b.setStatus(rset.getString("STATUS"));
+				b.setChangeName(rset.getString("CHANGE_NAME"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return b;
+	}
+	
 	// -------------------------------  매거진시작    ------------------------------- //
 	/**
 	 * 1_1.매거진  작성용(title,content)
@@ -639,6 +719,48 @@ public class BoardDao {
 		}
 		return list;
 	}
+	
+	/**
+	 * 3.이벤트 상세페이지 조회
+	 * @param conn
+	 * @param bno
+	 * @return
+	 */
+	public Board selectEvent(Connection conn, int bno) {
+Board b = new Board();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectEvent");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				b = new Board();
+				b.setBoardNo(rset.getInt("BOARD_NO"));
+				b.setBoardCategory(rset.getInt("BOARD_CATEGORY"));
+				b.setBoardTitle(rset.getString("BOARD_TITLE"));
+				b.setBoardContent(rset.getString("BOARD_CONTENT"));
+				b.setCount(rset.getInt("COUNT"));
+				b.setCreateDate(rset.getDate("CREATE_DATE"));
+				b.setModifyDate(rset.getDate("MODIFY_DATE"));
+				b.setStatus(rset.getString("STATUS"));
+				b.setChangeName(rset.getString("CHANGE_NAME"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return b;
+	
+	}
+	
 	
 	
 	/**

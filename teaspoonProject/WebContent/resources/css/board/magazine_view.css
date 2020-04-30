@@ -19,5 +19,8 @@
 
 .maga_con{float:left; display:block; width:100%; height:100%; }
 /*이전 매거진 다음 매거진*/
-#pre_next{display:inline-block; width: 100%; height: 250px; }
+#pre_next{display:inline-block; width: 100%; height: 300px; }
 #pre_next #next, #pre{float:left; width: 500px; height: 100%;}
+
+
+#event_btn{width:100px; height:50px; background:#9f9f9f;  font-weight:500; float:right ;border:1px solid #9f9f9f; margin-top:20px; color:#fff}

@@ -22,7 +22,7 @@ public class Orders {
 	
 	public Orders(int orderNo, int userNo, String orderer, String ordererPhone,
 			String recipient, String recipientPhone, String recipientAddress, String orderMessage, int shippingFee,
-			int payment, Date orderDate, int progress, String status, int cart) {
+			int payment, Date orderDate, int progress, int cart) {
 		super();
 		this.orderNo = orderNo;	
 		this.userNo = userNo;	

@@ -15,6 +15,7 @@ import com.teaspoon.member.model.vo.Cart;
 import com.teaspoon.member.model.vo.Grade;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
+import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.member.model.vo.Point;
 import com.teaspoon.store.model.vo.Product;
 
@@ -705,6 +706,38 @@ public class MemberService {
 		return result;
 	}
 
+	public ArrayList<Member> SelectReservCafe(int userNo,PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Member> list = new MemberDao().SelectReservCafe(conn,userNo,pi);
+		close(conn);
+		return list;
+		
+	}
+
+	public int getreservListCount(int userNo) {
+		Connection conn = getConnection();
+		int listCount = new MemberDao().reservListCount(conn,userNo);
+		close(conn);
+		return listCount;
+	}
+
+	
+	//
+	public int getOrderCount() {
+		Connection conn = getConnection();
+		int listCount = new MemberDao().getOrderCount(conn);
+
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Orders> orderConditionList(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Orders> list = new MemberDao().orderConditionList(conn, pi);
+
+		close(conn);
+		return list;
+	}
 	
 	
 	

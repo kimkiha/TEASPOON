@@ -8,7 +8,7 @@
 <head>
      <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>리뷰</title>
+    <title>리뷰관리  | Admin</title>
     <style>
         .outer p{margin-top: 30px; margin-bottom: 30px; font-size: 30px; font-weight: bold;}        
         table *{padding: 5px; margin: auto; font-size: 18px;}
