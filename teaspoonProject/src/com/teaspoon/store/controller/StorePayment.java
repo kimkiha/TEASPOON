@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.store.model.service.ProductService;
@@ -40,6 +41,9 @@ public class StorePayment extends HttpServlet {
 		String userName = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
 		int total = Integer.parseInt(request.getParameter("total"));
 		
+		int usePoint = Integer.parseInt(request.getParameter("usePoint"));
+		int addPoint = Integer.parseInt(request.getParameter("addPoint"));
+		
 		
 		String recipient = request.getParameter("recipient");
 		String recipientPhone = request.getParameter("recipientPhone");
@@ -56,11 +60,14 @@ public class StorePayment extends HttpServlet {
 		
 		 ArrayList<Option> productInfo = new ProductService(). extractProductInfo(userNo);
 		
+		 int result1 = new MemberService().updatePoint(userNo, addPoint,usePoint);
+		 
+		 
 		 String totalProductInfo ="";
 		 
 		 for(int i=0; i<productInfo.size(); i++) {
 		  
-			 totalProductInfo += "(" + i+ "번쨰 상품명 " + productInfo.get(i).getPname()+ ", 옵션1 : " + productInfo.get(i).getOptionType1() + ", 옵션2 : " + productInfo.get(i).getOptionType2() + ");";
+			 totalProductInfo += "(" + i+ "번쨰 상품명 " + productInfo.get(i).getPname()+ ", 옵션1 : " + productInfo.get(i).getOptionType1() + ", 옵션2 : " + productInfo.get(i).getOptionType2() + "),";
 		 
 		 }
 		

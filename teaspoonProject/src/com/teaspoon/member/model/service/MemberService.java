@@ -17,6 +17,7 @@ import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
 import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.member.model.vo.Point;
+import com.teaspoon.store.model.dao.ProductDao;
 import com.teaspoon.store.model.vo.Product;
 
 public class MemberService {
@@ -737,6 +738,44 @@ public class MemberService {
 
 		close(conn);
 		return list;
+	}
+
+	public int orderHistoryListCount(int userNo) {
+	
+		Connection conn = getConnection();
+		int listCount = new MemberDao().orderHistoryListCount(conn,userNo);
+
+		close(conn);
+		return listCount;
+		
+		
+	}
+
+	public ArrayList<Orders> orderHistoryList(int userNo, PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Orders> list = new MemberDao().orderHistoryList(conn,userNo,pi);
+
+		close(conn);
+		return list;
+	}
+	
+	public int updatePoint(int userNo, int addPoint, int usePoint) {
+		
+		Connection conn = getConnection();
+		int result1 = new MemberDao().insertPoint(conn,userNo,addPoint);
+		int result2 = new MemberDao().deletePoint(conn,userNo,usePoint);
+		
+		int finalPoint = addPoint - usePoint;
+		int result3 = new MemberDao().updatePoint(conn,userNo,finalPoint);
+
+		if (result1 >0 && result2>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1*result2;
+	
 	}
 	
 	

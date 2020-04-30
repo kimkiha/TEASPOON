@@ -196,6 +196,7 @@
                                     <tr>
                                         <td class="bd_none pay_lt">포인트 할인</td>
                                         <td class="bd_none pay_rt" id='useP'>-0원</td>
+                                        <input type="hidden" id="usePoint" name="usePoint">
                                     </tr>
                                     
                                     <tr>
@@ -207,14 +208,16 @@
                                         <td colspan="2" class="bd_none pay_lt">적립예상포인트</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" class=" pay_rt"><%=totalPoint %>p</td>
+                                        <td colspan="2" class=" pay_rt">
+                                        	<input id="addPoint" name="addPoint" value=<%=totalPoint %> style="border:0px; text-align:right; font-weight:bold;" readonly>p
+                                        </td>
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"  id='totalPay' class=" pay_rt"><%=totalPrice+2500 %>원</td>
-                                        <input type="hidden" name="total" value="<%=totalPrice+2500 %>">
+                                        <input type="hidden" id="total" name="total">
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -262,7 +265,7 @@
 	$(function(){
 		$("#pointUseBtn").click(function(){
 			var userSaving = $("#pointUse1").val();
-			var pointUse= $("#pointUse").val();
+			var pointUse= $("#pointUse").val(); 
 			
 			
 			if(Number(userSaving)<Number(pointUse)){
@@ -279,6 +282,9 @@
 				//$("#totalPay").text(aa-pointUse+"원");
 				$('#totalPay').text((<%=totalPrice+2500%>-pointUse)+"원");
 
+				$('#usePoint').val(pointUse);
+				//var a = $('#totalPay').text();
+				$('#total').val(<%=totalPrice+2500%>-pointUse);
 				
 			}
 		

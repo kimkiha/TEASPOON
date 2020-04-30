@@ -44,11 +44,11 @@
                 <div class="contaniner">
                     <div id="event">
                         <div class="status">
-                            <ul>
+                            <%--<ul>
                                 <li style="margin-left:350px;"><a href="#"><b>진행중이벤트</b></a></li>
                                 <li>&nbsp;/&nbsp;</li>
                                 <li><a href="#">종료된이벤트</a></li>
-                            </ul>
+                            </ul> --%>
                         </div>
                             <div id="event_content">
                                 <ul>

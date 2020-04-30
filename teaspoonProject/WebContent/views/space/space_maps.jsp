@@ -9,7 +9,7 @@
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/space/space_maps.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3d268fe7634edefdbb55d54f3f2ea12"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=11a2f0f1400eb504bd8b06c5fbd66ec2"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -22,6 +22,7 @@
 
 <style>
  #content1 {width:100%; height:1000px; background: #ffffff; }
+
 </style>
 </head>
 <body>
@@ -47,7 +48,7 @@
         <!-- //footer-->
     </div>
  <style>
- #map{width:100%; height:512px; top:150px; overflow:none;}
+ #map{ width:100%; height:512px; top:150px; overflow:none;}
  </style>
     <script>
 	//지도를 담을 영역의 dom 레퍼런스

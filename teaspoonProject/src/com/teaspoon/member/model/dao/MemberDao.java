@@ -20,7 +20,6 @@ import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.member.model.vo.MenToMen;
 import com.teaspoon.member.model.vo.Orders;
 import com.teaspoon.member.model.vo.Point;
-import com.teaspoon.member.model.vo.WishList;
 import com.teaspoon.store.model.vo.Product;
 
 public class MemberDao {
@@ -1752,19 +1751,22 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Orders(rset.getInt("ORDER_NO"),
-						rset.getInt("USER_NO"),
-						rset.getString("ORDERER"),
-						rset.getString("ORDERER_PHONE"),
-						rset.getString("RECIPIENT"),
-						rset.getString("RECIPIENT_PHONE"),
-						rset.getString("RECIPIENT_ADDRESS"),
-						rset.getString("ORDER_MAESSAGE"),	
-						rset.getInt("SHIPPING_FEE"),
-						rset.getInt("PAYMENT"),
-						rset.getDate("ORDER_DATE"),
-						rset.getInt("PROGRESS"),
-						rset.getInt("CART")));
+			  Orders or = new Orders();
+				or.setUserNo(rset.getInt("USER_NO"));
+				or.setOrderNo(rset.getInt("ORDER_NO"));
+				or.setOrderer(rset.getString("ORDERER"));
+				or.setOrdererPhone(rset.getString("ORDERER_PHONE"));
+				or.setRecipient(rset.getString("RECIPIENT"));
+				or.setRecipient(rset.getString("RECIPIENT_PHONE"));
+				or.setRecipientAddress(rset.getString("RECIPIENT_ADDRESS"));
+				or.setShippingFee(rset.getInt("shipping_fee"));
+				or.setPayment(rset.getInt("PAYMENT"));
+				or.setOrderDate(rset.getDate("ORDER_DATE"));
+				or.setProgress(rset.getInt("PROGRESS"));
+				or.setCart(rset.getInt("CART"));
+				or.setOrderMessage(rset.getString("ORDER_MAESSAGE"));
+				or.setProductInfo(rset.getString("PRODUCT_INFO"));
+						list.add(or);
 			}
 			
 		} catch (SQLException e) {
@@ -1775,6 +1777,151 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		}
 		return list;
 	}
+
+	public int orderHistoryListCount(Connection conn, int userNo) {
+		
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("orderHistoryListCount");
+		//System.out.println(sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) { // 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
+
+	public ArrayList<Orders> orderHistoryList(Connection conn, int userNo, PageInfo pi) {
+		ArrayList<Orders> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("orderHistoryList");
+		
+		int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow = startRow + pi.getBoardLimit()-1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				  Orders or = new Orders();
+					or.setUserNo(rset.getInt("USER_NO"));
+					or.setOrderNo(rset.getInt("ORDER_NO"));
+					or.setOrderer(rset.getString("ORDERER"));
+					or.setOrdererPhone(rset.getString("ORDERER_PHONE"));
+					or.setRecipient(rset.getString("RECIPIENT"));
+					or.setRecipient(rset.getString("RECIPIENT_PHONE"));
+					or.setRecipientAddress(rset.getString("RECIPIENT_ADDRESS"));
+					or.setShippingFee(rset.getInt("shipping_fee"));
+					or.setPayment(rset.getInt("PAYMENT"));
+					or.setOrderDate(rset.getDate("ORDER_DATE"));
+					or.setProgress(rset.getInt("PROGRESS"));
+					or.setCart(rset.getInt("CART"));
+					or.setOrderMessage(rset.getString("ORDER_MAESSAGE"));
+					or.setProductInfo(rset.getString("PRODUCT_INFO"));
+							list.add(or);
+				}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return or;
+	}
+	
+	public int insertPoint(Connection conn, int userNo, int addPoint) {
+		
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertPoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, addPoint);
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+
+	public int deletePoint(Connection conn, int userNo, int usePoint) {
+		
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deletePoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, usePoint);
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+
+	public int updatePoint(Connection conn, int userNo, int finalPoint) {
+
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updatePoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, finalPoint);
+			pstmt.setInt(2, userNo);
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	
+	
+	}
+	
+	
+	
 		
 }
 

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.teaspoon.board.model.vo.Attachment;
 import com.teaspoon.common.PageInfo;
 import com.teaspoon.member.model.vo.Orders;
+import com.teaspoon.member.model.vo.Point;
 import com.teaspoon.store.model.dao.ProductDao;
 import com.teaspoon.store.model.vo.Option;
 import com.teaspoon.store.model.vo.Product;
@@ -542,8 +543,10 @@ public class ProductService {
 		return result;
 		
 	}
+
 	
-	
+
+
 	
 	
 }

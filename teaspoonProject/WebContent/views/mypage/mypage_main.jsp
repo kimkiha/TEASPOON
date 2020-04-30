@@ -71,7 +71,7 @@
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
-						<a href="<%=contextPath %>/mydelivery.me" class=" float"> 주문배송조회</a>
+						<a href="<%=contextPath %>/mydelivery.me?currentPage=1" class=" float"> 주문내역확인</a>
 						<a href="<%=contextPath %>/myReserv.me?currentPage=1" class=" float">공간대여확인</a>
 						<a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a>
 						<a href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
