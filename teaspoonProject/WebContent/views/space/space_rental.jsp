@@ -50,19 +50,19 @@
                         <div class="mySlides fade">
                           <div class="numbertext">1 / 3</div>
                           <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv4.png;" style="width:1000px; height:550px;">
-                          <div class="text">세련된 인싸들의 공간 ACHAEA</div>
+                          <div class="text">세련된 갬성인들의 공간 ACHAEA</div>
                         </div>
                         <!-- 2번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">2 / 3</div>
                           <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv1.png;" style="width:1000px; height:550px;">
-                          <div class="text">세련된 인싸들의 공간 ACHAEA</div>
+                          <div class="text">세련된 갬성인들의 공간 ACHAEA</div>
                         </div>
                         <!-- 3번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">3 / 3</div>
                           <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv3.png;" style="width:1000px; height:550px;">
-                          <div class="text">세련된 인싸들의 공간 ACHAEA</div>
+                          <div class="text">세련된 갬성인들의 공간 ACHAEA</div>
                         </div>
                         
                         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -83,7 +83,7 @@
                                 <img src="<%=request.getContextPath() %>/resources/img/space/imo1.png">1인 - 30인 / 면적 - 23㎡ / 컨퍼런스 룸 / 초고속 WIFI  /  공용공간 및 라운지 / 커피와 허브차
                                 <div>
                                 <%if(loginUser == null){ %>
-                               	  <p style="margin-bottom:100px;"><label class="btn" style="left:750px;">로그인후 이용가능</label></p>
+                               	  <p style="margin-bottom:100px;"><label class="btn" style="left:750px;">로그인후 이용가능 </label></p>
                                	<%}else{ %>
                                   <p><label id="rentalready" class="btn" for="modal-1">예약하기</label></p>
                                	<%} %>
@@ -180,11 +180,11 @@
                             <div class="sb02"><p class="ftm">대여 비품용품</p><p id="spreadBtn03" class="btn02">세부사항⇲</p></div> 
                             <ul id="hiddenList02" class="example02" style="display: none; padding:20px;" >
                              
-                                <li id="span1" style="width:150px"><label for="goodd"><input type="checkbox" id="goodd" class='goods' name="good" value="빔프로젝트">빔프로젝트 <span style="color:lightgray;font-size:15px">(+)10,000원</span></label></li>
-                                <li id="span2" style="width:150px"><input type="checkbox" class='goods' name="good" value="노트북">노트북<span style="color:lightgray;font-size:15px"> (+)20,000원</span></li>
-                                <li id="span3" style="width:150px"><input type="checkbox" class='goods' name="good" value="스마트포인터">스마트포인터 <span style="color:lightgray;font-size:15px">(+),2000원</span></li>
-                                <li id="span4" style="width:150px"><input type="checkbox" class='goods' name="good" value="앰프">앰프<span style="color:lightgray;font-size:15px">(+)20,000원</span></li>
-            
+                                <li id="span1" style="width:150px"><label for="goodd1"><input type="checkbox" id="goodd1" class='goods' name="good" value="빔프로젝트">빔프로젝트 <span style="color:lightgray;font-size:15px">(+)10,000원</span></label></li>
+                                <li id="span2" style="width:150px"><label for="goodd2"><input type="checkbox" id="goodd2" class='goods' name="good" value="노트북">노트북<span style="color:lightgray;font-size:15px">(+)20,000원</span></label></li>
+                                <li id="span3" style="width:150px"><label for="goodd3"><input type="checkbox" id="goodd3" class='goods' name="good" value="스마트포인터">스마트포인터 <span style="color:lightgray;font-size:15px">(+)2,000원</span></label></li>
+                                <li id="span4" style="width:150px"><label for="goodd4"><input type="checkbox" id="goodd4" class='goods' name="good" value="앰프">앰 프<span style="color:lightgray;font-size:15px"><br>(+)20,000원</span></label></li>
+          
                             </ul>
 
 
