@@ -69,7 +69,7 @@ public class MemberDao {
 							rset.getInt("BUY_POINT"),
 							rset.getString("ADMIN"),
 							rset.getString("status"),
-						//	rset.getString("ADDRESS"),
+						
 							rset.getInt("POINT"),
 							rset.getString("grade_name"),
 							rset.getInt("wishCount"),
@@ -1183,7 +1183,9 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				rset = pstmt.executeQuery();
 				
 				while(rset.next()) {
-					list.add(new Point(rset.getDate("point_date"),
+					list.add(new Point(
+							rset.getInt("user_No"),
+							rset.getDate("point_date"),
 							rset.getInt("Division"),
 							rset.getString("content"),
 							rset.getInt("point_price")));
@@ -1226,8 +1228,9 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				close(pstmt);
 			}
 			
-			
+			System.out.println(listCount);
 			return listCount;
+			
 		}
 
 		public Member selectUserPwd(Connection conn, String userId) {
@@ -1712,7 +1715,8 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		int listCount = 0;
 
 		Statement stmt = null;
-		ResultSet rset = null;
+		ResultSet rset = null; 
+		
 		String sql = prop.getProperty("getOrderCount");
 		//System.out.println(sql);
 		try {
@@ -1757,7 +1761,7 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 				or.setOrderer(rset.getString("ORDERER"));
 				or.setOrdererPhone(rset.getString("ORDERER_PHONE"));
 				or.setRecipient(rset.getString("RECIPIENT"));
-				or.setRecipient(rset.getString("RECIPIENT_PHONE"));
+				or.setRecipientPhone(rset.getString("RECIPIENT_PHONE"));
 				or.setRecipientAddress(rset.getString("RECIPIENT_ADDRESS"));
 				or.setShippingFee(rset.getInt("shipping_fee"));
 				or.setPayment(rset.getInt("PAYMENT"));
@@ -1777,6 +1781,50 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		}
 		return list;
 	}
+	
+	public Orders orderConditionDetailList(Connection conn, int orderNo) {
+		Orders or = new Orders();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("orderConditionDetailList");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, orderNo);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+			  
+				or.setUserNo(rset.getInt("USER_NO"));
+				or.setOrderNo(rset.getInt("ORDER_NO"));
+				or.setOrderer(rset.getString("ORDERER"));
+				or.setOrdererPhone(rset.getString("ORDERER_PHONE"));
+				or.setRecipient(rset.getString("RECIPIENT"));
+				or.setRecipientPhone(rset.getString("RECIPIENT_PHONE"));
+				or.setRecipientAddress(rset.getString("RECIPIENT_ADDRESS"));
+				or.setShippingFee(rset.getInt("shipping_fee"));
+				or.setPayment(rset.getInt("PAYMENT"));
+				or.setOrderDate(rset.getDate("ORDER_DATE"));
+				or.setProgress(rset.getInt("PROGRESS"));
+				or.setCart(rset.getInt("CART"));
+				or.setOrderMessage(rset.getString("ORDER_MAESSAGE"));
+				or.setProductInfo(rset.getString("PRODUCT_INFO"));
+						
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return or;
+	}
+
 
 	public int orderHistoryListCount(Connection conn, int userNo) {
 		
@@ -1848,6 +1896,29 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public int MyPageOrderConfirm(Connection conn, int OrderNo) {
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("MyPageOrderConfirm");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, OrderNo);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 	
 	public int insertPoint(Connection conn, int userNo, int addPoint) {
@@ -1963,9 +2034,10 @@ public int insertReservPoint(Connection conn, int userNo, int addPoint) {
 		} finally {
 			close(pstmt);
 		}
-		return result;
 		
-	}
+		return result;
+	}		
+	
 
 	public int deleteReservPoint(Connection conn, int userNo, int usePoint) {
 		

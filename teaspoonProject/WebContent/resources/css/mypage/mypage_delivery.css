@@ -25,7 +25,7 @@
     #mypage_info div p{line-height: 43px;}
     /*선택되어있을때*/
    #mypage_menu_tab>a.active{background:white; color:#333333; transform: translateY(-5px);}
-   #mp_con1{text-align:left; width:100%; }
+   #mp_con1{ width:100%; }
    #mp_con1>p{padding-left:20px; padding-bottom:10px; border-bottom:1px solid black;}
 
    /*마이페이지 tab메뉴*/
@@ -58,8 +58,8 @@
    #mypage_table td{border-bottom:1px solid #bebebe; height: 80px;}
 
    /*버튼*/
-   .btn_review{background: white; border: 1px solid #bebebe; border-radius: 5px; padding: 10px 15px}
-   .btn_review:hover{
+   .confirm{background: white; border: 1px solid #bebebe; border-radius: 5px; padding: 10px 15px}
+   .confirm:hover{
        cursor: pointer;
        border-color:#ac8b5a;
        background: #d6ae71;
@@ -103,15 +103,15 @@
     background:rgb(158,158,158);
     color:white;
     }
-   .btn-gim{background: white;color:black;}
-   .btn-gim:hover{
+   .confirm{background: white;color:black;}
+   .confirm:hover{
     cursor: pointer;
     border-color: #bebebe;
     background:rgb(158,158,158);
     color:white;
    } 
 
-[type="date"] {
+  [type="date"] {
     background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
     
   }

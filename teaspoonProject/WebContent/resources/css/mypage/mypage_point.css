@@ -50,7 +50,7 @@
         }
         /*선택되어있을때*/
         #mypage_menu_tab>a.active{background:white; color:#333333; transform: translateY(-5px);}
-        #mp_con1{text-align:left; width:100%; }
+        #mp_con1{ width:100%; }
         .adtitle1>p{padding-left:20px; padding-bottom:10px; font-size: 32px;}
 
         /*테이블*/
@@ -72,8 +72,8 @@
         .mp-point-title>p{font-size: 32px;}
         .in{width: 110px;}
         .t-title{width:450px;}
-        .fagingvar{width:1000px;height: 35px;}
-        .fagingarea{width:1000px;height: 155px; line-height:18;}
+        .fagingvar{width:1000px;height: 55px;}
+        .fagingarea{width:1000px;height: 255px; }
 
      
         

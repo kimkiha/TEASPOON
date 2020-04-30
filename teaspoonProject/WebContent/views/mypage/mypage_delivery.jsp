@@ -24,6 +24,18 @@ int maxPage = pi.getMaxPage();
     <style>
         #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
       
+#paging button {
+	border: 0px;
+	background: white;
+	color: #4e4f53;
+	font-weight: bold;
+	margin: 10px;
+}
+
+#paging button:hover {
+	cursor: pointer;
+	color: #d6ae71;
+}
     </style>
 </head>
 <body>
@@ -73,12 +85,12 @@ int maxPage = pi.getMaxPage();
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
-						<a href="<%=contextPath %>/mydelivery.me?currentPage=1" class=" float">
-							주문내역확인</a> <a href="#" class=" float">공간대여확인</a> <a
-							href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a> <a
-							href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
+						<a href="<%=contextPath %>/mydelivery.me?currentPage=1" class="active float"> 주문내역확인</a>
+						<a href="<%=contextPath %>/myReserv.me?currentPage=1" class=" float">공간대여확인</a>
+						<a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a>
+						<a href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
 						<a href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
-					</div>
+					</div> 
 					<div class="pagename"></div>
 
 					<div id="mp_con1">
@@ -149,9 +161,10 @@ int maxPage = pi.getMaxPage();
 								<tr>
 									<th width="130">주문일시</th>
 									<th>주문번호</th>
-									<th colspan="2">상품명</th>
+									<th colspan="2">주문상품</th>
 									<th>상태</th>
-									<th>주문</th>
+									<th>구매금액</th>
+									<th></th>
 									<th></th>
 								</tr>
 							</thead>
@@ -165,18 +178,18 @@ int maxPage = pi.getMaxPage();
 								<tr>
 									<td><%=or.getOrderDate() %></td>
 									<td><%=or.getOrderNo() %></td>
-									<td style="text-align: left;"><img src="사이트이미지/메인/1.jpg"
-										width="90px" height="90px"></td>
+									<td style="text-align: left;">
+										</td>
 									<td style="text-align: left;"><%=or.getProductInfo() %></td>
-									<td></td>
-									<td>상품준비중</td>
+									<td class="deny">배송완료</td>
 									<td><%=or.getPayment() %>원</td>
+									<td> </td>
 									<td>
-										<a><button class="btn_review">구매확정</button></a>
-										<a><button class="btn_review">리뷰쓰기</button></a></td>
-									</tr>
+										<button class="confirm">구매확정</button>
+										
+									</td>
+								</tr>
 								<%} %>
-							
 							
 							<%} %>
 								
@@ -223,6 +236,30 @@ int maxPage = pi.getMaxPage();
        <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
     </div>
-
+<script>
+$(function(){
+		$(".confirm").click(function(){
+			var OrderNo = $(this).parent().parent().children().eq(1).text();
+			var deny = $(this).parent().parent().children().eq(4);
+			$.ajax({
+				url:"MyOrderConfirm.me",
+				type:"post",
+				data:{OrderNo:OrderNo},
+				success:function(list){
+					console.log(list);
+					deny.text('구매완료');
+					
+				
+				},
+				error:function(){
+					console.log("ajax 통신 실패!!");
+				}
+				
+			});
+		});
+	});
+	
+	
+</script>
 </body>
 </html>
