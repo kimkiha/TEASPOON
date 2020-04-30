@@ -17,6 +17,7 @@ public class Orders {
 	private Date orderDate;			// 주문일자
 	private int progress;			// 배송상태(배송중-->배송완료)
 	private int cart;				// 장바구니번호
+	private String productInfo;		// 상품 상세
 	
 	public Orders() {}
 	
@@ -38,6 +39,37 @@ public class Orders {
 		this.progress = progress;
 		this.cart = cart;
 	}
+	
+	public String getProductInfo() {
+		return productInfo;
+	}
+
+	public void setProductInfo(String productInfo) {
+		this.productInfo = productInfo;
+	}
+
+	public Orders(int userNo,int orderNo, String orderer, String ordererPhone,
+			String recipient, String recipientPhone, String recipientAddress, int shippingFee,
+			int payment, Date orderDate, int progress, int cart, String orderMessage, String productInfo) {
+		super();
+		this.userNo = userNo;	
+		this.orderNo = orderNo;	
+		this.orderer = orderer;
+		this.ordererPhone = ordererPhone;
+		this.recipient = recipient;
+		this.recipientPhone = recipientPhone;
+		this.recipientAddress = recipientAddress;
+		this.shippingFee = shippingFee;
+		this.payment = payment;
+		this.orderDate = orderDate;
+		this.progress = progress;
+		this.cart = cart;
+		this.orderMessage = orderMessage;
+		this.productInfo = productInfo;
+	}
+	
+	
+	
 	public int getOrderNo() {
 		return orderNo;
 	}
