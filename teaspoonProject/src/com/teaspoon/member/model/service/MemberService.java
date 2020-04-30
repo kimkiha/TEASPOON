@@ -758,12 +758,31 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
-	
+
 	public int updatePoint(int userNo, int addPoint, int usePoint) {
 		
 		Connection conn = getConnection();
 		int result1 = new MemberDao().insertPoint(conn,userNo,addPoint);
 		int result2 = new MemberDao().deletePoint(conn,userNo,usePoint);
+		
+		int finalPoint = addPoint - usePoint;
+		int result3 = new MemberDao().updatePoint(conn,userNo,finalPoint);
+
+		if (result1 >0 && result2>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1*result2;
+	
+	}
+	
+public int updateReservePoint(int userNo, int addPoint, int usePoint) {
+		
+		Connection conn = getConnection();
+		int result1 = new MemberDao().insertReservPoint(conn,userNo,addPoint);
+		int result2 = new MemberDao().deleteReservPoint(conn,userNo,usePoint);
 		
 		int finalPoint = addPoint - usePoint;
 		int result3 = new MemberDao().updatePoint(conn,userNo,finalPoint);

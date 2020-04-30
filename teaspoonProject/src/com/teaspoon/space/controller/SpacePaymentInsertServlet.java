@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teaspoon.member.model.service.MemberService;
+import com.teaspoon.member.model.vo.Member;
 import com.teaspoon.space.model.service.SpaceService;
 import com.teaspoon.space.model.vo.Payment;
 import com.teaspoon.space.model.vo.Space;
@@ -33,13 +35,23 @@ public class SpacePaymentInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		int goodsPay = Integer.parseInt(request.getParameter("goodsPay"));
 		int total = Integer.parseInt(request.getParameter("total"));
 		Space s = (Space)request.getSession().getAttribute("s");
 		Payment p = new Payment(goodsPay, total);
 		
-		int result = new SpaceService().insertPayment(p,s);
+		
 		request.setAttribute("total",total);
+		
+		int usePoint = Integer.parseInt(request.getParameter("usePoint"));
+		int addPoint = Integer.parseInt(request.getParameter("addPoint"));
+		int result = new SpaceService().insertPayment(p,s);
+		int result1 = new MemberService().updateReservePoint(userNo, addPoint,usePoint);
+		//System.out.println(usePoint);
+		//System.out.println(addPoint);
+		//System.out.println(total);
+		
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/space/payment.jsp");
 		view.forward(request, response);
