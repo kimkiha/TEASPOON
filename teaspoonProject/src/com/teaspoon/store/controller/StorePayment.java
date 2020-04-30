@@ -47,7 +47,7 @@ public class StorePayment extends HttpServlet {
 		
 		String recipient = request.getParameter("recipient");
 		String recipientPhone = request.getParameter("recipientPhone");
-		String recipientAddress = request.getParameter("recipientAddress");
+		String recipientAddress = "우편번호 : " + request.getParameter("address1")+ ", 주소 : " + request.getParameter("address2")+ ", 참고항목 : " +request.getParameter("address3")+ ", 상세주소 : "+ request.getParameter("address4");
 		String orderMessage = request.getParameter("orderMessage");
 		
 		Orders order = new Orders();

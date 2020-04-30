@@ -151,20 +151,20 @@
                                             <td class="left_text_st" colspan="2" style="width:200px; padding-top:0">
                                                 
                                                 <!--  <input type="text" placeholder="배송받을 주소입력" name="recipientAddress" style="width: 520px; border-radius:5px; padding-left:20px;"required>-->
-												<input type="text" id="del_postcode" placeholder="우편번호" readonly>
+												<input type="text" id="del_postcode" name="address1" placeholder="우편번호" readonly>
 												<input type="button" onclick="del_execDaumPostcode()" value="우편번호 찾기" style="background-color:gray; color:white;" readonly>
 											</td>
 												
                                         </tr>
                                          <tr>
                                         	<td class="left_text_st" colspan="2" style="width:200px; padding-top:0">
-                                        		<input type="text" id="del_address" placeholder="주소" style="width:380px;" readonly>											
-												<input type="text" id="del_extraAddress" placeholder="참고항목" style="width:150px;" readonly>
+                                        		<input type="text" id="del_address" name="address2" placeholder="주소" style="width:380px;" readonly>											
+												<input type="text" id="del_extraAddress" name="address3" placeholder="참고항목" style="width:150px;" readonly>
                                         	</td>
                                         </tr>
                                         <tr>
                                         	<td class="left_text_st" colspan="2" style="width:200px; padding-top:0">
-                                        	<input type="text" id="del_detailAddress" placeholder="상세주소" style="width:540px;"> <!-- 사용자가 직접 입력하는 칸  -->
+                                        	<input type="text" id="del_detailAddress"  name="address4" placeholder="상세주소" style="width:540px;"> <!-- 사용자가 직접 입력하는 칸  -->
                                         	</td>
                                         </tr>
                                         
@@ -196,7 +196,7 @@
                                     <tr>
                                         <td class="bd_none pay_lt">포인트 할인</td>
                                         <td class="bd_none pay_rt" id='useP'>-0원</td>
-                                        <input type="hidden" id="usePoint" name="usePoint">
+                                        <input type="hidden" id="usePoint" name="usePoint" value="0">
                                     </tr>
                                     
                                     <tr>
@@ -217,7 +217,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2"  id='totalPay' class=" pay_rt"><%=totalPrice+2500 %>원</td>
-                                        <input type="hidden" id="total" name="total">
+                                        <input type="hidden" id="total" name="total" value='<%=totalPrice+2500 %>'>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -285,7 +285,8 @@
 				$('#usePoint').val(pointUse);
 				//var a = $('#totalPay').text();
 				$('#total').val(<%=totalPrice+2500%>-pointUse);
-				
+				console.log($("total").val());
+				return false;
 			}
 		
 			
