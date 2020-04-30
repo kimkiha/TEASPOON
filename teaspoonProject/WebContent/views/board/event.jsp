@@ -18,9 +18,12 @@
 <head>
 <meta charset="UTF-8">
 <title>이벤트 | TeaSpoon</title>
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/event.css">
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main/main.css">
+    
     
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -43,10 +46,10 @@
             <div class="contaniner title">이벤트</div>
         </div>
         <!-- //banner -->
-          <div id="content">
+          <div id="content" style="height:2000px">
             <!-- product -->
-            <div id="content1">
-                <div class="contaniner" style="height:3000px">
+            <div id="content1" style="height:100%">
+                <div class="contaniner" style="hegith:100%">
                     <div id="event">
                         <%--<div class="status">
                             <ul>
@@ -55,7 +58,7 @@
                                 <li><a href="#">종료된이벤트</a></li>
                             </ul>
                         </div> --%>
-                            <div id="event_content">
+                            <div id="event_content" style="margin-top:120px">
                                 <ul>
                                 <%for(Board b : list){ %>
                                     <li class="goEvent">
@@ -70,10 +73,8 @@
                                         </div>
                                     </li>
                                 <%} %>
-                                </ul>  
-                            </div>
-                        </div>
-                           <div id="paging" class="pagination" style="height:100px">
+                                </ul> 
+                                <div id="paging" class="pagination" style="height:100px">
                     <!-- 현재 페이지에 보여질 페이징바 -->
 					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
 						<!-- 맨 처음으로(<<) -->
@@ -96,7 +97,10 @@
 						<!-- 맨 마지막으로(>>) -->
 						<button onclick="location.href='magazineList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
 					<%} %>
-                	</div>
+                	</div> 
+                            </div>
+                            
+                        </div>
                     </div>
                      
                 </div>

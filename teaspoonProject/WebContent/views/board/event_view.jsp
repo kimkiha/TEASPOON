@@ -1,4 +1,4 @@
-<<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.teaspoon.board.model.vo.*"%>
 <%
  Board b = (Board)request.getAttribute("b");
@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이벤트 | TeaSpoon</title>
+<title>매거진 | TeaSpoon</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/event_view.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-<div id="wrap" style="position:relative; min-height:100%;">
+<div id="wrap">
         <%@ include file="../common/menubar.jsp" %>
         <!-- //header -->
         <br clear="both">
@@ -31,8 +31,9 @@
             <div class="title">이벤트</div>
         </div>
         <!-- //banner -->
-          <div id="content" style=" min-height:100%;">
+          <div id="content">
             <!-- product -->
+                <div id="maga" >
                     <div id="magazine">
                         <div id="title">
                             <div id="title_detail">
@@ -55,17 +56,21 @@
                         <div class="maga_con">
                             <%=b.getBoardContent() %>
                         </div>
+                        <div>
+                        	<button></button>
+                        </div>
                 	</div>
-                    <!-- //magazine -->
-         <%@ include file="../common/footer.jsp" %>
+                    <!-- //event -->
+                <!-- //maga -->
          </div>
+         <%@ include file="../common/footer.jsp" %>
         <!-- //footer-->
         
         </div>
         <!-- //content -->
-       
+</div>
     <!-- //wrap-->
     <script src="<%=contextPath %>/resources/js/magazine_view.js"></script>
-
+    
 </body>
 </html>
