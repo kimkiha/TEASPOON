@@ -221,7 +221,7 @@ function rental(){
 	 var userText = $("#userText").val();
 	 var date = $("#date").val();
 	 
-	 var goods = $(".bpf input[class='goods']:checked").val();
+	 var goods = $("#hiddenList02 input[class='goods']:checked").val();
 	
 	 
 	 if(date == ''){
