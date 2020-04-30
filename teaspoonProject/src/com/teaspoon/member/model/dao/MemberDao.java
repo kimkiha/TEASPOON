@@ -1775,6 +1775,75 @@ public int newUpdateMaxMemberGrade(Connection conn, Grade g) {
 		}
 		return list;
 	}
+
+	public int orderHistoryListCount(Connection conn, int userNo) {
 		
+		int listCount = 0;
+
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getOrderCount");
+		//System.out.println(sql);
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+
+			if (rset.next()) { // 컬럼인덱스로 추출
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return listCount;
+	}
+
+	public int orderHistoryList(Connection conn, int userNo, PageInfo pi) {
+		ArrayList<Orders> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("orderConditionList");
+		
+		int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow = startRow + pi.getBoardLimit()-1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Orders(rset.getInt("ORDER_NO"),
+						rset.getInt("USER_NO"),
+						rset.getString("ORDERER"),
+						rset.getString("ORDERER_PHONE"),
+						rset.getString("RECIPIENT"),
+						rset.getString("RECIPIENT_PHONE"),
+						rset.getString("RECIPIENT_ADDRESS"),
+						rset.getString("ORDER_MAESSAGE"),	
+						rset.getInt("SHIPPING_FEE"),
+						rset.getInt("PAYMENT"),
+						rset.getDate("ORDER_DATE"),
+						rset.getInt("PROGRESS"),
+						rset.getInt("CART"),
+						rset.getString("ORDER_MAESSAGE"),
+						rset.getString("product_info")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}		
 }
 
