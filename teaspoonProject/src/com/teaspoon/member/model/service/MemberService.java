@@ -739,13 +739,24 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
+
+	public int orderHistoryListCount(int userNo) {
 	
-	public Orders orderConditionDetailList(int orderNo) {
 		Connection conn = getConnection();
-		Orders or = new MemberDao().orderConditionDetailList(conn, orderNo);
+		int listCount = new MemberDao().orderHistoryListCount(conn,userNo);
 
 		close(conn);
-		return or;
+		return listCount;
+		
+		
+	}
+
+	public ArrayList<Orders> orderHistoryList(int userNo, PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Orders> list = new MemberDao().orderHistoryList(conn,userNo,pi);
+
+		close(conn);
+		return list;
 	}
 	
 	public int updatePoint(int userNo, int addPoint, int usePoint) {

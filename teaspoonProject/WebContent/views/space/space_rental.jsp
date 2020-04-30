@@ -17,7 +17,7 @@
 <style>
  #content1 {width:100%; height:1500px; background: #ffffff; }
 
-    #content1 {width:100%; height:inherit; background: #ffffff; }
+  #content1 {width:100%; height:inherit; background: #ffffff; }
 	#banner{height: 270px; line-height: 270px; background:url("/teaspoon/resources/img/store/storetop_coffee.jpg") center top no-repeat;}
 	#paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
 	#paging button:hover{cursor:pointer;color:#d6ae71;}
@@ -83,7 +83,7 @@
                                 <img src="<%=request.getContextPath() %>/resources/img/space/imo1.png">1인 - 30인 / 면적 - 23㎡ / 컨퍼런스 룸 / 초고속 WIFI  /  공용공간 및 라운지 / 커피와 허브차
                                 <div>
                                 <%if(loginUser == null){ %>
-                               	  <p style="margin-bottom:100px;"><label class="btn" style="left:750px;">로그인후 이용가능 </label></p>
+                               	  <p style="margin-bottom:100px;"><label class="btn" style="left:750px;"><a href="<%=contextPath %>/loginPage.me">로그인후 이용가능</a> </label></p>
                                	<%}else{ %>
                                   <p><label id="rentalready" class="btn" for="modal-1">예약하기</label></p>
                                	<%} %>
@@ -221,7 +221,7 @@ function rental(){
 	 var userText = $("#userText").val();
 	 var date = $("#date").val();
 	 
-	 var goods = $(".bpf input[class='goods']:checked").val();
+	 var goods = $("#hiddenList02 input[class='goods']:checked").val();
 	
 	 
 	 if(date == ''){

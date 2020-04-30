@@ -88,11 +88,7 @@ table tr {
 					</tr>
 					<tr>
 						<th>답변내용</th>
-						<td colspan="3"><textarea cols="60" rows="5"style="resize: none" required name="reComment">
-								<%if(mtm.getReComment() != null){ %>
-									<%=mtm.getReComment()%>
-								<%} %>
-					</textarea></td>
+						<td colspan="3"><textarea cols="60" rows="5"style="resize: none" required name="reComment"><%if(mtm.getReComment() != null){ %><%=mtm.getReComment()%><%} %></textarea></td>
 					</tr>
 					<%if(at != null){ //첨부파일이 존재할 경우 %>
 							<div>첨부파일 :
