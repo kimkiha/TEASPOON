@@ -56,7 +56,7 @@
                         </div>
                         <div class="maga_con">
                             <%=b.getBoardContent() %>
-                         
+                         	
                          	
 						<div style="width:1000px; float:right; border-top:1px solid #bebebe; margin: 10px 0;">
                         	<button id="event_btn" type="button" onclick="location.href='<%=contextPath%>/eventList.bo?currentPage=1'">목록으로</button>
