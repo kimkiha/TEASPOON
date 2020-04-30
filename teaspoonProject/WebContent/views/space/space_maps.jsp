@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>찾아오시는길 | TeaSpoon</title>
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">

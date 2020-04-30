@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/board/notice.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">

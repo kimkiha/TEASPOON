@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>결제 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/space/space_payment.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
 <link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">

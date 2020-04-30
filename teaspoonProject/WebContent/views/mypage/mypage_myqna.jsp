@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>1:1문의 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/resources/css/mypage/mypage_myqna.css">
 <link rel="styleSheet"

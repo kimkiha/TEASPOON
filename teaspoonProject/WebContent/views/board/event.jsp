@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이벤트 | TeaSpoon</title>
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
