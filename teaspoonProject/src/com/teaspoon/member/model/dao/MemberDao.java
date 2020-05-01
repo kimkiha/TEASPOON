@@ -2077,7 +2077,7 @@ public int insertReservPoint(Connection conn, int userNo, int addPoint) {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			close(conn);
+			close(pstmt);
 		}
 		return result;
 		
@@ -2098,7 +2098,7 @@ public int insertReservPoint(Connection conn, int userNo, int addPoint) {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			close(conn);
+			close(pstmt);
 		}
 		return result;
 		

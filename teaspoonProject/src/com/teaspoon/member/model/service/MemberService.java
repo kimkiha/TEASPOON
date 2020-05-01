@@ -827,14 +827,14 @@ public int updateReservePoint(int userNo, int addPoint, int usePoint) {
 		Connection conn = getConnection();
 		
 		int result1 = new MemberDao().eventUpdatePoint(conn, point, userNo);
-		
 		int result2 = new MemberDao().insertEventPoint(conn, point, userNo);
+		
 		if(result1> 0 && result2 > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
-		
+		close(conn);
 		return result1*result2;
 	}
 		

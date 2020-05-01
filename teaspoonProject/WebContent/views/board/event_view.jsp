@@ -19,7 +19,7 @@ int random = (int)(Math.random() * 100 +1);
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <style>
-        #banner{height: 170px; line-height: 170px; background:rgb(222, 219, 210); margin-top:64px;}
+        #banner{margin-top:120px;height: 170px; line-height: 170px; background:rgb(222, 219, 210); margin-top:64px;}
     </style>
 </head>
 
@@ -28,8 +28,8 @@ int random = (int)(Math.random() * 100 +1);
         <%@ include file="../common/menubar.jsp" %>
         <!-- //header -->
         <br clear="both">
-        <div id="banner" >
-            <div class="title">이벤트</div>
+        <div id="banner">
+            <div class="title" style=" margin-top:88px" >이벤트</div>
         </div>
         <!-- //banner -->
           <div id="content">
@@ -58,7 +58,7 @@ int random = (int)(Math.random() * 100 +1);
                             <div class="event_img_1" style="position: relative;">
 						        <img src="<%=contextPath%>/resources/img/board/teaspoonevent.jpg">
 						    </div>
-						    <div class="click_div" style="position:absolute; top:50.7%; left:36.1%; z-index:100;width:277px; height:73px; border:1px solid red; border-radius:50px;" ></div>
+						    <div class="click_div" style="position:absolute; top:95.2%; left:39.6%; z-index:100;width:275px; height:73px; border-radius:50px;" ></div>
                         </div>
                 	</div>
                     <!-- //event -->
@@ -73,15 +73,15 @@ int random = (int)(Math.random() * 100 +1);
     <script>
     	$(function(){
     		$(".click_div").click(function(){
-    			alert(<%=random%>+"포인트 지급되었습니다!");
+    			
     			$.ajax({
     				url:"eventPoint.bo",
     				type:"post",
-    				data:{random : random,
-    					 userNo : <%=loginUser.getUserNo()%>},
+    				data:{random:<%=random%>,
+    					 userNo:<%=loginUser.getUserNo()%>},
     				success:function(result){
     					if(result>0){
-    						console.log("ajax 통신성공!");
+    						alert(<%=random%>+"포인트 지급되었습니다!");
     					}
     				},error:function(){
     					console.log("ajax 통신실패!");

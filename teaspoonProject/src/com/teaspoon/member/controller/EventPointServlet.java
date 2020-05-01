@@ -1,6 +1,7 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.teaspoon.member.model.service.MemberService;
 
 /**
@@ -31,13 +30,17 @@ public class EventPointServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int point = Integer.parseInt((String) request.getAttribute("random"));
-		int userNo = Integer.parseInt((String) request.getAttribute("userNo"));
+		int point = Integer.parseInt((String) request.getParameter("random"));
+		int userNo = Integer.parseInt((String) request.getParameter("userNo"));
+		
 		
 		int result = new MemberService().eventUpdatePoint(point, userNo);
-			response.setContentType("application/json; charset=utf-8");
-			Gson gson = new GsonBuilder().create();
-			gson.toJson(result, response.getWriter());
+		
+			
+				PrintWriter out = response.getWriter();
+				
+				out.print(result);
+				
 			
 	}
 
