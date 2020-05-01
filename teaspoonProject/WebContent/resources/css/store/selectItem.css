@@ -4,7 +4,9 @@
         /* 여백 초기화 */
         body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset, legend, p, select, table, th, td, tr, textarea, button, form {margin: 0; padding: 0;}
 
-        .contaniner #head_title{position:absolute; color: black; font-size: 50px; font-weight: bold; width: 100%;}
+        .contaniner #head_title{position:absolute; color: black; font-size: 50px; font-weight: bold; width: 100%;display:table;}
+        #head_title{margin-top:100px}
+        .contaniner>div{display:table-cel; vertical-align:middle;}
         #content {width:100%; height:auto;background: #ffffff; }
         
         #productArea {height:inherit; margin: 0 100px;}

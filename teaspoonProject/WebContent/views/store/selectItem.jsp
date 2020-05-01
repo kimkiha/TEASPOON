@@ -6,27 +6,19 @@
 <meta charset="UTF-8">
 <title>맞춤추천 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath() %>/resources/css/store/selectItem.css">
+	href="<%=request.getContextPath()%>/resources/css/store/selectItem.css">
 <link rel="styleSheet"
-	href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
+	href="<%=request.getContextPath()%>/resources/css/common/reset1.css">
 <link rel="styleSheet"
-	href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	href="<%=request.getContextPath()%>/resources/css/common/menubar.css">
 <link rel="styleSheet"
-	href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+	href="<%=request.getContextPath()%>/resources/css/common/footer.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <style>
-#banner {
-	margin-top: 115px;
-	height: 170px;
-	line-height: 170px;
-	background:
-		url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg")
-		center top repeat-x;
-}
 </style>
 </head>
 <body>
@@ -40,8 +32,9 @@
 
 				</div>
 				<div>
-					<img id="head_img" src="<%=contextPath %>/resources/img/store/storetop_coffee.jpg" width="1200"
-						height="270">
+					<img id="head_img"
+						src="<%=contextPath%>/resources/img/store/storetop_coffee.jpg"
+						width="1200" height="270">
 				</div>
 			</div>
 		</div>
@@ -60,8 +53,7 @@
 						<div class="select-list">
 							<div class="select-item">
 								<div class="select-img" border="1">
-									<img
-										src="<%=contextPath %>/resources/img/store/product3_1.jpg"
+									<img src="<%=contextPath%>/resources/img/store/product3_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -80,8 +72,7 @@
 							</div>
 							<div class="select-item">
 								<div class="select-img" border="1">
-									<img
-										src="<%=contextPath %>/resources/img/store/product8_3.jpg"
+									<img src="<%=contextPath%>/resources/img/store/product8_3.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -100,8 +91,7 @@
 							</div>
 							<div class="select-item">
 								<div class="select-img" border="1">
-									<img
-										src="<%=contextPath %>/resources/img/store/product2_1.jpg"
+									<img src="<%=contextPath%>/resources/img/store/product2_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -124,12 +114,13 @@
 						<!-- 1-1번 select  blend -->
 
 						<div id="blendBox" class="box select2-wrap" border="1">
-							<div class="select2-title " id="blendsignature">어떤맛을
-								좋아하세요?</div>
+							<div class="select2-title " id="blendsignature">어떤맛을 좋아하세요?</div>
 							<div class="select-list2">
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product11_1.jpg" width="250" height="200">
+										<img
+											src="<%=contextPath%>/resources/img/store/product11_1.jpg"
+											width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -150,7 +141,9 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product12_1.jpg" width="250" height="200">
+										<img
+											src="<%=contextPath%>/resources/img/store/product12_1.jpg"
+											width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -172,7 +165,9 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product13_1.jpg" width="250" height="200">
+										<img
+											src="<%=contextPath%>/resources/img/store/product13_1.jpg"
+											width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -202,7 +197,8 @@
 							<div class="select-list2">
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/nutty.jpg" width="250" height="200">
+										<img src="<%=contextPath%>/resources/img/store/nutty.jpg"
+											width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -223,8 +219,7 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img
-											src="<%=contextPath %>/resources/img/store/fruty.jpg"
+										<img src="<%=contextPath%>/resources/img/store/fruty.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
@@ -246,7 +241,9 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/nuttynpruty.jpg" width="250" height="200">
+										<img
+											src="<%=contextPath%>/resources/img/store/nuttynpruty.jpg"
+											width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -278,7 +275,9 @@
 							<div class="select-list3">
 								<div class="select-item3">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product11_1.jpg" width="250" height="200">
+										<img
+											src="<%=contextPath%>/resources/img/store/product11_1.jpg"
+											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
 
@@ -298,7 +297,9 @@
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=18'">옵션 고르러가기</button>
+										<button
+											onclick="location.href='<%=contextPath%>/detail.co?pcode=18'">옵션
+											고르러가기</button>
 									</div>
 								</div>
 
@@ -312,7 +313,9 @@
 							<div class="select-list3">
 								<div class="select-item3">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product12_1.jpg" width="250" height="200">
+										<img
+											src="<%=contextPath%>/resources/img/store/product12_1.jpg"
+											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
 
@@ -332,7 +335,9 @@
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=14'">옵션 고르러가기</button>
+										<button
+											onclick="location.href='<%=contextPath%>/detail.co?pcode=14'">옵션
+											고르러가기</button>
 									</div>
 								</div>
 
@@ -346,7 +351,9 @@
 							<div class="select-list3">
 								<div class="select-item3">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product13_1.jpg" width="250" height="200">
+										<img
+											src="<%=contextPath%>/resources/img/store/product13_1.jpg"
+											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
 
@@ -366,7 +373,9 @@
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=14'">옵션 고르러가기</button>
+										<button
+											onclick="location.href='<%=contextPath%>/detail.co?pcode=14'">옵션
+											고르러가기</button>
 									</div>
 								</div>
 
@@ -380,7 +389,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="<%=contextPath %>/resources/img/store/product7_2.jpg"
+											src="<%=contextPath%>/resources/img/store/product7_2.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
@@ -401,7 +410,9 @@
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=5'">옵션 고르러가기</button>
+										<button
+											onclick="location.href='<%=contextPath%>/detail.co?pcode=5'">옵션
+											고르러가기</button>
 									</div>
 								</div>
 
@@ -415,7 +426,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="<%=contextPath %>/resources/img/store/product7_2.jpg"
+											src="<%=contextPath%>/resources/img/store/product7_2.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
@@ -429,14 +440,14 @@
 											<p class="t">11,500원</p>
 										</div>
 										<div>
-											<p>
-											
-											</p>
+											<p></p>
 											<br>
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=5'">옵션 고르러가기</button>
+										<button
+											onclick="location.href='<%=contextPath%>/detail.co?pcode=5'">옵션
+											고르러가기</button>
 									</div>
 								</div>
 
@@ -450,7 +461,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="<%=contextPath %>/resources/img/store/product7_2.jpg"
+											src="<%=contextPath%>/resources/img/store/product7_2.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
@@ -471,7 +482,9 @@
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=5'">옵션 고르러가기</button>
+										<button
+											onclick="location.href='<%=contextPath%>/detail.co?pcode=5'">옵션
+											고르러가기</button>
 									</div>
 								</div>
 
@@ -485,7 +498,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="<%=contextPath %>/resources/img/store/product2_1.jpg"
+											src="<%=contextPath%>/resources/img/store/product2_1.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
@@ -506,7 +519,9 @@
 										</div>
 									</div>
 									<div class="select-btnwrap" border="1">
-										<button onclick="location.href='<%=contextPath%>/detail.co?pcode=8'">옵션 고르러가기</button>
+										<button
+											onclick="location.href='<%=contextPath%>/detail.co?pcode=8'">옵션
+											고르러가기</button>
 									</div>
 								</div>
 
@@ -530,123 +545,141 @@
 	</div>
 	<%@ include file="../common/footer.jsp"%>
 	<script>
-    /* display */
-        function showDiv(element){
-        	var bag = document.getElementsByClassName("bag");
-        	for(var i=0; i<bag.length; i++){
-        		bag[i].style.display = "none";
-        	}
-        	
-        	var coffee = document.getElementsByClassName("coffee");
-        	for(var i=0; i<coffee.length; i++){
-        		coffee[i].style.display = "none";
-        	}
-    	
+		/* display */
+		function showDiv(element) {
+			var bag = document.getElementsByClassName("bag");
+			for (var i = 0; i < bag.length; i++) {
+				bag[i].style.display = "none";
+			}
+
+			var coffee = document.getElementsByClassName("coffee");
+			for (var i = 0; i < coffee.length; i++) {
+				coffee[i].style.display = "none";
+			}
+
 			var tag = document.getElementsByClassName("box");
-			for(var i=0 ; i<tag.length ; i++){
-				if(element.id+"Box" == tag[i].id)
+			for (var i = 0; i < tag.length; i++) {
+				if (element.id + "Box" == tag[i].id)
 					tag[i].style.display = "block";
 				else
 					tag[i].style.display = "none";
 			}
 
 		}
-        function bean(element){
-        	var bag = document.getElementsByClassName("bag");
-        	for(var i=0; i<bag.length; i++){
-        		bag[i].style.display = "none";
-        	}
-        	
+		function bean(element) {
+			var bag = document.getElementsByClassName("bag");
+			for (var i = 0; i < bag.length; i++) {
+				bag[i].style.display = "none";
+			}
+
 			var tag = document.getElementsByClassName("coffee");
-			for(var i=0 ; i<tag.length ; i++){
-				if(element.id+"Coffee" == tag[i].id)
+			for (var i = 0; i < tag.length; i++) {
+				if (element.id + "Coffee" == tag[i].id)
 					tag[i].style.display = "block";
 				else
 					tag[i].style.display = "none";
 			}
 		}
-        function bag(element){
-        	var coffee = document.getElementsByClassName("coffee");
-        	for(var i=0; i<coffee.length; i++){
-        		coffee[i].style.display = "none";
-        	}
-        	
+		function bag(element) {
+			var coffee = document.getElementsByClassName("coffee");
+			for (var i = 0; i < coffee.length; i++) {
+				coffee[i].style.display = "none";
+			}
+
 			var tag = document.getElementsByClassName("bag");
-			for(var i=0 ; i<tag.length ; i++){
-				if(element.id+"Bag" == tag[i].id)
+			for (var i = 0; i < tag.length; i++) {
+				if (element.id + "Bag" == tag[i].id)
 					tag[i].style.display = "block";
 				else
 					tag[i].style.display = "none";
 			}
-		}    
-    
-    /*scroll move*/
-    /* 처음 원두 드립백 콜드브루 */ 
-    $(document).ready(function(){
-    $('#btn1').click(function(){
-        var offset = $('#div1').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    $(document).ready(function(){
-    $('#blend').click(function(){
-        var offset = $('#blendsignature').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    $(document).ready(function(){
-    $('#dripbag').click(function(){
-        var offset = $('#drip').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    /*콜드브루 */
-    $(document).ready(function(){
-    $('#coldbrew').click(function(){
-        var offset = $('#coldbrewprice').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    /* 원두 3종*/
-    $(document).ready(function(){
-    $('#orignal').click(function(){
-        var offset = $('#orignalprice').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    $(document).ready(function(){
-    $('#blacksuit').click(function(){
-        var offset = $('#blacksuitprice').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    $(document).ready(function(){
-    $('#velvetwhite').click(function(){
-        var offset = $('#velvetwhiteprice').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    /* 드립백 3종 */
-    $(document).ready(function(){
-    $('#nutty').click(function(){
-        var offset = $('#nuttyprice').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    $(document).ready(function(){
-    $('#furity').click(function(){
-        var offset = $('#furityprice').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    $(document).ready(function(){
-    $('#nf').click(function(){
-        var offset = $('#nfprice').offset(); 
-        $('html,body').animate({scrollTop : offset.top}, 1000);
-    });
-    });
-    
+		}
 
-    </script>
+		/*scroll move*/
+		/* 처음 원두 드립백 콜드브루 */
+		$(document).ready(function() {
+			$('#btn1').click(function() {
+				var offset = $('#div1').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+		$(document).ready(function() {
+			$('#blend').click(function() {
+				var offset = $('#blendsignature').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+		$(document).ready(function() {
+			$('#dripbag').click(function() {
+				var offset = $('#drip').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+		/*콜드브루 */
+		$(document).ready(function() {
+			$('#coldbrew').click(function() {
+				var offset = $('#coldbrewprice').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+		/* 원두 3종*/
+		$(document).ready(function() {
+			$('#orignal').click(function() {
+				var offset = $('#orignalprice').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+		$(document).ready(function() {
+			$('#blacksuit').click(function() {
+				var offset = $('#blacksuitprice').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+		$(document).ready(function() {
+			$('#velvetwhite').click(function() {
+				var offset = $('#velvetwhiteprice').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+		/* 드립백 3종 */
+		$(document).ready(function() {
+			$('#nutty').click(function() {
+				var offset = $('#nuttyprice').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+		$(document).ready(function() {
+			$('#furity').click(function() {
+				var offset = $('#furityprice').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+		$(document).ready(function() {
+			$('#nf').click(function() {
+				var offset = $('#nfprice').offset();
+				$('html,body').animate({
+					scrollTop : offset.top
+				}, 1000);
+			});
+		});
+	</script>
 </body>
 </html>

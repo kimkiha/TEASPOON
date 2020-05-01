@@ -30,7 +30,6 @@ public class MyPageOrderConfirmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 int OrderNo = Integer.parseInt(request.getParameter("OrderNo"));
-		 System.out.println(OrderNo);
 		 new MemberService().MyPageOrderConfirm(OrderNo);
 		 
 		 
