@@ -181,15 +181,14 @@ int maxPage = pi.getMaxPage();
 							<%}else{ %>
 								<% for(Orders or : list){ %>
 								<tr>
-									<td><%=or.getOrderDate() %></td>
-									<td><%=or.getOrderNo() %></td>
-									<td style="text-align: left;">
-										</td>
-									<td style="text-align: left;"><%=or.getProductInfo() %></td>
-									<td class="deny">배송완료</td>
-									<td><%=or.getPayment() %>원</td>
+									<td style="width:100px;"><%=or.getOrderDate() %></td>
+									<td style="width:70px;"><%=or.getOrderNo() %></td>
+									<td colspan="2" style="text-align: left; width:600px; padding-right:10px; padding-left:10px;">
+										<%=or.getProductInfo() %></td>
+									<td class="deny" style="width:70px;">배송완료</td>
+									<td style="width:100px;"><%=or.getPayment() %>원</td>
 									<td> </td>
-									<td>
+									<td style="width:120px;">
 										<button class="confirm">구매확정</button>
 										
 									</td>

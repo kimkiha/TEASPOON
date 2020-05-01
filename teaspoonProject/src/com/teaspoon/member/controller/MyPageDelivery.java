@@ -56,7 +56,7 @@ public class MyPageDelivery extends HttpServlet {
 		pageLimit = 5;
 		
 		//* boardLimit : 한 페이지에 보여질 게시글 최대 갯수
-		boardLimit = 12; 
+		boardLimit = 5; 
 		
 		
 		//* maxPage : (마지막 페이지) 총 페이지수 

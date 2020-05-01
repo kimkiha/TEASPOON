@@ -53,7 +53,7 @@
                                 <option value="016">016</option>
                                 <option value="019">019</option>
                                 </select>
-                                <input type="number" id="verification" name="phonenum" type="verification" placeholder="111-2222"></td>
+                                <input type="number" id="verification" name="phonenum" type="verification" placeholder="<%=loginUser.getPhone() %>"></td>
                             <td></td>
                         </tr>
                         <tr>
