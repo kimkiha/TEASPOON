@@ -37,7 +37,6 @@ public class MagazineDetailServlet extends HttpServlet {
 		Board b = new BoardService().selectBoard(bno);
 		Board preb = new BoardService().preSelectBoard(bno);
 		Board nextb = new BoardService().nextSelectBoard(bno);
-		
 			if(b != null) {// 조회성공
 			
 			// 조회성공했기 때문에 해당 글 조회수 1증가 시키는 서비스 요청
