@@ -91,7 +91,7 @@
 							</div>
 							<div class="select-item">
 								<div class="select-img" border="1">
-									<img src="<%=contextPath%>/resources/img/store/product2_1.jpg"
+									<img src="<%=contextPath%>/resources/img/space/reserv2.png"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
