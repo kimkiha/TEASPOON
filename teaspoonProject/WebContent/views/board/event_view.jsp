@@ -8,7 +8,7 @@ int random = (int)(Math.random() * 100 +1);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매거진 | TeaSpoon</title>
+<title>이벤트 | TeaSpoon</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/event_view.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
@@ -43,7 +43,7 @@ int random = (int)(Math.random() * 100 +1);
                                 <br><br>
                                 <div id="con_wr">
                                     <ul>
-                                        <li>Editor's letter &nbsp;|</li>
+                                        <li>TeaSpoon EVENT &nbsp;|</li>
                                         <li>&nbsp;<%=b.getCreateDate() %></li>
                                     </ul>
                                 </div>
@@ -59,7 +59,7 @@ int random = (int)(Math.random() * 100 +1);
                             <div class="event_img_1" style="position: relative;">
 						        <img src="<%=contextPath%>/resources/img/board/teaspoonevent.jpg">
 						    </div>
-						    <div class="click_div" style="position:absolute; top:885px; left:812px; z-index:100;width:275px; height:73px; border-radius:50px;" ></div>
+						    <div class="click_div" style="position:absolute; top:885px; left:874px; z-index:100;width:275px; height:73px; border-radius:50px;" ></div>
                         </div>
                 	</div>
                     <!-- //event -->
