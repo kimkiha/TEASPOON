@@ -99,9 +99,9 @@ int maxPage = pi.getMaxPage();
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
-						<a href="<%=contextPath %>/mydelivery.me" class=" float">주문배송조회</a>
-						<a href="#" class="active float">공간대여확인</a>
-						<a	href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a> 
+						<a href="<%=contextPath %>/mydelivery.me?currentPage=1" class=" float"> 주문내역확인</a>
+						<a href="<%=contextPath %>/myReserv.me?currentPage=1" class="active float">공간대여확인</a>
+						<a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a>
 						<a href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
 						<a href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
 					</div>
@@ -110,56 +110,7 @@ int maxPage = pi.getMaxPage();
 					<div id="mp_con1">
 
 						<!-- 배송 아이콘 확인칸 -->
-						<div class="mypage-outer">
-							<div class="order-outer-wrap">
-								<div class="order-outer">
-									<div class="order-state">
-										<p>나의주문내역</p>
-										<span>나의 주문내역을<br>확인해보세요
-										</span>
-									</div>
-									<div class="myorder">
-										<div class="l">
-											<img src="주문관리_1.png" width="80" height="80"><br>
-											<br>주문접수
-											<P>0</P>
-										</div>
-										<div class="t">
-											<span>></span>
-										</div>
-										<div class="l">
-											<img src="카드_2.png" width="80" height="80"><br>
-											<br>결제완료
-											<P>0</P>
-										</div>
-										<div class="t">
-											<span>></span>
-										</div>
-										<div class="l">
-											<img src="상품준비2.png" width="80" height="80"><br>
-											<br>상품준비
-											<P>0</P>
-										</div>
-										<div class="t">
-											<span>></span>
-										</div>
-										<div class="l">
-											<img src="배송중.png" width="80" height="80"><br>
-											<br>배송중
-											<P>0</P>
-										</div>
-										<div class="t">
-											<span>></span>
-										</div>
-										<div class="l">
-											<img src="배송완료.png" width="80" height="80"><br>
-											<br>배송완료
-											<P>0</P>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						
 						<!-- 배송 아이콘 끝 -->
 						<!-- 날짜 조회 -->
 						
@@ -168,7 +119,7 @@ int maxPage = pi.getMaxPage();
 
 						<!-- 주문 내역-->
 						<div class="order-list">
-							<p>공간대여내역</p>
+							<p style="float:left">공간대여내역</p>
 						</div>
 						<table id="mypage_table" cellspacing="0">
 							<thead>
@@ -213,20 +164,23 @@ int maxPage = pi.getMaxPage();
 
 							</tbody>
 						</table>
+						<%if(list.isEmpty()){ %>
+
+						<%}else{ %>
 						<div class="pagingarea">
 							<div id="paging" class="pagingbar">
 								<%if(currentPage != 1){%>
 								<!-- 현재 페이지가 1페이지가 아닐경우 -->
 								<!-- 맨 처음으로(<<) -->
-								<button onclick="location.href='myReserv.me?currentPage=1'">&lt;&lt;</button>
+								<button onclick="location.href='mydelivery.me?currentPage=1'">&lt;&lt;</button>
 								<!-- 이전페이지로(<) -->
 								<button
-									onclick="location.href='myReserv.me?currentPage=<%=currentPage-1%>'">&lt;</button>
+									onclick="location.href='mydelivery.me?currentPage=<%=currentPage-1%>'">&lt;</button>
 								<%} %>
 
 								<%for(int p=startPage; p<=endPage; p++){%>
 								<%if(currentPage != p) {%>
-								<button onclick="location.href='myReserv.me?currentPage=<%=p%>'"><%=p%></button>
+								<button onclick="location.href='mydelivery.me?currentPage=<%=p%>'"><%=p%></button>
 								<%}else{ %>
 								<button dispabled><%=p %></button>
 								<%} %>
@@ -235,13 +189,14 @@ int maxPage = pi.getMaxPage();
 								<%if(currentPage != maxPage){ %>
 								<!-- 다음페이지로(<) -->
 								<button
-									onclick="location.href='myReserv.me?currentPage=<%=currentPage+1%>'">&gt;</button>
+									onclick="location.href='mydelivery.me?currentPage=<%=currentPage+1%>'">&gt;</button>
 								<!-- 맨 마지막으로(>>) -->
 								<button
-									onclick="location.href='myReserv.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
+									onclick="location.href='mydelivery.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
 								<%} %>
 							</div>
 						</div>
+						<%} %>
 
 					</div>
 				</div>
