@@ -1,6 +1,7 @@
 package com.teaspoon.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.teaspoon.member.model.service.MemberService;
 import com.teaspoon.member.model.vo.Member;
+import com.teaspoon.member.model.vo.Orders;
 
 /**
  * Servlet implementation class MyPageMainServlet
@@ -35,11 +37,11 @@ public class MyPageMainServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-	
+		int userNo = loginUser.getUserNo();
+		Orders or = new MemberService().MyOrderHistoryList(userNo);
 		
 		if(loginUser != null) {
-			
+			request.setAttribute("or", or);
 			
 
 			

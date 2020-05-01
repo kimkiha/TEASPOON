@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.* "%>
+<%
+Orders or = (Orders)request.getAttribute("or");
+%>	
+	
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -186,9 +190,9 @@
 									<div class="rd-layer2">
 										<div class="rd-board1">
 											<p>주문일자</p>
-											<p>2030.04.09</p>
-											<p>| 주문번호</p>
-											<p>0987654567</p>
+											<p><%=or.getOrderDate() %></p>
+											<p> 주문번호</p>
+											<p><%=or.getOrderNo() %></p>
 										</div>
 										<div class="rd-board2">
 											<div class="rd1">
@@ -196,22 +200,22 @@
 													<p style="font-size: 20px; text-align: left;">일반상품(1)</p>
 												</div>
 												<div class="rd12">
-													<img src="스토어-4.jpg" width="280" height="250">
+													<img src="<%=contextPath%>/resources/img/store/product3_1.jpg" width="280" height="250">
 												</div>
 											</div>
 											<div class="rd2">
-												<p style="font-size: 20px;">맛난커피200g</p>
-												<p style="font-size: 20px;">1개</p>
+												<p style="font-size: 20px;"><%=or.getProductInfo() %></p>
+												
 											</div>
 											<div class="rd3">
-												<p style="font-size: 20px;">18000원</p>
+												<p style="font-size: 20px;"><%=or.getPayment() %>원</p>
 											</div>
 											<div class="rd4">
 												<p style="font-size: 20px;">결제완료</p>
 											</div>
 											<div class="rd5">
 												<div class="rd51">
-													<p style="font-size: 20px;">배송비25000원</p>
+													<p style="font-size: 20px;">배송비<%=or.getShippingFee() %>원</p>
 												</div>
 												<div class="rd52">
 													<p style="font-size: 17px;">결제수단 신용카드</p>
@@ -220,14 +224,14 @@
 										</div>
 										<div class="rd-board3">
 											<div class="rd6">
-												<p style="font-size: 17px; float: left; margin-top: 20px;">포인트사용</p>
+												<p style="font-size: 17px; float: left; margin-top: 20px;"></p>
 												<P
-													style="font-size: 24px; float: right; margin-right: 25px; margin-top: 15px;">-500p</P>
+													style="font-size: 24px; float: right; margin-right: 25px; margin-top: 15px;"></P>
 											</div>
 											<div class="rd7">
-												<p style="font-size: 20px; float: left;">결제금액</p>
+												<p style="font-size: 20px; float: left;"></p>
 												<p
-													style="font-size: 20px; float: right; margin-right: 25px;">20,000원</p>
+													style="font-size: 20px; float: right; margin-right: 25px;"></p>
 											</div>
 										</div>
 									</div>

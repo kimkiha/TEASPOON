@@ -804,7 +804,7 @@ public class MemberService {
 	
 	
 	
-public int updateReservePoint(int userNo, int addPoint, int usePoint) {
+	public int updateReservePoint(int userNo, int addPoint, int usePoint) {
 		
 		Connection conn = getConnection();
 		int result1 = new MemberDao().insertReservPoint(conn,userNo,addPoint);
@@ -836,6 +836,14 @@ public int updateReservePoint(int userNo, int addPoint, int usePoint) {
 		}
 		close(conn);
 		return result1*result2;
+	}
+
+	public Orders MyOrderHistoryList(int userNo) {
+		Connection conn = getConnection();
+		Orders or = new MemberDao().MyOrderHistoryList(conn,userNo);
+
+		close(conn);
+		return or;
 	}
 		
 }
