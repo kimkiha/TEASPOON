@@ -31,7 +31,7 @@
             <div id="content1">
                 <div class="contaniner">
                     <div id="product">
-                        <div class="pname"><p>PRODUCT</p></div>
+                        <div class="pname"><p>NEW ARRIVAL</p></div>
                         <div id="product_item">
                             <div id="product_item_1"> 
                             
@@ -48,12 +48,12 @@
             <div id="content2">
                 <div class="contaniner" >
                     <div id="link">
-                        <div id="link1" align="center">
+                        <div id="link1" align="center" style=" background:url('<%=contextPath%>/resources/img/main/advice.jpg')">
                                <p style="padding-top:65px"><small>나의 커피찾기,</small></p>
                                <p><b>내 입맞에 맞는 커피를 추천받아보세요</b></p>
                                 <button id="btnLink1"><a href="<%=contextPath %>/selectitem.st">추천 바로가기</a></button>
                         </div>
-                        <div id="link2" align="center">
+                        <div id="link2" align="center" style=" background:url('<%=contextPath%>/resources/img/main/rental.jpg')">
                             <p style="padding-top:65px"><small>티스푼 공간대여 서비스</small></p>
                             <p><b>특별한 날 특별한 장소, 다양한 공간에서 즐기는 티타임</b></p>
                             <button id="btnLink2"><a href="<%=contextPath %>/rental.sp">공간대여 바로가기</a></button>
@@ -77,8 +77,8 @@
             <div id="content4">
                 <div class="contaniner">
                     <a class="nohover" href="#">                
-                        <div id="coupon">
-                            <p>20% 할인쿠폰 놓치지 마세요.</p>
+                        <div id="coupon" style=" background:url('<%=contextPath%>/resources/img/main/discount.jpg')">
+                            <p>20% 할인 이벤트 놓치지 마세요.</p>
                         </div>
                     </a>
                 </div>
@@ -92,7 +92,7 @@
                             <figure class="snip1273 hover">
                                 <td rowspan="2" width="400" height="550">
                                 <p></p> <!-- 이벤트 -->
-                                    <a href="<%=contextPath %>/eventList.bo"><img id="maga" src="<%=contextPath %>/resources/img/main/magazine.jpg"></a>
+                                    <a href="<%=contextPath %>/eventList.bo?currentPage=1"><img id="maga" src="<%=contextPath %>/resources/img/main/magazine.jpg"></a>
                                 </td>
                                 </figure>   <!-- 어바웃티스푼 -->
                                 <td width="600" height="275">

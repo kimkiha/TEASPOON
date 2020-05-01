@@ -20,6 +20,7 @@ int random = (int)(Math.random() * 100 +1);
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <style>
         #banner{margin-top:120px;height: 170px; line-height: 170px; background:rgb(222, 219, 210); margin-top:64px;}
+        .click_div:hover{cursor:pointer}
     </style>
 </head>
 
@@ -58,7 +59,7 @@ int random = (int)(Math.random() * 100 +1);
                             <div class="event_img_1" style="position: relative;">
 						        <img src="<%=contextPath%>/resources/img/board/teaspoonevent.jpg">
 						    </div>
-						    <div class="click_div" style="position:absolute; top:95.2%; left:39.6%; z-index:100;width:275px; height:73px; border-radius:50px;" ></div>
+						    <div class="click_div" style="position:absolute; top:885px; left:812px; z-index:100;width:275px; height:73px; border-radius:50px;" ></div>
                         </div>
                 	</div>
                     <!-- //event -->

@@ -69,7 +69,7 @@
                                         <div class="event_text">
                                             <span><%=b.getCreateDate()%></span>
                                             <h1><%=b.getBoardTitle() %></h1>
-                                            <p><%=b.getCreateDate()%>~</p>
+                                            <p><%=b.getCreateDate()%>~2020-05-30</p>
                                         </div>
                                     </li>
                                 <%} %>
