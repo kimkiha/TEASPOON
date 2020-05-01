@@ -52,7 +52,7 @@ int maxPage = pi.getMaxPage();
                                     <th width="100px">비품요청</th>
                                     <th>결제금액</th>
                                     <th>승인여부</th>
-                                    <th>승인결제</th>
+                                    <th style="text-align:center;">승인결제</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,7 +63,7 @@ int maxPage = pi.getMaxPage();
 							<%}else{%>
                             <%for(int i=0; i<list.size(); i++){ %>
                                 <tr>
-                                    <td><%=list.get(i).getReservNo() %></td>
+                                    <td style="width:45px;"><%=list.get(i).getReservNo() %></td>
                                     <td><%=list.get(i).getAppDate() %></td>
                                     <td><%=list.get(i).getReservTime() %></td>
                                     <!--예약은 로그인한 회원만 가능하며 예약자명과 연락처는 회원번호로 불러옴-->
@@ -74,7 +74,7 @@ int maxPage = pi.getMaxPage();
                                     <td><%=list.get(i).getGood() %></td>
                                     <td><%=list.get(i).getTotal() %></td>
                                     <td><%=list.get(i).getAccept() %></td>
-                                    <td>
+                                    <td >
                                         <button class="deny">거절</button>
                                         <button class="accept">승인</button>
                                     </td>
