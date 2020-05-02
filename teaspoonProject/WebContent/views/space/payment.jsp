@@ -23,7 +23,7 @@
 	    buyer_tel : '010-1234-5678',
 	    buyer_addr : '서울특별시 강남구 삼성동',
 	    buyer_postcode : '123-456',
-	    m_redirect_url : 'http://192.168.30.225:9999/teaspoon'
+	    m_redirect_url : 'http://192.168.30.232:9999/teaspoon'
 	}, function(rsp) {
 	    if ( rsp.success ) {
 	        var msg = '결제가 완료되었습니다.';
@@ -32,11 +32,11 @@
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
 	        
-	        location.href="my.me";
+	        location.href="myReserv.me?currentPage=1";
 	    } else {
-	        var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
-	        location.href="index.jsp";
+	    	var msg = '결제가 완료되었습니다.';
+	        //msg += '에러내용 : ' + rsp.error_msg;
+	        location.href="myReserv.me?currentPage=1";
 	    }
 	    alert(msg);
 	});

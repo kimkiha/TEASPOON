@@ -33,6 +33,7 @@ public class MagazineDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		System.out.println(bno);
 		
 		Board b = new BoardService().selectBoard(bno);
 		Board preb = new BoardService().preSelectBoard(bno);
