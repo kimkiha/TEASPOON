@@ -34,10 +34,10 @@ public class NoticeDetailServlet extends HttpServlet {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		Board b = new BoardService().selectBoard(bno);
-		
+	
 		if(b != null) {// 조회성공
-			System.out.println(bno);
-			System.out.println(b);
+			//System.out.println(bno);
+			//System.out.println(b);
 			// 조회성공했기 때문에 해당 글 조회수 1증가 시키는 서비스 요청
 			new BoardService().increaseCount(bno);
 			

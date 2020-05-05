@@ -53,7 +53,7 @@
                                 <option value="016">016</option>
                                 <option value="019">019</option>
                                 </select>
-                                <input type="number" id="verification" name="phonenum" type="verification" placeholder="<%=loginUser.getPhone() %>"></td>
+                                <input type="text" id="verification" name="phonenum" type="verification" placeholder="전화번호뒷자리 8자리입력"></td>
                             <td></td>
                         </tr>
                         <tr>
@@ -69,7 +69,7 @@
                         </tr>
                         <tr>
                             <td style= "font-size:20px;"><li>비 밀 번 호</li></td>
-                            <td style= "text-align:left;"><input type="password" id="userPwd1" name="UserPwd1" placeholder=" 비밀번호는 6~16자 영문 대소문자, 숫자, 특수문자 중 최..."></td>
+                            <td style= "text-align:left;"><input type="password" id="userPwd1" name="UserPwd1" placeholder=" 비밀번호는 8~16자 영문 대소문자, 숫자, 특수문자 중 최..."></td>
                             <td style= "font-size:15px; color:rgb(131, 2, 2); text-align:left;"> </td>
                         </tr>
                         <tr>

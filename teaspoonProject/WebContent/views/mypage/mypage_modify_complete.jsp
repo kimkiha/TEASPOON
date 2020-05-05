@@ -32,7 +32,6 @@
 							<center style="padding: 35px;">
 								<img src="<%=contextPath %>/resources/img/mypage/spoon.png" width="74px;" height="74px;">
 								<h1>정보수정완료!</h1>
-								<h4 style="color: gray">3초뒤 메인페이지로 이동합니다.</h4>
 							</center>
 					</fieldset>
 				</form>

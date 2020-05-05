@@ -4,12 +4,14 @@
  Board b = (Board)request.getAttribute("b");
  Board preb = (Board)request.getAttribute("preb");
  Board nextb = (Board)request.getAttribute("nextb");
+ System.out.print(preb.getChangeName());
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>매거진 | TeaSpoon</title>
+	syso
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/magazine_view.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/magazine_view_photo.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">

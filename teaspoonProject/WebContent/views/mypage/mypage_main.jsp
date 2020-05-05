@@ -90,7 +90,7 @@ Orders or = (Orders)request.getAttribute("or");
 							<!-- 배송 아이콘 확인칸 -->
 							<div class="mypage-outer">
 								<div align="center" class="order"
-									style="width: 100%; height: 60px;">주문현황</div>
+									style="width: 100%; height: 60px; color:white; font-weight:bold; font-size:25px; padding-top:20px;">주문현황</div>
 								<div class="order-outer">
 									<div class="order-state">
 										<p>나의주문내역</p>
@@ -196,15 +196,15 @@ Orders or = (Orders)request.getAttribute("or");
 										</div>
 										<div class="rd-board2">
 											<div class="rd1">
-												<div class="rd11">
-													<p style="font-size: 20px; text-align: left;">일반상품(1)</p>
-												</div>
+												<!--<div class="rd11">
+													<p style="font-size: 20px; text-align: left;">일반상품(1)</p> 
+												</div>-->
 												<div class="rd12">
-													<img src="<%=contextPath%>/resources/img/store/product3_1.jpg" width="280" height="250">
+													<img src="<%=contextPath%>/resources/img/store/product3_1.jpg" width="280px" height="280px">
 												</div>
 											</div>
 											<div class="rd2">
-												<p style="font-size: 20px;"><%=or.getProductInfo() %></p>
+												<p style="font-size: 20px;">에티오피아 라로 보다</p>
 												
 											</div>
 											<div class="rd3">

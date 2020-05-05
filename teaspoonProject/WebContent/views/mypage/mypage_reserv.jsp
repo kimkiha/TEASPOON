@@ -146,7 +146,7 @@ int maxPage = pi.getMaxPage();
 									<td><%=m.getReservDate() %><br><%= m.getReservTime() %>
 									</td>
 									<td><%=m.getReservNo() %></td>
-									<td style="text-align: left;"><img src="<%=contextPath%>/resources/img/store/product2_1.jpg"
+									<td style="text-align: left;"><img src="<%=contextPath%>/resources/img/space/reserv2.png"
 										width="90px" height="90px"></td>
 									<td style="text-align: left;">아카이야</td>
 									<td><%=m.getVisitNum() %>인</td>
